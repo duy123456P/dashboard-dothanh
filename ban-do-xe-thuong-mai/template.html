@@ -568,8 +568,8 @@ const SEGS = ["Tải nhẹ < 3,5T","Tải trung 3,5–10T","Tải nặng > 10T",
 const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",industrial:"Công nghiệp",coast:"Duyên hải – công nghiệp nặng",highland:"Cao nguyên – nông nghiệp",delta:"Đồng bằng – nông nghiệp",mountain:"Miền núi",border:"Cửa khẩu – logistics"};
 const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
 const COMP = [["c_thaco","Thaco"],["c_hyundai","Hyundai"],["c_isuzu","Isuzu"],["c_hino","Hino"],["c_fuso","Fuso"],["c_china","Xe Trung Quốc"],["c_other","Khác"]];
-const NUM_KEYS = ["pop","area","grdp","growth","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
-const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],
+const NUM_KEYS = ["pop","area","grdp","growth","cpi","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
+const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],["cpi","CPI tỉnh 10T/2026 (%)",0.01],
   ["elev","Độ cao TB (m)",10],["factor","Hệ số vùng",0.05],["reg","ĐK mới thực tế",1],["uio","UIO thực tế",100],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1],
   ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
@@ -1050,6 +1050,7 @@ function centerTip(c){
 function regionTip(name){
   if(ISLANDS[name]) return `<div class="t">${esc(name)}</div><div class="muted">Thuộc ${ISLANDS[name]==="Đà Nẵng"?"thành phố Đà Nẵng":"tỉnh Khánh Hòa"}, Việt Nam</div>`;
   const r = findRow(name); if(!r) return esc(name);
+  if(window.__CV && window.__CV.lens && window.__CV.lensTip){ const h = window.__CV.lensTip(r); if(h) return h; }
   const M = METRICS[metric];
   return `<div class="t"><span class="sw" style="background:${zoneColor(r.zone)};color:${zoneColor(r.zone)}"></span>${esc(r.name)}</div>
     <div class="muted">${esc(r.zone)} · gộp: ${esc(r.merged.join(", "))}</div>
@@ -1163,6 +1164,7 @@ function renderMatrix(){
 }
 function renderDossier(){
   const el = document.getElementById("paneP"), r = rows.find(x=>x.name===selected);
+  if(!r && window.__CV && window.__CV.lens && window.__CV.lensHtml){ const h = window.__CV.lensHtml(null); if(h){ el.innerHTML = h; window.__CV.lensWire(el, null); return; } }
   if(!r){
     const top = [...visible()].sort((a,b)=>b._market-a._market).slice(0,8);
     el.innerHTML = `<div><h3>Hồ sơ tỉnh</h3><h2 style="margin-top:6px;text-transform:none">Rê chuột hoặc bấm vào một tỉnh trên bản đồ</h2>
@@ -1172,8 +1174,9 @@ function renderDossier(){
     el.querySelectorAll("a[data-p]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); select(a.dataset.p,true);}));
     return;
   }
+  if(window.__CV && window.__CV.lens && window.__CV.lensHtml){ const h = window.__CV.lensHtml(r); if(h){ el.innerHTML = h; window.__CV.lensWire(el, r); return; } }
   const segColors = [1,2,3,4,5,6].map(i=>css("--seg-"+i)), cs = centersOf(r.name);
-  el.innerHTML = `
+  el.innerHTML = (window.__CV && window.__CV.lensBar ? window.__CV.lensBar(r) : "") + `
     <div class="dhead">
       <div><div class="name">${esc(r.name)}</div>
         <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag"><i class="sw" style="background:${zoneColor(r.zone)};color:${zoneColor(r.zone)}"></i>${esc(r.zone)}</span><span class="tag">${esc(ARCH[r.archetype]||r.archetype)}</span><span class="tag">${esc(r.region)}</span></div>
@@ -1195,6 +1198,7 @@ function renderDossier(){
       <div class="stat"><div class="v">${fmtInt(r.grdp)}</div><div class="l">GRDP 2024, nghìn tỷ · #${r._rkgrdp}</div></div>
       <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người ${r.gpc2025 ? "2025 (NSO)" : "2024 (ước)"} · #${r._rk_gpc}</div></div>
       <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
+      <div class="stat"><div class="v">${r.cpi==null||r.cpi===""?"4,57%":fmt1(+r.cpi)+"%"}</div><div class="l">${r.cpi==null||r.cpi===""?"CPI bình quân 10T/2026, cả nước (chưa có số tỉnh)":"CPI bình quân 10T/2026 của tỉnh"}</div></div>
     </div>
     <div class="segbar" style="margin-top:10px">${r.econ.map((v,i)=>`<span style="width:${v}%;background:${ECON_COL[i]}" title="${ECON[i]} ${v}%"></span>`).join("")}</div>
     <div class="seglist num">${r.econ.map((v,i)=>`<div><i style="background:${ECON_COL[i]}"></i>${ECON[i]}<b>${fmt1(v)}%</b></div>`).join("")}</div>
@@ -2218,7 +2222,7 @@ window.__CV = {
     if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
-  get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
+  INFRA, km, provinceOfPoint, structOf, centersOf, get SITES(){ return SITES; }, renderDossier, get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
 };
 function init(){
   load(); renderAll();

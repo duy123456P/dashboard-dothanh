@@ -1,0 +1,7 @@
+faster-whisper>=1.0
+sounddevice>=0.4
+soundfile>=0.12
+requests>=2.31
+# Tùy chọn:
+# transformers>=4.40 torch   # PhoWhisper (--may phowhisper)
+# pyannote.audio>=3.1        # tách người nói (--nguoi-noi)
