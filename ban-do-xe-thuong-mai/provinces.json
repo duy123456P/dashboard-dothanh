@@ -33,7 +33,29 @@
   "lp": [
    105.712,
    20.908
-  ]
+  ],
+  "communes": 126,
+  "econ": [
+   2,
+   23,
+   65,
+   10
+  ],
+  "urban": 50,
+  "plates": "29–33, 40",
+  "ethnic": "Kinh ~98%; Mường, Dao ở Ba Vì, Mỹ Đức",
+  "specialties": "Phở, cốm làng Vòng, bưởi Diễn, gốm Bát Tràng, lụa Vạn Phúc",
+  "gpc2025": 164,
+  "carReg2025": 88165,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Huế",
@@ -69,7 +91,29 @@
   "lp": [
    107.415,
    16.351
-  ]
+  ],
+  "communes": 40,
+  "econ": [
+   9,
+   33,
+   50,
+   8
+  ],
+  "urban": 53,
+  "plates": "75",
+  "ethnic": "Kinh ~97%; Tà Ôi, Cơ Tu ở A Lưới",
+  "specialties": "Bún bò, mè xửng, nón lá, tôm chua",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Lai Châu",
@@ -105,7 +149,29 @@
   "lp": [
    103.335,
    22.39
-  ]
+  ],
+  "communes": 38,
+  "econ": [
+   15,
+   45,
+   34,
+   6
+  ],
+  "urban": 19,
+  "plates": "25",
+  "ethnic": "Thái ~32%, Mông ~40%, Dao, Hà Nhì; Kinh ~14%",
+  "specialties": "Sâm Lai Châu, chè, cá suối, mắc khén",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Điện Biên",
@@ -141,7 +207,29 @@
   "lp": [
    103.261,
    21.735
-  ]
+  ],
+  "communes": 45,
+  "econ": [
+   20,
+   26,
+   48,
+   6
+  ],
+  "urban": 17,
+  "plates": "27",
+  "ethnic": "Thái ~38%, Mông ~35%, Kinh ~19%, Khơ Mú",
+  "specialties": "Gạo Điện Biên, cà phê, thịt trâu gác bếp",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Sơn La",
@@ -177,7 +265,29 @@
   "lp": [
    103.857,
    21.312
-  ]
+  ],
+  "communes": 75,
+  "econ": [
+   32,
+   22,
+   41,
+   5
+  ],
+  "urban": 15,
+  "plates": "26",
+  "ethnic": "Thái ~53%, Kinh ~17%, Mông ~16%, Mường",
+  "specialties": "Xoài, nhãn, mận Mộc Châu, bò sữa, cà phê Arabica",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Lạng Sơn",
@@ -213,7 +323,29 @@
   "lp": [
    106.394,
    21.933
-  ]
+  ],
+  "communes": 65,
+  "econ": [
+   21,
+   21,
+   48,
+   10
+  ],
+  "urban": 22,
+  "plates": "12",
+  "ethnic": "Nùng ~43%, Tày ~35%, Kinh ~16%, Dao",
+  "specialties": "Vịt quay mắc mật, na Chi Lăng, hồi, khau nhục",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Quảng Ninh",
@@ -249,7 +381,29 @@
   "lp": [
    107.181,
    21.21
-  ]
+  ],
+  "communes": 54,
+  "econ": [
+   6,
+   52,
+   33,
+   9
+  ],
+  "urban": 68,
+  "plates": "14",
+  "ethnic": "Kinh ~88%; Dao, Tày, Sán Dìu, Hoa",
+  "specialties": "Chả mực Hạ Long, sá sùng, ngán, hàu Vân Đồn",
+  "gpc2025": 249.3,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Thanh Hóa",
@@ -285,7 +439,29 @@
   "lp": [
    105.538,
    19.912
-  ]
+  ],
+  "communes": 166,
+  "econ": [
+   14,
+   46,
+   31,
+   9
+  ],
+  "urban": 24,
+  "plates": "36",
+  "ethnic": "Kinh ~82%; Mường ~9%, Thái ~6%",
+  "specialties": "Nem chua, bánh gai Tứ Trụ, mía Lam Sơn, hải sản Sầm Sơn",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Nghệ An",
@@ -321,7 +497,29 @@
   "lp": [
    104.9,
    19.24
-  ]
+  ],
+  "communes": 130,
+  "econ": [
+   21,
+   32,
+   40,
+   7
+  ],
+  "urban": 24,
+  "plates": "37",
+  "ethnic": "Kinh ~85%; Thái ~10%, Khơ Mú, Mông",
+  "specialties": "Cam Vinh, súp lươn, chè Thanh Chương, nhút Thanh Chương",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Hà Tĩnh",
@@ -357,7 +555,29 @@
   "lp": [
    105.704,
    18.305
-  ]
+  ],
+  "communes": 69,
+  "econ": [
+   15,
+   42,
+   37,
+   6
+  ],
+  "urban": 25,
+  "plates": "38",
+  "ethnic": "Kinh ~99%",
+  "specialties": "Bưởi Phúc Trạch, kẹo cu đơ, mực nhảy",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Cao Bằng",
@@ -393,7 +613,29 @@
   "lp": [
    106.359,
    22.639
-  ]
+  ],
+  "communes": 56,
+  "econ": [
+   20,
+   22,
+   52,
+   6
+  ],
+  "urban": 25,
+  "plates": "11",
+  "ethnic": "Tày ~41%, Nùng ~32%, Mông ~11%, Dao",
+  "specialties": "Hạt dẻ Trùng Khánh, bánh cuốn canh, lạp sườn hun khói",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Tuyên Quang",
@@ -430,7 +672,29 @@
   "lp": [
    105.124,
    22.483
-  ]
+  ],
+  "communes": 124,
+  "econ": [
+   24,
+   33,
+   38,
+   5
+  ],
+  "urban": 18,
+  "plates": "22, 23",
+  "ethnic": "Tày, Mông, Dao, Kinh, Nùng; Mông ~32% vùng Hà Giang cũ",
+  "specialties": "Cam sành Hàm Yên, chè Shan tuyết, thắng cố, mật ong bạc hà",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Lào Cai",
@@ -467,7 +731,29 @@
   "lp": [
    104.164,
    22.12
-  ]
+  ],
+  "communes": 99,
+  "econ": [
+   17,
+   41,
+   35,
+   7
+  ],
+  "urban": 28,
+  "plates": "24, 21",
+  "ethnic": "Kinh ~40%; Mông, Tày, Dao, Giáy, Thái",
+  "specialties": "Táo mèo, thắng cố, gà đen, cá hồi Sa Pa, quế Văn Yên",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Thái Nguyên",
@@ -504,7 +790,29 @@
   "lp": [
    105.818,
    22.151
-  ]
+  ],
+  "communes": 92,
+  "econ": [
+   9,
+   62,
+   23,
+   6
+  ],
+  "urban": 38,
+  "plates": "20, 97",
+  "ethnic": "Kinh ~65%; Tày, Nùng, Dao, Sán Chay",
+  "specialties": "Chè Tân Cương, miến dong, hồng không hạt Bắc Kạn",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Phú Thọ",
@@ -542,7 +850,29 @@
   "lp": [
    105.141,
    21.381
-  ]
+  ],
+  "communes": 148,
+  "econ": [
+   11,
+   55,
+   27,
+   7
+  ],
+  "urban": 30,
+  "plates": "19, 88, 28",
+  "ethnic": "Kinh ~70%; Mường ~25% (Hòa Bình cũ), Dao, Tày",
+  "specialties": "Bưởi Đoan Hùng, chè, cam Cao Phong, cá thính, rượu Mường",
+  "gpc2025": null,
+  "carReg2025": 26930,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Bắc Ninh",
@@ -579,7 +909,29 @@
   "lp": [
    106.658,
    21.377
-  ]
+  ],
+  "communes": 99,
+  "econ": [
+   6,
+   66,
+   21,
+   7
+  ],
+  "urban": 45,
+  "plates": "98, 99",
+  "ethnic": "Kinh ~88%; Nùng, Tày, Sán Chay, Hoa (phía Bắc Giang cũ)",
+  "specialties": "Vải thiều Lục Ngạn, bánh phu thê Đình Bảng, mì Chũ, gà Hồ",
+  "gpc2025": null,
+  "carReg2025": 30721,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Hưng Yên",
@@ -616,7 +968,29 @@
   "lp": [
    106.33,
    20.562
-  ]
+  ],
+  "communes": 104,
+  "econ": [
+   14,
+   52,
+   27,
+   7
+  ],
+  "urban": 30,
+  "plates": "89, 17",
+  "ethnic": "Kinh ~99%",
+  "specialties": "Nhãn lồng, tương Bần, bánh cáy Thái Bình, gạo Tám",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Hải Phòng",
@@ -653,7 +1027,29 @@
   "lp": [
    106.517,
    20.864
-  ]
+  ],
+  "communes": 114,
+  "econ": [
+   5,
+   52,
+   35,
+   8
+  ],
+  "urban": 50,
+  "plates": "15, 16, 34",
+  "ethnic": "Kinh ~99%",
+  "specialties": "Bánh đa cua, nem cua bể, vải thiều Thanh Hà, bánh đậu xanh Hải Dương",
+  "gpc2025": 160,
+  "carReg2025": 31436,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Ninh Bình",
@@ -691,7 +1087,29 @@
   "lp": [
    106.028,
    20.302
-  ]
+  ],
+  "communes": 129,
+  "econ": [
+   13,
+   47,
+   32,
+   8
+  ],
+  "urban": 28,
+  "plates": "35, 90, 18",
+  "ethnic": "Kinh ~98%; Mường ở Nho Quan",
+  "specialties": "Cơm cháy, dê núi, nem chua, chè Bạch Mai Nam Định, phở bò Nam Định",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Quảng Trị",
@@ -728,7 +1146,29 @@
   "lp": [
    106.84,
    16.9
-  ]
+  ],
+  "communes": 78,
+  "econ": [
+   20,
+   31,
+   43,
+   6
+  ],
+  "urban": 32,
+  "plates": "74, 73",
+  "ethnic": "Kinh ~94%; Bru–Vân Kiều, Pa Kô, Chứt",
+  "specialties": "Hồ tiêu Cùa, cà phê Khe Sanh, khoai deo, cháo canh Quảng Bình",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Đà Nẵng",
@@ -765,7 +1205,29 @@
   "lp": [
    108.006,
    15.64
-  ]
+  ],
+  "communes": 94,
+  "econ": [
+   8,
+   30,
+   52,
+   10
+  ],
+  "urban": 55,
+  "plates": "43, 92",
+  "ethnic": "Kinh ~94%; Cơ Tu, Xơ Đăng, Giẻ Triêng (Quảng Nam cũ)",
+  "specialties": "Mì Quảng, bê thui Cầu Mống, sâm Ngọc Linh, hải sản",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Quảng Ngãi",
@@ -802,7 +1264,29 @@
   "lp": [
    107.909,
    14.655
-  ]
+  ],
+  "communes": 96,
+  "econ": [
+   18,
+   39,
+   34,
+   9
+  ],
+  "urban": 24,
+  "plates": "76, 82",
+  "ethnic": "Kinh ~75%; Hrê, Xơ Đăng, Ba Na, Giẻ Triêng",
+  "specialties": "Đường phổi, quế Trà Bồng, tỏi Lý Sơn, sâm Ngọc Linh (Kon Tum)",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Gia Lai",
@@ -839,7 +1323,29 @@
   "lp": [
    108.379,
    13.85
-  ]
+  ],
+  "communes": 135,
+  "econ": [
+   30,
+   26,
+   38,
+   6
+  ],
+  "urban": 35,
+  "plates": "81, 77",
+  "ethnic": "Kinh ~73%; Gia Rai ~17%, Ba Na ~8%",
+  "specialties": "Cà phê, hồ tiêu, bánh hỏi Bình Định, rượu Bàu Đá, dừa",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Khánh Hòa",
@@ -876,7 +1382,29 @@
   "lp": [
    108.931,
    12.022
-  ]
+  ],
+  "communes": 65,
+  "econ": [
+   14,
+   33,
+   45,
+   8
+  ],
+  "urban": 48,
+  "plates": "79, 85",
+  "ethnic": "Kinh ~90%; Chăm ~6% (Ninh Thuận cũ), Raglai",
+  "specialties": "Yến sào, nho, táo, muối Ninh Thuận, hải sản",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Lâm Đồng",
@@ -914,7 +1442,29 @@
   "lp": [
    108.096,
    11.635
-  ]
+  ],
+  "communes": 124,
+  "econ": [
+   34,
+   25,
+   36,
+   5
+  ],
+  "urban": 40,
+  "plates": "49, 48, 86",
+  "ethnic": "Kinh ~80%; K'Ho, Mạ, M'nông, Chăm, Raglai",
+  "specialties": "Rau, hoa Đà Lạt, atiso, cà phê, thanh long Bình Thuận, nước mắm Phan Thiết",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Đắk Lắk",
@@ -951,7 +1501,29 @@
   "lp": [
    108.345,
    12.683
-  ]
+  ],
+  "communes": 102,
+  "econ": [
+   36,
+   20,
+   39,
+   5
+  ],
+  "urban": 27,
+  "plates": "47, 78",
+  "ethnic": "Kinh ~70%; Ê Đê ~13%, Nùng, Tày, M'nông",
+  "specialties": "Cà phê Buôn Ma Thuột, sầu riêng, bò một nắng, cá ngừ đại dương Phú Yên",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -989,7 +1561,29 @@
   "lp": [
    106.621,
    11.127
-  ]
+  ],
+  "communes": 168,
+  "econ": [
+   1.5,
+   37,
+   52,
+   9.5
+  ],
+  "urban": 75,
+  "plates": "41, 50–59, 61, 72",
+  "ethnic": "Kinh ~93%; Hoa ~4% (Chợ Lớn); Khmer, Chăm",
+  "specialties": "Cơm tấm, sầu riêng Lái Thiêu, gốm Lái Thiêu, hải sản Vũng Tàu",
+  "gpc2025": 199,
+  "carReg2025": 102354,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Đồng Nai",
@@ -1026,7 +1620,29 @@
   "lp": [
    106.913,
    11.677
-  ]
+  ],
+  "communes": 95,
+  "econ": [
+   12,
+   55,
+   27,
+   6
+  ],
+  "urban": 44,
+  "plates": "39, 60, 93",
+  "ethnic": "Kinh ~90%; Hoa, Xtiêng, Nùng, Tày",
+  "specialties": "Bưởi Tân Triều, hạt điều Bình Phước, cao su",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Tây Ninh",
@@ -1063,7 +1679,29 @@
   "lp": [
    106.12,
    11.463
-  ]
+  ],
+  "communes": 96,
+  "econ": [
+   18,
+   47,
+   29,
+   6
+  ],
+  "urban": 24,
+  "plates": "70, 62",
+  "ethnic": "Kinh ~98%; Khmer, Chăm, Hoa",
+  "specialties": "Bánh tráng phơi sương, muối tôm, mãng cầu, lúa – thanh long Long An",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Cần Thơ",
@@ -1101,7 +1739,29 @@
   "lp": [
    105.819,
    9.646
-  ]
+  ],
+  "communes": 103,
+  "econ": [
+   26,
+   29,
+   39,
+   6
+  ],
+  "urban": 43,
+  "plates": "65, 83, 95",
+  "ethnic": "Kinh ~85%; Khmer ~12% (Sóc Trăng cũ), Hoa",
+  "specialties": "Gạo ST25 (Sóc Trăng), bánh pía, khóm Cầu Đúc",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Vĩnh Long",
@@ -1139,7 +1799,29 @@
   "lp": [
    106.236,
    9.863
-  ]
+  ],
+  "communes": 124,
+  "econ": [
+   33,
+   25,
+   37,
+   5
+  ],
+  "urban": 21,
+  "plates": "64, 71, 84",
+  "ethnic": "Kinh ~90%; Khmer ~9% (Trà Vinh cũ)",
+  "specialties": "Dừa Bến Tre, kẹo dừa, cam sành Tam Bình, bánh tráng",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Đồng Tháp",
@@ -1176,7 +1858,29 @@
   "lp": [
    105.549,
    10.692
-  ]
+  ],
+  "communes": 102,
+  "econ": [
+   34,
+   22,
+   38,
+   6
+  ],
+  "urban": 23,
+  "plates": "66, 63",
+  "ethnic": "Kinh ~99%",
+  "specialties": "Xoài Cao Lãnh, sen, hủ tiếu Mỹ Tho, cá tra, sầu riêng Cai Lậy",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "Cà Mau",
@@ -1213,7 +1917,29 @@
   "lp": [
    105.128,
    9.137
-  ]
+  ],
+  "communes": 64,
+  "econ": [
+   35,
+   24,
+   36,
+   5
+  ],
+  "urban": 28,
+  "plates": "69, 94",
+  "ethnic": "Kinh ~94%; Khmer ~4%, Hoa",
+  "specialties": "Tôm, cua Năm Căn, khô bổi, muối Bạc Liêu",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  },
  {
   "name": "An Giang",
@@ -1250,6 +1976,28 @@
   "lp": [
    105.107,
    10.438
-  ]
+  ],
+  "communes": 102,
+  "econ": [
+   33,
+   22,
+   40,
+   5
+  ],
+  "urban": 35,
+  "plates": "67, 68",
+  "ethnic": "Kinh ~90%; Khmer ~8%, Chăm, Hoa",
+  "specialties": "Nước mắm Phú Quốc, tiêu Phú Quốc, mắm Châu Đốc, thốt nốt, gạo",
+  "gpc2025": null,
+  "carReg2025": null,
+  "reg": 0,
+  "uio": 0,
+  "c_thaco": 0,
+  "c_hyundai": 0,
+  "c_isuzu": 0,
+  "c_hino": 0,
+  "c_fuso": 0,
+  "c_china": 0,
+  "c_other": 0
  }
 ]
