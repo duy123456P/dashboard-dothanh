@@ -460,6 +460,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
   <div class="bpane bscroll" id="bTco" hidden>
     <h4>So sánh tổng chi phí sở hữu (TCO)</h4>
     <p class="muted" style="margin:0 0 8px;font-size:12px">Số mặc định là ví dụ minh họa; thay bằng giá và thông số thực của hai dòng xe đang so sánh.</p>
+    <label class="field" for="tcoModel">Chọn sản phẩm Đô Thành Auto (điền giá tham khảo giữa khoảng)<select id="tcoModel"></select></label>
     <div class="tcogrid" id="tcoGrid"></div>
     <div id="tcoOut" class="bout"></div>
     <div class="toolbar"><button type="button" class="primary" id="tcoTalk">Ben viết sale talk từ phép so sánh này</button><button type="button" id="tcoCopy">Sao chép kết quả</button></div>
@@ -487,6 +488,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="center-data" type="application/json">/*__CENTERS__*/</script>
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script id="infra-data" type="application/json">/*__INFRA__*/</script>
+<script id="prod-data" type="application/json">/*__PRODUCTS__*/</script>
 <script>
 const RELIEF_SRC = "/*__RELIEF__*/";
 const HEIGHT_SRC = "/*__HEIGHT__*/";
@@ -496,6 +498,12 @@ const GEO = JSON.parse(document.getElementById("geo-data").textContent);
 const BASE = JSON.parse(document.getElementById("prov-data").textContent);
 const CENTERS = JSON.parse(document.getElementById("center-data").textContent);
 const SRC = JSON.parse(document.getElementById("src-data").textContent);
+const PRODUCTS = JSON.parse(document.getElementById("prod-data").textContent);
+// tentative payload segment per model, inferred from model names; confirm against the factory spec sheets
+const MODEL_SEG = {V56:0, V65:0, T26:1, T33L:1, IZ45S:1, IZ50S:1, IZ50M:1, "IZ50M Plus":1, "IZ60SL Plus":2, IZ62M:2, "IZ65M Plus":2, "IZ71SL Plus":2, JP120SL:3, JP120EXL:3, HC6:3, HC8:3, Novus:4, "Xe ben":4, "Đầu kéo":5};
+function ourModels(i){ return Object.keys(MODEL_SEG).filter(m => MODEL_SEG[m] === i); }
+function priceTxt(m){ const p = PRODUCTS.prices[m]; return p ? (p[0] === p[1] ? fmt1(p[0]).replace(",0","") : fmt1(p[0]).replace(",0","") + "–" + fmt1(p[1]).replace(",0","")) + " tr" : "chờ giá"; }
+
 const STORE_KEY = "cv-map-v5";
 const LNG0 = 101.5, LNG1 = 117.5, LAT0 = 7.0, LAT1 = 24.0, K = 10, COSL = Math.cos(15.5*Math.PI/180);
 const ZONES = ["Khu vực Hà Nội","Vùng 1","Vùng 2","Vùng 3","Vùng 4","Vùng 5","Vùng 6","Vùng 7","Vùng 8","Khu vực TP. Hồ Chí Minh","Vùng 9"];
@@ -1532,6 +1540,7 @@ function rules(){
 Xưng "em", gọi người dùng là "anh/chị". Ben thường được dùng TRONG CUỘC HỌP: trả lời số trước, lời sau; câu ngắn. Mọi phép tính phải dùng công cụ calc; gộp/tách thị phần dùng merge_share / split_province. Khi viết sale talk: nghệ thuật bán hàng tư vấn (SPIN, Tính năng – Lợi ích – Bằng chứng, xử lý từ chối, chốt), dựa trên giá trị và tổng chi phí sở hữu, không chê bai đối thủ, không bịa thông số kỹ thuật. ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
 Trọng tâm thương hiệu Đô Thành Auto: phát triển khách mới VÀ đặc biệt chăm sóc khách cũ để tăng khách trung thành, làm chiến dịch dịch vụ theo mùa vụ, lễ hội, tâm lý từng vùng, củng cố niềm tin vào giá trị thương hiệu. Tháng hiện tại là tháng ${new Date().getMonth()+1}.
+Danh mục sản phẩm Đô Thành Auto (file Anh cung cấp): ${PRODUCTS.groups.map(g => g.group + ": " + g.models.join(", ")).join(" | ")}. Giá tham khảo thị trường 11/2026 (triệu đ, KHÔNG phải giá Nhà máy): ${Object.entries(PRODUCTS.prices).map(([m,p]) => m + " " + (p[0]===p[1] ? p[0] : p[0] + "–" + p[1])).join("; ")}. Giá Nhà máy đang chờ xác nhận; luôn nói rõ điều này khi nêu giá.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
 Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
 Dùng công cụ get_province để lấy hồ sơ định tính khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ.
@@ -1699,7 +1708,7 @@ spProv.addEventListener("change", renderSplit);
 /* TCO */
 const TCO_ROWS = [["name","Dòng xe","text"],["price","Giá xe lăn bánh (triệu đ)","n"],["fuel","Tiêu hao nhiên liệu (lít/100 km)","n"],["maint","Bảo dưỡng, sửa chữa (triệu/năm)","n"],["resid","Giá trị còn lại cuối kỳ (%)","n"],["down","Ngày xe nằm xưởng / năm","n"]];
 const TCO_COMMON = [["km","Quãng đường (km/năm)",80000],["diesel","Giá dầu (đ/lít)",20000],["years","Số năm sử dụng",5],["rev","Doanh thu mỗi ngày xe chạy (triệu)",3],["rate","Lãi vay (%/năm)",9]];
-let tcoA = {name:"Xe của ta", price:850, fuel:12, maint:25, resid:50, down:5}, tcoB = {name:"Xe đối thủ", price:720, fuel:14, maint:38, resid:35, down:12}, tcoC = Object.fromEntries(TCO_COMMON.map(x=>[x[0],x[2]]));
+let tcoA = {name:"IZ65M Plus", price:448.5, fuel:11, maint:18, resid:50, down:4}, tcoB = {name:"Xe đối thủ cùng tải", price:430, fuel:12, maint:24, resid:40, down:8}, tcoC = Object.fromEntries(TCO_COMMON.map(x=>[x[0],x[2]]));
 function renderTcoForm(){
   document.getElementById("tcoGrid").innerHTML = `<span></span><span class="h">Xe của ta</span><span class="h">Đối thủ</span>` +
     TCO_ROWS.map(([k,l,t])=>`<label for="ta_${k}">${l}</label><input id="ta_${k}" data-t="a" data-k="${k}" type="${t==="n"?"number":"text"}" value="${esc(tcoA[k])}"><input id="tb_${k}" data-t="b" data-k="${k}" type="${t==="n"?"number":"text"}" value="${esc(tcoB[k])}" aria-label="${l} đối thủ">`).join("") +
@@ -1766,6 +1775,7 @@ function buildTalk(){
 ${c.spin.map((q,i)=>`- **${["Tình huống","Vấn đề","Hệ quả","Lợi ích"][i]}:** ${q}`).join("\n")}
 
 ### 3. Trình bày giá trị (Tính năng → Lợi ích → Bằng chứng)
+- **Sản phẩm đề xuất:** ${(() => { const si = [0,1,3,4,5,4][+tkSeg.value], ms = +tkSeg.value === 0 ? [...ourModels(1), ...ourModels(2)] : ourModels(si); return ms.length ? ms.map(m => m + " (" + priceTxt(m) + ")").join(", ") : "[dòng xe phù hợp]"; })()} · giá tham khảo, xác nhận bảng giá hiện hành trước khi báo khách.
 - **Tính năng:** [động cơ, hộp số, tải trọng, thùng của dòng ${seg}].
 - **Lợi ích:** giảm chi phí/km, tăng số ngày xe chạy, giữ giá bán lại.
 - **Bằng chứng:** bảng TCO ở tab "Giá trị SP", khách hàng tham chiếu tại ${r.name}, lái thử có hàng.
@@ -1792,6 +1802,10 @@ function benToolsRefresh(){
   const sp = spProv.value || "TP. Hồ Chí Minh", tp = tkProv.value; spProv.innerHTML = opts; spProv.value = sp; tkProv.innerHTML = opts; tkProv.value = tp || selected || "TP. Hồ Chí Minh";
   renderSplit(); if(tkMd) buildTalk();
 }
+(function(){ const sel = document.getElementById("tcoModel");
+  sel.innerHTML = PRODUCTS.groups.map(g => `<optgroup label="${esc(g.group)}">${g.models.map(m => `<option value="${esc(m)}"${m === "IZ65M Plus" ? " selected" : ""}>${esc(m)} · ${priceTxt(m)}</option>`).join("")}</optgroup>`).join("");
+  sel.addEventListener("change", () => { const m = sel.value, pr = PRODUCTS.prices[m]; tcoA.name = m; if(pr) tcoA.price = (pr[0]+pr[1])/2; renderTcoForm(); renderTco(); });
+})();
 renderTcoForm(); renderTco();
 
 /* quick answers in chat without AI: arithmetic, "gộp ...", "tách ..." */
@@ -1943,7 +1957,7 @@ const COLORS = [["Trắng","#f4f7fb"],["Xanh dương","#3d7dd8"],["Bạc / xám"
 const REGION_OF = z => ["Khu vực TP. Hồ Chí Minh","Vùng 8"].includes(z) ? "south" : z === "Vùng 9" ? "mekong" : z === "Vùng 7" ? "highland" : ["Vùng 5","Vùng 6"].includes(z) ? "central" : "north";
 const COLOR_BASE = {north:[46,18,10,10,10,3,3], central:[50,20,10,7,8,3,2], highland:[48,22,9,8,8,3,2], south:[54,20,10,5,6,3,2], mekong:[52,24,8,6,5,3,2]};
 const BRANDS = [
-  {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ – trung", models:"IZ49, IZ65, JMC (đối chiếu danh mục hiện hành)", pos:"Giá cạnh tranh, mạng lưới 35 trung tâm 4S/3S", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
+  {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ → nặng, ben, đầu kéo", models:"MISSU (V56, V65, T26, T33L) · IZ Series (IZ45S → IZ71SL Plus) · JP Series (JP120SL, JP120EXL) · Daewoo Trucks (HC6, HC8, Novus, ben, đầu kéo)", pos:"IZ tham khảo 345–554 triệu, JP120SL 730–850 triệu; mạng lưới 35 trung tâm 4S/3S", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
   {k:"thaco", name:"Thaco (Kia, Frontier, Fuso, Foton, Auman)", origin:"Việt Nam lắp ráp", seg:"Tải nhẹ → nặng, xe khách", models:"Kia K200/K250, Frontier TF, Ollin, Auman, Fuso Canter", pos:"Phủ rộng nhất, giá trung bình, sẵn xe", fact:"19.747 xe tải 10 tháng 2026 (VAMA, báo Xây dựng)"},
   {k:"hyundai", name:"Hyundai (Thành Công Thương mại)", origin:"Hàn Quốc / lắp ráp VN", seg:"Tải nhẹ → nặng, xe khách", models:"Porter H150, New Mighty N250, Mighty EX8, HD240/HD320, County, Universe", pos:"Thương hiệu mạnh, giá trung – cao", fact:"Ví dụ địa phương: 17,65% thị phần Thanh Hóa (7 tháng 2025)"},
   {k:"isuzu", name:"Isuzu Việt Nam", origin:"Nhật Bản", seg:"Tải nhẹ – trung – nặng", models:"QKR, NMR, NPR, NQR, FRR, FVR, Giga", pos:"Bền, tiết kiệm nhiên liệu, giá cao", fact:"Hơn 11.000 xe tải năm 2025, thứ 2 khối VAMA"},
@@ -2019,10 +2033,15 @@ function renderStruct(){
   </tbody></table></div>
   <p class="muted" style="font-size:12px;margin:6px 0 0">Mức hiện diện là ước tính theo loại hình thị trường và mạng lưới; nhập thị phần đối thủ thực tế ở bảng dữ liệu (cột TP …) để thay thế. Danh mục model cần đối chiếu bảng giá hiện hành của từng hãng.</p>
   <h3 style="margin-top:16px">Model cạnh tranh theo phân khúc tải trọng</h3>
-  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Phân khúc</th><th style="text-align:left">Model đối thủ chính</th><th style="text-align:left">Cách đánh của Đô Thành Auto</th><th>Quy mô (ước)</th></tr></thead><tbody>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Phân khúc</th><th style="text-align:left">Sản phẩm Đô Thành Auto</th><th style="text-align:left">Model đối thủ chính</th><th style="text-align:left">Cách đánh của Đô Thành Auto</th><th>Quy mô (ước)</th></tr></thead><tbody>
   ${SEG_MODELS.map((x,i) => { const q = [s.payload[0], s.payload[1], s.payload[2], s.payload[3]+s.payload[4], s.payload[5]+s.payload[6], s.payload[7]][i];
-    return `<tr><td>${esc(x[0])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[1])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[2])}</td><td class="num">${fmtInt(q)} xe</td></tr>`; }).join("")}
-  </tbody></table></div>`;
+    return `<tr><td>${esc(x[0])}</td><td style="text-align:left;white-space:normal;min-width:180px"><b>${ourModels(i).map(m => `${esc(m)} <span class="muted">(${priceTxt(m)})</span>`).join(", ") || '<span class="muted">chưa có</span>'}</b></td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[1])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[2])}</td><td class="num">${fmtInt(q)} xe</td></tr>`; }).join("")}
+  </tbody></table></div>
+  <h3 style="margin-top:16px">Danh mục sản phẩm &amp; giá tham khảo Đô Thành Auto</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Nhóm</th><th style="text-align:left">Model</th><th style="text-align:left">Phân khúc (tạm xếp)</th><th>Giá tham khảo (triệu đ)</th><th style="text-align:left">Giá Nhà máy</th></tr></thead><tbody>
+  ${PRODUCTS.groups.map(g => g.models.map((m,k) => `<tr>${k === 0 ? `<td rowspan="${g.models.length}"><b>${esc(g.group)}</b><br><span class="muted">${esc(g.seg)}</span></td>` : ""}<td style="text-align:left"><b>${esc(m)}</b></td><td style="text-align:left">${esc(SEG_MODELS[MODEL_SEG[m]][0])}</td><td class="num">${PRODUCTS.prices[m] ? priceTxt(m).replace(" tr","") : "—"}</td><td style="text-align:left" class="muted">Chờ bảng giá công bố</td></tr>`).join("")).join("")}
+  </tbody></table></div>
+  <p class="muted" style="font-size:12px;margin:6px 0 0">Nguồn: file danh mục và quản trị bảng giá Anh cung cấp (19 model, 4 nhóm). Giá tham khảo thị trường tháng 11/2026, không phải giá công bố của Nhà máy; thay đổi theo cấu hình, chassis, loại thùng, khu vực. Phân khúc tải trọng tạm xếp theo tên model, cần đối chiếu thông số kỹ thuật.</p>`;
 }
 document.querySelectorAll("[data-sscope]").forEach(b => b.addEventListener("click", () => { structScope = b.dataset.sscope; renderStruct(); }));
 function structMarkdown(list){

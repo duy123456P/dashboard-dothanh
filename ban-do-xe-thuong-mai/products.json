@@ -1,0 +1,96 @@
+{
+ "updated": "2026-11-19",
+ "source": "Danh_muc_san_pham_va_quan_tri_bang_gia_Do_Thanh_Auto.xlsx (Anh cung cấp); giá tham khảo thị trường tháng 11/2026, không phải giá công bố Nhà máy",
+ "catalog": "https://dothanhauto.com/toan-quoc-dothanh-auto-khoi-dong-cuoc-dua-cham-soc-khach-hang-quy-iv2026-dothanh-iz",
+ "groups": [
+  {
+   "group": "MISSU",
+   "seg": "Tải nhẹ / van",
+   "segIdx": [
+    0,
+    1
+   ],
+   "models": [
+    "V56",
+    "V65",
+    "T26",
+    "T33L"
+   ]
+  },
+  {
+   "group": "IZ Series",
+   "seg": "Tải nhẹ 1–3,5 tấn",
+   "segIdx": [
+    1,
+    2
+   ],
+   "models": [
+    "IZ45S",
+    "IZ50S",
+    "IZ50M",
+    "IZ50M Plus",
+    "IZ60SL Plus",
+    "IZ62M",
+    "IZ65M Plus",
+    "IZ71SL Plus"
+   ]
+  },
+  {
+   "group": "JP Series",
+   "seg": "Tải trung",
+   "segIdx": [
+    3
+   ],
+   "models": [
+    "JP120SL",
+    "JP120EXL"
+   ]
+  },
+  {
+   "group": "DAEWOO TRUCKS",
+   "seg": "Tải trung – nặng, ben, đầu kéo",
+   "segIdx": [
+    3,
+    4,
+    5
+   ],
+   "models": [
+    "HC6",
+    "HC8",
+    "Novus",
+    "Xe ben",
+    "Đầu kéo"
+   ]
+  }
+ ],
+ "prices": {
+  "IZ45S": [
+   345,
+   345
+  ],
+  "IZ50S": [
+   348.5,
+   348.5
+  ],
+  "IZ62M": [
+   390,
+   430
+  ],
+  "IZ65M Plus": [
+   420,
+   477
+  ],
+  "IZ60SL Plus": [
+   385,
+   549
+  ],
+  "IZ71SL Plus": [
+   500,
+   554
+  ],
+  "JP120SL": [
+   730,
+   850
+  ]
+ }
+}
