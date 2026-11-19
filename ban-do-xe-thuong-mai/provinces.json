@@ -63,6 +63,30 @@
     "area": 3359,
     "grdp": 1426
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Hội Gióng, chùa Hương (tháng Giêng âm lịch); Tết Trung thu; Quốc khánh 2/9",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -129,6 +153,32 @@
     "area": 4947,
     "grdp": 85
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Mùa du lịch hè (tháng 5 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)"
+  ],
+  "festivals": "Festival Huế (định kỳ); Tết Nguyên đán; Lễ hội cầu ngư",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
   ]
  },
  {
@@ -195,6 +245,30 @@
     "area": 9069,
     "grdp": 25
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)"
+  ],
+  "festivals": "Lễ hội Then Kin Pang (tháng 3); Tết Hà Nhì",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ]
  },
  {
@@ -261,6 +335,30 @@
     "area": 9540,
     "grdp": 30
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)"
+  ],
+  "festivals": "Lễ hội hoa ban (tháng 3); kỷ niệm Chiến thắng Điện Biên Phủ (7/5)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ]
  },
  {
@@ -327,6 +425,30 @@
     "area": 14110,
     "grdp": 75
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   2,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Mận, xoài, nhãn Tây Bắc (tháng 5 – 9)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Lễ hội hoa ban; Tết Độc lập của đồng bào Mông (2/9)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -393,6 +515,32 @@
     "area": 8310,
     "grdp": 50
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Xuất nhập khẩu cửa khẩu, cao điểm cuối năm",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Lễ hội Lồng Tồng, Đền Kỳ Cùng (tháng Giêng âm lịch)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -459,6 +607,34 @@
     "area": 6208,
     "grdp": 330
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   2,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Xuất nhập khẩu cửa khẩu, cao điểm cuối năm",
+   "Mùa du lịch hè (tháng 5 – 8)"
+  ],
+  "festivals": "Lễ hội Yên Tử (tháng Giêng – 3 âm lịch); Carnaval Hạ Long (tháng 4 – 5)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ]
  },
  {
@@ -525,6 +701,32 @@
     "area": 11115,
     "grdp": 330
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   1,
+   1,
+   2,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa ép mía (tháng 11 – 4)"
+  ],
+  "festivals": "Lễ hội Lam Kinh (tháng 8 âm lịch); Lễ hội du lịch Sầm Sơn (tháng 4 – 5)",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
   ]
  },
  {
@@ -591,6 +793,34 @@
     "area": 16487,
     "grdp": 225
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa ép mía (tháng 11 – 4)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa"
+  ],
+  "festivals": "Lễ hội làng Sen (19/5); Lễ hội đền Cuông (tháng 2 âm lịch)",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ]
  },
  {
@@ -657,6 +887,30 @@
     "area": 5994,
     "grdp": 125
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa"
+  ],
+  "festivals": "Lễ hội đền Chợ Củi; Lễ hội Quốc tế đền Đức Mẹ",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ]
  },
  {
@@ -723,6 +977,30 @@
     "area": 6700,
     "grdp": 25
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Xuất nhập khẩu cửa khẩu, cao điểm cuối năm",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Lễ hội Lồng Tồng (tháng Giêng); Thác Bản Giốc mùa thu",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -796,6 +1074,32 @@
     "area": 7928,
     "grdp": 34
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Mùa du lịch hè (tháng 5 – 8)"
+  ],
+  "festivals": "Lễ hội Thành Tuyên (rằm tháng 8 âm lịch); Lễ hội hoa tam giác mạch Hà Giang (tháng 10 – 11)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ]
  },
  {
@@ -869,6 +1173,32 @@
     "area": 6893,
     "grdp": 45
    }
+  ],
+  "season": [
+   3,
+   2,
+   2,
+   2,
+   2,
+   3,
+   3,
+   3,
+   2,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Xuất nhập khẩu cửa khẩu, cao điểm cuối năm",
+   "Mận, xoài, nhãn Tây Bắc (tháng 5 – 9)",
+   "Mùa du lịch hè (tháng 5 – 8)"
+  ],
+  "festivals": "Chợ phiên Bắc Hà; Lễ hội đền Thượng (tháng Giêng); mùa lúa chín Mù Cang Chải (tháng 9)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
+   "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ]
  },
  {
@@ -942,6 +1272,30 @@
     "area": 4860,
     "grdp": 18
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Festival Trà Thái Nguyên (cuối năm, 2 năm/lần); Lễ hội Lồng Tồng (tháng Giêng)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -1022,6 +1376,30 @@
     "area": 4591,
     "grdp": 60
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)"
+  ],
+  "festivals": "Giỗ Tổ Hùng Vương (10/3 âm lịch); lễ hội Mường Hòa Bình",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ]
  },
  {
@@ -1095,6 +1473,32 @@
     "area": 3896,
     "grdp": 200
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Vải thiều (tháng 5 – 7)"
+  ],
+  "festivals": "Hội Lim (13 tháng Giêng âm lịch); Hội vải thiều Lục Ngạn (tháng 6)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
   ]
  },
  {
@@ -1168,6 +1572,32 @@
     "area": 1585,
     "grdp": 135
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   2,
+   2,
+   3,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Ba vụ lúa: Đông Xuân (2–3), Hè Thu (6–7), Thu Đông (10–11)"
+  ],
+  "festivals": "Lễ hội Chử Đồng Tử (tháng 2 âm lịch); Lễ hội chùa Keo (Thái Bình, tháng 9 âm lịch)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
   ]
  },
  {
@@ -1241,6 +1671,32 @@
     "area": 1668,
     "grdp": 165
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Vải thiều (tháng 5 – 7)"
+  ],
+  "festivals": "Lễ hội chọi trâu Đồ Sơn (tháng 8 âm lịch); Lễ hội Côn Sơn – Kiếp Bạc (Hải Dương, mùa xuân và mùa thu)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
   ]
  },
  {
@@ -1321,6 +1777,32 @@
     "area": 1669,
     "grdp": 95
    }
+  ],
+  "season": [
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   1,
+   2,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Bắc: xây dựng, ben, trộn bê tông (tháng 10 – 4)",
+   "Mùa du lịch hè (tháng 5 – 8)"
+  ],
+  "festivals": "Lễ hội Tràng An, Bái Đính (tháng Giêng – 3 âm lịch); Lễ hội Phủ Dầy (Nam Định, tháng 3 âm lịch)",
+  "psyche": "Miền Bắc: trọng quan hệ, uy tín, lời giới thiệu của người quen; ra quyết định có tính tập thể, cần thời gian; coi trọng thương hiệu và sự chính danh. Niềm tin xây bằng cam kết giữ lời và chăm sóc đều đặn.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ]
  },
  {
@@ -1394,6 +1876,30 @@
     "area": 7999,
     "grdp": 60
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa"
+  ],
+  "festivals": "Lễ hội Thống Nhất non sông (30/4); lễ hội đua thuyền",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ]
  },
  {
@@ -1467,6 +1973,32 @@
     "area": 10575,
     "grdp": 140
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Mùa du lịch hè (tháng 5 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)"
+  ],
+  "festivals": "Lễ hội pháo hoa quốc tế (tháng 6 – 7); Lễ hội Quán Thế Âm (tháng 2 âm lịch)",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
   ]
  },
  {
@@ -1540,6 +2072,32 @@
     "area": 9677,
     "grdp": 35
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa",
+   "Mùa ép mía (tháng 11 – 4)"
+  ],
+  "festivals": "Lễ Khao lề thế lính Hoàng Sa (Lý Sơn, tháng 2 – 3 âm lịch)",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
+   "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
   ]
  },
  {
@@ -1613,6 +2171,34 @@
     "area": 6066,
     "grdp": 120
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Thu hoạch cà phê (tháng 10 – 1)",
+   "Mùa ép mía (tháng 11 – 4)",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa"
+  ],
+  "festivals": "Festival cồng chiêng; Lễ hội Đống Đa (Bình Định, mùng 5 Tết)",
+  "psyche": "Tây Nguyên: dòng tiền theo mùa vụ cà phê, sầu riêng; quyết định nhanh khi có tiền, chậm khi chưa thu hoạch; chịu ảnh hưởng mạnh của cộng đồng, già làng, đại lý thu mua.",
+  "campaigns": [
+   "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
+   "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ]
  },
  {
@@ -1686,6 +2272,32 @@
     "area": 3355,
     "grdp": 50
    }
+  ],
+  "season": [
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Mùa du lịch hè (tháng 5 – 8)",
+   "Mùa khô miền Trung: thi công (tháng 2 – 8)",
+   "Mùa mưa bão miền Trung (tháng 9 – 12): nhu cầu cứu hộ, sửa chữa"
+  ],
+  "festivals": "Festival biển Nha Trang (tháng 6); Lễ hội Katê của người Chăm (tháng 10)",
+  "psyche": "Miền Trung: tiết kiệm, cẩn trọng, so sánh kỹ; ưu tiên xe bền, ít hỏng, chi phí vận hành thấp; trung thành khi đã tin. Niềm tin xây bằng số liệu chi phí thật và dịch vụ cứu hộ mùa bão.",
+  "campaigns": [
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
+   "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
+   "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ]
  },
  {
@@ -1766,6 +2378,32 @@
     "area": 7943,
     "grdp": 115
    }
+  ],
+  "season": [
+   2,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Thu hoạch cà phê (tháng 10 – 1)",
+   "Rau hoa Đà Lạt, cao điểm cuối năm",
+   "Sầu riêng, trái cây Tây Nguyên (tháng 5 – 9)"
+  ],
+  "festivals": "Festival Hoa Đà Lạt (tháng 12); Lễ hội Nghinh Ông Phan Thiết",
+  "psyche": "Tây Nguyên: dòng tiền theo mùa vụ cà phê, sầu riêng; quyết định nhanh khi có tiền, chậm khi chưa thu hoạch; chịu ảnh hưởng mạnh của cộng đồng, già làng, đại lý thu mua.",
+  "campaigns": [
+   "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
+   "“Rau hoa tới chợ”: kiểm tra phanh đèo, thùng lạnh xe chở rau hoa Đà Lạt",
+   "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
   ]
  },
  {
@@ -1839,6 +2477,30 @@
     "area": 5026,
     "grdp": 60
    }
+  ],
+  "season": [
+   2,
+   1,
+   0,
+   0,
+   1,
+   2,
+   3,
+   3,
+   2,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Thu hoạch cà phê (tháng 10 – 1)",
+   "Sầu riêng, trái cây Tây Nguyên (tháng 5 – 9)"
+  ],
+  "festivals": "Lễ hội cà phê Buôn Ma Thuột (tháng 3, 2 năm/lần); đua voi Bản Đôn",
+  "psyche": "Tây Nguyên: dòng tiền theo mùa vụ cà phê, sầu riêng; quyết định nhanh khi có tiền, chậm khi chưa thu hoạch; chịu ảnh hưởng mạnh của cộng đồng, già làng, đại lý thu mua.",
+  "campaigns": [
+   "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
+   "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
   ]
  },
  {
@@ -1919,6 +2581,30 @@
     "area": 1983,
     "grdp": 400
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Nam: thi công hạ tầng (tháng 12 – 4)"
+  ],
+  "festivals": "Đường hoa Nguyễn Huệ (Tết); Lễ hội Nghinh Ông Cần Giờ (tháng 8 âm lịch); Lễ hội Dinh Cô Long Hải (tháng 2 âm lịch)",
+  "psyche": "Miền Nam: thẳng thắn, thực tế, quyết nhanh; thích ưu đãi rõ ràng, dịch vụ tiện, giao xe nhanh; trung thành với nơi phục vụ chu đáo và giữ chữ tín.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
   ]
  },
  {
@@ -1992,6 +2678,30 @@
     "area": 6874,
     "grdp": 90
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3
+  ],
+  "seasonNotes": [
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)",
+   "Mùa khô miền Nam: thi công hạ tầng (tháng 12 – 4)"
+  ],
+  "festivals": "Lễ hội Chùa Bửu Phong; ngày hội văn hóa dân tộc S'tiêng (Bình Phước)",
+  "psyche": "Miền Nam: thẳng thắn, thực tế, quyết nhanh; thích ưu đãi rõ ràng, dịch vụ tiện, giao xe nhanh; trung thành với nơi phục vụ chu đáo và giữ chữ tín.",
+  "campaigns": [
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
   ]
  },
  {
@@ -2065,6 +2775,32 @@
     "area": 4495,
     "grdp": 165
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   3,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   3
+  ],
+  "seasonNotes": [
+   "Mùa ép mía (tháng 11 – 4)",
+   "Mùa khô miền Nam: thi công hạ tầng (tháng 12 – 4)",
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)"
+  ],
+  "festivals": "Hội Xuân núi Bà Đen (tháng Giêng); lễ hội Tòa Thánh Cao Đài",
+  "psyche": "Miền Nam: thẳng thắn, thực tế, quyết nhanh; thích ưu đãi rõ ràng, dịch vụ tiện, giao xe nhanh; trung thành với nơi phục vụ chu đáo và giữ chữ tín.",
+  "campaigns": [
+   "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
+   "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai",
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ]
  },
  {
@@ -2145,6 +2881,32 @@
     "area": 1622,
     "grdp": 50
    }
+  ],
+  "season": [
+   3,
+   3,
+   3,
+   1,
+   0,
+   2,
+   3,
+   1,
+   2,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Ba vụ lúa: Đông Xuân (2–3), Hè Thu (6–7), Thu Đông (10–11)",
+   "Mùa lũ ĐBSCL (tháng 9 – 11): xe nằm, đường ngập",
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)"
+  ],
+  "festivals": "Tết Chol Chnam Thmay (tháng 4); Lễ hội Ok Om Bok, đua ghe ngo Sóc Trăng (tháng 10 âm lịch)",
+  "psyche": "ĐBSCL: hiền hòa, trọng tình nghĩa; mua theo mùa lúa, trái cây, thủy sản; kênh thương lái, HTX và người quen giới thiệu rất mạnh; ngại thủ tục phức tạp.",
+  "campaigns": [
+   "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
+   "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ]
  },
  {
@@ -2225,6 +2987,32 @@
     "area": 2391,
     "grdp": 75
    }
+  ],
+  "season": [
+   1,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   1,
+   2,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Trái cây Nam Bộ, cao điểm tháng 4 – 6",
+   "Mùa lũ ĐBSCL (tháng 9 – 11): xe nằm, đường ngập",
+   "Ba vụ lúa: Đông Xuân (2–3), Hè Thu (6–7), Thu Đông (10–11)"
+  ],
+  "festivals": "Lễ hội dừa Bến Tre (tháng 4, 2 năm/lần); Ok Om Bok Trà Vinh",
+  "psyche": "ĐBSCL: hiền hòa, trọng tình nghĩa; mua theo mùa lúa, trái cây, thủy sản; kênh thương lái, HTX và người quen giới thiệu rất mạnh; ngại thủ tục phức tạp.",
+  "campaigns": [
+   "“Trái ngon tới chợ”: chăm sóc thùng lạnh, ưu đãi phụ tùng mùa cao điểm tháng 3 – 6",
+   "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
+   "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
   ]
  },
  {
@@ -2298,6 +3086,32 @@
     "area": 2556,
     "grdp": 115
    }
+  ],
+  "season": [
+   1,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   1,
+   2,
+   3,
+   3,
+   3
+  ],
+  "seasonNotes": [
+   "Trái cây Nam Bộ, cao điểm tháng 4 – 6",
+   "Ba vụ lúa: Đông Xuân (2–3), Hè Thu (6–7), Thu Đông (10–11)",
+   "Mùa lũ ĐBSCL (tháng 9 – 11): xe nằm, đường ngập"
+  ],
+  "festivals": "Lễ hội Tết Mỹ Tho; lễ hội làng hoa Sa Đéc (Tết)",
+  "psyche": "ĐBSCL: hiền hòa, trọng tình nghĩa; mua theo mùa lúa, trái cây, thủy sản; kênh thương lái, HTX và người quen giới thiệu rất mạnh; ngại thủ tục phức tạp.",
+  "campaigns": [
+   "“Trái ngon tới chợ”: chăm sóc thùng lạnh, ưu đãi phụ tùng mùa cao điểm tháng 3 – 6",
+   "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
+   "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11"
   ]
  },
  {
@@ -2371,6 +3185,30 @@
     "area": 2669,
     "grdp": 65
    }
+  ],
+  "season": [
+   3,
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   1,
+   1,
+   2,
+   2,
+   3
+  ],
+  "seasonNotes": [
+   "Thu hoạch tôm, thủy sản (tháng 4 – 7, 10 – 11)",
+   "Cao điểm vận tải hàng Tết (tháng 11 – 1)"
+  ],
+  "festivals": "Lễ hội Nghinh Ông Sông Đốc (tháng 2 âm lịch); Festival Đờn ca tài tử Bạc Liêu",
+  "psyche": "ĐBSCL: hiền hòa, trọng tình nghĩa; mua theo mùa lúa, trái cây, thủy sản; kênh thương lái, HTX và người quen giới thiệu rất mạnh; ngại thủ tục phức tạp.",
+  "campaigns": [
+   "“Tôm tươi đi cảng”: kiểm tra thùng bảo ôn, chống ăn mòn muối cho xe vùng ven biển",
+   "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ]
  },
  {
@@ -2444,6 +3282,32 @@
     "area": 6353,
     "grdp": 125
    }
+  ],
+  "season": [
+   1,
+   3,
+   3,
+   1,
+   2,
+   3,
+   3,
+   3,
+   2,
+   3,
+   3,
+   2
+  ],
+  "seasonNotes": [
+   "Ba vụ lúa: Đông Xuân (2–3), Hè Thu (6–7), Thu Đông (10–11)",
+   "Mùa lũ ĐBSCL (tháng 9 – 11): xe nằm, đường ngập",
+   "Mùa du lịch hè (tháng 5 – 8)"
+  ],
+  "festivals": "Lễ hội Vía Bà Chúa Xứ núi Sam (tháng 4 âm lịch, hàng triệu khách); đua bò Bảy Núi (tháng 8 âm lịch)",
+  "psyche": "ĐBSCL: hiền hòa, trọng tình nghĩa; mua theo mùa lúa, trái cây, thủy sản; kênh thương lái, HTX và người quen giới thiệu rất mạnh; ngại thủ tục phức tạp.",
+  "campaigns": [
+   "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
+   "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
+   "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ]
  }
 ]
