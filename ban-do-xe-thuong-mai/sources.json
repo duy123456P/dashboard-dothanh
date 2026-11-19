@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T19:30:00+07:00",
+ "updated": "2026-11-19T20:30:00+07:00",
  "sources": [
   {
    "id": "dac",
@@ -37,6 +37,41 @@
     [
      "Website DOTHANH",
      "https://www.dothanhauto.com/san-pham.html"
+    ]
+   ]
+  },
+  {
+   "id": "erp",
+   "org": "Đô Thành Auto (ERP · Tổng hợp TDBH)",
+   "name": "Mạng lưới đại lý, trạm dịch vụ và số bán lũy kế",
+   "period": "Lũy kế T1–T10/2026 (danh sách ĐL cập nhật 22/10/2026)",
+   "retrieved": "2026-11-19T20:30:00+07:00",
+   "items": [
+    [
+     "Mạng lưới",
+     "50 đại lý (23 cấp 1, 27 cấp 2) tại 26 tỉnh · 25 trạm dịch vụ ủy quyền"
+    ],
+    [
+     "Bán lẻ lũy kế T1–T10/2026",
+     "2.270 xe (T1–T9 2.066 + T10 204) · KH lũy kế 3.679 xe (62%)"
+    ],
+    [
+     "Tháng 10/2026",
+     "TH 204 / KH 419 xe · IZ 150/319 · MISSU 52/100"
+    ],
+    [
+     "Bán sỉ lũy kế T9",
+     "2.254 xe · tồn đại lý 532 xe · KH năm 4.462 xe"
+    ],
+    [
+     "Top bán lẻ lũy kế T10",
+     "ĐT Đông Nam 514 · Trường Vũ 351 · Quang Dương 173 · Đà Nẵng 144 · Vũ Hùng 138"
+    ]
+   ],
+   "links": [
+    [
+     "Trạm dịch vụ",
+     "https://dothanhauto.com/tram-dich-vu.html"
     ]
    ]
   },
