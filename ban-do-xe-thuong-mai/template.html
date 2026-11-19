@@ -1,0 +1,607 @@
+<title>Bản đồ Xe Thương mại Việt Nam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: control-room board — 3D terrain map dominates the left, a province dossier docks on the right, ranking + editable data sheet below. */
+:root{
+  --bg:#0e1621; --panel:#152131; --panel-2:#1b2a3d; --line:#26384f; --fg:#e7edf5; --muted:#8fa2ba;
+  --accent:#f2a93b; --accent-2:#3fc1b0; --good:#46c08a; --warn:#e8b03c; --bad:#e8695b;
+  --map-base:#1c3047; --map-edge:#0b121b; --map-ground:#0e1621;
+  --scale-1:#23466b; --scale-2:#2a7a8e; --scale-3:#4fb39a; --scale-4:#e6c64a; --scale-5:#f08a3c;
+  --seg-1:#3fc1b0; --seg-2:#5b8def; --seg-3:#a77be0; --seg-4:#f2a93b; --seg-5:#e8695b; --seg-6:#8fa2ba;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#edf1f5; --panel:#ffffff; --panel-2:#f4f7fa; --line:#d6dee8; --fg:#132031; --muted:#56677d;
+  --accent:#c47608; --accent-2:#0f8577; --good:#1f9a63; --warn:#b67d06; --bad:#c74535;
+  --map-base:#c9d6e3; --map-edge:#ffffff; --map-ground:#edf1f5;
+  --scale-1:#8fb2d0; --scale-2:#5aa3b8; --scale-3:#3a9a86; --scale-4:#e0ad2a; --scale-5:#d9621f;
+  --seg-1:#0f8577; --seg-2:#3a6fd8; --seg-3:#8456c8; --seg-4:#c47608; --seg-5:#c74535; --seg-6:#7d8ea3;
+  color-scheme:light;
+}}
+:root[data-theme="light"]{
+  --bg:#edf1f5; --panel:#ffffff; --panel-2:#f4f7fa; --line:#d6dee8; --fg:#132031; --muted:#56677d;
+  --accent:#c47608; --accent-2:#0f8577; --good:#1f9a63; --warn:#b67d06; --bad:#c74535;
+  --map-base:#c9d6e3; --map-edge:#ffffff; --map-ground:#edf1f5;
+  --scale-1:#8fb2d0; --scale-2:#5aa3b8; --scale-3:#3a9a86; --scale-4:#e0ad2a; --scale-5:#d9621f;
+  --seg-1:#0f8577; --seg-2:#3a6fd8; --seg-3:#8456c8; --seg-4:#c47608; --seg-5:#c74535; --seg-6:#7d8ea3;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
+.wrap{max-width:1480px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(26px,3.2vw,38px);line-height:1.05}
+h2{font-size:22px}
+h3{font-size:13px;font-family:var(--body);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.sub{color:var(--muted);max-width:70ch;margin:4px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+select,input[type=number],input[type=text]{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button{font:inherit;cursor:pointer;color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:7px 12px}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#16110a;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:6px 12px;border-radius:999px;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#16110a;font-weight:600}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.kpi .v{font-family:var(--display);font-size:26px;font-weight:600;line-height:1.1}
+.kpi .l{font-size:12px;color:var(--muted)}
+
+.main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1020px){.main{grid-template-columns:minmax(0,1fr)}}
+.mapbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+#map{width:100%;height:clamp(460px,74vh,820px)}
+.maphint{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--panel) 80%,transparent);padding:4px 8px;border-radius:6px;pointer-events:none}
+.maptools{position:absolute;right:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.maptools button{font-size:12px;padding:5px 9px;background:color-mix(in srgb,var(--panel) 85%,transparent)}
+.legend{position:absolute;left:12px;top:12px;background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;min-width:180px}
+.legend .bar{height:8px;border-radius:4px;margin:6px 0 2px}
+.legend .ends{display:flex;justify-content:space-between;color:var(--muted)}
+.loadmsg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);text-align:center;padding:24px}
+
+.dossier{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.dhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.dhead .name{font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tier{font-family:var(--display);font-size:20px;font-weight:700;padding:2px 12px;border-radius:8px;white-space:nowrap}
+.tier.A{background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent)}
+.tier.B{background:color-mix(in srgb,var(--accent-2) 20%,transparent);color:var(--accent-2)}
+.tier.C{background:color-mix(in srgb,var(--muted) 18%,transparent);color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stat{background:var(--panel-2);border-radius:8px;padding:8px 10px;min-width:0}
+.stat .v{font-weight:700;font-size:16px}
+.stat .l{font-size:11px;color:var(--muted)}
+@media (max-width:460px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.segbar{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:8px 0}
+.seglist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;font-size:12.5px}
+.seglist div{display:flex;align-items:center;gap:6px;min-width:0}
+.seglist i{width:9px;height:9px;border-radius:2px;flex:none}
+.seglist b{margin-left:auto;font-weight:600}
+.prose p{margin:4px 0 0;font-size:13.5px}
+.biz{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:460px){.biz{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.actions{margin:6px 0 0;padding-left:18px;font-size:13.5px}
+.actions li{margin:3px 0}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;font-weight:600}
+.pill.good{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 20%,transparent);color:var(--bad)}
+
+.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px;align-items:start}
+@media (max-width:1020px){.lower{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.card > h2{margin-bottom:4px}
+#rank{width:100%;height:760px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin:10px 0}
+.tablewrap{overflow:auto;max-height:760px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{position:sticky;top:0;background:var(--panel-2);font-weight:600;font-size:12px;color:var(--muted);text-align:right;z-index:1}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--panel);z-index:2}
+th:first-child{z-index:3;background:var(--panel-2)}
+tr.sel td{background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
+tr:hover td{background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
+td input{width:84px;padding:3px 6px;text-align:right;border-radius:6px}
+td input.note{width:180px;text-align:left}
+td.name{cursor:pointer;font-weight:600}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20}
+.notes{font-size:12.5px;color:var(--muted)}
+.notes p{margin:4px 0;max-width:120ch}
+textarea{width:100%;min-height:120px;font:12px/1.4 ui-monospace,Consolas,monospace;color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:8px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Đô Thành · Phân tích thị trường vùng</div>
+      <h1>Bản đồ thị trường xe thương mại Việt Nam</h1>
+      <p class="sub">34 tỉnh, thành phố theo Nghị quyết 202/2025/QH15 (hiệu lực 01/07/2025). Chiều cao và màu khối thể hiện chỉ số đang chọn. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim.</p>
+    </div>
+    <div class="controls">
+      <label class="field" for="region">Vùng
+        <select id="region"><option value="">Toàn quốc</option></select>
+      </label>
+      <label class="field" for="tam">Tổng thị trường xe TM (xe/năm)
+        <input id="tam" type="number" min="1000" step="1000" value="100000" style="width:150px">
+      </label>
+    </div>
+  </header>
+
+  <div class="chips" id="metrics" role="group" aria-label="Chỉ số hiển thị"></div>
+
+  <section class="kpis" id="kpis" aria-label="Tổng quan"></section>
+
+  <section class="main">
+    <div class="mapbox">
+      <div id="map" role="img" aria-label="Bản đồ 3D 34 tỉnh thành Việt Nam"></div>
+      <div class="loadmsg" id="loadmsg">Đang tải bản đồ 3D…</div>
+      <div class="legend" id="legend"></div>
+      <div class="maptools">
+        <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
+        <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
+        <button id="btnView" type="button">Góc nhìn</button>
+      </div>
+      <div class="maphint">Kéo chuột: xoay · Cuộn: phóng to · Chuột phải: di chuyển</div>
+    </div>
+    <aside class="dossier" id="dossier" aria-live="polite"></aside>
+  </section>
+
+  <section class="lower">
+    <div class="card">
+      <h2>Xếp hạng 34 tỉnh</h2>
+      <div class="muted" id="rankSub"></div>
+      <div id="rank"></div>
+    </div>
+    <div class="card">
+      <h2>Bảng dữ liệu &amp; cập nhật</h2>
+      <p class="muted" style="margin:2px 0 0">Sửa trực tiếp ô số liệu: bản đồ, xếp hạng và hồ sơ cập nhật ngay. Dữ liệu sửa được lưu trên trình duyệt này. Muốn cập nhật cho cả nhóm, xuất JSON/CSV và gửi lại để thay file gốc.</p>
+      <div class="toolbar">
+        <button type="button" id="btnCopyCsv">Sao chép CSV</button>
+        <button type="button" id="btnCopyJson">Sao chép JSON</button>
+        <label class="field" for="fileIn">Nhập file CSV / JSON
+          <input id="fileIn" type="file" accept=".csv,.json,text/csv,application/json">
+        </label>
+        <button type="button" id="btnPaste">Dán dữ liệu…</button>
+        <button type="button" id="btnReset">Khôi phục dữ liệu gốc</button>
+      </div>
+      <div id="pasteBox" hidden>
+        <label for="pasteArea" class="muted" style="font-size:12px">Dán CSV (có dòng tiêu đề, cột <b>name</b> là tên tỉnh) hoặc JSON rồi bấm Áp dụng.</label>
+        <textarea id="pasteArea"></textarea>
+        <div class="toolbar"><button type="button" class="primary" id="btnApplyPaste">Áp dụng</button><button type="button" id="btnCancelPaste">Hủy</button></div>
+        <div id="resetConfirm"></div>
+      </div>
+      <div id="resetBox"></div>
+      <div class="tablewrap"><table id="tbl"></table></div>
+    </div>
+  </section>
+
+  <section class="card notes">
+    <h2 style="color:var(--fg)">Phương pháp &amp; nguồn số liệu</h2>
+    <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa) được thể hiện trên bản đồ. Ranh giới đã giản lược để hiển thị 3D, không dùng cho mục đích pháp lý.</p>
+    <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 lấy theo công bố của Cục Thống kê tháng 01/2026 cho các tỉnh đã đối chiếu được; ô trống là chưa cập nhật.</p>
+    <p><b>Quy mô thị trường xe thương mại (ước tính):</b> Tổng thị trường (mặc định 100.000 xe/năm gồm tải, đầu kéo, xe khách, pickup/van; VAMA ghi nhận ~70.700 xe tải năm 2025, chưa gồm các hãng ngoài VAMA và xe nhập) được phân bổ theo trọng số GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng (cảng/công nghiệp cao hơn, nông nghiệp thấp hơn). Cơ cấu phân khúc theo loại hình kinh tế của tỉnh. Đây là mô hình định hướng; thay bằng số đăng ký xe thực tế khi có.</p>
+    <p><b>Phân hạng ưu tiên:</b> A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%. Các cột Điểm bán, Doanh số, Mục tiêu do Đô Thành nhập để tính thị phần và độ phủ.</p>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.1/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+<script id="geo-data" type="application/json">/*__GEO__*/</script>
+<script id="prov-data" type="application/json">/*__DATA__*/</script>
+<script>
+(function(){
+"use strict";
+const GEO = JSON.parse(document.getElementById("geo-data").textContent);
+const BASE = JSON.parse(document.getElementById("prov-data").textContent);
+const STORE_KEY = "dothanh-cv-map-v1";
+const SEGS = ["Tải nhẹ < 3,5T","Tải trung 3,5–10T","Tải nặng > 10T","Đầu kéo","Xe khách / bus","Pickup / van"];
+const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",industrial:"Công nghiệp",coast:"Duyên hải – công nghiệp nặng",highland:"Cao nguyên – nông nghiệp",delta:"Đồng bằng – nông nghiệp",mountain:"Miền núi",border:"Cửa khẩu – logistics"};
+const EDIT_COLS = [
+  ["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],
+  ["factor","Hệ số vùng",0.05],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1]];
+
+let rows = clone(BASE), tam = 100000, metric = "market", region = "", selected = null, pinned = false;
+let showLabels = true, autoRotate = false;
+
+function clone(x){ return JSON.parse(JSON.stringify(x)); }
+function load(){
+  try{
+    const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if(s && Array.isArray(s.rows)){ mergeRows(s.rows); if(s.tam) tam = +s.tam; }
+  }catch(e){}
+}
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows, tam})); }catch(e){} }
+function mergeRows(incoming){
+  const byName = new Map(rows.map(r => [norm(r.name), r]));
+  let n = 0;
+  incoming.forEach(src => {
+    const r = byName.get(norm(src.name || src["Tỉnh"] || ""));
+    if(!r) return; n++;
+    Object.keys(src).forEach(k => {
+      if(k === "name") return;
+      let v = src[k];
+      if(["pop","area","grdp","growth","factor","dealers","sales","target"].includes(k)){
+        if(v === "" || v === null || v === undefined){ if(k==="growth") r[k] = null; return; }
+        v = parseFloat(String(v).replace(/\s/g,"").replace(",", ".")); if(isNaN(v)) return;
+      }
+      if(k === "mix" && typeof v === "string") v = v.split(/[|;]/).map(Number);
+      r[k] = v;
+    });
+  });
+  return n;
+}
+function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\.?|thành phố|tỉnh)\s*/,"").replace(/[\s.]/g,""); }
+
+/* ---------- model ---------- */
+function compute(){
+  const w = rows.map(r => Math.pow(Math.max(r.grdp,0),0.65) * Math.pow(Math.max(r.pop,0),0.35) * (r.factor || 1));
+  const sw = w.reduce((a,b)=>a+b,0) || 1;
+  const totalPop = rows.reduce((a,r)=>a+r.pop,0), totalGrdp = rows.reduce((a,r)=>a+r.grdp,0);
+  rows.forEach((r,i) => {
+    r._market = Math.round(tam * w[i] / sw);
+    r._mshare = w[i] / sw * 100;
+    r._density = r.area ? r.pop*1000 / r.area : 0;
+    r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;          // triệu đồng / người
+    r._share = r._market ? r.sales / r._market * 100 : 0;
+    r._gap = Math.max((r.target||0) - (r.sales||0), 0);
+    r._tier = r._mshare >= 4 ? "A" : r._mshare >= 2 ? "B" : "C";
+    r._popShare = r.pop/totalPop*100; r._grdpShare = r.grdp/totalGrdp*100;
+  });
+  const rk = (key) => { [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }); };
+  ["_market","grdp","pop","_gpc"].forEach(rk);
+}
+
+const METRICS = {
+  market:{label:"Thị trường xe TM (ước tính)", unit:"xe/năm", get:r=>r._market, fmt:v=>fmtInt(v)},
+  grdp:{label:"GRDP", unit:"nghìn tỷ đ", get:r=>r.grdp, fmt:v=>fmtInt(v)},
+  pop:{label:"Dân số", unit:"nghìn người", get:r=>r.pop, fmt:v=>fmtInt(v)},
+  gpc:{label:"GRDP / người", unit:"triệu đ", get:r=>r._gpc, fmt:v=>fmtInt(v)},
+  growth:{label:"Tăng trưởng GRDP 2025", unit:"%", get:r=>r.growth, fmt:v=>v==null?"—":fmt1(v)},
+  heavy:{label:"Nhu cầu tải nặng + đầu kéo", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[2]+r.mix[3])/100), fmt:v=>fmtInt(v)},
+  light:{label:"Nhu cầu tải nhẹ + van", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[0]+r.mix[5])/100), fmt:v=>fmtInt(v)},
+  sales:{label:"Doanh số Đô Thành", unit:"xe", get:r=>r.sales, fmt:v=>fmtInt(v)},
+  share:{label:"Thị phần Đô Thành", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
+};
+const nf0 = new Intl.NumberFormat("vi-VN",{maximumFractionDigits:0});
+const nf1 = new Intl.NumberFormat("vi-VN",{minimumFractionDigits:1,maximumFractionDigits:1});
+function fmtInt(v){ return v==null||isNaN(v) ? "—" : nf0.format(v); }
+function fmt1(v){ return v==null||isNaN(v) ? "—" : nf1.format(v); }
+function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function css(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function visible(){ return rows.filter(r => !region || r.region === region); }
+
+/* ---------- UI: chips, region ---------- */
+const chipBox = document.getElementById("metrics");
+Object.entries(METRICS).forEach(([k,m]) => {
+  const b = document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=m.label; b.dataset.k=k;
+  b.addEventListener("click", () => { metric = k; renderAll(); });
+  chipBox.appendChild(b);
+});
+const regSel = document.getElementById("region");
+[...new Set(BASE.map(r=>r.region))].forEach(rg => { const o=document.createElement("option"); o.value=rg; o.textContent=rg; regSel.appendChild(o); });
+regSel.addEventListener("change", () => { region = regSel.value; renderAll(); });
+const tamIn = document.getElementById("tam");
+tamIn.addEventListener("change", () => { const v=+tamIn.value; if(v>0){ tam=v; save(); renderAll(); } });
+
+/* ---------- KPIs ---------- */
+function renderKpis(){
+  const v = visible();
+  const sum = k => v.reduce((a,r)=>a+(+r[k]||0),0);
+  const market = sum("_market"), sales = sum("sales"), target = sum("target"), dealers = sum("dealers");
+  const items = [
+    [fmtInt(v.length), region ? "Tỉnh/thành trong vùng" : "Tỉnh/thành"],
+    [fmt1(sum("pop")/1000)+" tr", "Dân số"],
+    [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
+    [fmtInt(market), "Thị trường xe TM ước tính / năm"],
+    [fmtInt(dealers), "Điểm bán Đô Thành"],
+    [sales ? fmt1(sales/market*100)+"%" : "—", sales ? `Thị phần (${fmtInt(sales)} xe)` : "Thị phần · nhập doanh số"],
+    [target ? fmt1(sales/target*100)+"%" : "—", target ? `Hoàn thành mục tiêu ${fmtInt(target)} xe` : "Mục tiêu · chưa nhập"],
+  ];
+  document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="kpi"><div class="v num">${a}</div><div class="l">${b}</div></div>`).join("");
+}
+
+/* ---------- 3D map ---------- */
+let mapChart = null, rankChart = null;
+const VIEW_PRESETS = [{alpha:38,beta:-24,distance:112,center:[4,0,18]},{alpha:50,beta:8,distance:124,center:[2,0,16]},{alpha:42,beta:28,distance:114,center:[-2,0,16]},{alpha:85,beta:0,distance:128,center:[0,0,8]}];
+const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
+const SHORT_REG = {"Trung du & miền núi phía Bắc":"TD&MN Bắc Bộ","Đồng bằng sông Hồng":"ĐB sông Hồng","Bắc Trung Bộ & DH miền Trung":"BTB & DH m.Trung","Tây Nguyên":"Tây Nguyên","Đông Nam Bộ":"Đông Nam Bộ","Đồng bằng sông Cửu Long":"ĐB sông Cửu Long"};
+let viewIdx = 0;
+
+function colorScale(){ return [css("--scale-1"),css("--scale-2"),css("--scale-3"),css("--scale-4"),css("--scale-5")]; }
+function heightFor(v, max){ return max>0 ? 0.8 + 15 * Math.sqrt(Math.max(v,0)/max) : 0.8; }
+
+function mapOption(){
+  const M = METRICS[metric];
+  const vals = rows.filter(r => !region || r.region === region).map(r => M.get(r)).filter(v => v!=null && !isNaN(v));
+  const max = Math.max(...vals, 0), min = Math.min(...vals, 0);
+  const base = css("--map-base");
+  const data = rows.map(r => {
+    const v = M.get(r), inReg = !region || r.region === region;
+    const item = {name:r.name, value: v==null?null:v, height: inReg ? heightFor(v||0, max) : 0.25};
+    if(!inReg) item.itemStyle = {color: base, opacity: 0.45};
+    if(v==null) item.itemStyle = {color: base};
+    return item;
+  });
+  Object.entries(ISLANDS).forEach(([n,parent]) => data.push({name:n, value:null, height:0.8, itemStyle:{color: css("--accent-2")}}));
+  const dark = css("color-scheme") === "dark";
+  return {
+    backgroundColor: "transparent",
+    tooltip: {
+      show:true, confine:true, backgroundColor: css("--panel"), borderColor: css("--line"),
+      textStyle:{color: css("--fg"), fontFamily: css("--body")}, padding:[8,10],
+      formatter: p => tip(p.name)
+    },
+    visualMap: {
+      show:false, min: Math.min(min,0), max: max || 1, seriesIndex:0, calculable:false,
+      inRange:{color: colorScale()}
+    },
+    series: [{
+      type:"map3D", map:"VN34", data,
+      boxWidth: 62, boxDepth: 130, regionHeight: 1,
+      shading: "lambert",
+      label:{ show: showLabels, distance: 2, formatter: p => p.name,
+        textStyle:{color: css("--fg"), fontSize: 10, fontFamily: css("--body"), fontWeight: 600,
+          backgroundColor: "transparent", borderWidth: 0} },
+      itemStyle:{ borderWidth: 0.8, borderColor: css("--map-edge"), opacity: 1 },
+      emphasis:{ label:{show:true, textStyle:{color: css("--fg"), fontSize: 13, fontWeight: 700, backgroundColor: css("--panel"), padding:[3,6], borderRadius:4}},
+        itemStyle:{ color: css("--accent") } },
+      light:{ main:{ intensity: dark ? 1.15 : 1.0, alpha: 50, beta: 30, shadow: true, shadowQuality: "medium" },
+              ambient:{ intensity: dark ? 0.45 : 0.6 } },
+      groundPlane:{ show: false },
+      viewControl:{ ...VIEW_PRESETS[viewIdx], autoRotate, autoRotateSpeed: 6, minDistance: 40, maxDistance: 220,
+        rotateSensitivity: 1, zoomSensitivity: 1, panMouseButton: "right", rotateMouseButton: "left", animationDurationUpdate: 900 },
+      postEffect:{ enable: false },
+      animationDurationUpdate: 800
+    }]
+  };
+}
+
+function tip(name){
+  if(ISLANDS[name]) return `<b>${esc(name)}</b><div style="font-size:12px;opacity:.8">Thuộc ${ISLANDS[name]==="Đà Nẵng"?"thành phố Đà Nẵng":"tỉnh Khánh Hòa"}, Việt Nam</div>`;
+  const r = rows.find(x=>x.name===name); if(!r) return esc(name);
+  const M = METRICS[metric];
+  return `<div style="min-width:220px">
+    <div style="font-weight:700;font-size:15px">${esc(r.name)}</div>
+    <div style="opacity:.7;font-size:11px;margin-bottom:6px">${esc(r.region)} · gộp: ${esc(r.merged.join(", "))}</div>
+    <div style="display:grid;grid-template-columns:auto auto;gap:2px 14px;font-size:12px">
+      <span>${esc(M.label)}</span><b style="text-align:right">${M.fmt(M.get(r))} ${M.unit}</b>
+      <span>Thị trường xe TM</span><b style="text-align:right">${fmtInt(r._market)} xe · #${r._rk_market}</b>
+      <span>Dân số</span><b style="text-align:right">${fmt1(r.pop/1000)} tr</b>
+      <span>GRDP</span><b style="text-align:right">${fmtInt(r.grdp)} nghìn tỷ</b>
+      <span>GRDP/người</span><b style="text-align:right">${fmtInt(r._gpc)} tr đ</b>
+      <span>Hạng ưu tiên</span><b style="text-align:right">${r._tier}</b>
+    </div></div>`;
+}
+
+function renderMap(){
+  if(!mapChart) return;
+  mapChart.setOption(mapOption(), {replaceMerge:["series"]});
+  renderLegend();
+}
+function renderLegend(){
+  const M = METRICS[metric];
+  const vals = rows.map(r=>M.get(r)).filter(v=>v!=null&&!isNaN(v));
+  const empty = !vals.some(v=>v>0);
+  document.getElementById("legend").innerHTML =
+    `<div style="font-weight:600">${esc(M.label)}</div><div class="muted">${esc(M.unit)} · khối cao = giá trị lớn</div>
+     <div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div>
+     <div class="ends num"><span>${M.fmt(Math.min(...vals,0))}</span><span>${M.fmt(Math.max(...vals,0))}</span></div>
+     ${empty ? '<div style="color:var(--warn);margin-top:4px">Chưa có dữ liệu: nhập ở bảng bên dưới</div>' : ''}`;
+}
+
+/* ---------- dossier ---------- */
+function suggestions(r){
+  const out = [];
+  if(!r.dealers) out.push(["bad", `Chưa có điểm bán. Thị trường ước ~${fmtInt(r._market)} xe/năm: cân nhắc đại lý ủy quyền hoặc điểm bán vệ tinh tại ${esc(r.capital)}.`]);
+  else if(r._market / r.dealers > 1500) out.push(["warn", `Mỗi điểm bán phủ ~${fmtInt(r._market/r.dealers)} xe/năm thị trường: độ phủ mỏng, xem xét mở thêm điểm.`]);
+  else out.push(["good", `Độ phủ: ${fmtInt(r.dealers)} điểm bán, ~${fmtInt(r._market/r.dealers)} xe thị trường mỗi điểm.`]);
+  if(r.sales){
+    if(r._share < 5) out.push(["warn", `Thị phần ${fmt1(r._share)}%: thấp, ưu tiên chương trình chào hàng đội xe và tài chính trả góp.`]);
+    else if(r._share < 12) out.push(["good", `Thị phần ${fmt1(r._share)}%: trung bình, tập trung giữ chân khách cũ và bán chéo dịch vụ.`]);
+    else out.push(["good", `Thị phần ${fmt1(r._share)}%: mạnh, bảo vệ vị thế bằng hậu mãi và phụ tùng.`]);
+  }
+  if(r.target && r._gap) out.push(["warn", `Còn thiếu ${fmtInt(r._gap)} xe so với mục tiêu ${fmtInt(r.target)} xe.`]);
+  const top = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
+  out.push(["", `Phân khúc trọng tâm: <b>${top.join("</b> và <b>")}</b>.`]);
+  if(r.growth != null && r.growth >= 10) out.push(["good", `Tăng trưởng GRDP ${fmt1(r.growth)}% (top cả nước): nhu cầu vận tải và xây dựng tăng nhanh.`]);
+  return out;
+}
+function renderDossier(){
+  const el = document.getElementById("dossier");
+  const r = rows.find(x=>x.name===selected);
+  if(!r){
+    const top = [...visible()].sort((a,b)=>b._market-a._market).slice(0,6);
+    el.innerHTML = `<div><h3>Hồ sơ tỉnh</h3><h2 style="margin-top:4px">Rê chuột hoặc bấm vào một tỉnh trên bản đồ</h2>
+      <p class="muted" style="margin:6px 0 0">Hồ sơ gồm quy mô kinh tế, thị trường xe thương mại ước tính, cơ cấu phân khúc, hạ tầng, văn hóa kinh doanh và gợi ý hành động.</p></div>
+      <div><h3>Thị trường lớn nhất ${region ? "trong vùng" : "cả nước"}</h3>
+      <ol class="actions">${top.map(t=>`<li><a href="#" data-p="${esc(t.name)}" style="color:var(--fg)">${esc(t.name)}</a> <span class="muted num">· ${fmtInt(t._market)} xe/năm · hạng ${t._tier}</span></li>`).join("")}</ol></div>`;
+    el.querySelectorAll("a[data-p]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); select(a.dataset.p,true);}));
+    return;
+  }
+  const segColors = [1,2,3,4,5,6].map(i=>css("--seg-"+i));
+  el.innerHTML = `
+    <div class="dhead">
+      <div><div class="name">${esc(r.name)}</div>
+        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag">${esc(r.region)}</span><span class="tag">${esc(ARCH[r.archetype]||r.archetype)}</span></div>
+        <div class="muted" style="font-size:12.5px;margin-top:6px">Trung tâm hành chính: ${esc(r.capital)} · Gộp từ: ${esc(r.merged.join(", "))}</div></div>
+      <div style="text-align:right"><div class="tier ${r._tier}" title="Hạng ưu tiên theo quy mô thị trường">Hạng ${r._tier}</div>
+        ${pinned ? '<button type="button" id="unpin" style="margin-top:6px;font-size:12px;padding:3px 8px">Bỏ ghim</button>' : '<div class="muted" style="font-size:11px;margin-top:6px">Bấm để ghim</div>'}</div>
+    </div>
+    <div class="stats num">
+      <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">Xe TM/năm (ước) · #${r._rk_market}</div></div>
+      <div class="stat"><div class="v">${fmt1(r.pop/1000)} tr</div><div class="l">Dân số · #${r._rkpop}</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.grdp)}</div><div class="l">GRDP nghìn tỷ · #${r._rkgrdp}</div></div>
+      <div class="stat"><div class="v">${fmtInt(r._gpc)} tr</div><div class="l">GRDP/người · #${r._rk_gpc}</div></div>
+      <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.area)}</div><div class="l">km² · ${fmtInt(r._density)} ng/km²</div></div>
+    </div>
+    <div><h3>Cơ cấu nhu cầu theo phân khúc (ước tính)</h3>
+      <div class="segbar">${r.mix.map((v,i)=>`<span style="width:${v}%;background:${segColors[i]}" title="${SEGS[i]} ${v}%"></span>`).join("")}</div>
+      <div class="seglist num">${r.mix.map((v,i)=>`<div><i style="background:${segColors[i]}"></i>${SEGS[i]}<b>${fmtInt(r._market*v/100)}</b></div>`).join("")}</div></div>
+    <div><h3>Kinh doanh Đô Thành</h3>
+      <div class="stats num" style="margin-top:6px;grid-template-columns:repeat(4,minmax(0,1fr))">
+        <div class="stat"><div class="v">${fmtInt(r.dealers)}</div><div class="l">Điểm bán</div></div>
+        <div class="stat"><div class="v">${fmtInt(r.sales)}</div><div class="l">Doanh số</div></div>
+        <div class="stat"><div class="v">${fmtInt(r.target)}</div><div class="l">Mục tiêu</div></div>
+        <div class="stat"><div class="v">${r.sales?fmt1(r._share)+"%":"—"}</div><div class="l">Thị phần</div></div>
+      </div>
+      <ul class="actions">${suggestions(r).map(([c,t])=>`<li>${c?`<span class="pill ${c}">${c==="bad"?"Cần làm":c==="warn"?"Lưu ý":"Tốt"}</span> `:""}${t}</li>`).join("")}</ul>
+      ${r.note ? `<p class="muted" style="margin:4px 0 0">Ghi chú: ${esc(r.note)}</p>` : ""}</div>
+    <div class="prose"><h3>Kinh tế chủ lực</h3><p>${esc(r.industries)}</p></div>
+    <div class="prose"><h3>Hạ tầng &amp; logistics</h3><p>${esc(r.logistics)}</p></div>
+    <div class="prose"><h3>Văn hóa kinh doanh &amp; hành vi khách hàng</h3><p>${esc(r.culture)}</p></div>
+    <div class="prose"><h3>Động lực nhu cầu xe thương mại</h3><p>${esc(r.cvDemand)}</p></div>`;
+  const u = document.getElementById("unpin"); if(u) u.addEventListener("click", ()=>{ pinned=false; renderDossier(); });
+}
+function select(name, pin){
+  selected = name; if(pin) pinned = true;
+  renderDossier(); highlightRow();
+  if(mapChart && pin){ mapChart.dispatchAction({type:"downplay", seriesIndex:0}); mapChart.dispatchAction({type:"highlight", seriesIndex:0, name}); }
+}
+
+/* ---------- ranking ---------- */
+function renderRank(){
+  if(!rankChart) return;
+  const M = METRICS[metric];
+  const list = visible().map(r=>({name:r.name, v:M.get(r)})).filter(x=>x.v!=null&&!isNaN(x.v)).sort((a,b)=>a.v-b.v);
+  document.getElementById("rankSub").textContent = `${M.label} (${M.unit})${region?" · "+region:""}`;
+  const h = Math.max(220, list.length*21+40);
+  document.getElementById("rank").style.height = h+"px"; rankChart.resize();
+  const max = Math.max(...list.map(x=>x.v), 0);
+  rankChart.setOption({
+    animationDuration:500, grid:{left:112,right:64,top:6,bottom:6},
+    tooltip:{trigger:"axis",axisPointer:{type:"shadow"},backgroundColor:css("--panel"),borderColor:css("--line"),textStyle:{color:css("--fg")},
+      formatter:p=>`${esc(p[0].name)}: <b>${M.fmt(p[0].value)}</b> ${M.unit}`},
+    xAxis:{type:"value",show:false,max:max*1.02||1},
+    yAxis:{type:"category",data:list.map(x=>x.name),axisTick:{show:false},axisLine:{show:false},
+      axisLabel:{color:css("--fg"),fontFamily:css("--body"),fontSize:12}},
+    series:[{type:"bar",barWidth:13,data:list.map(x=>({value:x.v,itemStyle:{color: x.name===selected?css("--accent"):css("--accent-2"),borderRadius:[0,3,3,0]}})),
+      label:{show:true,position:"right",color:css("--muted"),fontSize:11,formatter:p=>M.fmt(p.value)}}]
+  }, true);
+}
+
+/* ---------- table ---------- */
+function renderTable(){
+  const t = document.getElementById("tbl");
+  const head = `<thead><tr><th>Tỉnh / thành</th><th>Vùng</th>${EDIT_COLS.map(c=>`<th>${c[1]}</th>`).join("")}<th>Xe TM ước/năm</th><th>Thị phần</th><th>Hạng</th><th style="text-align:left">Ghi chú</th></tr></thead>`;
+  const body = visible().map(r => `<tr data-n="${esc(r.name)}"><td class="name">${esc(r.name)}</td><td class="muted" style="text-align:left">${esc(SHORT_REG[r.region]||r.region)}</td>${
+    EDIT_COLS.map(([k,,st])=>`<td><input type="number" step="${st}" id="c-${esc(r.name)}-${k}" data-k="${k}" value="${r[k]==null?"":r[k]}" aria-label="${k} ${esc(r.name)}"></td>`).join("")
+  }<td data-o="market">${fmtInt(r._market)}</td><td data-o="share">${r.sales?fmt1(r._share)+"%":"—"}</td><td data-o="tier">${r._tier}</td>
+   <td><input type="text" class="note" data-k="note" id="c-${esc(r.name)}-note" value="${esc(r.note)}" aria-label="Ghi chú ${esc(r.name)}"></td></tr>`).join("");
+  t.innerHTML = head + `<tbody>${body}</tbody>`;
+  highlightRow();
+}
+document.getElementById("tbl").addEventListener("change", e => {
+  const inp = e.target.closest("input"); if(!inp) return;
+  const tr = inp.closest("tr"), r = rows.find(x=>x.name===tr.dataset.n), k = inp.dataset.k;
+  if(k === "note") r.note = inp.value;
+  else { const v = inp.value === "" ? (k==="growth"?null:0) : parseFloat(inp.value); if(v!==null && isNaN(v)) return; r[k] = v; }
+  save(); compute(); renderKpis(); renderMap(); renderRank(); renderDossier();
+  visible().forEach(x => { const row = document.querySelector(`tr[data-n="${CSS.escape(x.name)}"]`); if(!row) return;
+    row.querySelector('[data-o="market"]').textContent = fmtInt(x._market);
+    row.querySelector('[data-o="share"]').textContent = x.sales?fmt1(x._share)+"%":"—";
+    row.querySelector('[data-o="tier"]').textContent = x._tier; });
+  toast("Đã cập nhật " + r.name);
+});
+document.getElementById("tbl").addEventListener("click", e => { const td = e.target.closest("td.name"); if(td) select(td.parentElement.dataset.n, true); });
+function highlightRow(){ document.querySelectorAll("#tbl tbody tr").forEach(tr => tr.classList.toggle("sel", tr.dataset.n === selected)); }
+
+/* ---------- import / export ---------- */
+const CSV_KEYS = ["name","region","capital","pop","area","grdp","growth","factor","dealers","sales","target","note","mix","industries","logistics","culture","cvDemand"];
+function toCsv(){
+  const q = v => { const s = Array.isArray(v) ? v.join("|") : (v==null?"":String(v)); return /[",\n;]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
+  return [CSV_KEYS.join(","), ...rows.map(r => CSV_KEYS.map(k=>q(r[k])).join(","))].join("\n");
+}
+function parseCsv(text){
+  const out=[]; let row=[], cur="", q=false;
+  const sep = (text.split("\n")[0].match(/;/g)||[]).length > (text.split("\n")[0].match(/,/g)||[]).length ? ";" : ",";
+  for(let i=0;i<text.length;i++){ const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+    else if(c==='"') q=true; else if(c===sep){row.push(cur);cur="";} else if(c==="\n"){row.push(cur);out.push(row);row=[];cur="";} else if(c!=="\r") cur+=c; }
+  if(cur||row.length){row.push(cur);out.push(row);}
+  const h = out.shift().map(s=>s.trim().replace(/^﻿/,""));
+  return out.filter(r=>r.some(x=>x.trim())).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));
+}
+function applyText(text){
+  let recs; text = text.trim();
+  try{ recs = text.startsWith("[")||text.startsWith("{") ? JSON.parse(text) : parseCsv(text); }
+  catch(e){ toast("Không đọc được dữ liệu: kiểm tra định dạng CSV/JSON"); return; }
+  if(recs && !Array.isArray(recs)) recs = recs.rows || [recs];
+  const n = mergeRows(recs);
+  if(!n){ toast("Không khớp tỉnh nào: cột name phải là tên tỉnh mới (vd. Đắk Lắk)"); return; }
+  save(); renderAll(); toast(`Đã cập nhật ${n} tỉnh`);
+}
+async function copy(text, label){
+  try{ await navigator.clipboard.writeText(text); toast("Đã sao chép " + label); }
+  catch(e){ const ta = document.getElementById("pasteArea"); document.getElementById("pasteBox").hidden=false; ta.value=text; ta.select(); toast("Trình duyệt chặn sao chép: dữ liệu đã được chọn sẵn, nhấn Ctrl+C"); }
+}
+document.getElementById("btnCopyCsv").addEventListener("click", () => copy(toCsv(), "CSV"));
+document.getElementById("btnCopyJson").addEventListener("click", () => copy(JSON.stringify(rows.map(r=>Object.fromEntries(Object.entries(r).filter(([k])=>!k.startsWith("_")))),null,1), "JSON"));
+document.getElementById("fileIn").addEventListener("change", e => { const f=e.target.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=()=>applyText(String(rd.result)); rd.readAsText(f,"utf-8"); e.target.value=""; });
+document.getElementById("btnPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=false; document.getElementById("pasteArea").focus(); });
+document.getElementById("btnCancelPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=true; });
+document.getElementById("btnApplyPaste").addEventListener("click", () => { applyText(document.getElementById("pasteArea").value); document.getElementById("pasteBox").hidden=true; });
+document.getElementById("btnReset").addEventListener("click", () => {
+  const box = document.getElementById("resetBox");
+  box.innerHTML = `<div class="toolbar" style="background:var(--panel-2);padding:8px;border-radius:8px"><span>Xóa mọi chỉnh sửa trên trình duyệt này và quay về dữ liệu gốc?</span><button type="button" class="primary" id="rsYes">Khôi phục</button><button type="button" id="rsNo">Giữ lại</button></div>`;
+  document.getElementById("rsNo").onclick = () => box.innerHTML = "";
+  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 100000; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
+});
+let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+
+/* ---------- map tools ---------- */
+const bL = document.getElementById("btnLabels"), bR = document.getElementById("btnRotate");
+bL.addEventListener("click", () => { showLabels=!showLabels; bL.setAttribute("aria-pressed", showLabels); renderMap(); });
+bR.addEventListener("click", () => { autoRotate=!autoRotate; bR.setAttribute("aria-pressed", autoRotate); renderMap(); });
+document.getElementById("btnView").addEventListener("click", () => { viewIdx=(viewIdx+1)%VIEW_PRESETS.length; renderMap(); });
+
+/* ---------- render all ---------- */
+function renderAll(){
+  tamIn.value = tam;
+  compute();
+  chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
+  renderKpis(); renderMap(); renderRank(); renderTable(); renderDossier();
+}
+
+function init(){
+  load();
+  if(typeof echarts === "undefined"){
+    document.getElementById("loadmsg").textContent = "Không tải được thư viện bản đồ (ECharts). Kiểm tra kết nối mạng rồi tải lại trang.";
+    compute(); renderKpis(); renderTable(); renderDossier(); return;
+  }
+  echarts.registerMap("VN34", GEO);
+  rankChart = echarts.init(document.getElementById("rank"), null, {renderer:"svg"});
+  rankChart.on("click", p => select(p.name, true));
+  try{
+    mapChart = echarts.init(document.getElementById("map"));
+    mapChart.on("mouseover", p => { if(!pinned && p.name && !ISLANDS[p.name]) { selected = p.name; renderDossier(); highlightRow(); } });
+    mapChart.on("click", p => { if(p.name && !ISLANDS[p.name]){ if(pinned && selected===p.name){ pinned=false; renderDossier(); } else select(p.name, true); } });
+    document.getElementById("loadmsg").hidden = true;
+  }catch(e){
+    document.getElementById("loadmsg").textContent = "Trình duyệt chưa bật WebGL nên không hiển thị được bản đồ 3D. Các bảng xếp hạng và dữ liệu bên dưới vẫn dùng được.";
+    mapChart = null;
+  }
+  renderAll();
+  window.addEventListener("resize", () => { mapChart && mapChart.resize(); rankChart && rankChart.resize(); });
+  const rethemed = () => { renderMap(); renderRank(); renderDossier(); };
+  try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rethemed); }catch(e){}
+  new MutationObserver(rethemed).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+}
+init();
+})();
+</script>
