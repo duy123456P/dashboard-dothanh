@@ -10,7 +10,7 @@ data = json.dumps(json.loads(rd("provinces.json")), ensure_ascii=False, separato
 centers = json.dumps(json.loads(rd("centers.json")), ensure_ascii=False, separators=(",", ":"))
 page = rd("template.html").replace("/*__GEO__*/", geo.replace("</", "<\\/")).replace("/*__DATA__*/", data.replace("</", "<\\/")).replace("/*__CENTERS__*/", centers.replace("</", "<\\/")).replace("/*__SOURCES__*/", json.dumps(json.loads(rd("sources.json")), ensure_ascii=False).replace("</", "<\\/"))
 b64 = lambda f, mt: "data:%s;base64,%s" % (mt, base64.b64encode(open(os.path.join(here, f), "rb").read()).decode())
-page = page.replace("/*__RELIEF__*/", b64("relief.jpg", "image/jpeg")).replace("/*__HEIGHT__*/", b64("height.png", "image/png"))
+page = page.replace("/*__LOGO__*/", b64("logo-dothanh.png", "image/png")).replace("/*__RELIEF__*/", b64("relief.jpg", "image/jpeg")).replace("/*__HEIGHT__*/", b64("height.png", "image/png"))
 open(os.path.join(here, "artifact.html"), "w", encoding="utf-8").write(page)
 full = ('<!DOCTYPE html>\n<html lang="vi">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'

@@ -142,6 +142,10 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .pill.warn{color:var(--warn);border-color:rgba(255,195,90,.45)}
 .pill.bad{color:var(--bad);border-color:rgba(255,107,107,.5)}
 .ctrs{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.brand{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand-logo{height:64px;width:auto;max-width:100%;display:block;filter:drop-shadow(0 0 14px rgba(70,227,255,.45))}
+.brand-sep{width:1px;align-self:stretch;min-height:56px;background:linear-gradient(180deg,transparent,var(--cyan),transparent);opacity:.6}
+@media (max-width:640px){.brand-logo{height:44px}.brand-sep{display:none}}
 .upd{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);padding:3px 10px;border:1px solid var(--glass-line);border-radius:999px;background:rgba(5,11,22,.4)}
 .upd i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good)}
 .upd b{color:#fff;font-weight:600}
@@ -260,8 +264,9 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">34 tỉnh, thành · 11 khu vực · 35 trung tâm dịch vụ</div>
-      <h1>Bản đồ thị trường xe thương mại</h1>
+      <div class="brand"><img src="/*__LOGO__*/" alt="Đô Thành Auto" class="brand-logo"><span class="brand-sep"></span>
+        <div><div class="eyebrow">Đô Thành Auto · 34 tỉnh, thành · 11 khu vực · 35 trung tâm dịch vụ</div>
+      <h1>Bản đồ thị trường xe thương mại</h1></div></div>
       <div class="upd" id="updBadge"></div>
       <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Ben” để lấy báo cáo tức thì hoặc nhờ phân tích.</p>
     </div>
@@ -1413,7 +1418,7 @@ function finishBubble(bubble, md, truncated, title, instant){
   bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") +
     `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button>${instant ? '<button type="button" data-a="deep" class="primary">Ben phân tích sâu</button>' : ""}</div>`;
   bubble.querySelector('[data-a="dl"]').addEventListener("click", () => { const d = new Date(), stamp = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường xe thương mại_\n\n${md}\n`, "Báo cáo"); });
+    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường xe thương mại · Đô Thành Auto_\n\n${md}\n`, "Báo cáo"); });
   const deep = bubble.querySelector('[data-a="deep"]');
   if(deep) deep.addEventListener("click", () => askAi(`Dựa trên báo cáo "${title}" dưới đây, hãy phân tích sâu: nhận định chính, rủi ro, cơ hội và kế hoạch hành động cụ thể (ai, làm gì, khi nào, chỉ số đo).\n\n${md.slice(0, 6000)}`));
   bubble.querySelector('[data-a="cp"]').addEventListener("click", async () => { try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
