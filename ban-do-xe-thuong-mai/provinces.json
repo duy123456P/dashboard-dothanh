@@ -55,7 +55,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Hà Nội",
+    "pop": 8588,
+    "area": 3359,
+    "grdp": 1426
+   }
+  ]
  },
  {
   "name": "Huế",
@@ -113,7 +121,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Thừa Thiên – Huế",
+    "pop": 1160,
+    "area": 4947,
+    "grdp": 85
+   }
+  ]
  },
  {
   "name": "Lai Châu",
@@ -171,7 +187,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Lai Châu",
+    "pop": 482,
+    "area": 9069,
+    "grdp": 25
+   }
+  ]
  },
  {
   "name": "Điện Biên",
@@ -229,7 +253,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Điện Biên",
+    "pop": 652,
+    "area": 9540,
+    "grdp": 30
+   }
+  ]
  },
  {
   "name": "Sơn La",
@@ -287,7 +319,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Sơn La",
+    "pop": 1300,
+    "area": 14110,
+    "grdp": 75
+   }
+  ]
  },
  {
   "name": "Lạng Sơn",
@@ -345,7 +385,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Lạng Sơn",
+    "pop": 806,
+    "area": 8310,
+    "grdp": 50
+   }
+  ]
  },
  {
   "name": "Quảng Ninh",
@@ -403,7 +451,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Quảng Ninh",
+    "pop": 1382,
+    "area": 6208,
+    "grdp": 330
+   }
+  ]
  },
  {
   "name": "Thanh Hóa",
@@ -461,7 +517,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Thanh Hóa",
+    "pop": 3760,
+    "area": 11115,
+    "grdp": 330
+   }
+  ]
  },
  {
   "name": "Nghệ An",
@@ -519,7 +583,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Nghệ An",
+    "pop": 3470,
+    "area": 16487,
+    "grdp": 225
+   }
+  ]
  },
  {
   "name": "Hà Tĩnh",
@@ -577,7 +649,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Hà Tĩnh",
+    "pop": 1330,
+    "area": 5994,
+    "grdp": 125
+   }
+  ]
  },
  {
   "name": "Cao Bằng",
@@ -635,7 +715,15 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Cao Bằng",
+    "pop": 547,
+    "area": 6700,
+    "grdp": 25
+   }
+  ]
  },
  {
   "name": "Tuyên Quang",
@@ -694,7 +782,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Tuyên Quang",
+    "pop": 805,
+    "area": 5868,
+    "grdp": 50
+   },
+   {
+    "name": "Hà Giang",
+    "pop": 917,
+    "area": 7928,
+    "grdp": 34
+   }
+  ]
  },
  {
   "name": "Lào Cai",
@@ -753,7 +855,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Lào Cai",
+    "pop": 778,
+    "area": 6364,
+    "grdp": 75
+   },
+   {
+    "name": "Yên Bái",
+    "pop": 851,
+    "area": 6893,
+    "grdp": 45
+   }
+  ]
  },
  {
   "name": "Thái Nguyên",
@@ -812,7 +928,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Thái Nguyên",
+    "pop": 1357,
+    "area": 3522,
+    "grdp": 165
+   },
+   {
+    "name": "Bắc Kạn",
+    "pop": 330,
+    "area": 4860,
+    "grdp": 18
+   }
+  ]
  },
  {
   "name": "Phú Thọ",
@@ -872,7 +1002,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Phú Thọ",
+    "pop": 1512,
+    "area": 3535,
+    "grdp": 95
+   },
+   {
+    "name": "Vĩnh Phúc",
+    "pop": 1220,
+    "area": 1236,
+    "grdp": 165
+   },
+   {
+    "name": "Hòa Bình",
+    "pop": 885,
+    "area": 4591,
+    "grdp": 60
+   }
+  ]
  },
  {
   "name": "Bắc Ninh",
@@ -931,7 +1081,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Bắc Ninh",
+    "pop": 1517,
+    "area": 823,
+    "grdp": 245
+   },
+   {
+    "name": "Bắc Giang",
+    "pop": 1922,
+    "area": 3896,
+    "grdp": 200
+   }
+  ]
  },
  {
   "name": "Hưng Yên",
@@ -990,7 +1154,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Hưng Yên",
+    "pop": 1302,
+    "area": 930,
+    "grdp": 145
+   },
+   {
+    "name": "Thái Bình",
+    "pop": 1880,
+    "area": 1585,
+    "grdp": 135
+   }
+  ]
  },
  {
   "name": "Hải Phòng",
@@ -1049,7 +1227,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Hải Phòng",
+    "pop": 2106,
+    "area": 1526,
+    "grdp": 435
+   },
+   {
+    "name": "Hải Dương",
+    "pop": 1957,
+    "area": 1668,
+    "grdp": 165
+   }
+  ]
  },
  {
   "name": "Ninh Bình",
@@ -1109,7 +1301,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Ninh Bình",
+    "pop": 1018,
+    "area": 1412,
+    "grdp": 85
+   },
+   {
+    "name": "Hà Nam",
+    "pop": 878,
+    "area": 862,
+    "grdp": 75
+   },
+   {
+    "name": "Nam Định",
+    "pop": 1887,
+    "area": 1669,
+    "grdp": 95
+   }
+  ]
  },
  {
   "name": "Quảng Trị",
@@ -1168,7 +1380,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Quảng Trị",
+    "pop": 650,
+    "area": 4701,
+    "grdp": 45
+   },
+   {
+    "name": "Quảng Bình",
+    "pop": 916,
+    "area": 7999,
+    "grdp": 60
+   }
+  ]
  },
  {
   "name": "Đà Nẵng",
@@ -1227,7 +1453,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Đà Nẵng",
+    "pop": 1245,
+    "area": 1285,
+    "grdp": 150
+   },
+   {
+    "name": "Quảng Nam",
+    "pop": 1520,
+    "area": 10575,
+    "grdp": 140
+   }
+  ]
  },
  {
   "name": "Quảng Ngãi",
@@ -1286,7 +1526,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Quảng Ngãi",
+    "pop": 1250,
+    "area": 5155,
+    "grdp": 150
+   },
+   {
+    "name": "Kon Tum",
+    "pop": 580,
+    "area": 9677,
+    "grdp": 35
+   }
+  ]
  },
  {
   "name": "Gia Lai",
@@ -1345,7 +1599,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Gia Lai",
+    "pop": 1600,
+    "area": 15510,
+    "grdp": 145
+   },
+   {
+    "name": "Bình Định",
+    "pop": 1500,
+    "area": 6066,
+    "grdp": 120
+   }
+  ]
  },
  {
   "name": "Khánh Hòa",
@@ -1404,7 +1672,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Khánh Hòa",
+    "pop": 1260,
+    "area": 5200,
+    "grdp": 120
+   },
+   {
+    "name": "Ninh Thuận",
+    "pop": 597,
+    "area": 3355,
+    "grdp": 50
+   }
+  ]
  },
  {
   "name": "Lâm Đồng",
@@ -1464,7 +1746,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Lâm Đồng",
+    "pop": 1330,
+    "area": 9781,
+    "grdp": 115
+   },
+   {
+    "name": "Đắk Nông",
+    "pop": 680,
+    "area": 6509,
+    "grdp": 45
+   },
+   {
+    "name": "Bình Thuận",
+    "pop": 1260,
+    "area": 7943,
+    "grdp": 115
+   }
+  ]
  },
  {
   "name": "Đắk Lắk",
@@ -1523,7 +1825,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Đắk Lắk",
+    "pop": 1930,
+    "area": 13070,
+    "grdp": 135
+   },
+   {
+    "name": "Phú Yên",
+    "pop": 878,
+    "area": 5026,
+    "grdp": 60
+   }
+  ]
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -1583,7 +1899,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "TP.HCM",
+    "pop": 9520,
+    "area": 2095,
+    "grdp": 1780
+   },
+   {
+    "name": "Bình Dương",
+    "pop": 2760,
+    "area": 2695,
+    "grdp": 520
+   },
+   {
+    "name": "Bà Rịa – Vũng Tàu",
+    "pop": 1200,
+    "area": 1983,
+    "grdp": 400
+   }
+  ]
  },
  {
   "name": "Đồng Nai",
@@ -1642,7 +1978,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Đồng Nai",
+    "pop": 3300,
+    "area": 5864,
+    "grdp": 520
+   },
+   {
+    "name": "Bình Phước",
+    "pop": 1050,
+    "area": 6874,
+    "grdp": 90
+   }
+  ]
  },
  {
   "name": "Tây Ninh",
@@ -1701,7 +2051,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Tây Ninh",
+    "pop": 1190,
+    "area": 4042,
+    "grdp": 120
+   },
+   {
+    "name": "Long An",
+    "pop": 1740,
+    "area": 4495,
+    "grdp": 165
+   }
+  ]
  },
  {
   "name": "Cần Thơ",
@@ -1761,7 +2125,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Cần Thơ",
+    "pop": 1260,
+    "area": 1440,
+    "grdp": 120
+   },
+   {
+    "name": "Sóc Trăng",
+    "pop": 1200,
+    "area": 3312,
+    "grdp": 85
+   },
+   {
+    "name": "Hậu Giang",
+    "pop": 730,
+    "area": 1622,
+    "grdp": 50
+   }
+  ]
  },
  {
   "name": "Vĩnh Long",
@@ -1821,7 +2205,27 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Vĩnh Long",
+    "pop": 1030,
+    "area": 1525,
+    "grdp": 75
+   },
+   {
+    "name": "Bến Tre",
+    "pop": 1300,
+    "area": 2380,
+    "grdp": 85
+   },
+   {
+    "name": "Trà Vinh",
+    "pop": 1020,
+    "area": 2391,
+    "grdp": 75
+   }
+  ]
  },
  {
   "name": "Đồng Tháp",
@@ -1880,7 +2284,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Đồng Tháp",
+    "pop": 1600,
+    "area": 3382,
+    "grdp": 125
+   },
+   {
+    "name": "Tiền Giang",
+    "pop": 1800,
+    "area": 2556,
+    "grdp": 115
+   }
+  ]
  },
  {
   "name": "Cà Mau",
@@ -1939,7 +2357,21 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "Cà Mau",
+    "pop": 1210,
+    "area": 5275,
+    "grdp": 90
+   },
+   {
+    "name": "Bạc Liêu",
+    "pop": 920,
+    "area": 2669,
+    "grdp": 65
+   }
+  ]
  },
  {
   "name": "An Giang",
@@ -1998,6 +2430,20 @@
   "c_hino": 0,
   "c_fuso": 0,
   "c_china": 0,
-  "c_other": 0
+  "c_other": 0,
+  "parts": [
+   {
+    "name": "An Giang",
+    "pop": 1910,
+    "area": 3537,
+    "grdp": 120
+   },
+   {
+    "name": "Kiên Giang",
+    "pop": 1760,
+    "area": 6353,
+    "grdp": 125
+   }
+  ]
  }
 ]
