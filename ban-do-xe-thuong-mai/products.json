@@ -92,5 +92,113 @@
    730,
    850
   ]
- }
+ },
+ "specs": {
+  "V56": [
+   [
+    "Van 2 chỗ, khoang 5,6 m³",
+    0.945
+   ]
+  ],
+  "V65": [
+   [
+    "Van 2 chỗ, khoang 6,5 m³",
+    0.945
+   ]
+  ],
+  "T26": [
+   [
+    "Thùng dài 2.830 mm",
+    0.99
+   ]
+  ],
+  "T33L": [
+   [
+    "Thùng dài 3.300 mm",
+    1.49
+   ]
+  ],
+  "IZ45S": [
+   [
+    "Tiêu chuẩn",
+    1.9
+   ]
+  ],
+  "IZ50S": [
+   [
+    "Thường",
+    2.5
+   ],
+   [
+    "Xe tập lái",
+    2.3
+   ]
+  ],
+  "IZ50M": [
+   [
+    "Tùy cấu hình thùng",
+    [
+     1.9,
+     2.4
+    ]
+   ]
+  ],
+  "IZ50M Plus": [
+   [
+    "Thường",
+    1.9
+   ],
+   [
+    "Thùng Composite",
+    1.8
+   ]
+  ],
+  "IZ60SL Plus": [
+   [
+    "Tiêu chuẩn",
+    2.5
+   ]
+  ],
+  "IZ62M": [
+   [
+    "Tiêu chuẩn",
+    3.5
+   ]
+  ],
+  "IZ65M Plus": [
+   [
+    "Thường",
+    3.5
+   ],
+   [
+    "Xe tập lái",
+    3.6
+   ]
+  ],
+  "IZ71SL Plus": [
+   [
+    "Tiêu chuẩn",
+    3.5
+   ]
+  ],
+  "JP120SL": [
+   [
+    "Tùy cấu hình thùng",
+    [
+     7.3,
+     7.8
+    ]
+   ]
+  ],
+  "JP120EXL": [
+   [
+    "Tùy cấu hình thùng",
+    [
+     7.0,
+     7.6
+    ]
+   ]
+  ]
+ },
+ "specSource": "dothanhauto.com (trang sản phẩm DOTHANH MISSU, DOTHANH IZ, JP) – tra cứu 19/11/2026; Daewoo HC6, HC8, Novus, ben, đầu kéo chờ xác nhận"
 }
