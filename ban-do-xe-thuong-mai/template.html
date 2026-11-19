@@ -1,0 +1,1343 @@
+<title>Bản đồ Thị trường Hải Âu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: futuristic glass command deck. Deep-space backdrop with a receding grid floor; a 3D relief diorama of Vietnam floats in a glass bay; dossier, network list, ranking and data sheet sit on frosted glass panes; AI analyst docks bottom-right. Committed single dark look. */
+:root{
+  color-scheme:dark;
+  --bg:#050b16; --bg-2:#0a1730; --ink:#e8f3ff; --muted:#8ea7c7; --dim:#5c7393;
+  --glass:rgba(140,190,255,.07); --glass-2:rgba(140,190,255,.12); --glass-line:rgba(170,215,255,.18); --glass-hi:rgba(255,255,255,.22);
+  --cyan:#46e3ff; --teal:#3fe0c5; --magenta:#ff4d8d; --amber:#ffc35a;
+  --pin-4s:#ff4d6d; --pin-3s:#46c8ff;
+  --good:#4ee2a0; --warn:#ffc35a; --bad:#ff6b6b;
+  --z-hn:#ff5a5a; --z-1:#4d9dff; --z-2:#4fd17a; --z-3:#ffd45a; --z-4:#b06cff; --z-5:#ff9f45;
+  --z-6:#36dbe8; --z-7:#ff8fc8; --z-8:#c49a85; --z-hcm:#6f7bff; --z-9:#d4e65a;
+  --scale-1:#1f4d8f; --scale-2:#1fa3c7; --scale-3:#3fe0c5; --scale-4:#ffd45a; --scale-5:#ff5a7a;
+  --seg-1:#3fe0c5; --seg-2:#4d9dff; --seg-3:#b06cff; --seg-4:#ffc35a; --seg-5:#ff6b6b; --seg-6:#8ea7c7;
+  --display:"Chakra Petch","Segoe UI",Arial,sans-serif;
+  --body:"Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);overflow-x:hidden}
+body{background:radial-gradient(1200px 700px at 12% -10%,rgba(70,227,255,.18),transparent 60%),
+  radial-gradient(900px 700px at 100% 20%,rgba(255,77,141,.12),transparent 60%),
+  radial-gradient(1000px 900px at 50% 120%,rgba(63,224,197,.12),transparent 60%),
+  linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
+  background-attachment:fixed;color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5;min-height:100vh;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px;position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;left:-50%;right:-50%;bottom:-30vh;height:80vh;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(70,227,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(70,227,255,.16) 1px,transparent 1px);
+  background-size:64px 64px;transform:perspective(700px) rotateX(64deg);transform-origin:50% 0;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 35%,#000 70%,transparent)}
+.wrap{max-width:1560px;margin:0 auto;display:flex;flex-direction:column;gap:16px;position:relative}
+.glass{background:linear-gradient(160deg,var(--glass-2),var(--glass) 40%,rgba(10,23,48,.35));
+  border:1px solid var(--glass-line);border-radius:var(--r);
+  box-shadow:inset 0 1px 0 var(--glass-hi),inset 0 0 0 1px rgba(255,255,255,.02),0 24px 60px rgba(0,0,0,.45),0 0 40px rgba(70,227,255,.05);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);min-width:0;position:relative}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 28%,transparent 72%,rgba(70,227,255,.06))}
+h1,h2{font-family:var(--display);font-weight:700;margin:0;letter-spacing:.02em;text-wrap:balance}
+h1{font-size:clamp(28px,3.4vw,44px);line-height:1.02;text-transform:uppercase;
+  background:linear-gradient(90deg,#fff 0%,#bfefff 45%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:20px;text-transform:uppercase}
+h3{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);margin:0}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.eyebrow{font-family:var(--display);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));box-shadow:0 0 12px var(--cyan)}
+.sub{color:var(--muted);max-width:80ch;margin:6px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+select,input[type=number],input[type=text],input[type=range],textarea{font:inherit;text-transform:none;letter-spacing:0;color:var(--ink);background:rgba(5,11,22,.55);border:1px solid var(--glass-line);border-radius:10px;padding:8px 10px;min-width:0}
+select option{background:#0a1730}
+input[type=range]{padding:0;accent-color:var(--cyan);height:28px;background:transparent;border:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+button{font:inherit;cursor:pointer;color:var(--ink);background:rgba(140,190,255,.08);border:1px solid var(--glass-line);border-radius:10px;padding:7px 12px;transition:border-color .15s,background .15s,box-shadow .15s}
+button:hover{border-color:var(--cyan);box-shadow:0 0 16px rgba(70,227,255,.18)}
+button:disabled{opacity:.5;cursor:default}
+button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,197,.9));border-color:transparent;color:#03131c;font-weight:700}
+.seg{display:inline-flex;border:1px solid var(--glass-line);border-radius:11px;overflow:hidden;background:rgba(5,11,22,.45)}
+.seg button{border:0;border-radius:0;background:transparent;padding:8px 12px;font-size:13px;text-transform:none;letter-spacing:0}
+.seg button[aria-pressed="true"]{background:rgba(70,227,255,.18);color:#fff;box-shadow:inset 0 -2px 0 var(--cyan)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:6px 12px;border-radius:999px;font-size:13px;text-transform:none;letter-spacing:0}
+.chip[aria-pressed="true"]{background:rgba(70,227,255,.2);border-color:var(--cyan);color:#fff;font-weight:600;box-shadow:0 0 18px rgba(70,227,255,.25)}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{padding:12px 16px;overflow:hidden}
+.kpi .v{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1;color:#fff;text-shadow:0 0 18px rgba(70,227,255,.35)}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi::before{content:"";position:absolute;left:16px;top:0;width:36px;height:2px;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
+.main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1080px){.main{grid-template-columns:minmax(0,1fr)}}
+.mapbox{overflow:hidden;padding:0}
+#stage{position:relative;width:100%;height:clamp(520px,82vh,940px);overflow:hidden;border-radius:var(--r) var(--r) 0 0;
+  background:radial-gradient(80% 60% at 50% 40%,rgba(70,227,255,.10),transparent 70%)}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none}
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.plabel{position:absolute;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:#fff;white-space:nowrap;
+  text-shadow:0 1px 2px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.6);letter-spacing:.02em}
+.vlabel{position:absolute;transform:translate(-50%,-100%);font-family:var(--display);font-size:12px;font-weight:700;color:#fff;
+  background:rgba(5,11,22,.7);border:1px solid var(--glass-line);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.maphud{position:absolute;left:14px;top:12px;font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);
+  display:flex;flex-direction:column;gap:2px;pointer-events:none;text-shadow:0 0 10px rgba(70,227,255,.5)}
+.maphud span:last-child{color:var(--muted);letter-spacing:.04em;text-transform:none;font-family:var(--body);font-size:12px}
+.maptools{position:absolute;right:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:62%;z-index:2}
+.maptools button{font-size:12px;padding:6px 10px;background:rgba(5,11,22,.6)}
+.maptools button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+.exag{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);
+  background:rgba(5,11,22,.6);border:1px solid var(--glass-line);border-radius:10px;padding:4px 10px;z-index:2}
+.exag input{width:120px}
+.loadmsg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);text-align:center;padding:24px}
+.legend{border-top:1px solid var(--glass-line);padding:12px 16px;font-size:12px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.legend .lh{display:flex;flex-direction:column}
+.legend .gr{min-width:200px;flex:1;max-width:360px}
+.legend .bar{height:8px;border-radius:4px;margin:4px 0 2px;box-shadow:0 0 12px rgba(70,227,255,.25)}
+.legend .ends{display:flex;justify-content:space-between;color:var(--muted)}
+.zl{display:flex;flex-wrap:wrap;gap:4px 12px}
+.zl span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.sw{width:10px;height:10px;border-radius:3px;flex:none;display:inline-block;box-shadow:0 0 8px currentColor}
+.pinl{display:flex;gap:14px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:-1px}
+#tip{position:fixed;z-index:30;pointer-events:none;color:var(--ink);font-size:12px;min-width:240px;max-width:310px;padding:12px 14px;
+  background:linear-gradient(160deg,rgba(30,60,100,.85),rgba(8,18,36,.9));border:1px solid var(--glass-line);border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 24px rgba(70,227,255,.15);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#tip .t{font-family:var(--display);font-weight:700;font-size:17px;display:flex;align-items:center;gap:7px}
+#tip .g{display:grid;grid-template-columns:auto auto;gap:3px 14px;margin-top:8px}
+#tip .g b{text-align:right;color:#fff}
+
+.side{display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--glass-line);padding:0 10px}
+.tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;padding:13px 10px 10px;font-family:var(--display);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted);box-shadow:none}
+.tabs button[aria-selected="true"]{color:#fff;border-bottom-color:var(--cyan);text-shadow:0 0 10px rgba(70,227,255,.6)}
+.pane{padding:16px;display:flex;flex-direction:column;gap:14px;max-height:calc(clamp(520px,82vh,940px) + 52px);overflow:auto}
+.dhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.dhead .name{font-family:var(--display);font-size:34px;font-weight:700;line-height:1;color:#fff;text-shadow:0 0 20px rgba(70,227,255,.35)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--glass-line);color:var(--muted);background:rgba(5,11,22,.35)}
+.tier{font-family:var(--display);font-size:20px;font-weight:700;padding:3px 12px;border-radius:10px;white-space:nowrap;border:1px solid}
+.tier.A{color:var(--magenta);border-color:rgba(255,77,141,.5);box-shadow:0 0 18px rgba(255,77,141,.3)}
+.tier.B{color:var(--cyan);border-color:rgba(70,227,255,.5);box-shadow:0 0 18px rgba(70,227,255,.25)}
+.tier.C{color:var(--muted);border-color:var(--glass-line)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stat{background:rgba(5,11,22,.38);border:1px solid rgba(170,215,255,.1);border-radius:10px;padding:8px 10px;min-width:0}
+.stat .v{font-family:var(--display);font-weight:700;font-size:18px;color:#fff}
+.stat .l{font-size:11px;color:var(--muted)}
+@media (max-width:460px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.segbar{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:8px 0;box-shadow:0 0 14px rgba(70,227,255,.15)}
+.seglist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;font-size:12.5px}
+.seglist div{display:flex;align-items:center;gap:6px;min-width:0}
+.seglist i{width:9px;height:9px;border-radius:2px;flex:none}
+.seglist b{margin-left:auto;font-weight:600;color:#fff}
+.prose p{margin:4px 0 0;font-size:13.5px;color:#d3e3f5}
+.actions{margin:6px 0 0;padding-left:18px;font-size:13.5px}
+.actions li{margin:4px 0}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;font-weight:700;border:1px solid}
+.pill.good{color:var(--good);border-color:rgba(78,226,160,.45)}
+.pill.warn{color:var(--warn);border-color:rgba(255,195,90,.45)}
+.pill.bad{color:var(--bad);border-color:rgba(255,107,107,.5)}
+.ctrs{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.front{border:1px solid;border-radius:14px;padding:12px 14px;background:rgba(5,11,22,.35)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:12.5px;margin-top:8px}
+.kv span{color:var(--muted)}.kv b{font-weight:600;color:#fff}
+.matrixwrap{overflow-x:auto}
+.zone{border-top:1px solid var(--glass-line);padding-top:10px}
+.zone h4{margin:0 0 4px;display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.crow{display:flex;align-items:center;gap:10px;padding:5px 6px;border-radius:9px;cursor:pointer;border:1px solid transparent;background:transparent;width:100%;text-align:left;box-shadow:none}
+.crow:hover{background:rgba(70,227,255,.08);border-color:var(--glass-line)}
+.crow .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none}
+.crow .p{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+
+.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:16px;align-items:start}
+@media (max-width:1080px){.lower{grid-template-columns:minmax(0,1fr)}}
+.pad{padding:16px 18px}
+.rank{display:flex;flex-direction:column;gap:3px;margin-top:10px}
+.rk{display:grid;grid-template-columns:22px 108px minmax(0,1fr) auto;align-items:center;gap:8px;font-size:12.5px;cursor:pointer;border-radius:6px;padding:1px 4px}
+.rk:hover,.rk.sel{background:rgba(70,227,255,.08)}
+.rk .i{color:var(--dim);font-size:11px;text-align:right}
+.rk .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .b{height:10px;border-radius:0 5px 5px 0;min-width:2px}
+.rk .v{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin:10px 0}
+.tablewrap{overflow:auto;max-height:760px;border:1px solid var(--glass-line);border-radius:12px;background:rgba(5,11,22,.3)}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid rgba(170,215,255,.1);text-align:right;white-space:nowrap}
+th{position:sticky;top:0;background:#0c1d38;font-weight:600;font-size:11.5px;color:var(--muted);z-index:1;text-transform:uppercase;letter-spacing:.04em}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0b1a33;z-index:2}
+th:first-child{z-index:3;background:#0c1d38}
+tr.sel td{background:rgba(70,227,255,.12)}
+tr.sel td:first-child{background:#123153}
+td input{width:82px;padding:3px 6px;text-align:right;border-radius:6px}
+td input.note{width:180px;text-align:left}
+td.name{cursor:pointer;font-weight:600;color:#fff}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:rgba(8,18,36,.92);color:#fff;border:1px solid var(--cyan);
+  box-shadow:0 0 24px rgba(70,227,255,.3);padding:8px 14px;border-radius:10px;font-size:13px;z-index:60}
+.notes{font-size:12.5px;color:var(--muted)}
+.notes p{margin:5px 0;max-width:130ch}
+
+#aiFab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;
+  display:flex;align-items:center;gap:10px;padding:13px 20px;border-radius:999px;font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:linear-gradient(90deg,rgba(70,227,255,.25),rgba(255,77,141,.25));border:1px solid rgba(170,215,255,.4);color:#fff;
+  box-shadow:0 12px 34px rgba(0,0,0,.5),0 0 30px rgba(70,227,255,.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.orb{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--cyan) 45%,var(--magenta));box-shadow:0 0 14px var(--cyan)}
+@media (prefers-reduced-motion: no-preference){.orb{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 26px var(--magenta)}}}
+#ai{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;
+  width:min(520px,calc(100vw - 32px));height:min(820px,calc(100vh - 36px));display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(160deg,rgba(30,60,100,.72),rgba(6,14,30,.86));border:1px solid rgba(170,215,255,.3);border-radius:20px;
+  box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 40px rgba(70,227,255,.18);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
+#ai header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--glass-line)}
+#ai header b{font-family:var(--display);font-size:18px;text-transform:uppercase;letter-spacing:.06em}
+#ai header .x{margin-left:auto;padding:4px 10px}
+.aiq{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--glass-line)}
+.aiq button{font-size:12px;padding:5px 10px;border-radius:999px}
+.aiq .seg button{border-radius:0;padding:4px 10px}
+.aiql{width:100%;font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.ben-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-family:var(--display);font-weight:700;font-size:16px;color:#fff;
+  background:radial-gradient(circle at 30% 30%,#9ff3ff,var(--cyan) 40%,var(--magenta));box-shadow:0 0 18px rgba(70,227,255,.6)}
+#aiFab .ben-av{width:26px;height:26px;font-size:14px}
+#benTease{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:40;max-width:280px;
+  padding:10px 30px 10px 12px;border-radius:14px 14px 4px 14px;font-size:12.5px;color:var(--ink);background:linear-gradient(160deg,rgba(30,60,100,.85),rgba(8,18,36,.92));
+  border:1px solid rgba(170,215,255,.35);box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 20px rgba(70,227,255,.2);cursor:pointer}
+#benTease button{position:absolute;right:4px;top:4px;padding:0 6px;border:0;background:transparent;font-size:16px;line-height:1.2}
+#aiLog{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:100%;font-size:13.5px;line-height:1.55;flex:none}
+.msg.u{align-self:flex-end;background:linear-gradient(90deg,rgba(70,227,255,.3),rgba(63,224,197,.25));border:1px solid rgba(70,227,255,.4);padding:8px 12px;border-radius:14px 14px 4px 14px;max-width:85%}
+.msg.a{background:rgba(5,11,22,.5);border:1px solid var(--glass-line);padding:10px 12px;border-radius:14px 14px 14px 4px;overflow-x:auto}
+.msg.a h1,.msg.a h2,.msg.a h3{font-family:var(--display);text-transform:none;letter-spacing:0;color:var(--cyan);margin:10px 0 4px;background:none;-webkit-background-clip:initial;background-clip:initial}
+.msg.a h1{font-size:20px}.msg.a h2{font-size:17px}.msg.a h3{font-size:15px}
+.msg.a p{margin:6px 0}.msg.a ul,.msg.a ol{margin:6px 0;padding-left:20px}
+.msg.a table{font-size:12px;margin:6px 0}.msg.a th,.msg.a td{padding:4px 6px;position:static;background:transparent;text-align:left}
+.msg .act{font-size:11.5px;color:var(--muted);font-style:italic}
+.msg .tools{display:flex;gap:6px;margin-top:8px}
+.msg .tools button{font-size:12px;padding:4px 9px}
+.aiin{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--glass-line)}
+.aiin textarea{flex:1;resize:none;height:44px;min-height:44px}
+.aistate{padding:0 14px 8px;font-size:12px;color:var(--muted)}
+.sr{position:absolute;left:-9999px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Mạng lưới dịch vụ Hải Âu · Thị trường xe thương mại</div>
+      <h1>Bản đồ địa hình &amp; thị trường</h1>
+      <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Ben” để lấy báo cáo tức thì hoặc nhờ phân tích.</p>
+    </div>
+    <div class="controls">
+      <label class="field" for="zoneSel">Khu vực kinh doanh
+        <select id="zoneSel"><option value="">Toàn quốc</option></select>
+      </label>
+      <label class="field" for="tam">ĐK mới xe tải toàn quốc 2025
+        <input id="tam" type="number" min="1000" step="1000" value="122235" style="width:150px">
+      </label>
+      <label class="field" for="uioNat">UIO xe TM toàn quốc
+        <input id="uioNat" type="number" min="10000" step="10000" value="2070000" style="width:150px">
+      </label>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="field">Phủ màu tỉnh
+      <div class="seg" role="group" aria-label="Phủ màu tỉnh"><button type="button" data-color="zone">Vùng kinh doanh</button><button type="button" data-color="metric">Theo chỉ số</button><button type="button" data-color="none">Địa hình</button></div>
+    </div>
+    <div class="field" style="min-width:0;flex:1">Chỉ số
+      <div class="chips" id="metrics" role="group" aria-label="Chỉ số"></div>
+    </div>
+  </div>
+
+  <section class="kpis" id="kpis" aria-label="Tổng quan"></section>
+
+  <section class="main">
+    <div class="glass mapbox">
+      <div id="stage" role="img" aria-label="Bản đồ địa hình 3D Việt Nam, 34 tỉnh thành và 35 trung tâm dịch vụ">
+        <div id="labels"></div>
+        <div class="loadmsg" id="loadmsg">Đang dựng địa hình 3D…</div>
+        <div class="maphud"><span>Relief 3D · 34 tỉnh / thành</span><span>Kéo: xoay · Cuộn: phóng to · Chuột phải: di chuyển</span></div>
+        <div class="maptools">
+          <button id="btnBars" type="button" aria-pressed="false">Cột chỉ số</button>
+          <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
+          <button id="btnPins" type="button" aria-pressed="true">Trung tâm</button>
+          <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
+          <button id="btnView" type="button">Đổi góc nhìn</button>
+        </div>
+        <label class="exag" for="exag">Độ nổi địa hình <input id="exag" type="range" min="5" max="60" step="1" value="28"></label>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside class="glass side">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="tabP" aria-selected="true" aria-controls="paneP">Hồ sơ tỉnh</button>
+        <button type="button" role="tab" id="tabC" aria-selected="false" aria-controls="paneC">35 trung tâm</button>
+      </div>
+      <div class="pane" id="paneP" role="tabpanel" aria-labelledby="tabP" aria-live="polite"></div>
+      <div class="pane" id="paneC" role="tabpanel" aria-labelledby="tabC" hidden></div>
+    </aside>
+  </section>
+
+  <section class="glass pad">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div><h2>Thế trận 34 mặt trận</h2><p class="muted" style="margin:4px 0 0">Mỗi tỉnh là một mặt trận: trục ngang là sức hấp dẫn (ĐK mới, tăng trưởng, GRDP/người), trục dọc là sức mạnh của ta (độ phủ trung tâm, thị phần). Kích thước điểm theo số ĐK mới. Bấm vào điểm để mở hồ sơ.</p></div>
+      <div id="matrixSum" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    </div>
+    <div class="matrixwrap" id="matrix" style="margin-top:10px"></div>
+  </section>
+
+  <section class="lower">
+    <div class="glass pad">
+      <h2>Xếp hạng</h2>
+      <div class="muted" id="rankSub"></div>
+      <div class="rank" id="rank"></div>
+    </div>
+    <div class="glass pad">
+      <h2>Bảng dữ liệu &amp; cập nhật</h2>
+      <p class="muted" style="margin:4px 0 0">Sửa trực tiếp ô số liệu: bản đồ, xếp hạng, hồ sơ và trợ lý AI dùng ngay số mới. Chỉnh sửa lưu trên trình duyệt này; muốn cập nhật cho cả nhóm, tải CSV/JSON và gửi lại để thay file gốc.</p>
+      <div class="toolbar">
+        <button type="button" id="btnCsv">Tải CSV</button>
+        <button type="button" id="btnJson">Tải JSON</button>
+        <label class="field" for="fileIn">Nhập file CSV / JSON
+          <input id="fileIn" type="file" accept=".csv,.json,text/csv,application/json">
+        </label>
+        <button type="button" id="btnPaste">Dán dữ liệu…</button>
+        <button type="button" id="btnReset">Khôi phục dữ liệu gốc</button>
+      </div>
+      <div id="pasteBox" hidden>
+        <label for="pasteArea" class="muted" style="font-size:12px">Dán CSV (dòng tiêu đề, cột <b>name</b> là tên tỉnh mới) hoặc JSON rồi bấm Áp dụng.</label>
+        <textarea id="pasteArea" style="width:100%;min-height:120px;font:12px/1.4 ui-monospace,Consolas,monospace"></textarea>
+        <div class="toolbar"><button type="button" class="primary" id="btnApplyPaste">Áp dụng</button><button type="button" id="btnCancelPaste">Đóng</button></div>
+      </div>
+      <div id="resetBox"></div>
+      <div class="tablewrap"><table id="tbl"></table></div>
+    </div>
+  </section>
+
+  <section class="glass pad notes">
+    <h2 style="color:#fff">Phương pháp &amp; nguồn số liệu</h2>
+    <p><b>Địa hình:</b> mô hình độ cao AWS Terrain Tiles (Mapzen/Tilezen; nguồn SRTM, GMTED, ETOPO1), xử lý thành ảnh đổ bóng và tô màu theo độ cao; độ nổi được phóng đại để dễ nhìn. Đáy biển thể hiện theo độ sâu.</p>
+    <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa). Ranh giới giản lược để hiển thị, không dùng cho mục đích pháp lý.</p>
+    <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 theo Cục Thống kê (01/2026) cho các tỉnh đã đối chiếu; ô trống là chưa cập nhật.</p>
+    <p><b>Đăng ký mới &amp; UIO:</b> Cục CSGT: năm 2025 (15/12/2024–14/12/2025) cả nước đăng ký mới 624.300 ô tô (+27%), trong đó xe tải và container 122.235 xe (+35%); ô tô mọi loại ĐK mới tại TP.HCM 102.354, Hà Nội 88.165, Hải Phòng 31.436, Bắc Ninh 30.721, Phú Thọ 26.930. Tổng ô tô đã đăng ký lưu hành 7.134.939 xe (nửa đầu 2026). UIO xe thương mại toàn quốc mặc định 2,07 triệu xe là ước tính (~29% tổng ô tô). Số theo tỉnh là phân bổ mô hình, ghi "(ước)"; nhập số thực vào cột "ĐK mới thực tế", "UIO thực tế" để thay thế.</p>
+    <p><b>Hành chính, xã hội:</b> số xã/phường theo các nghị quyết sắp xếp (tổng 3.321 đơn vị); GRDP/người 2025 của Quảng Ninh, TP.HCM, Hà Nội, Hải Phòng theo Cục Thống kê; cơ cấu kinh tế, đô thị hóa, tỷ lệ dân tộc là ước tính tổng hợp từ các tỉnh cũ, cần đối chiếu niên giám.</p>
+    <p><b>Thế trận:</b> sức hấp dẫn = 60% quy mô ĐK mới + 25% tăng trưởng GRDP + 15% GRDP/người; sức mạnh = độ phủ trung tâm (và thị phần khi có doanh số). Mục tiêu 2026 đề xuất = ĐK mới × 1,08 × thị phần mục tiêu theo thế trận (12% / 8% / 15% / 5%).</p>
+    <p><b>Phân bổ ĐK mới theo tỉnh (ước tính):</b> tổng thị trường (mặc định 100.000 xe/năm; VAMA ghi nhận khoảng 70.700 xe tải năm 2025, chưa gồm hãng ngoài VAMA và xe nhập) phân bổ theo GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng; cơ cấu phân khúc theo loại hình kinh tế. Mô hình định hướng; thay bằng số đăng ký thực tế khi có.</p>
+    <p><b>Mạng lưới:</b> 35 trung tâm (10 trung tâm 4S, 25 trung tâm 3S) và 11 khu vực kinh doanh theo bản đồ trung tâm dịch vụ Hải Âu; vị trí ghim gần đúng theo địa danh. Hạng ưu tiên: A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%.</p>
+  </section>
+</div>
+
+<div id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<div id="benTease" hidden><b>Ben</b> · Cần báo cáo nhanh? Bấm để lấy báo cáo toàn quốc, khu vực hoặc từng tỉnh ngay.<button type="button" id="benTeaseX" aria-label="Ẩn lời nhắc">×</button></div>
+<button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="ben-av">B</span>Ben · Báo cáo</button>
+<section id="ai" hidden aria-label="Ben, trợ lý báo cáo">
+  <header><span class="ben-av">B</span><div style="display:flex;flex-direction:column;line-height:1.2"><b>Ben</b><span class="muted" style="font-size:12px">Trợ lý báo cáo thị trường xe thương mại</span></div><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
+  <div class="aiq"><span class="aiql">Báo cáo tức thì</span><div id="aiInstant" style="display:contents"></div></div>
+  <div class="aiq"><span class="aiql">Ben phân tích</span><div id="aiQuick" style="display:contents"></div>
+    <div class="seg" role="group" aria-label="Tốc độ phân tích" style="margin-left:auto"><button type="button" data-speed="quick">Nhanh</button><button type="button" data-speed="default">Chuyên sâu</button></div></div>
+  <div id="aiLog" aria-live="polite"></div>
+  <div class="aistate" id="aiState"></div>
+  <div class="aiin">
+    <label for="aiText" class="sr">Câu hỏi cho Ben</label>
+    <textarea id="aiText" placeholder="Hỏi Ben về tỉnh, vùng, phân khúc, đối thủ, kế hoạch…"></textarea>
+    <button type="button" class="primary" id="aiSend">Gửi</button>
+    <button type="button" id="aiStop" hidden>Dừng</button>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script id="geo-data" type="application/json">/*__GEO__*/</script>
+<script id="prov-data" type="application/json">/*__DATA__*/</script>
+<script id="center-data" type="application/json">/*__CENTERS__*/</script>
+<script>
+const RELIEF_SRC = "/*__RELIEF__*/";
+const HEIGHT_SRC = "/*__HEIGHT__*/";
+(function(){
+"use strict";
+const GEO = JSON.parse(document.getElementById("geo-data").textContent);
+const BASE = JSON.parse(document.getElementById("prov-data").textContent);
+const CENTERS = JSON.parse(document.getElementById("center-data").textContent);
+const STORE_KEY = "haiau-cv-map-v4";
+const LNG0 = 101.5, LNG1 = 117.5, LAT0 = 7.0, LAT1 = 24.0, K = 10, COSL = Math.cos(15.5*Math.PI/180);
+const ZONES = ["Khu vực Hà Nội","Vùng 1","Vùng 2","Vùng 3","Vùng 4","Vùng 5","Vùng 6","Vùng 7","Vùng 8","Khu vực TP. Hồ Chí Minh","Vùng 9"];
+const ZTOK = {"Khu vực Hà Nội":"--z-hn","Vùng 1":"--z-1","Vùng 2":"--z-2","Vùng 3":"--z-3","Vùng 4":"--z-4","Vùng 5":"--z-5","Vùng 6":"--z-6","Vùng 7":"--z-7","Vùng 8":"--z-8","Khu vực TP. Hồ Chí Minh":"--z-hcm","Vùng 9":"--z-9"};
+const SEGS = ["Tải nhẹ < 3,5T","Tải trung 3,5–10T","Tải nặng > 10T","Đầu kéo","Xe khách / bus","Pickup / van"];
+const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",industrial:"Công nghiệp",coast:"Duyên hải – công nghiệp nặng",highland:"Cao nguyên – nông nghiệp",delta:"Đồng bằng – nông nghiệp",mountain:"Miền núi",border:"Cửa khẩu – logistics"};
+const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
+const COMP = [["c_thaco","Thaco"],["c_hyundai","Hyundai"],["c_isuzu","Isuzu"],["c_hino","Hino"],["c_fuso","Fuso"],["c_china","Xe Trung Quốc"],["c_other","Khác"]];
+const NUM_KEYS = ["pop","area","grdp","growth","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
+const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],
+  ["elev","Độ cao TB (m)",10],["factor","Hệ số vùng",0.05],["reg","ĐK mới thực tế",1],["uio","UIO thực tế",100],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1],
+  ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
+const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
+
+let rows = clone(BASE), tam = 122235, uioNat = 2070000, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
+let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 28;
+
+function clone(x){ return JSON.parse(JSON.stringify(x)); }
+function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\.?|thành phố|tỉnh)\s*/,"").replace(/[\s.]/g,""); }
+function findRow(name){ const n = norm(name||""); return rows.find(r => norm(r.name) === n) || rows.find(r => r.merged.some(m => norm(m) === n)); }
+function strip(r){ return Object.fromEntries(Object.entries(r).filter(([k]) => !k.startsWith("_"))); }
+function load(){ try{ const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); if(s && Array.isArray(s.rows)){ mergeRows(s.rows); if(s.tam) tam = +s.tam; if(s.uioNat) uioNat = +s.uioNat; } }catch(e){} }
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} }
+function mergeRows(incoming){
+  let n = 0;
+  incoming.forEach(src => {
+    const r = findRow(src.name || src["Tỉnh"] || ""); if(!r) return; n++;
+    Object.keys(src).forEach(k => {
+      if(k === "name" || k.startsWith("_")) return;
+      let v = src[k];
+      if(NUM_KEYS.includes(k)){ if(v === "" || v == null){ if(k === "growth") r[k] = null; return; } v = parseFloat(String(v).replace(/\s/g,"").replace(",", ".")); if(isNaN(v)) return; }
+      if((k === "mix" || k === "lp") && typeof v === "string") v = v.split(/[|;]/).map(Number);
+      if(k === "merged" && typeof v === "string") v = v.split(/[|;]/).map(s=>s.trim());
+      r[k] = v;
+    });
+  });
+  return n;
+}
+
+/* ---------- model ---------- */
+function centersOf(name){ return CENTERS.filter(c => c.province === name); }
+function compute(){
+  const w = rows.map(r => Math.pow(Math.max(r.grdp,0),0.65) * Math.pow(Math.max(r.pop,0),0.35) * (r.factor || 1));
+  const sw = w.reduce((a,b)=>a+b,0) || 1;
+  const w2 = rows.map(r => Math.sqrt(Math.max(r.grdp,0) * Math.max(r.pop,0) * (r.factor || 1)));
+  const sw2 = w2.reduce((a,b)=>a+b,0) || 1;
+  // provinces with real figures keep them; the rest share what is left of the national total
+  const realReg = rows.reduce((a,r)=>a+(r.reg>0?r.reg:0),0), estW = rows.reduce((a,r,i)=>a+(r.reg>0?0:w[i]),0) || 1;
+  const realUio = rows.reduce((a,r)=>a+(r.uio>0?r.uio:0),0), estW2 = rows.reduce((a,r,i)=>a+(r.uio>0?0:w2[i]),0) || 1;
+  rows.forEach((r,i) => {
+    r._regReal = r.reg > 0; r._uioReal = r.uio > 0;
+    r._market = r._regReal ? r.reg : Math.round(Math.max(tam - realReg, 0) * w[i] / estW);
+    r._uio = r._uioReal ? r.uio : Math.round(Math.max(uioNat - realUio, 0) * w2[i] / estW2);
+    r._turn = r._uio ? r._market / r._uio * 100 : 0;
+    r._density = r.area ? r.pop*1000 / r.area : 0; r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;
+    r._share = r._market ? (r.sales||0) / r._market * 100 : 0; r._gap = Math.max((r.target||0) - (r.sales||0), 0);
+    r._tier = r._mshare >= 4 ? "A" : r._mshare >= 2 ? "B" : "C";
+    const cs = centersOf(r.name); r._c4 = cs.filter(c=>c.type==="4S").length; r._c3 = cs.length - r._c4;
+    r._perCenter = cs.length ? r._market / cs.length : null;
+  });
+  const totM = rows.reduce((a,r)=>a+r._market,0) || 1;
+  rows.forEach(r => { r._mshare = r._market / totM * 100; r._tier = r._mshare >= 4 ? "A" : r._mshare >= 2 ? "B" : "C"; });
+  // front assessment: attractiveness (market size, growth, wealth) vs current strength (network coverage, share)
+  const mx = k => Math.max(...rows.map(k), 1e-9);
+  const mReg = mx(r=>Math.sqrt(r._market)), mGpc = mx(r=>r._gpc);
+  const gAvg = rows.filter(r=>r.growth!=null).reduce((a,r,_,arr)=>a+r.growth/arr.length,0) || 8;
+  rows.forEach(r => {
+    const g = r.growth == null ? gAvg : r.growth;
+    r._attr = Math.round(100 * (0.6*Math.sqrt(r._market)/mReg + 0.25*Math.min(Math.max((g-5)/7,0),1) + 0.15*r._gpc/mGpc));
+    const n = r._c4 + r._c3, cov = 1 - Math.exp(-n * 2000 / Math.max(r._market, 1));
+    r._str = Math.round(100 * (r.sales > 0 ? 0.55*Math.min(r._share/15,1) + 0.45*cov : cov));
+    r._post = r._attr >= 50 ? (r._str >= 50 ? "attack" : "open") : (r._str >= 50 ? "hold" : "guerrilla");
+    r._tgtShare = {attack:12, open:8, hold:15, guerrilla:5}[r._post];
+    r._tgt26 = Math.round(r._market * 1.08 * r._tgtShare / 100);
+    r._comp = COMP.map(([k,l]) => [l, +r[k]||0]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+  });
+  ["_market","grdp","pop","_gpc","_uio"].forEach(key => [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }));
+}
+const METRICS = {
+  market:{label:"ĐK mới xe tải 2025", unit:"xe/năm", get:r=>r._market, fmt:v=>fmtInt(v)},
+  uio:{label:"UIO xe thương mại", unit:"xe đang lưu hành", get:r=>r._uio, fmt:v=>fmtInt(v)},
+  turn:{label:"Tỷ lệ ĐK mới / UIO", unit:"%", get:r=>r._turn, fmt:v=>fmt1(v)},
+  attr:{label:"Sức hấp dẫn mặt trận", unit:"điểm /100", get:r=>r._attr, fmt:v=>fmtInt(v)},
+  perCenter:{label:"Thị trường / trung tâm", unit:"xe/năm", get:r=>r._perCenter, fmt:v=>v==null?"chưa có TT":fmtInt(v)},
+  grdp:{label:"GRDP", unit:"nghìn tỷ đ", get:r=>r.grdp, fmt:v=>fmtInt(v)},
+  pop:{label:"Dân số", unit:"nghìn người", get:r=>r.pop, fmt:v=>fmtInt(v)},
+  gpc:{label:"GRDP / người", unit:"triệu đ", get:r=>r._gpc, fmt:v=>fmtInt(v)},
+  growth:{label:"Tăng trưởng GRDP 2025", unit:"%", get:r=>r.growth, fmt:v=>v==null?"—":fmt1(v)},
+  heavy:{label:"Tải nặng + đầu kéo", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[2]+r.mix[3])/100), fmt:v=>fmtInt(v)},
+  light:{label:"Tải nhẹ + van", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[0]+r.mix[5])/100), fmt:v=>fmtInt(v)},
+  elev:{label:"Độ cao trung bình", unit:"m", get:r=>r.elev, fmt:v=>fmtInt(v)},
+  ind:{label:"Tỷ trọng công nghiệp – XD", unit:"% GRDP", get:r=>r.econ[1], fmt:v=>fmt1(v)},
+  agri:{label:"Tỷ trọng nông – lâm – thủy sản", unit:"% GRDP", get:r=>r.econ[0], fmt:v=>fmt1(v)},
+  urban:{label:"Tỷ lệ đô thị hóa", unit:"%", get:r=>r.urban, fmt:v=>fmtInt(v)},
+  communes:{label:"Số xã / phường", unit:"đơn vị", get:r=>r.communes, fmt:v=>fmtInt(v)},
+  sales:{label:"Doanh số", unit:"xe", get:r=>r.sales, fmt:v=>fmtInt(v)},
+  share:{label:"Thị phần", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
+};
+const nf0 = new Intl.NumberFormat("vi-VN",{maximumFractionDigits:0});
+const nf1 = new Intl.NumberFormat("vi-VN",{minimumFractionDigits:1,maximumFractionDigits:1});
+function fmtInt(v){ return v==null||isNaN(v) ? "—" : nf0.format(v); }
+function fmt1(v){ return v==null||isNaN(v) ? "—" : nf1.format(v); }
+function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function css(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function zoneColor(z){ return css(ZTOK[z] || "--muted"); }
+function visible(){ return rows.filter(r => !zone || r.zone === zone); }
+function colorScale(){ return [1,2,3,4,5].map(i=>css("--scale-"+i)); }
+function lerpColor(stops, t){
+  t = Math.max(0, Math.min(1, t)); const seg = (stops.length-1)*t, i = Math.min(Math.floor(seg), stops.length-2), f = seg - i;
+  const h = c => { const m = c.replace("#",""); return [0,2,4].map(k=>parseInt(m.substr(k,2),16)); };
+  const a = h(stops[i]), b = h(stops[i+1]);
+  return "#" + a.map((x,k)=>Math.round(x+(b[k]-x)*f).toString(16).padStart(2,"0")).join("");
+}
+function metricRange(){ const M = METRICS[metric]; const vals = visible().map(r=>M.get(r)).filter(v=>v!=null&&!isNaN(v)); return {min: Math.min(...vals, 0), max: Math.max(...vals, 0)}; }
+function metricColor(r){ const v = METRICS[metric].get(r), {min,max} = metricRange(); return (v==null||isNaN(v)) ? "#5c7393" : lerpColor(colorScale(), max>min ? (v-min)/(max-min) : 0); }
+
+/* ---------- controls ---------- */
+const chipBox = document.getElementById("metrics");
+Object.entries(METRICS).forEach(([k,m]) => {
+  const b = document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=m.label; b.dataset.k=k;
+  b.addEventListener("click", () => { metric = k; if(colorMode === "zone" && !showBars){ showBars = true; } renderAll(); });
+  chipBox.appendChild(b);
+});
+document.querySelectorAll("[data-color]").forEach(b => b.addEventListener("click", () => { colorMode = b.dataset.color; renderAll(); }));
+const zoneSel = document.getElementById("zoneSel");
+ZONES.forEach(z => { const o=document.createElement("option"); o.value=z; o.textContent=z; zoneSel.appendChild(o); });
+zoneSel.addEventListener("change", () => { zone = zoneSel.value; renderAll(); });
+const tamIn = document.getElementById("tam");
+tamIn.addEventListener("change", () => { const v=+tamIn.value; if(v>0){ tam=v; save(); renderAll(); } });
+const uioIn = document.getElementById("uioNat");
+uioIn.addEventListener("change", () => { const v=+uioIn.value; if(v>0){ uioNat=v; save(); renderAll(); } });
+
+/* ---------- KPIs ---------- */
+function renderKpis(){
+  const v = visible(), names = new Set(v.map(r=>r.name));
+  const sum = k => v.reduce((a,r)=>a+(+r[k]||0),0);
+  const cs = CENTERS.filter(c => names.has(c.province));
+  const market = sum("_market"), sales = sum("sales");
+  const items = [
+    [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
+    [fmt1(sum("pop")/1000)+" tr", "Dân số"],
+    [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
+    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), "ĐK mới xe tải 2025"],
+    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), "UIO xe thương mại (ước)"],
+    [`${cs.filter(c=>c.type==="4S").length} · ${cs.filter(c=>c.type==="3S").length}`, "Trung tâm 4S · 3S"],
+    [cs.length ? fmtInt(market/cs.length) : "—", "Xe thị trường / trung tâm"],
+    [sales ? fmt1(sales/market*100)+"%" : "—", sales ? `Thị phần (${fmtInt(sales)} xe)` : "Thị phần · nhập doanh số"],
+  ];
+  document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="glass kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
+}
+
+/* ---------- geometry helpers ---------- */
+const POLYS = GEO.features.map(f => {
+  const g = f.geometry, ps = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
+  let b = [180,90,-180,-90];
+  ps.forEach(p => p[0].forEach(([x,y]) => { b = [Math.min(b[0],x),Math.min(b[1],y),Math.max(b[2],x),Math.max(b[3],y)]; }));
+  return {name: f.properties.name, rings: ps.map(p => p[0]), bbox: b};
+});
+function inRing(x, y, ring){ let ins = false; for(let i=0,j=ring.length-1;i<ring.length;j=i++){ const [xi,yi]=ring[i],[xj,yj]=ring[j]; if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) ins = !ins; } return ins; }
+function provinceAt(lng, lat){
+  for(const p of POLYS){ if(lng<p.bbox[0]||lng>p.bbox[2]||lat<p.bbox[1]||lat>p.bbox[3]) continue; if(p.rings.some(r => inRing(lng,lat,r))) return p.name; }
+  return null;
+}
+function wx(lng){ return (lng - (LNG0+LNG1)/2) * K * COSL; }
+function wz(lat){ return -(lat - (LAT0+LAT1)/2) * K; }
+
+/* ---------- 3D scene ---------- */
+const stage = document.getElementById("stage"), labelsEl = document.getElementById("labels"), tipEl = document.getElementById("tip");
+let renderer, scene, camera, controls, terrain, water, overlayCanvas, overlayCtx, overlayTex, reliefImg, H = null, HW = 0, HH = 0;
+let pinGroup, barGroup, mouse = {x:0,y:0,nx:0,ny:0,inside:false}, raycaster, needOverlay = true, exagShown = 0, introT0 = 0;
+const OW = 2048, OH = 2176;
+
+function loadImage(src){ return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; }); }
+function heightAt(lng, lat){
+  if(!H) return 0;
+  const fx = (lng-LNG0)/(LNG1-LNG0)*(HW-1), fy = (LAT1-lat)/(LAT1-LAT0)*(HH-1);
+  const x = Math.max(0,Math.min(HW-2,Math.floor(fx))), y = Math.max(0,Math.min(HH-2,Math.floor(fy))), tx = fx-x, ty = fy-y;
+  const g = (i,j) => H[j*HW+i];
+  return g(x,y)*(1-tx)*(1-ty)+g(x+1,y)*tx*(1-ty)+g(x,y+1)*(1-tx)*ty+g(x+1,y+1)*tx*ty;
+}
+function yOf(m, ex){ ex = ex ?? exagShown; return m >= 0 ? m/111000*K*ex : Math.max(m,-4500)/111000*K*ex*0.12; }
+
+async function initScene(){
+  if(typeof THREE === "undefined") throw new Error("three");
+  const [rel, hm] = await Promise.all([loadImage(RELIEF_SRC), loadImage(HEIGHT_SRC)]);
+  reliefImg = rel;
+  const hc = document.createElement("canvas"); HW = hm.width; HH = hm.height; hc.width = HW; hc.height = HH;
+  const hx = hc.getContext("2d"); hx.drawImage(hm,0,0); const d = hx.getImageData(0,0,HW,HH).data;
+  H = new Float32Array(HW*HH); for(let i=0;i<HW*HH;i++) H[i] = d[i*4]*256 + d[i*4+1] - 12000;
+
+  renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  stage.prepend(renderer.domElement);
+  scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x061024, 260, 520);
+  camera = new THREE.PerspectiveCamera(38, 1, 1, 2000);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxPolarAngle = Math.PI*0.47; controls.minDistance = 40; controls.maxDistance = 420;
+  controls.autoRotateSpeed = 0.6;
+  setView(0, true);
+
+  scene.add(new THREE.HemisphereLight(0xcfe9ff, 0x0a1a30, 0.75));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(-120, 160, -60); scene.add(sun);
+  const rim = new THREE.DirectionalLight(0x46e3ff, 0.25); rim.position.set(160, 40, 160); scene.add(rim);
+
+  overlayCanvas = document.createElement("canvas"); overlayCanvas.width = OW; overlayCanvas.height = OH; overlayCtx = overlayCanvas.getContext("2d");
+  overlayTex = new THREE.CanvasTexture(overlayCanvas); overlayTex.encoding = THREE.sRGBEncoding; overlayTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const W = (LNG1-LNG0)*K*COSL, D = (LAT1-LAT0)*K, SX = 383, SY = 407;
+  const geo = new THREE.PlaneGeometry(W, D, SX, SY); geo.rotateX(-Math.PI/2);
+  terrain = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({map: overlayTex, roughness: 0.92, metalness: 0.0}));
+  terrain.userData.grid = {SX, SY};
+  scene.add(terrain);
+  // glass skirt: the diorama's cut edges
+  const skirtMat = new THREE.MeshStandardMaterial({color:0x46e3ff, transparent:true, opacity:0.10, roughness:0.15, metalness:0.6, side:THREE.DoubleSide});
+  const skirt = new THREE.Mesh(new THREE.BoxGeometry(W, 8, D, 1, 1, 1), skirtMat); skirt.position.y = -6.2; scene.add(skirt);
+  const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(W, 8, D)), new THREE.LineBasicMaterial({color:0x46e3ff, transparent:true, opacity:0.45}));
+  edge.position.y = -6.2; scene.add(edge);
+  // water: thin glossy glass sheet at sea level
+  water = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshStandardMaterial({color:0x2fc6d8, transparent:true, opacity:0.18, roughness:0.08, metalness:0.55}));
+  water.rotation.x = -Math.PI/2; water.position.y = 0.02; scene.add(water);
+  pinGroup = new THREE.Group(); barGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup);
+  raycaster = new THREE.Raycaster();
+
+  const ro = new ResizeObserver(resize); ro.observe(stage); resize();
+  stage.addEventListener("pointermove", onMove); stage.addEventListener("pointerleave", () => { mouse.inside = false; setHover(null); showTip(null); });
+  let down = null;
+  stage.addEventListener("pointerdown", e => { down = [e.clientX, e.clientY]; });
+  stage.addEventListener("pointerup", e => { if(down && Math.hypot(e.clientX-down[0], e.clientY-down[1]) < 5) onClick(); down = null; });
+  document.getElementById("loadmsg").hidden = true;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  introT0 = reduce ? -1e9 : performance.now();
+  buildPins(); buildBars(); drawOverlay();
+  requestAnimationFrame(loop);
+}
+function resize(){ const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+function setView(i){ const v = VIEWS[i]; camera.position.set(...v.pos); controls.target.set(...v.tgt); controls.update(); }
+stage.__view = (pos, tgt) => { camera.position.set(...pos); controls.target.set(...tgt); controls.update(); };
+function applyHeights(){
+  const pos = terrain.geometry.attributes.position, {SX, SY} = terrain.userData.grid;
+  for(let j=0;j<=SY;j++) for(let i=0;i<=SX;i++){
+    const lng = LNG0 + i/SX*(LNG1-LNG0), lat = LAT1 - j/SY*(LAT1-LAT0);
+    pos.setY(j*(SX+1)+i, yOf(heightAt(lng, lat)));
+  }
+  pos.needsUpdate = true; terrain.geometry.computeVertexNormals(); terrain.geometry.computeBoundingSphere(); terrain.geometry.computeBoundingBox();
+  placePins(); placeBars();
+}
+/* overlay texture: relief + province tint + borders */
+function px(lng, lat){ return [(lng-LNG0)/(LNG1-LNG0)*OW, (LAT1-lat)/(LAT1-LAT0)*OH]; }
+function pathFor(name){
+  const p = POLYS.find(q => q.name === name), path = new Path2D();
+  p.rings.forEach(r => { r.forEach(([x,y],k) => { const [a,b] = px(x,y); k ? path.lineTo(a,b) : path.moveTo(a,b); }); path.closePath(); });
+  return path;
+}
+const PATHS = {};
+function drawOverlay(){
+  if(!overlayCtx) return;
+  const c = overlayCtx; c.globalAlpha = 1; c.drawImage(reliefImg, 0, 0, OW, OH);
+  POLYS.forEach(p => { PATHS[p.name] = PATHS[p.name] || pathFor(p.name); });
+  rows.forEach(r => {
+    const inZ = !zone || r.zone === zone, path = PATHS[r.name];
+    if(!inZ){ c.globalAlpha = 0.55; c.fillStyle = "#06101f"; c.fill(path); return; }
+    if(colorMode === "none") return;
+    c.globalAlpha = colorMode === "zone" ? 0.34 : 0.5; c.fillStyle = colorMode === "zone" ? zoneColor(r.zone) : metricColor(r); c.fill(path);
+  });
+  // national outline glow, then crisp inner borders
+  c.save(); c.globalAlpha = 1; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.95)"; c.lineWidth = 6; c.shadowColor = "rgba(255,255,255,.9)"; c.shadowBlur = 10;
+  rows.forEach(r => c.stroke(PATHS[r.name])); c.restore();
+  c.globalAlpha = 1; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.6)"; c.lineWidth = 1.8; rows.forEach(r => c.stroke(PATHS[r.name]));
+  Object.keys(ISLANDS).forEach(n => { c.globalAlpha = 1; c.fillStyle = "rgba(255,255,255,.85)"; c.fill(PATHS[n]); });
+  const hl = (name, col, w) => { if(!name || !PATHS[name]) return; c.save(); c.globalAlpha = 1; c.strokeStyle = col; c.lineWidth = w; c.shadowColor = col; c.shadowBlur = 18; c.stroke(PATHS[name]);
+    c.globalAlpha = 0.18; c.fillStyle = col; c.fill(PATHS[name]); c.restore(); };
+  if(selected && pinned) hl(selected, css("--magenta"), 6);
+  if(hoverName && !ISLANDS[hoverName]) hl(hoverName, css("--cyan"), 5);
+  overlayTex.needsUpdate = true; needOverlay = false;
+}
+/* pins */
+function pinTexture(id, type){
+  const cv = document.createElement("canvas"); cv.width = 96; cv.height = 128; const c = cv.getContext("2d");
+  const col = css(type === "4S" ? "--pin-4s" : "--pin-3s");
+  c.shadowColor = col; c.shadowBlur = 14;
+  c.beginPath(); c.moveTo(48,124); c.bezierCurveTo(30,92,10,72,10,46); c.arc(48,46,38,Math.PI,0); c.bezierCurveTo(86,72,66,92,48,124); c.closePath();
+  c.fillStyle = col; c.fill(); c.shadowBlur = 0; c.lineWidth = 5; c.strokeStyle = "#fff"; c.stroke();
+  c.fillStyle = "#fff"; c.font = "700 36px Chakra Petch, Arial"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(String(id), 48, 48);
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t;
+}
+function buildPins(){
+  CENTERS.forEach(c => {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({map: pinTexture(c.id, c.type), depthTest: true, transparent: true}));
+    const sz = c.type === "4S" ? 5.2 : 4.4; s.scale.set(sz*0.75, sz, 1); s.center.set(0.5, 0); s.userData = {center: c};
+    pinGroup.add(s);
+  });
+  placePins();
+}
+function placePins(){
+  if(!pinGroup) return;
+  pinGroup.children.forEach(s => { const c = s.userData.center; s.position.set(wx(c.lng), yOf(heightAt(c.lng, c.lat)) + 0.4, wz(c.lat)); });
+  pinGroup.visible = showPins;
+  pinGroup.children.forEach(s => { const r = findRow(s.userData.center.province); s.visible = !zone || (r && r.zone === zone); });
+}
+/* metric columns */
+function buildBars(){
+  if(!barGroup) return;
+  while(barGroup.children.length){ const m = barGroup.children.pop(); m.traverse(o => { if(o.geometry) o.geometry.dispose(); if(o.material) o.material.dispose(); }); }
+  if(showBars){
+    const {max} = metricRange();
+    visible().forEach(r => {
+      const v = METRICS[metric].get(r); if(v == null || isNaN(v) || max <= 0) return;
+      const h = 2 + 46 * Math.sqrt(Math.max(v,0)/max), col = new THREE.Color(metricColor(r));
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, h, 6, 1, false),
+        new THREE.MeshStandardMaterial({color: col, emissive: col, emissiveIntensity: 0.45, transparent: true, opacity: 0.78, roughness: 0.2, metalness: 0.3}));
+      m.userData = {name: r.name, h, value: v};
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(1.75, 1.75, 0.35, 6), new THREE.MeshBasicMaterial({color: 0xffffff, transparent:true, opacity:0.85}));
+      cap.position.y = h/2; m.add(cap);
+      barGroup.add(m);
+    });
+  }
+  placeBars();
+}
+function placeBars(){
+  if(!barGroup) return;
+  barGroup.children.forEach(m => { const r = findRow(m.userData.name); const [lng, lat] = r.lp; m.position.set(wx(lng), yOf(heightAt(lng, lat)) + m.userData.h/2, wz(lat)); });
+  barGroup.visible = showBars;
+}
+/* labels (HTML overlay) */
+const labelEls = {};
+function updateLabels(){
+  const w = stage.clientWidth, h = stage.clientHeight, v = new THREE.Vector3();
+  const items = rows.map(r => ({key: r.name, text: r.name, lng: r.lp[0], lat: r.lp[1], cls: "plabel", show: showLabels && (!zone || r.zone === zone), lift: 0.6}))
+    .concat([{key:"hs", text:"QĐ. Hoàng Sa", lng:112.0, lat:16.5, cls:"plabel", show: showLabels, lift:0.5},{key:"ts", text:"QĐ. Trường Sa", lng:114.6, lat:9.6, cls:"plabel", show: showLabels, lift:0.5}]);
+  if(showBars) barGroup.children.forEach(m => { const r = findRow(m.userData.name);
+    items.push({key:"v_"+r.name, text: METRICS[metric].fmt(m.userData.value), lng: r.lp[0], lat: r.lp[1], cls:"vlabel", show:true, abs: m.position.y + m.userData.h/2 + 0.6}); });
+  const seen = new Set();
+  items.forEach(it => {
+    seen.add(it.key);
+    let el = labelEls[it.key];
+    if(!el){ el = document.createElement("div"); labelsEl.appendChild(el); labelEls[it.key] = el; }
+    if(el.className !== it.cls) el.className = it.cls;
+    if(el.textContent !== it.text) el.textContent = it.text;
+    if(!it.show){ el.style.display = "none"; return; }
+    v.set(wx(it.lng), it.abs ?? (yOf(heightAt(it.lng, it.lat)) + it.lift), wz(it.lat)).project(camera);
+    if(v.z > 1 || v.x < -1.1 || v.x > 1.1 || v.y < -1.1 || v.y > 1.1){ el.style.display = "none"; return; }
+    el.style.display = ""; el.style.left = ((v.x+1)/2*w).toFixed(1)+"px"; el.style.top = ((1-v.y)/2*h).toFixed(1)+"px";
+  });
+  Object.keys(labelEls).forEach(k => { if(!seen.has(k)){ labelEls[k].remove(); delete labelEls[k]; } });
+}
+/* interaction */
+function onMove(e){
+  const r = stage.getBoundingClientRect();
+  mouse = {x:e.clientX, y:e.clientY, nx:(e.clientX-r.left)/r.width*2-1, ny:-(e.clientY-r.top)/r.height*2+1, inside:true};
+  pick();
+}
+let lastPick = 0;
+function pick(){
+  if(!raycaster || !mouse.inside) return;
+  const now = performance.now(); if(now - lastPick < 40) return; lastPick = now;
+  raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera);
+  if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
+  if(showBars){ const hb = raycaster.intersectObjects(barGroup.children, false)[0]; if(hb){ setHover(hb.object.userData.name); showTip(hb.object.userData.name); return; } }
+  const hit = raycaster.intersectObject(terrain, false)[0];
+  if(!hit){ setHover(null); showTip(null); return; }
+  const lng = LNG0 + hit.uv.x*(LNG1-LNG0), lat = LAT0 + hit.uv.y*(LAT1-LAT0);
+  const n = provinceAt(lng, lat); setHover(n); showTip(n);
+}
+function setHover(n){
+  if(n === hoverName) return; hoverName = n; needOverlay = true;
+  if(n && !pinned && !ISLANDS[n]){ selected = n; renderDossier(); highlightRow(); }
+  stage.style.cursor = n ? "pointer" : "";
+}
+function onClick(){
+  if(!hoverName || ISLANDS[hoverName]) return;
+  if(pinned && selected === hoverName){ pinned = false; renderDossier(); needOverlay = true; }
+  else select(hoverName, true);
+  showTip(hoverName);
+}
+function loop(t){
+  requestAnimationFrame(loop);
+  if(document.hidden) return;
+  const k = Math.min(1, (t - introT0)/1600), e = 1 - Math.pow(1-k, 3), target = exag * (k >= 1 ? 1 : e);
+  if(Math.abs(target - exagShown) > 0.01){ exagShown = target; applyHeights(); }
+  controls.autoRotate = autoRotate; controls.update();
+  if(needOverlay) drawOverlay();
+  renderer.render(scene, camera);
+  updateLabels();
+}
+
+/* ---------- tooltip ---------- */
+function showTip(name, center){
+  if(!name && !center){ tipEl.hidden = true; return; }
+  tipEl.innerHTML = center ? centerTip(center) : regionTip(name); tipEl.hidden = false;
+  const w = tipEl.offsetWidth, h = tipEl.offsetHeight; let x = mouse.x + 18, y = mouse.y + 18;
+  if(x + w > innerWidth - 8) x = mouse.x - w - 18; if(y + h > innerHeight - 8) y = innerHeight - h - 8;
+  tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px";
+}
+function centerTip(c){
+  const r = findRow(c.province);
+  return `<div class="t"><span class="dot" style="background:${css(c.type==="4S"?"--pin-4s":"--pin-3s")}"></span>${c.id}. ${esc(c.name)}</div>
+    <div class="muted">${c.type==="4S"?"Trung tâm 4S: bán hàng, dịch vụ, phụ tùng, khảo sát":"Trung tâm 3S: bán hàng, dịch vụ, phụ tùng"}</div>
+    <div class="g num"><span>Tỉnh</span><b>${esc(c.province)}</b><span>Khu vực</span><b>${esc(r?r.zone:"")}</b><span>ĐK mới xe tải tỉnh</span><b>${r?fmtInt(r._market):"—"} xe</b></div>`;
+}
+function regionTip(name){
+  if(ISLANDS[name]) return `<div class="t">${esc(name)}</div><div class="muted">Thuộc ${ISLANDS[name]==="Đà Nẵng"?"thành phố Đà Nẵng":"tỉnh Khánh Hòa"}, Việt Nam</div>`;
+  const r = findRow(name); if(!r) return esc(name);
+  const M = METRICS[metric];
+  return `<div class="t"><span class="sw" style="background:${zoneColor(r.zone)};color:${zoneColor(r.zone)}"></span>${esc(r.name)}</div>
+    <div class="muted">${esc(r.zone)} · gộp: ${esc(r.merged.join(", "))}</div>
+    <div class="g num">
+      <span>${esc(M.label)}</span><b>${M.fmt(M.get(r))} ${M.unit}</b>
+      <span>ĐK mới xe tải 2025</span><b>${fmtInt(r._market)} xe · #${r._rk_market}</b>
+      <span>UIO xe TM</span><b>${fmtInt(r._uio)} xe</b>
+      <span>Thế trận</span><b style="color:${POST[r._post].col}">${POST[r._post].label}</b>
+      <span>Dân số</span><b>${fmt1(r.pop/1000)} tr</b>
+      <span>GRDP</span><b>${fmtInt(r.grdp)} nghìn tỷ</b>
+      <span>GRDP / người</span><b>${fmtInt(r._gpc)} tr đ</b>
+      <span>Độ cao TB</span><b>${fmtInt(r.elev)} m</b>
+      <span>Trung tâm 4S · 3S</span><b>${r._c4} · ${r._c3}</b>
+      <span>Hạng ưu tiên</span><b>${r._tier}</b>
+    </div><div class="muted" style="margin-top:6px">${pinned && selected===r.name ? "Đang ghim · bấm lại để bỏ ghim" : "Bấm để ghim hồ sơ"}</div>`;
+}
+
+/* ---------- legend ---------- */
+function renderLegend(){
+  const el = document.getElementById("legend");
+  const c4 = CENTERS.filter(c=>c.type==="4S").length, c3 = CENTERS.length - c4;
+  const pinsL = `<div class="pinl"><span><i class="dot" style="background:var(--pin-4s);box-shadow:0 0 8px var(--pin-4s)"></i>Trung tâm 4S (${c4})</span><span><i class="dot" style="background:var(--pin-3s);box-shadow:0 0 8px var(--pin-3s)"></i>Trung tâm 3S (${c3})</span></div>`;
+  const relief = `<div class="gr"><div class="lh"><b>Độ cao địa hình</b></div><div class="bar" style="background:linear-gradient(90deg,#d6f0c4,#a0d696,#6eb478,#aabe78,#d6c480,#c49664,#a06e50,#ece2d6)"></div><div class="ends num"><span>0 m</span><span>1.000</span><span>2.000</span><span>3.000 m</span></div></div>`;
+  let main = "";
+  if(colorMode === "zone") main = `<div class="lh"><b>Khu vực kinh doanh</b></div><div class="zl">${ZONES.map(z=>`<span><i class="sw" style="background:${zoneColor(z)};color:${zoneColor(z)}"></i>${esc(z.replace("Khu vực ","KV "))}</span>`).join("")}</div>`;
+  else if(colorMode === "metric"){ const M = METRICS[metric], {min,max} = metricRange();
+    main = `<div class="gr"><div class="lh"><b>${esc(M.label)}</b><span class="muted">${esc(M.unit)}</span></div><div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div><div class="ends num"><span>${M.fmt(min)}</span><span>${M.fmt(max)}</span></div></div>${max<=0?'<span style="color:var(--warn)">Chưa có dữ liệu: nhập ở bảng bên dưới</span>':""}`; }
+  el.innerHTML = main + relief + pinsL + (showBars ? `<span class="muted">Cột 3D: ${esc(METRICS[metric].label)}</span>` : "");
+}
+
+/* ---------- dossier ---------- */
+function suggestions(r){
+  const out = [], n = r._c4 + r._c3;
+  if(!n) out.push(["bad", `Chưa có trung tâm. Thị trường ước ~${fmtInt(r._market)} xe/năm: cân nhắc trung tâm 3S hoặc đại lý vệ tinh tại ${esc(r.capital)}.`]);
+  else if(r._perCenter > 2500) out.push(["warn", `Mỗi trung tâm phủ ~${fmtInt(r._perCenter)} xe/năm thị trường: độ phủ mỏng, xem xét thêm điểm 3S hoặc xưởng lưu động.`]);
+  else out.push(["good", `${r._c4 ? r._c4+" trung tâm 4S" : ""}${r._c4&&r._c3?", ":""}${r._c3 ? r._c3+" trung tâm 3S" : ""}; ~${fmtInt(r._perCenter)} xe thị trường mỗi trung tâm.`]);
+  if(r.sales){ if(r._share < 5) out.push(["warn", `Thị phần ${fmt1(r._share)}%: thấp, ưu tiên chào hàng đội xe và gói tài chính.`]); else out.push(["good", `Thị phần ${fmt1(r._share)}%: giữ vị thế bằng hậu mãi, phụ tùng chính hãng.`]); }
+  if(r.target && r._gap) out.push(["warn", `Còn thiếu ${fmtInt(r._gap)} xe so với mục tiêu ${fmtInt(r.target)} xe.`]);
+  const top = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
+  out.push(["", `Phân khúc trọng tâm: <b>${top.join("</b> và <b>")}</b>.`]);
+  if(r.elev >= 600) out.push(["", "Địa hình đồi núi, đèo dốc: ưu tiên xe khung gầm khỏe, hộp số nhiều cấp, phanh khí xả; tăng cứu hộ lưu động."]);
+  if(r.growth != null && r.growth >= 10) out.push(["good", `Tăng trưởng GRDP ${fmt1(r.growth)}% (top cả nước): nhu cầu vận tải, xây dựng tăng nhanh.`]);
+  return out;
+}
+function ctrRow(c){ const col = css(c.type==="4S"?"--pin-4s":"--pin-3s"); return `<button type="button" class="crow" data-p="${esc(c.province)}"><span class="n" style="background:${col};box-shadow:0 0 10px ${col}">${c.id}</span><span>${esc(c.name)}</span><span class="p">${esc(c.province)}</span></button>`; }
+function wireCtrRows(root){ root.querySelectorAll(".crow").forEach(b => b.addEventListener("click", () => { select(b.dataset.p, true); showTab("P"); })); }
+const ECON = ["Nông – lâm – thủy sản","Công nghiệp – xây dựng","Dịch vụ","Thuế SP trừ trợ cấp"];
+const ECON_COL = ["#4fd17a","#ff9f45","#46c8ff","#8ea7c7"];
+const POST = {
+  attack:{label:"Tổng tấn công", col:"#ff4d8d", desc:"Thị trường lớn, ta đã có lực: dồn hàng, giành thị phần.",
+    acts:["Giao chỉ tiêu thị phần cao, chiến dịch bán đội xe (fleet) cho doanh nghiệp vận tải lớn, KCN, cảng.","Đủ xe sẵn kho các dòng chủ lực; gói tài chính 70–80%, giao nhanh trong 72 giờ.","Hậu mãi 24/7, xe cứu hộ, kho phụ tùng tại chỗ để khóa chân khách hàng."]},
+  open:{label:"Mở mặt trận", col:"#ffc35a", desc:"Thị trường lớn, ta còn mỏng: đầu tư điểm bán và dịch vụ.",
+    acts:["Mở thêm trung tâm 3S hoặc đại lý ủy quyền tại cửa ngõ KCN/đầu mối logistics.","Đội bán hàng lưu động, lái thử tại công trình, hội chợ; liên kết ngân hàng địa phương.","Bám sát danh sách chủ xe từ UIO để chào thay thế xe cũ."]},
+  hold:{label:"Phòng thủ – khai thác", col:"#46e3ff", desc:"Thị trường vừa/nhỏ, ta đã phủ tốt: giữ khách, tối ưu lợi nhuận.",
+    acts:["Chăm sóc khách hàng hiện hữu, gói bảo dưỡng định kỳ, phụ tùng chính hãng.","Bán chéo thùng chuyên dùng, bảo hiểm, tài chính; khai thác xe đã qua sử dụng.","Kiểm soát chi phí điểm bán, chia sẻ tồn kho trong khu vực."]},
+  guerrilla:{label:"Du kích – chọn lọc", col:"#8ea7c7", desc:"Thị trường nhỏ, ta chưa có lực: đánh theo mùa vụ, chi phí thấp.",
+    acts:["Đại lý vệ tinh hoặc điểm dịch vụ liên kết; xưởng lưu động theo mùa vụ nông sản.","Tập trung 1–2 phân khúc chủ lực của tỉnh, bán qua HTX, nhà thầu, thương lái.","Theo dõi dự án hạ tầng (cao tốc, cửa khẩu) để vào đúng thời điểm."]}
+};
+function frontCard(r){
+  const P = POST[r._post];
+  return `<div class="front" style="border-color:${P.col}55;box-shadow:0 0 22px ${P.col}22">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><h3 style="color:${P.col}">Mặt trận ${esc(r.name)}</h3><span class="tier" style="color:${P.col};border-color:${P.col}88;font-size:16px">${P.label}</span></div>
+    <p style="margin:6px 0 8px">${P.desc}</p>
+    <div class="stats num"><div class="stat"><div class="v">${r._attr}</div><div class="l">Sức hấp dẫn /100</div></div><div class="stat"><div class="v">${r._str}</div><div class="l">Sức mạnh của ta /100</div></div>
+      <div class="stat"><div class="v">${fmtInt(r._tgt26)}</div><div class="l">Mục tiêu 2026 đề xuất (xe) · ${r._tgtShare}% ĐK mới</div></div></div>
+    <ul class="actions">${P.acts.map(a=>`<li>${a}</li>`).join("")}</ul></div>`;
+}
+function renderMatrix(){
+  const el = document.getElementById("matrix"); if(!el) return;
+  const W = 1100, H = 470, pad = 46, v = visible();
+  const X = a => pad + a/100*(W-2*pad), Y = s => H - pad - s/100*(H-2*pad);
+  const q = (x0,y0,x1,y1,col,lbl) => `<rect x="${X(x0)}" y="${Y(y1)}" width="${X(x1)-X(x0)}" height="${Y(y0)-Y(y1)}" fill="${col}" opacity=".07"/><text x="${(X(x0)+X(x1))/2}" y="${Y(y1)+18}" text-anchor="middle" fill="${col}" font-size="12" font-weight="700" font-family="Chakra Petch, Arial" letter-spacing="1">${lbl}</text>`;
+  const maxR = Math.max(...v.map(r=>r._market), 1);
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Ma trận thế trận 34 tỉnh" style="width:100%;height:auto;display:block">
+    ${q(50,50,100,100,POST.attack.col,"TỔNG TẤN CÔNG")}${q(50,0,100,50,POST.open.col,"MỞ MẶT TRẬN")}${q(0,50,50,100,POST.hold.col,"PHÒNG THỦ – KHAI THÁC")}${q(0,0,50,50,POST.guerrilla.col,"DU KÍCH – CHỌN LỌC")}
+    <line x1="${X(50)}" y1="${Y(0)}" x2="${X(50)}" y2="${Y(100)}" stroke="#46e3ff" stroke-opacity=".35" stroke-dasharray="4 4"/>
+    <line x1="${X(0)}" y1="${Y(50)}" x2="${X(100)}" y2="${Y(50)}" stroke="#46e3ff" stroke-opacity=".35" stroke-dasharray="4 4"/>
+    <rect x="${pad}" y="${pad}" width="${W-2*pad}" height="${H-2*pad}" fill="none" stroke="rgba(170,215,255,.25)"/>
+    <text x="${W/2}" y="${H-10}" text-anchor="middle" fill="#8ea7c7" font-size="12">Sức hấp dẫn thị trường →</text>
+    <text x="14" y="${H/2}" text-anchor="middle" fill="#8ea7c7" font-size="12" transform="rotate(-90 14 ${H/2})">Sức mạnh của ta →</text>
+    ${(() => { const placed = [];
+      return [...v].sort((a,b)=>b._market-a._market).map(r => { const rad = 4 + 13*Math.sqrt(r._market/maxR), c = zoneColor(r.zone), sel = r.name === selected;
+        const cx = X(r._attr), cy = Y(r._str), tw = r.name.length*6.2 + 6;
+        let ly = cy - rad - 4;
+        for(const off of [-rad-4, rad+13, -rad-16, rad+25, -rad-28, rad+37, -rad-40]){ const y = cy + off;
+          if(!placed.some(b => Math.abs(b.x-cx) < (b.w+tw)/2 && Math.abs(b.y-y) < 12)){ ly = y; break; } }
+        placed.push({x:cx, y:ly, w:tw});
+        return `<g class="mpt" data-p="${esc(r.name)}" style="cursor:pointer"><circle cx="${cx}" cy="${cy}" r="${rad.toFixed(1)}" fill="${c}" fill-opacity=".55" stroke="${sel?"#fff":c}" stroke-width="${sel?2.5:1}"/>
+          <text x="${cx}" y="${ly}" text-anchor="middle" fill="#e8f3ff" font-size="11" font-weight="600">${esc(r.name)}</text></g>`; }).join(""); })()}
+  </svg>`;
+  el.querySelectorAll(".mpt").forEach(g => g.addEventListener("click", () => select(g.dataset.p, true)));
+  const cnt = k => v.filter(r=>r._post===k).length;
+  document.getElementById("matrixSum").innerHTML = Object.entries(POST).map(([k,P]) => `<span class="tag" style="color:${P.col};border-color:${P.col}66">${P.label}: ${cnt(k)} tỉnh</span>`).join(" ");
+}
+function renderDossier(){
+  const el = document.getElementById("paneP"), r = rows.find(x=>x.name===selected);
+  if(!r){
+    const top = [...visible()].sort((a,b)=>b._market-a._market).slice(0,8);
+    el.innerHTML = `<div><h3>Hồ sơ tỉnh</h3><h2 style="margin-top:6px;text-transform:none">Rê chuột hoặc bấm vào một tỉnh trên bản đồ</h2>
+      <p class="muted" style="margin:6px 0 0">Hồ sơ gồm vĩ mô (dân số, GRDP, tăng trưởng, địa hình), vi mô (thị trường xe, phân khúc, khách hàng), mạng lưới trung tâm và gợi ý hành động.</p></div>
+      <div><h3>Thị trường lớn nhất ${zone ? "· " + esc(zone) : "cả nước"}</h3>
+      <ol class="actions">${top.map(t=>`<li><a href="#" data-p="${esc(t.name)}" style="color:#fff;font-weight:600">${esc(t.name)}</a> <span class="muted num">· ${fmtInt(t._market)} xe/năm · ${t._c4+t._c3} TT · hạng ${t._tier}</span></li>`).join("")}</ol></div>`;
+    el.querySelectorAll("a[data-p]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); select(a.dataset.p,true);}));
+    return;
+  }
+  const segColors = [1,2,3,4,5,6].map(i=>css("--seg-"+i)), cs = centersOf(r.name);
+  el.innerHTML = `
+    <div class="dhead">
+      <div><div class="name">${esc(r.name)}</div>
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag"><i class="sw" style="background:${zoneColor(r.zone)};color:${zoneColor(r.zone)}"></i>${esc(r.zone)}</span><span class="tag">${esc(ARCH[r.archetype]||r.archetype)}</span><span class="tag">${esc(r.region)}</span></div>
+        <div class="muted" style="font-size:12.5px;margin-top:6px">Trung tâm hành chính: ${esc(r.capital)} · Gộp từ: ${esc(r.merged.join(", "))}</div></div>
+      <div style="text-align:right"><div class="tier ${r._tier}">Hạng ${r._tier}</div>
+        ${pinned ? '<button type="button" id="unpin" style="margin-top:8px;font-size:12px;padding:3px 8px">Bỏ ghim</button>' : '<div class="muted" style="font-size:11px;margin-top:8px">Bấm tỉnh để ghim</div>'}</div>
+    </div>
+    ${frontCard(r)}
+    <div><h3>Dân số &amp; hành chính</h3><div class="stats num" style="margin-top:8px">
+      <div class="stat"><div class="v">${fmtInt(r.pop)}</div><div class="l">nghìn dân · #${r._rkpop}</div></div>
+      <div class="stat"><div class="v">${fmtInt(r._density)}</div><div class="l">người / km²</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.urban)}%</div><div class="l">Đô thị hóa (ước)</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.area)}</div><div class="l">Diện tích km²</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.communes)}</div><div class="l">Xã / phường (từ 1/7/2025)</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.elev)} m</div><div class="l">Độ cao trung bình</div></div>
+    </div>
+    <div class="kv"><span>Trung tâm hành chính</span><b>${esc(r.capital)}</b><span>Gộp từ (NQ 202/2025)</span><b>${esc(r.merged.join(", "))}</b><span>Biển số xe</span><b>${esc(r.plates)}</b><span>Vùng kinh tế</span><b>${esc(r.region)}</b></div></div>
+    <div><h3>Kinh tế vĩ mô</h3><div class="stats num" style="margin-top:8px">
+      <div class="stat"><div class="v">${fmtInt(r.grdp)}</div><div class="l">GRDP 2024, nghìn tỷ · #${r._rkgrdp}</div></div>
+      <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người ${r.gpc2025 ? "2025 (NSO)" : "2024 (ước)"} · #${r._rk_gpc}</div></div>
+      <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
+    </div>
+    <div class="segbar" style="margin-top:10px">${r.econ.map((v,i)=>`<span style="width:${v}%;background:${ECON_COL[i]}" title="${ECON[i]} ${v}%"></span>`).join("")}</div>
+    <div class="seglist num">${r.econ.map((v,i)=>`<div><i style="background:${ECON_COL[i]}"></i>${ECON[i]}<b>${fmt1(v)}%</b></div>`).join("")}</div>
+    <p class="muted" style="font-size:11.5px;margin:4px 0 0">Cơ cấu GRDP ước tính, tổng hợp từ các tỉnh cũ.</p></div>
+    <div><h3>Xe thương mại · UIO &amp; đăng ký mới</h3>
+      <div class="stats num" style="margin-top:8px">
+        <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_uio}</div></div>
+        <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2025 ${r._regReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_market}</div></div>
+        <div class="stat"><div class="v">${fmt1(r._turn)}%</div><div class="l">ĐK mới / UIO</div></div>
+        <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>
+        <div class="stat"><div class="v">${r.carReg2025 ? fmtInt(r.carReg2025) : "—"}</div><div class="l">Ô tô mọi loại ĐK mới 2025${r.carReg2025?" (Cục CSGT)":""}</div></div>
+        <div class="stat"><div class="v">${r._perCenter==null?"—":fmtInt(r._perCenter)}</div><div class="l">xe ĐK mới / trung tâm</div></div>
+      </div>
+      <div class="segbar">${r.mix.map((v,i)=>`<span style="width:${v}%;background:${segColors[i]}" title="${SEGS[i]} ${v}%"></span>`).join("")}</div>
+      <div class="seglist num">${r.mix.map((v,i)=>`<div><i style="background:${segColors[i]}"></i>${SEGS[i]}<b>${fmtInt(r._market*v/100)}</b></div>`).join("")}</div></div>
+    <div><h3>Đối thủ · thị phần trong tỉnh</h3>${r._comp.length ? `<div class="ctrs">${r._comp.map(([l,v])=>`<div class="rk" style="grid-template-columns:110px minmax(0,1fr) 48px;cursor:default"><span class="nm">${esc(l)}</span><span class="b" style="width:${Math.min(v,100)}%;background:linear-gradient(90deg,#46e3ff55,#46e3ff)"></span><span class="v">${fmt1(v)}%</span></div>`).join("")}</div>`
+      : `<p class="muted" style="margin:6px 0 0">Chưa có số liệu đối thủ cho tỉnh này. Nhập thị phần (%) của Thaco, Hyundai, Isuzu, Hino, Fuso, xe Trung Quốc ở bảng dữ liệu hoặc nhập file CSV.</p>`}</div>
+    <div><h3>Mạng lưới &amp; kinh doanh</h3>
+      <div class="ctrs">${cs.length ? cs.map(ctrRow).join("") : '<div class="muted">Chưa có trung tâm dịch vụ trong tỉnh.</div>'}</div>
+      <div class="stats num" style="margin-top:8px">
+        <div class="stat"><div class="v">${fmtInt(r.sales)}</div><div class="l">Doanh số (xe)</div></div>
+        <div class="stat"><div class="v">${fmtInt(r.target)}</div><div class="l">Mục tiêu (xe)</div></div>
+        <div class="stat"><div class="v">${r.sales?fmt1(r._share)+"%":"—"}</div><div class="l">Thị phần</div></div>
+      </div>
+      <ul class="actions">${suggestions(r).map(([c,t])=>`<li>${c?`<span class="pill ${c}">${c==="bad"?"Cần làm":c==="warn"?"Lưu ý":"Tốt"}</span> `:""}${t}</li>`).join("")}</ul>
+      ${r.note ? `<p class="muted" style="margin:4px 0 0">Ghi chú: ${esc(r.note)}</p>` : ""}</div>
+    <div class="prose"><h3>Kinh tế chủ lực</h3><p>${esc(r.industries)}</p></div>
+    <div class="prose"><h3>Hạ tầng &amp; logistics</h3><p>${esc(r.logistics)}</p></div>
+    <div class="prose"><h3>Văn hóa · dân tộc · đặc sản</h3><p><b>Dân tộc:</b> ${esc(r.ethnic)}</p><p><b>Đặc sản:</b> ${esc(r.specialties)}</p><p><b>Văn hóa kinh doanh:</b> ${esc(r.culture)}</p></div>
+    <div class="prose"><h3>Động lực nhu cầu xe thương mại</h3><p>${esc(r.cvDemand)}</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="primary" id="instProv">Báo cáo nhanh ${esc(r.name)}</button><button type="button" id="askAiProv">Nhờ Ben phân tích sâu</button></div>`;
+  const u = document.getElementById("unpin"); if(u) u.addEventListener("click", ()=>{ pinned=false; needOverlay = true; renderDossier(); });
+  document.getElementById("instProv").addEventListener("click", () => instantReport("province"));
+  document.getElementById("askAiProv").addEventListener("click", () => askAi(`Phân tích chuyên sâu ${r.name}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm hiện có, rủi ro và 5 hành động ưu tiên trong 6 tháng tới.`));
+  wireCtrRows(el);
+}
+function renderCenters(){
+  const el = document.getElementById("paneC"), c4 = CENTERS.filter(c=>c.type==="4S").length;
+  el.innerHTML = `<div><h3>Danh sách ${CENTERS.length} trung tâm dịch vụ</h3><div class="pinl" style="margin-top:8px"><span><i class="dot" style="background:var(--pin-4s)"></i>Trung tâm 4S (${c4})</span><span><i class="dot" style="background:var(--pin-3s)"></i>Trung tâm 3S (${CENTERS.length-c4})</span></div></div>` +
+    ZONES.filter(z => !zone || z === zone).map(z => {
+      const cs = CENTERS.filter(c => (findRow(c.province)||{}).zone === z), mk = rows.filter(r=>r.zone===z).reduce((a,r)=>a+r._market,0);
+      return `<div class="zone"><h4><i class="sw" style="background:${zoneColor(z)};color:${zoneColor(z)};width:12px;height:12px"></i>${esc(z)}<span class="muted num" style="font-family:var(--body);font-size:12px;font-weight:400;margin-left:auto;text-transform:none">${fmtInt(mk)} xe/năm</span></h4>${cs.map(ctrRow).join("") || '<div class="muted">Chưa có trung tâm</div>'}</div>`;
+    }).join("");
+  wireCtrRows(el);
+}
+function showTab(t){ const p = t === "P"; document.getElementById("tabP").setAttribute("aria-selected", p); document.getElementById("tabC").setAttribute("aria-selected", !p); document.getElementById("paneP").hidden = !p; document.getElementById("paneC").hidden = p; }
+document.getElementById("tabP").addEventListener("click", () => showTab("P"));
+document.getElementById("tabC").addEventListener("click", () => showTab("C"));
+function select(name, pin){
+  const r = findRow(name); if(!r) return false;
+  selected = r.name; if(pin) pinned = true; needOverlay = true;
+  renderDossier(); highlightRow(); renderRank(); renderMatrix();
+  return true;
+}
+
+/* ---------- ranking (HTML bars) ---------- */
+function renderRank(){
+  const M = METRICS[metric];
+  const list = visible().map(r=>({name:r.name, zone:r.zone, v:M.get(r)})).filter(x=>x.v!=null&&!isNaN(x.v)).sort((a,b)=>b.v-a.v);
+  document.getElementById("rankSub").textContent = `${M.label} (${M.unit})${zone?" · "+zone:""}`;
+  const max = Math.max(...list.map(x=>x.v), 0) || 1;
+  const el = document.getElementById("rank");
+  el.innerHTML = list.map((x,i)=>`<div class="rk${x.name===selected?" sel":""}" data-p="${esc(x.name)}"><span class="i num">${i+1}</span><span class="nm">${esc(x.name)}</span>
+    <span class="b" style="width:${Math.max(0.5,x.v/max*100).toFixed(1)}%;background:linear-gradient(90deg,${zoneColor(x.zone)}55,${zoneColor(x.zone)});box-shadow:0 0 10px ${zoneColor(x.zone)}66"></span><span class="v">${M.fmt(x.v)}</span></div>`).join("") || '<div class="muted">Chưa có dữ liệu cho chỉ số này.</div>';
+  el.querySelectorAll(".rk").forEach(d => d.addEventListener("click", () => select(d.dataset.p, true)));
+}
+
+/* ---------- table ---------- */
+function renderTable(){
+  const t = document.getElementById("tbl");
+  const head = `<thead><tr><th>Tỉnh / thành</th><th style="text-align:left">Khu vực</th>${EDIT_COLS.map(c=>`<th>${c[1]}</th>`).join("")}<th>ĐK mới (dùng)</th><th>UIO (dùng)</th><th>Thế trận</th><th>TT 4S·3S</th><th>Thị phần</th><th>Hạng</th><th style="text-align:left">Ghi chú</th></tr></thead>`;
+  const body = visible().map(r => `<tr data-n="${esc(r.name)}"><td class="name">${esc(r.name)}</td><td style="text-align:left"><i class="sw" style="background:${zoneColor(r.zone)};color:${zoneColor(r.zone)};margin-right:6px"></i>${esc(r.zone.replace("Khu vực ","KV "))}</td>${
+    EDIT_COLS.map(([k,,st])=>`<td><input type="number" step="${st}" id="c-${r._rk_market}-${k}" data-k="${k}" value="${r[k]==null?"":r[k]}" aria-label="${esc(k+" "+r.name)}"></td>`).join("")
+  }<td data-o="market">${fmtInt(r._market)}</td><td data-o="uio">${fmtInt(r._uio)}</td><td data-o="post" style="color:${POST[r._post].col}">${POST[r._post].label}</td><td>${r._c4}·${r._c3}</td><td data-o="share">${r.sales?fmt1(r._share)+"%":"—"}</td><td data-o="tier">${r._tier}</td>
+   <td><input type="text" class="note" data-k="note" id="c-${r._rk_market}-note" value="${esc(r.note)}" aria-label="${esc("Ghi chú "+r.name)}"></td></tr>`).join("");
+  t.innerHTML = head + `<tbody>${body}</tbody>`; highlightRow();
+}
+document.getElementById("tbl").addEventListener("change", e => {
+  const inp = e.target.closest("input"); if(!inp) return;
+  const r = rows.find(x=>x.name===inp.closest("tr").dataset.n), k = inp.dataset.k;
+  if(k === "note") r.note = inp.value;
+  else { const v = inp.value === "" ? (k==="growth"?null:0) : parseFloat(inp.value); if(v!==null && isNaN(v)) return; r[k] = v; }
+  save(); compute(); renderKpis(); refreshMap(); renderRank(); renderDossier(); renderCenters(); renderMatrix();
+  visible().forEach(x => { const row = [...document.querySelectorAll("#tbl tbody tr")].find(tr => tr.dataset.n === x.name); if(!row) return;
+    row.querySelector('[data-o="market"]').textContent = fmtInt(x._market); row.querySelector('[data-o="uio"]').textContent = fmtInt(x._uio);
+    const po = row.querySelector('[data-o="post"]'); po.textContent = POST[x._post].label; po.style.color = POST[x._post].col; row.querySelector('[data-o="share"]').textContent = x.sales?fmt1(x._share)+"%":"—"; row.querySelector('[data-o="tier"]').textContent = x._tier; });
+  toast("Đã cập nhật " + r.name);
+});
+document.getElementById("tbl").addEventListener("click", e => { const td = e.target.closest("td.name"); if(td) select(td.parentElement.dataset.n, true); });
+function highlightRow(){ document.querySelectorAll("#tbl tbody tr").forEach(tr => tr.classList.toggle("sel", tr.dataset.n === selected)); }
+
+/* ---------- import / export ---------- */
+const CSV_KEYS = ["name","zone","region","capital","pop","area","grdp","growth","elev","factor","reg","uio",...COMP.map(c=>c[0]),"dealers","sales","target","note","mix","merged","industries","logistics","culture","cvDemand"];
+function toCsv(){ const q = v => { const s = Array.isArray(v) ? v.join("|") : (v==null?"":String(v)); return /[",\n;]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
+  return "﻿" + [CSV_KEYS.join(","), ...rows.map(r => CSV_KEYS.map(k=>q(r[k])).join(","))].join("\n"); }
+function parseCsv(text){
+  const out=[]; let row=[], cur="", q=false; const first = text.split("\n")[0];
+  const sep = (first.match(/;/g)||[]).length > (first.match(/,/g)||[]).length ? ";" : ",";
+  for(let i=0;i<text.length;i++){ const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+    else if(c==='"') q=true; else if(c===sep){row.push(cur);cur="";} else if(c==="\n"){row.push(cur);out.push(row);row=[];cur="";} else if(c!=="\r") cur+=c; }
+  if(cur||row.length){row.push(cur);out.push(row);}
+  const h = out.shift().map(s=>s.trim().replace(/^﻿/,""));
+  return out.filter(r=>r.some(x=>x.trim())).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));
+}
+function applyText(text){
+  let recs; text = text.trim().replace(/^﻿/,"");
+  try{ recs = /^[\[{]/.test(text) ? JSON.parse(text) : parseCsv(text); } catch(e){ toast("Không đọc được dữ liệu: kiểm tra định dạng CSV/JSON"); return; }
+  if(recs && !Array.isArray(recs)) recs = recs.rows || [recs];
+  const n = mergeRows(recs); if(!n){ toast("Không khớp tỉnh nào: cột name phải là tên tỉnh mới (vd. Đắk Lắk)"); return; }
+  save(); renderAll(); toast(`Đã cập nhật ${n} tỉnh`);
+}
+let downloads = null;
+async function offerFile(filename, data, label){
+  if(downloads){ try{ await downloads.save({filename, data}); toast("Đã lưu " + filename); return; } catch(e){ if(e && e.code === "declined") return; } }
+  try{ await navigator.clipboard.writeText(data); toast(label + " đã được sao chép, dán vào Excel/Notepad để lưu"); }
+  catch(e){ const box=document.getElementById("pasteBox"), ta=document.getElementById("pasteArea"); box.hidden=false; ta.value=data; ta.select(); toast("Dữ liệu đã được chọn sẵn, nhấn Ctrl+C để sao chép"); }
+}
+document.getElementById("btnCsv").addEventListener("click", () => offerFile("du-lieu-34-tinh.csv", toCsv(), "CSV"));
+document.getElementById("btnJson").addEventListener("click", () => offerFile("provinces.json", JSON.stringify(rows.map(strip),null,1), "JSON"));
+document.getElementById("fileIn").addEventListener("change", e => { const f=e.target.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=()=>applyText(String(rd.result)); rd.readAsText(f,"utf-8"); e.target.value=""; });
+document.getElementById("btnPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=false; document.getElementById("pasteArea").focus(); });
+document.getElementById("btnCancelPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=true; });
+document.getElementById("btnApplyPaste").addEventListener("click", () => { applyText(document.getElementById("pasteArea").value); document.getElementById("pasteBox").hidden=true; });
+document.getElementById("btnReset").addEventListener("click", () => {
+  const box = document.getElementById("resetBox");
+  box.innerHTML = `<div class="toolbar" style="background:rgba(5,11,22,.5);padding:8px;border-radius:10px;border:1px solid var(--glass-line)"><span>Xóa mọi chỉnh sửa trên trình duyệt này và quay về dữ liệu gốc?</span><button type="button" class="primary" id="rsYes">Khôi phục</button><button type="button" id="rsNo">Giữ lại</button></div>`;
+  document.getElementById("rsNo").onclick = () => box.innerHTML = "";
+  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 122235; uioNat = 2070000; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
+});
+let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2800); }
+
+/* ---------- map tools ---------- */
+function toggleBtn(id, get, set, after){ document.getElementById(id).addEventListener("click", () => { set(!get()); after(); }); }
+toggleBtn("btnBars", ()=>showBars, v=>showBars=v, () => { buildBars(); syncButtons(); renderLegend(); });
+toggleBtn("btnLabels", ()=>showLabels, v=>showLabels=v, syncButtons);
+toggleBtn("btnPins", ()=>showPins, v=>showPins=v, () => { placePins(); syncButtons(); });
+toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v, syncButtons);
+document.getElementById("btnView").addEventListener("click", () => { if(!camera) return; viewIdx=(viewIdx+1)%VIEWS.length; setView(viewIdx); });
+document.getElementById("exag").addEventListener("input", e => { exag = +e.target.value; introT0 = -1e9; });
+function syncButtons(){ [["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
+function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); placePins(); }
+
+/* ---------- AI analyst ---------- */
+const ai = document.getElementById("ai"), fab = document.getElementById("aiFab"), log = document.getElementById("aiLog");
+const aiText = document.getElementById("aiText"), aiSend = document.getElementById("aiSend"), aiStop = document.getElementById("aiStop"), aiState = document.getElementById("aiState");
+let sample = null, aiTurns = [], aiCtl = null, aiBusy = false, aiDisabled = false, aiSpeed = "quick";
+const QUICK = [
+  ["Báo cáo tổng quan", "Lập báo cáo tổng quan thị trường xe thương mại toàn quốc theo 11 khu vực kinh doanh: quy mô, tăng trưởng, độ phủ trung tâm, 5 điểm nóng và 5 khuyến nghị."],
+  ["Khu vực đang chọn", null], ["Tỉnh đang chọn", null],
+  ["Kế hoạch từng mặt trận", "Lập kế hoạch tác chiến cho từng thế trận (Tổng tấn công, Mở mặt trận, Phòng thủ – khai thác, Du kích – chọn lọc): liệt kê các tỉnh trong mỗi thế trận, mục tiêu 2026 đề xuất, lực lượng, cách đánh, chỉ số đo; ưu tiên 5 mặt trận quan trọng nhất."],
+  ["Nên mở trung tâm ở đâu?", "Xếp hạng 8 tỉnh nên mở thêm trung tâm 3S/4S dựa trên số đăng ký mới, UIO, số xe trên mỗi trung tâm hiện có và động lực tăng trưởng. Nêu lý do và loại trung tâm phù hợp."],
+  ["Địa hình & sản phẩm", "Phân tích ảnh hưởng của địa hình (miền núi, cao nguyên, đồng bằng) tới nhu cầu dòng xe và dịch vụ hậu mãi theo từng khu vực; đề xuất cấu hình xe và dịch vụ phù hợp."],
+  ["Kế hoạch 90 ngày", "Đề xuất kế hoạch hành động 90 ngày cho mạng lưới: mục tiêu, việc cần làm theo khu vực, chỉ số theo dõi."],
+];
+function quickPrompt(i){
+  if(i === 1) return zone ? `Phân tích ${zone}: các tỉnh, quy mô thị trường, trung tâm hiện có, khoảng trống độ phủ, so sánh với các khu vực khác và đề xuất.` : "Chưa chọn khu vực: hãy so sánh 11 khu vực kinh doanh về thị trường, số trung tâm và xe/trung tâm, rồi chỉ ra 3 khu vực cần ưu tiên.";
+  if(i === 2) return selected ? `Phân tích chuyên sâu ${selected}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm, rủi ro và 5 hành động ưu tiên.` : "Chưa chọn tỉnh: hãy gợi ý 5 tỉnh nên xem kỹ nhất và lý do, rồi mở tỉnh quan trọng nhất trên bản đồ.";
+  return QUICK[i][1];
+}
+document.getElementById("aiQuick").innerHTML = QUICK.map(([l],i)=>`<button type="button" data-i="${i}">${esc(l)}</button>`).join("");
+document.getElementById("aiQuick").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if(b) askAi(quickPrompt(+b.dataset.i)); });
+function openAi(open){ ai.hidden = !open; fab.hidden = open; tease.hidden = true; fab.setAttribute("aria-expanded", open); if(open){ if(!log.children.length) greet(); aiText.focus(); } }
+const tease = document.getElementById("benTease");
+let teaseOff = false; try{ teaseOff = sessionStorage.getItem("benTeaseOff") === "1"; }catch(e){}
+if(!teaseOff) setTimeout(() => { if(ai.hidden) tease.hidden = false; }, 2500);
+tease.addEventListener("click", e => { if(e.target.id === "benTeaseX"){ tease.hidden = true; try{ sessionStorage.setItem("benTeaseOff","1"); }catch(_){} return; } openAi(true); });
+document.querySelectorAll("[data-speed]").forEach(b => b.addEventListener("click", () => { aiSpeed = b.dataset.speed; syncSpeed(); }));
+function syncSpeed(){ document.querySelectorAll("[data-speed]").forEach(b => b.setAttribute("aria-pressed", b.dataset.speed === aiSpeed)); }
+syncSpeed();
+
+/* instant reports: built from the page's own data, no AI wait */
+const INSTANT = [["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"]];
+document.getElementById("aiInstant").innerHTML = INSTANT.map(([l,k])=>`<button type="button" data-r="${k}">${esc(l)}</button>`).join("");
+document.getElementById("aiInstant").addEventListener("click", e => { const b = e.target.closest("button[data-r]"); if(b) instantReport(b.dataset.r); });
+const n0 = v => fmtInt(v), p1 = v => fmt1(v) + "%";
+function src(r){ return (r._regReal ? "số thực" : "ước") + "/" + (r._uioReal ? "số thực" : "ước"); }
+function zoneTable(list){
+  return "| Khu vực | Số tỉnh | ĐK mới xe tải | Tỷ trọng | UIO xe TM | TT 4S·3S | ĐK mới / TT |\n|---|---|---|---|---|---|---|\n" +
+    ZONES.map(z => { const rs = list.filter(r=>r.zone===z); if(!rs.length) return null; const reg = rs.reduce((a,r)=>a+r._market,0), u = rs.reduce((a,r)=>a+r._uio,0);
+      const c4 = rs.reduce((a,r)=>a+r._c4,0), c3 = rs.reduce((a,r)=>a+r._c3,0), tot = rows.reduce((a,r)=>a+r._market,0);
+      return `| ${z} | ${rs.length} | ${n0(reg)} | ${p1(reg/tot*100)} | ${n0(u)} | ${c4}·${c3} | ${c4+c3 ? n0(reg/(c4+c3)) : "chưa có TT"} |`; }).filter(Boolean).join("\n");
+}
+function provTable(list, k){
+  return "| # | Tỉnh | Khu vực | ĐK mới | UIO | ĐK/UIO | TT | Thế trận | Mục tiêu 2026 |\n|---|---|---|---|---|---|---|---|---|\n" +
+    list.slice(0,k).map((r,i)=>`| ${i+1} | ${r.name} | ${r.zone.replace("Khu vực ","KV ")} | ${n0(r._market)} | ${n0(r._uio)} | ${p1(r._turn)} | ${r._c4+r._c3} | ${POST[r._post].label} | ${n0(r._tgt26)} xe |`).join("\n");
+}
+function buildReport(kind){
+  const d = new Date(), date = d.toLocaleDateString("vi-VN"), all = [...rows].sort((a,b)=>b._market-a._market);
+  const totReg = rows.reduce((a,r)=>a+r._market,0), totUio = rows.reduce((a,r)=>a+r._uio,0), nC = CENTERS.length, n4 = CENTERS.filter(c=>c.type==="4S").length;
+  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải & container toàn quốc 2025: ${n0(tam)} xe (Cục CSGT). Số theo tỉnh ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe là ước tính (~29% của 7.134.939 ô tô đã đăng ký, Cục CSGT nửa đầu 2026).\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
+  if(kind === "province"){
+    const r = rows.find(x=>x.name===selected);
+    if(!r) return {title:"Chưa chọn tỉnh", md:"Hãy rê chuột hoặc bấm vào một tỉnh trên bản đồ, rồi bấm lại **Tỉnh đang chọn**.\n\nGợi ý 5 mặt trận lớn nhất: " + all.slice(0,5).map(x=>x.name).join(", ") + "."};
+    const P = POST[r._post], top2 = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
+    return {title:`Báo cáo mặt trận ${r.name}`, md:
+`# Báo cáo mặt trận ${r.name}
+_${r.zone} · ${r.region} · ngày ${date}_
+
+## 1. Thế trận: ${P.label}
+- Sức hấp dẫn **${r._attr}/100**, sức mạnh của ta **${r._str}/100**, hạng ưu tiên **${r._tier}**.
+- ${P.desc}
+- Mục tiêu 2026 đề xuất: **${n0(r._tgt26)} xe** (${r._tgtShare}% ĐK mới dự báo).
+
+## 2. Hành chính – dân số
+| Chỉ tiêu | Giá trị |
+|---|---|
+| Trung tâm hành chính | ${r.capital} |
+| Gộp từ (NQ 202/2025) | ${r.merged.join(", ")} |
+| Số xã / phường | ${n0(r.communes)} |
+| Biển số xe | ${r.plates} |
+| Dân số | ${n0(r.pop)} nghìn người (#${r._rkpop}) |
+| Diện tích · mật độ | ${n0(r.area)} km² · ${n0(r._density)} người/km² |
+| Đô thị hóa (ước) | ${r.urban}% |
+| Dân tộc | ${r.ethnic} |
+
+## 3. Kinh tế vĩ mô
+| Chỉ tiêu | Giá trị |
+|---|---|
+| GRDP 2024 | ${n0(r.grdp)} nghìn tỷ đồng (#${r._rkgrdp}) |
+| GRDP/người | ${r.gpc2025 ? fmt1(r.gpc2025)+" triệu đồng (2025, NSO)" : n0(r._gpc)+" triệu đồng (2024, ước)"} |
+| Tăng trưởng GRDP 2025 | ${r.growth==null ? "chưa cập nhật" : fmt1(r.growth)+"%"} |
+| Cơ cấu (NLTS / CN-XD / DV / thuế) | ${r.econ.map(v=>fmt1(v)+"%").join(" / ")} |
+| Kinh tế chủ lực | ${r.industries} |
+| Hạ tầng & logistics | ${r.logistics} |
+| Đặc sản | ${r.specialties} |
+
+## 4. Thị trường xe thương mại
+| Chỉ tiêu | Giá trị |
+|---|---|
+| UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":"ước"}) |
+| ĐK mới xe tải 2025 | ${n0(r._market)} xe (${r._regReal?"số thực":"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
+| ĐK mới / UIO | ${p1(r._turn)} |
+| Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : "chưa có số công bố"} |
+| Độ cao trung bình | ${n0(r.elev)} m |
+
+**Cơ cấu phân khúc (ước):** ${r.mix.map((v,i)=>`${SEGS[i]} ${n0(r._market*v/100)} xe`).join("; ")}. Trọng tâm: **${top2.join("**, **")}**.
+
+**Động lực nhu cầu:** ${r.cvDemand}
+
+## 5. Đối thủ
+${r._comp.length ? r._comp.map(([l,v])=>`- ${l}: ${fmt1(v)}%`).join("\n") : "- Chưa có số liệu thị phần đối thủ: cần bổ sung (Thaco, Hyundai, Isuzu, Hino, Fuso, xe Trung Quốc)."}
+
+## 6. Lực lượng của ta
+- Trung tâm: ${centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type})`).join("; ") || "chưa có"}.
+- ĐK mới / trung tâm: ${r._perCenter==null ? "chưa có trung tâm" : n0(r._perCenter)+" xe"}.
+- Doanh số: ${r.sales ? n0(r.sales)+" xe, thị phần "+p1(r._share) : "chưa nhập"}; mục tiêu: ${r.target ? n0(r.target)+" xe" : "chưa nhập"}.
+
+## 7. Cách đánh
+${P.acts.map(a=>"- "+a).join("\n")}
+${suggestions(r).map(([,t])=>"- "+t.replace(/<\/?b>/g,"**")).join("\n")}
+
+## 8. Văn hóa kinh doanh
+${r.culture}
+${note}`};
+  }
+  if(kind === "fronts"){
+    return {title:"Báo cáo 34 mặt trận", md:
+`# Báo cáo 34 mặt trận
+_Ngày ${date} · Tổng ĐK mới ${n0(totReg)} xe · UIO ${n0(totUio)} xe_
+
+${Object.entries(POST).map(([k,P]) => { const rs = all.filter(r=>r._post===k);
+  return `## ${P.label} (${rs.length} tỉnh)\n${P.desc}\n\n${rs.length ? provTable(rs, 34) : "_Không có tỉnh nào._"}\n\n**Cách đánh:**\n${P.acts.map(a=>"- "+a).join("\n")}`; }).join("\n\n")}
+
+## Tổng mục tiêu 2026 đề xuất
+- **${n0(rows.reduce((a,r)=>a+r._tgt26,0))} xe**, tương đương ${p1(rows.reduce((a,r)=>a+r._tgt26,0)/(totReg*1.08)*100)} ĐK mới dự báo.
+${note}`};
+  }
+  if(kind === "gaps"){
+    const noC = all.filter(r=>r._c4+r._c3===0), thin = all.filter(r=>r._perCenter!=null).sort((a,b)=>b._perCenter-a._perCenter).slice(0,8);
+    return {title:"Báo cáo khoảng trống độ phủ", md:
+`# Khoảng trống độ phủ mạng lưới
+_Ngày ${date} · ${nC} trung tâm (${n4} 4S, ${nC-n4} 3S) · bình quân ${n0(totReg/nC)} xe ĐK mới / trung tâm_
+
+## 1. Tỉnh chưa có trung tâm (${noC.length})
+${noC.length ? provTable(noC, 34) : "_Tất cả tỉnh đã có trung tâm._"}
+
+## 2. Tỉnh có độ phủ mỏng nhất (ĐK mới / trung tâm cao nhất)
+| Tỉnh | ĐK mới | Số TT | ĐK mới / TT | UIO |\n|---|---|---|---|---|
+${thin.map(r=>`| ${r.name} | ${n0(r._market)} | ${r._c4+r._c3} | ${n0(r._perCenter)} | ${n0(r._uio)} |`).join("\n")}
+
+## 3. Đề xuất mở điểm (ưu tiên theo ĐK mới)
+${[...noC, ...thin].sort((a,b)=>b._market-a._market).slice(0,8).map((r,i)=>`${i+1}. **${r.name}** (${r.zone}): ${n0(r._market)} xe ĐK mới, ${r._c4+r._c3} TT → ${r._market > 4000 ? "trung tâm 3S tại "+r.capital+" hoặc cửa ngõ KCN" : "đại lý vệ tinh / xưởng dịch vụ lưu động"}.`).join("\n")}
+${note}`};
+  }
+  const list = kind === "zone" && zone ? all.filter(r=>r.zone===zone) : all;
+  const scope = kind === "zone" && zone ? zone : "toàn quốc";
+  const reg = list.reduce((a,r)=>a+r._market,0), u = list.reduce((a,r)=>a+r._uio,0), pop = list.reduce((a,r)=>a+r.pop,0), g = list.reduce((a,r)=>a+r.grdp,0);
+  const names = new Set(list.map(r=>r.name)), cs = CENTERS.filter(c=>names.has(c.province)), c4 = cs.filter(c=>c.type==="4S").length;
+  const cnt = k => list.filter(r=>r._post===k);
+  const segTot = SEGS.map((s,i)=>[s, list.reduce((a,r)=>a+r._market*r.mix[i]/100,0)]);
+  return {title:`Báo cáo nhanh ${scope}`, md:
+`# Báo cáo nhanh thị trường xe thương mại ${scope}
+_Ngày ${date}${kind==="zone" && !zone ? " · chưa chọn khu vực nên báo cáo toàn quốc" : ""}_
+
+## 1. Tóm tắt
+- **${list.length} tỉnh/thành**, dân số ${fmt1(pop/1000)} triệu, GRDP ${n0(g)} nghìn tỷ đồng.
+- **ĐK mới xe tải 2025: ${n0(reg)} xe** (${p1(reg/totReg*100)} cả nước); **UIO xe thương mại: ${n0(u)} xe**; tỷ lệ ĐK mới/UIO ${p1(reg/u*100)}.
+- Mạng lưới: **${cs.length} trung tâm** (${c4} 4S, ${cs.length-c4} 3S), bình quân ${cs.length ? n0(reg/cs.length) : "—"} xe ĐK mới mỗi trung tâm.
+- Thế trận: ${Object.entries(POST).map(([k,P])=>`${P.label} ${cnt(k).length}`).join(" · ")}.
+
+## 2. Theo khu vực kinh doanh
+${zoneTable(list)}
+
+## 3. Top ${Math.min(10,list.length)} mặt trận theo ĐK mới
+${provTable(list, 10)}
+
+## 4. Cơ cấu phân khúc (ước tính)
+| Phân khúc | Xe/năm | Tỷ trọng |\n|---|---|---|
+${segTot.map(([s,v])=>`| ${s} | ${n0(v)} | ${p1(v/reg*100)} |`).join("\n")}
+
+## 5. Khuyến nghị nhanh
+${[
+  cnt("open").length ? `- **Mở mặt trận** tại ${cnt("open").slice(0,5).map(r=>r.name).join(", ")}: thị trường lớn, độ phủ còn mỏng; ưu tiên thêm điểm 3S và đội bán đội xe.` : null,
+  cnt("attack").length ? `- **Tổng tấn công** tại ${cnt("attack").slice(0,5).map(r=>r.name).join(", ")}: dồn hàng, gói tài chính, giữ hậu mãi 24/7.` : null,
+  cnt("hold").length ? `- **Phòng thủ – khai thác** ${cnt("hold").length} tỉnh: tập trung dịch vụ, phụ tùng, bán chéo.` : null,
+  cnt("guerrilla").length ? `- **Du kích – chọn lọc** ${cnt("guerrilla").length} tỉnh (${cnt("guerrilla").slice(0,4).map(r=>r.name).join(", ")}…): đại lý vệ tinh, xưởng lưu động theo mùa vụ.` : null,
+  `- Phân khúc lớn nhất: **${[...segTot].sort((a,b)=>b[1]-a[1])[0][0]}**; tải nặng + đầu kéo chiếm ${p1((segTot[2][1]+segTot[3][1])/reg*100)}.`,
+  `- Bổ sung số ĐK mới, UIO thực tế và thị phần đối thủ theo tỉnh để chốt mục tiêu.`
+].filter(Boolean).join("\n")}
+${note}`};
+}
+function instantReport(kind){
+  openAi(true);
+  const {title, md} = buildReport(kind);
+  addMsg("u", esc("Báo cáo tức thì: " + title));
+  const b = addMsg("a", ""); finishBubble(b, md, false, title, true);
+}
+fab.addEventListener("click", () => openAi(true));
+document.getElementById("aiClose").addEventListener("click", () => openAi(false));
+function greet(){
+  addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
+  if(aiDisabled) aiState.textContent = "Báo cáo tức thì dùng được ở mọi nơi; Ben phân tích chỉ chạy khi mở trang trong Claude.";
+}
+function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+function mdToHtml(md){
+  const lines = esc(md).split("\n"); let html = "", list = null, table = [];
+  const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/(^|\s)_([^_]+)_(?=\s|$)/g,"$1<i>$2</i>");
+  const closeList = () => { if(list){ html += `</${list}>`; list = null; } };
+  const flushTable = () => { if(!table.length) return;
+    const rowsT = table.filter(r => !/^\s*\|?\s*:?-{2,}/.test(r)).map(r => r.replace(/^\s*\||\|\s*$/g,"").split("|").map(c=>inline(c.trim())));
+    html += `<div style="overflow-x:auto"><table><thead><tr>${rowsT[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rowsT.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`; table = []; };
+  for(const raw of lines){
+    const l = raw.trimEnd();
+    if(/^\s*\|.*\|\s*$/.test(l)){ closeList(); table.push(l); continue; } else flushTable();
+    let m;
+    if((m = l.match(/^(#{1,4})\s+(.*)$/))){ closeList(); const n = Math.min(m[1].length+1,3); html += `<h${n}>${inline(m[2])}</h${n}>`; }
+    else if((m = l.match(/^\s*[-*•]\s+(.*)$/))){ if(list!=="ul"){ closeList(); html += "<ul>"; list="ul"; } html += `<li>${inline(m[1])}</li>`; }
+    else if((m = l.match(/^\s*\d+[.)]\s+(.*)$/))){ if(list!=="ol"){ closeList(); html += "<ol>"; list="ol"; } html += `<li>${inline(m[1])}</li>`; }
+    else if(!l.trim()) closeList();
+    else { closeList(); html += `<p>${inline(l)}</p>`; }
+  }
+  closeList(); flushTable(); return html;
+}
+function dataSnapshot(){
+  const head = "Tỉnh|Khu vực|Dân số(nghìn)|Xã/phường|Đô thị hóa%|GRDP2024(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Cơ cấu NLTS/CNXD/DV/Thuế(%)|Độ cao TB(m)|UIO xe TM|ĐK mới xe tải 2025|ĐK/UIO%|Nguồn ĐK|Hạng|TT 4S|TT 3S|Xe/TT|Doanh số|Mục tiêu|Thế trận|Hấp dẫn|Sức mạnh|Mục tiêu 2026 đề xuất|Thị phần đối thủ|Cơ cấu phân khúc %(nhẹ/trung/nặng/đầu kéo/khách/van)";
+  const body = rows.map(r => [r.name, r.zone, r.pop, r.communes, r.urban, r.grdp, r.gpc2025 || Math.round(r._gpc), r.growth ?? "", r.econ.join("/"), r.elev, r._uio, r._market, r._turn.toFixed(1),
+    r._regReal?"thực":"ước", r._tier, r._c4, r._c3, r._perCenter==null?"":Math.round(r._perCenter), r.sales||0, r.target||0, POST[r._post].label, r._attr, r._str, r._tgt26,
+    r._comp.map(([l,v])=>l+" "+v+"%").join(", ") || "chưa có", r.mix.join("/")].join("|")).join("\n");
+  return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (ước tính): ${uioNat} xe. Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
+}
+function rules(){
+  return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
+Xưng "em", gọi người dùng là "anh/chị". ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
+Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
+Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
+Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
+Dùng công cụ get_province để lấy hồ sơ định tính khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ.
+Trạng thái bản đồ: chỉ số "${METRICS[metric].label}", khu vực "${zone||"Toàn quốc"}", tỉnh đang chọn "${selected||"chưa chọn"}", cột 3D ${showBars?"bật":"tắt"}.
+
+DỮ LIỆU 34 TỈNH/THÀNH (sau sáp nhập 2025):
+${dataSnapshot()}`;
+}
+const AI_TOOLS = [
+  {name:"get_province", description:"Trả về hồ sơ đầy đủ của một tỉnh/thành: số liệu vĩ mô, thị trường xe ước tính theo phân khúc, trung tâm dịch vụ, kinh tế chủ lực, hạ tầng logistics, văn hóa kinh doanh, động lực nhu cầu xe.",
+   inputSchema:{type:"object",properties:{name:{type:"string",description:"Tên tỉnh mới hoặc tỉnh cũ, ví dụ 'Đắk Lắk' hoặc 'Bình Dương'"}},required:["name"]},
+   execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
+     const o = strip(r); delete o.lp; o.thi_truong_uoc = r._market; o.ty_trong = +r._mshare.toFixed(2); o.hang = r._tier; o.grdp_nguoi = Math.round(r._gpc);
+     o.phan_khuc_xe = Object.fromEntries(SEGS.map((s,i)=>[s, Math.round(r._market*r.mix[i]/100)])); o.trung_tam = centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type})`); return o; }},
+  {name:"focus_province", description:"Chọn và ghim một tỉnh trên bản đồ để người dùng xem hồ sơ. Trả về 'ok'.",
+   inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
+   execute: ({name}) => { if(!select(String(name), true)) throw new Error("Không tìm thấy tỉnh " + name); showTab("P"); return "ok"; }},
+  {name:"set_map", description:"Đổi hiển thị bản đồ: metric (market, perCenter, grdp, pop, gpc, growth, heavy, light, elev, sales, share), zone (tên khu vực kinh doanh hoặc rỗng = toàn quốc), color_mode (zone|metric|none), bars (true/false: cột 3D theo chỉ số).",
+   inputSchema:{type:"object",properties:{metric:{type:"string"},zone:{type:"string"},color_mode:{type:"string"},bars:{type:"boolean"}}},
+   execute: (i) => { if(i.metric && METRICS[i.metric]) metric = i.metric; if(["zone","metric","none"].includes(i.color_mode)) colorMode = i.color_mode;
+     if(typeof i.bars === "boolean") showBars = i.bars; if(i.zone !== undefined) { zone = ZONES.includes(String(i.zone)) ? String(i.zone) : ""; zoneSel.value = zone; }
+     renderAll(); return {metric, zone: zone||"Toàn quốc", colorMode, bars: showBars}; }},
+];
+function setBusy(b, label){ aiBusy = b; aiSend.disabled = b; aiStop.hidden = !b; aiState.textContent = label || ""; document.querySelectorAll("#aiQuick button").forEach(x=>x.disabled=b); }
+async function askAi(text){
+  text = String(text||"").trim(); if(!text || aiBusy) return;
+  openAi(true);
+  if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Ben phân tích chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Anh/chị vẫn dùng được các nút <b>Báo cáo tức thì</b>.</p>"); return; }
+  addMsg("u", esc(text)); aiText.value = "";
+  aiTurns.push({role:"user", content:text}); if(aiTurns.length > 12) aiTurns = aiTurns.slice(-12);
+  while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
+  const bubble = addMsg("a", '<span class="act">Ben đang phân tích…</span>');
+  aiCtl = new AbortController(); setBusy(true, aiSpeed === "quick" ? "Ben đang phân tích (nhanh)…" : "Ben đang phân tích chuyên sâu…");
+  const tools = AI_TOOLS.map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
+  try{
+    const res = await sample([{role:"user", content: rules()}, ...aiTurns], { signal: aiCtl.signal, tools, modelTier: aiSpeed === "quick" ? "quick" : "default", onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
+    aiTurns.push({role:"assistant", content: res.text}); finishBubble(bubble, res.text, res.truncated);
+  }catch(e){
+    const kept = e && e.text;
+    if(e && e.code === "cancelled"){ bubble.innerHTML = (kept ? mdToHtml(kept) : "") + '<p class="act">Đã dừng.</p>'; aiTurns.pop(); }
+    else if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","tools_unavailable"].includes(e.code)){ aiDisabled = true; bubble.innerHTML = "<p>Ben phân tích chưa được phép chạy trên trang này. Các nút <b>Báo cáo tức thì</b> vẫn dùng bình thường.</p>"; aiTurns.pop(); }
+    else if(e && e.code === "rate_limited"){ bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Đang vượt giới hạn sử dụng. Vui lòng thử lại sau ít phút.</p>"; aiTurns.pop(); }
+    else if(e && e.code === "prompt_too_large"){ aiTurns = aiTurns.slice(-1); bubble.innerHTML = "<p>Cuộc trò chuyện quá dài, đã rút gọn lịch sử. Hãy gửi lại câu hỏi.</p>"; }
+    else { bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Bị gián đoạn khi phân tích. Bấm Gửi để thử lại.</p>"; aiTurns.pop(); aiText.value = text; }
+  }finally{ setBusy(false); aiCtl = null; }
+}
+function slug(t){ return String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+function finishBubble(bubble, md, truncated, title, instant){
+  bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") +
+    `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button>${instant ? '<button type="button" data-a="deep" class="primary">Ben phân tích sâu</button>' : ""}</div>`;
+  bubble.querySelector('[data-a="dl"]').addEventListener("click", () => { const d = new Date(), stamp = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường Hải Âu_\n\n${md}\n`, "Báo cáo"); });
+  const deep = bubble.querySelector('[data-a="deep"]');
+  if(deep) deep.addEventListener("click", () => askAi(`Dựa trên báo cáo "${title}" dưới đây, hãy phân tích sâu: nhận định chính, rủi ro, cơ hội và kế hoạch hành động cụ thể (ai, làm gì, khi nào, chỉ số đo).\n\n${md.slice(0, 6000)}`));
+  bubble.querySelector('[data-a="cp"]').addEventListener("click", async () => { try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
+}
+aiSend.addEventListener("click", () => askAi(aiText.value));
+aiStop.addEventListener("click", () => aiCtl && aiCtl.abort());
+aiText.addEventListener("keydown", e => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); askAi(aiText.value); } });
+
+/* ---------- render ---------- */
+function renderAll(){
+  tamIn.value = tam; compute();
+  chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
+  document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
+  uioIn.value = uioNat; syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
+}
+function init(){
+  load(); renderAll();
+  initScene().then(() => { refreshMap(); }).catch(err => {
+    document.getElementById("loadmsg").textContent = (typeof THREE === "undefined")
+      ? "Không tải được thư viện 3D. Kiểm tra kết nối mạng rồi tải lại trang."
+      : "Trình duyệt chưa bật WebGL nên không dựng được bản đồ 3D. Hồ sơ, xếp hạng và bảng dữ liệu vẫn dùng được.";
+    console.error(err);
+  });
+  if(window.claude && typeof window.claude.use === "function"){
+    window.claude.use("sample").then(s => { sample = s; if(!s) aiDisabled = true; }).catch(() => { aiDisabled = true; });
+    window.claude.use("downloads").then(d => { downloads = d; }).catch(() => {});
+  } else aiDisabled = true;
+}
+init();
+})();
+</script>
