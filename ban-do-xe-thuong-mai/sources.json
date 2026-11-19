@@ -243,16 +243,16 @@
    "retrieved": "2026-11-19T18:07:00+07:00",
    "items": [
     [
+     "CPI bình quân 10 tháng 2026",
+     "+4,57% so với cùng kỳ; tháng 10/2026 +5,09% so với cùng kỳ; lạm phát cơ bản 10T +4,24% (công bố 11/2026)"
+    ],
+    [
      "GDP 9 tháng 2026",
      "+9,01% (quý III +9,95%)"
     ],
     [
      "Địa phương tăng ≥10% (9 tháng)",
      "12/34, dẫn đầu Quảng Ninh 12,54%"
-    ],
-    [
-     "CPI bình quân 9 tháng",
-     "+4,52%"
     ],
     [
      "Vốn đầu tư toàn xã hội 9 tháng",
@@ -275,6 +275,10 @@
     [
      "VietnamPlus",
      "https://www.vietnamplus.vn/kinh-te-viet-nam-9-thang-nam-2026-nhieu-tin-hieu-tich-cuc-post1139898.vnp"
+    ],
+    [
+     "CPI tháng 10 và 10 tháng 2026 (PDF)",
+     "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
     ]
    ]
   }

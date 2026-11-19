@@ -87,7 +87,8 @@
   "campaigns": [
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Huế",
@@ -179,7 +180,8 @@
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Lai Châu",
@@ -269,7 +271,8 @@
   "campaigns": [
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Điện Biên",
@@ -359,7 +362,8 @@
   "campaigns": [
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Sơn La",
@@ -449,7 +453,8 @@
   "campaigns": [
    "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Lạng Sơn",
@@ -541,7 +546,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Quảng Ninh",
@@ -635,7 +641,8 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Thanh Hóa",
@@ -727,7 +734,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Nghệ An",
@@ -821,7 +829,8 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Hà Tĩnh",
@@ -911,7 +920,8 @@
   "campaigns": [
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Cao Bằng",
@@ -1001,7 +1011,8 @@
   "campaigns": [
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Tuyên Quang",
@@ -1100,7 +1111,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Lào Cai",
@@ -1199,7 +1211,8 @@
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Thái Nguyên",
@@ -1296,7 +1309,8 @@
   "campaigns": [
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Phú Thọ",
@@ -1400,7 +1414,8 @@
   "campaigns": [
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Bắc Ninh",
@@ -1499,7 +1514,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Hưng Yên",
@@ -1598,7 +1614,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Hải Phòng",
@@ -1697,7 +1714,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Ninh Bình",
@@ -1803,7 +1821,8 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Quảng Trị",
@@ -1900,7 +1919,8 @@
   "campaigns": [
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Đà Nẵng",
@@ -1999,7 +2019,8 @@
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Quảng Ngãi",
@@ -2098,7 +2119,8 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Gia Lai",
@@ -2199,7 +2221,8 @@
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Khánh Hòa",
@@ -2298,7 +2321,8 @@
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Lâm Đồng",
@@ -2404,7 +2428,8 @@
    "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
    "“Rau hoa tới chợ”: kiểm tra phanh đèo, thùng lạnh xe chở rau hoa Đà Lạt",
    "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Đắk Lắk",
@@ -2501,7 +2526,8 @@
   "campaigns": [
    "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
    "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -2605,7 +2631,8 @@
   "campaigns": [
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Đồng Nai",
@@ -2702,7 +2729,8 @@
   "campaigns": [
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Tây Ninh",
@@ -2801,7 +2829,8 @@
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Cần Thơ",
@@ -2907,7 +2936,8 @@
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Vĩnh Long",
@@ -3013,7 +3043,8 @@
    "“Trái ngon tới chợ”: chăm sóc thùng lạnh, ưu đãi phụ tùng mùa cao điểm tháng 3 – 6",
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Đồng Tháp",
@@ -3112,7 +3143,8 @@
    "“Trái ngon tới chợ”: chăm sóc thùng lạnh, ưu đãi phụ tùng mùa cao điểm tháng 3 – 6",
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "Cà Mau",
@@ -3209,7 +3241,8 @@
   "campaigns": [
    "“Tôm tươi đi cảng”: kiểm tra thùng bảo ôn, chống ăn mòn muối cho xe vùng ven biển",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
-  ]
+  ],
+  "cpi": null
  },
  {
   "name": "An Giang",
@@ -3308,6 +3341,7 @@
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
-  ]
+  ],
+  "cpi": null
  }
 ]

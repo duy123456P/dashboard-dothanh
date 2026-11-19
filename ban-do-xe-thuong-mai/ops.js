@@ -65,7 +65,7 @@ const DLABEL = {leCum:"bán lẻ lũy kế T10", khCum:"KH lũy kế T10", thT10
 const PF = [
   ["c_thaco","thị phần Thaco (%)",/thaco/], ["c_hyundai","thị phần Hyundai (%)",/hyundai/], ["c_isuzu","thị phần Isuzu (%)",/isuzu/], ["c_hino","thị phần Hino (%)",/hino/],
   ["c_fuso","thị phần Fuso (%)",/fuso/], ["c_china","thị phần xe Trung Quốc (%)",/trung quốc|xe tàu/], ["c_other","thị phần hãng khác (%)",/hãng khác/],
-  ["growth","tăng trưởng GRDP (%)",/tăng trưởng/], ["target","KH lũy kế / mục tiêu (xe)",/kế hoạch|mục tiêu|chỉ tiêu|\bkh\b/], ["sales","bán lẻ lũy kế (xe)",/doanh số|số bán|bán lẻ|bán được/],
+  ["cpi","CPI tỉnh (%)",/\bcpi\b|lạm phát|giá tiêu dùng/], ["growth","tăng trưởng GRDP (%)",/tăng trưởng/], ["target","KH lũy kế / mục tiêu (xe)",/kế hoạch|mục tiêu|chỉ tiêu|\bkh\b/], ["sales","bán lẻ lũy kế (xe)",/doanh số|số bán|bán lẻ|bán được/],
   ["reg","ĐK mới thực tế (xe)",/đăng ký|đk mới/], ["uio","UIO thực tế (xe)",/\buio\b|lưu hành/], ["pop","dân số (nghìn người)",/dân số/], ["grdp","GRDP (nghìn tỷ đ)",/grdp/],
   ["dealers","số điểm bán",/điểm bán/], ["factor","hệ số vùng",/hệ số/], ["elev","độ cao TB (m)",/độ cao/],
 ];
@@ -473,14 +473,17 @@ $("taskBody").addEventListener("change", async e => {
 
 /* ---------- meeting recorder ---------- */
 let dict = null, dictMode = "", noLang = false, rec = null, recT = null, cmdT = null, partialTxt = "";
-function meetForm(){ return {title: $("mTitle").value.trim() || "Cuộc họp " + vnDate(ymd()), host: $("mHost").value.trim(), people: $("mPeople").value.split("\n").map(s => s.trim()).filter(Boolean), goal: $("mGoal").value.trim()}; }
+function meetForm(){ const v = id => ($(id) ? $(id).value.trim() : ""), L = id => v(id).split("\n").map(s => s.trim()).filter(Boolean);
+  return {title: v("mTitle") || "Cuộc họp " + vnDate(ymd()), host: v("mHost"), people: L("mPeople"), absent: L("mAbsent"), goal: v("mGoal"), reason: v("mReason"), place: v("mPlace"), form: v("mForm") || "Trực tiếp", agenda: L("mAgenda"), unit: v("mUnit") || "ĐÔ THÀNH AUTO", secretary: v("mSec") || "Ben (trợ lý AI), ghi lời thoại tự động"}; }
 function ensureMeeting(){
   if(rec) return rec; const f = meetForm(), id = gid("m");
   rec = {id, lines: [], part: 1, cur: [], dirty: false, t0: Date.now()};
   putMeeting({id, ...f, status: "live", startedAt: nowIso(), recorder: meId(), lineCount: 0});
   return rec;
 }
-function putMeeting(m){ const cur = S.meetings[m.id] || {}; const x = {...cur, ...m, updatedAt: nowIso()}; if(mode === "local") S.meetings[m.id] = x; return put("meetings/" + m.id, x); }
+const mLocal = {};
+function meet(id){ return mLocal[id] || S.meetings[id]; }
+function putMeeting(m){ const cur = meet(m.id) || {}; const x = {...cur, ...m, updatedAt: nowIso()}; mLocal[m.id] = x; if(mode === "local") S.meetings[m.id] = x; return put("meetings/" + m.id, x); }
 function stamp(){ const s = Math.round((Date.now() - (rec ? rec.t0 : Date.now())) / 1000); return pad(Math.floor(s/60)) + ":" + pad(s%60); }
 function addLine(text, tag){
   ensureMeeting(); text = String(text);
@@ -495,7 +498,7 @@ function runBen(q){ const r = localCommand(q); if(r){ CV.addMsg("u", esc("🎙 "
   else { CV.openAi(true); CV.benTab("Chat"); CV.askAi(q); } }
 function drawScript(){
   const el = $("mScript"); if(!rec){ return; }
-  el.innerHTML = rec.lines.slice(-200).map((l,i,arr) => `<p><span class="tm">${l.ts}</span>${l.tag ? `<span class="tag ${TAGS[l.tag]||""}">${esc(l.tag)}</span>` : ""}${esc(l.text)}</p>`).join("") + (partialTxt ? `<p class="partial">${esc(partialTxt)}</p>` : "");
+  el.innerHTML = rec.lines.slice(-200).map((l,i,arr) => `<p><span class="tm">${l.ts}</span>${l.tag ? `<span class="tag ${TAGS[l.tag]||""}">${esc(l.tag)}</span>` : ""}${l.sp ? `<b>${esc(l.sp)}:</b> ` : ""}${esc(l.text)}</p>`).join("") + (partialTxt ? `<p class="partial">${esc(partialTxt)}</p>` : "");
   el.scrollTop = el.scrollHeight;
 }
 function flush(force){
@@ -515,11 +518,11 @@ function startDict(m){
   if(!dict){ toast(m === "meet" ? "Trình duyệt/thiết bị này chưa hỗ trợ ghi giọng nói: hãy gõ ghi chú tay" : "Chưa hỗ trợ nhập giọng nói ở đây (dùng Chrome hoặc ứng dụng Claude trên máy tính)"); return; }
   if(dict.active()){ if(dictMode === m){ dict.stop().catch(() => {}); } else toast(dictMode === "meet" ? "Đang ghi cuộc họp: nói “Ben ơi …” để ra lệnh" : "Đang nghe lệnh, bấm micro để dừng trước"); return; }
   dictMode = m; const p = dict.start(noLang ? undefined : {language: "vi"});
-  if(m === "meet"){ ensureMeeting(); clearInterval(recT); recT = setInterval(() => flush(), 15000); if(S.meetings[rec.id] && S.meetings[rec.id].status !== "live") putMeeting({id: rec.id, status: "live"}); }
+  if(m === "meet"){ ensureMeeting(); clearInterval(recT); recT = setInterval(() => flush(), 15000); if(meet(rec.id) && meet(rec.id).status !== "live") putMeeting({id: rec.id, status: "live"}); }
   p.catch(e => { const c = e && e.code; if(c === "unavailable" && !noLang){ noLang = true; toast("Bấm lại để ghi bằng ngôn ngữ mặc định của trình duyệt"); }
     else if(c === "not_granted") toast("Micro chưa được cho phép cho trang này"); else if(c && c !== "stopped" && c !== "dismissed") toast("Không mở được micro (" + c + ")"); });
 }
-function stopMeeting(){ if(dict && dict.active() && dictMode === "meet") dict.stop().catch(() => {}); flush(true); clearInterval(recT); if(rec) putMeeting({id: rec.id, status: S.meetings[rec.id] && S.meetings[rec.id].status === "confirmed" ? "confirmed" : "draft", endedAt: nowIso(), lineCount: rec.lines.length}); }
+function stopMeeting(){ if(dict && dict.active() && dictMode === "meet") dict.stop().catch(() => {}); flush(true); clearInterval(recT); if(rec) putMeeting({id: rec.id, status: meet(rec.id) && meet(rec.id).status === "confirmed" ? "confirmed" : "draft", endedAt: nowIso(), lineCount: rec.lines.length}); }
 $("mRec").addEventListener("click", () => { if(dict && dict.active() && dictMode === "meet"){ stopMeeting(); return; } startDict("meet"); });
 $("mNote").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); $("mNoteAdd").click(); } });
 $("mNoteAdd").addEventListener("click", () => { const v = $("mNote").value.trim(); if(!v) return; addLine(v); $("mNote").value = ""; flush(); });
@@ -539,106 +542,227 @@ async function meetingLines(id){
   if(mode === "local") return Object.keys(S.parts[id] || {}).sort().flatMap(k => (S.parts[id][k] || {}).lines || []);
   try{ const s = await db.collection(`meetings/${id}/parts`).get(); return s.docs.map(d => [d.id, d.data()]).sort((a,b) => a[0].localeCompare(b[0])).flatMap(x => x[1].lines || []); }catch(e){ return []; }
 }
+/* transcript import: our local tool (.json), Whisper (.json/.srt/.vtt), Zoom/Teams/Meet (.vtt/.txt) */
+function secTs(s){ s = Math.max(0, Math.round(+s || 0)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60); return (h ? pad(h) + ":" : "") + pad(m) + ":" + pad(s%60); }
+function splitSpeaker(t){ const m = String(t).match(/^\s*([^:：]{2,40}?)\s*[:：]\s+(.+)$/); return m && !/\d{2}:\d{2}/.test(m[1]) && m[1].split(/\s+/).length <= 6 ? {sp: m[1].trim(), text: m[2].trim()} : {sp: "", text: String(t).trim()}; }
+function parseTranscript(raw, name){
+  const txt = String(raw).replace(/^﻿/, ""), out = [];
+  if(/\.json$/i.test(name) || /^\s*[\[{]/.test(txt)){
+    try{ const j = JSON.parse(txt); const segs = Array.isArray(j) ? j : j.segments || j.lines || j.results || [];
+      segs.forEach(s => { const t = String(s.text ?? s.transcript ?? "").trim(); if(!t) return; out.push({ts: s.ts || secTs(s.start ?? s.start_time ?? 0), sp: String(s.speaker ?? s.sp ?? "").trim(), text: t, tag: s.tag || ""}); });
+      if(!out.length && j.text) String(j.text).split(/(?<=[.!?])\s+/).forEach(t => out.push({ts: "", sp: "", text: t}));
+      return {lines: out, meta: j.meta || j.info || null};
+    }catch(e){}
+  }
+  if(/-->/.test(txt)){
+    txt.split(/\r?\n\r?\n+/).forEach(b => { const ls = b.split(/\r?\n/).map(s => s.trim()).filter(Boolean); const ti = ls.findIndex(l => /-->/.test(l)); if(ti < 0) return;
+      const m = ls[ti].match(/(?:(\d+):)?(\d{1,2}):(\d{2})[.,]\d+/); const sec = m ? (+m[1]||0)*3600 + (+m[2])*60 + (+m[3]) : 0;
+      let body = ls.slice(ti+1).join(" "), sp = ""; const v = body.match(/<v\s+([^>]+)>/); if(v) sp = v[1].trim(); body = body.replace(/<[^>]+>/g, "").trim(); if(!body) return;
+      if(!sp){ const x = splitSpeaker(body); sp = x.sp; body = x.text; }
+      const last = out[out.length-1]; if(last && last.sp === sp && last.text.length < 280 && !/[.!?]$/.test(last.text)) last.text += " " + body; else out.push({ts: secTs(sec), sp, text: body}); });
+    return {lines: out, meta: null};
+  }
+  txt.split(/\r?\n/).forEach(l => { l = l.trim(); if(!l) return; let ts = ""; const m = l.match(/^\[?((?:\d{1,2}:)?\d{1,2}:\d{2})\]?\s*[-–]?\s*/); if(m){ ts = m[1]; l = l.slice(m[0].length); }
+    const x = splitSpeaker(l); if(x.text) out.push({ts, sp: x.sp, text: x.text}); });
+  return {lines: out, meta: null};
+}
+async function importTranscript(file){
+  const raw = await file.text(), {lines, meta} = parseTranscript(raw, file.name);
+  if(!lines.length) return toast("Không đọc được lời thoại trong file này");
+  if(meta){ const set = (id, v) => { if(v && $(id) && !$(id).value) $(id).value = Array.isArray(v) ? v.join("\n") : v; };
+    set("mTitle", meta.title); set("mHost", meta.host); set("mPeople", meta.people); set("mPlace", meta.place); set("mReason", meta.reason); set("mGoal", meta.goal); set("mAgenda", meta.agenda); }
+  if(rec && dict && dict.active() && dictMode === "meet") stopMeeting();
+  rec = null; ensureMeeting();
+  rec.lines = lines.map(l => ({...l, at: nowIso(), ms: 0, tag: l.tag || ""}));
+  const parts = Math.ceil(rec.lines.length / 60);
+  for(let i = 1; i <= parts; i++){ const ls = rec.lines.slice((i-1)*60, i*60).map(({ms, ...l}) => l); await put(`meetings/${rec.id}/parts/p${String(i).padStart(3,"0")}`, {lines: ls}); }
+  rec.part = parts + (rec.lines.length % 60 === 0 ? 1 : 0) || 1; rec.dirty = false;
+  const sp = new Set(lines.map(l => l.sp).filter(Boolean));
+  await putMeeting({id: rec.id, status: "draft", lineCount: rec.lines.length, source: file.name, speakers: [...sp], ...(meta && meta.startedAt ? {startedAt: meta.startedAt} : {}), ...(meta && meta.endedAt ? {endedAt: meta.endedAt} : {})});
+  drawScript(); setRecUi("idle"); $("mState").textContent = `Đã nhập ${lines.length} câu${sp.size ? ", " + sp.size + " người nói" : ""} từ ${file.name}. Bấm “Ben tổng hợp & lập biên bản”.`;
+}
+$("mImport").addEventListener("change", e => { const f = e.target.files[0]; e.target.value = ""; if(f) importTranscript(f).catch(() => toast("Không đọc được file")); });
+
+/* drafts */
+const EMPTY = () => ({reason:"", summary:[], agendaItems:[], decisions:[], tasks:[], blockers:[], risks:[], openQuestions:[], nextMeeting:""});
 function quickDraft(m, lines){
-  const tg = k => lines.filter(l => l.tag === k).map(l => l.text);
-  return {summary: tg("Ý chính"), decisions: tg("Quyết định"), risks: tg("Rủi ro"), openQuestions: [], nextMeeting: "",
+  const tg = k => lines.filter(l => l.tag === k).map(l => (l.sp ? l.sp + ": " : "") + l.text);
+  return {...EMPTY(), reason: (m && m.reason) || "", summary: tg("Ý chính"), decisions: tg("Quyết định"), risks: tg("Rủi ro"),
+    agendaItems: ((m && m.agenda) || []).map(a => ({item: a, summary: [], points: [], conclusion: ""})),
     blockers: tg("Điểm nghẽn").map(x => ({text: x, owner: "", due: addDays(ymd(), 3), solution: ""})),
     tasks: tg("Giao việc").map(x => { const o = (x.match(/(?:giao cho|cho|phụ trách|chịu trách nhiệm)[:\s]+([^,.;]+?)(?:\s+(?:hạn|trước|trong|làm|thực hiện)\b|[,.;]|$)/i) || [])[1] || "";
       return {title: x.slice(0,160), owner: o.trim(), dept: "Kinh doanh", coDepts: [], kpiName: "", kpiUnit: "", kpiBase: "", kpiTarget: "", kpiDir: "up", evidenceReq: "", start: ymd(), due: parseDue(x) || addDays(ymd(), 7), priority: "P2", firstStep: ""}; })};
 }
-async function benDraft(){
-  const m = rec ? S.meetings[rec.id] || {id: rec.id, ...meetForm()} : null; if(!m){ toast("Chưa có cuộc họp đang ghi. Mở biên bản cũ ở “Danh sách cuộc họp”"); return; }
-  flush(true); const lines = rec.lines; if(!lines.length) return toast("Chưa có nội dung cuộc họp");
-  const sample = CV.sample; if(!sample){ toast("Ben AI chỉ chạy khi mở trong Claude: em lập nhanh từ đánh dấu"); return openMinutes(m.id, quickDraft(m, lines)); }
-  $("mState").textContent = "Ben đang tổng hợp biên bản…"; $("mSum").disabled = true;
-  let tx = lines.map(l => `[${l.ts}]${l.tag ? " (" + l.tag + ")" : ""} ${l.text}`).join("\n"); if(tx.length > 90000) tx = tx.slice(0, 20000) + "\n…\n" + tx.slice(-68000);
-  const f = meetForm();
-  const prompt = `Bạn là Ben, thư ký cuộc họp của Đô Thành Auto. Hôm nay ${vnDate(ymd())} (${ymd()}). Lập biên bản từ lời thoại tự động (có thể sai chính tả do nhận dạng giọng nói; tự hiểu theo ngữ cảnh, không bịa).
-Cuộc họp: ${f.title}. Chủ trì: ${f.host || "chưa ghi"}. Mục tiêu: ${f.goal || "chưa ghi"}.
-Thành phần: ${f.people.join("; ") || "chưa ghi"}.
+function minutesPrompt(m, lines){
+  let tx = lines.map(l => `[${l.ts || ""}]${l.tag ? " (" + l.tag + ")" : ""} ${l.sp ? l.sp + ": " : ""}${l.text}`).join("\n"); if(tx.length > 90000) tx = tx.slice(0, 20000) + "\n…\n" + tx.slice(-68000);
+  return `Bạn là Ben, thư ký cuộc họp chuyên nghiệp của Đô Thành Auto, viết biên bản theo chuẩn tập đoàn lớn: khách quan, chính xác, ngắn gọn, có số liệu, ghi đúng ai nói gì, phân biệt rõ ý kiến thảo luận với kết luận đã chốt. Hôm nay ${vnDate(ymd())} (${ymd()}).
+Lời thoại được nhận dạng tự động nên có thể sai chính tả: hiểu theo ngữ cảnh, không bịa số liệu hay tên người. Không biết ai nói thì để speaker rỗng.
+Cuộc họp: ${m.title || ""}. Chủ trì: ${m.host || "chưa ghi"}. Địa điểm: ${m.place || "chưa ghi"} (${m.form || ""}). Lý do triệu tập: ${m.reason || "chưa ghi, hãy suy ra từ nội dung"}. Mục tiêu: ${m.goal || "chưa ghi"}.
+Chương trình: ${(m.agenda || []).join(" | ") || "chưa có, hãy tự chia 2–6 mục theo diễn biến cuộc họp"}.
+Thành phần: ${(m.people || []).join("; ") || "chưa ghi"}.
 Phòng ban hợp lệ: ${DEPTS.join(", ")}.
-Chuẩn của Ban Lãnh đạo cho MỖI đầu việc: một người chịu trách nhiệm chính; chỉ số đo bằng số (kpiName, kpiUnit, kpiTarget, kpiBase nếu biết); bằng chứng bắt buộc khi xong (evidenceReq: tài liệu/ảnh/báo cáo cụ thể, có thể kiểm chứng); phòng ban phải xác nhận kết quả (coDepts) nếu việc liên quan phòng khác; ngày bắt đầu và hạn (YYYY-MM-DD; "thứ sáu", "cuối tháng" quy đổi theo hôm nay); việc làm ngay trong 24 giờ (firstStep). Thông tin nào cuộc họp chưa nói rõ thì ghi "CẦN CHỐT: ..." trong trường đó để Host chốt, không tự bịa số. Điểm nghẽn tồn đọng phải có người xử lý và hạn xử lý dứt điểm. Việc dài hơn 10 ngày thì nêu mốc kiểm tra trong firstStep.
-Chỉ trả về JSON: {"summary":[ý chính, ngắn, có số liệu], "decisions":[quyết định đã chốt], "tasks":[{"title","owner","dept","coDepts":[...],"kpiName","kpiUnit","kpiBase","kpiTarget","kpiDir":"up|down","evidenceReq","start","due","priority":"P1|P2|P3","firstStep"}], "blockers":[{"text","owner","due","solution"}], "risks":[...], "openQuestions":[vấn đề chưa chốt], "nextMeeting":"..."}
+Chuẩn của Ban Lãnh đạo cho MỖI đầu việc: một người chịu trách nhiệm chính; chỉ số đo bằng số (kpiName, kpiUnit, kpiTarget, kpiBase nếu biết); bằng chứng bắt buộc khi xong (evidenceReq: tài liệu/báo cáo/ảnh cụ thể, kiểm chứng được); phòng ban xác nhận kết quả (coDepts) nếu liên quan phòng khác; bắt đầu và hạn dạng YYYY-MM-DD (quy đổi "thứ sáu", "cuối tháng" theo hôm nay); việc làm ngay trong 24 giờ (firstStep). Thông tin cuộc họp chưa nói rõ thì ghi "CẦN CHỐT: ..." trong trường đó. Điểm nghẽn phải có người xử lý và hạn xử lý dứt điểm.
+Chỉ trả về JSON:
+{"reason":"lý do triệu tập (1–2 câu)","summary":["3–6 ý chính toàn cuộc họp, có số liệu"],
+"agendaItems":[{"item":"tên mục chương trình","summary":["diễn biến, số liệu được trình bày"],"points":[{"speaker":"tên hoặc rỗng","text":"ý kiến/đề xuất"}],"conclusion":"kết luận của chủ trì cho mục này"}],
+"decisions":["quyết định/kết luận đã chốt, viết thành câu mệnh lệnh rõ ràng"],
+"tasks":[{"title","owner","dept","coDepts":[],"kpiName","kpiUnit","kpiBase","kpiTarget","kpiDir":"up|down","evidenceReq","start","due","priority":"P1|P2|P3","firstStep"}],
+"blockers":[{"text","owner","due","solution"}],"risks":[],"openQuestions":[],"nextMeeting":"thời gian, nội dung cuộc họp tiếp theo nếu có"}
 
 LỜI THOẠI:
 ${tx}`;
-  try{ const j = await sample.json(prompt, {modelTier: "default"}); openMinutes(m.id, normDraft(j)); $("mState").textContent = "Đã lập biên bản nháp, Host rà soát và chốt"; }
+}
+async function benDraft(){
+  if(!rec){ toast("Chưa có cuộc họp. Bấm Bắt đầu ghi, gõ ghi chú hoặc nhập lời thoại từ file"); return; }
+  flush(true); const lines = rec.lines; if(!lines.length) return toast("Chưa có nội dung cuộc họp");
+  const m = {...(meet(rec.id) || {}), ...meetForm(), id: rec.id}; putMeeting(meetForm() && {id: rec.id, ...meetForm()});
+  const sample = CV.sample; if(!sample){ toast("Ben AI chỉ chạy khi mở trong Claude: em lập nhanh từ đánh dấu"); return openMinutes(m.id, quickDraft(m, lines)); }
+  $("mState").textContent = "Ben đang tổng hợp biên bản…"; $("mSum").disabled = true;
+  try{ const j = await sample.json(minutesPrompt(m, lines), {modelTier: "default"}); openMinutes(m.id, normDraft(j)); $("mState").textContent = "Đã lập biên bản nháp, Host rà soát và chốt"; }
   catch(e){ toast(e && e.code === "rate_limited" ? "Đang vượt giới hạn, thử lại sau ít phút" : "Ben chưa tổng hợp được, em lập nhanh từ đánh dấu"); openMinutes(m.id, quickDraft(m, lines)); $("mState").textContent = ""; }
   finally{ $("mSum").disabled = false; }
 }
-function normDraft(j){ j = j || {}; const A = x => Array.isArray(x) ? x.map(String) : [];
-  return {summary: A(j.summary), decisions: A(j.decisions), risks: A(j.risks), openQuestions: A(j.openQuestions), nextMeeting: String(j.nextMeeting || ""),
-    blockers: (Array.isArray(j.blockers) ? j.blockers : []).map(b => ({text: String(b.text||""), owner: String(b.owner||""), due: /^\d{4}-\d\d-\d\d$/.test(b.due) ? b.due : addDays(ymd(), 3), solution: String(b.solution||"")})),
+function normDraft(j){ j = j || {}; const A = x => Array.isArray(x) ? x.map(v => typeof v === "string" ? v : JSON.stringify(v)) : [];
+  const D = v => /^\d{4}-\d\d-\d\d$/.test(v || "") ? v : "", N0 = v => v === "" || v == null || isNaN(+v) ? "" : +v;
+  return {reason: String(j.reason || ""), summary: A(j.summary), decisions: A(j.decisions), risks: A(j.risks), openQuestions: A(j.openQuestions), nextMeeting: String(j.nextMeeting || ""),
+    agendaItems: (Array.isArray(j.agendaItems) ? j.agendaItems : []).map(a => ({item: String(a.item || ""), summary: A(a.summary), points: (Array.isArray(a.points) ? a.points : []).map(p => ({speaker: String(p.speaker || ""), text: String(p.text || "")})).filter(p => p.text), conclusion: String(a.conclusion || "")})),
+    blockers: (Array.isArray(j.blockers) ? j.blockers : []).map(b => ({text: String(b.text||""), owner: String(b.owner||""), due: D(b.due) || addDays(ymd(), 3), solution: String(b.solution||"")})),
     tasks: (Array.isArray(j.tasks) ? j.tasks : []).map(t => ({title: String(t.title||""), owner: String(t.owner||""), dept: DEPTS.includes(t.dept) ? t.dept : "Kinh doanh", coDepts: (Array.isArray(t.coDepts) ? t.coDepts : []).filter(x => DEPTS.includes(x)),
-      kpiName: String(t.kpiName||""), kpiUnit: String(t.kpiUnit||""), kpiBase: isNaN(+t.kpiBase) || t.kpiBase === "" || t.kpiBase == null ? "" : +t.kpiBase, kpiTarget: isNaN(+t.kpiTarget) || t.kpiTarget === "" || t.kpiTarget == null ? "" : +t.kpiTarget, kpiDir: t.kpiDir === "down" ? "down" : "up",
-      evidenceReq: String(t.evidenceReq||""), start: /^\d{4}-\d\d-\d\d$/.test(t.start) ? t.start : ymd(), due: /^\d{4}-\d\d-\d\d$/.test(t.due) ? t.due : addDays(ymd(), 7), priority: ["P1","P2","P3"].includes(t.priority) ? t.priority : "P2", firstStep: String(t.firstStep||"")}))}; }
+      kpiName: String(t.kpiName||""), kpiUnit: String(t.kpiUnit||""), kpiBase: N0(t.kpiBase), kpiTarget: N0(t.kpiTarget), kpiDir: t.kpiDir === "down" ? "down" : "up",
+      evidenceReq: String(t.evidenceReq||""), start: D(t.start) || ymd(), due: D(t.due) || addDays(ymd(), 7), priority: ["P1","P2","P3"].includes(t.priority) ? t.priority : "P2", firstStep: String(t.firstStep||"")}))}; }
 $("mSum").addEventListener("click", benDraft);
-$("mLocal").addEventListener("click", () => { if(!rec || !rec.lines.length) return toast("Chưa có nội dung cuộc họp"); flush(true); openMinutes(rec.id, quickDraft(S.meetings[rec.id], rec.lines)); });
+$("mLocal").addEventListener("click", () => { if(!rec || !rec.lines.length) return toast("Chưa có nội dung cuộc họp"); flush(true); openMinutes(rec.id, quickDraft({...meet(rec.id), ...meetForm()}, rec.lines)); });
 
 function openMinutes(id, newDraft){
-  minId = id; const m = S.meetings[id] || {};
-  if(newDraft){ draft = newDraft; minMode = "edit"; putMeeting({id, draft, status: m.status === "confirmed" ? "confirmed" : m.status === "live" ? "live" : "draft"}); }
-  else { draft = JSON.parse(JSON.stringify(m.minutes || m.draft || {summary:[], decisions:[], tasks:[], blockers:[], risks:[], openQuestions:[], nextMeeting:""})); minMode = m.status === "confirmed" ? "view" : "edit"; }
+  minId = id; const m = meet(id) || {};
+  if(newDraft){ draft = {...EMPTY(), ...newDraft}; minMode = "edit"; putMeeting({id, draft, status: m.status === "confirmed" ? "confirmed" : m.status === "live" ? "live" : "draft"}); }
+  else { draft = {...EMPTY(), ...JSON.parse(JSON.stringify(m.minutes || m.draft || {}))}; minMode = m.status === "confirmed" ? "view" : "edit"; }
   drawMinutes(); const d = $("minDlg"); if(!d.open) d.showModal();
 }
-function minutesMd(m, dr, withStatus){
-  const ts = (m.taskIds || []).map(id => S.tasks[id]).filter(Boolean);
-  const sg = Object.entries(S.signoffs).filter(([,s]) => s && (s.meetings||{})[m.id]).map(([uid,s]) => `- ${who(uid)} · ${vnTime(s.meetings[m.id].at)}${s.meetings[m.id].note ? " · " + s.meetings[m.id].note : ""}`);
-  const rowsT = (withStatus && ts.length ? ts.map(t => ({title:t.title, owner:t.owner, dept:t.dept, coDepts:t.coDepts||[], kpiName:(t.kpi||{}).name, kpiTarget:(t.kpi||{}).target, kpiUnit:(t.kpi||{}).unit, evidenceReq:t.evidenceReq, start:t.start, due:t.due, priority:t.priority, st: STATUS[t.status] + " · " + HL[health(t).k][0] + " · " + (+t.progress||0) + "%"})) : dr.tasks);
-  return `# BIÊN BẢN CUỘC HỌP
-**${m.title || "Cuộc họp"}**
 
-- Thời gian: ${vnTime(m.startedAt)}${m.endedAt ? " – " + vnTime(m.endedAt) : ""}
-- Chủ trì (Host): ${m.host || "…"}
-- Thư ký: Ben (trợ lý AI), lời thoại ghi tự động
-- Thành phần: ${(m.people || []).join("; ") || "…"}
-- Mục tiêu: ${m.goal || "…"}
-
-## 1. Ý chính
-${dr.summary.map(x => "- " + x).join("\n") || "- …"}
-
-## 2. Quyết định đã chốt
-${dr.decisions.map((x,i) => `${i+1}. ${x}`).join("\n") || "- …"}
-
-## 3. Đầu việc, người chịu trách nhiệm, chỉ số và hạn
-| STT | Đầu việc | Người chịu trách nhiệm | Phòng ban | Phối hợp / xác nhận | Chỉ số – mục tiêu | Bằng chứng bắt buộc | Bắt đầu | Hạn | Thời lượng | Ưu tiên | Trạng thái |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-${rowsT.map((t,i) => `| ${i+1} | ${t.title} | ${t.owner} | ${t.dept} | ${(t.coDepts||[]).join(", ") || "—"} | ${t.kpiName || "—"}${t.kpiTarget !== "" && t.kpiTarget != null ? ": " + t.kpiTarget + " " + (t.kpiUnit||"") : ""} | ${t.evidenceReq || "—"} | ${vnDate(t.start)} | ${vnDate(t.due)} | ${t.start && t.due ? dd(t.start, t.due) + " ngày" : "—"} | ${t.priority} | ${t.st || "Chưa làm"} |`).join("\n")}
-
-## 4. Điểm nghẽn phải xử lý dứt điểm
-${dr.blockers.map(b => `- **${b.text}** · xử lý: ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + b.solution : ""}`).join("\n") || "- Không có"}
-
-## 5. Rủi ro
-${dr.risks.map(x => "- " + x).join("\n") || "- Không có"}
-
-## 6. Vấn đề chưa chốt
-${dr.openQuestions.map(x => "- " + x).join("\n") || "- Không có"}
-
-## 7. Nguyên tắc theo dõi
-- Người chịu trách nhiệm cập nhật tiến độ, số liệu thực tế mỗi ngày làm việc trên Trung tâm điều hành.
-- Hệ thống cảnh báo sớm khi tiến độ thực chậm hơn kỳ vọng từ 10 điểm, 2 ngày không cập nhật, hoặc điểm nghẽn tồn từ 2 ngày; lãnh đạo hỗ trợ trong 24 giờ.
-- Chỉ nghiệm thu khi đủ: chỉ số đạt mục tiêu, có bằng chứng kiểm chứng được, các phòng liên quan xác nhận, không còn điểm nghẽn.
-${dr.nextMeeting ? "- Cuộc họp tiếp theo: " + dr.nextMeeting : ""}
-
-## 8. Xác nhận
-- Host chốt: ${m.confirmedAt ? who(m.confirmedBy) + " · " + vnTime(m.confirmedAt) : "chưa chốt"}
-${sg.join("\n") || "- Chưa có thành phần xác nhận"}
-`;
+/* minutes model shared by the on-screen paper, .html, .md and .docx */
+let paperLogo = null;
+const LOGO = () => { const im = document.querySelector(".brand-logo"); if(!im) return null; const w = im.naturalWidth || 400, h = im.naturalHeight || 100;
+  if(!paperLogo){ try{ const cv = document.createElement("canvas"); cv.width = w; cv.height = h; const c = cv.getContext("2d"); c.drawImage(im, 0, 0, w, h);
+    const d = c.getImageData(0, 0, w, h), p = d.data; for(let i = 0; i < p.length; i += 4){ p[i] = 11; p[i+1] = 58; p[i+2] = 110; } c.putImageData(d, 0, 0); paperLogo = cv.toDataURL("image/png"); }catch(e){ paperLogo = im.src; } }
+  return {src: paperLogo, w, h}; };
+function hhmm(iso){ const d = new Date(iso); return isNaN(d) ? "…" : pad(d.getHours()) + " giờ " + pad(d.getMinutes()); }
+function dayLong(iso){ const d = new Date(iso || Date.now()); return `ngày ${pad(d.getDate())} tháng ${pad(d.getMonth()+1)} năm ${d.getFullYear()}`; }
+function city(place){ const p = String(place || ""); const m = p.match(/(TP\.?\s*Hồ Chí Minh|Hà Nội|Đà Nẵng|Cần Thơ|Hải Phòng|Huế|[A-ZĐ][^,]{2,25})\s*$/); return m ? m[1].trim() : "TP. Hồ Chí Minh"; }
+function model(m, dr, withStatus){
+  const ts = withStatus ? (m.taskIds || []).map(id => S.tasks[id]).filter(Boolean) : [];
+  const tasks = ts.length ? ts.map(t => ({title:t.title, owner:t.owner, dept:t.dept, coDepts:t.coDepts||[], kpi: (t.kpi||{}).name ? (t.kpi.name + ((t.kpi.target !== "" && t.kpi.target != null) ? ": " + fmtInt(+t.kpi.target) + " " + (t.kpi.unit||"") : "")) : "", evidenceReq:t.evidenceReq, start:t.start, due:t.due, priority:t.priority, st: STATUS[t.status] + " · " + (+t.progress||0) + "%"}))
+    : (dr.tasks || []).map(t => ({...t, kpi: t.kpiName ? t.kpiName + (t.kpiTarget !== "" && t.kpiTarget != null ? ": " + t.kpiTarget + " " + (t.kpiUnit||"") : "") : "", st: "Chưa thực hiện"}));
+  const sg = Object.entries(S.signoffs).filter(([,s]) => s && (s.meetings||{})[m.id]).map(([uid,s]) => ({who: who(uid), at: vnTime(s.meetings[m.id].at), note: s.meetings[m.id].note || ""}));
+  const num = "BB-" + String(m.startedAt || nowIso()).slice(0,10).replace(/-/g,"") + "-" + String(m.id || "").slice(-4).toUpperCase();
+  return {unit: m.unit || "ĐÔ THÀNH AUTO", num, city: city(m.place), date: dayLong(m.startedAt), title: m.title || "Cuộc họp", start: m.startedAt ? hhmm(m.startedAt) + ", " + dayLong(m.startedAt) : "…", end: m.endedAt ? hhmm(m.endedAt) : "…",
+    place: m.place || "…", form: m.form || "Trực tiếp", host: m.host || "…", secretary: m.secretary || "Ben (trợ lý AI), ghi lời thoại tự động", people: m.people || [], absent: m.absent || [],
+    reason: dr.reason || m.reason || "", goal: m.goal || "", agenda: (m.agenda && m.agenda.length ? m.agenda : (dr.agendaItems || []).map(a => a.item)).filter(Boolean),
+    summary: dr.summary || [], items: dr.agendaItems || [], decisions: dr.decisions || [], tasks, blockers: (dr.blockers || []).filter(b => b.text), risks: dr.risks || [], open: dr.openQuestions || [], next: dr.nextMeeting || "",
+    confirmedAt: m.confirmedAt ? vnTime(m.confirmedAt) : "", confirmedBy: m.confirmedBy ? who(m.confirmedBy) : "", sg, lines: m.lineCount || 0, source: m.source || ""};
+}
+const SEC = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+function minutesHtml(M){
+  const L = LOGO(), e = esc, li = a => a.map(x => `<li>${e(x)}</li>`).join("");
+  return `<div class="bb">
+<table class="bbhd"><tr><td class="l">${L ? `<img src="${L.src}" alt="Logo">` : ""}<div class="unit">${e(M.unit)}</div></td><td class="r"><div>Số: ${e(M.num)}</div><div><i>${e(M.city)}, ${e(M.date)}</i></div></td></tr></table>
+<h1>BIÊN BẢN CUỘC HỌP</h1><p class="vv">V/v: ${e(M.title)}</p>
+<h2>I. THÔNG TIN CHUNG</h2>
+<table class="bbinfo"><tr><th>Thời gian</th><td>Bắt đầu ${e(M.start)}; kết thúc ${e(M.end)}</td></tr><tr><th>Địa điểm</th><td>${e(M.place)}</td></tr><tr><th>Hình thức</th><td>${e(M.form)}</td></tr>
+<tr><th>Chủ trì</th><td>${e(M.host)}</td></tr><tr><th>Thư ký</th><td>${e(M.secretary)}</td></tr><tr><th>Thành phần (${M.people.length})</th><td>${M.people.map(e).join("<br>") || "…"}</td></tr>${M.absent.length ? `<tr><th>Vắng mặt</th><td>${M.absent.map(e).join("<br>")}</td></tr>` : ""}</table>
+<h2>II. LÝ DO VÀ MỤC TIÊU CUỘC HỌP</h2><p><b>Lý do:</b> ${e(M.reason || "…")}</p>${M.goal ? `<p><b>Mục tiêu:</b> ${e(M.goal)}</p>` : ""}
+<h2>III. CHƯƠNG TRÌNH</h2>${M.agenda.length ? `<ol>${li(M.agenda)}</ol>` : "<p>…</p>"}
+<h2>IV. NỘI DUNG CHÍNH</h2>${M.summary.length ? `<p><b>Tóm tắt:</b></p><ul>${li(M.summary)}</ul>` : ""}
+${M.items.map((a,i) => `<h3>${i+1}. ${e(a.item)}</h3>${a.summary.length ? `<ul>${li(a.summary)}</ul>` : ""}${a.points.length ? `<p><b>Ý kiến:</b></p><ul>${a.points.map(p => `<li>${p.speaker ? `<b>${e(p.speaker)}:</b> ` : ""}${e(p.text)}</li>`).join("")}</ul>` : ""}${a.conclusion ? `<p><b>Kết luận:</b> ${e(a.conclusion)}</p>` : ""}`).join("")}
+<h2>V. KẾT LUẬN CỦA CHỦ TRÌ</h2>${M.decisions.length ? `<ol>${li(M.decisions)}</ol>` : "<p>…</p>"}
+<h2>VI. PHÂN CÔNG THỰC HIỆN</h2>
+<table class="bbt"><thead><tr><th>STT</th><th>Nội dung công việc</th><th>Người chịu trách nhiệm</th><th>Phối hợp / xác nhận</th><th>Chỉ số – mục tiêu</th><th>Bằng chứng hoàn thành</th><th>Hạn</th><th>Trạng thái</th></tr></thead><tbody>
+${M.tasks.map((t,i) => `<tr><td>${i+1}</td><td>${e(t.title)}${t.priority ? ` <small>(${e(t.priority)})</small>` : ""}</td><td>${e(t.owner)}<br><small>${e(t.dept)}</small></td><td>${e((t.coDepts||[]).join(", ") || "—")}</td><td>${e(t.kpi || "—")}</td><td>${e(t.evidenceReq || "—")}</td><td>${vnDate(t.due)}<br><small>${t.start && t.due ? dd(t.start, t.due) + " ngày" : ""}</small></td><td>${e(t.st)}</td></tr>`).join("") || `<tr><td colspan="8">Không có</td></tr>`}</tbody></table>
+<h2>VII. ĐIỂM NGHẼN PHẢI XỬ LÝ DỨT ĐIỂM</h2>${M.blockers.length ? `<ul>${M.blockers.map(b => `<li><b>${e(b.text)}</b> · xử lý: ${e(b.owner || "…")} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + e(b.solution) : ""}</li>`).join("")}</ul>` : "<p>Không có.</p>"}
+<h2>VIII. RỦI RO VÀ VẤN ĐỀ CHƯA CHỐT</h2>${M.risks.length || M.open.length ? `<ul>${M.risks.map(x => `<li>Rủi ro: ${e(x)}</li>`).join("")}${M.open.map(x => `<li>Chưa chốt: ${e(x)}</li>`).join("")}</ul>` : "<p>Không có.</p>"}
+<h2>IX. THEO DÕI THỰC HIỆN</h2><ul><li>Người chịu trách nhiệm cập nhật tiến độ, số liệu thực tế mỗi ngày làm việc trên Trung tâm điều hành.</li><li>Cảnh báo sớm khi chậm từ 10 điểm % so với kỳ vọng, 2 ngày không cập nhật hoặc điểm nghẽn tồn từ 2 ngày; lãnh đạo hỗ trợ trong 24 giờ.</li><li>Chỉ nghiệm thu khi chỉ số đạt mục tiêu, có bằng chứng kiểm chứng được, các phòng liên quan xác nhận và không còn điểm nghẽn.</li>${M.next ? `<li>Cuộc họp tiếp theo: ${e(M.next)}</li>` : ""}</ul>
+<p>Cuộc họp kết thúc lúc ${e(M.end)}. Biên bản đã được thông qua trước các thành phần tham dự${M.confirmedAt ? ", Host chốt lúc " + e(M.confirmedAt) : ""}.</p>
+<table class="bbsig"><tr><td><b>THƯ KÝ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.secretary.split(",")[0])}</td><td><b>CHỦ TRÌ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.host)}</td></tr></table>
+${M.sg.length ? `<p class="xn"><b>Xác nhận điện tử của thành phần tham dự:</b> ${M.sg.map(s => `${e(s.who)} (${e(s.at)}${s.note ? ": " + e(s.note) : ""})`).join("; ")}</p>` : ""}
+</div>`;
+}
+const PAPER_CSS = `.bb{font-family:"Times New Roman",Times,serif;font-size:13pt;line-height:1.45;color:#111;background:#fff}.bb h1{text-align:center;font-size:17pt;margin:14pt 0 2pt;letter-spacing:.02em}.bb .vv{text-align:center;font-weight:bold;margin:0 0 10pt}
+.bb h2{font-size:13pt;margin:13pt 0 5pt;color:#0b3a6e}.bb h3{font-size:13pt;margin:9pt 0 3pt}.bb table{border-collapse:collapse;width:100%}.bb .bbhd td{vertical-align:top;border:0}.bb .bbhd .l img{height:46px}.bb .bbhd .unit{font-weight:bold;font-size:11pt;margin-top:3pt}
+.bb .bbhd .r{text-align:right;font-size:11.5pt}.bb .bbinfo th{width:24%;text-align:left;background:#f2f5f9}.bb .bbinfo th,.bb .bbinfo td,.bb .bbt th,.bb .bbt td{border:1px solid #9aa7b5;padding:4pt 6pt;vertical-align:top;text-align:left;font-size:11.5pt;position:static;color:#111;text-transform:none;letter-spacing:0}
+.bb .bbt th{background:#e8eef6;font-weight:bold}.bb .bbsig{margin-top:18pt}.bb .bbsig td{width:50%;text-align:center;vertical-align:top;border:0}.bb small{color:#444}.bb .xn{font-size:10.5pt;color:#333;margin-top:12pt}.bb ul,.bb ol{margin:3pt 0 6pt 18pt;padding:0}`;
+function minutesMd(m, dr, withStatus){ const M = model(m, dr, withStatus);
+  return `# BIÊN BẢN CUỘC HỌP\n**${M.unit}** · Số: ${M.num} · ${M.city}, ${M.date}\n\nV/v: **${M.title}**\n\n## I. Thông tin chung\n- Thời gian: bắt đầu ${M.start}; kết thúc ${M.end}\n- Địa điểm: ${M.place} · Hình thức: ${M.form}\n- Chủ trì: ${M.host} · Thư ký: ${M.secretary}\n- Thành phần: ${M.people.join("; ") || "…"}${M.absent.length ? "\n- Vắng mặt: " + M.absent.join("; ") : ""}\n\n## II. Lý do và mục tiêu\n- Lý do: ${M.reason || "…"}${M.goal ? "\n- Mục tiêu: " + M.goal : ""}\n\n## III. Chương trình\n${M.agenda.map((a,i) => `${i+1}. ${a}`).join("\n") || "…"}\n\n## IV. Nội dung chính\n${M.summary.map(x => "- " + x).join("\n")}\n${M.items.map((a,i) => `\n### ${i+1}. ${a.item}\n${a.summary.map(x => "- " + x).join("\n")}${a.points.length ? "\n" + a.points.map(p => `- ${p.speaker ? "**" + p.speaker + ":** " : ""}${p.text}`).join("\n") : ""}${a.conclusion ? "\n- **Kết luận:** " + a.conclusion : ""}`).join("\n")}\n\n## V. Kết luận của chủ trì\n${M.decisions.map((x,i) => `${i+1}. ${x}`).join("\n") || "…"}\n\n## VI. Phân công thực hiện\n| STT | Công việc | Người chịu trách nhiệm | Phối hợp / xác nhận | Chỉ số – mục tiêu | Bằng chứng | Hạn | Trạng thái |\n|---|---|---|---|---|---|---|---|\n${M.tasks.map((t,i) => `| ${i+1} | ${t.title} | ${t.owner} (${t.dept}) | ${(t.coDepts||[]).join(", ") || "—"} | ${t.kpi || "—"} | ${t.evidenceReq || "—"} | ${vnDate(t.due)} | ${t.st} |`).join("\n")}\n\n## VII. Điểm nghẽn phải xử lý dứt điểm\n${M.blockers.map(b => `- **${b.text}** · ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · " + b.solution : ""}`).join("\n") || "- Không có"}\n\n## VIII. Rủi ro và vấn đề chưa chốt\n${M.risks.map(x => "- Rủi ro: " + x).concat(M.open.map(x => "- Chưa chốt: " + x)).join("\n") || "- Không có"}\n${M.next ? "\n## IX. Cuộc họp tiếp theo\n- " + M.next + "\n" : ""}\n## Xác nhận\n- Host chốt: ${M.confirmedAt ? M.confirmedBy + " · " + M.confirmedAt : "chưa chốt"}\n${M.sg.map(s => `- ${s.who} · ${s.at}${s.note ? " · " + s.note : ""}`).join("\n")}\n`; }
+function htmlDoc(m, dr, withStatus){ const M = model(m, dr, withStatus); return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Biên bản ${esc(M.title)}</title><style>@page{size:A4;margin:2cm 2cm 2cm 3cm}body{margin:0;padding:24px;background:#fff}${PAPER_CSS}</style></head><body>${minutesHtml(M)}</body></html>`; }
+let docxLib = null;
+function loadDocx(){ if(docxLib) return docxLib; docxLib = new Promise((res, rej) => { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/docx@9.5.1/dist/index.iife.js"; s.onload = () => window.docx ? res(window.docx) : rej(new Error("docx")); s.onerror = () => { docxLib = null; rej(new Error("docx")); }; document.head.appendChild(s); }); return docxLib; }
+async function docxBlob(m, dr, withStatus){
+  const D = await loadDocx(), M = model(m, dr, withStatus), L = LOGO();
+  const {Document, Packer, Paragraph, TextRun, TableRow, TableCell, WidthType, AlignmentType, BorderStyle, ImageRun, ShadingType, TableLayoutType} = D;
+  const CW = 9071, Table = (o) => new D.Table({...o, layout: TableLayoutType.FIXED, columnWidths: o.cols.map(x => Math.round(CW * x / 100))});
+  const F = "Times New Roman", P = (text, o = {}) => new Paragraph({alignment: o.align, spacing: {after: o.after ?? 80, before: o.before ?? 0}, bullet: o.bullet ? {level: 0} : undefined, numbering: undefined,
+    children: (Array.isArray(text) ? text : [text]).map(x => typeof x === "string" ? new TextRun({text: x, font: F, size: o.size || 26, bold: o.bold, italics: o.italics, color: o.color}) : x)});
+  const R = (t, o = {}) => new TextRun({text: t, font: F, size: o.size || 26, bold: o.bold, italics: o.italics});
+  const H = t => P(t, {bold: true, color: "0B3A6E", before: 200, after: 80});
+  const none = {style: BorderStyle.NONE, size: 0, color: "FFFFFF"}, NB = {top: none, bottom: none, left: none, right: none};
+  const line = {style: BorderStyle.SINGLE, size: 4, color: "9AA7B5"}, LB = {top: line, bottom: line, left: line, right: line};
+  const cell = (kids, o = {}) => new TableCell({children: (Array.isArray(kids) ? kids : [kids]).map(k => typeof k === "string" ? P(k, {size: o.size || 22, bold: o.bold, after: 20}) : k), borders: o.nb ? NB : LB, width: o.w ? {size: o.w, type: WidthType.PERCENTAGE} : undefined, shading: o.fill ? {type: ShadingType.CLEAR, fill: o.fill, color: "auto"} : undefined});
+  let logoRun = null;
+  if(L){ try{ const b64 = L.src.split(",")[1], bin = atob(b64), u8 = new Uint8Array(bin.length); for(let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); const h = 46, w = Math.round(L.w / L.h * h); logoRun = new ImageRun({type: "png", data: u8, transformation: {width: w, height: h}}); }catch(e){} }
+  const kids = [];
+  kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: [
+    cell([...(logoRun ? [new Paragraph({children: [logoRun]})] : []), P(M.unit, {bold: true, size: 22, before: 60})], {nb: true, w: 50}),
+    cell([P("Số: " + M.num, {align: AlignmentType.RIGHT, size: 22}), P(M.city + ", " + M.date, {align: AlignmentType.RIGHT, italics: true, size: 22})], {nb: true, w: 50})]})]}));
+  kids.push(P("BIÊN BẢN CUỘC HỌP", {align: AlignmentType.CENTER, bold: true, size: 34, before: 240, after: 40}), P("V/v: " + M.title, {align: AlignmentType.CENTER, bold: true, after: 200}));
+  kids.push(H("I. THÔNG TIN CHUNG"));
+  const info = [["Thời gian", `Bắt đầu ${M.start}; kết thúc ${M.end}`], ["Địa điểm", M.place], ["Hình thức", M.form], ["Chủ trì", M.host], ["Thư ký", M.secretary], [`Thành phần (${M.people.length})`, M.people.join("\n") || "…"]].concat(M.absent.length ? [["Vắng mặt", M.absent.join("\n")]] : []);
+  kids.push(Table({cols: [26,74], width: {size: 100, type: WidthType.PERCENTAGE}, rows: info.map(([k,v]) => new TableRow({children: [cell(k, {w: 26, bold: true, fill: "F2F5F9"}), cell(String(v).split("\n").map(x => P(x, {size: 22, after: 20})), {w: 74})]}))}));
+  kids.push(H("II. LÝ DO VÀ MỤC TIÊU CUỘC HỌP"), P([R("Lý do: ", {bold: true}), R(M.reason || "…")]));
+  if(M.goal) kids.push(P([R("Mục tiêu: ", {bold: true}), R(M.goal)]));
+  kids.push(H("III. CHƯƠNG TRÌNH")); (M.agenda.length ? M.agenda : ["…"]).forEach((a,i) => kids.push(P(`${i+1}. ${a}`)));
+  kids.push(H("IV. NỘI DUNG CHÍNH")); if(M.summary.length){ kids.push(P("Tóm tắt:", {bold: true})); M.summary.forEach(x => kids.push(P("– " + x))); }
+  M.items.forEach((a,i) => { kids.push(P(`${i+1}. ${a.item}`, {bold: true, before: 120})); a.summary.forEach(x => kids.push(P("– " + x)));
+    if(a.points.length){ kids.push(P("Ý kiến:", {italics: true})); a.points.forEach(p => kids.push(P([R("– "), ...(p.speaker ? [R(p.speaker + ": ", {bold: true})] : []), R(p.text)]))); }
+    if(a.conclusion) kids.push(P([R("Kết luận: ", {bold: true}), R(a.conclusion)])); });
+  kids.push(H("V. KẾT LUẬN CỦA CHỦ TRÌ")); (M.decisions.length ? M.decisions : ["…"]).forEach((x,i) => kids.push(P(`${i+1}. ${x}`)));
+  kids.push(H("VI. PHÂN CÔNG THỰC HIỆN"));
+  const hd = ["STT","Nội dung công việc","Người chịu trách nhiệm","Phối hợp / xác nhận","Chỉ số – mục tiêu","Bằng chứng hoàn thành","Hạn","Trạng thái"], wd8 = [6,21,14,11,13,14,11,10];
+  kids.push(Table({cols: wd8, width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({tableHeader: true, children: hd.map((h,i) => cell(h, {bold: true, fill: "E8EEF6", w: wd8[i], size: 20}))})].concat(
+    (M.tasks.length ? M.tasks : [{title: "Không có"}]).map((t,i) => new TableRow({children: [String(M.tasks.length ? i+1 : ""), t.title + (t.priority ? ` (${t.priority})` : ""), (t.owner||"") + (t.dept ? "\n" + t.dept : ""), (t.coDepts||[]).join(", ") || "—", t.kpi || "—", t.evidenceReq || "—", t.due ? vnDate(t.due) : "", t.st || ""].map((v,k) => cell(String(v).split("\n").map(x => P(x, {size: 20, after: 10})), {w: wd8[k]}))})))}));
+  kids.push(H("VII. ĐIỂM NGHẼN PHẢI XỬ LÝ DỨT ĐIỂM")); (M.blockers.length ? M.blockers : [null]).forEach(b => kids.push(b ? P([R("– "), R(b.text, {bold: true}), R(` · xử lý: ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + b.solution : ""}`)]) : P("Không có.")));
+  kids.push(H("VIII. RỦI RO VÀ VẤN ĐỀ CHƯA CHỐT")); const ro = M.risks.map(x => "– Rủi ro: " + x).concat(M.open.map(x => "– Chưa chốt: " + x)); (ro.length ? ro : ["Không có."]).forEach(x => kids.push(P(x)));
+  kids.push(H("IX. THEO DÕI THỰC HIỆN")); ["– Người chịu trách nhiệm cập nhật tiến độ, số liệu thực tế mỗi ngày làm việc trên Trung tâm điều hành.", "– Cảnh báo sớm khi chậm từ 10 điểm % so với kỳ vọng, 2 ngày không cập nhật hoặc điểm nghẽn tồn từ 2 ngày; lãnh đạo hỗ trợ trong 24 giờ.", "– Chỉ nghiệm thu khi chỉ số đạt mục tiêu, có bằng chứng kiểm chứng được, các phòng liên quan xác nhận và không còn điểm nghẽn."].concat(M.next ? ["– Cuộc họp tiếp theo: " + M.next] : []).forEach(x => kids.push(P(x)));
+  kids.push(P(`Cuộc họp kết thúc lúc ${M.end}. Biên bản đã được thông qua trước các thành phần tham dự${M.confirmedAt ? ", Host chốt lúc " + M.confirmedAt : ""}.`, {before: 160}));
+  const sig = (t, n) => cell([P(t, {bold: true, align: AlignmentType.CENTER, after: 0}), P("(Ký, ghi rõ họ tên)", {italics: true, align: AlignmentType.CENTER, size: 22, after: 900}), P(n, {bold: true, align: AlignmentType.CENTER})], {nb: true, w: 50});
+  kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: [sig("THƯ KÝ", M.secretary.split(",")[0]), sig("CHỦ TRÌ", M.host)]})]}));
+  if(M.sg.length) kids.push(P("Xác nhận điện tử: " + M.sg.map(s => `${s.who} (${s.at}${s.note ? ": " + s.note : ""})`).join("; "), {size: 20, italics: true, before: 200}));
+  const doc = new Document({creator: "Ben – Đô Thành Auto", title: "Biên bản " + M.title, styles: {default: {document: {run: {font: F, size: 26}}}},
+    sections: [{properties: {page: {size: {width: 11906, height: 16838}, margin: {top: 1134, bottom: 1134, left: 1701, right: 1134}}}, children: kids}]});
+  return Packer.toBlob(doc);
 }
 const areaVal = a => (a||[]).join("\n");
 function drawMinutes(){
-  const m = S.meetings[minId] || {id: minId}, body = $("minBody");
+  const m = meet(minId) || {id: minId}, body = $("minBody");
   $("minDlgT").textContent = (m.status === "confirmed" ? "Biên bản đã chốt · " : "Biên bản nháp · ") + (m.title || "");
-  if(minMode === "view"){ body.innerHTML = `<div class="minutes">${mdToHtml(minutesMd(m, draft, true))}</div>`;
+  if(minMode === "view"){ body.innerHTML = `<style>${PAPER_CSS}</style><div style="background:#fff;border-radius:8px;padding:28px 34px;max-width:900px;margin:0 auto">${minutesHtml(model(m, draft, true))}</div>`;
     const mine = (S.signoffs[meId()] || {meetings:{}}).meetings || {};
-    $("minFoot").innerHTML = `${m.status === "confirmed" ? `<button type="button" class="primary" id="mnSign"${mine[m.id] ? " disabled" : ""}>${mine[m.id] ? "Tôi đã xác nhận" : "Tôi xác nhận biên bản"}</button>` : ""}<button type="button" id="mnMd">Xuất .md</button><button type="button" id="mnHtml">Xuất .html (mở bằng Word)</button><button type="button" id="mnCopy">Sao chép</button><button type="button" id="mnTasks">Xem đầu việc</button>${m.status !== "confirmed" ? '<button type="button" id="mnEdit">Sửa nháp</button>' : ""}<button type="button" id="mnScript" style="margin-left:auto">Xem lời thoại</button>`; return; }
-  const dr = draft, opt = (arr, v) => arr.map(x => `<option${x === v ? " selected" : ""}>${esc(x)}</option>`).join("");
-  body.innerHTML = `<p class="muted small" style="margin-top:0">Ben đã soạn nháp. Host rà soát từng dòng: mỗi việc phải có người chịu trách nhiệm, chỉ số đo, bằng chứng, hạn. Ô có “CẦN CHỐT” là chỗ cuộc họp chưa nói rõ.</p>
+    $("minFoot").innerHTML = `${m.status === "confirmed" ? `<button type="button" class="primary" id="mnSign"${mine[m.id] ? " disabled" : ""}>${mine[m.id] ? "Tôi đã xác nhận" : "Tôi xác nhận biên bản"}</button>` : ""}<button type="button" class="primary" id="mnDocx">Tải Word (.docx)</button><button type="button" id="mnHtml">Tải .html (in PDF)</button><button type="button" id="mnMd">.md</button><button type="button" id="mnCopy">Sao chép</button><button type="button" id="mnTasks">Xem đầu việc</button>${m.status !== "confirmed" ? '<button type="button" id="mnEdit">Sửa nháp</button>' : ""}<button type="button" id="mnScript" style="margin-left:auto">Xem lời thoại</button>`; return; }
+  const dr = draft, opt = (arr, v) => arr.map(x => `<option${x === v ? " selected" : ""}>${esc(x)}</option>`).join(""), dtl = iso => { if(!iso) return ""; const d = new Date(iso); return isNaN(d) ? "" : ymd(d) + "T" + pad(d.getHours()) + ":" + pad(d.getMinutes()); };
+  body.innerHTML = `<p class="muted small" style="margin-top:0">Ben đã soạn nháp. Host rà soát: mỗi việc phải có người chịu trách nhiệm, chỉ số đo, bằng chứng, hạn. Ô có “CẦN CHỐT” là chỗ cuộc họp chưa nói rõ.</p>
+  <h3>I. Thông tin chung</h3>
   <div class="fgrid">
-    <label class="field w2">Ý chính (mỗi dòng một ý)<textarea rows="5" data-d="summary">${esc(areaVal(dr.summary))}</textarea></label>
-    <label class="field w2">Quyết định đã chốt (mỗi dòng một quyết định)<textarea rows="5" data-d="decisions">${esc(areaVal(dr.decisions))}</textarea></label>
+    <label class="field w2">Tên cuộc họp<input type="text" data-m="title" value="${esc(m.title||"")}"></label><label class="field">Đơn vị<input type="text" data-m="unit" value="${esc(m.unit||"ĐÔ THÀNH AUTO")}"></label><label class="field">Hình thức<select data-m="form">${opt(["Trực tiếp","Trực tuyến","Kết hợp trực tiếp và trực tuyến"], m.form||"Trực tiếp")}</select></label>
+    <label class="field">Bắt đầu<input type="datetime-local" data-m="startedAt" value="${dtl(m.startedAt)}" style="color-scheme:dark"></label><label class="field">Kết thúc<input type="datetime-local" data-m="endedAt" value="${dtl(m.endedAt)}" style="color-scheme:dark"></label><label class="field w2">Địa điểm<input type="text" data-m="place" value="${esc(m.place||"")}"></label>
+    <label class="field w2">Chủ trì<input type="text" data-m="host" value="${esc(m.host||"")}"></label><label class="field w2">Thư ký<input type="text" data-m="secretary" value="${esc(m.secretary||"Ben (trợ lý AI), ghi lời thoại tự động")}"></label>
+    <label class="field w2">Thành phần (mỗi dòng một người)<textarea rows="3" data-m="people">${esc(areaVal(m.people))}</textarea></label><label class="field w2">Vắng mặt<textarea rows="3" data-m="absent">${esc(areaVal(m.absent))}</textarea></label>
+    <label class="field w2">Lý do triệu tập<textarea rows="2" data-d="reason">${esc(dr.reason || m.reason || "")}</textarea></label><label class="field w2">Mục tiêu<textarea rows="2" data-m="goal">${esc(m.goal||"")}</textarea></label>
   </div>
-  <h3 style="margin-top:12px">Đầu việc</h3>
+  <h3 style="margin-top:12px">Nội dung</h3>
+  <div class="fgrid"><label class="field w2">Tóm tắt ý chính (mỗi dòng một ý)<textarea rows="4" data-d="summary">${esc(areaVal(dr.summary))}</textarea></label>
+    <label class="field w2">Kết luận của chủ trì (mỗi dòng một kết luận)<textarea rows="4" data-d="decisions">${esc(areaVal(dr.decisions))}</textarea></label></div>
+  ${dr.agendaItems.map((a,i) => `<div class="fgrid" data-ai="${i}" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--glass-line)"><label class="field w2">Mục ${i+1} trong chương trình<input type="text" data-a="item" value="${esc(a.item)}"></label><label class="field w2">Kết luận mục này<input type="text" data-a="conclusion" value="${esc(a.conclusion)}"></label>
+    <label class="field w4">Diễn biến và ý kiến (dòng “Tên: ý kiến” là ý kiến của người đó)<textarea rows="4" data-a="body">${esc(a.summary.concat(a.points.map(p => (p.speaker ? p.speaker + ": " : "Ý kiến: ") + p.text)).join("\n"))}</textarea></label></div>`).join("")}
+  <div class="toolbar"><button type="button" id="mnAddA">+ Thêm mục chương trình</button></div>
+  <h3>Phân công thực hiện</h3>
   <div style="overflow-x:auto"><table class="drafttbl"><thead><tr><th>Đầu việc</th><th>Người chịu trách nhiệm</th><th>Phòng ban</th><th>Phối hợp/xác nhận (phẩy)</th><th>Chỉ số</th><th>Mục tiêu</th><th>Đơn vị</th><th>Bằng chứng bắt buộc</th><th>Bắt đầu</th><th>Hạn</th><th>Ưu tiên</th><th>Việc làm ngay 24h</th><th></th></tr></thead><tbody>
   ${dr.tasks.map((t,i) => `<tr data-ti="${i}"><td style="min-width:200px"><input data-t="title" value="${esc(t.title)}"></td><td style="min-width:140px"><input data-t="owner" value="${esc(t.owner)}"></td><td><select data-t="dept">${opt(DEPTS, t.dept)}</select></td><td style="min-width:140px"><input data-t="coDepts" value="${esc((t.coDepts||[]).join(", "))}"></td><td style="min-width:150px"><input data-t="kpiName" value="${esc(t.kpiName)}"></td><td style="min-width:80px"><input data-t="kpiTarget" value="${esc(t.kpiTarget)}"></td><td style="min-width:60px"><input data-t="kpiUnit" value="${esc(t.kpiUnit)}"></td><td style="min-width:170px"><input data-t="evidenceReq" value="${esc(t.evidenceReq)}"></td><td><input type="date" data-t="start" value="${esc(t.start)}"></td><td><input type="date" data-t="due" value="${esc(t.due)}"></td><td><select data-t="priority">${opt(["P1","P2","P3"], t.priority)}</select></td><td style="min-width:160px"><input data-t="firstStep" value="${esc(t.firstStep)}"></td><td><button type="button" data-rm="${i}" aria-label="Bỏ dòng">✕</button></td></tr>`).join("")}
   </tbody></table></div>
@@ -653,33 +777,44 @@ function drawMinutes(){
     <label class="field w2">Vấn đề chưa chốt<textarea rows="3" data-d="openQuestions">${esc(areaVal(dr.openQuestions))}</textarea></label>
     <label class="field w4">Cuộc họp tiếp theo<input type="text" data-d="nextMeeting" value="${esc(dr.nextMeeting)}"></label>
   </div>`;
-  $("minFoot").innerHTML = `<button type="button" class="primary" id="mnConfirm"${canAdmin ? "" : ' disabled title="Chỉ Host (quyền Editor) chốt biên bản"'}>Host chốt biên bản &amp; giao việc</button><button type="button" id="mnSave">Lưu nháp</button><button type="button" id="mnPreview">Xem trước</button><button type="button" id="mnMd">Xuất .md</button><button type="button" id="mnHtml">Xuất .html</button><button type="button" id="mnScript" style="margin-left:auto">Xem lời thoại</button>`;
+  $("minFoot").innerHTML = `<button type="button" class="primary" id="mnConfirm"${canAdmin ? "" : ' disabled title="Chỉ Host (quyền Editor) chốt biên bản"'}>Host chốt biên bản &amp; giao việc</button><button type="button" id="mnSave">Lưu nháp</button><button type="button" id="mnPreview">Xem bản in</button><button type="button" id="mnDocx">Tải Word (.docx)</button><button type="button" id="mnHtml">.html</button><button type="button" id="mnScript" style="margin-left:auto">Xem lời thoại</button>`;
 }
+let metaEdit = null;
 function readDraft(){
-  const b = $("minBody"); if(minMode !== "edit") return;
-  b.querySelectorAll("[data-d]").forEach(el => { const k = el.dataset.d; draft[k] = el.tagName === "TEXTAREA" ? el.value.split("\n").map(s => s.trim()).filter(Boolean) : el.value.trim(); });
+  metaEdit = null; const b = $("minBody"); if(minMode !== "edit" || !b.querySelector("[data-d]")) return;
+  b.querySelectorAll("[data-d]").forEach(el => { const k = el.dataset.d; draft[k] = el.tagName === "TEXTAREA" && k !== "reason" ? el.value.split("\n").map(s => s.trim()).filter(Boolean) : el.value.trim(); });
+  draft.agendaItems = [...b.querySelectorAll("[data-ai]")].map(box => { const g = k => box.querySelector(`[data-a="${k}"]`).value.trim(), sm = [], pts = [];
+    g("body").split("\n").map(s => s.trim()).filter(Boolean).forEach(l => { const x = splitSpeaker(l); if(x.sp) pts.push({speaker: /^ý kiến$/i.test(x.sp) ? "" : x.sp, text: x.text}); else sm.push(l); });
+    return {item: g("item"), conclusion: g("conclusion"), summary: sm, points: pts}; }).filter(a => a.item || a.summary.length || a.points.length);
   b.querySelectorAll("tr[data-ti]").forEach(tr => { const t = draft.tasks[+tr.dataset.ti]; tr.querySelectorAll("[data-t]").forEach(el => { const k = el.dataset.t; t[k] = k === "coDepts" ? el.value.split(/[,;]/).map(s => s.trim()).filter(x => DEPTS.includes(x)) : el.value.trim(); }); });
   b.querySelectorAll("tr[data-bi]").forEach(tr => { const x = draft.blockers[+tr.dataset.bi]; tr.querySelectorAll("[data-b]").forEach(el => { x[el.dataset.b] = el.value.trim(); }); });
+  const mm = {}; b.querySelectorAll("[data-m]").forEach(el => { const k = el.dataset.m; let v = el.value.trim();
+    if(k === "people" || k === "absent") v = v.split("\n").map(s => s.trim()).filter(Boolean); else if((k === "startedAt" || k === "endedAt") && v){ const d = new Date(v); v = isNaN(d) ? "" : d.toISOString(); }
+    mm[k] = v; }); metaEdit = mm;
 }
-function htmlDoc(title, md){ return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>${esc(title)}</title><style>body{font-family:"Times New Roman",serif;font-size:13pt;line-height:1.45;margin:2cm;color:#111}h1{text-align:center;font-size:18pt}h2,h3{font-size:14pt;margin:14pt 0 6pt}table{border-collapse:collapse;width:100%;font-size:11pt}th,td{border:1px solid #444;padding:4px 6px;text-align:left;vertical-align:top}th{background:#eee}</style></head><body>${mdToHtml(md)}</body></html>`; }
+async function saveMeta(){ if(metaEdit){ const x = {...metaEdit}; metaEdit = null; if(!x.startedAt) delete x.startedAt; if(!x.endedAt) delete x.endedAt; await putMeeting({id: minId, ...x}); } }
+function fileBase(m){ return "bien-ban-" + String(m.title||"cuoc-hop").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/gi,"d").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60) + "-" + String(m.startedAt||nowIso()).slice(0,10); }
 $("minDlg").addEventListener("click", async e => {
   if(e.target.closest("[data-close]")) return $("minDlg").close();
-  const id = e.target.id, m = S.meetings[minId] || {id: minId};
-  if(e.target.dataset.rm != null){ readDraft(); draft.tasks.splice(+e.target.dataset.rm, 1); return drawMinutes(); }
-  if(e.target.dataset.rmb != null){ readDraft(); draft.blockers.splice(+e.target.dataset.rmb, 1); return drawMinutes(); }
-  if(id === "mnAddT"){ readDraft(); draft.tasks.push({title:"", owner:"", dept:"Kinh doanh", coDepts:[], kpiName:"", kpiUnit:"", kpiBase:"", kpiTarget:"", kpiDir:"up", evidenceReq:"", start: ymd(), due: addDays(ymd(), 7), priority:"P2", firstStep:""}); return drawMinutes(); }
-  if(id === "mnAddB"){ readDraft(); draft.blockers.push({text:"", owner:"", due: addDays(ymd(), 3), solution:""}); return drawMinutes(); }
-  if(id === "mnSave"){ readDraft(); await putMeeting({id: minId, draft}); return toast("Đã lưu nháp"); }
+  const id = e.target.id; let m = meet(minId) || {id: minId};
+  if(e.target.dataset.rm != null){ readDraft(); await saveMeta(); draft.tasks.splice(+e.target.dataset.rm, 1); return drawMinutes(); }
+  if(e.target.dataset.rmb != null){ readDraft(); await saveMeta(); draft.blockers.splice(+e.target.dataset.rmb, 1); return drawMinutes(); }
+  if(id === "mnAddT"){ readDraft(); await saveMeta(); draft.tasks.push({title:"", owner:"", dept:"Kinh doanh", coDepts:[], kpiName:"", kpiUnit:"", kpiBase:"", kpiTarget:"", kpiDir:"up", evidenceReq:"", start: ymd(), due: addDays(ymd(), 7), priority:"P2", firstStep:""}); return drawMinutes(); }
+  if(id === "mnAddB"){ readDraft(); await saveMeta(); draft.blockers.push({text:"", owner:"", due: addDays(ymd(), 3), solution:""}); return drawMinutes(); }
+  if(id === "mnAddA"){ readDraft(); await saveMeta(); draft.agendaItems.push({item:"", summary:[], points:[], conclusion:""}); return drawMinutes(); }
+  if(id === "mnSave"){ readDraft(); await saveMeta(); await putMeeting({id: minId, draft}); return toast("Đã lưu nháp"); }
   if(id === "mnEdit"){ minMode = "edit"; return drawMinutes(); }
-  if(id === "mnPreview"){ readDraft(); $("minBody").innerHTML = `<div class="minutes">${mdToHtml(minutesMd(m, draft, false))}</div><div class="toolbar"><button type="button" id="mnEdit">Quay lại sửa</button></div>`; return; }
-  if(id === "mnMd" || id === "mnHtml" || id === "mnCopy"){ readDraft(); const md = minutesMd(m, draft, m.status === "confirmed"), fn = "bien-ban-" + String(m.title||"cuoc-hop").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/gi,"d").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") + "-" + String(m.startedAt||nowIso()).slice(0,10);
-    if(id === "mnCopy"){ try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(_){ toast("Trình duyệt chặn sao chép"); } return; }
-    return CV.offerFile(fn + (id === "mnMd" ? ".md" : ".html"), id === "mnMd" ? md : htmlDoc(m.title || "Biên bản", md), "Biên bản"); }
+  if(id === "mnPreview"){ readDraft(); await saveMeta(); m = meet(minId) || m; $("minBody").innerHTML = `<style>${PAPER_CSS}</style><div style="background:#fff;border-radius:8px;padding:28px 34px;max-width:900px;margin:0 auto">${minutesHtml(model(m, draft, false))}</div><div class="toolbar"><button type="button" id="mnEdit">Quay lại sửa</button></div>`; return; }
+  if(["mnMd","mnHtml","mnCopy","mnDocx"].includes(id)){ readDraft(); await saveMeta(); m = meet(minId) || m; const conf = m.status === "confirmed", fn = fileBase(m);
+    if(id === "mnCopy"){ try{ await navigator.clipboard.writeText(minutesMd(m, draft, conf)); toast("Đã sao chép"); }catch(_){ toast("Trình duyệt chặn sao chép"); } return; }
+    if(id === "mnDocx"){ toast("Đang tạo file Word…"); try{ const blob = await docxBlob(m, draft, conf); const dl = CV.downloads; if(!dl){ toast("Chỉ tải được khi mở trong Claude; dùng .html rồi mở bằng Word"); return; } await dl.save({filename: fn + ".docx", data: blob}); toast("Đã lưu " + fn + ".docx"); }
+      catch(err){ if(err && err.code === "declined") return; toast(err && err.message === "docx" ? "Không nạp được thư viện Word, dùng .html rồi mở bằng Word" : "Chưa tạo được file Word"); } return; }
+    return CV.offerFile(fn + (id === "mnMd" ? ".md" : ".html"), id === "mnMd" ? minutesMd(m, draft, conf) : htmlDoc(m, draft, conf), "Biên bản"); }
   if(id === "mnTasks"){ $("minDlg").close(); $("ofText").value = m.title || ""; $("ofStatus").value = ""; tileF = ""; document.querySelector('[data-otab="T"]').click(); renderOps(); $("opsSec").scrollIntoView({behavior:"smooth"}); return; }
-  if(id === "mnScript"){ const ls = await meetingLines(minId); $("minBody").innerHTML = `<div class="tscript" style="max-height:60vh">${ls.map(l => `<p><span class="tm">${esc(l.ts)}</span>${l.tag ? `<span class="tag ${TAGS[l.tag]||""}">${esc(l.tag)}</span>` : ""}${esc(l.text)}</p>`).join("") || '<p class="muted">Không có lời thoại.</p>'}</div><div class="toolbar"><button type="button" id="mnBack">Quay lại biên bản</button></div>`; return; }
+  if(id === "mnScript"){ readDraft(); await saveMeta(); const ls = await meetingLines(minId); $("minBody").innerHTML = `<div class="tscript" style="max-height:60vh">${ls.map(l => `<p><span class="tm">${esc(l.ts||"")}</span>${l.tag ? `<span class="tag ${TAGS[l.tag]||""}">${esc(l.tag)}</span>` : ""}${l.sp ? `<b>${esc(l.sp)}:</b> ` : ""}${esc(l.text)}</p>`).join("") || '<p class="muted">Không có lời thoại.</p>'}</div><div class="toolbar"><button type="button" id="mnBack">Quay lại biên bản</button></div>`; return; }
   if(id === "mnBack") return drawMinutes();
   if(id === "mnSign"){ const note = await ask("Xác nhận biên bản. Ghi chú (có thể để trống):", {ph:"VD: Đồng ý, phòng DV nhận việc 2 và 5"}); if(note === null) return; if(await writeSignoff(s => { s.meetings = s.meetings || {}; s.meetings[m.id] = {at: nowIso(), note}; })){ toast("Đã xác nhận biên bản"); setTimeout(drawMinutes, 300); } return; }
-  if(id === "mnConfirm"){ readDraft();
+  if(id === "mnConfirm"){ readDraft(); await saveMeta(); m = meet(minId) || m;
     const bad = draft.tasks.map((t,i) => [i+1, [!t.title && "tên việc", !t.owner && "người chịu trách nhiệm", !t.kpiName && "chỉ số", !t.evidenceReq && "bằng chứng", !t.due && "hạn", /CẦN CHỐT/i.test(Object.values(t).join(" ")) && "còn “CẦN CHỐT”"].filter(Boolean)]).filter(x => x[1].length);
     const badB = draft.blockers.filter(b => b.text && (!b.owner || !b.due));
     if(bad.length || badB.length) return toast("Chưa chốt được: " + bad.map(([i,l]) => `việc ${i} thiếu ${l.join(", ")}`).concat(badB.length ? ["điểm nghẽn thiếu người xử lý/hạn"] : []).join("; ").slice(0, 220));
@@ -688,7 +823,7 @@ $("minDlg").addEventListener("click", async e => {
     for(const x of draft.tasks){ const t = blankTask({title: x.title, owner: x.owner, dept: x.dept, coDepts: x.coDepts, priority: x.priority, kpi: {name: x.kpiName, unit: x.kpiUnit, base: x.kpiBase, target: x.kpiTarget, actual: "", dir: x.kpiDir || "up"}, evidenceReq: x.evidenceReq, start: x.start || ymd(), due: x.due, firstStep: x.firstStep, meetingId: m.id}); ids.push(t.id); await saveTask(t, "Giao việc từ biên bản " + (m.title||"")); }
     for(const b of draft.blockers.filter(b => b.text)){ const t = blankTask({title: "Gỡ nghẽn: " + b.text, owner: b.owner, dept: "Ban Giám đốc", priority: "P1", kpi: {name: "Điểm nghẽn được xử lý dứt điểm", unit: "việc", base: 0, target: 1, actual: "", dir: "up"}, evidenceReq: "Văn bản/ảnh chụp/xác nhận của bên liên quan chứng minh đã xử lý xong" + (b.solution ? "; phương án: " + b.solution : ""), start: ymd(), due: b.due, firstStep: b.solution, meetingId: m.id}); ids.push(t.id); await saveTask(t, "Gỡ nghẽn từ biên bản"); }
     if(rec && rec.id === minId) stopMeeting();
-    await putMeeting({id: m.id, status: "confirmed", minutes: draft, draft, taskIds: (m.taskIds || []).concat(ids), confirmedAt: nowIso(), confirmedBy: meId()});
+    await putMeeting({id: m.id, status: "confirmed", minutes: draft, draft, taskIds: (m.taskIds || []).concat(ids), confirmedAt: nowIso(), confirmedBy: meId(), endedAt: m.endedAt || nowIso()});
     minMode = "view"; drawMinutes(); toast(`Đã chốt biên bản, giao ${ids.length} đầu việc`); if(rec && rec.id === minId){ rec = null; $("mScript").innerHTML = '<p class="muted">Cuộc họp đã chốt. Bấm “Bắt đầu ghi” cho cuộc họp mới.</p>'; setRecUi("idle"); }
   }
 });
@@ -744,7 +879,7 @@ CV.tools.push(
      if(i.blocker) t.blockers = (t.blockers||[]).concat([{text: i.blocker, since: nowIso(), by: meId(), resolved: false}]); if(i.need_support) t.support = {open: true, text: i.need_support, at: nowIso(), by: meId(), takenBy: null};
      if(!(await saveTask(t, "Ben cập nhật " + p + "%"))) throw new Error("Chưa lưu được"); return {ok: true, suc_khoe: HL[health(t).k][0], ly_do: health(t).reasons}; }},
   {name:"get_meeting_transcript", label:"Đang đọc lời thoại…", description:"Lời thoại cuộc họp đang ghi (hoặc gần nhất), để trả lời ai đã nói gì, đã chốt gì.", inputSchema:{type:"object",properties:{last_lines:{type:"number"}}},
-   execute: async ({last_lines}) => { const m = rec ? S.meetings[rec.id] || {id: rec.id} : Object.values(S.meetings).filter(Boolean).sort((a,b) => String(b.startedAt).localeCompare(String(a.startedAt)))[0]; if(!m) return "Chưa có cuộc họp";
+   execute: async ({last_lines}) => { const m = rec ? meet(rec.id) || {id: rec.id} : Object.values(S.meetings).filter(Boolean).sort((a,b) => String(b.startedAt).localeCompare(String(a.startedAt)))[0]; if(!m) return "Chưa có cuộc họp";
      const ls = await meetingLines(m.id); return `Cuộc họp ${m.title || ""}:\n` + ls.slice(-Math.min(+last_lines || 150, 400)).map(l => `[${l.ts}]${l.tag ? " (" + l.tag + ")" : ""} ${l.text}`).join("\n"); }},
 );
 CV.ctx = () => { const td = ymd(), ts = tasksArr().filter(t => t.status !== "cancel" && t.status !== "done"), H = ts.map(t => [t, health(t, td)]);
@@ -773,8 +908,8 @@ use("db").then(async d => {
   const loadT = setTimeout(() => { if(!syncOk){ $("opsSync").textContent = "Chưa kết nối được dữ liệu chung, đang thử lại…"; } }, 10000);
   const ok = snap => { if(!snap.metadata.fromCache && !syncOk){ syncOk = true; clearTimeout(loadT); renderSync(); } };
   const onErr = e => { clearTimeout(loadT); syncOk = false; renderSync(); if(e && e.code === "revoked") $("opsSync").textContent = "Mất quyền truy cập dữ liệu chung"; };
-  const coll = (name, key) => db.collection(name).onSnapshot(s => { const o = {}; s.docs.forEach(x => { o[x.id] = {...x.data(), id: x.data().id || x.id}; }); S[key] = o; ok(s); scheduleRender(); }, onErr);
-  coll("tasks", "tasks"); coll("meetings", "meetings"); coll("signoffs", "signoffs");
+  const coll = (name, key, after) => db.collection(name).onSnapshot(s => { const o = {}; s.docs.forEach(x => { o[x.id] = {...x.data(), id: x.data().id || x.id}; }); S[key] = o; if(after) after(); ok(s); scheduleRender(); }, onErr);
+  coll("tasks", "tasks"); coll("meetings", "meetings", () => Object.keys(mLocal).forEach(id => { const s = S.meetings[id]; if(s && String(s.updatedAt) >= String(mLocal[id].updatedAt)) delete mLocal[id]; })); coll("signoffs", "signoffs");
   db.doc("shared/changes").onSnapshot(s => { S.changes = s.exists ? (s.data().items || []) : []; ok(s); scheduleRender(); }, onErr);
   db.doc("shared/mapdata").onSnapshot(s => { ok(s); if(s.exists) applyMapdata(s.data()); }, onErr);
 });

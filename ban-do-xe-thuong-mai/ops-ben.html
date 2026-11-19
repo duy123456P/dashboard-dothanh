@@ -5,7 +5,17 @@
         <label class="field" for="mHost">Chủ trì (Host)<input id="mHost" type="text" placeholder="Họ tên, chức vụ"></label>
       </div>
       <label class="field" for="mPeople">Thành phần tham dự (mỗi dòng: Họ tên – Phòng ban)<textarea id="mPeople" rows="3" placeholder="Nguyễn Văn A – Kinh doanh&#10;Trần Thị B – Dịch vụ"></textarea></label>
+      <div class="bgrid">
+        <label class="field" for="mPlace">Địa điểm<input id="mPlace" type="text" placeholder="Phòng họp tầng 3, TP. Hồ Chí Minh"></label>
+        <label class="field" for="mForm">Hình thức<select id="mForm"><option>Trực tiếp</option><option>Trực tuyến</option><option>Kết hợp trực tiếp và trực tuyến</option></select></label>
+      </div>
+      <label class="field" for="mReason">Lý do triệu tập<input id="mReason" type="text" placeholder="VD: Bán lẻ T10 mới đạt 49% kế hoạch tháng"></label>
       <label class="field" for="mGoal">Mục tiêu cuộc họp<input id="mGoal" type="text" placeholder="Chốt kế hoạch về đích T11–T12"></label>
+      <details><summary class="muted small" style="cursor:pointer">Thêm: chương trình họp, vắng mặt, đơn vị, thư ký</summary>
+        <label class="field" for="mAgenda">Chương trình (mỗi dòng một mục)<textarea id="mAgenda" rows="3" placeholder="Đánh giá kết quả T10&#10;Kế hoạch T11–T12&#10;Phân công"></textarea></label>
+        <label class="field" for="mAbsent">Vắng mặt (mỗi dòng: Họ tên – lý do)<textarea id="mAbsent" rows="2"></textarea></label>
+        <div class="bgrid"><label class="field" for="mUnit">Đơn vị tổ chức<input id="mUnit" type="text" value="ĐÔ THÀNH AUTO"></label><label class="field" for="mSec">Thư ký<input id="mSec" type="text" placeholder="Ben (trợ lý AI)"></label></div>
+      </details>
       <div class="mtgrow">
         <button type="button" class="rec" id="mRec" aria-pressed="false">● Bắt đầu ghi</button>
         <span class="muted small" id="mState">Chưa ghi</span>
@@ -14,6 +24,7 @@
         <button type="button" data-tag="Ý chính">Ý chính</button><button type="button" data-tag="Quyết định">Quyết định</button><button type="button" data-tag="Giao việc">Giao việc</button><button type="button" data-tag="Điểm nghẽn">Điểm nghẽn</button><button type="button" data-tag="Rủi ro">Rủi ro</button></div>
       <div class="tscript" id="mScript" aria-live="polite"><p class="muted">Bấm “Bắt đầu ghi”: Ben chuyển lời nói trong phòng họp thành văn bản có mốc giờ. Nói “Ben ơi …” để ra lệnh giữa cuộc họp, ví dụ “Ben ơi mở Cần Thơ” hoặc “Ben ơi số bán Trường Vũ là bao nhiêu”.</p></div>
       <div class="mtgrow"><label class="sr" for="mNote">Ghi chú tay</label><input id="mNote" type="text" placeholder="Gõ ghi chú/ý kiến, Enter để thêm (dùng khi không ghi âm được)" style="flex:1"><button type="button" id="mNoteAdd">Thêm</button></div>
+      <div class="mtgrow"><label class="chip" style="cursor:pointer">Nhập lời thoại từ file (.txt .srt .vtt .json)<input type="file" id="mImport" hidden accept=".txt,.srt,.vtt,.json,.md,text/plain,application/json"></label><span class="muted tiny">Từ công cụ Thư ký họp chạy trên máy, Whisper, Zoom/Teams/Google Meet</span></div>
       <div class="toolbar" style="margin:0"><button type="button" class="primary" id="mSum">Ben tổng hợp &amp; lập biên bản</button><button type="button" id="mLocal">Lập nhanh từ đánh dấu</button><button type="button" id="mOpen">Danh sách cuộc họp</button></div>
       <p class="muted tiny" style="margin:0">Ben ghi lời thoại thành văn bản (không lưu file âm thanh). Mỗi phiên nghe tối đa 60 phút; khi hết, bấm ghi tiếp, văn bản cũ vẫn giữ.</p>
     </div>
