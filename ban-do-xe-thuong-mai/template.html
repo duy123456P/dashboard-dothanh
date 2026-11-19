@@ -316,6 +316,8 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
         <div class="loadmsg" id="loadmsg">Đang dựng địa hình 3D…</div>
         <div class="maphud"><span>Relief 3D · 34 tỉnh / thành</span><span>Kéo: xoay · Cuộn: phóng to · Chuột phải: di chuyển</span></div>
         <div class="maptools">
+          <button id="btnInfra" type="button" aria-pressed="true">Giao thông &amp; đô thị</button>
+          <button id="btnSites" type="button" aria-pressed="true">Đề xuất đại lý</button>
           <button id="btnBars" type="button" aria-pressed="false">Cột chỉ số</button>
           <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
           <button id="btnPins" type="button" aria-pressed="true">Trung tâm</button>
@@ -342,6 +344,13 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <div id="matrixSum" style="display:flex;gap:6px;flex-wrap:wrap"></div>
     </div>
     <div class="matrixwrap" id="matrix" style="margin-top:10px"></div>
+  </section>
+
+  <section class="glass pad" id="siteSec">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div><h2>Đề xuất mở đại lý mới</h2><p class="muted" style="margin:4px 0 0">Chấm điểm 75 đô thị theo nhu cầu, khoảng trống mạng lưới, trục giao thông huyết mạch và nút logistics. Cột sáng hồng trên bản đồ là 10 vị trí tốt nhất; bấm một dòng để bay tới vị trí đó. Lọc theo khu vực bằng ô “Khu vực kinh doanh”.</p></div>
+    </div>
+    <div id="siteBody" style="margin-top:12px"></div>
   </section>
 
   <section class="glass pad" id="structSec">
@@ -477,6 +486,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
 <script id="center-data" type="application/json">/*__CENTERS__*/</script>
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
+<script id="infra-data" type="application/json">/*__INFRA__*/</script>
 <script>
 const RELIEF_SRC = "/*__RELIEF__*/";
 const HEIGHT_SRC = "/*__HEIGHT__*/";
@@ -743,7 +753,7 @@ async function initScene(){
   stage.addEventListener("pointerup", e => { if(down && Math.hypot(e.clientX-down[0], e.clientY-down[1]) < 5) onClick(); down = null; });
   document.getElementById("loadmsg").hidden = true;
   introT0 = matchMedia("(prefers-reduced-motion: reduce)").matches ? -1e9 : performance.now();
-  buildPins(); buildBars(); drawOverlay();
+  buildPins(); buildBars(); drawOverlay(); buildInfra(); buildSites();
   requestAnimationFrame(loop);
 }
 /* crisp vector borders draped on the terrain (pixel-width lines, sharp at any zoom) */
@@ -788,7 +798,7 @@ function applyExag(){
   const sa = skirtMesh.geometry.attributes.position, ra = rimLine.geometry.attributes.position, tp = terrain.geometry.attributes.position;
   skirtEdge.forEach((v,k) => { const y = tp.getY(v) * exagShown; sa.setY(k*2, y); ra.setY(k, y); });
   sa.needsUpdate = true; ra.needsUpdate = true; skirtMesh.geometry.computeVertexNormals(); skirtMesh.geometry.computeBoundingSphere(); rimLine.geometry.computeBoundingSphere();
-  placePins(); placeBars();
+  placePins(); placeBars(); placeInfra();
 }
 /* overlay texture: province fills only (borders are vector lines) */
 function px(lng, lat){ return [(lng-LNG0)/(LNG1-LNG0)*OW, (LAT1-lat)/(LAT1-LAT0)*OH]; }
@@ -902,6 +912,8 @@ function pick(){
   const now = performance.now(); if(now - lastPick < 40) return; lastPick = now;
   raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera);
   if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
+  if(showSites && siteGroup){ const hs = raycaster.intersectObjects(siteGroup.children, true).find(h => h.object.userData.site); if(hs){ setHover(hs.object.userData.site.prov.name); showTipHtml(infraTip({site: hs.object.userData.site})); return; } }
+  if(showInfra && infraGroup){ const hi = raycaster.intersectObjects(infraGroup.children.filter(o => o.isSprite), false)[0]; if(hi){ const d = hi.object.userData; if(d.city){ const pv = provinceOfPoint(d.city.lng, d.city.lat); if(pv) setHover(pv.name); } showTipHtml(infraTip(d)); return; } }
   if(showBars){ const hb = raycaster.intersectObjects(barGroup.children, false)[0]; if(hb){ setHover(hb.object.userData.name); showTip(hb.object.userData.name); return; } }
   const hit = raycaster.intersectObject(terrain, false)[0];
   if(!hit){ setHover(null); showTip(null); return; }
@@ -924,11 +936,13 @@ function loop(t){
   if(document.hidden) return;
   const k = Math.min(1, (t - introT0)/1600), e = 1 - Math.pow(1-k, 3), target = exag * (k >= 1 ? 1 : e);
   if(Math.abs(target - exagShown) > 0.01){ exagShown = target; applyExag(); }
+  stepInfra(t);
   controls.autoRotate = autoRotate; controls.update();
   // keep pins and border glow in proportion: slimmer when zoomed far out, full size up close
   const dist = camera.position.distanceTo(controls.target), f = Math.max(0.55, Math.min(1.1, 170/dist));
   if(Math.abs(f - (loop.f || 0)) > 0.02){ loop.f = f;
     pinGroup.children.forEach(sp => { const z = sp.userData.sz * f; sp.scale.set(z*0.75, z, 1); });
+    if(infraGroup) infraGroup.children.forEach(sp => { if(sp.userData.sz){ const z = sp.userData.sz * f; sp.scale.set(z, z, 1); } });
     lineMats.forEach(m => { if(m.userData.base) m.linewidth = Math.max(1, m.userData.base * f); }); }
   if(needOverlay) drawOverlay();
   if(needHl) updateHighlight();
@@ -944,6 +958,10 @@ function showTip(name, center){
   if(x + w > innerWidth - 8) x = mouse.x - w - 18; if(y + h > innerHeight - 8) y = innerHeight - h - 8;
   tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px";
 }
+function showTipHtml(html){ tipEl.innerHTML = html; tipEl.hidden = false;
+  const w = tipEl.offsetWidth, h = tipEl.offsetHeight; let x = mouse.x + 18, y = mouse.y + 18;
+  if(x + w > innerWidth - 8) x = mouse.x - w - 18; if(y + h > innerHeight - 8) y = innerHeight - h - 8;
+  tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px"; }
 function centerTip(c){
   const r = findRow(c.province);
   return `<div class="t"><span class="dot" style="background:${css(c.type==="4S"?"--pin-4s":"--pin-3s")}"></span>${c.id}. ${esc(c.name)}</div>
@@ -1242,12 +1260,14 @@ let toastT; function toast(m){ const t=document.getElementById("toast"); t.textC
 function toggleBtn(id, get, set, after){ document.getElementById(id).addEventListener("click", () => { set(!get()); after(); }); }
 toggleBtn("btnBars", ()=>showBars, v=>showBars=v, () => { buildBars(); syncButtons(); renderLegend(); });
 toggleBtn("btnLabels", ()=>showLabels, v=>showLabels=v, syncButtons);
+toggleBtn("btnInfra", ()=>showInfra, v=>showInfra=v, () => { placeInfra(); syncButtons(); });
+toggleBtn("btnSites", ()=>showSites, v=>showSites=v, () => { placeInfra(); syncButtons(); });
 toggleBtn("btnPins", ()=>showPins, v=>showPins=v, () => { placePins(); syncButtons(); });
 toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v, syncButtons);
 document.getElementById("btnView").addEventListener("click", () => { if(!camera) return; viewIdx=(viewIdx+1)%VIEWS.length; setView(viewIdx); });
 document.getElementById("exag").addEventListener("input", e => { exag = +e.target.value; introT0 = -1e9; });
-function syncButtons(){ [["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
-function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); placePins(); }
+function syncButtons(){ [["btnInfra",showInfra],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
+function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); placePins(); buildSites(); }
 
 /* ---------- AI analyst ---------- */
 const ai = document.getElementById("ai"), fab = document.getElementById("aiFab"), log = document.getElementById("aiLog");
@@ -1260,6 +1280,7 @@ const QUICK = [
   ["Nên mở trung tâm ở đâu?", "Xếp hạng 8 tỉnh nên mở thêm trung tâm 3S/4S dựa trên số đăng ký mới, UIO, số xe trên mỗi trung tâm hiện có và động lực tăng trưởng. Nêu lý do và loại trung tâm phù hợp."],
   ["Địa hình & sản phẩm", "Phân tích ảnh hưởng của địa hình (miền núi, cao nguyên, đồng bằng) tới nhu cầu dòng xe và dịch vụ hậu mãi theo từng khu vực; đề xuất cấu hình xe và dịch vụ phù hợp."],
   ["Kế hoạch 90 ngày", "Đề xuất kế hoạch hành động 90 ngày cho mạng lưới: mục tiêu, việc cần làm theo khu vực, chỉ số theo dõi."],
+  ["Mở đại lý ở đâu?", "Dựa trên recommend_sites, đề xuất 5 vị trí mở đại lý/trung tâm mới ưu tiên nhất cho Đô Thành Auto: lý do (dân cư, trục giao thông, logistics, khoảng trống mạng lưới, đối thủ), hình thức phù hợp, mức đầu tư sơ bộ cần khảo sát, rủi ro và lộ trình 12 tháng. Dùng focus_location để chỉ vị trí số 1 trên bản đồ."],
   ["Đối thủ & cơ cấu", "Phân tích cơ cấu thị trường (tải trọng, loại thùng, màu sắc) và sự hiện diện của các thương hiệu đối thủ ở khu vực/tỉnh đang chọn (hoặc toàn quốc); chỉ ra phân khúc Đô Thành Auto nên tấn công, model đối thủ cần đối đầu và cách đánh. Dùng get_market_structure."],
   ["Khách trung thành", "Xây dựng chương trình khách hàng trung thành và lịch chiến dịch dịch vụ 12 tháng cho Đô Thành Auto theo mùa vụ, lễ hội và tâm lý từng vùng: mục tiêu, ưu đãi, kênh liên lạc, kịch bản chăm sóc, chỉ số đo (tỷ lệ quay lại xưởng, NPS, khách giới thiệu). Dùng get_customer_care cho các tỉnh trọng điểm."],
 ];
@@ -1280,7 +1301,7 @@ function syncSpeed(){ document.querySelectorAll("[data-speed]").forEach(b => b.s
 syncSpeed();
 
 /* instant reports: built from the page's own data, no AI wait */
-const INSTANT = [["Cơ cấu thị trường","struct"],["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"],["Chăm sóc KH tháng này","care"]];
+const INSTANT = [["Đề xuất đại lý mới","sites"],["Cơ cấu thị trường","struct"],["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"],["Chăm sóc KH tháng này","care"]];
 document.getElementById("aiInstant").innerHTML = INSTANT.map(([l,k])=>`<button type="button" data-r="${k}">${esc(l)}</button>`).join("");
 document.getElementById("aiInstant").addEventListener("click", e => { const b = e.target.closest("button[data-r]"); if(b) instantReport(b.dataset.r); });
 const n0 = v => fmtInt(v), p1 = v => fmt1(v) + "%";
@@ -1370,6 +1391,9 @@ ${suggestions(r).map(([,t])=>"- "+t.replace(/<\/?b>/g,"**")).join("\n")}
 ${r.campaigns.map(c=>"- "+c).join("\n")}
 - Vòng đời chăm sóc: ${LIFECYCLE.map(x=>x.replace(/<\/?b>/g,"")).join(" → ")}
 ${note}`};
+  }
+  if(kind === "sites"){
+    return {title:`Đề xuất mở đại lý mới ${zone || "toàn quốc"}`, md:`# Đề xuất mở đại lý mới ${zone || "toàn quốc"}\n_Ngày ${date} · chấm điểm ${SITES.length} đô thị theo nhu cầu, khoảng trống mạng lưới, giao thông huyết mạch, logistics_\n\n${sitesMarkdown(10, zone)}\n\n### Cách chấm điểm\n- 35% nhu cầu: ĐK mới xe tải của tỉnh phân bổ theo dân số đô thị (ước).\n- 30% khoảng trống: khoảng cách tới trung tâm 4S/3S gần nhất.\n- 20% giao thông: gần QL1/cao tốc và các quốc lộ huyết mạch, nút giao.\n- 15% logistics: cảng, cửa khẩu, KCN, sân bay trong 45 km.\n\n### Bước tiếp theo\n- Khảo sát mặt bằng 3–5 điểm đứng đầu: diện tích, lối ra vào xe tải, quy hoạch.\n- Xác minh số đăng ký và UIO thực tế tại địa phương.\n- Lập phương án tài chính và thời gian hoàn vốn cho từng hình thức.\n${note}`};
   }
   if(kind === "struct"){
     const list = zone ? all.filter(r=>r.zone===zone) : selected && pinned ? all.filter(r=>r.name===selected) : all, sc = zone ? zone : selected && pinned ? selected : "toàn quốc";
@@ -1535,6 +1559,11 @@ const AI_TOOLS = [
    inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
    execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
      return {tinh:r.name, mua_vu_T1_T12:r.season, ghi_chu_mua_vu:r.seasonNotes, le_hoi:r.festivals, tam_ly:r.psyche, dan_toc:r.ethnic, dac_san:r.specialties, van_hoa_kinh_doanh:r.culture, chien_dich:r.campaigns, uio:r._uio, trung_tam:centersOf(r.name).map(c=>c.name)}; }},
+  {name:"recommend_sites", description:"Danh sách vị trí đề xuất mở đại lý/trung tâm mới (đô thị đông dân, trục giao thông huyết mạch, cảng, cửa khẩu, KCN, khoảng trống mạng lưới) kèm điểm và lý do. zone để trống = toàn quốc.",
+   inputSchema:{type:"object",properties:{zone:{type:"string"},limit:{type:"number"}}},
+   execute: ({zone: z, limit}) => sitesMarkdown(Math.min(+limit || 10, 20), ZONES.find(x => norm(x) === norm(z||"")) || "") },
+  {name:"focus_location", description:"Bay camera bản đồ tới một đô thị hoặc vị trí đề xuất theo tên.", inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
+   execute: ({name}) => { const s = SITES.find(x => norm(x.name) === norm(name||"")) || SITES.find(x => norm(x.name).includes(norm(name||""))); if(!s) throw new Error("Không tìm thấy " + name); select(s.prov.name, true); focusOn(s.lng, s.lat, 60); return "ok"; }},
   {name:"get_market_structure", description:"Cơ cấu thị trường xe tải (ước tính) theo tải trọng, loại thùng, màu sắc và mức hiện diện thương hiệu đối thủ cho một tỉnh, một khu vực kinh doanh hoặc toàn quốc (scope để trống).",
    inputSchema:{type:"object",properties:{scope:{type:"string",description:"Tên tỉnh, tên khu vực (vd 'Vùng 9') hoặc để trống"}}},
    execute: ({scope}) => { const z = ZONES.find(x => norm(x) === norm(scope||"")); const r = scope && !z ? findRow(String(scope)) : null;
@@ -1778,6 +1807,133 @@ function localAnswer(text){
   return null;
 }
 
+/* ---------- population centres, arteries, logistics nodes, dealer site scoring ---------- */
+const INFRA = JSON.parse(document.getElementById("infra-data").textContent);
+const NODE_LABEL = {port:"Cảng biển", gate:"Cửa khẩu", kcn:"Khu công nghiệp", air:"Sân bay"};
+function km(a, b){ const R = 6371, t = Math.PI/180, dLa = (b.lat-a.lat)*t, dLo = (b.lng-a.lng)*t, x = Math.sin(dLa/2)**2 + Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(x)); }
+function distToPath(p, path){
+  const kx = 111.32*Math.cos(p.lat*Math.PI/180), ky = 110.57; let best = 1e9;
+  for(let i=0;i<path.length-1;i++){ const ax = (path[i][0]-p.lng)*kx, ay = (path[i][1]-p.lat)*ky, bx = (path[i+1][0]-p.lng)*kx, by = (path[i+1][1]-p.lat)*ky;
+    const dx = bx-ax, dy = by-ay, L = dx*dx+dy*dy, t = L ? Math.max(0, Math.min(1, -(ax*dx+ay*dy)/L)) : 0; best = Math.min(best, Math.hypot(ax+dx*t, ay+dy*t)); }
+  return best;
+}
+function provinceOfPoint(lng, lat){ const n = provinceAt(lng, lat); if(n && !ISLANDS[n]) return findRow(n);
+  let best = null, bd = 1e9; rows.forEach(r => { const d = km({lng, lat}, {lng:r.lp[0], lat:r.lp[1]}); if(d < bd){ bd = d; best = r; } }); return best; }
+let SITES = [];
+function scoreSites(){
+  const cities = INFRA.cities.map(c => ({...c, prov: provinceOfPoint(c.lng, c.lat)}));
+  const popByProv = {}; cities.forEach(c => { popByProv[c.prov.name] = (popByProv[c.prov.name] || 0) + c.pop; });
+  SITES = cities.map(c => {
+    const r = c.prov, share = c.pop / popByProv[r.name], demand = r._market * share, uio = r._uio * share;
+    let near = null, dC = 1e9; CENTERS.forEach(x => { const d = km(c, x); if(d < dC){ dC = d; near = x; } });
+    const art = INFRA.arteries.map(a => ({a, d: distToPath(c, a.path)})).sort((x,y)=>x.d-y.d);
+    const onArt = art.filter(x => x.d < 8), main = art[0];
+    const traffic = Math.min(1, Math.max(0, 1 - main.d/40) * (main.a.tier === 1 ? 1 : main.a.tier === 2 ? 0.8 : 0.6) + Math.max(0, onArt.length-1)*0.15);
+    const nodes = INFRA.nodes.map(n => ({n, d: km(c, n)})).filter(x => x.d < 45).sort((a,b)=>a.d-b.d);
+    const logi = Math.min(1, nodes.reduce((s,x) => s + ({port:.35, gate:.35, kcn:.25, air:.15}[x.n.type]), 0));
+    const gap = Math.max(0, Math.min(1, (dC - 15)/85));
+    return {...c, demand, uio, near, dC, art: main, onArt, nodes, traffic, logi, gap};
+  });
+  const mxD = Math.max(...SITES.map(s => Math.sqrt(s.demand))) || 1;
+  SITES.forEach(s => {
+    s.demandN = Math.sqrt(s.demand)/mxD;
+    s.score = Math.round(100*(0.35*s.demandN + 0.2*s.traffic + 0.15*s.logi + 0.3*s.gap));
+    s.covered = s.dC < 15;
+    s.format = s.covered ? "Đã có trung tâm" : s.demand >= 5000 ? "Trung tâm 3S nội đô + điểm dịch vụ nhanh" : s.demand >= 1500 && s.gap >= 0.4 ? "Trung tâm 3S mới" : s.demand >= 600 ? "Đại lý ủy quyền / 3S vệ tinh"
+      : (s.traffic >= 0.7 && s.dC > 80) ? "Trạm dịch vụ – cứu hộ dọc tuyến" : "Đại lý vệ tinh / điểm dịch vụ liên kết";
+    const why = [`Cách trung tâm gần nhất ${fmtInt(s.dC)} km (${s.near.name})`];
+    why.push(s.art.d < 8 ? `Nằm trên ${s.art.a.name}${s.onArt.length > 1 ? ", giao với " + (s.onArt.length-1) + " trục khác" : ""}` : `Cách ${s.art.a.name} khoảng ${fmtInt(s.art.d)} km`);
+    if(s.nodes.length) why.push("Gần " + s.nodes.slice(0,3).map(x => `${x.n.name} (${fmtInt(x.d)} km)`).join(", "));
+    why.push(`Dân số đô thị ~${fmtInt(s.pop)} nghìn; ĐK mới xe tải vùng ~${fmtInt(s.demand)} xe/năm, UIO ~${fmtInt(s.uio)} xe (ước)`);
+    s.why = why;
+  });
+  SITES.sort((a,b) => b.score - a.score);
+}
+function topSites(n, z){ return SITES.filter(s => !s.covered && (!z || s.prov.zone === z)).slice(0, n); }
+
+/* 3D layers */
+let infraGroup, siteGroup, showInfra = true, showSites = true, camAnim = null;
+function glowTexture(c1, c2){ const cv = document.createElement("canvas"); cv.width = cv.height = 128; const c = cv.getContext("2d");
+  const g = c.createRadialGradient(64,64,0,64,64,62); g.addColorStop(0, c1); g.addColorStop(0.35, c2); g.addColorStop(1, "rgba(0,0,0,0)"); c.fillStyle = g; c.fillRect(0,0,128,128);
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t; }
+function badgeTexture(text, bg, fg){ const cv = document.createElement("canvas"); cv.width = 128; cv.height = 128; const c = cv.getContext("2d");
+  c.fillStyle = bg; c.strokeStyle = "#fff"; c.lineWidth = 7; c.beginPath(); c.roundRect ? c.roundRect(10,10,108,108,26) : c.rect(10,10,108,108); c.fill(); c.stroke();
+  c.fillStyle = fg; c.font = `700 ${text.length > 2 ? 40 : 54}px Chakra Petch, Arial`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(text, 64, 68);
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t; }
+function buildInfra(){
+  infraGroup = new THREE.Group(); scene.add(infraGroup);
+  const artGroup = new THREE.Group(); relief.add(artGroup); infraGroup.userData.art = artGroup;
+  [1,2,3].forEach(t => { const paths = INFRA.arteries.filter(a => a.tier === t).map(a => a.path); if(!paths.length) return;
+    const seg = ringSegments(paths, 0.016), w = t === 1 ? 4.2 : t === 2 ? 3 : 2.2;
+    artGroup.add(makeLines(seg, new THREE.Color("#1a0d00"), w + 3, 0.45));                       // dark casing so roads read on any terrain
+    artGroup.add(makeLines(seg, new THREE.Color(t === 1 ? "#ffd84a" : t === 2 ? "#ffab3d" : "#e8a35c"), w, 1)); });
+  const cityTex = glowTexture("rgba(255,255,255,1)", "rgba(255,214,140,.55)");
+  INFRA.cities.forEach(c => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: cityTex, transparent: true, depthWrite: false, sizeAttenuation: false, blending: THREE.AdditiveBlending}));
+    const z = 0.018 + 0.045*Math.sqrt(c.pop/8500); s.scale.set(z, z, 1); s.userData = {city: c, sz: z}; s.renderOrder = 4; infraGroup.add(s); });
+  const nodeTex = {port: badgeTexture("C", "#1597d8", "#fff"), gate: badgeTexture("CK", "#e0892b", "#fff"), kcn: badgeTexture("K", "#7b55d6", "#fff"), air: badgeTexture("SB", "#4a5a74", "#fff")};
+  INFRA.nodes.forEach(n => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: nodeTex[n.type], transparent: true, sizeAttenuation: false}));
+    s.scale.set(0.022, 0.022, 1); s.center.set(0.5, 0); s.userData = {node: n, sz: 0.022}; s.renderOrder = 4; infraGroup.add(s); });
+  siteGroup = new THREE.Group(); scene.add(siteGroup);
+  placeInfra();
+}
+function buildSites(){
+  if(!siteGroup) return;
+  while(siteGroup.children.length){ const o = siteGroup.children.pop(); o.traverse(x => { if(x.geometry) x.geometry.dispose(); if(x.material){ if(x.material.map) x.material.map.dispose(); x.material.dispose(); } }); }
+  topSites(10, zone).forEach((s,i) => {
+    const g = new THREE.Group(); g.userData = {site: s};
+    const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.9, 16, 20, 1, true), new THREE.MeshBasicMaterial({color: 0xff4d8d, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide}));
+    beam.position.y = 8; beam.userData = {site: s}; g.add(beam);
+    const ring = new THREE.Mesh(new THREE.RingGeometry(1.2, 1.7, 40), new THREE.MeshBasicMaterial({color: 0xff4d8d, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false}));
+    ring.rotation.x = -Math.PI/2; ring.position.y = 0.15; g.add(ring); g.userData.ring = ring;
+    const b = new THREE.Sprite(new THREE.SpriteMaterial({map: badgeTexture(String(i+1), "#ff4d8d", "#fff"), transparent: true, sizeAttenuation: false, depthTest: false}));
+    b.scale.set(0.03, 0.03, 1); b.center.set(0.5, 0); b.position.y = 16.5; b.userData = {site: s, sz: 0.03}; b.renderOrder = 6; g.add(b);
+    siteGroup.add(g);
+  });
+  placeInfra();
+}
+function placeInfra(){
+  if(!infraGroup) return;
+  infraGroup.children.forEach(s => { const d = s.userData.city || s.userData.node; if(!d) return; s.position.set(wx(d.lng), yOf(Math.max(heightAt(d.lng, d.lat),0)) + (s.userData.city ? 0.3 : 0.2), wz(d.lat)); });
+  infraGroup.visible = showInfra; if(infraGroup.userData.art) infraGroup.userData.art.visible = showInfra;
+  if(siteGroup){ siteGroup.children.forEach(g => { const s = g.userData.site; g.position.set(wx(s.lng), yOf(Math.max(heightAt(s.lng, s.lat),0)), wz(s.lat)); }); siteGroup.visible = showSites; }
+}
+function focusOn(lng, lat, dist){
+  if(!camera) return; dist = dist || 70;
+  const to = new THREE.Vector3(wx(lng), yOf(Math.max(heightAt(lng, lat),0)), wz(lat)), dir = camera.position.clone().sub(controls.target).normalize();
+  camAnim = {t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), tp: to.clone().add(dir.multiplyScalar(dist)), tt: to};
+}
+function stepInfra(t){
+  if(camAnim){ const k = Math.min(1, (t - camAnim.t0)/1100), e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k+2, 2)/2;
+    camera.position.lerpVectors(camAnim.fp, camAnim.tp, e); controls.target.lerpVectors(camAnim.ft, camAnim.tt, e); if(k >= 1) camAnim = null; }
+  if(siteGroup && showSites){ const p = 1 + 0.25*Math.sin(t/380); siteGroup.children.forEach(g => { g.userData.ring.scale.set(p, p, p); }); }
+}
+function infraTip(d){
+  if(d.city){ const s = SITES.find(x => x.name === d.city.name);
+    return `<div class="t">${esc(d.city.name)}</div><div class="muted">Đô thị · ${esc(s ? s.prov.name : "")}</div><div class="g num"><span>Dân số đô thị (ước)</span><b>${fmtInt(d.city.pop)} nghìn</b>
+      ${s ? `<span>ĐK mới xe tải vùng</span><b>${fmtInt(s.demand)} xe/năm</b><span>Trung tâm gần nhất</span><b>${fmtInt(s.dC)} km</b><span>Điểm vị trí</span><b>${s.score}/100</b>` : ""}</div>`; }
+  if(d.node) return `<div class="t">${esc(d.node.name)}</div><div class="muted">${NODE_LABEL[d.node.type]}</div>`;
+  const s = d.site, rk = topSites(10, zone).indexOf(s) + 1;
+  return `<div class="t"><span class="dot" style="background:var(--magenta)"></span>Đề xuất #${rk}: ${esc(s.name)}</div><div class="muted">${esc(s.prov.name)} · ${esc(s.format)} · điểm ${s.score}/100</div>
+    <ul style="margin:6px 0 0;padding-left:16px">${s.why.map(w=>`<li>${esc(w)}</li>`).join("")}</ul>`;
+}
+function renderSiteSection(){
+  const el = document.getElementById("siteBody"); if(!el) return;
+  const list = topSites(15, zone);
+  el.innerHTML = `<div class="tablewrap" style="max-height:none"><table class="btab"><thead><tr><th>#</th><th style="text-align:left">Vị trí đề xuất</th><th style="text-align:left">Hình thức</th><th>Điểm</th><th>ĐK mới vùng (ước)</th><th>UIO (ước)</th><th>Cách TT gần nhất</th><th style="text-align:left">Lý do</th></tr></thead><tbody>
+  ${list.map((s,i)=>`<tr class="siteRow" data-i="${SITES.indexOf(s)}" style="cursor:pointer"><td class="num">${i+1}</td><td style="text-align:left"><b>${esc(s.name)}</b><br><span class="muted">${esc(s.prov.name)} · ${esc(s.prov.zone)}</span></td>
+    <td style="text-align:left">${esc(s.format)}</td><td class="num"><b style="color:${s.score>=60?"var(--magenta)":s.score>=45?"var(--amber)":"var(--cyan)"}">${s.score}</b></td><td class="num">${fmtInt(s.demand)}</td><td class="num">${fmtInt(s.uio)}</td><td class="num">${fmtInt(s.dC)} km</td>
+    <td style="text-align:left;min-width:300px;white-space:normal;font-size:12.5px">${s.why.slice(0,3).map(esc).join(" · ")}</td></tr>`).join("") || '<tr><td colspan="8">Khu vực này đã được phủ trung tâm ở các đô thị chính.</td></tr>'}
+  </tbody></table></div>
+  <p class="muted" style="font-size:12px;margin:8px 0 0">Điểm vị trí = 35% nhu cầu (ĐK mới xe tải của tỉnh phân bổ theo dân số đô thị) + 30% khoảng trống mạng lưới (cách trung tâm hiện có) + 20% giao thông (gần trục huyết mạch, nút giao) + 15% logistics (cảng, cửa khẩu, KCN, sân bay trong 45 km). Đô thị cách trung tâm hiện có dưới 15 km được coi là đã phủ. Dân số đô thị và tọa độ là ước tính; cần khảo sát mặt bằng thực tế trước khi quyết định.</p>`;
+  el.querySelectorAll(".siteRow").forEach(tr => tr.addEventListener("click", () => { const s = SITES[+tr.dataset.i]; select(s.prov.name, true); focusOn(s.lng, s.lat, 60); document.getElementById("stage").scrollIntoView({behavior:"smooth", block:"center"}); }));
+}
+function sitesMarkdown(n, z){
+  const list = topSites(n, z);
+  return `| # | Vị trí | Tỉnh | Hình thức | Điểm | ĐK mới vùng | Cách TT gần nhất |\n|---|---|---|---|---|---|---|\n` +
+    list.map((s,i)=>`| ${i+1} | ${s.name} | ${s.prov.name} | ${s.format} | ${s.score} | ${fmtInt(s.demand)} | ${fmtInt(s.dC)} km |`).join("\n") +
+    "\n\n" + list.slice(0,5).map((s,i)=>`**${i+1}. ${s.name}:** ${s.why.join("; ")}.`).join("\n\n");
+}
+
 /* ---------- market structure: payload, body type, colour, brands, models ---------- */
 const PAYLOAD = ["< 1 tấn","1–2,5 tấn","2,5–3,5 tấn","3,5–5 tấn","5–10 tấn","10–15 tấn","> 15 tấn","Đầu kéo"];
 const BODY = ["Thùng lửng","Mui bạt","Thùng kín","Đông lạnh / bảo ôn","Ben tự đổ","Chuyên dùng (bồn, cẩu, trộn…)","Đầu kéo + sơ mi"];
@@ -1891,7 +2047,7 @@ function renderAll(){
   tamIn.value = tam; compute();
   chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
   document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
-  uioIn.value = uioNat; benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
+  uioIn.value = uioNat; scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 function init(){
   load(); renderAll();
