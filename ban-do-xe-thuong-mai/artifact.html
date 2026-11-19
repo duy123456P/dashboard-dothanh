@@ -1,4 +1,4 @@
-<title>Bản đồ Thị trường Hải Âu</title>
+<title>Bản đồ Thị trường Xe Thương mại</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -247,8 +247,8 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">Mạng lưới dịch vụ Hải Âu · Thị trường xe thương mại</div>
-      <h1>Bản đồ địa hình &amp; thị trường</h1>
+      <div class="eyebrow">34 tỉnh, thành · 11 khu vực · 35 trung tâm dịch vụ</div>
+      <h1>Bản đồ thị trường xe thương mại</h1>
       <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Ben” để lấy báo cáo tức thì hoặc nhờ phân tích.</p>
     </div>
     <div class="controls">
@@ -347,7 +347,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <p><b>Hành chính, xã hội:</b> số xã/phường theo các nghị quyết sắp xếp (tổng 3.321 đơn vị); GRDP/người 2025 của Quảng Ninh, TP.HCM, Hà Nội, Hải Phòng theo Cục Thống kê; cơ cấu kinh tế, đô thị hóa, tỷ lệ dân tộc là ước tính tổng hợp từ các tỉnh cũ, cần đối chiếu niên giám.</p>
     <p><b>Thế trận:</b> sức hấp dẫn = 60% quy mô ĐK mới + 25% tăng trưởng GRDP + 15% GRDP/người; sức mạnh = độ phủ trung tâm (và thị phần khi có doanh số). Mục tiêu 2026 đề xuất = ĐK mới × 1,08 × thị phần mục tiêu theo thế trận (12% / 8% / 15% / 5%).</p>
     <p><b>Phân bổ ĐK mới theo tỉnh (ước tính):</b> tổng thị trường (mặc định 100.000 xe/năm; VAMA ghi nhận khoảng 70.700 xe tải năm 2025, chưa gồm hãng ngoài VAMA và xe nhập) phân bổ theo GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng; cơ cấu phân khúc theo loại hình kinh tế. Mô hình định hướng; thay bằng số đăng ký thực tế khi có.</p>
-    <p><b>Mạng lưới:</b> 35 trung tâm (10 trung tâm 4S, 25 trung tâm 3S) và 11 khu vực kinh doanh theo bản đồ trung tâm dịch vụ Hải Âu; vị trí ghim gần đúng theo địa danh. Hạng ưu tiên: A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%.</p>
+    <p><b>Mạng lưới:</b> 35 trung tâm (10 trung tâm 4S, 25 trung tâm 3S) và 11 khu vực kinh doanh theo bản đồ mạng lưới trung tâm dịch vụ; vị trí ghim gần đúng theo địa danh. Hạng ưu tiên: A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%.</p>
   </section>
 </div>
 
@@ -1324,7 +1324,7 @@ function dataSnapshot(){
   return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (ước tính): ${uioNat} xe. Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
 }
 function rules(){
-  return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
+  return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
 Xưng "em", gọi người dùng là "anh/chị". Ben thường được dùng TRONG CUỘC HỌP: trả lời số trước, lời sau; câu ngắn. Mọi phép tính phải dùng công cụ calc; gộp/tách thị phần dùng merge_share / split_province. Khi viết sale talk: nghệ thuật bán hàng tư vấn (SPIN, Tính năng – Lợi ích – Bằng chứng, xử lý từ chối, chốt), dựa trên giá trị và tổng chi phí sở hữu, không chê bai đối thủ, không bịa thông số kỹ thuật. ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
@@ -1389,7 +1389,7 @@ function finishBubble(bubble, md, truncated, title, instant){
   bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") +
     `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button>${instant ? '<button type="button" data-a="deep" class="primary">Ben phân tích sâu</button>' : ""}</div>`;
   bubble.querySelector('[data-a="dl"]').addEventListener("click", () => { const d = new Date(), stamp = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường Hải Âu_\n\n${md}\n`, "Báo cáo"); });
+    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường xe thương mại_\n\n${md}\n`, "Báo cáo"); });
   const deep = bubble.querySelector('[data-a="deep"]');
   if(deep) deep.addEventListener("click", () => askAi(`Dựa trên báo cáo "${title}" dưới đây, hãy phân tích sâu: nhận định chính, rủi ro, cơ hội và kế hoạch hành động cụ thể (ai, làm gì, khi nào, chỉ số đo).\n\n${md.slice(0, 6000)}`));
   bubble.querySelector('[data-a="cp"]').addEventListener("click", async () => { try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
