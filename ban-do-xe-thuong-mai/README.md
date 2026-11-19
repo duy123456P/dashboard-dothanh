@@ -12,3 +12,6 @@ Bản đồ 3D 34 tỉnh/thành (NQ 202/2025/QH15) để phân tích thị trư�
 2. Cho cả nhóm: sửa `provinces.json`, chạy `python3 build.py`, rồi commit `index.html`.
 
 Các trường Đô Thành tự nhập: `dealers` (điểm bán), `sales` (doanh số), `target` (mục tiêu), `note`.
+
+## Nguồn dữ liệu (`sources.json`)
+VAMA, Cục CSGT, Cục Đăng kiểm, Thuế (lệ phí trước bạ), Cục Thống kê. Mỗi nguồn ghi kỳ số liệu và thời điểm lấy dữ liệu (`retrieved`, giờ Việt Nam); `updated` là lần cập nhật gần nhất. Sửa file này khi có số mới rồi chạy `python3 build.py`.
