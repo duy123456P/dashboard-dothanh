@@ -1,0 +1,20 @@
+  <div class="bpane bscroll" id="bMeet" hidden>
+    <div class="mtg">
+      <div class="bgrid">
+        <label class="field" for="mTitle">Cuộc họp<input id="mTitle" type="text" placeholder="VD: Giao ban kinh doanh tuần 47"></label>
+        <label class="field" for="mHost">Chủ trì (Host)<input id="mHost" type="text" placeholder="Họ tên, chức vụ"></label>
+      </div>
+      <label class="field" for="mPeople">Thành phần tham dự (mỗi dòng: Họ tên – Phòng ban)<textarea id="mPeople" rows="3" placeholder="Nguyễn Văn A – Kinh doanh&#10;Trần Thị B – Dịch vụ"></textarea></label>
+      <label class="field" for="mGoal">Mục tiêu cuộc họp<input id="mGoal" type="text" placeholder="Chốt kế hoạch về đích T11–T12"></label>
+      <div class="mtgrow">
+        <button type="button" class="rec" id="mRec" aria-pressed="false">● Bắt đầu ghi</button>
+        <span class="muted small" id="mState">Chưa ghi</span>
+      </div>
+      <div class="mtgrow small"><span class="muted">Đánh dấu câu vừa nói:</span>
+        <button type="button" data-tag="Ý chính">Ý chính</button><button type="button" data-tag="Quyết định">Quyết định</button><button type="button" data-tag="Giao việc">Giao việc</button><button type="button" data-tag="Điểm nghẽn">Điểm nghẽn</button><button type="button" data-tag="Rủi ro">Rủi ro</button></div>
+      <div class="tscript" id="mScript" aria-live="polite"><p class="muted">Bấm “Bắt đầu ghi”: Ben chuyển lời nói trong phòng họp thành văn bản có mốc giờ. Nói “Ben ơi …” để ra lệnh giữa cuộc họp, ví dụ “Ben ơi mở Cần Thơ” hoặc “Ben ơi số bán Trường Vũ là bao nhiêu”.</p></div>
+      <div class="mtgrow"><label class="sr" for="mNote">Ghi chú tay</label><input id="mNote" type="text" placeholder="Gõ ghi chú/ý kiến, Enter để thêm (dùng khi không ghi âm được)" style="flex:1"><button type="button" id="mNoteAdd">Thêm</button></div>
+      <div class="toolbar" style="margin:0"><button type="button" class="primary" id="mSum">Ben tổng hợp &amp; lập biên bản</button><button type="button" id="mLocal">Lập nhanh từ đánh dấu</button><button type="button" id="mOpen">Danh sách cuộc họp</button></div>
+      <p class="muted tiny" style="margin:0">Ben ghi lời thoại thành văn bản (không lưu file âm thanh). Mỗi phiên nghe tối đa 60 phút; khi hết, bấm ghi tiếp, văn bản cũ vẫn giữ.</p>
+    </div>
+  </div>

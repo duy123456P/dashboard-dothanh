@@ -274,6 +274,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 .aistate{padding:0 14px 8px;font-size:12px;color:var(--muted)}
 .sr{position:absolute;left:-9999px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+/*__OPS_CSS__*/
 </style>
 
 <div class="wrap">
@@ -308,6 +309,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
   </div>
 
   <section class="kpis" id="kpis" aria-label="Tổng quan"></section>
+  <div class="glass opsbar" id="opsBar" role="button" tabindex="0" aria-label="Tình hình đầu việc, bấm để xem trung tâm điều hành"></div>
 
   <section class="main">
     <div class="glass mapbox">
@@ -337,6 +339,8 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <div class="pane" id="paneC" role="tabpanel" aria-labelledby="tabC" hidden></div>
     </aside>
   </section>
+
+<!--__OPS_SECTION__-->
 
   <section class="glass pad">
     <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
@@ -427,12 +431,13 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <div id="benTease" hidden><b>Ben</b> · Cần báo cáo nhanh? Bấm để lấy báo cáo toàn quốc, khu vực hoặc từng tỉnh ngay.<button type="button" id="benTeaseX" aria-label="Ẩn lời nhắc">×</button></div>
 <button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="ben-av">B</span>Ben · Báo cáo</button>
 <section id="ai" hidden aria-label="Ben, trợ lý báo cáo">
-  <header><span class="ben-av">B</span><div style="display:flex;flex-direction:column;line-height:1.2"><b>Ben</b><span class="muted" style="font-size:12px">Trợ lý báo cáo thị trường xe thương mại</span></div><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
+  <header><span class="ben-av">B</span><div style="display:flex;flex-direction:column;line-height:1.2"><b>Ben</b><span class="muted" style="font-size:12px">Trợ lý báo cáo, ra lệnh dữ liệu &amp; thư ký họp</span></div><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
   <nav class="btabs" role="tablist" aria-label="Công cụ của Ben">
     <button type="button" role="tab" data-btab="Chat" aria-selected="true">Hỏi đáp</button>
     <button type="button" role="tab" data-btab="Calc" aria-selected="false">Tính nhanh</button>
     <button type="button" role="tab" data-btab="Tco" aria-selected="false">Giá trị SP</button>
     <button type="button" role="tab" data-btab="Talk" aria-selected="false">Sale talk</button>
+    <button type="button" role="tab" data-btab="Meet" aria-selected="false">Thư ký họp</button>
   </nav>
   <div class="bpane" id="bChat">
   <div class="aiq"><span class="aiql">Báo cáo tức thì</span><div id="aiInstant" style="display:contents"></div></div>
@@ -487,6 +492,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <div class="toolbar"><button type="button" class="primary" id="tkMake">Tạo kịch bản ngay</button><button type="button" id="tkAi">Ben cá nhân hóa (AI)</button><button type="button" id="tkCopy">Sao chép</button></div>
     <div id="tkOut" class="bout msg a"></div>
   </div>
+<!--__OPS_BEN__-->
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
@@ -512,11 +518,12 @@ const NET = JSON.parse(document.getElementById("center-data").textContent);
 // dealers C1/C2 + authorised service stations not co-located with a dealer (>3 km)
 const CENTERS = (() => {
   const kmq = (a,b) => Math.hypot((a.lng-b.lng)*111*Math.cos(a.lat*Math.PI/180), (a.lat-b.lat)*111);
-  const ds = NET.dealers.map(d => ({...d, type: d.tier, svc: NET.stations.some(s => kmq(s,d) < 3)}));
+  const ds = NET.dealers.map(d => Object.assign(d, {type: d.tier, svc: NET.stations.some(s => kmq(s,d) < 3)}));
   const extra = NET.stations.filter(s => !ds.some(d => kmq(s,d) < 3)).map((s,i) => ({...s, id: "T"+(i+1), type: "TDV", tier: "TDV"}));
   return ds.concat(extra);
 })();
 const DEALER_SALES = NET.dealers.filter(d => d.leCum != null);
+const BASE_DEALERS = JSON.parse(JSON.stringify(NET.dealers));
 const SRC = JSON.parse(document.getElementById("src-data").textContent);
 const PRODUCTS = JSON.parse(document.getElementById("prod-data").textContent);
 // payload segment per model/variant from the official spec pages; Daewoo lines stay tentative until confirmed
@@ -575,7 +582,7 @@ function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\
 function findRow(name){ const n = norm(name||""); return rows.find(r => norm(r.name) === n) || rows.find(r => r.merged.some(m => norm(m) === n)); }
 function strip(r){ return Object.fromEntries(Object.entries(r).filter(([k]) => !k.startsWith("_"))); }
 function load(){ try{ const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); if(s && Array.isArray(s.rows)){ mergeRows(s.rows); if(s.tam) tam = +s.tam; if(s.uioNat) uioNat = +s.uioNat; } }catch(e){} }
-function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} }
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} if(window.__CV && window.__CV.onSave) window.__CV.onSave(); }
 function mergeRows(incoming){
   let n = 0;
   incoming.forEach(src => {
@@ -1629,6 +1636,8 @@ Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/
 Dùng công cụ get_province để lấy hồ sơ định tính khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ.
 Trạng thái bản đồ: chỉ số "${METRICS[metric].label}", khu vực "${zone||"Toàn quốc"}", tỉnh đang chọn "${selected||"chưa chọn"}", cột 3D ${showBars?"bật":"tắt"}.
 
+${window.__CV && window.__CV.ctx ? window.__CV.ctx() : ""}
+
 DỮ LIỆU 34 TỈNH/THÀNH (sau sáp nhập 2025):
 ${dataSnapshot()}`;
 }
@@ -1684,7 +1693,7 @@ async function askAi(text){
   while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
   const bubble = addMsg("a", '<span class="act">Ben đang phân tích…</span>');
   aiCtl = new AbortController(); setBusy(true, aiSpeed === "quick" ? "Ben đang phân tích (nhanh)…" : "Ben đang phân tích chuyên sâu…");
-  const tools = AI_TOOLS.map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
+  const tools = AI_TOOLS.concat(window.__CV && window.__CV.tools || []).map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : t.label || "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
   try{
     const res = await sample([{role:"user", content: rules()}, ...aiTurns], { signal: aiCtl.signal, tools, modelTier: aiSpeed === "quick" ? "quick" : "default", onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
     aiTurns.push({role:"assistant", content: res.text}); finishBubble(bubble, res.text, res.truncated);
@@ -1899,6 +1908,7 @@ renderTcoForm(); renderTco();
 /* quick answers in chat without AI: arithmetic, "gộp ...", "tách ..." */
 function localAnswer(text){
   const t = text.trim();
+  if(window.__CV && window.__CV.localHooks) for(const h of window.__CV.localHooks){ const r = h(t); if(r) return r; }
   try{ const v = calc(t); return `**${fmtNum(v)}**\n\n_${t}_`; }catch(e){}
   let m = t.match(/^(gộp|cộng|tổng)\s+(.+)$/i);
   if(m){ const names = m[2].split(/\s*(?:\+|,|;|&|\svà\s)\s*/i).filter(Boolean); const list = [];
@@ -2199,6 +2209,17 @@ function renderAll(){
   document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
   uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
+window.__CV = {
+  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
+  get tam(){ return tam; }, set tam(v){ tam = v; }, get uioNat(){ return uioNat; }, set uioNat(v){ uioNat = v; },
+  get zone(){ return zone; }, get selected(){ return selected; }, get metric(){ return metric; },
+  setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
+    if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
+    if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
+  findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
+  select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
+  get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
+};
 function init(){
   load(); renderAll();
   initScene().then(() => { refreshMap(); }).catch(err => {
@@ -2214,4 +2235,7 @@ function init(){
 }
 init();
 })();
+</script>
+<script>
+/*__OPS_JS__*/
 </script>
