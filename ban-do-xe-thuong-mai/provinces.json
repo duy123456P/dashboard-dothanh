@@ -29,7 +29,11 @@
   "target": 0,
   "note": "",
   "zone": "Khu vực Hà Nội",
-  "elev": 30
+  "elev": 30,
+  "lp": [
+   105.712,
+   20.908
+  ]
  },
  {
   "name": "Huế",
@@ -61,7 +65,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 6",
-  "elev": 300
+  "elev": 300,
+  "lp": [
+   107.415,
+   16.351
+  ]
  },
  {
   "name": "Lai Châu",
@@ -93,7 +101,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 1100
+  "elev": 1100,
+  "lp": [
+   103.335,
+   22.39
+  ]
  },
  {
   "name": "Điện Biên",
@@ -125,7 +137,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 900
+  "elev": 900,
+  "lp": [
+   103.261,
+   21.735
+  ]
  },
  {
   "name": "Sơn La",
@@ -157,7 +173,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 800
+  "elev": 800,
+  "lp": [
+   103.857,
+   21.312
+  ]
  },
  {
   "name": "Lạng Sơn",
@@ -189,7 +209,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 2",
-  "elev": 450
+  "elev": 450,
+  "lp": [
+   106.394,
+   21.933
+  ]
  },
  {
   "name": "Quảng Ninh",
@@ -221,7 +245,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 2",
-  "elev": 200
+  "elev": 200,
+  "lp": [
+   107.181,
+   21.21
+  ]
  },
  {
   "name": "Thanh Hóa",
@@ -253,7 +281,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 5",
-  "elev": 300
+  "elev": 300,
+  "lp": [
+   105.538,
+   19.912
+  ]
  },
  {
   "name": "Nghệ An",
@@ -285,7 +317,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 5",
-  "elev": 450
+  "elev": 450,
+  "lp": [
+   104.9,
+   19.24
+  ]
  },
  {
   "name": "Hà Tĩnh",
@@ -317,7 +353,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 5",
-  "elev": 250
+  "elev": 250,
+  "lp": [
+   105.704,
+   18.305
+  ]
  },
  {
   "name": "Cao Bằng",
@@ -349,7 +389,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 3",
-  "elev": 650
+  "elev": 650,
+  "lp": [
+   106.359,
+   22.639
+  ]
  },
  {
   "name": "Tuyên Quang",
@@ -382,7 +426,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 3",
-  "elev": 700
+  "elev": 700,
+  "lp": [
+   105.124,
+   22.483
+  ]
  },
  {
   "name": "Lào Cai",
@@ -415,7 +463,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 900
+  "elev": 900,
+  "lp": [
+   104.164,
+   22.12
+  ]
  },
  {
   "name": "Thái Nguyên",
@@ -448,7 +500,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 3",
-  "elev": 300
+  "elev": 300,
+  "lp": [
+   105.818,
+   22.151
+  ]
  },
  {
   "name": "Phú Thọ",
@@ -482,7 +538,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 300
+  "elev": 300,
+  "lp": [
+   105.141,
+   21.381
+  ]
  },
  {
   "name": "Bắc Ninh",
@@ -515,7 +575,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 2",
-  "elev": 50
+  "elev": 50,
+  "lp": [
+   106.658,
+   21.377
+  ]
  },
  {
   "name": "Hưng Yên",
@@ -548,7 +612,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 1",
-  "elev": 5
+  "elev": 5,
+  "lp": [
+   106.33,
+   20.562
+  ]
  },
  {
   "name": "Hải Phòng",
@@ -581,7 +649,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 1",
-  "elev": 10
+  "elev": 10,
+  "lp": [
+   106.517,
+   20.864
+  ]
  },
  {
   "name": "Ninh Bình",
@@ -615,7 +687,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 4",
-  "elev": 15
+  "elev": 15,
+  "lp": [
+   106.028,
+   20.302
+  ]
  },
  {
   "name": "Quảng Trị",
@@ -648,7 +724,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 5",
-  "elev": 350
+  "elev": 350,
+  "lp": [
+   106.84,
+   16.9
+  ]
  },
  {
   "name": "Đà Nẵng",
@@ -681,7 +761,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 6",
-  "elev": 450
+  "elev": 450,
+  "lp": [
+   108.006,
+   15.64
+  ]
  },
  {
   "name": "Quảng Ngãi",
@@ -714,7 +798,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 6",
-  "elev": 550
+  "elev": 550,
+  "lp": [
+   107.909,
+   14.655
+  ]
  },
  {
   "name": "Gia Lai",
@@ -747,7 +835,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 6",
-  "elev": 550
+  "elev": 550,
+  "lp": [
+   108.379,
+   13.85
+  ]
  },
  {
   "name": "Khánh Hòa",
@@ -780,7 +872,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 7",
-  "elev": 350
+  "elev": 350,
+  "lp": [
+   108.931,
+   12.022
+  ]
  },
  {
   "name": "Lâm Đồng",
@@ -814,7 +910,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 7",
-  "elev": 700
+  "elev": 700,
+  "lp": [
+   108.096,
+   11.635
+  ]
  },
  {
   "name": "Đắk Lắk",
@@ -847,7 +947,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 7",
-  "elev": 450
+  "elev": 450,
+  "lp": [
+   108.345,
+   12.683
+  ]
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -881,7 +985,11 @@
   "target": 0,
   "note": "",
   "zone": "Khu vực TP. Hồ Chí Minh",
-  "elev": 20
+  "elev": 20,
+  "lp": [
+   106.621,
+   11.127
+  ]
  },
  {
   "name": "Đồng Nai",
@@ -914,7 +1022,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 8",
-  "elev": 150
+  "elev": 150,
+  "lp": [
+   106.913,
+   11.677
+  ]
  },
  {
   "name": "Tây Ninh",
@@ -947,7 +1059,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 8",
-  "elev": 30
+  "elev": 30,
+  "lp": [
+   106.12,
+   11.463
+  ]
  },
  {
   "name": "Cần Thơ",
@@ -981,7 +1097,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 9",
-  "elev": 2
+  "elev": 2,
+  "lp": [
+   105.819,
+   9.646
+  ]
  },
  {
   "name": "Vĩnh Long",
@@ -1015,7 +1135,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 9",
-  "elev": 2
+  "elev": 2,
+  "lp": [
+   106.236,
+   9.863
+  ]
  },
  {
   "name": "Đồng Tháp",
@@ -1048,7 +1172,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 9",
-  "elev": 3
+  "elev": 3,
+  "lp": [
+   105.549,
+   10.692
+  ]
  },
  {
   "name": "Cà Mau",
@@ -1081,7 +1209,11 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 9",
-  "elev": 1
+  "elev": 1,
+  "lp": [
+   105.128,
+   9.137
+  ]
  },
  {
   "name": "An Giang",
@@ -1114,6 +1246,10 @@
   "target": 0,
   "note": "",
   "zone": "Vùng 9",
-  "elev": 10
+  "elev": 10,
+  "lp": [
+   105.107,
+   10.438
+  ]
  }
 ]
