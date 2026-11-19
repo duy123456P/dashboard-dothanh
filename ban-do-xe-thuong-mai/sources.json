@@ -1,6 +1,45 @@
 {
- "updated": "2026-11-19T18:07:00+07:00",
+ "updated": "2026-11-19T19:30:00+07:00",
  "sources": [
+  {
+   "id": "dac",
+   "org": "DOTHANH (DAC)",
+   "name": "Bảng giá công bố & chính sách DOTHANH tháng 11/2026",
+   "period": "Tháng 11/2026 (ưu đãi hiệu lực 06–30/11/2026)",
+   "retrieved": "2026-11-19T19:30:00+07:00",
+   "items": [
+    [
+     "Phạm vi",
+     "64 phiên bản: MISSU E5, IZ E5, JP120 E5 (Daewoo chưa có trong bảng)"
+    ],
+    [
+     "Giá lẻ công bố (đã gồm VAT)",
+     "MISSU 237–362 tr · IZ 353–563 tr · JP120 590–769 tr"
+    ],
+    [
+     "Ưu đãi T11 đời 2026 cao nhất",
+     "JP120EXL 55 tr, JP120SL 50 tr, V56 48,7 tr"
+    ],
+    [
+     "Xe tập lái",
+     "IZ50S XTL, IZ65M-Plus XTL: giá bảng chính và TB 138 đang lệch, chờ PKD xác nhận"
+    ],
+    [
+     "Căn cứ",
+     "TB 232, 233, 211, 234 (T11/2026); TB 03/2026, 009/2026; TB 138, 186/2026"
+    ]
+   ],
+   "links": [
+    [
+     "Danh mục sản phẩm",
+     "https://dothanhauto.com/dothanh-iz"
+    ],
+    [
+     "Website DOTHANH",
+     "https://www.dothanhauto.com/san-pham.html"
+    ]
+   ]
+  },
   {
    "id": "vama",
    "org": "VAMA",

@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-19",
- "source": "Danh_muc_san_pham_va_quan_tri_bang_gia_Do_Thanh_Auto.xlsx (Anh cung cấp); giá tham khảo thị trường tháng 11/2026, không phải giá công bố Nhà máy",
+ "source": "Bảng giá công bố DOTHANH T11/2026 + danh mục sản phẩm Anh cung cấp; tải trọng theo bảng thông số từng loại thùng trên dothanhauto.com",
  "catalog": "https://dothanhauto.com/toan-quoc-dothanh-auto-khoi-dong-cuoc-dua-cham-soc-khach-hang-quy-iv2026-dothanh-iz",
  "groups": [
   {
@@ -64,70 +64,130 @@
   }
  ],
  "prices": {
+  "T26": [
+   237.0,
+   267.0
+  ],
+  "T33L": [
+   275.0,
+   307.0
+  ],
+  "V56": [
+   342.0,
+   342.0
+  ],
+  "V65": [
+   362.0,
+   362.0
+  ],
   "IZ45S": [
-   345,
-   345
+   353.0,
+   396.0
   ],
   "IZ50S": [
-   348.5,
-   348.5
+   355.0,
+   398.0
+  ],
+  "IZ50M": [
+   385.0,
+   430.0
   ],
   "IZ62M": [
-   390,
-   430
+   385.0,
+   430.0
+  ],
+  "IZ50M Plus": [
+   430.0,
+   489.0
   ],
   "IZ65M Plus": [
-   420,
-   477
+   435.0,
+   482.0
   ],
   "IZ60SL Plus": [
-   385,
-   549
+   500.0,
+   558.0
   ],
   "IZ71SL Plus": [
-   500,
-   554
+   505.0,
+   563.0
   ],
   "JP120SL": [
-   730,
-   850
+   590.0,
+   719.0
+  ],
+  "JP120EXL": [
+   630.0,
+   769.0
   ]
  },
  "specs": {
   "V56": [
    [
-    "Van 2 chỗ, khoang 5,6 m³",
+    "Van 02 chỗ",
     0.945
    ]
   ],
   "V65": [
    [
-    "Van 2 chỗ, khoang 6,5 m³",
+    "Van 02 chỗ",
     0.945
    ]
   ],
   "T26": [
    [
-    "Thùng dài 2.830 mm",
+    "Thùng lửng (TL)",
     0.99
+   ],
+   [
+    "Thùng mui bạt (TMB)",
+    0.95
+   ],
+   [
+    "Thùng kín (TK)",
+    0.95
    ]
   ],
   "T33L": [
    [
-    "Thùng dài 3.300 mm",
+    "Thùng lửng (TL)",
     1.49
+   ],
+   [
+    "Thùng mui bạt (TMB)",
+    1.4
+   ],
+   [
+    "Thùng kín (TK)",
+    1.4
    ]
   ],
   "IZ45S": [
    [
-    "Tiêu chuẩn",
-    1.9
+    "TL (Thùng lửng)",
+    1.99
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    1.99
+   ],
+   [
+    "TK (Thùng kín)",
+    1.85
    ]
   ],
   "IZ50S": [
    [
-    "Thường",
-    2.5
+    "TL (Thùng lửng)",
+    2.49
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    2.35
+   ],
+   [
+    "TK (Thùng kín)",
+    2.25
    ],
    [
     "Xe tập lái",
@@ -136,39 +196,76 @@
   ],
   "IZ50M": [
    [
-    "Tùy cấu hình thùng",
-    [
-     1.9,
-     2.4
-    ]
+    "TL (Thùng lửng)",
+    2.4
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    2.25
+   ],
+   [
+    "TK (Thùng kín)",
+    1.99
    ]
   ],
   "IZ50M Plus": [
    [
-    "Thường",
-    1.9
+    "TL (Thùng lửng)",
+    1.99
    ],
    [
-    "Thùng Composite",
+    "TMB (Thùng mui bạt)",
+    1.99
+   ],
+   [
+    "TK (Thùng kín)",
+    1.8
+   ],
+   [
+    "TK1 (Thùng Composite)",
     1.8
    ]
   ],
   "IZ60SL Plus": [
    [
-    "Tiêu chuẩn",
-    2.5
+    "TL (Thùng lửng)",
+    2.49
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    2.49
+   ],
+   [
+    "TK (Thùng kín)",
+    2.35
    ]
   ],
   "IZ62M": [
    [
-    "Tiêu chuẩn",
-    3.5
+    "TL (Thùng lửng)",
+    3.49
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    3.49
+   ],
+   [
+    "TK (Thùng kín)",
+    3.39
    ]
   ],
   "IZ65M Plus": [
    [
-    "Thường",
-    3.5
+    "TL (Thùng lửng)",
+    3.49
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    3.49
+   ],
+   [
+    "TK (Thùng kín)",
+    3.35
    ],
    [
     "Xe tập lái",
@@ -177,26 +274,44 @@
   ],
   "IZ71SL Plus": [
    [
-    "Tiêu chuẩn",
-    3.5
+    "TL (Thùng lửng)",
+    3.495
+   ],
+   [
+    "TMB (Thùng mui bạt)",
+    3.49
+   ],
+   [
+    "TK (Thùng kín)",
+    3.35
    ]
   ],
   "JP120SL": [
    [
-    "Tùy cấu hình thùng",
-    [
-     7.3,
-     7.8
-    ]
+    "Thùng lửng (TL)",
+    7.79
+   ],
+   [
+    "Thùng mui bạt (TMB)",
+    7.5
+   ],
+   [
+    "Thùng kín (TK)",
+    7.3
    ]
   ],
   "JP120EXL": [
    [
-    "Tùy cấu hình thùng",
-    [
-     7.0,
-     7.6
-    ]
+    "Thùng lửng (TL)",
+    7.58
+   ],
+   [
+    "Thùng mui bạt (TMB)",
+    7.2
+   ],
+   [
+    "Thùng kín (TK)",
+    7.0
    ]
   ],
   "HC6": [
@@ -231,5 +346,6 @@
    ]
   ]
  },
- "specSource": "dothanhauto.com (trang sản phẩm DOTHANH MISSU, DOTHANH IZ, JP, DAEWOO TRUCKS) – tra cứu 19/11/2026"
+ "specSource": "dothanhauto.com (trang sản phẩm DOTHANH MISSU, DOTHANH IZ, JP, DAEWOO TRUCKS) – tra cứu 19/11/2026",
+ "priceType": "Giá lẻ công bố T11/2026 (đã gồm VAT), khoảng giá theo loại thùng; nguồn: Bảng giá công bố DOTHANH (DAC) T11/2026"
 }
