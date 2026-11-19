@@ -361,6 +361,17 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <div id="structBody" style="margin-top:12px"></div>
   </section>
 
+  <section class="glass pad" id="priceSec">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div><h2>Bảng giá công bố &amp; chính sách T11/2026</h2><p class="muted" style="margin:4px 0 0">Giá lẻ công bố, giá lẻ tối thiểu, tải trọng, lòng thùng theo từng loại thùng; ưu đãi bán lẻ tháng 11; xe tập lái. Nguồn: Bảng giá công bố DOTHANH (DAC) T11/2026, cập nhật 19/11/2026.</p></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div class="seg" role="group" aria-label="Nhóm xe"><button type="button" data-plg="">Tất cả</button><button type="button" data-plg="MISSU E5">MISSU</button><button type="button" data-plg="IZ E5">IZ</button><button type="button" data-plg="JP120 E5">JP120</button></div>
+        <button type="button" id="btnInternal" aria-pressed="false">Hiện số liệu nội bộ đại lý</button>
+      </div>
+    </div>
+    <div id="priceBody" style="margin-top:12px"></div>
+  </section>
+
   <section class="lower">
     <div class="glass pad">
       <h2>Xếp hạng</h2>
@@ -391,7 +402,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 
   <section class="glass pad" id="sources">
     <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
-      <div><h2>Nguồn dữ liệu</h2><p class="muted" style="margin:4px 0 0">Số liệu mới nhất đã công bố của 5 nguồn chính thức. Mỗi thẻ ghi kỳ số liệu và thời điểm lấy dữ liệu.</p></div>
+      <div><h2>Nguồn dữ liệu</h2><p class="muted" style="margin:4px 0 0">Số liệu mới nhất đã công bố của 6 nguồn: bảng giá DOTHANH và 5 cơ quan, hiệp hội. Mỗi thẻ ghi kỳ số liệu và thời điểm lấy dữ liệu.</p></div>
       <div class="clock num" id="srcClock"></div>
     </div>
     <div class="srcgrid" id="srcGrid"></div>
@@ -460,7 +471,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
   <div class="bpane bscroll" id="bTco" hidden>
     <h4>So sánh tổng chi phí sở hữu (TCO)</h4>
     <p class="muted" style="margin:0 0 8px;font-size:12px">Số mặc định là ví dụ minh họa; thay bằng giá và thông số thực của hai dòng xe đang so sánh.</p>
-    <label class="field" for="tcoModel">Chọn sản phẩm Đô Thành Auto (điền giá tham khảo giữa khoảng)<select id="tcoModel"></select></label>
+    <label class="field" for="tcoModel">Chọn sản phẩm Đô Thành Auto (giá lẻ công bố T11/2026 theo loại thùng)<select id="tcoModel"></select></label>
     <div class="tcogrid" id="tcoGrid"></div>
     <div id="tcoOut" class="bout"></div>
     <div class="toolbar"><button type="button" class="primary" id="tcoTalk">Ben viết sale talk từ phép so sánh này</button><button type="button" id="tcoCopy">Sao chép kết quả</button></div>
@@ -489,6 +500,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script id="infra-data" type="application/json">/*__INFRA__*/</script>
 <script id="prod-data" type="application/json">/*__PRODUCTS__*/</script>
+<script id="pl-data" type="application/json">/*__PRICELIST__*/</script>
 <script>
 const RELIEF_SRC = "/*__RELIEF__*/";
 const HEIGHT_SRC = "/*__HEIGHT__*/";
@@ -506,11 +518,30 @@ function segOfTon(t){ return t < 1 ? 0 : t <= 2.5 ? 1 : t <= 3.5 ? 2 : t <= 10 ?
 const nf2 = new Intl.NumberFormat("vi-VN",{maximumFractionDigits:2});
 function tonTxt(t){ const f = x => nf2.format(x); return Array.isArray(t) ? f(t[0]) + "–" + f(t[1]) + " tấn" : t < 1 ? Math.round(t*1000) + " kg" : f(t) + " tấn"; }
 const MODEL_SEG = {}, VARIANTS = [];
-Object.keys(DAEWOO_SEG).forEach(m => { if(PRODUCTS.specs && PRODUCTS.specs[m]) return; MODEL_SEG[m] = DAEWOO_SEG[m]; VARIANTS.push({model:m, label:m, seg:DAEWOO_SEG[m], ton:null}); });
-Object.entries(PRODUCTS.specs || {}).forEach(([m, vs]) => { vs.forEach(([v, t, so], k) => { const sg = so ?? segOfTon(tonOf(t)); if(k === 0) MODEL_SEG[m] = sg;
-  VARIANTS.push({model:m, label: vs.length > 1 ? `${m} ${v.toLowerCase()}` : m, seg:sg, ton:t, tl:(so === 5 ? "kéo theo " : "") + tonTxt(t), base: k === 0}); }); });
-VARIANTS.forEach(v => { if(v.base === undefined) v.base = true; });
-function vPrice(v){ return v.base ? priceTxt(v.model) : "giá theo phiên bản"; }
+const PL = JSON.parse(document.getElementById("pl-data").textContent);
+function plRows(m){ return PL.items.filter(x => x.cmodel === m); }
+const trd = v => typeof v === "number" ? fmt1(v/1e6).replace(",0","") : (v == null ? "—" : esc(v));
+const kg = v => typeof v === "number" ? fmtInt(v) + " kg" : (v == null ? "—" : esc(v));
+function offerOf(m){ return PL.offers.find(o => o.cmodel === m); }
+function offerTxt(m){ const o = offerOf(m); return o ? `ưu đãi T11 đời 2026 ${trd(o.total26)} tr` : ""; }
+
+function shortBody(v){ return String(v).replace(/\s*\(.*\)\s*$/,"").trim(); }
+Object.keys(DAEWOO_SEG).forEach(m => { if(PRODUCTS.specs && PRODUCTS.specs[m]) return; MODEL_SEG[m] = DAEWOO_SEG[m]; VARIANTS.push({model:m, label:m, seg:DAEWOO_SEG[m], ton:null, tl:"", base:true}); });
+// one entry per model and payload segment; extra entries only for variants that fall into another segment (e.g. driving-school IZ65M Plus 3,6 t)
+Object.entries(PRODUCTS.specs || {}).forEach(([m, vs]) => {
+  const groups = {}; vs.forEach(([v, t, so]) => { const sg = so ?? segOfTon(tonOf(t)); (groups[sg] = groups[sg] || []).push([v, t, so]); });
+  const segs = Object.keys(groups).map(Number), mainSeg = segOfTon(tonOf(vs[0][1])) === undefined ? segs[0] : (vs[0][2] ?? segOfTon(tonOf(vs[0][1])));
+  MODEL_SEG[m] = mainSeg;
+  segs.forEach(sg => { const g = groups[sg], tons = g.flatMap(([,t]) => Array.isArray(t) ? t : [t]), lo = Math.min(...tons), hi = Math.max(...tons), so = g[0][2];
+    const isMain = sg === mainSeg, names = isMain ? "" : " " + g.map(([v]) => shortBody(v).toLowerCase()).join(", ");
+    VARIANTS.push({model:m, label: m + names, bodies: g.map(([v]) => v), seg: sg, ton: lo === hi ? lo : [lo, hi], tl: (so === 5 ? "kéo theo " : "") + tonTxt(lo === hi ? lo : [lo, hi]), base: isMain}); });
+});
+function vPrice(v){
+  const rs = plRows(v.model).filter(x => v.base ? !/tập lái/i.test(x.body) : (v.bodies || []).some(b => /tập lái/i.test(b) ? /tập lái/i.test(x.body) : shortBody(x.body) === shortBody(b)));
+  if(!rs.length) return v.base ? priceTxt(v.model) : "chờ giá";
+  const lo = Math.min(...rs.map(x => x.retail))/1e6, hi = Math.max(...rs.map(x => x.retail))/1e6, f = x => fmt1(x).replace(",0","");
+  return (lo === hi ? f(lo) : f(lo) + "–" + f(hi)) + " tr";
+}
 function ourModels(i){ return VARIANTS.filter(x => x.seg === i).map(x => x.label + (x.ton != null ? " " + x.tl : " (tải trọng chờ xác nhận)")); }
 function priceTxt(m){ const p = PRODUCTS.prices[m]; return p ? (p[0] === p[1] ? fmt1(p[0]).replace(",0","") : fmt1(p[0]).replace(",0","") + "–" + fmt1(p[1]).replace(",0","")) + " tr" : "chờ giá"; }
 
@@ -1550,7 +1581,7 @@ function rules(){
 Xưng "em", gọi người dùng là "anh/chị". Ben thường được dùng TRONG CUỘC HỌP: trả lời số trước, lời sau; câu ngắn. Mọi phép tính phải dùng công cụ calc; gộp/tách thị phần dùng merge_share / split_province. Khi viết sale talk: nghệ thuật bán hàng tư vấn (SPIN, Tính năng – Lợi ích – Bằng chứng, xử lý từ chối, chốt), dựa trên giá trị và tổng chi phí sở hữu, không chê bai đối thủ, không bịa thông số kỹ thuật. ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
 Trọng tâm thương hiệu Đô Thành Auto: phát triển khách mới VÀ đặc biệt chăm sóc khách cũ để tăng khách trung thành, làm chiến dịch dịch vụ theo mùa vụ, lễ hội, tâm lý từng vùng, củng cố niềm tin vào giá trị thương hiệu. Tháng hiện tại là tháng ${new Date().getMonth()+1}.
-Danh mục sản phẩm Đô Thành Auto (file Anh cung cấp): ${PRODUCTS.groups.map(g => g.group + ": " + g.models.join(", ")).join(" | ")}. Giá tham khảo thị trường 11/2026 (triệu đ, KHÔNG phải giá Nhà máy): ${Object.entries(PRODUCTS.prices).map(([m,p]) => m + " " + (p[0]===p[1] ? p[0] : p[0] + "–" + p[1])).join("; ")}. Giá Nhà máy đang chờ xác nhận; luôn nói rõ điều này khi nêu giá. Tải trọng theo website chính thức: ${VARIANTS.filter(v => v.ton != null).map(v => v.label + " " + v.tl).join("; ")}. Đầu kéo Daewoo Novus ghi khối lượng kéo theo. Xe tập lái IZ65M Plus 3,6 tấn trên 3,5 tấn nên thuộc nhóm hạng C1 (trường dạy lái); xe ≤ 3,5 tấn lái bằng hạng B.
+Danh mục sản phẩm Đô Thành Auto (file Anh cung cấp): ${PRODUCTS.groups.map(g => g.group + ": " + g.models.join(", ")).join(" | ")}. Giá lẻ công bố T11/2026 (triệu đ, đã gồm VAT, theo loại thùng): ${Object.entries(PRODUCTS.prices).map(([m,p]) => m + " " + (p[0]===p[1] ? p[0] : p[0] + "–" + p[1])).join("; ")}. Ưu đãi T11 đời 2026 (tổng): ${PL.offers.map(o => o.cmodel + " " + trd(o.total26) + " tr").join("; ")}. Daewoo chưa có trong bảng giá T11. Dùng công cụ get_price để lấy giá chi tiết theo loại thùng, giá lẻ tối thiểu, ưu đãi. Xe tập lái: bảng giá chính và TB 138 đang lệch, cần PKD xác nhận. Tải trọng theo website chính thức: ${VARIANTS.filter(v => v.ton != null).map(v => v.label + " " + v.tl).join("; ")}. Đầu kéo Daewoo Novus ghi khối lượng kéo theo. Xe tập lái IZ65M Plus 3,6 tấn trên 3,5 tấn nên thuộc nhóm hạng C1 (trường dạy lái); xe ≤ 3,5 tấn lái bằng hạng B.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
 Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
 Dùng công cụ get_province để lấy hồ sơ định tính khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ.
@@ -1578,6 +1609,9 @@ const AI_TOOLS = [
    inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
    execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
      return {tinh:r.name, mua_vu_T1_T12:r.season, ghi_chu_mua_vu:r.seasonNotes, le_hoi:r.festivals, tam_ly:r.psyche, dan_toc:r.ethnic, dac_san:r.specialties, van_hoa_kinh_doanh:r.culture, chien_dich:r.campaigns, uio:r._uio, trung_tam:centersOf(r.name).map(c=>c.name)}; }},
+  {name:"get_price", description:"Bảng giá công bố DOTHANH T11/2026 theo loại thùng (giá lẻ công bố, giá lẻ tối thiểu, tải trọng) và ưu đãi T11 của một dòng xe (vd 'IZ65M Plus', 'T26', 'JP120SL'); để trống = tất cả.",
+   inputSchema:{type:"object",properties:{model:{type:"string"}}},
+   execute: ({model}) => { const m = model ? (PL.items.find(x => norm(x.cmodel) === norm(model) || norm(x.model) === norm(model)) || {}).cmodel : ""; if(model && !m) throw new Error("Không có dòng xe " + model + " trong bảng giá T11"); return priceMarkdown(m); }},
   {name:"recommend_sites", description:"Danh sách vị trí đề xuất mở đại lý/trung tâm mới (đô thị đông dân, trục giao thông huyết mạch, cảng, cửa khẩu, KCN, khoảng trống mạng lưới) kèm điểm và lý do. zone để trống = toàn quốc.",
    inputSchema:{type:"object",properties:{zone:{type:"string"},limit:{type:"number"}}},
    execute: ({zone: z, limit}) => sitesMarkdown(Math.min(+limit || 10, 20), ZONES.find(x => norm(x) === norm(z||"")) || "") },
@@ -1785,7 +1819,7 @@ function buildTalk(){
 ${c.spin.map((q,i)=>`- **${["Tình huống","Vấn đề","Hệ quả","Lợi ích"][i]}:** ${q}`).join("\n")}
 
 ### 3. Trình bày giá trị (Tính năng → Lợi ích → Bằng chứng)
-- **Sản phẩm đề xuất:** ${(() => { const si = [0,1,3,4,5,4][+tkSeg.value], vs = VARIANTS.filter(v => +tkSeg.value === 0 ? (v.seg === 1 || v.seg === 2) : v.seg === si); return vs.length ? vs.map(v => `${v.label} ${v.ton != null ? v.tl : "(tải trọng chờ xác nhận)"}, ${vPrice(v) === "chờ giá" ? "chưa có giá" : vPrice(v) === "giá theo phiên bản" ? "giá theo phiên bản" : "giá " + vPrice(v)}`).join("; ") : "[dòng xe phù hợp]"; })()} · giá tham khảo, xác nhận bảng giá hiện hành trước khi báo khách.
+- **Sản phẩm đề xuất:** ${(() => { const si = [0,1,3,4,5,4][+tkSeg.value], vs = VARIANTS.filter(v => +tkSeg.value === 0 ? (v.seg === 1 || v.seg === 2) : v.seg === si); return vs.length ? vs.map(v => `${v.label} ${v.ton != null ? v.tl : "(tải trọng chờ xác nhận)"}, ${vPrice(v) === "chờ giá" ? "chưa có giá" : "giá lẻ " + vPrice(v)}`).join("; ") : "[dòng xe phù hợp]"; })()} · giá lẻ công bố T11/2026 (đã gồm VAT); kèm ưu đãi T11: ${[...new Set(VARIANTS.filter(v => +tkSeg.value === 0 ? (v.seg === 1 || v.seg === 2) : v.seg === [0,1,3,4,5,4][+tkSeg.value]).map(v => v.model))].map(m => offerOf(m) ? m + " " + trd(offerOf(m).total26) + " tr" : null).filter(Boolean).join(", ") || "xem bảng ưu đãi"}.
 - **Tính năng:** [động cơ, hộp số, tải trọng, thùng của dòng ${seg}].
 - **Lợi ích:** giảm chi phí/km, tăng số ngày xe chạy, giữ giá bán lại.
 - **Bằng chứng:** bảng TCO ở tab "Giá trị SP", khách hàng tham chiếu tại ${r.name}, lái thử có hàng.
@@ -1813,8 +1847,10 @@ function benToolsRefresh(){
   renderSplit(); if(tkMd) buildTalk();
 }
 (function(){ const sel = document.getElementById("tcoModel");
-  sel.innerHTML = PRODUCTS.groups.map(g => `<optgroup label="${esc(g.group)}">${g.models.map(m => `<option value="${esc(m)}"${m === "IZ65M Plus" ? " selected" : ""}>${esc(m)}${PRODUCTS.specs[m] ? " · " + tonTxt(PRODUCTS.specs[m][0][1]) : ""} · ${priceTxt(m)}</option>`).join("")}</optgroup>`).join("");
-  sel.addEventListener("change", () => { const m = sel.value, pr = PRODUCTS.prices[m]; tcoA.name = m; if(pr) tcoA.price = (pr[0]+pr[1])/2; renderTcoForm(); renderTco(); });
+  const groups = [...new Set(PL.items.map(x => x.group))];
+  sel.innerHTML = groups.map(g => `<optgroup label="${esc(g)}">${PL.items.map((x,i) => [x,i]).filter(([x]) => x.group === g).map(([x,i]) => `<option value="${i}"${x.cmodel === "IZ65M Plus" && x.body.startsWith("TMB (") ? " selected" : ""}>${esc(x.cmodel)} · ${esc(shortBody(x.body))} · ${typeof x.payload === "number" ? fmtInt(x.payload) + " kg · " : ""}${trd(x.retail)} tr</option>`).join("")}</optgroup>`).join("");
+  const apply = () => { const x = PL.items[+sel.value]; if(!x) return; tcoA.name = x.cmodel + " " + shortBody(x.body); tcoA.price = x.retail/1e6; renderTcoForm(); renderTco(); };
+  sel.addEventListener("change", apply); apply();
 })();
 renderTcoForm(); renderTco();
 
@@ -1967,7 +2003,7 @@ const COLORS = [["Trắng","#f4f7fb"],["Xanh dương","#3d7dd8"],["Bạc / xám"
 const REGION_OF = z => ["Khu vực TP. Hồ Chí Minh","Vùng 8"].includes(z) ? "south" : z === "Vùng 9" ? "mekong" : z === "Vùng 7" ? "highland" : ["Vùng 5","Vùng 6"].includes(z) ? "central" : "north";
 const COLOR_BASE = {north:[46,18,10,10,10,3,3], central:[50,20,10,7,8,3,2], highland:[48,22,9,8,8,3,2], south:[54,20,10,5,6,3,2], mekong:[52,24,8,6,5,3,2]};
 const BRANDS = [
-  {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ → nặng, ben, đầu kéo", models:"MISSU (V56, V65, T26, T33L) · IZ Series (IZ45S → IZ71SL Plus) · JP Series (JP120SL, JP120EXL) · Daewoo Trucks (HC6, HC8, Novus, ben, đầu kéo)", pos:"IZ tham khảo 345–554 triệu, JP120SL 730–850 triệu; mạng lưới 35 trung tâm 4S/3S", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
+  {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ → nặng, ben, đầu kéo", models:"MISSU (V56, V65, T26, T33L) · IZ Series (IZ45S → IZ71SL Plus) · JP Series (JP120SL, JP120EXL) · Daewoo Trucks (HC6, HC8, Novus, ben, đầu kéo)", pos:"Giá lẻ công bố T11/2026: MISSU 237–362 tr, IZ 353–563 tr, JP120 590–769 tr; ưu đãi T11 tới 55 tr/xe; 35 trung tâm 4S/3S", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
   {k:"thaco", name:"Thaco (Kia, Frontier, Fuso, Foton, Auman)", origin:"Việt Nam lắp ráp", seg:"Tải nhẹ → nặng, xe khách", models:"Kia K200/K250, Frontier TF, Ollin, Auman, Fuso Canter", pos:"Phủ rộng nhất, giá trung bình, sẵn xe", fact:"19.747 xe tải 10 tháng 2026 (VAMA, báo Xây dựng)"},
   {k:"hyundai", name:"Hyundai (Thành Công Thương mại)", origin:"Hàn Quốc / lắp ráp VN", seg:"Tải nhẹ → nặng, xe khách", models:"Porter H150, New Mighty N250, Mighty EX8, HD240/HD320, County, Universe", pos:"Thương hiệu mạnh, giá trung – cao", fact:"Ví dụ địa phương: 17,65% thị phần Thanh Hóa (7 tháng 2025)"},
   {k:"isuzu", name:"Isuzu Việt Nam", origin:"Nhật Bản", seg:"Tải nhẹ – trung – nặng", models:"QKR, NMR, NPR, NQR, FRR, FVR, Giga", pos:"Bền, tiết kiệm nhiên liệu, giá cao", fact:"Hơn 11.000 xe tải năm 2025, thứ 2 khối VAMA"},
@@ -2047,16 +2083,59 @@ function renderStruct(){
   ${SEG_MODELS.map((x,i) => { const q = [s.payload[0], s.payload[1], s.payload[2], s.payload[3]+s.payload[4], s.payload[5]+s.payload[6], s.payload[7]][i];
     return `<tr><td>${esc(x[0])}</td><td style="text-align:left;white-space:normal;min-width:200px">${VARIANTS.filter(v => v.seg === i).map(v => `<b>${esc(v.label)}</b> <span class="muted">${v.ton != null ? v.tl : "tải trọng chờ xác nhận"} · ${vPrice(v)}</span>`).join("<br>") || '<span class="muted">chưa có</span>'}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[1])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[2])}</td><td class="num">${fmtInt(q)} xe</td></tr>`; }).join("")}
   </tbody></table></div>
-  <h3 style="margin-top:16px">Danh mục sản phẩm &amp; giá tham khảo Đô Thành Auto</h3>
-  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Nhóm</th><th style="text-align:left">Model</th><th style="text-align:left">Phiên bản · tải trọng</th><th style="text-align:left">Phân khúc</th><th>Giá tham khảo (triệu đ)</th><th style="text-align:left">Giá Nhà máy</th></tr></thead><tbody>
-  ${PRODUCTS.groups.map(g => g.models.map((m,k) => `<tr>${k === 0 ? `<td rowspan="${g.models.length}"><b>${esc(g.group)}</b><br><span class="muted">${esc(g.seg)}</span></td>` : ""}<td style="text-align:left"><b>${esc(m)}</b></td><td style="text-align:left;white-space:normal">${(PRODUCTS.specs[m] || []).map(([v,t]) => `${esc(v)}: <b>${tonTxt(t)}</b>`).join("<br>") || '<span class="muted">Chờ xác nhận</span>'}</td><td style="text-align:left">${esc(SEG_MODELS[MODEL_SEG[m]][0])}${PRODUCTS.specs[m] ? "" : ' <span class="muted">(tạm xếp)</span>'}</td><td class="num">${PRODUCTS.prices[m] ? priceTxt(m).replace(" tr","") : "—"}</td><td style="text-align:left" class="muted">Chờ bảng giá công bố</td></tr>`).join("")).join("")}
+  <h3 style="margin-top:16px">Danh mục sản phẩm &amp; giá công bố Đô Thành Auto</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Nhóm</th><th style="text-align:left">Model</th><th style="text-align:left">Phiên bản · tải trọng</th><th style="text-align:left">Phân khúc</th><th>Giá lẻ công bố T11 (triệu đ)</th><th style="text-align:left">Ưu đãi T11 đời 2026</th></tr></thead><tbody>
+  ${PRODUCTS.groups.map(g => g.models.map((m,k) => `<tr>${k === 0 ? `<td rowspan="${g.models.length}"><b>${esc(g.group)}</b><br><span class="muted">${esc(g.seg)}</span></td>` : ""}<td style="text-align:left"><b>${esc(m)}</b></td><td style="text-align:left;white-space:normal">${(PRODUCTS.specs[m] || []).map(([v,t]) => `${esc(v)}: <b>${tonTxt(t)}</b>`).join("<br>") || '<span class="muted">Chờ xác nhận</span>'}</td><td style="text-align:left">${esc(SEG_MODELS[MODEL_SEG[m]][0])}${PRODUCTS.specs[m] ? "" : ' <span class="muted">(tạm xếp)</span>'}</td><td class="num">${PRODUCTS.prices[m] ? priceTxt(m).replace(" tr","") : "—"}</td><td style="text-align:left">${offerOf(m) ? `<b style="color:var(--amber)">${trd(offerOf(m).total26)} tr</b>` : PRODUCTS.prices[m] ? '<span class="muted">—</span>' : '<span class="muted">Chưa có trong bảng giá T11</span>'}</td></tr>`).join("")).join("")}
   </tbody></table></div>
-  <p class="muted" style="font-size:12px;margin:6px 0 0">Nguồn: file danh mục và quản trị bảng giá Anh cung cấp (19 model, 4 nhóm). Giá tham khảo thị trường tháng 11/2026, không phải giá công bố của Nhà máy; thay đổi theo cấu hình, chassis, loại thùng, khu vực. Tải trọng 19 model theo trang sản phẩm chính thức dothanhauto.com (tra cứu 19/11/2026), tách riêng phiên bản tập lái, thùng Composite; tải trọng có thể thay đổi theo cấu hình thùng. Đầu kéo ghi khối lượng kéo theo. HC6: website chính thức 8,5 tấn, một số đại lý ghi 8,8 tấn theo phiên bản.</p>`;
+  <p class="muted" style="font-size:12px;margin:6px 0 0">Nguồn: Bảng giá công bố DOTHANH (DAC) T11/2026 (giá lẻ công bố đã gồm VAT, khoảng giá theo loại thùng, không gồm xe tập lái); danh mục 19 model theo file Anh cung cấp. Daewoo chưa có trong bảng giá T11. Tải trọng theo bảng thông số từng loại thùng trên dothanhauto.com (tra cứu 19/11/2026); tải trọng có thể thay đổi theo cấu hình thùng. Đầu kéo ghi khối lượng kéo theo. HC6: website chính thức 8,5 tấn, một số đại lý ghi 8,8 tấn theo phiên bản.</p>`;
 }
 document.querySelectorAll("[data-sscope]").forEach(b => b.addEventListener("click", () => { structScope = b.dataset.sscope; renderStruct(); }));
 function structMarkdown(list){
   const s = sumStruct(list), md = (labels, vals) => { const t = vals.reduce((a,b)=>a+b,0) || 1; return "| Nhóm | Xe/năm | Tỷ trọng |\n|---|---|---|\n" + labels.map((l,i)=>`| ${l} | ${fmtInt(vals[i])} | ${fmt1(vals[i]/t*100)}% |`).join("\n"); };
   return `### Tải trọng\n${md(PAYLOAD, s.payload)}\n\n### Loại thùng\n${md(BODY, s.body)}\n\n### Màu sắc\n${md(COLORS.map(c=>c[0]), s.color)}\n\n### Hiện diện thương hiệu (ước, 0–3)\n${BRANDS.map(b=>`- ${b.name}: ${fmt1(s.lvl[b.k])} · ${b.fact}`).join("\n")}\n\n### Nhận định\n${structInsights(list, s).map(x=>"- "+x.replace(/<\/?b>/g,"**")).join("\n")}`;
+}
+
+/* ---------- official price list, promotions and dealer policy (T11/2026) ---------- */
+let showInternal = false, plGroup = "";
+function renderPriceSec(){
+  const el = document.getElementById("priceBody"); if(!el) return;
+  document.querySelectorAll("[data-plg]").forEach(b => b.setAttribute("aria-pressed", b.dataset.plg === plGroup));
+  document.getElementById("btnInternal").setAttribute("aria-pressed", showInternal);
+  const items = PL.items.filter(x => !plGroup || x.group === plGroup), I = showInternal;
+  let last = "";
+  const rowsHtml = items.map(x => { const first = x.cmodel !== last; last = x.cmodel; const n = items.filter(y => y.cmodel === x.cmodel).length;
+    return `<tr>${first ? `<td rowspan="${n}" style="text-align:left"><b>${esc(x.cmodel)}</b><br><span class="muted">${esc(x.group)} · ${esc(x.loadClass)}</span></td>` : ""}
+      <td style="text-align:left">${esc(x.body)}</td><td class="num">${kg(x.payload)}</td><td class="num" style="white-space:nowrap">${esc(x.dims)}</td><td class="num">${typeof x.gvw === "number" ? fmtInt(x.gvw) : esc(x.gvw)}</td>
+      <td class="num"><b style="color:#fff">${trd(x.retail)}</b></td><td class="num">${trd(x.minRetail)}</td><td class="num">${trd(x.maxDisc)}</td><td class="num muted">${trd(x.retail*0.02)}</td>
+      ${I ? `<td class="num">${trd(x.dealer)}</td><td class="num">${trd(x.margin)}</td><td class="num">${fmt1(x.marginPct)}%</td>` : ""}
+      ${x.note ? `<td style="text-align:left;white-space:normal;min-width:180px" class="muted">${esc(x.note)}</td>` : "<td></td>"}</tr>`; }).join("");
+  const offers = PL.offers.filter(o => !plGroup || o.group === plGroup);
+  el.innerHTML = `
+  <div class="tablewrap" style="max-height:620px"><table class="btab"><thead><tr><th>Dòng xe</th><th style="text-align:left">Loại thùng / phiên bản</th><th>Tải trọng hàng</th><th>Lòng thùng D×R×C (mm)</th><th>Tổng TL (kg)</th><th>Giá lẻ công bố</th><th>Giá lẻ tối thiểu</th><th>Giảm tối đa</th><th>Lệ phí trước bạ 2%</th>${I ? "<th>Giá bán đại lý</th><th>Biên ĐL</th><th>Biên %</th>" : ""}<th style="text-align:left">Ghi chú</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
+  <p class="muted" style="font-size:12px;margin:6px 0 0">Đơn vị: triệu đồng/xe, đã gồm VAT. Lệ phí trước bạ xe tải 2% giá tính lệ phí (ước theo giá lẻ công bố, chưa gồm biển số, đăng kiểm, bảo hiểm). ${PL.notes.map(esc).join(" ")}</p>
+  <h3 style="margin-top:16px">Ưu đãi bán lẻ tháng 11/2026</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Dòng xe</th><th>BHTV / giảm giá đời 2026</th><th>Hỗ trợ lãi suất đời 2026</th><th>Tổng ưu đãi KH đời 2026</th><th>Tổng ưu đãi KH đời 2025</th><th>“Đón ngay xe mới” ĐL tặng</th>${I ? "<th>DAC hỗ trợ</th><th>ĐL chịu</th><th>Thưởng TVBH xe 1 / từ xe 2</th>" : ""}<th style="text-align:left">Ghi chú</th></tr></thead><tbody>
+  ${offers.map(o => `<tr><td style="text-align:left"><b>${esc(o.cmodel)}</b></td><td class="num">${trd(o.bhtv26)}</td><td class="num">${trd(o.htls26)}</td><td class="num"><b style="color:var(--amber)">${trd(o.total26)}</b></td><td class="num">${trd(o.total25)}</td><td class="num">${trd(o.donNgay)}</td>
+    ${I ? `<td class="num">${trd(o.dacSupport)}</td><td class="num">${trd(o.dealerBear)}</td><td class="num">${trd(o.tvbh1)} / ${trd(o.tvbh2)}</td>` : ""}<td style="text-align:left;white-space:normal;min-width:260px" class="muted">${esc(o.note)}</td></tr>`).join("")}
+  </tbody></table></div>
+  <p class="muted" style="font-size:12px;margin:6px 0 0">${esc(PL.offerHead)} ${PL.offerNotes.map(esc).join(" ")}</p>
+  ${I ? `<h3 style="margin-top:16px">Chính sách hiệu quả bán hàng tháng – quý – năm (nội bộ)</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Dòng xe</th><th>Sỉ tháng</th><th>Sỉ quý</th><th>Sỉ năm</th><th>Lẻ tháng</th><th>Lẻ quý</th><th>Lẻ năm</th><th>Lẻ đúng vùng</th><th>TVBH tháng</th><th>TVBH năm</th></tr></thead><tbody>
+  ${PL.policy.filter(p => !plGroup || p.group === plGroup).map(p => `<tr><td style="text-align:left"><b>${esc(p.cmodel)}</b></td>${["siM","siQ","siY","leM","leQ","leY","leVung","tvbhM","tvbhY"].map(k=>`<td class="num">${trd(p[k])}</td>`).join("")}</tr>`).join("")}
+  </tbody></table></div><p class="muted" style="font-size:12px;margin:6px 0 0">${esc(PL.policyHead)}</p>` : ""}
+  <h3 style="margin-top:16px">Xe tập lái IZ50S / IZ65M-Plus</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Dòng xe</th><th>Đời</th><th>Giá lẻ công bố (TB 138)</th>${I ? "<th>Giá bán đại lý</th><th>Chênh lệch lẻ</th><th>Thưởng TVBH</th>" : ""}<th style="text-align:left">Trang bị, ghi chú</th></tr></thead><tbody>
+  ${PL.xtl.map(x => `<tr><td style="text-align:left"><b>${esc(x.model)}</b></td><td class="num">${esc(x.year)}</td><td class="num">${trd(x.retail)}</td>${I ? `<td class="num">${trd(x.dealer)}</td><td class="num">${trd(x.diff)}</td><td class="num">${trd(x.tvbh)}</td>` : ""}<td style="text-align:left;white-space:normal" class="muted">${esc(x.note)}</td></tr>`).join("")}
+  </tbody></table></div>
+  <p style="font-size:12.5px;margin:6px 0 0;color:var(--warn)">${PL.xtlNotes.map(esc).join(" ")}</p>`;
+}
+document.querySelectorAll("[data-plg]").forEach(b => b.addEventListener("click", () => { plGroup = b.dataset.plg; renderPriceSec(); }));
+document.getElementById("btnInternal").addEventListener("click", () => { showInternal = !showInternal; renderPriceSec(); });
+function priceMarkdown(m){
+  const rs = PL.items.filter(x => !m || x.cmodel === m), o = m ? offerOf(m) : null;
+  return `| Dòng xe | Thùng | Tải trọng | Giá lẻ CB (tr) | Giá lẻ tối thiểu (tr)${showInternal ? " | Giá ĐL (tr) | Biên %" : ""} |\n|---|---|---|---|---${showInternal ? "|---|---" : ""}|\n` +
+    rs.map(x => `| ${x.cmodel} | ${shortBody(x.body)} | ${typeof x.payload === "number" ? fmtInt(x.payload) + " kg" : x.payload} | ${trd(x.retail)} | ${trd(x.minRetail)}${showInternal ? ` | ${trd(x.dealer)} | ${fmt1(x.marginPct)}%` : ""} |`).join("\n") +
+    (o ? `\n\nƯu đãi T11 đời 2026: BHTV/giảm giá ${trd(o.bhtv26)} tr + hỗ trợ lãi suất ${trd(o.htls26)} tr = ${trd(o.total26)} tr${typeof o.total25 === "number" ? `; đời 2025: ${trd(o.total25)} tr` : ""}${o.donNgay ? `; “Đón ngay xe mới” ĐL tặng ${trd(o.donNgay)} tr` : ""}. ${o.note || ""}` : "");
 }
 
 /* ---------- data sources & timestamps ---------- */
@@ -2076,7 +2155,7 @@ function renderAll(){
   tamIn.value = tam; compute();
   chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
   document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
-  uioIn.value = uioNat; scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
+  uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 function init(){
   load(); renderAll();
