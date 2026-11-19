@@ -198,7 +198,38 @@
      7.6
     ]
    ]
+  ],
+  "HC6": [
+   [
+    "Maximus HC6 (website chính thức; một số đại lý ghi 8,8 tấn theo phiên bản)",
+    8.5
+   ]
+  ],
+  "HC8": [
+   [
+    "Maximus HC8",
+    8.6
+   ]
+  ],
+  "Novus": [
+   [
+    "Dòng tải nặng Novus: ben CL4DF 12,7 tấn; đầu kéo kéo theo 39 tấn",
+    12.7
+   ]
+  ],
+  "Xe ben": [
+   [
+    "Novus CL4DF, thùng 10 m³",
+    12.7
+   ]
+  ],
+  "Đầu kéo": [
+   [
+    "Novus CL4TF / CL4T8, khối lượng kéo theo",
+    39,
+    5
+   ]
   ]
  },
- "specSource": "dothanhauto.com (trang sản phẩm DOTHANH MISSU, DOTHANH IZ, JP) – tra cứu 19/11/2026; Daewoo HC6, HC8, Novus, ben, đầu kéo chờ xác nhận"
+ "specSource": "dothanhauto.com (trang sản phẩm DOTHANH MISSU, DOTHANH IZ, JP, DAEWOO TRUCKS) – tra cứu 19/11/2026"
 }
