@@ -196,6 +196,28 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 .aiq{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--glass-line)}
 .aiq button{font-size:12px;padding:5px 10px;border-radius:999px}
 .aiq .seg button{border-radius:0;padding:4px 10px}
+.btabs{display:flex;border-bottom:1px solid var(--glass-line);padding:0 8px;flex:none}
+.btabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;padding:9px 10px 7px;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;color:var(--muted);box-shadow:none}
+.btabs button[aria-selected="true"]{color:#fff;border-bottom-color:var(--cyan)}
+.bpane{display:flex;flex-direction:column;flex:1;min-height:0}
+.bpane[hidden]{display:none!important}
+.bscroll{overflow:auto;padding:12px 14px;gap:8px}
+.bscroll > *{flex:none}
+.bscroll h4{margin:8px 0 2px;font-family:var(--display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.bscroll input[type=text],.bscroll input[type=number],.bscroll select{width:100%}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.bout{font-size:13px}
+.bout table{font-size:12px;width:100%}
+.bout th,.bout td{padding:4px 6px;position:static;background:transparent}
+.bout th:first-child,.bout td:first-child{position:static;background:transparent}
+.calcres{font-family:var(--display);font-size:30px;font-weight:700;color:#fff;text-shadow:0 0 18px rgba(70,227,255,.4)}
+.bhist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.bhist li{cursor:pointer}.bhist li:hover{color:#fff}
+.mglist{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:2px 8px;font-size:12.5px;max-height:180px;overflow:auto;padding:6px;border:1px solid var(--glass-line);border-radius:10px}
+.mglist label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.tcogrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:6px 8px;align-items:center;font-size:12.5px}
+.tcogrid input{width:100%;padding:5px 8px}
+.tcogrid .h{font-family:var(--display);font-weight:700;color:var(--cyan);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
 .aiql{width:100%;font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
 .ben-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-family:var(--display);font-weight:700;font-size:16px;color:#fff;
   background:radial-gradient(circle at 30% 30%,#9ff3ff,var(--cyan) 40%,var(--magenta));box-shadow:0 0 18px rgba(70,227,255,.6)}
@@ -336,6 +358,13 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="ben-av">B</span>Ben · Báo cáo</button>
 <section id="ai" hidden aria-label="Ben, trợ lý báo cáo">
   <header><span class="ben-av">B</span><div style="display:flex;flex-direction:column;line-height:1.2"><b>Ben</b><span class="muted" style="font-size:12px">Trợ lý báo cáo thị trường xe thương mại</span></div><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
+  <nav class="btabs" role="tablist" aria-label="Công cụ của Ben">
+    <button type="button" role="tab" data-btab="Chat" aria-selected="true">Hỏi đáp</button>
+    <button type="button" role="tab" data-btab="Calc" aria-selected="false">Tính nhanh</button>
+    <button type="button" role="tab" data-btab="Tco" aria-selected="false">Giá trị SP</button>
+    <button type="button" role="tab" data-btab="Talk" aria-selected="false">Sale talk</button>
+  </nav>
+  <div class="bpane" id="bChat">
   <div class="aiq"><span class="aiql">Báo cáo tức thì</span><div id="aiInstant" style="display:contents"></div></div>
   <div class="aiq"><span class="aiql">Ben phân tích</span><div id="aiQuick" style="display:contents"></div>
     <div class="seg" role="group" aria-label="Tốc độ phân tích" style="margin-left:auto"><button type="button" data-speed="quick">Nhanh</button><button type="button" data-speed="default">Chuyên sâu</button></div></div>
@@ -346,6 +375,46 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <textarea id="aiText" placeholder="Hỏi Ben về tỉnh, vùng, phân khúc, đối thủ, kế hoạch…"></textarea>
     <button type="button" class="primary" id="aiSend">Gửi</button>
     <button type="button" id="aiStop" hidden>Dừng</button>
+  </div>
+  </div>
+  <div class="bpane bscroll" id="bCalc" hidden>
+    <h4>Máy tính họp</h4>
+    <label class="sr" for="calcIn">Phép tính</label>
+    <input id="calcIn" type="text" placeholder="VD: 122.235 × 8%  ·  (850 − 720) / 12  ·  1,5 tỷ / 36" autocomplete="off">
+    <div id="calcOut" class="bout num"></div>
+    <ul id="calcHist" class="bhist num"></ul>
+    <h4>Thị phần &amp; mục tiêu</h4>
+    <div class="bgrid">
+      <label class="field" for="shScope">Phạm vi<select id="shScope"></select></label>
+      <label class="field" for="shSales">Doanh số của ta (xe)<input id="shSales" type="number" min="0" value="500"></label>
+      <label class="field" for="shTarget">Thị phần mục tiêu (%)<input id="shTarget" type="number" min="0" step="0.5" value="10"></label>
+    </div>
+    <div id="shOut" class="bout"></div>
+    <h4>Gộp thị phần</h4>
+    <div class="chips" id="mgZones"></div>
+    <div class="mglist" id="mgList"></div>
+    <div id="mgOut" class="bout"></div>
+    <h4>Tách thị phần theo tỉnh cũ</h4>
+    <label class="field" for="spProv">Tỉnh mới<select id="spProv"></select></label>
+    <div id="spOut" class="bout"></div>
+  </div>
+  <div class="bpane bscroll" id="bTco" hidden>
+    <h4>So sánh tổng chi phí sở hữu (TCO)</h4>
+    <p class="muted" style="margin:0 0 8px;font-size:12px">Số mặc định là ví dụ minh họa; thay bằng giá và thông số thực của hai dòng xe đang so sánh.</p>
+    <div class="tcogrid" id="tcoGrid"></div>
+    <div id="tcoOut" class="bout"></div>
+    <div class="toolbar"><button type="button" class="primary" id="tcoTalk">Ben viết sale talk từ phép so sánh này</button><button type="button" id="tcoCopy">Sao chép kết quả</button></div>
+  </div>
+  <div class="bpane bscroll" id="bTalk" hidden>
+    <h4>Kịch bản bán hàng</h4>
+    <div class="bgrid">
+      <label class="field" for="tkCust">Khách hàng<select id="tkCust"></select></label>
+      <label class="field" for="tkObj">Từ chối thường gặp<select id="tkObj"></select></label>
+      <label class="field" for="tkSeg">Phân khúc<select id="tkSeg"></select></label>
+      <label class="field" for="tkProv">Tỉnh<select id="tkProv"></select></label>
+    </div>
+    <div class="toolbar"><button type="button" class="primary" id="tkMake">Tạo kịch bản ngay</button><button type="button" id="tkAi">Ben cá nhân hóa (AI)</button><button type="button" id="tkCopy">Sao chép</button></div>
+    <div id="tkOut" class="bout msg a"></div>
   </div>
 </section>
 
@@ -1224,7 +1293,7 @@ function instantReport(kind){
 fab.addEventListener("click", () => openAi(true));
 document.getElementById("aiClose").addEventListener("click", () => openAi(false));
 function greet(){
-  addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
+  addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Trong họp anh/chị cứ gõ thẳng: \`122.235 × 8%\`, \`gộp Hà Nội, Bắc Ninh, Hưng Yên\`, \`tách TP. Hồ Chí Minh\`: em trả lời ngay. Các tab **Tính nhanh**, **Giá trị SP** (so sánh TCO) và **Sale talk** dùng được cả khi không có AI.\n\n Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
   if(aiDisabled) aiState.textContent = "Báo cáo tức thì dùng được ở mọi nơi; Ben phân tích chỉ chạy khi mở trang trong Claude.";
 }
 function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
@@ -1256,7 +1325,7 @@ function dataSnapshot(){
 }
 function rules(){
   return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
-Xưng "em", gọi người dùng là "anh/chị". ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
+Xưng "em", gọi người dùng là "anh/chị". Ben thường được dùng TRONG CUỘC HỌP: trả lời số trước, lời sau; câu ngắn. Mọi phép tính phải dùng công cụ calc; gộp/tách thị phần dùng merge_share / split_province. Khi viết sale talk: nghệ thuật bán hàng tư vấn (SPIN, Tính năng – Lợi ích – Bằng chứng, xử lý từ chối, chốt), dựa trên giá trị và tổng chi phí sở hữu, không chê bai đối thủ, không bịa thông số kỹ thuật. ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
 Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
@@ -1272,6 +1341,15 @@ const AI_TOOLS = [
    execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
      const o = strip(r); delete o.lp; o.thi_truong_uoc = r._market; o.ty_trong = +r._mshare.toFixed(2); o.hang = r._tier; o.grdp_nguoi = Math.round(r._gpc);
      o.phan_khuc_xe = Object.fromEntries(SEGS.map((s,i)=>[s, Math.round(r._market*r.mix[i]/100)])); o.trung_tam = centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type})`); return o; }},
+  {name:"calc", description:"Máy tính chính xác. Dùng cho MỌI phép cộng trừ nhân chia, phần trăm, thị phần. Nhận biểu thức như '122235*8%' hoặc '(850-720)/12'. Trả về số.",
+   inputSchema:{type:"object",properties:{expression:{type:"string"}},required:["expression"]},
+   execute: ({expression}) => calc(String(expression)) },
+  {name:"merge_share", description:"Gộp nhiều tỉnh hoặc khu vực kinh doanh: trả về bảng ĐK mới, tỷ trọng, UIO, số trung tâm của từng tỉnh và tổng.",
+   inputSchema:{type:"object",properties:{names:{type:"array",items:{type:"string"}}},required:["names"]},
+   execute: ({names}) => localAnswer("gộp " + (names||[]).join(", ")) || "Không tìm thấy tỉnh/khu vực" },
+  {name:"split_province", description:"Tách một tỉnh mới thành các tỉnh cũ trước sáp nhập, ước tính ĐK mới và UIO từng phần.",
+   inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
+   execute: ({name}) => localAnswer("tách " + name) || "Không tìm thấy tỉnh" },
   {name:"focus_province", description:"Chọn và ghim một tỉnh trên bản đồ để người dùng xem hồ sơ. Trả về 'ok'.",
    inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
    execute: ({name}) => { if(!select(String(name), true)) throw new Error("Không tìm thấy tỉnh " + name); showTab("P"); return "ok"; }},
@@ -1284,7 +1362,9 @@ const AI_TOOLS = [
 function setBusy(b, label){ aiBusy = b; aiSend.disabled = b; aiStop.hidden = !b; aiState.textContent = label || ""; document.querySelectorAll("#aiQuick button").forEach(x=>x.disabled=b); }
 async function askAi(text){
   text = String(text||"").trim(); if(!text || aiBusy) return;
-  openAi(true);
+  openAi(true); benTab("Chat");
+  const local = localAnswer(text);
+  if(local){ addMsg("u", esc(text)); aiText.value = ""; const b = addMsg("a", ""); finishBubble(b, local, false, "Ben tính nhanh"); return; }
   if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Ben phân tích chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Anh/chị vẫn dùng được các nút <b>Báo cáo tức thì</b>.</p>"); return; }
   addMsg("u", esc(text)); aiText.value = "";
   aiTurns.push({role:"user", content:text}); if(aiTurns.length > 12) aiTurns = aiTurns.slice(-12);
@@ -1318,12 +1398,203 @@ aiSend.addEventListener("click", () => askAi(aiText.value));
 aiStop.addEventListener("click", () => aiCtl && aiCtl.abort());
 aiText.addEventListener("keydown", e => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); askAi(aiText.value); } });
 
+/* ---------- Ben: meeting toolkit (instant, no AI needed) ---------- */
+document.querySelectorAll("#ai [data-btab]").forEach(b => b.addEventListener("click", () => benTab(b.dataset.btab)));
+function benTab(t){ document.querySelectorAll("#ai [data-btab]").forEach(b => b.setAttribute("aria-selected", b.dataset.btab === t)); document.querySelectorAll("#ai .bpane").forEach(p => p.hidden = p.id !== "b"+t); }
+function fmtNum(v){ if(!isFinite(v)) return "—"; const a = Math.abs(v); return new Intl.NumberFormat("vi-VN",{maximumFractionDigits: a >= 1000 ? 0 : a >= 1 ? 2 : 4}).format(v); }
+/* safe calculator: + − × ÷ ^ ( ) %, Vietnamese number format, units tỷ / triệu / nghìn */
+function calc(expr){
+  let s = String(expr).toLowerCase().replace(/[−–]/g,"-").replace(/[×✕]/g,"*").replace(/÷/g,"/").replace(/(\d)\s*x\s*(\d)/g,"$1*$2").replace(/(\d)\s*:\s*(\d)/g,"$1/$2");
+  s = s.replace(/bằng bao nhiêu|bao nhiêu|là bao nhiêu|tính|kết quả|=|\?/g," ");
+  s = s.replace(/\d{1,3}(?:\.\d{3})+(?![\d,])/g, m => m.replace(/\./g,"")).replace(/(\d),(\d)/g,"$1.$2");
+  const W = "(?![a-zà-ỹđ])";
+  s = s.replace(new RegExp("\\s*(tỷ|tỉ)" + W, "g"),"*1000000000").replace(new RegExp("\\s*(triệu|tr)" + W, "g"),"*1000000").replace(new RegExp("\\s*(nghìn|ngàn|k)" + W, "g"),"*1000");
+  s = s.replace(/\s+/g,"");
+  if(!/\d/.test(s) || !/^[\d.+\-*/^%()]+$/.test(s)) throw new Error("not math");
+  const t = s.match(/\d*\.?\d+|[+\-*/^%()]/g); let i = 0;
+  const peek = () => t[i], eat = c => { if(t[i] === c){ i++; return true; } return false; };
+  function primary(){ if(eat("(")){ const v = expr0(); if(!eat(")")) throw new Error("thiếu dấu )"); return {v}; }
+    const n = t[i++]; if(n == null || !/\d/.test(n)) throw new Error("cú pháp"); return {v: parseFloat(n)}; }
+  function postfix(){ let r = primary(); while(peek() === "%"){ i++; r = {v: r.v/100, pct: true}; } return r; }
+  function unary(){ if(eat("-")){ const r = unary(); return {v: -r.v, pct: r.pct}; } if(eat("+")) return unary(); return postfix(); }
+  function power(){ const b = unary(); if(eat("^")){ const e = power(); return {v: Math.pow(b.v, e.v)}; } return b; }
+  function term(){ let r = power(); while(peek() === "*" || peek() === "/"){ const op = t[i++], x = power(); r = {v: op === "*" ? r.v*x.v : r.v/x.v}; } return r; }
+  function expr0(){ let r = term(); while(peek() === "+" || peek() === "-"){ const op = t[i++], x = term();
+      // "a + 10%" means a increased by 10% (business convention)
+      r = {v: x.pct ? r.v*(1 + (op === "+" ? x.v : -x.v)) : (op === "+" ? r.v + x.v : r.v - x.v)}; } return r.v; }
+  const v = expr0(); if(i < t.length) throw new Error("cú pháp"); if(!isFinite(v)) throw new Error("không xác định (chia cho 0?)"); return v;
+}
+const calcIn = document.getElementById("calcIn"), calcOut = document.getElementById("calcOut"), calcHist = document.getElementById("calcHist");
+function runCalc(){
+  const q = calcIn.value.trim(); if(!q){ calcOut.innerHTML = ""; return; }
+  try{ const v = calc(q); calcOut.innerHTML = `<div class="calcres">${fmtNum(v)}</div>`; return v; }
+  catch(e){ calcOut.innerHTML = `<span class="muted">${e.message === "not math" ? "Nhập phép tính, ví dụ 122.235 × 8%" : "Chưa tính được: " + esc(e.message)}</span>`; }
+}
+calcIn.addEventListener("input", runCalc);
+calcIn.addEventListener("keydown", e => { if(e.key !== "Enter") return; const v = runCalc(); if(v == null) return;
+  const li = document.createElement("li"); li.textContent = `${calcIn.value.trim()} = ${fmtNum(v)}`; li.title = "Bấm để dùng lại"; li.onclick = () => { calcIn.value = String(v); runCalc(); };
+  calcHist.prepend(li); while(calcHist.children.length > 8) calcHist.lastChild.remove(); calcIn.select(); });
+
+/* share & target */
+const shScope = document.getElementById("shScope"), shSales = document.getElementById("shSales"), shTarget = document.getElementById("shTarget");
+function scopeRows(v){ if(!v) return rows; if(v.startsWith("z:")) return rows.filter(r => r.zone === v.slice(2)); return rows.filter(r => r.name === v.slice(2)); }
+function fillScopes(){
+  const opts = `<option value="">Toàn quốc</option><optgroup label="Khu vực">${ZONES.map(z=>`<option value="z:${esc(z)}">${esc(z)}</option>`).join("")}</optgroup><optgroup label="Tỉnh / thành">${[...rows].sort((a,b)=>a.name.localeCompare(b.name,"vi")).map(r=>`<option value="p:${esc(r.name)}">${esc(r.name)}</option>`).join("")}</optgroup>`;
+  const keep = shScope.value; shScope.innerHTML = opts; shScope.value = keep;
+}
+function renderShare(){
+  const rs = scopeRows(shScope.value), mk = rs.reduce((a,r)=>a+r._market,0), sales = +shSales.value || 0, tgt = +shTarget.value || 0;
+  const need = Math.round(mk * tgt / 100), share = mk ? sales / mk * 100 : 0, label = shScope.value ? shScope.value.slice(2) : "Toàn quốc";
+  document.getElementById("shOut").innerHTML = mdToHtml(`| ${label} | Giá trị |\n|---|---|\n| ĐK mới xe tải 2025 | ${n0(mk)} xe |\n| Thị phần hiện tại | **${fmt1(share)}%** |\n| Mục tiêu ${fmt1(tgt)}% | **${n0(need)} xe** |\n| Còn thiếu | ${n0(Math.max(need - sales, 0))} xe (${n0(Math.max(need - sales, 0)/12)} xe/tháng) |\n| 1 điểm thị phần | ${n0(mk/100)} xe |`);
+}
+[shScope, shSales, shTarget].forEach(el => el.addEventListener("input", renderShare));
+
+/* merge (gộp) */
+const mgSel = new Set();
+function mergeTable(list){
+  if(!list.length) return "_Chưa chọn tỉnh nào._";
+  const nat = rows.reduce((a,r)=>a+r._market,0), sum = k => list.reduce((a,r)=>a+(+r[k]||0),0);
+  const reg = sum("_market"), uio = sum("_uio"), c = list.reduce((a,r)=>a+r._c4+r._c3,0);
+  return `| Tỉnh | ĐK mới | Tỷ trọng | UIO | TT |\n|---|---|---|---|---|\n` + list.map(r=>`| ${r.name} | ${n0(r._market)} | ${fmt1(r._market/nat*100)}% | ${n0(r._uio)} | ${r._c4+r._c3} |`).join("\n") +
+    `\n| **Gộp ${list.length} tỉnh** | **${n0(reg)}** | **${fmt1(reg/nat*100)}%** | **${n0(uio)}** | **${c}** |\n\nDân số ${fmt1(sum("pop")/1000)} triệu · GRDP ${n0(sum("grdp"))} nghìn tỷ · ${c ? n0(reg/c) + " xe ĐK mới / trung tâm" : "chưa có trung tâm"} · ĐK mới / UIO ${fmt1(uio ? reg/uio*100 : 0)}%.`;
+}
+function renderMerge(){
+  document.getElementById("mgList").innerHTML = [...rows].sort((a,b)=>a.name.localeCompare(b.name,"vi")).map(r=>`<label><input type="checkbox" data-mg="${esc(r.name)}" ${mgSel.has(r.name)?"checked":""}>${esc(r.name)}</label>`).join("");
+  document.getElementById("mgOut").innerHTML = mdToHtml(mergeTable(rows.filter(r=>mgSel.has(r.name)).sort((a,b)=>b._market-a._market)));
+}
+document.getElementById("mgList").addEventListener("change", e => { const n = e.target.dataset.mg; if(!n) return; e.target.checked ? mgSel.add(n) : mgSel.delete(n); renderMerge(); });
+document.getElementById("mgZones").innerHTML = `<button type="button" class="chip" data-mz="">Bỏ chọn</button>` + ZONES.map(z=>`<button type="button" class="chip" data-mz="${esc(z)}">${esc(z.replace("Khu vực ","KV "))}</button>`).join("");
+document.getElementById("mgZones").addEventListener("click", e => { const b = e.target.closest("[data-mz]"); if(!b) return; if(!b.dataset.mz) mgSel.clear(); else rows.filter(r=>r.zone===b.dataset.mz).forEach(r=>mgSel.add(r.name)); renderMerge(); });
+
+/* split (tách) by old provinces */
+function splitTable(r){
+  const w = r.parts.map(p => Math.pow(p.grdp,0.65)*Math.pow(p.pop,0.35)), sw = w.reduce((a,b)=>a+b,0);
+  const w2 = r.parts.map(p => Math.sqrt(p.grdp*p.pop)), sw2 = w2.reduce((a,b)=>a+b,0);
+  return `**${r.name}** = ${r.parts.map(p=>p.name).join(" + ")}\n\n| Tỉnh cũ | Dân số (nghìn) | GRDP 2024 | ĐK mới (ước) | Tỷ lệ | UIO (ước) |\n|---|---|---|---|---|---|\n` +
+    r.parts.map((p,i)=>`| ${p.name} | ${n0(p.pop)} | ${n0(p.grdp)} | ${n0(r._market*w[i]/sw)} | ${fmt1(w[i]/sw*100)}% | ${n0(r._uio*w2[i]/sw2)} |`).join("\n") +
+    `\n| **Tổng** | **${n0(r.pop)}** | **${n0(r.grdp)}** | **${n0(r._market)}** | 100% | **${n0(r._uio)}** |\n\nTách theo trọng số GRDP và dân số của tỉnh cũ (ước tính).`;
+}
+const spProv = document.getElementById("spProv");
+function renderSplit(){ const r = rows.find(x => x.name === spProv.value) || rows[0]; document.getElementById("spOut").innerHTML = mdToHtml(splitTable(r)); }
+spProv.addEventListener("change", renderSplit);
+
+/* TCO */
+const TCO_ROWS = [["name","Dòng xe","text"],["price","Giá xe lăn bánh (triệu đ)","n"],["fuel","Tiêu hao nhiên liệu (lít/100 km)","n"],["maint","Bảo dưỡng, sửa chữa (triệu/năm)","n"],["resid","Giá trị còn lại cuối kỳ (%)","n"],["down","Ngày xe nằm xưởng / năm","n"]];
+const TCO_COMMON = [["km","Quãng đường (km/năm)",80000],["diesel","Giá dầu (đ/lít)",20000],["years","Số năm sử dụng",5],["rev","Doanh thu mỗi ngày xe chạy (triệu)",3],["rate","Lãi vay (%/năm)",9]];
+let tcoA = {name:"Xe của ta", price:850, fuel:12, maint:25, resid:50, down:5}, tcoB = {name:"Xe đối thủ", price:720, fuel:14, maint:38, resid:35, down:12}, tcoC = Object.fromEntries(TCO_COMMON.map(x=>[x[0],x[2]]));
+function renderTcoForm(){
+  document.getElementById("tcoGrid").innerHTML = `<span></span><span class="h">Xe của ta</span><span class="h">Đối thủ</span>` +
+    TCO_ROWS.map(([k,l,t])=>`<label for="ta_${k}">${l}</label><input id="ta_${k}" data-t="a" data-k="${k}" type="${t==="n"?"number":"text"}" value="${esc(tcoA[k])}"><input id="tb_${k}" data-t="b" data-k="${k}" type="${t==="n"?"number":"text"}" value="${esc(tcoB[k])}" aria-label="${l} đối thủ">`).join("") +
+    TCO_COMMON.map(([k,l])=>`<label for="tc_${k}">${l}</label><input id="tc_${k}" data-t="c" data-k="${k}" type="number" value="${tcoC[k]}" style="grid-column:span 2">`).join("");
+}
+document.getElementById("tcoGrid").addEventListener("input", e => { const el = e.target, k = el.dataset.k; if(!k) return; const o = {a:tcoA,b:tcoB,c:tcoC}[el.dataset.t]; o[k] = el.type === "number" ? (+el.value || 0) : el.value; renderTco(); });
+function tcoOf(x){
+  const c = tcoC, fuel = c.km*x.fuel/100*c.diesel/1e6, capital = x.price*c.rate/100*0.5, downtime = x.down*c.rev, dep = x.price*(1 - x.resid/100);
+  const opYear = fuel + x.maint + capital + downtime, total = dep + opYear*c.years;
+  return {fuel, capital, downtime, dep, opYear, total, perKm: total*1e6/(c.km*c.years)};
+}
+let tcoSummary = "";
+function renderTco(){
+  const A = tcoOf(tcoA), B = tcoOf(tcoB), y = tcoC.years, d = B.total - A.total, extra = tcoA.price - tcoB.price, saveY = B.opYear - A.opYear;
+  const pay = extra > 0 && saveY > 0 ? extra/(saveY/12) : null;
+  const row = (l,a,b) => `| ${l} | ${fmtNum(a)} | ${fmtNum(b)} | ${fmtNum(b-a)} |`;
+  tcoSummary = `| Hạng mục (triệu đ) | ${tcoA.name} | ${tcoB.name} | Chênh (đối thủ − ta) |\n|---|---|---|---|\n` + [
+    row("Giá mua", tcoA.price, tcoB.price), row("Mất giá sau "+y+" năm", A.dep, B.dep), row("Nhiên liệu / năm", A.fuel, B.fuel), row("Bảo dưỡng, sửa chữa / năm", tcoA.maint, tcoB.maint),
+    row("Chi phí vốn / năm", A.capital, B.capital), row("Mất doanh thu do nằm xưởng / năm", A.downtime, B.downtime), row("**Tổng chi phí "+y+" năm (TCO)**", A.total, B.total), row("Chi phí / km (đồng)", A.perKm, B.perKm)].join("\n") +
+    `\n\n${d >= 0 ? `**${tcoA.name} rẻ hơn ${fmtNum(d)} triệu đồng sau ${y} năm** (${fmtNum(d/y)} triệu/năm, ${fmtNum((B.perKm-A.perKm))} đ/km).` : `**${tcoB.name} rẻ hơn ${fmtNum(-d)} triệu đồng sau ${y} năm**: cần xem lại thông số hoặc nhấn mạnh giá trị khác (an toàn, hậu mãi, uy tín).`}` +
+    (pay ? ` Phần giá mua cao hơn ${fmtNum(extra)} triệu được thu hồi sau khoảng **${fmtNum(pay)} tháng** nhờ chi phí vận hành thấp hơn.` : "");
+  document.getElementById("tcoOut").innerHTML = mdToHtml(tcoSummary);
+}
+document.getElementById("tcoCopy").addEventListener("click", async () => { try{ await navigator.clipboard.writeText(tcoSummary); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
+document.getElementById("tcoTalk").addEventListener("click", () => { benTab("Chat"); askAi(`Từ bảng so sánh tổng chi phí sở hữu dưới đây, viết sale talk ngắn, sắc, đỉnh cao nghệ thuật bán hàng: câu mở đầu, 3 luận điểm giá trị bằng con số (chi phí/km, hoàn vốn, giá trị còn lại, thời gian xe chạy), 3 câu xử lý từ chối về giá, và 2 cách chốt. Chỉ dùng số trong bảng.\n\n${tcoSummary}`); });
+
+/* sales talk library */
+const CUST = {
+  owner:{label:"Chủ xe cá nhân / hộ kinh doanh", pain:"khoản trả góp hằng tháng, xe chạy đều việc, ít hỏng vặt, bán lại được giá",
+    spin:["Hiện anh/chị đang chạy tuyến nào, mỗi tháng xe lăn bánh bao nhiêu chuyến?","Tháng nào xe phải nằm xưởng thì anh/chị mất khoảng bao nhiêu tiền hàng?","Nếu xe hỏng giữa đường lúc đang có hàng gấp, chuyện đó ảnh hưởng thế nào tới mối hàng?","Nếu mỗi tháng tiết kiệm được vài triệu tiền dầu và sửa chữa thì khoản trả góp có nhẹ hơn không?"]},
+  fleet:{label:"Doanh nghiệp vận tải / logistics", pain:"chi phí trên mỗi km, tỷ lệ xe sẵn sàng chạy, dòng tiền đầu tư đội xe, hậu mãi 24/7",
+    spin:["Đội xe hiện tại bao nhiêu đầu xe, tuổi bình quân bao nhiêu năm?","Chi phí nhiên liệu và sửa chữa đang chiếm bao nhiêu phần trăm doanh thu vận tải?","Mỗi ngày một xe nằm chờ phụ tùng thì hợp đồng và khách hàng của anh/chị bị ảnh hưởng ra sao?","Nếu giảm được vài trăm đồng mỗi km trên cả đội xe, một năm anh/chị có thêm bao nhiêu lợi nhuận?"]},
+  constr:{label:"Nhà thầu xây dựng / khai khoáng", pain:"xe ben chịu tải, bền khung gầm, phụ tùng sẵn, cứu hộ tại công trường",
+    spin:["Công trình hiện tại cần chở bao nhiêu khối mỗi ngày, cung đường dốc hay bằng?","Lần gần nhất xe gãy nhíp, hỏng cầu thì công trình dừng bao lâu?","Chậm tiến độ một ngày thì anh/chị chịu phạt hay mất bao nhiêu chi phí máy móc chờ?","Có trạm dịch vụ cách công trường dưới một giờ thì anh/chị yên tâm hơn thế nào?"]},
+  agri:{label:"HTX / thương lái nông sản", pain:"mùa vụ ngắn, thùng lạnh giữ hàng, tài chính linh hoạt theo mùa",
+    spin:["Mùa cao điểm anh/chị chạy hàng gì, đi chợ đầu mối hay cửa khẩu?","Một chuyến hàng hỏng do nhiệt độ thì thiệt hại khoảng bao nhiêu?","Nếu xe trục trặc đúng mùa thu hoạch thì phải thuê ngoài với giá thế nào?","Gói trả góp theo mùa vụ có giúp anh/chị chủ động dòng tiền hơn không?"]},
+  fdi:{label:"Doanh nghiệp FDI / khu công nghiệp", pain:"tiêu chuẩn an toàn, khí thải, hồ sơ thầu minh bạch, dịch vụ tận nơi",
+    spin:["Quy trình chọn nhà cung cấp xe của công ty gồm những tiêu chí nào?","Tiêu chuẩn an toàn, khí thải nào là bắt buộc với đội xe nội bộ?","Nếu xe đưa đón hoặc giao hàng chậm, dây chuyền sản xuất bị ảnh hưởng thế nào?","Một hợp đồng dịch vụ trọn gói có tiêu chí thời gian phản hồi có giúp bộ phận mua hàng dễ duyệt hơn không?"]}
+};
+const OBJ = {
+  price:{label:"Giá cao hơn đối thủ", steps:["Em hiểu, giá mua là con số anh/chị thấy đầu tiên, ai cũng phải cân nhắc.","Nhưng chiếc xe kiếm tiền cho anh/chị trong 5–7 năm, nên con số quyết định là chi phí trên mỗi km và số ngày xe chạy được.","Mình cùng tính thử: [chèn bảng TCO, chi phí/km, số tháng hoàn vốn phần chênh giá].","Nếu chênh lệch được bù lại trong khoảng thời gian đó, phần còn lại của vòng đời xe là lợi nhuận thêm của anh/chị, anh/chị thấy có hợp lý không?"]},
+  china:{label:"Xe Trung Quốc rẻ hơn nhiều", steps:["Đúng, xe Trung Quốc có giá mua thấp, đó là lợi thế thật.","Câu hỏi là sau 3 năm: giá bán lại còn bao nhiêu, phụ tùng có sẵn không, xe nằm xưởng mấy ngày mỗi năm.","Anh/chị thử hỏi vài chủ xe đã dùng 3 năm, hoặc mình đặt hai phương án cạnh nhau trên bảng chi phí [TCO].","Nếu tổng chi phí của xe mình thấp hơn và giữ giá tốt hơn, anh/chị có muốn chạy thử một chuyến hàng thật không?"]},
+  brand:{label:"Đang dùng hãng khác, quen rồi", steps:["Anh/chị gắn bó lâu với một hãng là có lý do, em tôn trọng điều đó.","Em không đề nghị thay cả đội xe, chỉ xin đưa một xe vào chạy song song cùng tuyến.","Sau [1–3 tháng] mình so số liệu thật: dầu, sửa chữa, ngày nghỉ của từng xe.","Nếu số liệu tốt hơn, anh/chị quyết; nếu không, mình hỗ trợ đổi lại theo điều khoản rõ ràng. Mình bắt đầu với tuyến nào?"]},
+  think:{label:"Để anh/chị suy nghĩ thêm", steps:["Dạ, quyết định đầu tư xe cần cân nhắc kỹ.","Để anh/chị suy nghĩ thuận tiện, cho em hỏi điều anh/chị còn băn khoăn nhất là giá, tài chính hay dịch vụ?","[Lắng nghe, giải quyết đúng điểm đó bằng số liệu.]","Em giữ ưu đãi và xe sẵn kho đến [ngày], anh/chị muốn em gửi bảng tính chi tiết để trình duyệt nội bộ trước không?"]},
+  parts:{label:"Lo phụ tùng, dịch vụ ở xa", steps:["Lo xe nằm chờ phụ tùng là hoàn toàn chính đáng, vì mỗi ngày nằm là mất tiền.","Trung tâm gần nhất của mình là [tên trung tâm], cách khoảng [x] km, có xe cứu hộ lưu động.","Phụ tùng hao mòn nhanh được dự trữ tại trung tâm, cam kết thời gian phản hồi [x giờ].","Em có thể đưa anh/chị xuống xưởng xem kho phụ tùng và gặp trưởng xưởng, anh/chị rảnh ngày nào?"]},
+  cash:{label:"Chưa đủ vốn", steps:["Dòng tiền là ưu tiên số một, em hiểu.","Mình có gói vay [70–80%], thời hạn [5–7] năm, có thể trả góp linh hoạt theo mùa vụ.","Với chuyến hàng [x] mỗi tháng, tiền trả góp chỉ bằng khoảng [x]% doanh thu xe tạo ra.","Em làm hồ sơ sơ bộ ngay hôm nay để anh/chị biết hạn mức, không mất phí, anh/chị đồng ý chứ?"]}
+};
+const tkCust = document.getElementById("tkCust"), tkObj = document.getElementById("tkObj"), tkSeg = document.getElementById("tkSeg"), tkProv = document.getElementById("tkProv"), tkOut = document.getElementById("tkOut");
+tkCust.innerHTML = Object.entries(CUST).map(([k,c])=>`<option value="${k}">${esc(c.label)}</option>`).join("");
+tkObj.innerHTML = Object.entries(OBJ).map(([k,o])=>`<option value="${k}">${esc(o.label)}</option>`).join("");
+tkSeg.innerHTML = SEGS.map((s,i)=>`<option value="${i}">${esc(s)}</option>`).join("");
+let tkMd = "";
+function buildTalk(){
+  const c = CUST[tkCust.value], o = OBJ[tkObj.value], seg = SEGS[+tkSeg.value], r = rows.find(x=>x.name===tkProv.value) || rows[0];
+  const cs = centersOf(r.name), top2 = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
+  tkMd = `## Kịch bản: ${c.label} · ${seg} · ${r.name}
+**Bối cảnh:** ${r.name} (${r.zone}) có ~${n0(r._market)} xe tải ĐK mới/năm (ước), UIO ~${n0(r._uio)} xe; phân khúc mạnh: ${top2.join(", ")}. ${r.elev >= 600 ? "Địa hình đèo dốc: nhấn mạnh khung gầm, phanh, hộp số." : "Địa hình bằng phẳng, quãng đường dài: nhấn mạnh tiết kiệm nhiên liệu và tốc độ quay vòng."} Trung tâm gần nhất: ${cs.map(x=>x.name).join(", ") || "chưa có tại tỉnh, dùng trung tâm lân cận"}.
+**Điều khách quan tâm:** ${c.pain}.
+
+### 1. Mở đầu (30 giây)
+- "Chào anh/chị, em là [tên] ở [trung tâm]. Em không đến để bán xe ngay, em muốn hiểu việc chạy hàng của mình để xem có cách nào giảm chi phí mỗi chuyến không."
+
+### 2. Khai thác nhu cầu (SPIN)
+${c.spin.map((q,i)=>`- **${["Tình huống","Vấn đề","Hệ quả","Lợi ích"][i]}:** ${q}`).join("\n")}
+
+### 3. Trình bày giá trị (Tính năng → Lợi ích → Bằng chứng)
+- **Tính năng:** [động cơ, hộp số, tải trọng, thùng của dòng ${seg}].
+- **Lợi ích:** giảm chi phí/km, tăng số ngày xe chạy, giữ giá bán lại.
+- **Bằng chứng:** bảng TCO ở tab "Giá trị SP", khách hàng tham chiếu tại ${r.name}, lái thử có hàng.
+
+### 4. Xử lý từ chối: "${o.label}"
+${o.steps.map((x,i)=>`${i+1}. ${x}`).join("\n")}
+
+### 5. Chốt
+- **Chốt lựa chọn:** "Anh/chị lấy thùng [A] hay thùng [B]? Giao trong tuần này hay đầu tháng sau?"
+- **Chốt thử:** "Nếu em lo được hồ sơ vay và lịch giao xe trước mùa cao điểm, mình ký hợp đồng hôm nay được không?"
+- **Bước tiếp theo:** hẹn lái thử, gửi báo giá kèm bảng TCO, mời xuống trung tâm.
+
+_Ô trong ngoặc vuông [ ] là chỗ điền số liệu thực của dòng xe, chính sách giá và tài chính hiện hành._`;
+  tkOut.innerHTML = mdToHtml(tkMd);
+}
+document.getElementById("tkMake").addEventListener("click", buildTalk);
+[tkCust, tkObj, tkSeg, tkProv].forEach(el => el.addEventListener("change", buildTalk));
+document.getElementById("tkCopy").addEventListener("click", async () => { if(!tkMd) buildTalk(); try{ await navigator.clipboard.writeText(tkMd); toast("Đã sao chép kịch bản"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
+document.getElementById("tkAi").addEventListener("click", () => { if(!tkMd) buildTalk(); benTab("Chat");
+  askAi(`Nâng kịch bản bán hàng sau thành bản sale talk đỉnh cao, tự nhiên như người bán giỏi nhất nói chuyện: giữ cấu trúc, viết câu nói cụ thể, thêm 2 câu chuyện ngắn (storytelling) phù hợp ${tkProv.value}, gợi ý ngôn ngữ cơ thể và thời điểm im lặng. Không bịa thông số kỹ thuật; giữ ô [ ] nếu thiếu số liệu.\n\n${tkMd}`); });
+function benToolsRefresh(){
+  fillScopes(); renderShare(); renderMerge();
+  const opts = [...rows].sort((a,b)=>a.name.localeCompare(b.name,"vi")).map(r=>`<option value="${esc(r.name)}">${esc(r.name)}</option>`).join("");
+  const sp = spProv.value || "TP. Hồ Chí Minh", tp = tkProv.value; spProv.innerHTML = opts; spProv.value = sp; tkProv.innerHTML = opts; tkProv.value = tp || selected || "TP. Hồ Chí Minh";
+  renderSplit(); if(tkMd) buildTalk();
+}
+renderTcoForm(); renderTco();
+
+/* quick answers in chat without AI: arithmetic, "gộp ...", "tách ..." */
+function localAnswer(text){
+  const t = text.trim();
+  try{ const v = calc(t); return `**${fmtNum(v)}**\n\n_${t}_`; }catch(e){}
+  let m = t.match(/^(gộp|cộng|tổng)\s+(.+)$/i);
+  if(m){ const names = m[2].split(/\s*(?:\+|,|;|&|\svà\s)\s*/i).filter(Boolean); const list = [];
+    names.forEach(n => { const z = ZONES.find(z => norm(z) === norm(n) || norm(z.replace("Khu vực ","")) === norm(n)); if(z) rows.filter(r=>r.zone===z).forEach(r=>list.push(r)); else { const r = findRow(n); if(r) list.push(r); } });
+    if(list.length) return `## Gộp ${[...new Set(list)].length} tỉnh\n` + mergeTable([...new Set(list)].sort((a,b)=>b._market-a._market)); }
+  m = t.match(/^tách\s+(.+)$/i);
+  if(m){ const r = findRow(m[1]); if(r) return "## Tách " + r.name + "\n" + splitTable(r); }
+  return null;
+}
+
 /* ---------- render ---------- */
 function renderAll(){
   tamIn.value = tam; compute();
   chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
   document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
-  uioIn.value = uioNat; syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
+  uioIn.value = uioNat; benToolsRefresh(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 function init(){
   load(); renderAll();
