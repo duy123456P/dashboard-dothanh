@@ -1872,10 +1872,12 @@ function buildInfra(){
   infraGroup = new THREE.Group(); scene.add(infraGroup);
   const artGroup = new THREE.Group(); relief.add(artGroup); infraGroup.userData.art = artGroup;
   [1,2,3].forEach(t => { const paths = INFRA.arteries.filter(a => a.tier === t).map(a => a.path); if(!paths.length) return;
-    artGroup.add(makeLines(ringSegments(paths, 0.012), new THREE.Color(t === 1 ? "#ffc35a" : t === 2 ? "#ffa64d" : "#d9a066"), t === 1 ? 3.2 : t === 2 ? 2.2 : 1.6, t === 1 ? 0.95 : 0.8)); });
+    const seg = ringSegments(paths, 0.016), w = t === 1 ? 4.2 : t === 2 ? 3 : 2.2;
+    artGroup.add(makeLines(seg, new THREE.Color("#1a0d00"), w + 3, 0.45));                       // dark casing so roads read on any terrain
+    artGroup.add(makeLines(seg, new THREE.Color(t === 1 ? "#ffd84a" : t === 2 ? "#ffab3d" : "#e8a35c"), w, 1)); });
   const cityTex = glowTexture("rgba(255,255,255,1)", "rgba(255,214,140,.55)");
   INFRA.cities.forEach(c => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: cityTex, transparent: true, depthWrite: false, sizeAttenuation: false, blending: THREE.AdditiveBlending}));
-    const z = 0.012 + 0.03*Math.sqrt(c.pop/8500); s.scale.set(z, z, 1); s.userData = {city: c, sz: z}; s.renderOrder = 4; infraGroup.add(s); });
+    const z = 0.018 + 0.045*Math.sqrt(c.pop/8500); s.scale.set(z, z, 1); s.userData = {city: c, sz: z}; s.renderOrder = 4; infraGroup.add(s); });
   const nodeTex = {port: badgeTexture("C", "#1597d8", "#fff"), gate: badgeTexture("CK", "#e0892b", "#fff"), kcn: badgeTexture("K", "#7b55d6", "#fff"), air: badgeTexture("SB", "#4a5a74", "#fff")};
   INFRA.nodes.forEach(n => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: nodeTex[n.type], transparent: true, sizeAttenuation: false}));
     s.scale.set(0.022, 0.022, 1); s.center.set(0.5, 0); s.userData = {node: n, sz: 0.022}; s.renderOrder = 4; infraGroup.add(s); });
