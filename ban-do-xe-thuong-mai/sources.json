@@ -1,0 +1,208 @@
+{
+ "updated": "2026-11-19T18:07:00+07:00",
+ "sources": [
+  {
+   "id": "vama",
+   "org": "VAMA",
+   "name": "Hiệp hội Các nhà sản xuất ô tô Việt Nam",
+   "period": "Tháng 10/2026 (công bố 11/11/2026)",
+   "retrieved": "2026-11-19T18:07:00+07:00",
+   "items": [
+    [
+     "Doanh số toàn thị trường tháng 10/2026",
+     "28.957 xe (−17% so với tháng 9, −24% cùng kỳ)"
+    ],
+    [
+     "Thành viên VAMA tháng 10/2026",
+     "22.806 xe"
+    ],
+    [
+     "Xe thương mại tháng 10/2026",
+     "5.735 xe: xe tải 5.431, xe buýt 304 (−13% so với tháng 9, −26% cùng kỳ)"
+    ],
+    [
+     "Lũy kế 10 tháng 2026 toàn thị trường",
+     "310.986 xe (+7%)"
+    ],
+    [
+     "Xe tải lũy kế 10 tháng 2026 (khối VAMA)",
+     "36.502 xe"
+    ]
+   ],
+   "links": [
+    [
+     "CafeF",
+     "https://cafef.vn/thi-truong-o-to-thang-10-lui-mot-buoc-de-tien-den-ky-luc-doanh-so-vo-tien-khoang-hau-188261112093541019.chn"
+    ],
+    [
+     "Báo Xây dựng",
+     "https://xe.baoxaydung.vn/xe-tai-nao-dang-ban-nhieu-nhat-tai-viet-nam-192261117113748637.htm"
+    ]
+   ]
+  },
+  {
+   "id": "csgt",
+   "org": "Cục CSGT",
+   "name": "Cục Cảnh sát giao thông, Bộ Công an",
+   "period": "9 tháng 2026 (công bố 24/9/2026); năm 2025",
+   "retrieved": "2026-11-19T18:07:00+07:00",
+   "items": [
+    [
+     "Ô tô đăng ký mới 9 tháng 2026",
+     "513.679 xe (tổng mọi phương tiện 3.345.475)"
+    ],
+    [
+     "Ô tô đăng ký mới 6 tháng 2026",
+     "369.210 xe (cùng kỳ 2025: 265.000)"
+    ],
+    [
+     "Tổng ô tô đã đăng ký lưu hành",
+     "7.134.939 xe (nửa đầu 2026)"
+    ],
+    [
+     "Xe tải & container đăng ký mới năm 2025",
+     "122.235 xe (+35%)"
+    ],
+    [
+     "Ô tô ĐK mới 2025 top 5",
+     "TP.HCM 102.354 · Hà Nội 88.165 · Hải Phòng 31.436 · Bắc Ninh 30.721 · Phú Thọ 26.930"
+    ]
+   ],
+   "links": [
+    [
+     "Tuổi Trẻ",
+     "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"
+    ],
+    [
+     "Dân trí",
+     "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"
+    ]
+   ]
+  },
+  {
+   "id": "dk",
+   "org": "Cục Đăng kiểm",
+   "name": "Cục Đăng kiểm Việt Nam",
+   "period": "Tháng 8/2026",
+   "retrieved": "2026-11-19T18:07:00+07:00",
+   "items": [
+    [
+     "Phương tiện đang lưu hành",
+     "6.675.015 xe"
+    ],
+    [
+     "Xe tải đang lưu hành",
+     "1.741.635 xe"
+    ],
+    [
+     "Xe khách đang lưu hành",
+     "164.842 xe"
+    ],
+    [
+     "Ô tô chuyên dùng",
+     "45.406 xe"
+    ],
+    [
+     "Xe con",
+     "4.394.102 xe"
+    ],
+    [
+     "Kiểm định 1/1–10/8/2026",
+     "4.122.422 lượt, 504.198 lượt không đạt (12,2%)"
+    ]
+   ],
+   "links": [
+    [
+     "Kiến thức",
+     "https://kienthuc.net.vn/hon-500000-phuong-tien-truot-dang-kiem-trong-8-thang-dau-nam-2026-post1629429.html"
+    ],
+    [
+     "Báo Xây dựng",
+     "https://baoxaydung.vn/hon-500-nghin-luot-phuong-tien-truot-kiem-dinh-8-thang-dau-nam-2026-192260818102808066.htm"
+    ]
+   ]
+  },
+  {
+   "id": "thue",
+   "org": "Thuế",
+   "name": "Cục Thuế, Bộ Tài chính (lệ phí trước bạ)",
+   "period": "Quy định áp dụng năm 2026",
+   "retrieved": "2026-11-19T18:07:00+07:00",
+   "items": [
+    [
+     "Ô tô tải, xe khách trên 9 chỗ",
+     "2% giá tính lệ phí trước bạ"
+    ],
+    [
+     "Ô tô con, pick-up chở người, lần đầu",
+     "10–15% tùy tỉnh (Hà Nội 12%, TP.HCM 10%)"
+    ],
+    [
+     "Từ lần đăng ký thứ hai",
+     "2% thống nhất toàn quốc"
+    ],
+    [
+     "Xe điện chạy pin, lần đầu",
+     "0% (thời hạn ưu đãi cần đối chiếu văn bản mới nhất)"
+    ],
+    [
+     "Căn cứ",
+     "NĐ 10/2022/NĐ-CP, sửa đổi bởi NĐ 51/2025 và NĐ 175/2025"
+    ]
+   ],
+   "links": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/114387/cap-nhat-le-phi-truoc-ba-khi-mua-o-to-nam-2026"
+    ],
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/le-phi/tu-2026-le-phi-truoc-ba-khi-mua-o-to-duoc-quy-dinh-the-nao-675-106779-article.html"
+    ]
+   ]
+  },
+  {
+   "id": "nso",
+   "org": "Cục Thống kê",
+   "name": "Cục Thống kê (Tổng cục Thống kê cũ), Bộ Tài chính",
+   "period": "Quý III & 9 tháng 2026 (công bố 3/10/2026); GRDP 2025 (01/2026)",
+   "retrieved": "2026-11-19T18:07:00+07:00",
+   "items": [
+    [
+     "GDP 9 tháng 2026",
+     "+9,01% (quý III +9,95%)"
+    ],
+    [
+     "Địa phương tăng ≥10% (9 tháng)",
+     "12/34, dẫn đầu Quảng Ninh 12,54%"
+    ],
+    [
+     "CPI bình quân 9 tháng",
+     "+4,52%"
+    ],
+    [
+     "Vốn đầu tư toàn xã hội 9 tháng",
+     "3.109,6 nghìn tỷ đồng (+15,1%)"
+    ],
+    [
+     "FDI · Xuất nhập khẩu 9 tháng",
+     "50,36 tỷ USD (+76,4%) · 888,02 tỷ USD (+30,4%)"
+    ],
+    [
+     "GDP/người 2025",
+     "125,5 triệu đồng (5.026 USD)"
+    ]
+   ],
+   "links": [
+    [
+     "Cục Thống kê",
+     "https://www.nso.gov.vn/su-kien/2026/10/cuc-thong-ke-to-chuc-hop-bao-cong-bo-so-lieu-thong-ke-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+    ],
+    [
+     "VietnamPlus",
+     "https://www.vietnamplus.vn/kinh-te-viet-nam-9-thang-nam-2026-nhieu-tin-hieu-tich-cuc-post1139898.vnp"
+    ]
+   ]
+  }
+ ]
+}

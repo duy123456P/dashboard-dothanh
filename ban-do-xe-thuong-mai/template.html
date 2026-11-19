@@ -142,6 +142,19 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .pill.warn{color:var(--warn);border-color:rgba(255,195,90,.45)}
 .pill.bad{color:var(--bad);border-color:rgba(255,107,107,.5)}
 .ctrs{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.upd{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);padding:3px 10px;border:1px solid var(--glass-line);border-radius:999px;background:rgba(5,11,22,.4)}
+.upd i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good)}
+.upd b{color:#fff;font-weight:600}
+.clock{font-family:var(--display);font-size:13px;color:var(--muted);text-align:right}
+.clock b{display:block;font-size:22px;color:#fff;letter-spacing:.04em}
+.srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}
+.src{border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px;background:rgba(5,11,22,.35);display:flex;flex-direction:column;gap:6px;min-width:0}
+.src .o{font-family:var(--display);font-size:20px;font-weight:700;color:#fff}
+.src .n{font-size:12px;color:var(--muted)}
+.src dl{margin:4px 0 0;display:grid;grid-template-columns:minmax(0,1fr);gap:4px;font-size:12.5px}
+.src dt{color:var(--muted)}.src dd{margin:0 0 4px;color:#fff;font-weight:600}
+.src .t{font-size:11.5px;color:var(--muted);border-top:1px solid var(--glass-line);padding-top:6px;margin-top:auto}
+.src a{color:var(--cyan)}
 .front{border:1px solid;border-radius:14px;padding:12px 14px;background:rgba(5,11,22,.35)}
 .kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:12.5px;margin-top:8px}
 .kv span{color:var(--muted)}.kv b{font-weight:600;color:#fff}
@@ -249,6 +262,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <div>
       <div class="eyebrow">34 tỉnh, thành · 11 khu vực · 35 trung tâm dịch vụ</div>
       <h1>Bản đồ thị trường xe thương mại</h1>
+      <div class="upd" id="updBadge"></div>
       <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Ben” để lấy báo cáo tức thì hoặc nhờ phân tích.</p>
     </div>
     <div class="controls">
@@ -258,8 +272,8 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <label class="field" for="tam">ĐK mới xe tải toàn quốc 2025
         <input id="tam" type="number" min="1000" step="1000" value="122235" style="width:150px">
       </label>
-      <label class="field" for="uioNat">UIO xe TM toàn quốc
-        <input id="uioNat" type="number" min="10000" step="10000" value="2070000" style="width:150px">
+      <label class="field" for="uioNat">UIO xe TM (Cục ĐK 8/2026)
+        <input id="uioNat" type="number" min="10000" step="10000" value="1951883" style="width:150px">
       </label>
     </div>
   </header>
@@ -338,12 +352,20 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     </div>
   </section>
 
+  <section class="glass pad" id="sources">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div><h2>Nguồn dữ liệu</h2><p class="muted" style="margin:4px 0 0">Số liệu mới nhất đã công bố của 5 nguồn chính thức. Mỗi thẻ ghi kỳ số liệu và thời điểm lấy dữ liệu.</p></div>
+      <div class="clock num" id="srcClock"></div>
+    </div>
+    <div class="srcgrid" id="srcGrid"></div>
+  </section>
+
   <section class="glass pad notes">
     <h2 style="color:#fff">Phương pháp &amp; nguồn số liệu</h2>
     <p><b>Địa hình:</b> mô hình độ cao AWS Terrain Tiles (Mapzen/Tilezen; nguồn SRTM, GMTED, ETOPO1), xử lý thành ảnh đổ bóng và tô màu theo độ cao; độ nổi được phóng đại để dễ nhìn. Đáy biển thể hiện theo độ sâu.</p>
     <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa). Ranh giới giản lược để hiển thị, không dùng cho mục đích pháp lý.</p>
     <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 theo Cục Thống kê (01/2026) cho các tỉnh đã đối chiếu; ô trống là chưa cập nhật.</p>
-    <p><b>Đăng ký mới &amp; UIO:</b> Cục CSGT: năm 2025 (15/12/2024–14/12/2025) cả nước đăng ký mới 624.300 ô tô (+27%), trong đó xe tải và container 122.235 xe (+35%); ô tô mọi loại ĐK mới tại TP.HCM 102.354, Hà Nội 88.165, Hải Phòng 31.436, Bắc Ninh 30.721, Phú Thọ 26.930. Tổng ô tô đã đăng ký lưu hành 7.134.939 xe (nửa đầu 2026). UIO xe thương mại toàn quốc mặc định 2,07 triệu xe là ước tính (~29% tổng ô tô). Số theo tỉnh là phân bổ mô hình, ghi "(ước)"; nhập số thực vào cột "ĐK mới thực tế", "UIO thực tế" để thay thế.</p>
+    <p><b>Đăng ký mới &amp; UIO:</b> Cục CSGT: năm 2025 (15/12/2024–14/12/2025) cả nước đăng ký mới 624.300 ô tô (+27%), trong đó xe tải và container 122.235 xe (+35%); ô tô mọi loại ĐK mới tại TP.HCM 102.354, Hà Nội 88.165, Hải Phòng 31.436, Bắc Ninh 30.721, Phú Thọ 26.930. Tổng ô tô đã đăng ký lưu hành 7.134.939 xe (nửa đầu 2026). UIO xe thương mại toàn quốc mặc định 1.951.883 xe = xe tải 1.741.635 + xe khách 164.842 + ô tô chuyên dùng 45.406 đang lưu hành (Cục Đăng kiểm, 8/2026). Số theo tỉnh là phân bổ mô hình, ghi "(ước)"; nhập số thực vào cột "ĐK mới thực tế", "UIO thực tế" để thay thế.</p>
     <p><b>Hành chính, xã hội:</b> số xã/phường theo các nghị quyết sắp xếp (tổng 3.321 đơn vị); GRDP/người 2025 của Quảng Ninh, TP.HCM, Hà Nội, Hải Phòng theo Cục Thống kê; cơ cấu kinh tế, đô thị hóa, tỷ lệ dân tộc là ước tính tổng hợp từ các tỉnh cũ, cần đối chiếu niên giám.</p>
     <p><b>Thế trận:</b> sức hấp dẫn = 60% quy mô ĐK mới + 25% tăng trưởng GRDP + 15% GRDP/người; sức mạnh = độ phủ trung tâm (và thị phần khi có doanh số). Mục tiêu 2026 đề xuất = ĐK mới × 1,08 × thị phần mục tiêu theo thế trận (12% / 8% / 15% / 5%).</p>
     <p><b>Phân bổ ĐK mới theo tỉnh (ước tính):</b> tổng thị trường (mặc định 100.000 xe/năm; VAMA ghi nhận khoảng 70.700 xe tải năm 2025, chưa gồm hãng ngoài VAMA và xe nhập) phân bổ theo GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng; cơ cấu phân khúc theo loại hình kinh tế. Mô hình định hướng; thay bằng số đăng ký thực tế khi có.</p>
@@ -423,6 +445,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="geo-data" type="application/json">/*__GEO__*/</script>
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
 <script id="center-data" type="application/json">/*__CENTERS__*/</script>
+<script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script>
 const RELIEF_SRC = "/*__RELIEF__*/";
 const HEIGHT_SRC = "/*__HEIGHT__*/";
@@ -431,7 +454,8 @@ const HEIGHT_SRC = "/*__HEIGHT__*/";
 const GEO = JSON.parse(document.getElementById("geo-data").textContent);
 const BASE = JSON.parse(document.getElementById("prov-data").textContent);
 const CENTERS = JSON.parse(document.getElementById("center-data").textContent);
-const STORE_KEY = "haiau-cv-map-v4";
+const SRC = JSON.parse(document.getElementById("src-data").textContent);
+const STORE_KEY = "cv-map-v5";
 const LNG0 = 101.5, LNG1 = 117.5, LAT0 = 7.0, LAT1 = 24.0, K = 10, COSL = Math.cos(15.5*Math.PI/180);
 const ZONES = ["Khu vực Hà Nội","Vùng 1","Vùng 2","Vùng 3","Vùng 4","Vùng 5","Vùng 6","Vùng 7","Vùng 8","Khu vực TP. Hồ Chí Minh","Vùng 9"];
 const ZTOK = {"Khu vực Hà Nội":"--z-hn","Vùng 1":"--z-1","Vùng 2":"--z-2","Vùng 3":"--z-3","Vùng 4":"--z-4","Vùng 5":"--z-5","Vùng 6":"--z-6","Vùng 7":"--z-7","Vùng 8":"--z-8","Khu vực TP. Hồ Chí Minh":"--z-hcm","Vùng 9":"--z-9"};
@@ -445,7 +469,7 @@ const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",
   ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
-let rows = clone(BASE), tam = 122235, uioNat = 2070000, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
+let rows = clone(BASE), tam = 122235, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 28;
 
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
@@ -573,8 +597,8 @@ function renderKpis(){
     [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
     [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
-    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), "ĐK mới xe tải 2025"],
-    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), "UIO xe thương mại (ước)"],
+    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2025 (ước)" : "ĐK mới xe tải 2025 · Cục CSGT"],
+    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm 8/2026"],
     [`${cs.filter(c=>c.type==="4S").length} · ${cs.filter(c=>c.type==="3S").length}`, "Trung tâm 4S · 3S"],
     [cs.length ? fmtInt(market/cs.length) : "—", "Xe thị trường / trung tâm"],
     [sales ? fmt1(sales/market*100)+"%" : "—", sales ? `Thị phần (${fmtInt(sales)} xe)` : "Thị phần · nhập doanh số"],
@@ -1090,7 +1114,7 @@ document.getElementById("btnReset").addEventListener("click", () => {
   const box = document.getElementById("resetBox");
   box.innerHTML = `<div class="toolbar" style="background:rgba(5,11,22,.5);padding:8px;border-radius:10px;border:1px solid var(--glass-line)"><span>Xóa mọi chỉnh sửa trên trình duyệt này và quay về dữ liệu gốc?</span><button type="button" class="primary" id="rsYes">Khôi phục</button><button type="button" id="rsNo">Giữ lại</button></div>`;
   document.getElementById("rsNo").onclick = () => box.innerHTML = "";
-  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 122235; uioNat = 2070000; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
+  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 122235; uioNat = 1951883; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
 });
 let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2800); }
 
@@ -1152,7 +1176,7 @@ function provTable(list, k){
 function buildReport(kind){
   const d = new Date(), date = d.toLocaleDateString("vi-VN"), all = [...rows].sort((a,b)=>b._market-a._market);
   const totReg = rows.reduce((a,r)=>a+r._market,0), totUio = rows.reduce((a,r)=>a+r._uio,0), nC = CENTERS.length, n4 = CENTERS.filter(c=>c.type==="4S").length;
-  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải & container toàn quốc 2025: ${n0(tam)} xe (Cục CSGT). Số theo tỉnh ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe là ước tính (~29% của 7.134.939 ô tô đã đăng ký, Cục CSGT nửa đầu 2026).\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
+  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải & container toàn quốc 2025: ${n0(tam)} xe (Cục CSGT). Số theo tỉnh ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe: xe tải + xe khách + ô tô chuyên dùng đang lưu hành (Cục Đăng kiểm, 8/2026); số theo tỉnh là phân bổ ước tính.\n- VAMA 10 tháng 2026: 310.986 xe (+7%); xe thương mại tháng 10/2026: 5.735 xe. Cục CSGT: 513.679 ô tô ĐK mới 9 tháng 2026. Cục Thống kê: GDP 9 tháng 2026 +9,01%.\n- Dữ liệu cập nhật: ${fmtTime(SRC.updated)}.\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
   if(kind === "province"){
     const r = rows.find(x=>x.name===selected);
     if(!r) return {title:"Chưa chọn tỉnh", md:"Hãy rê chuột hoặc bấm vào một tỉnh trên bản đồ, rồi bấm lại **Tỉnh đang chọn**.\n\nGợi ý 5 mặt trận lớn nhất: " + all.slice(0,5).map(x=>x.name).join(", ") + "."};
@@ -1321,7 +1345,7 @@ function dataSnapshot(){
   const body = rows.map(r => [r.name, r.zone, r.pop, r.communes, r.urban, r.grdp, r.gpc2025 || Math.round(r._gpc), r.growth ?? "", r.econ.join("/"), r.elev, r._uio, r._market, r._turn.toFixed(1),
     r._regReal?"thực":"ước", r._tier, r._c4, r._c3, r._perCenter==null?"":Math.round(r._perCenter), r.sales||0, r.target||0, POST[r._post].label, r._attr, r._str, r._tgt26,
     r._comp.map(([l,v])=>l+" "+v+"%").join(", ") || "chưa có", r.mix.join("/")].join("|")).join("\n");
-  return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (ước tính): ${uioNat} xe. Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
+  return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (Cục Đăng kiểm 8/2026: xe tải + khách + chuyên dùng): ${uioNat} xe.\n\nNGUỒN MỚI NHẤT (cập nhật ${fmtTime(SRC.updated)}):\n${SRC.sources.map(x => `${x.org} (${x.period}): ` + x.items.map(i => i[0] + ": " + i[1]).join("; ")).join("\n")} Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
 }
 function rules(){
   return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
@@ -1588,6 +1612,18 @@ function localAnswer(text){
   if(m){ const r = findRow(m[1]); if(r) return "## Tách " + r.name + "\n" + splitTable(r); }
   return null;
 }
+
+/* ---------- data sources & timestamps ---------- */
+function fmtTime(iso){ const d = new Date(iso); return isNaN(d) ? "—" : d.toLocaleString("vi-VN", {timeZone:"Asia/Ho_Chi_Minh", hour:"2-digit", minute:"2-digit", day:"2-digit", month:"2-digit", year:"numeric"}); }
+function renderSources(){
+  document.getElementById("updBadge").innerHTML = `<i></i>Dữ liệu cập nhật: <b>${fmtTime(SRC.updated)}</b> · VAMA, Cục CSGT, Cục Đăng kiểm, Thuế, Cục Thống kê`;
+  document.getElementById("srcGrid").innerHTML = SRC.sources.map(x => `<article class="src"><div class="o">${esc(x.org)}</div><div class="n">${esc(x.name)}</div>
+    <div class="n">Kỳ số liệu: <b style="color:#fff">${esc(x.period)}</b></div>
+    <dl>${x.items.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <div class="t">Lấy dữ liệu: ${fmtTime(x.retrieved)} · ${x.links.map(([l,u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(" · ")}</div></article>`).join("");
+}
+function tickClock(){ document.getElementById("srcClock").innerHTML = `Bây giờ<b>${new Date().toLocaleString("vi-VN",{timeZone:"Asia/Ho_Chi_Minh",hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit",year:"numeric"})}</b>`; }
+renderSources(); tickClock(); setInterval(tickClock, 15000);
 
 /* ---------- render ---------- */
 function renderAll(){
