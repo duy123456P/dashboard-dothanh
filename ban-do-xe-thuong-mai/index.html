@@ -195,7 +195,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 .orb{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--cyan) 45%,var(--magenta));box-shadow:0 0 14px var(--cyan)}
 @media (prefers-reduced-motion: no-preference){.orb{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 26px var(--magenta)}}}
 #ai{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;
-  width:min(470px,calc(100vw - 32px));height:min(740px,calc(100vh - 40px));display:flex;flex-direction:column;overflow:hidden;
+  width:min(520px,calc(100vw - 32px));height:min(820px,calc(100vh - 36px));display:flex;flex-direction:column;overflow:hidden;
   background:linear-gradient(160deg,rgba(30,60,100,.72),rgba(6,14,30,.86));border:1px solid rgba(170,215,255,.3);border-radius:20px;
   box-shadow:0 24px 70px rgba(0,0,0,.6),0 0 40px rgba(70,227,255,.18);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
 #ai header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--glass-line)}
@@ -203,8 +203,17 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 #ai header .x{margin-left:auto;padding:4px 10px}
 .aiq{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--glass-line)}
 .aiq button{font-size:12px;padding:5px 10px;border-radius:999px}
+.aiq .seg button{border-radius:0;padding:4px 10px}
+.aiql{width:100%;font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.ben-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-family:var(--display);font-weight:700;font-size:16px;color:#fff;
+  background:radial-gradient(circle at 30% 30%,#9ff3ff,var(--cyan) 40%,var(--magenta));box-shadow:0 0 18px rgba(70,227,255,.6)}
+#aiFab .ben-av{width:26px;height:26px;font-size:14px}
+#benTease{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:40;max-width:280px;
+  padding:10px 30px 10px 12px;border-radius:14px 14px 4px 14px;font-size:12.5px;color:var(--ink);background:linear-gradient(160deg,rgba(30,60,100,.85),rgba(8,18,36,.92));
+  border:1px solid rgba(170,215,255,.35);box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 20px rgba(70,227,255,.2);cursor:pointer}
+#benTease button{position:absolute;right:4px;top:4px;padding:0 6px;border:0;background:transparent;font-size:16px;line-height:1.2}
 #aiLog{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:100%;font-size:13.5px;line-height:1.55}
+.msg{max-width:100%;font-size:13.5px;line-height:1.55;flex:none}
 .msg.u{align-self:flex-end;background:linear-gradient(90deg,rgba(70,227,255,.3),rgba(63,224,197,.25));border:1px solid rgba(70,227,255,.4);padding:8px 12px;border-radius:14px 14px 4px 14px;max-width:85%}
 .msg.a{background:rgba(5,11,22,.5);border:1px solid var(--glass-line);padding:10px 12px;border-radius:14px 14px 14px 4px;overflow-x:auto}
 .msg.a h1,.msg.a h2,.msg.a h3{font-family:var(--display);text-transform:none;letter-spacing:0;color:var(--cyan);margin:10px 0 4px;background:none;-webkit-background-clip:initial;background-clip:initial}
@@ -226,7 +235,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <div>
       <div class="eyebrow">Mạng lưới dịch vụ Hải Âu · Thị trường xe thương mại</div>
       <h1>Bản đồ địa hình &amp; thị trường</h1>
-      <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Trợ lý AI” để yêu cầu phân tích, báo cáo.</p>
+      <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15 trên nền địa hình thật, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bật “Cột chỉ số” để dựng cột 3D theo chỉ số. Bấm “Ben” để lấy báo cáo tức thì hoặc nhờ phân tích.</p>
     </div>
     <div class="controls">
       <label class="field" for="zoneSel">Khu vực kinh doanh
@@ -331,15 +340,18 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <div id="tip" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
-<button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="orb"></span>Trợ lý AI</button>
-<section id="ai" hidden aria-label="Trợ lý AI phân tích">
-  <header><span class="orb"></span><b>Trợ lý phân tích</b><span class="muted" style="font-size:12px">đọc dữ liệu trên bản đồ</span><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
-  <div class="aiq" id="aiQuick"></div>
+<div id="benTease" hidden><b>Ben</b> · Cần báo cáo nhanh? Bấm để lấy báo cáo toàn quốc, khu vực hoặc từng tỉnh ngay.<button type="button" id="benTeaseX" aria-label="Ẩn lời nhắc">×</button></div>
+<button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="ben-av">B</span>Ben · Báo cáo</button>
+<section id="ai" hidden aria-label="Ben, trợ lý báo cáo">
+  <header><span class="ben-av">B</span><div style="display:flex;flex-direction:column;line-height:1.2"><b>Ben</b><span class="muted" style="font-size:12px">Trợ lý báo cáo thị trường xe thương mại</span></div><button type="button" class="x" id="aiClose">Thu nhỏ</button></header>
+  <div class="aiq"><span class="aiql">Báo cáo tức thì</span><div id="aiInstant" style="display:contents"></div></div>
+  <div class="aiq"><span class="aiql">Ben phân tích</span><div id="aiQuick" style="display:contents"></div>
+    <div class="seg" role="group" aria-label="Tốc độ phân tích" style="margin-left:auto"><button type="button" data-speed="quick">Nhanh</button><button type="button" data-speed="default">Chuyên sâu</button></div></div>
   <div id="aiLog" aria-live="polite"></div>
   <div class="aistate" id="aiState"></div>
   <div class="aiin">
-    <label for="aiText" class="sr">Câu hỏi cho trợ lý</label>
-    <textarea id="aiText" placeholder="Hỏi về tỉnh, vùng, phân khúc, đề xuất mở trung tâm…"></textarea>
+    <label for="aiText" class="sr">Câu hỏi cho Ben</label>
+    <textarea id="aiText" placeholder="Hỏi Ben về tỉnh, vùng, phân khúc, đối thủ, kế hoạch…"></textarea>
     <button type="button" class="primary" id="aiSend">Gửi</button>
     <button type="button" id="aiStop" hidden>Dừng</button>
   </div>
@@ -500,8 +512,8 @@ function renderKpis(){
     [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
     [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
-    [fmtInt(market), "ĐK mới xe tải 2025"],
-    [fmtInt(sum("_uio")), "UIO xe thương mại (ước)"],
+    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), "ĐK mới xe tải 2025"],
+    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), "UIO xe thương mại (ước)"],
     [`${cs.filter(c=>c.type==="4S").length} · ${cs.filter(c=>c.type==="3S").length}`, "Trung tâm 4S · 3S"],
     [cs.length ? fmtInt(market/cs.length) : "—", "Xe thị trường / trung tâm"],
     [sales ? fmt1(sales/market*100)+"%" : "—", sales ? `Thị phần (${fmtInt(sales)} xe)` : "Thị phần · nhập doanh số"],
@@ -919,8 +931,9 @@ function renderDossier(){
     <div class="prose"><h3>Hạ tầng &amp; logistics</h3><p>${esc(r.logistics)}</p></div>
     <div class="prose"><h3>Văn hóa · dân tộc · đặc sản</h3><p><b>Dân tộc:</b> ${esc(r.ethnic)}</p><p><b>Đặc sản:</b> ${esc(r.specialties)}</p><p><b>Văn hóa kinh doanh:</b> ${esc(r.culture)}</p></div>
     <div class="prose"><h3>Động lực nhu cầu xe thương mại</h3><p>${esc(r.cvDemand)}</p></div>
-    <button type="button" class="primary" id="askAiProv">Nhờ trợ lý AI phân tích ${esc(r.name)}</button>`;
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="primary" id="instProv">Báo cáo nhanh ${esc(r.name)}</button><button type="button" id="askAiProv">Nhờ Ben phân tích sâu</button></div>`;
   const u = document.getElementById("unpin"); if(u) u.addEventListener("click", ()=>{ pinned=false; needOverlay = true; renderDossier(); });
+  document.getElementById("instProv").addEventListener("click", () => instantReport("province"));
   document.getElementById("askAiProv").addEventListener("click", () => askAi(`Phân tích chuyên sâu ${r.name}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm hiện có, rủi ro và 5 hành động ưu tiên trong 6 tháng tới.`));
   wireCtrRows(el);
 }
@@ -1034,7 +1047,7 @@ function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); place
 /* ---------- AI analyst ---------- */
 const ai = document.getElementById("ai"), fab = document.getElementById("aiFab"), log = document.getElementById("aiLog");
 const aiText = document.getElementById("aiText"), aiSend = document.getElementById("aiSend"), aiStop = document.getElementById("aiStop"), aiState = document.getElementById("aiState");
-let sample = null, aiTurns = [], aiCtl = null, aiBusy = false, aiDisabled = false;
+let sample = null, aiTurns = [], aiCtl = null, aiBusy = false, aiDisabled = false, aiSpeed = "quick";
 const QUICK = [
   ["Báo cáo tổng quan", "Lập báo cáo tổng quan thị trường xe thương mại toàn quốc theo 11 khu vực kinh doanh: quy mô, tăng trưởng, độ phủ trung tâm, 5 điểm nóng và 5 khuyến nghị."],
   ["Khu vực đang chọn", null], ["Tỉnh đang chọn", null],
@@ -1050,17 +1063,182 @@ function quickPrompt(i){
 }
 document.getElementById("aiQuick").innerHTML = QUICK.map(([l],i)=>`<button type="button" data-i="${i}">${esc(l)}</button>`).join("");
 document.getElementById("aiQuick").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if(b) askAi(quickPrompt(+b.dataset.i)); });
-function openAi(open){ ai.hidden = !open; fab.hidden = open; fab.setAttribute("aria-expanded", open); if(open){ if(!log.children.length) greet(); aiText.focus(); } }
+function openAi(open){ ai.hidden = !open; fab.hidden = open; tease.hidden = true; fab.setAttribute("aria-expanded", open); if(open){ if(!log.children.length) greet(); aiText.focus(); } }
+const tease = document.getElementById("benTease");
+let teaseOff = false; try{ teaseOff = sessionStorage.getItem("benTeaseOff") === "1"; }catch(e){}
+if(!teaseOff) setTimeout(() => { if(ai.hidden) tease.hidden = false; }, 2500);
+tease.addEventListener("click", e => { if(e.target.id === "benTeaseX"){ tease.hidden = true; try{ sessionStorage.setItem("benTeaseOff","1"); }catch(_){} return; } openAi(true); });
+document.querySelectorAll("[data-speed]").forEach(b => b.addEventListener("click", () => { aiSpeed = b.dataset.speed; syncSpeed(); }));
+function syncSpeed(){ document.querySelectorAll("[data-speed]").forEach(b => b.setAttribute("aria-pressed", b.dataset.speed === aiSpeed)); }
+syncSpeed();
+
+/* instant reports: built from the page's own data, no AI wait */
+const INSTANT = [["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"]];
+document.getElementById("aiInstant").innerHTML = INSTANT.map(([l,k])=>`<button type="button" data-r="${k}">${esc(l)}</button>`).join("");
+document.getElementById("aiInstant").addEventListener("click", e => { const b = e.target.closest("button[data-r]"); if(b) instantReport(b.dataset.r); });
+const n0 = v => fmtInt(v), p1 = v => fmt1(v) + "%";
+function src(r){ return (r._regReal ? "số thực" : "ước") + "/" + (r._uioReal ? "số thực" : "ước"); }
+function zoneTable(list){
+  return "| Khu vực | Số tỉnh | ĐK mới xe tải | Tỷ trọng | UIO xe TM | TT 4S·3S | ĐK mới / TT |\n|---|---|---|---|---|---|---|\n" +
+    ZONES.map(z => { const rs = list.filter(r=>r.zone===z); if(!rs.length) return null; const reg = rs.reduce((a,r)=>a+r._market,0), u = rs.reduce((a,r)=>a+r._uio,0);
+      const c4 = rs.reduce((a,r)=>a+r._c4,0), c3 = rs.reduce((a,r)=>a+r._c3,0), tot = rows.reduce((a,r)=>a+r._market,0);
+      return `| ${z} | ${rs.length} | ${n0(reg)} | ${p1(reg/tot*100)} | ${n0(u)} | ${c4}·${c3} | ${c4+c3 ? n0(reg/(c4+c3)) : "chưa có TT"} |`; }).filter(Boolean).join("\n");
+}
+function provTable(list, k){
+  return "| # | Tỉnh | Khu vực | ĐK mới | UIO | ĐK/UIO | TT | Thế trận | Mục tiêu 2026 |\n|---|---|---|---|---|---|---|---|---|\n" +
+    list.slice(0,k).map((r,i)=>`| ${i+1} | ${r.name} | ${r.zone.replace("Khu vực ","KV ")} | ${n0(r._market)} | ${n0(r._uio)} | ${p1(r._turn)} | ${r._c4+r._c3} | ${POST[r._post].label} | ${n0(r._tgt26)} xe |`).join("\n");
+}
+function buildReport(kind){
+  const d = new Date(), date = d.toLocaleDateString("vi-VN"), all = [...rows].sort((a,b)=>b._market-a._market);
+  const totReg = rows.reduce((a,r)=>a+r._market,0), totUio = rows.reduce((a,r)=>a+r._uio,0), nC = CENTERS.length, n4 = CENTERS.filter(c=>c.type==="4S").length;
+  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải & container toàn quốc 2025: ${n0(tam)} xe (Cục CSGT). Số theo tỉnh ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe là ước tính (~29% của 7.134.939 ô tô đã đăng ký, Cục CSGT nửa đầu 2026).\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
+  if(kind === "province"){
+    const r = rows.find(x=>x.name===selected);
+    if(!r) return {title:"Chưa chọn tỉnh", md:"Hãy rê chuột hoặc bấm vào một tỉnh trên bản đồ, rồi bấm lại **Tỉnh đang chọn**.\n\nGợi ý 5 mặt trận lớn nhất: " + all.slice(0,5).map(x=>x.name).join(", ") + "."};
+    const P = POST[r._post], top2 = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
+    return {title:`Báo cáo mặt trận ${r.name}`, md:
+`# Báo cáo mặt trận ${r.name}
+_${r.zone} · ${r.region} · ngày ${date}_
+
+## 1. Thế trận: ${P.label}
+- Sức hấp dẫn **${r._attr}/100**, sức mạnh của ta **${r._str}/100**, hạng ưu tiên **${r._tier}**.
+- ${P.desc}
+- Mục tiêu 2026 đề xuất: **${n0(r._tgt26)} xe** (${r._tgtShare}% ĐK mới dự báo).
+
+## 2. Hành chính – dân số
+| Chỉ tiêu | Giá trị |
+|---|---|
+| Trung tâm hành chính | ${r.capital} |
+| Gộp từ (NQ 202/2025) | ${r.merged.join(", ")} |
+| Số xã / phường | ${n0(r.communes)} |
+| Biển số xe | ${r.plates} |
+| Dân số | ${n0(r.pop)} nghìn người (#${r._rkpop}) |
+| Diện tích · mật độ | ${n0(r.area)} km² · ${n0(r._density)} người/km² |
+| Đô thị hóa (ước) | ${r.urban}% |
+| Dân tộc | ${r.ethnic} |
+
+## 3. Kinh tế vĩ mô
+| Chỉ tiêu | Giá trị |
+|---|---|
+| GRDP 2024 | ${n0(r.grdp)} nghìn tỷ đồng (#${r._rkgrdp}) |
+| GRDP/người | ${r.gpc2025 ? fmt1(r.gpc2025)+" triệu đồng (2025, NSO)" : n0(r._gpc)+" triệu đồng (2024, ước)"} |
+| Tăng trưởng GRDP 2025 | ${r.growth==null ? "chưa cập nhật" : fmt1(r.growth)+"%"} |
+| Cơ cấu (NLTS / CN-XD / DV / thuế) | ${r.econ.map(v=>fmt1(v)+"%").join(" / ")} |
+| Kinh tế chủ lực | ${r.industries} |
+| Hạ tầng & logistics | ${r.logistics} |
+| Đặc sản | ${r.specialties} |
+
+## 4. Thị trường xe thương mại
+| Chỉ tiêu | Giá trị |
+|---|---|
+| UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":"ước"}) |
+| ĐK mới xe tải 2025 | ${n0(r._market)} xe (${r._regReal?"số thực":"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
+| ĐK mới / UIO | ${p1(r._turn)} |
+| Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : "chưa có số công bố"} |
+| Độ cao trung bình | ${n0(r.elev)} m |
+
+**Cơ cấu phân khúc (ước):** ${r.mix.map((v,i)=>`${SEGS[i]} ${n0(r._market*v/100)} xe`).join("; ")}. Trọng tâm: **${top2.join("**, **")}**.
+
+**Động lực nhu cầu:** ${r.cvDemand}
+
+## 5. Đối thủ
+${r._comp.length ? r._comp.map(([l,v])=>`- ${l}: ${fmt1(v)}%`).join("\n") : "- Chưa có số liệu thị phần đối thủ: cần bổ sung (Thaco, Hyundai, Isuzu, Hino, Fuso, xe Trung Quốc)."}
+
+## 6. Lực lượng của ta
+- Trung tâm: ${centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type})`).join("; ") || "chưa có"}.
+- ĐK mới / trung tâm: ${r._perCenter==null ? "chưa có trung tâm" : n0(r._perCenter)+" xe"}.
+- Doanh số: ${r.sales ? n0(r.sales)+" xe, thị phần "+p1(r._share) : "chưa nhập"}; mục tiêu: ${r.target ? n0(r.target)+" xe" : "chưa nhập"}.
+
+## 7. Cách đánh
+${P.acts.map(a=>"- "+a).join("\n")}
+${suggestions(r).map(([,t])=>"- "+t.replace(/<\/?b>/g,"**")).join("\n")}
+
+## 8. Văn hóa kinh doanh
+${r.culture}
+${note}`};
+  }
+  if(kind === "fronts"){
+    return {title:"Báo cáo 34 mặt trận", md:
+`# Báo cáo 34 mặt trận
+_Ngày ${date} · Tổng ĐK mới ${n0(totReg)} xe · UIO ${n0(totUio)} xe_
+
+${Object.entries(POST).map(([k,P]) => { const rs = all.filter(r=>r._post===k);
+  return `## ${P.label} (${rs.length} tỉnh)\n${P.desc}\n\n${rs.length ? provTable(rs, 34) : "_Không có tỉnh nào._"}\n\n**Cách đánh:**\n${P.acts.map(a=>"- "+a).join("\n")}`; }).join("\n\n")}
+
+## Tổng mục tiêu 2026 đề xuất
+- **${n0(rows.reduce((a,r)=>a+r._tgt26,0))} xe**, tương đương ${p1(rows.reduce((a,r)=>a+r._tgt26,0)/(totReg*1.08)*100)} ĐK mới dự báo.
+${note}`};
+  }
+  if(kind === "gaps"){
+    const noC = all.filter(r=>r._c4+r._c3===0), thin = all.filter(r=>r._perCenter!=null).sort((a,b)=>b._perCenter-a._perCenter).slice(0,8);
+    return {title:"Báo cáo khoảng trống độ phủ", md:
+`# Khoảng trống độ phủ mạng lưới
+_Ngày ${date} · ${nC} trung tâm (${n4} 4S, ${nC-n4} 3S) · bình quân ${n0(totReg/nC)} xe ĐK mới / trung tâm_
+
+## 1. Tỉnh chưa có trung tâm (${noC.length})
+${noC.length ? provTable(noC, 34) : "_Tất cả tỉnh đã có trung tâm._"}
+
+## 2. Tỉnh có độ phủ mỏng nhất (ĐK mới / trung tâm cao nhất)
+| Tỉnh | ĐK mới | Số TT | ĐK mới / TT | UIO |\n|---|---|---|---|---|
+${thin.map(r=>`| ${r.name} | ${n0(r._market)} | ${r._c4+r._c3} | ${n0(r._perCenter)} | ${n0(r._uio)} |`).join("\n")}
+
+## 3. Đề xuất mở điểm (ưu tiên theo ĐK mới)
+${[...noC, ...thin].sort((a,b)=>b._market-a._market).slice(0,8).map((r,i)=>`${i+1}. **${r.name}** (${r.zone}): ${n0(r._market)} xe ĐK mới, ${r._c4+r._c3} TT → ${r._market > 4000 ? "trung tâm 3S tại "+r.capital+" hoặc cửa ngõ KCN" : "đại lý vệ tinh / xưởng dịch vụ lưu động"}.`).join("\n")}
+${note}`};
+  }
+  const list = kind === "zone" && zone ? all.filter(r=>r.zone===zone) : all;
+  const scope = kind === "zone" && zone ? zone : "toàn quốc";
+  const reg = list.reduce((a,r)=>a+r._market,0), u = list.reduce((a,r)=>a+r._uio,0), pop = list.reduce((a,r)=>a+r.pop,0), g = list.reduce((a,r)=>a+r.grdp,0);
+  const names = new Set(list.map(r=>r.name)), cs = CENTERS.filter(c=>names.has(c.province)), c4 = cs.filter(c=>c.type==="4S").length;
+  const cnt = k => list.filter(r=>r._post===k);
+  const segTot = SEGS.map((s,i)=>[s, list.reduce((a,r)=>a+r._market*r.mix[i]/100,0)]);
+  return {title:`Báo cáo nhanh ${scope}`, md:
+`# Báo cáo nhanh thị trường xe thương mại ${scope}
+_Ngày ${date}${kind==="zone" && !zone ? " · chưa chọn khu vực nên báo cáo toàn quốc" : ""}_
+
+## 1. Tóm tắt
+- **${list.length} tỉnh/thành**, dân số ${fmt1(pop/1000)} triệu, GRDP ${n0(g)} nghìn tỷ đồng.
+- **ĐK mới xe tải 2025: ${n0(reg)} xe** (${p1(reg/totReg*100)} cả nước); **UIO xe thương mại: ${n0(u)} xe**; tỷ lệ ĐK mới/UIO ${p1(reg/u*100)}.
+- Mạng lưới: **${cs.length} trung tâm** (${c4} 4S, ${cs.length-c4} 3S), bình quân ${cs.length ? n0(reg/cs.length) : "—"} xe ĐK mới mỗi trung tâm.
+- Thế trận: ${Object.entries(POST).map(([k,P])=>`${P.label} ${cnt(k).length}`).join(" · ")}.
+
+## 2. Theo khu vực kinh doanh
+${zoneTable(list)}
+
+## 3. Top ${Math.min(10,list.length)} mặt trận theo ĐK mới
+${provTable(list, 10)}
+
+## 4. Cơ cấu phân khúc (ước tính)
+| Phân khúc | Xe/năm | Tỷ trọng |\n|---|---|---|
+${segTot.map(([s,v])=>`| ${s} | ${n0(v)} | ${p1(v/reg*100)} |`).join("\n")}
+
+## 5. Khuyến nghị nhanh
+${[
+  cnt("open").length ? `- **Mở mặt trận** tại ${cnt("open").slice(0,5).map(r=>r.name).join(", ")}: thị trường lớn, độ phủ còn mỏng; ưu tiên thêm điểm 3S và đội bán đội xe.` : null,
+  cnt("attack").length ? `- **Tổng tấn công** tại ${cnt("attack").slice(0,5).map(r=>r.name).join(", ")}: dồn hàng, gói tài chính, giữ hậu mãi 24/7.` : null,
+  cnt("hold").length ? `- **Phòng thủ – khai thác** ${cnt("hold").length} tỉnh: tập trung dịch vụ, phụ tùng, bán chéo.` : null,
+  cnt("guerrilla").length ? `- **Du kích – chọn lọc** ${cnt("guerrilla").length} tỉnh (${cnt("guerrilla").slice(0,4).map(r=>r.name).join(", ")}…): đại lý vệ tinh, xưởng lưu động theo mùa vụ.` : null,
+  `- Phân khúc lớn nhất: **${[...segTot].sort((a,b)=>b[1]-a[1])[0][0]}**; tải nặng + đầu kéo chiếm ${p1((segTot[2][1]+segTot[3][1])/reg*100)}.`,
+  `- Bổ sung số ĐK mới, UIO thực tế và thị phần đối thủ theo tỉnh để chốt mục tiêu.`
+].filter(Boolean).join("\n")}
+${note}`};
+}
+function instantReport(kind){
+  openAi(true);
+  const {title, md} = buildReport(kind);
+  addMsg("u", esc("Báo cáo tức thì: " + title));
+  const b = addMsg("a", ""); finishBubble(b, md, false, title, true);
+}
 fab.addEventListener("click", () => openAi(true));
 document.getElementById("aiClose").addEventListener("click", () => openAi(false));
 function greet(){
-  addMsg("a", mdToHtml(`Chào anh/chị. Tôi đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ này để phân tích và lập báo cáo.\n\n- Chọn một mẫu yêu cầu phía trên, hoặc gõ câu hỏi.\n- Tôi có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời.\n- Mỗi câu trả lời có nút **Tải báo cáo** (.md) và **Sao chép**.`));
-  if(aiDisabled) aiState.textContent = "Trợ lý AI chỉ chạy khi mở trang trong Claude (claude.ai hoặc ứng dụng Claude).";
+  addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
+  if(aiDisabled) aiState.textContent = "Báo cáo tức thì dùng được ở mọi nơi; Ben phân tích chỉ chạy khi mở trang trong Claude.";
 }
 function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
 function mdToHtml(md){
   const lines = esc(md).split("\n"); let html = "", list = null, table = [];
-  const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>");
+  const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/(^|\s)_([^_]+)_(?=\s|$)/g,"$1<i>$2</i>");
   const closeList = () => { if(list){ html += `</${list}>`; list = null; } };
   const flushTable = () => { if(!table.length) return;
     const rowsT = table.filter(r => !/^\s*\|?\s*:?-{2,}/.test(r)).map(r => r.replace(/^\s*\||\|\s*$/g,"").split("|").map(c=>inline(c.trim())));
@@ -1085,7 +1263,8 @@ function dataSnapshot(){
   return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (ước tính): ${uioNat} xe. Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
 }
 function rules(){
-  return `Bạn là trợ lý phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
+  return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
+Xưng "em", gọi người dùng là "anh/chị". ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
 Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
@@ -1114,29 +1293,33 @@ function setBusy(b, label){ aiBusy = b; aiSend.disabled = b; aiStop.hidden = !b;
 async function askAi(text){
   text = String(text||"").trim(); if(!text || aiBusy) return;
   openAi(true);
-  if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Trợ lý AI chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Bản đồ và số liệu vẫn dùng bình thường.</p>"); return; }
+  if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Ben phân tích chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Anh/chị vẫn dùng được các nút <b>Báo cáo tức thì</b>.</p>"); return; }
   addMsg("u", esc(text)); aiText.value = "";
   aiTurns.push({role:"user", content:text}); if(aiTurns.length > 12) aiTurns = aiTurns.slice(-12);
   while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
-  const bubble = addMsg("a", '<span class="act">Đang phân tích…</span>');
-  aiCtl = new AbortController(); setBusy(true, "Đang phân tích dữ liệu…");
+  const bubble = addMsg("a", '<span class="act">Ben đang phân tích…</span>');
+  aiCtl = new AbortController(); setBusy(true, aiSpeed === "quick" ? "Ben đang phân tích (nhanh)…" : "Ben đang phân tích chuyên sâu…");
   const tools = AI_TOOLS.map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
   try{
-    const res = await sample([{role:"user", content: rules()}, ...aiTurns], { signal: aiCtl.signal, tools, onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
+    const res = await sample([{role:"user", content: rules()}, ...aiTurns], { signal: aiCtl.signal, tools, modelTier: aiSpeed === "quick" ? "quick" : "default", onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
     aiTurns.push({role:"assistant", content: res.text}); finishBubble(bubble, res.text, res.truncated);
   }catch(e){
     const kept = e && e.text;
     if(e && e.code === "cancelled"){ bubble.innerHTML = (kept ? mdToHtml(kept) : "") + '<p class="act">Đã dừng.</p>'; aiTurns.pop(); }
-    else if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","tools_unavailable"].includes(e.code)){ aiDisabled = true; bubble.innerHTML = "<p>Trợ lý AI chưa được phép chạy trên trang này. Bản đồ và số liệu vẫn dùng bình thường.</p>"; aiTurns.pop(); }
+    else if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","tools_unavailable"].includes(e.code)){ aiDisabled = true; bubble.innerHTML = "<p>Ben phân tích chưa được phép chạy trên trang này. Các nút <b>Báo cáo tức thì</b> vẫn dùng bình thường.</p>"; aiTurns.pop(); }
     else if(e && e.code === "rate_limited"){ bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Đang vượt giới hạn sử dụng. Vui lòng thử lại sau ít phút.</p>"; aiTurns.pop(); }
     else if(e && e.code === "prompt_too_large"){ aiTurns = aiTurns.slice(-1); bubble.innerHTML = "<p>Cuộc trò chuyện quá dài, đã rút gọn lịch sử. Hãy gửi lại câu hỏi.</p>"; }
     else { bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Bị gián đoạn khi phân tích. Bấm Gửi để thử lại.</p>"; aiTurns.pop(); aiText.value = text; }
   }finally{ setBusy(false); aiCtl = null; }
 }
-function finishBubble(bubble, md, truncated){
-  bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") + `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button></div>`;
+function slug(t){ return String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+function finishBubble(bubble, md, truncated, title, instant){
+  bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") +
+    `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button>${instant ? '<button type="button" data-a="deep" class="primary">Ben phân tích sâu</button>' : ""}</div>`;
   bubble.querySelector('[data-a="dl"]').addEventListener("click", () => { const d = new Date(), stamp = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-    offerFile(`bao-cao-thi-truong-${stamp}.md`, `# Báo cáo phân tích thị trường xe thương mại\n_Ngày ${d.toLocaleDateString("vi-VN")} · Nguồn: Bản đồ thị trường Hải Âu_\n\n${md}\n`, "Báo cáo"); });
+    offerFile(`${slug(title || "bao-cao-thi-truong")}-${stamp}.md`, instant ? md + "\n" : `# ${title || "Báo cáo phân tích thị trường xe thương mại"}\n_Ngày ${d.toLocaleDateString("vi-VN")} · Ben · Bản đồ thị trường Hải Âu_\n\n${md}\n`, "Báo cáo"); });
+  const deep = bubble.querySelector('[data-a="deep"]');
+  if(deep) deep.addEventListener("click", () => askAi(`Dựa trên báo cáo "${title}" dưới đây, hãy phân tích sâu: nhận định chính, rủi ro, cơ hội và kế hoạch hành động cụ thể (ai, làm gì, khi nào, chỉ số đo).\n\n${md.slice(0, 6000)}`));
   bubble.querySelector('[data-a="cp"]').addEventListener("click", async () => { try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
 }
 aiSend.addEventListener("click", () => askAi(aiText.value));
