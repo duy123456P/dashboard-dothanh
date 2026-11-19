@@ -1,85 +1,114 @@
-<title>Bản đồ Xe Thương mại Việt Nam</title>
+<title>Bản đồ Thị trường Hải Âu</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: control-room board — 3D terrain map dominates the left, a province dossier docks on the right, ranking + editable data sheet below. */
+/* Layout: service-network board. 3D relief map of 34 provinces left, province dossier / 35-center list right, ranking + editable sheet below, AI analyst docked bottom-right. */
 :root{
-  --bg:#0e1621; --panel:#152131; --panel-2:#1b2a3d; --line:#26384f; --fg:#e7edf5; --muted:#8fa2ba;
-  --accent:#f2a93b; --accent-2:#3fc1b0; --good:#46c08a; --warn:#e8b03c; --bad:#e8695b;
-  --map-base:#1c3047; --map-edge:#0b121b; --map-ground:#0e1621;
-  --scale-1:#23466b; --scale-2:#2a7a8e; --scale-3:#4fb39a; --scale-4:#e6c64a; --scale-5:#f08a3c;
-  --seg-1:#3fc1b0; --seg-2:#5b8def; --seg-3:#a77be0; --seg-4:#f2a93b; --seg-5:#e8695b; --seg-6:#8fa2ba;
+  --bg:#f3f6f9; --panel:#ffffff; --panel-2:#f2f5f8; --line:#dbe3ec; --fg:#0f2236; --muted:#5a6b80;
+  --brand:#0b8fd0; --brand-2:#d6302f; --accent:#0b8fd0; --on-accent:#ffffff;
+  --good:#1f9a63; --warn:#b67d06; --bad:#c74535;
+  --pin-4s:#e0302d; --pin-3s:#1597d8; --island:#7d8ea3; --edge:#ffffff;
+  --z-hn:#d64545; --z-1:#3d8fe0; --z-2:#43a047; --z-3:#f6c343; --z-4:#8e44ad; --z-5:#f39c33;
+  --z-6:#26b8c9; --z-7:#ec8fb5; --z-8:#9b8073; --z-hcm:#4b56b8; --z-9:#bfcf45;
+  --scale-1:#bcd3e6; --scale-2:#5aa3b8; --scale-3:#3a9a86; --scale-4:#e0ad2a; --scale-5:#d9621f;
+  --seg-1:#0f8577; --seg-2:#3a6fd8; --seg-3:#8456c8; --seg-4:#c47608; --seg-5:#c74535; --seg-6:#7d8ea3;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;
-  color-scheme:dark;
+  --shadow:0 6px 24px rgba(15,34,54,.08);
 }
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
-  --bg:#edf1f5; --panel:#ffffff; --panel-2:#f4f7fa; --line:#d6dee8; --fg:#132031; --muted:#56677d;
-  --accent:#c47608; --accent-2:#0f8577; --good:#1f9a63; --warn:#b67d06; --bad:#c74535;
-  --map-base:#c9d6e3; --map-edge:#ffffff; --map-ground:#edf1f5;
-  --scale-1:#8fb2d0; --scale-2:#5aa3b8; --scale-3:#3a9a86; --scale-4:#e0ad2a; --scale-5:#d9621f;
-  --seg-1:#0f8577; --seg-2:#3a6fd8; --seg-3:#8456c8; --seg-4:#c47608; --seg-5:#c74535; --seg-6:#7d8ea3;
-  color-scheme:light;
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1621; --panel:#152131; --panel-2:#1b2a3d; --line:#26384f; --fg:#e7edf5; --muted:#8fa2ba;
+  --brand:#3fb0e6; --brand-2:#ef5a55; --accent:#3fb0e6; --on-accent:#06121d;
+  --good:#46c08a; --warn:#e8b03c; --bad:#e8695b;
+  --pin-4s:#ff4f4a; --pin-3s:#3fb7f0; --island:#8fa2ba; --edge:#0b121b;
+  --scale-1:#23466b; --scale-2:#2a7a8e; --scale-3:#4fb39a; --scale-4:#e6c64a; --scale-5:#f08a3c;
+  --seg-1:#3fc1b0; --seg-2:#5b8def; --seg-3:#a77be0; --seg-4:#f2a93b; --seg-5:#e8695b; --seg-6:#8fa2ba;
+  --shadow:0 6px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
 }}
-:root[data-theme="light"]{
-  --bg:#edf1f5; --panel:#ffffff; --panel-2:#f4f7fa; --line:#d6dee8; --fg:#132031; --muted:#56677d;
-  --accent:#c47608; --accent-2:#0f8577; --good:#1f9a63; --warn:#b67d06; --bad:#c74535;
-  --map-base:#c9d6e3; --map-edge:#ffffff; --map-ground:#edf1f5;
-  --scale-1:#8fb2d0; --scale-2:#5aa3b8; --scale-3:#3a9a86; --scale-4:#e0ad2a; --scale-5:#d9621f;
-  --seg-1:#0f8577; --seg-2:#3a6fd8; --seg-3:#8456c8; --seg-4:#c47608; --seg-5:#c74535; --seg-6:#7d8ea3;
-  color-scheme:light;
+:root[data-theme="dark"]{
+  --bg:#0e1621; --panel:#152131; --panel-2:#1b2a3d; --line:#26384f; --fg:#e7edf5; --muted:#8fa2ba;
+  --brand:#3fb0e6; --brand-2:#ef5a55; --accent:#3fb0e6; --on-accent:#06121d;
+  --good:#46c08a; --warn:#e8b03c; --bad:#e8695b;
+  --pin-4s:#ff4f4a; --pin-3s:#3fb7f0; --island:#8fa2ba; --edge:#0b121b;
+  --scale-1:#23466b; --scale-2:#2a7a8e; --scale-3:#4fb39a; --scale-4:#e6c64a; --scale-5:#f08a3c;
+  --seg-1:#3fc1b0; --seg-2:#5b8def; --seg-3:#a77be0; --seg-4:#f2a93b; --seg-5:#e8695b; --seg-6:#8fa2ba;
+  --shadow:0 6px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
-.wrap{max-width:1480px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:.01em;margin:0;text-wrap:balance}
-h1{font-size:clamp(26px,3.2vw,38px);line-height:1.05}
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1500px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--display);font-weight:700;letter-spacing:.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(28px,3.4vw,42px);line-height:1.02;text-transform:uppercase}
 h2{font-size:22px}
-h3{font-size:13px;font-family:var(--body);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0}
 .muted{color:var(--muted)}
 .num{font-variant-numeric:tabular-nums}
+.rule{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--brand) 0 74%,var(--brand-2) 74% 100%)}
 header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.sub{color:var(--muted);max-width:70ch;margin:4px 0 0}
-.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:700}
+.sub{color:var(--muted);max-width:76ch;margin:6px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end}
 .field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
-select,input[type=number],input[type=text]{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
-select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+select,input[type=number],input[type=text],textarea{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 button{font:inherit;cursor:pointer;color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:7px 12px}
 button:hover{border-color:var(--accent)}
-button.primary{background:var(--accent);border-color:var(--accent);color:#16110a;font-weight:600}
+button:disabled{opacity:.5;cursor:default}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;border-radius:0;background:transparent;padding:7px 12px;font-size:13px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{padding:6px 12px;border-radius:999px;font-size:13px}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#16110a;font-weight:600}
+.chip{padding:5px 11px;border-radius:999px;font-size:13px;background:var(--panel)}
+.chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg);font-weight:600}
 
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
-.kpi .v{font-family:var(--display);font-size:26px;font-weight:600;line-height:1.1}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow)}
+.kpi .v{font-family:var(--display);font-size:27px;font-weight:700;line-height:1.1}
 .kpi .l{font-size:12px;color:var(--muted)}
 
-.main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}
-@media (max-width:1020px){.main{grid-template-columns:minmax(0,1fr)}}
-.mapbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-#map{width:100%;height:clamp(460px,74vh,820px)}
-.maphint{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--panel) 80%,transparent);padding:4px 8px;border-radius:6px;pointer-events:none}
-.maptools{position:absolute;right:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.maptools button{font-size:12px;padding:5px 9px;background:color-mix(in srgb,var(--panel) 85%,transparent)}
-.legend{position:absolute;left:12px;top:12px;background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;min-width:180px}
+.main{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1060px){.main{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);min-width:0}
+.mapbox{position:relative;overflow:hidden}
+#map{width:100%;height:clamp(500px,80vh,900px)}
+.maphint{position:absolute;left:12px;top:12px;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--panel) 85%,transparent);padding:4px 8px;border-radius:6px;pointer-events:none}
+.maptools{position:absolute;right:10px;top:10px;z-index:2;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:60%}
+.maptools button{font-size:12px;padding:5px 9px;background:color-mix(in srgb,var(--panel) 88%,transparent)}
+.maptools button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);font-weight:600}
+.legend{border-top:1px solid var(--line);padding:10px 14px;font-size:12px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.legend .lh{display:flex;flex-direction:column}
+.legend .gr{min-width:200px;flex:1;max-width:340px}
 .legend .bar{height:8px;border-radius:4px;margin:6px 0 2px}
 .legend .ends{display:flex;justify-content:space-between;color:var(--muted)}
+.zl{display:flex;flex-wrap:wrap;gap:4px 12px}
+.zl span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.sw{width:10px;height:10px;border-radius:3px;flex:none;display:inline-block}
+.pinl{display:flex;gap:12px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:-1px}
 .loadmsg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);text-align:center;padding:24px}
+#tip{position:fixed;z-index:30;pointer-events:none;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:var(--shadow);font-size:12px;min-width:230px;max-width:300px}
+#tip .t{font-weight:700;font-size:15px;display:flex;align-items:center;gap:6px}
+#tip .g{display:grid;grid-template-columns:auto auto;gap:2px 14px;margin-top:6px}
+#tip .g b{text-align:right}
 
-.dossier{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.side{display:flex;flex-direction:column;min-width:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);padding:0 10px}
+.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 10px 9px;font-weight:600;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--brand)}
+.pane{padding:16px;display:flex;flex-direction:column;gap:14px;max-height:clamp(500px,80vh,900px);overflow:auto}
 .dhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.dhead .name{font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
-.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.dhead .name{font-family:var(--display);font-size:32px;font-weight:700;line-height:1}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 .tier{font-family:var(--display);font-size:20px;font-weight:700;padding:2px 12px;border-radius:8px;white-space:nowrap}
-.tier.A{background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent)}
-.tier.B{background:color-mix(in srgb,var(--accent-2) 20%,transparent);color:var(--accent-2)}
-.tier.C{background:color-mix(in srgb,var(--muted) 18%,transparent);color:var(--muted)}
+.tier.A{background:color-mix(in srgb,var(--brand-2) 16%,transparent);color:var(--brand-2)}
+.tier.B{background:color-mix(in srgb,var(--brand) 16%,transparent);color:var(--brand)}
+.tier.C{background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted)}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .stat{background:var(--panel-2);border-radius:8px;padding:8px 10px;min-width:0}
 .stat .v{font-weight:700;font-size:16px}
@@ -91,87 +120,137 @@ button.primary{background:var(--accent);border-color:var(--accent);color:#16110a
 .seglist i{width:9px;height:9px;border-radius:2px;flex:none}
 .seglist b{margin-left:auto;font-weight:600}
 .prose p{margin:4px 0 0;font-size:13.5px}
-.biz{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-@media (max-width:460px){.biz{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .actions{margin:6px 0 0;padding-left:18px;font-size:13.5px}
 .actions li{margin:3px 0}
 .pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;font-weight:600}
-.pill.good{background:color-mix(in srgb,var(--good) 20%,transparent);color:var(--good)}
-.pill.warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
-.pill.bad{background:color-mix(in srgb,var(--bad) 20%,transparent);color:var(--bad)}
+.pill.good{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.ctrs{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.zone{border-top:1px solid var(--line);padding-top:10px}
+.zone:first-child{border-top:0;padding-top:0}
+.zone h4{margin:0 0 4px;display:flex;align-items:center;gap:8px;font-size:15px}
+.crow{display:flex;align-items:center;gap:10px;padding:4px 6px;border-radius:8px;cursor:pointer;border:0;background:transparent;width:100%;text-align:left}
+.crow:hover{background:var(--panel-2)}
+.crow .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none}
+.crow .p{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
 
-.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px;align-items:start}
-@media (max-width:1020px){.lower{grid-template-columns:minmax(0,1fr)}}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
-.card > h2{margin-bottom:4px}
+.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:16px;align-items:start}
+@media (max-width:1060px){.lower{grid-template-columns:minmax(0,1fr)}}
+.pad{padding:16px}
 #rank{width:100%;height:760px}
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin:10px 0}
 .tablewrap{overflow:auto;max-height:760px;border:1px solid var(--line);border-radius:8px}
 table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-th{position:sticky;top:0;background:var(--panel-2);font-weight:600;font-size:12px;color:var(--muted);text-align:right;z-index:1}
+th{position:sticky;top:0;background:var(--panel-2);font-weight:600;font-size:12px;color:var(--muted);z-index:1}
 th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--panel);z-index:2}
 th:first-child{z-index:3;background:var(--panel-2)}
 tr.sel td{background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
-tr:hover td{background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
-td input{width:84px;padding:3px 6px;text-align:right;border-radius:6px}
+tr:hover td{background:color-mix(in srgb,var(--accent) 6%,var(--panel))}
+td input{width:82px;padding:3px 6px;text-align:right;border-radius:6px}
 td input.note{width:180px;text-align:left}
 td.name{cursor:pointer;font-weight:600}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:60}
 .notes{font-size:12.5px;color:var(--muted)}
-.notes p{margin:4px 0;max-width:120ch}
-textarea{width:100%;min-height:120px;font:12px/1.4 ui-monospace,Consolas,monospace;color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:8px}
+.notes p{margin:4px 0;max-width:125ch}
+
+/* AI analyst */
+#aiFab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;
+  display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--fg);color:var(--bg);border:0;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#aiFab .spark{width:10px;height:10px;border-radius:50%;background:var(--brand-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand-2) 30%,transparent)}
+#ai{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;
+  width:min(460px,calc(100vw - 32px));height:min(720px,calc(100vh - 40px));display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.28);overflow:hidden}
+#ai header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+#ai header b{font-family:var(--display);font-size:20px}
+#ai header .x{margin-left:auto;padding:4px 10px}
+.aiq{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line)}
+.aiq button{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--panel)}
+#aiLog{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:100%;font-size:13.5px;line-height:1.55}
+.msg.u{align-self:flex-end;background:var(--accent);color:var(--on-accent);padding:8px 12px;border-radius:14px 14px 4px 14px;max-width:85%}
+.msg.a{background:var(--panel-2);padding:10px 12px;border-radius:14px 14px 14px 4px;overflow-x:auto}
+.msg.a h1,.msg.a h2,.msg.a h3{font-family:var(--display);text-transform:none;letter-spacing:0;color:var(--fg);margin:10px 0 4px}
+.msg.a h1{font-size:22px}.msg.a h2{font-size:19px}.msg.a h3{font-size:16px}
+.msg.a p{margin:6px 0}.msg.a ul,.msg.a ol{margin:6px 0;padding-left:20px}
+.msg.a table{font-size:12px;margin:6px 0}.msg.a th,.msg.a td{padding:4px 6px;position:static;background:transparent}
+.msg .act{font-size:11.5px;color:var(--muted);font-style:italic}
+.msg .tools{display:flex;gap:6px;margin-top:8px}
+.msg .tools button{font-size:12px;padding:4px 9px}
+.aiin{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line)}
+.aiin textarea{flex:1;resize:none;height:44px;min-height:44px}
+.aistate{padding:0 14px 8px;font-size:12px;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">Đô Thành · Phân tích thị trường vùng</div>
-      <h1>Bản đồ thị trường xe thương mại Việt Nam</h1>
-      <p class="sub">34 tỉnh, thành phố theo Nghị quyết 202/2025/QH15 (hiệu lực 01/07/2025). Chiều cao và màu khối thể hiện chỉ số đang chọn. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim.</p>
+      <div class="eyebrow">Mạng lưới dịch vụ Hải Âu · Thị trường xe thương mại</div>
+      <h1>Bản đồ trung tâm dịch vụ &amp; thị trường</h1>
+      <p class="sub">34 tỉnh, thành theo NQ 202/2025/QH15, 11 khu vực kinh doanh, 35 trung tâm 4S/3S. Khối nổi theo địa hình (độ cao trung bình) hoặc theo chỉ số. Rê chuột vào tỉnh để xem hồ sơ, bấm để ghim. Bấm “Trợ lý AI” để yêu cầu phân tích và báo cáo.</p>
     </div>
     <div class="controls">
-      <label class="field" for="region">Vùng
-        <select id="region"><option value="">Toàn quốc</option></select>
+      <label class="field" for="zoneSel">Khu vực kinh doanh
+        <select id="zoneSel"><option value="">Toàn quốc</option></select>
       </label>
       <label class="field" for="tam">Tổng thị trường xe TM (xe/năm)
         <input id="tam" type="number" min="1000" step="1000" value="100000" style="width:150px">
       </label>
     </div>
   </header>
+  <div class="rule"></div>
 
-  <div class="chips" id="metrics" role="group" aria-label="Chỉ số hiển thị"></div>
+  <div class="controls">
+    <div class="field">Màu khối
+      <div class="seg" role="group" aria-label="Màu khối"><button type="button" data-color="zone">Vùng kinh doanh</button><button type="button" data-color="metric">Theo chỉ số</button></div>
+    </div>
+    <div class="field">Chiều cao khối
+      <div class="seg" role="group" aria-label="Chiều cao khối"><button type="button" data-height="terrain">Địa hình</button><button type="button" data-height="metric">Theo chỉ số</button></div>
+    </div>
+    <div class="field" style="min-width:0;flex:1">Chỉ số
+      <div class="chips" id="metrics" role="group" aria-label="Chỉ số"></div>
+    </div>
+  </div>
 
   <section class="kpis" id="kpis" aria-label="Tổng quan"></section>
 
   <section class="main">
-    <div class="mapbox">
-      <div id="map" role="img" aria-label="Bản đồ 3D 34 tỉnh thành Việt Nam"></div>
+    <div class="card mapbox">
+      <div id="map" role="img" aria-label="Bản đồ 3D 34 tỉnh thành Việt Nam với 35 trung tâm dịch vụ"></div>
       <div class="loadmsg" id="loadmsg">Đang tải bản đồ 3D…</div>
-      <div class="legend" id="legend"></div>
       <div class="maptools">
         <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
+        <button id="btnPins" type="button" aria-pressed="true">Trung tâm</button>
         <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
-        <button id="btnView" type="button">Góc nhìn</button>
+        <button id="btnView" type="button">Đổi góc nhìn</button>
       </div>
-      <div class="maphint">Kéo chuột: xoay · Cuộn: phóng to · Chuột phải: di chuyển</div>
+      <div class="maphint">Kéo: xoay · Cuộn: phóng to · Chuột phải: di chuyển</div>
+      <div class="legend" id="legend"></div>
     </div>
-    <aside class="dossier" id="dossier" aria-live="polite"></aside>
+    <aside class="card side">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="tabP" aria-selected="true" aria-controls="paneP">Hồ sơ tỉnh</button>
+        <button type="button" role="tab" id="tabC" aria-selected="false" aria-controls="paneC">35 trung tâm dịch vụ</button>
+      </div>
+      <div class="pane" id="paneP" role="tabpanel" aria-labelledby="tabP" aria-live="polite"></div>
+      <div class="pane" id="paneC" role="tabpanel" aria-labelledby="tabC" hidden></div>
+    </aside>
   </section>
 
   <section class="lower">
-    <div class="card">
-      <h2>Xếp hạng 34 tỉnh</h2>
+    <div class="card pad">
+      <h2>Xếp hạng</h2>
       <div class="muted" id="rankSub"></div>
       <div id="rank"></div>
     </div>
-    <div class="card">
+    <div class="card pad">
       <h2>Bảng dữ liệu &amp; cập nhật</h2>
-      <p class="muted" style="margin:2px 0 0">Sửa trực tiếp ô số liệu: bản đồ, xếp hạng và hồ sơ cập nhật ngay. Dữ liệu sửa được lưu trên trình duyệt này. Muốn cập nhật cho cả nhóm, xuất JSON/CSV và gửi lại để thay file gốc.</p>
+      <p class="muted" style="margin:2px 0 0">Sửa trực tiếp ô số liệu: bản đồ, xếp hạng, hồ sơ và trợ lý AI dùng ngay số mới. Chỉnh sửa được lưu trên trình duyệt này; muốn cập nhật cho cả nhóm, tải CSV/JSON và gửi lại để thay file gốc.</p>
       <div class="toolbar">
-        <button type="button" id="btnCopyCsv">Sao chép CSV</button>
-        <button type="button" id="btnCopyJson">Sao chép JSON</button>
+        <button type="button" id="btnCsv">Tải CSV</button>
+        <button type="button" id="btnJson">Tải JSON</button>
         <label class="field" for="fileIn">Nhập file CSV / JSON
           <input id="fileIn" type="file" accept=".csv,.json,text/csv,application/json">
         </label>
@@ -179,103 +258,122 @@ textarea{width:100%;min-height:120px;font:12px/1.4 ui-monospace,Consolas,monospa
         <button type="button" id="btnReset">Khôi phục dữ liệu gốc</button>
       </div>
       <div id="pasteBox" hidden>
-        <label for="pasteArea" class="muted" style="font-size:12px">Dán CSV (có dòng tiêu đề, cột <b>name</b> là tên tỉnh) hoặc JSON rồi bấm Áp dụng.</label>
-        <textarea id="pasteArea"></textarea>
-        <div class="toolbar"><button type="button" class="primary" id="btnApplyPaste">Áp dụng</button><button type="button" id="btnCancelPaste">Hủy</button></div>
-        <div id="resetConfirm"></div>
+        <label for="pasteArea" class="muted" style="font-size:12px">Dán CSV (dòng tiêu đề, cột <b>name</b> là tên tỉnh mới) hoặc JSON rồi bấm Áp dụng.</label>
+        <textarea id="pasteArea" style="width:100%;min-height:120px;font:12px/1.4 ui-monospace,Consolas,monospace"></textarea>
+        <div class="toolbar"><button type="button" class="primary" id="btnApplyPaste">Áp dụng</button><button type="button" id="btnCancelPaste">Đóng</button></div>
       </div>
       <div id="resetBox"></div>
       <div class="tablewrap"><table id="tbl"></table></div>
     </div>
   </section>
 
-  <section class="card notes">
+  <section class="card pad notes">
     <h2 style="color:var(--fg)">Phương pháp &amp; nguồn số liệu</h2>
-    <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa) được thể hiện trên bản đồ. Ranh giới đã giản lược để hiển thị 3D, không dùng cho mục đích pháp lý.</p>
-    <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 lấy theo công bố của Cục Thống kê tháng 01/2026 cho các tỉnh đã đối chiếu được; ô trống là chưa cập nhật.</p>
-    <p><b>Quy mô thị trường xe thương mại (ước tính):</b> Tổng thị trường (mặc định 100.000 xe/năm gồm tải, đầu kéo, xe khách, pickup/van; VAMA ghi nhận ~70.700 xe tải năm 2025, chưa gồm các hãng ngoài VAMA và xe nhập) được phân bổ theo trọng số GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng (cảng/công nghiệp cao hơn, nông nghiệp thấp hơn). Cơ cấu phân khúc theo loại hình kinh tế của tỉnh. Đây là mô hình định hướng; thay bằng số đăng ký xe thực tế khi có.</p>
-    <p><b>Phân hạng ưu tiên:</b> A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%. Các cột Điểm bán, Doanh số, Mục tiêu do Đô Thành nhập để tính thị phần và độ phủ.</p>
+    <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa). Ranh giới đã giản lược để dựng 3D, không dùng cho mục đích pháp lý.</p>
+    <p><b>Địa hình:</b> chiều cao khối theo độ cao trung bình ước lượng của tỉnh (m), để thể hiện miền núi – cao nguyên – đồng bằng; không phải mô hình độ cao chi tiết.</p>
+    <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 theo công bố của Cục Thống kê tháng 01/2026 cho các tỉnh đã đối chiếu được; ô trống là chưa cập nhật.</p>
+    <p><b>Thị trường xe thương mại (ước tính):</b> tổng thị trường (mặc định 100.000 xe/năm gồm tải, đầu kéo, xe khách, pickup/van; VAMA ghi nhận khoảng 70.700 xe tải năm 2025, chưa gồm hãng ngoài VAMA và xe nhập) phân bổ theo GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng. Cơ cấu phân khúc theo loại hình kinh tế. Là mô hình định hướng; thay bằng số đăng ký thực tế khi có.</p>
+    <p><b>Mạng lưới:</b> 35 trung tâm (10 trung tâm 4S, 25 trung tâm 3S) và 11 khu vực kinh doanh theo bản đồ trung tâm dịch vụ Hải Âu; vị trí ghim là gần đúng theo địa danh. Phân hạng ưu tiên: A ≥ 4% thị trường cả nước, B 2–4%, C &lt; 2%.</p>
   </section>
 </div>
+
+<div id="tip" hidden></div>
 <div class="toast" id="toast" hidden></div>
+
+<button type="button" id="aiFab" aria-controls="ai" aria-expanded="false"><span class="spark"></span>Trợ lý AI phân tích</button>
+<section id="ai" hidden aria-label="Trợ lý AI phân tích">
+  <header><span class="spark" style="width:10px;height:10px;border-radius:50%;background:var(--brand-2)"></span><b>Trợ lý phân tích</b><span class="muted" style="font-size:12px">đọc dữ liệu trên bản đồ</span><button type="button" class="x" id="aiClose" aria-label="Thu nhỏ trợ lý">Thu nhỏ</button></header>
+  <div class="aiq" id="aiQuick"></div>
+  <div id="aiLog" aria-live="polite"></div>
+  <div class="aistate" id="aiState"></div>
+  <div class="aiin">
+    <label for="aiText" style="position:absolute;left:-9999px">Câu hỏi cho trợ lý</label>
+    <textarea id="aiText" placeholder="Hỏi về tỉnh, vùng, phân khúc, đề xuất mở trung tâm…"></textarea>
+    <button type="button" class="primary" id="aiSend">Gửi</button>
+    <button type="button" id="aiStop" hidden>Dừng</button>
+  </div>
+</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.1/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 <script id="geo-data" type="application/json">/*__GEO__*/</script>
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
+<script id="center-data" type="application/json">/*__CENTERS__*/</script>
 <script>
 (function(){
 "use strict";
 const GEO = JSON.parse(document.getElementById("geo-data").textContent);
 const BASE = JSON.parse(document.getElementById("prov-data").textContent);
-const STORE_KEY = "dothanh-cv-map-v1";
+const CENTERS = JSON.parse(document.getElementById("center-data").textContent);
+const STORE_KEY = "haiau-cv-map-v2";
+const ZONES = ["Khu vực Hà Nội","Vùng 1","Vùng 2","Vùng 3","Vùng 4","Vùng 5","Vùng 6","Vùng 7","Vùng 8","Khu vực TP. Hồ Chí Minh","Vùng 9"];
+const ZTOK = {"Khu vực Hà Nội":"--z-hn","Vùng 1":"--z-1","Vùng 2":"--z-2","Vùng 3":"--z-3","Vùng 4":"--z-4","Vùng 5":"--z-5","Vùng 6":"--z-6","Vùng 7":"--z-7","Vùng 8":"--z-8","Khu vực TP. Hồ Chí Minh":"--z-hcm","Vùng 9":"--z-9"};
 const SEGS = ["Tải nhẹ < 3,5T","Tải trung 3,5–10T","Tải nặng > 10T","Đầu kéo","Xe khách / bus","Pickup / van"];
 const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",industrial:"Công nghiệp",coast:"Duyên hải – công nghiệp nặng",highland:"Cao nguyên – nông nghiệp",delta:"Đồng bằng – nông nghiệp",mountain:"Miền núi",border:"Cửa khẩu – logistics"};
-const EDIT_COLS = [
-  ["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],
-  ["factor","Hệ số vùng",0.05],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1]];
+const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
+const NUM_KEYS = ["pop","area","grdp","growth","factor","elev","dealers","sales","target"];
+const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],
+  ["elev","Độ cao TB (m)",10],["factor","Hệ số vùng",0.05],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1]];
+const VIEW_PRESETS = [{alpha:44,beta:-18,distance:126,center:[4,0,20]},{alpha:30,beta:-34,distance:122,center:[6,0,16]},{alpha:58,beta:8,distance:140,center:[0,0,16]},{alpha:86,beta:0,distance:150,center:[0,0,14]}];
 
-let rows = clone(BASE), tam = 100000, metric = "market", region = "", selected = null, pinned = false;
-let showLabels = true, autoRotate = false;
+let rows = clone(BASE), tam = 100000, metric = "market", zone = "", selected = null, pinned = false;
+let colorMode = "zone", heightMode = "terrain", showLabels = true, showPins = true, autoRotate = false, viewIdx = 0;
 
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
-function load(){
-  try{
-    const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-    if(s && Array.isArray(s.rows)){ mergeRows(s.rows); if(s.tam) tam = +s.tam; }
-  }catch(e){}
-}
-function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows, tam})); }catch(e){} }
+function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\.?|thành phố|tỉnh)\s*/,"").replace(/[\s.]/g,""); }
+function findRow(name){ const n = norm(name||""); return rows.find(r => norm(r.name) === n) || rows.find(r => r.merged.some(m => norm(m) === n)); }
+function load(){ try{ const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); if(s && Array.isArray(s.rows)){ mergeRows(s.rows); if(s.tam) tam = +s.tam; } }catch(e){} }
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam})); }catch(e){} }
+function strip(r){ return Object.fromEntries(Object.entries(r).filter(([k]) => !k.startsWith("_"))); }
 function mergeRows(incoming){
-  const byName = new Map(rows.map(r => [norm(r.name), r]));
   let n = 0;
   incoming.forEach(src => {
-    const r = byName.get(norm(src.name || src["Tỉnh"] || ""));
-    if(!r) return; n++;
+    const r = findRow(src.name || src["Tỉnh"] || ""); if(!r) return; n++;
     Object.keys(src).forEach(k => {
-      if(k === "name") return;
+      if(k === "name" || k.startsWith("_")) return;
       let v = src[k];
-      if(["pop","area","grdp","growth","factor","dealers","sales","target"].includes(k)){
-        if(v === "" || v === null || v === undefined){ if(k==="growth") r[k] = null; return; }
+      if(NUM_KEYS.includes(k)){
+        if(v === "" || v == null){ if(k === "growth") r[k] = null; return; }
         v = parseFloat(String(v).replace(/\s/g,"").replace(",", ".")); if(isNaN(v)) return;
       }
       if(k === "mix" && typeof v === "string") v = v.split(/[|;]/).map(Number);
+      if(k === "merged" && typeof v === "string") v = v.split(/[|;]/).map(s=>s.trim());
       r[k] = v;
     });
   });
   return n;
 }
-function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\.?|thành phố|tỉnh)\s*/,"").replace(/[\s.]/g,""); }
 
 /* ---------- model ---------- */
+function centersOf(name){ return CENTERS.filter(c => c.province === name); }
 function compute(){
   const w = rows.map(r => Math.pow(Math.max(r.grdp,0),0.65) * Math.pow(Math.max(r.pop,0),0.35) * (r.factor || 1));
   const sw = w.reduce((a,b)=>a+b,0) || 1;
-  const totalPop = rows.reduce((a,r)=>a+r.pop,0), totalGrdp = rows.reduce((a,r)=>a+r.grdp,0);
   rows.forEach((r,i) => {
     r._market = Math.round(tam * w[i] / sw);
     r._mshare = w[i] / sw * 100;
     r._density = r.area ? r.pop*1000 / r.area : 0;
-    r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;          // triệu đồng / người
-    r._share = r._market ? r.sales / r._market * 100 : 0;
+    r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;
+    r._share = r._market ? (r.sales||0) / r._market * 100 : 0;
     r._gap = Math.max((r.target||0) - (r.sales||0), 0);
     r._tier = r._mshare >= 4 ? "A" : r._mshare >= 2 ? "B" : "C";
-    r._popShare = r.pop/totalPop*100; r._grdpShare = r.grdp/totalGrdp*100;
+    const cs = centersOf(r.name); r._c4 = cs.filter(c=>c.type==="4S").length; r._c3 = cs.length - r._c4;
+    r._perCenter = cs.length ? r._market / cs.length : null;
   });
-  const rk = (key) => { [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }); };
-  ["_market","grdp","pop","_gpc"].forEach(rk);
+  ["_market","grdp","pop","_gpc"].forEach(key => [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }));
 }
-
 const METRICS = {
   market:{label:"Thị trường xe TM (ước tính)", unit:"xe/năm", get:r=>r._market, fmt:v=>fmtInt(v)},
+  perCenter:{label:"Thị trường / trung tâm", unit:"xe/năm", get:r=>r._perCenter, fmt:v=>v==null?"chưa có TT":fmtInt(v)},
   grdp:{label:"GRDP", unit:"nghìn tỷ đ", get:r=>r.grdp, fmt:v=>fmtInt(v)},
   pop:{label:"Dân số", unit:"nghìn người", get:r=>r.pop, fmt:v=>fmtInt(v)},
   gpc:{label:"GRDP / người", unit:"triệu đ", get:r=>r._gpc, fmt:v=>fmtInt(v)},
   growth:{label:"Tăng trưởng GRDP 2025", unit:"%", get:r=>r.growth, fmt:v=>v==null?"—":fmt1(v)},
-  heavy:{label:"Nhu cầu tải nặng + đầu kéo", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[2]+r.mix[3])/100), fmt:v=>fmtInt(v)},
-  light:{label:"Nhu cầu tải nhẹ + van", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[0]+r.mix[5])/100), fmt:v=>fmtInt(v)},
-  sales:{label:"Doanh số Đô Thành", unit:"xe", get:r=>r.sales, fmt:v=>fmtInt(v)},
-  share:{label:"Thị phần Đô Thành", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
+  heavy:{label:"Tải nặng + đầu kéo", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[2]+r.mix[3])/100), fmt:v=>fmtInt(v)},
+  light:{label:"Tải nhẹ + van", unit:"xe/năm", get:r=>Math.round(r._market*(r.mix[0]+r.mix[5])/100), fmt:v=>fmtInt(v)},
+  elev:{label:"Độ cao trung bình", unit:"m", get:r=>r.elev, fmt:v=>fmtInt(v)},
+  sales:{label:"Doanh số", unit:"xe", get:r=>r.sales, fmt:v=>fmtInt(v)},
+  share:{label:"Thị phần", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
 };
 const nf0 = new Intl.NumberFormat("vi-VN",{maximumFractionDigits:0});
 const nf1 = new Intl.NumberFormat("vi-VN",{minimumFractionDigits:1,maximumFractionDigits:1});
@@ -283,181 +381,245 @@ function fmtInt(v){ return v==null||isNaN(v) ? "—" : nf0.format(v); }
 function fmt1(v){ return v==null||isNaN(v) ? "—" : nf1.format(v); }
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function css(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
-function visible(){ return rows.filter(r => !region || r.region === region); }
+function zoneColor(z){ return css(ZTOK[z] || "--muted"); }
+function visible(){ return rows.filter(r => !zone || r.zone === zone); }
 
-/* ---------- UI: chips, region ---------- */
+/* ---------- controls ---------- */
 const chipBox = document.getElementById("metrics");
 Object.entries(METRICS).forEach(([k,m]) => {
   const b = document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=m.label; b.dataset.k=k;
-  b.addEventListener("click", () => { metric = k; renderAll(); });
+  b.addEventListener("click", () => { metric = k; if(colorMode==="zone" && heightMode==="terrain") colorMode = "metric"; renderAll(); });
   chipBox.appendChild(b);
 });
-const regSel = document.getElementById("region");
-[...new Set(BASE.map(r=>r.region))].forEach(rg => { const o=document.createElement("option"); o.value=rg; o.textContent=rg; regSel.appendChild(o); });
-regSel.addEventListener("change", () => { region = regSel.value; renderAll(); });
+document.querySelectorAll("[data-color]").forEach(b => b.addEventListener("click", () => { colorMode = b.dataset.color; renderAll(); }));
+document.querySelectorAll("[data-height]").forEach(b => b.addEventListener("click", () => { heightMode = b.dataset.height; renderAll(); }));
+const zoneSel = document.getElementById("zoneSel");
+ZONES.forEach(z => { const o=document.createElement("option"); o.value=z; o.textContent=z; zoneSel.appendChild(o); });
+zoneSel.addEventListener("change", () => { setZone(zoneSel.value); });
+function setZone(z){ zone = ZONES.includes(z) ? z : ""; zoneSel.value = zone; renderAll(); }
 const tamIn = document.getElementById("tam");
 tamIn.addEventListener("change", () => { const v=+tamIn.value; if(v>0){ tam=v; save(); renderAll(); } });
 
 /* ---------- KPIs ---------- */
 function renderKpis(){
-  const v = visible();
+  const v = visible(), names = new Set(v.map(r=>r.name));
   const sum = k => v.reduce((a,r)=>a+(+r[k]||0),0);
-  const market = sum("_market"), sales = sum("sales"), target = sum("target"), dealers = sum("dealers");
+  const cs = CENTERS.filter(c => names.has(c.province));
+  const market = sum("_market"), sales = sum("sales"), target = sum("target");
   const items = [
-    [fmtInt(v.length), region ? "Tỉnh/thành trong vùng" : "Tỉnh/thành"],
+    [fmtInt(v.length), zone ? "Tỉnh/thành trong " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
     [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
     [fmtInt(market), "Thị trường xe TM ước tính / năm"],
-    [fmtInt(dealers), "Điểm bán Đô Thành"],
+    [`${cs.filter(c=>c.type==="4S").length} · ${cs.filter(c=>c.type==="3S").length}`, "Trung tâm 4S · 3S"],
+    [cs.length ? fmtInt(market/cs.length) : "—", "Xe thị trường / trung tâm"],
     [sales ? fmt1(sales/market*100)+"%" : "—", sales ? `Thị phần (${fmtInt(sales)} xe)` : "Thị phần · nhập doanh số"],
-    [target ? fmt1(sales/target*100)+"%" : "—", target ? `Hoàn thành mục tiêu ${fmtInt(target)} xe` : "Mục tiêu · chưa nhập"],
   ];
-  document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="kpi"><div class="v num">${a}</div><div class="l">${b}</div></div>`).join("");
+  document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
 }
 
 /* ---------- 3D map ---------- */
-let mapChart = null, rankChart = null;
-const VIEW_PRESETS = [{alpha:38,beta:-24,distance:112,center:[4,0,18]},{alpha:50,beta:8,distance:124,center:[2,0,16]},{alpha:42,beta:28,distance:114,center:[-2,0,16]},{alpha:85,beta:0,distance:128,center:[0,0,8]}];
-const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
-const SHORT_REG = {"Trung du & miền núi phía Bắc":"TD&MN Bắc Bộ","Đồng bằng sông Hồng":"ĐB sông Hồng","Bắc Trung Bộ & DH miền Trung":"BTB & DH m.Trung","Tây Nguyên":"Tây Nguyên","Đông Nam Bộ":"Đông Nam Bộ","Đồng bằng sông Cửu Long":"ĐB sông Cửu Long"};
-let viewIdx = 0;
-
-function colorScale(){ return [css("--scale-1"),css("--scale-2"),css("--scale-3"),css("--scale-4"),css("--scale-5")]; }
-function heightFor(v, max){ return max>0 ? 0.8 + 15 * Math.sqrt(Math.max(v,0)/max) : 0.8; }
-
-function mapOption(){
+let mapChart = null, rankChart = null, mouse = {x:0,y:0};
+const BOX_H = 10;
+function colorScale(){ return [1,2,3,4,5].map(i=>css("--scale-"+i)); }
+function lerpColor(stops, t){
+  t = Math.max(0, Math.min(1, t)); const seg = (stops.length-1)*t, i = Math.min(Math.floor(seg), stops.length-2), f = seg - i;
+  const h = c => { const m = c.replace("#",""); return [0,2,4].map(k=>parseInt(m.substr(k,2),16)); };
+  const a = h(stops[i]), b = h(stops[i+1]);
+  return "#" + a.map((x,k)=>Math.round(x+(b[k]-x)*f).toString(16).padStart(2,"0")).join("");
+}
+function metricRange(){
   const M = METRICS[metric];
-  const vals = rows.filter(r => !region || r.region === region).map(r => M.get(r)).filter(v => v!=null && !isNaN(v));
-  const max = Math.max(...vals, 0), min = Math.min(...vals, 0);
-  const base = css("--map-base");
-  const data = rows.map(r => {
-    const v = M.get(r), inReg = !region || r.region === region;
-    const item = {name:r.name, value: v==null?null:v, height: inReg ? heightFor(v||0, max) : 0.25};
-    if(!inReg) item.itemStyle = {color: base, opacity: 0.45};
-    if(v==null) item.itemStyle = {color: base};
-    return item;
-  });
-  Object.entries(ISLANDS).forEach(([n,parent]) => data.push({name:n, value:null, height:0.8, itemStyle:{color: css("--accent-2")}}));
+  const vals = visible().map(r=>M.get(r)).filter(v=>v!=null&&!isNaN(v));
+  return {min: Math.min(...vals, 0), max: Math.max(...vals, 0)};
+}
+function regionHeight(r){
+  if(heightMode === "terrain") return 0.35 + 7 * Math.sqrt(Math.max(r.elev||0,0)/1100);
+  const v = METRICS[metric].get(r), {max} = metricRange();
+  return 0.35 + 7 * (max>0 ? Math.sqrt(Math.max(v||0,0)/max) : 0);
+}
+function regionColor(r){
+  if(colorMode === "zone") return zoneColor(r.zone);
+  const v = METRICS[metric].get(r), {min,max} = metricRange();
+  if(v == null || isNaN(v)) return css("--island");
+  return lerpColor(colorScale(), max>min ? (v-min)/(max-min) : 0);
+}
+function mapOption(){
   const dark = css("color-scheme") === "dark";
+  const regions = rows.map(r => {
+    const inZ = !zone || r.zone === zone;
+    return {name:r.name, height: inZ ? regionHeight(r) : 0.25,
+      itemStyle:{color: regionColor(r), opacity: inZ ? 1 : 0.28},
+      label:{show: showLabels && inZ}};
+  });
+  Object.keys(ISLANDS).forEach(n => regions.push({name:n, height:0.3, itemStyle:{color: css("--island")}, label:{show: showLabels}}));
+  const hOf = {}; rows.forEach(r => hOf[r.name] = (!zone || r.zone === zone) ? regionHeight(r) : 0.25);
+  const pins = showPins ? CENTERS.filter(c => !zone || (findRow(c.province)||{}).zone === zone).map(c => ({
+    name: c.name, value:[c.lng, c.lat, (hOf[c.province]||0.3) + 0.05], id:c.id, province:c.province, type:c.type,
+    symbolSize: c.type==="4S" ? 26 : 20, itemStyle:{color: css(c.type==="4S" ? "--pin-4s" : "--pin-3s"), opacity:1}
+  })) : [];
+  const label = {show: showLabels, distance: 1, formatter: p => p.name,
+    textStyle:{color: css("--fg"), fontSize: 11, fontFamily: css("--body"), fontWeight: 700,
+      backgroundColor: dark ? "rgba(14,22,33,.55)" : "rgba(255,255,255,.7)", padding:[2,4], borderRadius:3}};
   return {
     backgroundColor: "transparent",
-    tooltip: {
-      show:true, confine:true, backgroundColor: css("--panel"), borderColor: css("--line"),
-      textStyle:{color: css("--fg"), fontFamily: css("--body")}, padding:[8,10],
-      formatter: p => tip(p.name)
-    },
-    visualMap: {
-      show:false, min: Math.min(min,0), max: max || 1, seriesIndex:0, calculable:false,
-      inRange:{color: colorScale()}
-    },
-    series: [{
-      type:"map3D", map:"VN34", data,
-      boxWidth: 62, boxDepth: 130, regionHeight: 1,
-      shading: "lambert",
-      label:{ show: showLabels, distance: 2, formatter: p => p.name,
-        textStyle:{color: css("--fg"), fontSize: 10, fontFamily: css("--body"), fontWeight: 600,
-          backgroundColor: "transparent", borderWidth: 0} },
-      itemStyle:{ borderWidth: 0.8, borderColor: css("--map-edge"), opacity: 1 },
+    tooltip: {show:true, confine:true, backgroundColor: css("--panel"), borderColor: css("--line"),
+      textStyle:{color: css("--fg"), fontFamily: css("--body")}, padding:[8,10], formatter: centerTip},
+    geo3D: {
+      map: "VN34", regions, boxWidth: 62, boxDepth: 130, boxHeight: BOX_H, regionHeight: 0.5,
+      shading: "lambert", label,
+      itemStyle:{ borderWidth: 1, borderColor: css("--edge") },
       emphasis:{ label:{show:true, textStyle:{color: css("--fg"), fontSize: 13, fontWeight: 700, backgroundColor: css("--panel"), padding:[3,6], borderRadius:4}},
-        itemStyle:{ color: css("--accent") } },
-      light:{ main:{ intensity: dark ? 1.15 : 1.0, alpha: 50, beta: 30, shadow: true, shadowQuality: "medium" },
-              ambient:{ intensity: dark ? 0.45 : 0.6 } },
-      groundPlane:{ show: false },
-      viewControl:{ ...VIEW_PRESETS[viewIdx], autoRotate, autoRotateSpeed: 6, minDistance: 40, maxDistance: 220,
-        rotateSensitivity: 1, zoomSensitivity: 1, panMouseButton: "right", rotateMouseButton: "left", animationDurationUpdate: 900 },
-      postEffect:{ enable: false },
-      animationDurationUpdate: 800
-    }]
+        itemStyle:{ color: css("--brand-2") } },
+      light:{ main:{ intensity: dark ? 1.15 : 1.05, alpha: 48, beta: 35, shadow: true, shadowQuality: "high" }, ambient:{ intensity: dark ? 0.42 : 0.55 } },
+      groundPlane:{ show:false },
+      viewControl:{ ...VIEW_PRESETS[viewIdx], autoRotate, autoRotateSpeed: 6, minDistance: 35, maxDistance: 230,
+        panMouseButton: "right", rotateMouseButton: "left", animationDurationUpdate: 900 }
+    },
+    series: [
+      {type:"scatter3D", coordinateSystem:"geo3D", symbol:"pin", data: pins, blendMode:"source-over",
+        label:{show: showPins, formatter: p => String(p.data.id), position:"top", distance: 0,
+          textStyle:{color: css("--fg"), fontSize: 10, fontWeight: 700, backgroundColor: css("--panel"), padding:[1,4], borderRadius:8, borderWidth:0}},
+        emphasis:{label:{show:true, formatter: p => p.data.name, textStyle:{fontSize:12, color: css("--fg"), backgroundColor: css("--panel"), padding:[3,6]}}, itemStyle:{color: css("--brand-2")}}},
+      // invisible anchors pin the altitude axis to 0..BOX_H so pins sit on top of the blocks
+      {type:"scatter3D", coordinateSystem:"geo3D", silent:true, symbolSize:0, itemStyle:{opacity:0}, data:[[110,20,0],[110,20,BOX_H]]}
+    ]
   };
 }
-
-function tip(name){
-  if(ISLANDS[name]) return `<b>${esc(name)}</b><div style="font-size:12px;opacity:.8">Thuộc ${ISLANDS[name]==="Đà Nẵng"?"thành phố Đà Nẵng":"tỉnh Khánh Hòa"}, Việt Nam</div>`;
-  const r = rows.find(x=>x.name===name); if(!r) return esc(name);
-  const M = METRICS[metric];
-  return `<div style="min-width:220px">
-    <div style="font-weight:700;font-size:15px">${esc(r.name)}</div>
-    <div style="opacity:.7;font-size:11px;margin-bottom:6px">${esc(r.region)} · gộp: ${esc(r.merged.join(", "))}</div>
-    <div style="display:grid;grid-template-columns:auto auto;gap:2px 14px;font-size:12px">
-      <span>${esc(M.label)}</span><b style="text-align:right">${M.fmt(M.get(r))} ${M.unit}</b>
-      <span>Thị trường xe TM</span><b style="text-align:right">${fmtInt(r._market)} xe · #${r._rk_market}</b>
-      <span>Dân số</span><b style="text-align:right">${fmt1(r.pop/1000)} tr</b>
-      <span>GRDP</span><b style="text-align:right">${fmtInt(r.grdp)} nghìn tỷ</b>
-      <span>GRDP/người</span><b style="text-align:right">${fmtInt(r._gpc)} tr đ</b>
-      <span>Hạng ưu tiên</span><b style="text-align:right">${r._tier}</b>
-    </div></div>`;
+function centerTip(p){
+  const d = p.data; if(!d || !d.province) return "";
+  const r = findRow(d.province);
+  return `<div style="min-width:200px"><div style="display:flex;gap:6px;align-items:center;font-weight:700;font-size:14px">
+    <span style="width:18px;height:18px;border-radius:50%;background:${css(d.type==="4S"?"--pin-4s":"--pin-3s")};color:#fff;font-size:10px;display:grid;place-items:center">${d.id}</span>${esc(d.name)}</div>
+    <div style="font-size:12px;opacity:.8;margin-top:4px">${d.type==="4S"?"Trung tâm 4S: bán hàng, dịch vụ, phụ tùng, khảo sát":"Trung tâm 3S: bán hàng, dịch vụ, phụ tùng"}</div>
+    <div style="font-size:12px;margin-top:4px">${esc(d.province)} · ${esc(r?r.zone:"")}<br>Thị trường tỉnh: <b>${r?fmtInt(r._market):"—"}</b> xe/năm</div></div>`;
 }
-
+function regionTip(name){
+  if(ISLANDS[name]) return `<div class="t">${esc(name)}</div><div class="muted">Thuộc ${ISLANDS[name]==="Đà Nẵng"?"thành phố Đà Nẵng":"tỉnh Khánh Hòa"}, Việt Nam</div>`;
+  const r = findRow(name); if(!r) return esc(name);
+  const M = METRICS[metric];
+  return `<div class="t"><span class="sw" style="background:${zoneColor(r.zone)}"></span>${esc(r.name)}</div>
+    <div class="muted">${esc(r.zone)} · gộp: ${esc(r.merged.join(", "))}</div>
+    <div class="g num">
+      <span>${esc(M.label)}</span><b>${M.fmt(M.get(r))} ${M.unit}</b>
+      <span>Thị trường xe TM</span><b>${fmtInt(r._market)} xe · #${r._rk_market}</b>
+      <span>Dân số</span><b>${fmt1(r.pop/1000)} tr</b>
+      <span>GRDP</span><b>${fmtInt(r.grdp)} nghìn tỷ</b>
+      <span>GRDP / người</span><b>${fmtInt(r._gpc)} tr đ</b>
+      <span>Độ cao TB</span><b>${fmtInt(r.elev)} m</b>
+      <span>Trung tâm 4S · 3S</span><b>${r._c4} · ${r._c3}</b>
+      <span>Hạng ưu tiên</span><b>${r._tier}</b>
+    </div><div class="muted" style="margin-top:6px">${pinned && selected===r.name ? "Đang ghim · bấm lại để bỏ ghim" : "Bấm để ghim hồ sơ"}</div>`;
+}
+const tipEl = document.getElementById("tip");
+function showTip(name){
+  if(!name){ tipEl.hidden = true; return; }
+  tipEl.innerHTML = regionTip(name); tipEl.hidden = false;
+  const w = tipEl.offsetWidth, h = tipEl.offsetHeight;
+  let x = mouse.x + 16, y = mouse.y + 16;
+  if(x + w > innerWidth - 8) x = mouse.x - w - 16;
+  if(y + h > innerHeight - 8) y = innerHeight - h - 8;
+  tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px";
+}
+let hoverName = null;
+function hookRegions(){
+  // echarts-gl 2.0.9 does not emit events for geo3D regions; listen on its mesh directly.
+  try{
+    const gm = mapChart.getModel().getComponent("geo3D");
+    const view = mapChart.getViewOfComponentModel(gm), b = view && view._geo3DBuilder, mesh = b && b._polygonMesh;
+    if(!mesh || mesh.__hooked) return;
+    mesh.__hooked = true;
+    const nameAt = e => { const di = b._dataIndexOfVertex[e.triangle[0]]; return di == null ? null : gm.getData().getName(di); };
+    mesh.on("mousemove", e => {
+      const n = nameAt(e); if(n !== hoverName){ hoverName = n; if(n && !pinned && !ISLANDS[n]){ selected = n; renderDossier(); highlightRow(); } }
+      showTip(n);
+    });
+    mesh.on("mouseout", () => { hoverName = null; showTip(null); });
+    mesh.on("click", e => { const n = nameAt(e); if(!n || ISLANDS[n]) return; if(pinned && selected === n){ pinned = false; renderDossier(); } else select(n, true); showTip(n); });
+  }catch(err){ /* hover profiles fall back to table, ranking and list clicks */ }
+}
 function renderMap(){
   if(!mapChart) return;
   mapChart.setOption(mapOption(), {replaceMerge:["series"]});
   renderLegend();
 }
 function renderLegend(){
-  const M = METRICS[metric];
-  const vals = rows.map(r=>M.get(r)).filter(v=>v!=null&&!isNaN(v));
-  const empty = !vals.some(v=>v>0);
-  document.getElementById("legend").innerHTML =
-    `<div style="font-weight:600">${esc(M.label)}</div><div class="muted">${esc(M.unit)} · khối cao = giá trị lớn</div>
-     <div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div>
-     <div class="ends num"><span>${M.fmt(Math.min(...vals,0))}</span><span>${M.fmt(Math.max(...vals,0))}</span></div>
-     ${empty ? '<div style="color:var(--warn);margin-top:4px">Chưa có dữ liệu: nhập ở bảng bên dưới</div>' : ''}`;
+  const el = document.getElementById("legend");
+  const c4 = CENTERS.filter(c=>c.type==="4S").length, c3 = CENTERS.length - c4;
+  const pinsL = `<div class="pinl"><span><i class="dot" style="background:var(--pin-4s)"></i>Trung tâm 4S (${c4})</span><span><i class="dot" style="background:var(--pin-3s)"></i>Trung tâm 3S (${c3})</span></div>`;
+  const hNote = heightMode === "terrain" ? "Chiều cao: địa hình (độ cao TB)" : "Chiều cao: " + METRICS[metric].label;
+  if(colorMode === "zone"){
+    el.innerHTML = `<div class="lh"><b>Khu vực kinh doanh</b><span class="muted">${esc(hNote)}</span></div>
+      <div class="zl">${ZONES.map(z=>`<span title="${esc(z)}"><i class="sw" style="background:${zoneColor(z)}"></i>${esc(z.replace("Khu vực ","KV "))}</span>`).join("")}</div>${pinsL}`;
+  } else {
+    const M = METRICS[metric], {min,max} = metricRange();
+    el.innerHTML = `<div class="lh"><b>${esc(M.label)}</b><span class="muted">${esc(M.unit)} · ${esc(hNote)}</span></div>
+      <div class="gr"><div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div>
+      <div class="ends num"><span>${M.fmt(min)}</span><span>${M.fmt(max)}</span></div></div>
+      ${max<=0 ? '<div style="color:var(--warn)">Chưa có dữ liệu: nhập ở bảng bên dưới</div>' : ""}${pinsL}`;
+  }
 }
 
 /* ---------- dossier ---------- */
 function suggestions(r){
-  const out = [];
-  if(!r.dealers) out.push(["bad", `Chưa có điểm bán. Thị trường ước ~${fmtInt(r._market)} xe/năm: cân nhắc đại lý ủy quyền hoặc điểm bán vệ tinh tại ${esc(r.capital)}.`]);
-  else if(r._market / r.dealers > 1500) out.push(["warn", `Mỗi điểm bán phủ ~${fmtInt(r._market/r.dealers)} xe/năm thị trường: độ phủ mỏng, xem xét mở thêm điểm.`]);
-  else out.push(["good", `Độ phủ: ${fmtInt(r.dealers)} điểm bán, ~${fmtInt(r._market/r.dealers)} xe thị trường mỗi điểm.`]);
+  const out = [], n = r._c4 + r._c3;
+  if(!n) out.push(["bad", `Chưa có trung tâm. Thị trường ước ~${fmtInt(r._market)} xe/năm: cân nhắc trung tâm 3S hoặc đại lý vệ tinh tại ${esc(r.capital)}.`]);
+  else if(r._perCenter > 2500) out.push(["warn", `Mỗi trung tâm phủ ~${fmtInt(r._perCenter)} xe/năm thị trường: độ phủ mỏng, xem xét thêm điểm 3S hoặc xưởng lưu động.`]);
+  else out.push(["good", `${r._c4 ? r._c4+" trung tâm 4S" : ""}${r._c4&&r._c3?", ":""}${r._c3 ? r._c3+" trung tâm 3S" : ""}; ~${fmtInt(r._perCenter)} xe thị trường mỗi trung tâm.`]);
   if(r.sales){
-    if(r._share < 5) out.push(["warn", `Thị phần ${fmt1(r._share)}%: thấp, ưu tiên chương trình chào hàng đội xe và tài chính trả góp.`]);
-    else if(r._share < 12) out.push(["good", `Thị phần ${fmt1(r._share)}%: trung bình, tập trung giữ chân khách cũ và bán chéo dịch vụ.`]);
-    else out.push(["good", `Thị phần ${fmt1(r._share)}%: mạnh, bảo vệ vị thế bằng hậu mãi và phụ tùng.`]);
+    if(r._share < 5) out.push(["warn", `Thị phần ${fmt1(r._share)}%: thấp, ưu tiên chào hàng đội xe và gói tài chính.`]);
+    else out.push(["good", `Thị phần ${fmt1(r._share)}%: giữ vị thế bằng hậu mãi, phụ tùng chính hãng.`]);
   }
   if(r.target && r._gap) out.push(["warn", `Còn thiếu ${fmtInt(r._gap)} xe so với mục tiêu ${fmtInt(r.target)} xe.`]);
   const top = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
   out.push(["", `Phân khúc trọng tâm: <b>${top.join("</b> và <b>")}</b>.`]);
-  if(r.growth != null && r.growth >= 10) out.push(["good", `Tăng trưởng GRDP ${fmt1(r.growth)}% (top cả nước): nhu cầu vận tải và xây dựng tăng nhanh.`]);
+  if(r.elev >= 600) out.push(["", "Địa hình đồi núi, đèo dốc: ưu tiên xe khung gầm khỏe, hộp số nhiều cấp, phanh khí xả; tăng dịch vụ cứu hộ lưu động."]);
+  if(r.growth != null && r.growth >= 10) out.push(["good", `Tăng trưởng GRDP ${fmt1(r.growth)}% (top cả nước): nhu cầu vận tải, xây dựng tăng nhanh.`]);
   return out;
 }
 function renderDossier(){
-  const el = document.getElementById("dossier");
+  const el = document.getElementById("paneP");
   const r = rows.find(x=>x.name===selected);
   if(!r){
-    const top = [...visible()].sort((a,b)=>b._market-a._market).slice(0,6);
+    const top = [...visible()].sort((a,b)=>b._market-a._market).slice(0,8);
     el.innerHTML = `<div><h3>Hồ sơ tỉnh</h3><h2 style="margin-top:4px">Rê chuột hoặc bấm vào một tỉnh trên bản đồ</h2>
-      <p class="muted" style="margin:6px 0 0">Hồ sơ gồm quy mô kinh tế, thị trường xe thương mại ước tính, cơ cấu phân khúc, hạ tầng, văn hóa kinh doanh và gợi ý hành động.</p></div>
-      <div><h3>Thị trường lớn nhất ${region ? "trong vùng" : "cả nước"}</h3>
-      <ol class="actions">${top.map(t=>`<li><a href="#" data-p="${esc(t.name)}" style="color:var(--fg)">${esc(t.name)}</a> <span class="muted num">· ${fmtInt(t._market)} xe/năm · hạng ${t._tier}</span></li>`).join("")}</ol></div>`;
+      <p class="muted" style="margin:6px 0 0">Hồ sơ gồm vĩ mô (dân số, GRDP, tăng trưởng), vi mô (thị trường xe, phân khúc, khách hàng), mạng lưới trung tâm và gợi ý hành động.</p></div>
+      <div><h3>Thị trường lớn nhất ${zone ? "· " + esc(zone) : "cả nước"}</h3>
+      <ol class="actions">${top.map(t=>`<li><a href="#" data-p="${esc(t.name)}" style="color:var(--fg);font-weight:600">${esc(t.name)}</a> <span class="muted num">· ${fmtInt(t._market)} xe/năm · ${t._c4+t._c3} TT · hạng ${t._tier}</span></li>`).join("")}</ol></div>`;
     el.querySelectorAll("a[data-p]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); select(a.dataset.p,true);}));
     return;
   }
   const segColors = [1,2,3,4,5,6].map(i=>css("--seg-"+i));
+  const cs = centersOf(r.name);
   el.innerHTML = `
     <div class="dhead">
       <div><div class="name">${esc(r.name)}</div>
-        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag">${esc(r.region)}</span><span class="tag">${esc(ARCH[r.archetype]||r.archetype)}</span></div>
+        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag"><i class="sw" style="background:${zoneColor(r.zone)}"></i>${esc(r.zone)}</span><span class="tag">${esc(ARCH[r.archetype]||r.archetype)}</span><span class="tag">${esc(r.region)}</span></div>
         <div class="muted" style="font-size:12.5px;margin-top:6px">Trung tâm hành chính: ${esc(r.capital)} · Gộp từ: ${esc(r.merged.join(", "))}</div></div>
       <div style="text-align:right"><div class="tier ${r._tier}" title="Hạng ưu tiên theo quy mô thị trường">Hạng ${r._tier}</div>
-        ${pinned ? '<button type="button" id="unpin" style="margin-top:6px;font-size:12px;padding:3px 8px">Bỏ ghim</button>' : '<div class="muted" style="font-size:11px;margin-top:6px">Bấm để ghim</div>'}</div>
+        ${pinned ? '<button type="button" id="unpin" style="margin-top:6px;font-size:12px;padding:3px 8px">Bỏ ghim</button>' : '<div class="muted" style="font-size:11px;margin-top:6px">Bấm tỉnh để ghim</div>'}</div>
     </div>
-    <div class="stats num">
-      <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">Xe TM/năm (ước) · #${r._rk_market}</div></div>
+    <div><h3>Vĩ mô</h3><div class="stats num" style="margin-top:6px">
       <div class="stat"><div class="v">${fmt1(r.pop/1000)} tr</div><div class="l">Dân số · #${r._rkpop}</div></div>
       <div class="stat"><div class="v">${fmtInt(r.grdp)}</div><div class="l">GRDP nghìn tỷ · #${r._rkgrdp}</div></div>
       <div class="stat"><div class="v">${fmtInt(r._gpc)} tr</div><div class="l">GRDP/người · #${r._rk_gpc}</div></div>
       <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
       <div class="stat"><div class="v">${fmtInt(r.area)}</div><div class="l">km² · ${fmtInt(r._density)} ng/km²</div></div>
-    </div>
-    <div><h3>Cơ cấu nhu cầu theo phân khúc (ước tính)</h3>
+      <div class="stat"><div class="v">${fmtInt(r.elev)} m</div><div class="l">Độ cao trung bình</div></div>
+    </div></div>
+    <div><h3>Vi mô · thị trường xe thương mại (ước tính)</h3>
+      <div class="stats num" style="margin-top:6px">
+        <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">xe/năm · #${r._rk_market}</div></div>
+        <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>
+        <div class="stat"><div class="v">${r._perCenter==null?"—":fmtInt(r._perCenter)}</div><div class="l">xe / trung tâm</div></div>
+      </div>
       <div class="segbar">${r.mix.map((v,i)=>`<span style="width:${v}%;background:${segColors[i]}" title="${SEGS[i]} ${v}%"></span>`).join("")}</div>
       <div class="seglist num">${r.mix.map((v,i)=>`<div><i style="background:${segColors[i]}"></i>${SEGS[i]}<b>${fmtInt(r._market*v/100)}</b></div>`).join("")}</div></div>
-    <div><h3>Kinh doanh Đô Thành</h3>
-      <div class="stats num" style="margin-top:6px;grid-template-columns:repeat(4,minmax(0,1fr))">
-        <div class="stat"><div class="v">${fmtInt(r.dealers)}</div><div class="l">Điểm bán</div></div>
-        <div class="stat"><div class="v">${fmtInt(r.sales)}</div><div class="l">Doanh số</div></div>
-        <div class="stat"><div class="v">${fmtInt(r.target)}</div><div class="l">Mục tiêu</div></div>
+    <div><h3>Mạng lưới &amp; kinh doanh</h3>
+      <div class="ctrs">${cs.length ? cs.map(c=>ctrRow(c)).join("") : '<div class="muted">Chưa có trung tâm dịch vụ trong tỉnh.</div>'}</div>
+      <div class="stats num" style="margin-top:8px;grid-template-columns:repeat(3,minmax(0,1fr))">
+        <div class="stat"><div class="v">${fmtInt(r.sales)}</div><div class="l">Doanh số (xe)</div></div>
+        <div class="stat"><div class="v">${fmtInt(r.target)}</div><div class="l">Mục tiêu (xe)</div></div>
         <div class="stat"><div class="v">${r.sales?fmt1(r._share)+"%":"—"}</div><div class="l">Thị phần</div></div>
       </div>
       <ul class="actions">${suggestions(r).map(([c,t])=>`<li>${c?`<span class="pill ${c}">${c==="bad"?"Cần làm":c==="warn"?"Lưu ý":"Tốt"}</span> `:""}${t}</li>`).join("")}</ul>
@@ -465,32 +627,58 @@ function renderDossier(){
     <div class="prose"><h3>Kinh tế chủ lực</h3><p>${esc(r.industries)}</p></div>
     <div class="prose"><h3>Hạ tầng &amp; logistics</h3><p>${esc(r.logistics)}</p></div>
     <div class="prose"><h3>Văn hóa kinh doanh &amp; hành vi khách hàng</h3><p>${esc(r.culture)}</p></div>
-    <div class="prose"><h3>Động lực nhu cầu xe thương mại</h3><p>${esc(r.cvDemand)}</p></div>`;
+    <div class="prose"><h3>Động lực nhu cầu xe thương mại</h3><p>${esc(r.cvDemand)}</p></div>
+    <button type="button" class="primary" id="askAiProv">Nhờ trợ lý AI phân tích ${esc(r.name)}</button>`;
   const u = document.getElementById("unpin"); if(u) u.addEventListener("click", ()=>{ pinned=false; renderDossier(); });
+  document.getElementById("askAiProv").addEventListener("click", () => askAi(`Phân tích chuyên sâu ${r.name}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm hiện có, rủi ro và 5 hành động ưu tiên trong 6 tháng tới.`));
+  wireCtrRows(el);
 }
+function ctrRow(c){
+  return `<button type="button" class="crow" data-p="${esc(c.province)}"><span class="n" style="background:${css(c.type==="4S"?"--pin-4s":"--pin-3s")}">${c.id}</span><span>${esc(c.name)}</span><span class="p">${esc(c.province)}</span></button>`;
+}
+function wireCtrRows(root){ root.querySelectorAll(".crow").forEach(b => b.addEventListener("click", () => { select(b.dataset.p, true); showTab("P"); })); }
+function renderCenters(){
+  const el = document.getElementById("paneC");
+  const c4 = CENTERS.filter(c=>c.type==="4S").length;
+  el.innerHTML = `<div><h3>Danh sách ${CENTERS.length} trung tâm dịch vụ</h3><div class="pinl" style="border:0;padding:0;margin-top:6px"><span><i class="dot" style="background:var(--pin-4s)"></i>Trung tâm 4S (${c4})</span><span><i class="dot" style="background:var(--pin-3s)"></i>Trung tâm 3S (${CENTERS.length-c4})</span></div></div>` +
+    ZONES.filter(z => !zone || z === zone).map(z => {
+      const cs = CENTERS.filter(c => (findRow(c.province)||{}).zone === z);
+      const mk = rows.filter(r=>r.zone===z).reduce((a,r)=>a+r._market,0);
+      return `<div class="zone"><h4><i class="sw" style="background:${zoneColor(z)};width:12px;height:12px"></i>${esc(z)}<span class="muted num" style="font-size:12px;font-weight:400;margin-left:auto">${fmtInt(mk)} xe/năm</span></h4>${cs.map(ctrRow).join("") || '<div class="muted">Chưa có trung tâm</div>'}</div>`;
+    }).join("");
+  wireCtrRows(el);
+}
+function showTab(t){
+  const p = t === "P";
+  document.getElementById("tabP").setAttribute("aria-selected", p); document.getElementById("tabC").setAttribute("aria-selected", !p);
+  document.getElementById("paneP").hidden = !p; document.getElementById("paneC").hidden = p;
+}
+document.getElementById("tabP").addEventListener("click", () => showTab("P"));
+document.getElementById("tabC").addEventListener("click", () => showTab("C"));
 function select(name, pin){
-  selected = name; if(pin) pinned = true;
-  renderDossier(); highlightRow();
-  if(mapChart && pin){ mapChart.dispatchAction({type:"downplay", seriesIndex:0}); mapChart.dispatchAction({type:"highlight", seriesIndex:0, name}); }
+  const r = findRow(name); if(!r) return false;
+  selected = r.name; if(pin) pinned = true;
+  renderDossier(); highlightRow(); renderRank();
+  return true;
 }
 
 /* ---------- ranking ---------- */
 function renderRank(){
   if(!rankChart) return;
   const M = METRICS[metric];
-  const list = visible().map(r=>({name:r.name, v:M.get(r)})).filter(x=>x.v!=null&&!isNaN(x.v)).sort((a,b)=>a.v-b.v);
-  document.getElementById("rankSub").textContent = `${M.label} (${M.unit})${region?" · "+region:""}`;
+  const list = visible().map(r=>({name:r.name, zone:r.zone, v:M.get(r)})).filter(x=>x.v!=null&&!isNaN(x.v)).sort((a,b)=>a.v-b.v);
+  document.getElementById("rankSub").textContent = `${M.label} (${M.unit})${zone?" · "+zone:""}`;
   const h = Math.max(220, list.length*21+40);
   document.getElementById("rank").style.height = h+"px"; rankChart.resize();
   const max = Math.max(...list.map(x=>x.v), 0);
   rankChart.setOption({
-    animationDuration:500, grid:{left:112,right:64,top:6,bottom:6},
+    animationDuration:400, grid:{left:112,right:64,top:6,bottom:6},
     tooltip:{trigger:"axis",axisPointer:{type:"shadow"},backgroundColor:css("--panel"),borderColor:css("--line"),textStyle:{color:css("--fg")},
       formatter:p=>`${esc(p[0].name)}: <b>${M.fmt(p[0].value)}</b> ${M.unit}`},
     xAxis:{type:"value",show:false,max:max*1.02||1},
     yAxis:{type:"category",data:list.map(x=>x.name),axisTick:{show:false},axisLine:{show:false},
-      axisLabel:{color:css("--fg"),fontFamily:css("--body"),fontSize:12}},
-    series:[{type:"bar",barWidth:13,data:list.map(x=>({value:x.v,itemStyle:{color: x.name===selected?css("--accent"):css("--accent-2"),borderRadius:[0,3,3,0]}})),
+      axisLabel:{color:css("--fg"),fontFamily:css("--body"),fontSize:12,fontWeight:p=>p===selected?700:400}},
+    series:[{type:"bar",barWidth:13,data:list.map(x=>({value:x.v,itemStyle:{color: zoneColor(x.zone), opacity: !selected || x.name===selected ? 1 : 0.55, borderRadius:[0,3,3,0]}})),
       label:{show:true,position:"right",color:css("--muted"),fontSize:11,formatter:p=>M.fmt(p.value)}}]
   }, true);
 }
@@ -498,21 +686,21 @@ function renderRank(){
 /* ---------- table ---------- */
 function renderTable(){
   const t = document.getElementById("tbl");
-  const head = `<thead><tr><th>Tỉnh / thành</th><th>Vùng</th>${EDIT_COLS.map(c=>`<th>${c[1]}</th>`).join("")}<th>Xe TM ước/năm</th><th>Thị phần</th><th>Hạng</th><th style="text-align:left">Ghi chú</th></tr></thead>`;
-  const body = visible().map(r => `<tr data-n="${esc(r.name)}"><td class="name">${esc(r.name)}</td><td class="muted" style="text-align:left">${esc(SHORT_REG[r.region]||r.region)}</td>${
-    EDIT_COLS.map(([k,,st])=>`<td><input type="number" step="${st}" id="c-${esc(r.name)}-${k}" data-k="${k}" value="${r[k]==null?"":r[k]}" aria-label="${k} ${esc(r.name)}"></td>`).join("")
-  }<td data-o="market">${fmtInt(r._market)}</td><td data-o="share">${r.sales?fmt1(r._share)+"%":"—"}</td><td data-o="tier">${r._tier}</td>
-   <td><input type="text" class="note" data-k="note" id="c-${esc(r.name)}-note" value="${esc(r.note)}" aria-label="Ghi chú ${esc(r.name)}"></td></tr>`).join("");
+  const head = `<thead><tr><th>Tỉnh / thành</th><th style="text-align:left">Khu vực</th>${EDIT_COLS.map(c=>`<th>${c[1]}</th>`).join("")}<th>Xe TM ước/năm</th><th>TT 4S·3S</th><th>Thị phần</th><th>Hạng</th><th style="text-align:left">Ghi chú</th></tr></thead>`;
+  const body = visible().map(r => `<tr data-n="${esc(r.name)}"><td class="name">${esc(r.name)}</td><td style="text-align:left"><i class="sw" style="background:${zoneColor(r.zone)};margin-right:5px"></i>${esc(r.zone.replace("Khu vực ","KV "))}</td>${
+    EDIT_COLS.map(([k,,st])=>`<td><input type="number" step="${st}" id="c-${r._rk_market}-${k}" data-k="${k}" value="${r[k]==null?"":r[k]}" aria-label="${esc(k+" "+r.name)}"></td>`).join("")
+  }<td data-o="market">${fmtInt(r._market)}</td><td>${r._c4}·${r._c3}</td><td data-o="share">${r.sales?fmt1(r._share)+"%":"—"}</td><td data-o="tier">${r._tier}</td>
+   <td><input type="text" class="note" data-k="note" id="c-${r._rk_market}-note" value="${esc(r.note)}" aria-label="${esc("Ghi chú "+r.name)}"></td></tr>`).join("");
   t.innerHTML = head + `<tbody>${body}</tbody>`;
   highlightRow();
 }
 document.getElementById("tbl").addEventListener("change", e => {
   const inp = e.target.closest("input"); if(!inp) return;
-  const tr = inp.closest("tr"), r = rows.find(x=>x.name===tr.dataset.n), k = inp.dataset.k;
+  const r = rows.find(x=>x.name===inp.closest("tr").dataset.n), k = inp.dataset.k;
   if(k === "note") r.note = inp.value;
   else { const v = inp.value === "" ? (k==="growth"?null:0) : parseFloat(inp.value); if(v!==null && isNaN(v)) return; r[k] = v; }
-  save(); compute(); renderKpis(); renderMap(); renderRank(); renderDossier();
-  visible().forEach(x => { const row = document.querySelector(`tr[data-n="${CSS.escape(x.name)}"]`); if(!row) return;
+  save(); compute(); renderKpis(); renderMap(); renderRank(); renderDossier(); renderCenters();
+  visible().forEach(x => { const row = [...document.querySelectorAll("#tbl tbody tr")].find(tr => tr.dataset.n === x.name); if(!row) return;
     row.querySelector('[data-o="market"]').textContent = fmtInt(x._market);
     row.querySelector('[data-o="share"]').textContent = x.sales?fmt1(x._share)+"%":"—";
     row.querySelector('[data-o="tier"]').textContent = x._tier; });
@@ -522,14 +710,14 @@ document.getElementById("tbl").addEventListener("click", e => { const td = e.tar
 function highlightRow(){ document.querySelectorAll("#tbl tbody tr").forEach(tr => tr.classList.toggle("sel", tr.dataset.n === selected)); }
 
 /* ---------- import / export ---------- */
-const CSV_KEYS = ["name","region","capital","pop","area","grdp","growth","factor","dealers","sales","target","note","mix","industries","logistics","culture","cvDemand"];
+const CSV_KEYS = ["name","zone","region","capital","pop","area","grdp","growth","elev","factor","dealers","sales","target","note","mix","merged","industries","logistics","culture","cvDemand"];
 function toCsv(){
   const q = v => { const s = Array.isArray(v) ? v.join("|") : (v==null?"":String(v)); return /[",\n;]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
-  return [CSV_KEYS.join(","), ...rows.map(r => CSV_KEYS.map(k=>q(r[k])).join(","))].join("\n");
+  return "﻿" + [CSV_KEYS.join(","), ...rows.map(r => CSV_KEYS.map(k=>q(r[k])).join(","))].join("\n");
 }
 function parseCsv(text){
-  const out=[]; let row=[], cur="", q=false;
-  const sep = (text.split("\n")[0].match(/;/g)||[]).length > (text.split("\n")[0].match(/,/g)||[]).length ? ";" : ",";
+  const out=[]; let row=[], cur="", q=false; const first = text.split("\n")[0];
+  const sep = (first.match(/;/g)||[]).length > (first.match(/,/g)||[]).length ? ";" : ",";
   for(let i=0;i<text.length;i++){ const c=text[i];
     if(q){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
     else if(c==='"') q=true; else if(c===sep){row.push(cur);cur="";} else if(c==="\n"){row.push(cur);out.push(row);row=[];cur="";} else if(c!=="\r") cur+=c; }
@@ -538,20 +726,25 @@ function parseCsv(text){
   return out.filter(r=>r.some(x=>x.trim())).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));
 }
 function applyText(text){
-  let recs; text = text.trim();
-  try{ recs = text.startsWith("[")||text.startsWith("{") ? JSON.parse(text) : parseCsv(text); }
+  let recs; text = text.trim().replace(/^﻿/,"");
+  try{ recs = /^[\[{]/.test(text) ? JSON.parse(text) : parseCsv(text); }
   catch(e){ toast("Không đọc được dữ liệu: kiểm tra định dạng CSV/JSON"); return; }
   if(recs && !Array.isArray(recs)) recs = recs.rows || [recs];
   const n = mergeRows(recs);
   if(!n){ toast("Không khớp tỉnh nào: cột name phải là tên tỉnh mới (vd. Đắk Lắk)"); return; }
   save(); renderAll(); toast(`Đã cập nhật ${n} tỉnh`);
 }
-async function copy(text, label){
-  try{ await navigator.clipboard.writeText(text); toast("Đã sao chép " + label); }
-  catch(e){ const ta = document.getElementById("pasteArea"); document.getElementById("pasteBox").hidden=false; ta.value=text; ta.select(); toast("Trình duyệt chặn sao chép: dữ liệu đã được chọn sẵn, nhấn Ctrl+C"); }
+let downloads = null;
+async function offerFile(filename, data, label){
+  if(downloads){
+    try{ await downloads.save({filename, data}); toast("Đã lưu " + filename); return; }
+    catch(e){ if(e && e.code === "declined") return; }
+  }
+  try{ await navigator.clipboard.writeText(data); toast(label + " đã được sao chép, dán vào Excel/Notepad để lưu"); }
+  catch(e){ const box=document.getElementById("pasteBox"), ta=document.getElementById("pasteArea"); box.hidden=false; ta.value=data; ta.select(); toast("Dữ liệu đã được chọn sẵn, nhấn Ctrl+C để sao chép"); }
 }
-document.getElementById("btnCopyCsv").addEventListener("click", () => copy(toCsv(), "CSV"));
-document.getElementById("btnCopyJson").addEventListener("click", () => copy(JSON.stringify(rows.map(r=>Object.fromEntries(Object.entries(r).filter(([k])=>!k.startsWith("_")))),null,1), "JSON"));
+document.getElementById("btnCsv").addEventListener("click", () => offerFile("du-lieu-34-tinh.csv", toCsv(), "CSV"));
+document.getElementById("btnJson").addEventListener("click", () => offerFile("provinces.json", JSON.stringify(rows.map(strip),null,1), "JSON"));
 document.getElementById("fileIn").addEventListener("change", e => { const f=e.target.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=()=>applyText(String(rd.result)); rd.readAsText(f,"utf-8"); e.target.value=""; });
 document.getElementById("btnPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=false; document.getElementById("pasteArea").focus(); });
 document.getElementById("btnCancelPaste").addEventListener("click", () => { document.getElementById("pasteBox").hidden=true; });
@@ -562,45 +755,176 @@ document.getElementById("btnReset").addEventListener("click", () => {
   document.getElementById("rsNo").onclick = () => box.innerHTML = "";
   document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 100000; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
 });
-let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2800); }
 
 /* ---------- map tools ---------- */
-const bL = document.getElementById("btnLabels"), bR = document.getElementById("btnRotate");
-bL.addEventListener("click", () => { showLabels=!showLabels; bL.setAttribute("aria-pressed", showLabels); renderMap(); });
-bR.addEventListener("click", () => { autoRotate=!autoRotate; bR.setAttribute("aria-pressed", autoRotate); renderMap(); });
+function toggleBtn(id, get, set){ const b = document.getElementById(id); b.addEventListener("click", () => { set(!get()); b.setAttribute("aria-pressed", get()); renderMap(); }); }
+toggleBtn("btnLabels", ()=>showLabels, v=>showLabels=v);
+toggleBtn("btnPins", ()=>showPins, v=>showPins=v);
+toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v);
 document.getElementById("btnView").addEventListener("click", () => { viewIdx=(viewIdx+1)%VIEW_PRESETS.length; renderMap(); });
+document.getElementById("map").addEventListener("mousemove", e => { mouse = {x:e.clientX, y:e.clientY}; });
+document.getElementById("map").addEventListener("mouseleave", () => showTip(null));
 
-/* ---------- render all ---------- */
+/* ---------- AI analyst ---------- */
+const ai = document.getElementById("ai"), fab = document.getElementById("aiFab"), log = document.getElementById("aiLog");
+const aiText = document.getElementById("aiText"), aiSend = document.getElementById("aiSend"), aiStop = document.getElementById("aiStop"), aiState = document.getElementById("aiState");
+let sample = null, aiTurns = [], aiCtl = null, aiBusy = false, aiDisabled = false;
+const QUICK = [
+  ["Báo cáo tổng quan", "Lập báo cáo tổng quan thị trường xe thương mại toàn quốc theo 11 khu vực kinh doanh: quy mô, tăng trưởng, độ phủ trung tâm, 5 điểm nóng và 5 khuyến nghị."],
+  ["Khu vực đang chọn", null],
+  ["Tỉnh đang chọn", null],
+  ["Nên mở trung tâm ở đâu?", "Xếp hạng 8 tỉnh nên mở thêm trung tâm 3S/4S dựa trên thị trường ước tính, số xe trên mỗi trung tâm hiện có và động lực tăng trưởng. Nêu lý do và loại trung tâm phù hợp."],
+  ["Phân khúc tải nặng", "Phân tích cơ hội phân khúc tải nặng và đầu kéo: top tỉnh, động lực (cảng, KCN, cửa khẩu), đề xuất sản phẩm và dịch vụ."],
+  ["Kế hoạch 90 ngày", "Đề xuất kế hoạch hành động 90 ngày cho mạng lưới: mục tiêu, việc cần làm theo khu vực, chỉ số theo dõi."],
+];
+function quickPrompt(i){
+  const [, p] = QUICK[i];
+  if(i === 1) return zone ? `Phân tích ${zone}: các tỉnh, quy mô thị trường, trung tâm hiện có, khoảng trống độ phủ, so sánh với các khu vực khác và đề xuất.` : "Chưa chọn khu vực: hãy so sánh 11 khu vực kinh doanh về thị trường, số trung tâm và xe/trung tâm, rồi chỉ ra 3 khu vực cần ưu tiên.";
+  if(i === 2) return selected ? `Phân tích chuyên sâu ${selected}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm, rủi ro và 5 hành động ưu tiên.` : "Chưa chọn tỉnh: hãy gợi ý 5 tỉnh nên xem kỹ nhất và lý do, rồi mở tỉnh quan trọng nhất trên bản đồ.";
+  return p;
+}
+document.getElementById("aiQuick").innerHTML = QUICK.map(([l],i)=>`<button type="button" data-i="${i}">${esc(l)}</button>`).join("");
+document.getElementById("aiQuick").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if(b) askAi(quickPrompt(+b.dataset.i)); });
+function openAi(open){ ai.hidden = !open; fab.hidden = open; fab.setAttribute("aria-expanded", open); if(open){ if(!log.children.length) greet(); aiText.focus(); } }
+fab.addEventListener("click", () => openAi(true));
+document.getElementById("aiClose").addEventListener("click", () => openAi(false));
+function greet(){
+  addMsg("a", mdToHtml(`Chào anh/chị. Tôi đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực và 35 trung tâm trên bản đồ này để phân tích và lập báo cáo.\n\n- Chọn một mẫu yêu cầu phía trên, hoặc gõ câu hỏi.\n- Tôi có thể **mở tỉnh, đổi khu vực, đổi chỉ số** trên bản đồ khi trả lời.\n- Mỗi câu trả lời có nút **Tải báo cáo** (.md) và **Sao chép**.`));
+  if(aiDisabled) aiState.textContent = "Trợ lý AI chỉ chạy khi mở trang trong Claude (claude.ai hoặc ứng dụng Claude).";
+}
+function addMsg(role, html){
+  const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
+}
+function mdToHtml(md){
+  const lines = esc(md).split("\n"); let html = "", list = null, table = [];
+  const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>");
+  const closeList = () => { if(list){ html += `</${list}>`; list = null; } };
+  const flushTable = () => {
+    if(!table.length) return;
+    const rowsT = table.filter(r => !/^\s*\|?\s*:?-{2,}/.test(r)).map(r => r.replace(/^\s*\||\|\s*$/g,"").split("|").map(c=>inline(c.trim())));
+    html += `<div style="overflow-x:auto"><table><thead><tr>${rowsT[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rowsT.slice(1).map(r=>`<tr>${r.map(c=>`<td style="text-align:left">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    table = [];
+  };
+  for(const raw of lines){
+    const l = raw.trimEnd();
+    if(/^\s*\|.*\|\s*$/.test(l)){ closeList(); table.push(l); continue; } else flushTable();
+    let m;
+    if((m = l.match(/^(#{1,4})\s+(.*)$/))){ closeList(); const n = Math.min(m[1].length+1,3); html += `<h${n}>${inline(m[2])}</h${n}>`; }
+    else if((m = l.match(/^\s*[-*•]\s+(.*)$/))){ if(list!=="ul"){ closeList(); html += "<ul>"; list="ul"; } html += `<li>${inline(m[1])}</li>`; }
+    else if((m = l.match(/^\s*\d+[.)]\s+(.*)$/))){ if(list!=="ol"){ closeList(); html += "<ol>"; list="ol"; } html += `<li>${inline(m[1])}</li>`; }
+    else if(!l.trim()){ closeList(); }
+    else { closeList(); html += `<p>${inline(l)}</p>`; }
+  }
+  closeList(); flushTable(); return html;
+}
+function dataSnapshot(){
+  const head = "Tỉnh|Khu vực|Dân số(nghìn)|GRDP(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Độ cao TB(m)|Thị trường xe TM ước(xe/năm)|Tỷ trọng(%)|Hạng|TT 4S|TT 3S|Xe/TT|Doanh số|Mục tiêu|Cơ cấu %(nhẹ/trung/nặng/đầu kéo/khách/van)";
+  const body = rows.map(r => [r.name, r.zone, r.pop, r.grdp, Math.round(r._gpc), r.growth ?? "", r.elev, r._market, r._mshare.toFixed(1), r._tier, r._c4, r._c3,
+    r._perCenter==null?"":Math.round(r._perCenter), r.sales||0, r.target||0, r.mix.join("/")].join("|")).join("\n");
+  const ctr = CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n");
+  return `${head}\n${body}\n\nTổng thị trường giả định: ${tam} xe/năm.\n\n35 trung tâm dịch vụ:\n${ctr}`;
+}
+function rules(){
+  return `Bạn là trợ lý phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại Hải Âu (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
+Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
+Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
+Dùng công cụ get_province để lấy hồ sơ định tính (kinh tế chủ lực, hạ tầng, văn hóa kinh doanh, động lực nhu cầu) khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ cho người dùng.
+Trạng thái bản đồ: chỉ số đang xem "${METRICS[metric].label}", khu vực "${zone||"Toàn quốc"}", tỉnh đang chọn "${selected||"chưa chọn"}".
+
+DỮ LIỆU 34 TỈNH/THÀNH (sau sáp nhập 2025):
+${dataSnapshot()}`;
+}
+const AI_TOOLS = [
+  {name:"get_province", description:"Trả về hồ sơ đầy đủ của một tỉnh/thành: số liệu vĩ mô, thị trường xe ước tính theo phân khúc, trung tâm dịch vụ, kinh tế chủ lực, hạ tầng logistics, văn hóa kinh doanh, động lực nhu cầu xe.",
+   inputSchema:{type:"object",properties:{name:{type:"string",description:"Tên tỉnh mới hoặc tỉnh cũ, ví dụ 'Đắk Lắk' hoặc 'Bình Dương'"}},required:["name"]},
+   execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
+     const o = strip(r); o.thi_truong_uoc = r._market; o.ty_trong = +r._mshare.toFixed(2); o.hang = r._tier; o.grdp_nguoi = Math.round(r._gpc);
+     o.phan_khuc_xe = Object.fromEntries(SEGS.map((s,i)=>[s, Math.round(r._market*r.mix[i]/100)])); o.trung_tam = centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type})`); return o; }},
+  {name:"focus_province", description:"Chọn và ghim một tỉnh trên bản đồ để người dùng xem hồ sơ. Trả về 'ok'.",
+   inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
+   execute: ({name}) => { if(!select(String(name), true)) throw new Error("Không tìm thấy tỉnh " + name); showTab("P"); return "ok"; }},
+  {name:"set_map", description:"Đổi hiển thị bản đồ: metric (market, perCenter, grdp, pop, gpc, growth, heavy, light, elev, sales, share), zone (tên khu vực kinh doanh hoặc rỗng = toàn quốc), color_mode (zone|metric), height_mode (terrain|metric).",
+   inputSchema:{type:"object",properties:{metric:{type:"string"},zone:{type:"string"},color_mode:{type:"string"},height_mode:{type:"string"}}},
+   execute: (i) => { if(i.metric && METRICS[i.metric]) metric = i.metric; if(i.color_mode==="zone"||i.color_mode==="metric") colorMode = i.color_mode;
+     if(i.height_mode==="terrain"||i.height_mode==="metric") heightMode = i.height_mode; if(i.zone !== undefined) { zone = ZONES.includes(String(i.zone)) ? String(i.zone) : ""; zoneSel.value = zone; }
+     renderAll(); return {metric, zone: zone||"Toàn quốc", colorMode, heightMode}; }},
+];
+function setBusy(b, label){ aiBusy = b; aiSend.disabled = b; aiStop.hidden = !b; aiState.textContent = label || ""; document.querySelectorAll("#aiQuick button").forEach(x=>x.disabled=b); }
+async function askAi(text){
+  text = String(text||"").trim(); if(!text || aiBusy) return;
+  openAi(true);
+  if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Trợ lý AI chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Bản đồ và số liệu vẫn dùng bình thường.</p>"); return; }
+  addMsg("u", esc(text)); aiText.value = "";
+  aiTurns.push({role:"user", content:text});
+  if(aiTurns.length > 12) aiTurns = aiTurns.slice(-12);
+  while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
+  const bubble = addMsg("a", '<span class="act">Đang phân tích…</span>');
+  aiCtl = new AbortController(); setBusy(true, "Đang phân tích dữ liệu…");
+  const tools = AI_TOOLS.map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp.name||""}…` : "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
+  try{
+    const res = await sample([{role:"user", content: rules()}, ...aiTurns], {
+      signal: aiCtl.signal, tools, onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
+    aiTurns.push({role:"assistant", content: res.text});
+    finishBubble(bubble, res.text, res.truncated);
+  }catch(e){
+    const kept = e && e.text;
+    if(e && e.code === "cancelled"){ bubble.innerHTML = kept ? mdToHtml(kept) + '<p class="act">Đã dừng.</p>' : '<p class="act">Đã dừng.</p>'; aiTurns.pop(); }
+    else if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","tools_unavailable"].includes(e.code)){
+      aiDisabled = true; bubble.innerHTML = "<p>Trợ lý AI chưa được phép chạy trên trang này. Bản đồ và số liệu vẫn dùng bình thường.</p>"; aiTurns.pop(); }
+    else if(e && e.code === "rate_limited"){ bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Đang vượt giới hạn sử dụng. Vui lòng thử lại sau ít phút.</p>"; aiTurns.pop(); }
+    else if(e && e.code === "prompt_too_large"){ aiTurns = aiTurns.slice(-1); bubble.innerHTML = "<p>Cuộc trò chuyện quá dài, đã rút gọn lịch sử. Hãy gửi lại câu hỏi.</p>"; }
+    else { bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Bị gián đoạn khi phân tích. Bấm Gửi để thử lại.</p>"; aiTurns.pop(); aiText.value = text; }
+  }finally{ setBusy(false); aiCtl = null; }
+}
+function finishBubble(bubble, md, truncated){
+  bubble.innerHTML = mdToHtml(md) + (truncated ? '<p class="act">Câu trả lời bị cắt ngắn, hãy yêu cầu từng phần.</p>' : "") +
+    `<div class="tools"><button type="button" data-a="dl">Tải báo cáo (.md)</button><button type="button" data-a="cp">Sao chép</button></div>`;
+  bubble.querySelector('[data-a="dl"]').addEventListener("click", () => {
+    const d = new Date(), stamp = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    offerFile(`bao-cao-thi-truong-${stamp}.md`, `# Báo cáo phân tích thị trường xe thương mại\n_Ngày ${d.toLocaleDateString("vi-VN")} · Nguồn: Bản đồ thị trường Hải Âu_\n\n${md}\n`, "Báo cáo"); });
+  bubble.querySelector('[data-a="cp"]').addEventListener("click", async () => { try{ await navigator.clipboard.writeText(md); toast("Đã sao chép"); }catch(e){ toast("Trình duyệt chặn sao chép"); } });
+}
+aiSend.addEventListener("click", () => askAi(aiText.value));
+aiStop.addEventListener("click", () => aiCtl && aiCtl.abort());
+aiText.addEventListener("keydown", e => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); askAi(aiText.value); } });
+
+/* ---------- render ---------- */
 function renderAll(){
   tamIn.value = tam;
   compute();
   chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
-  renderKpis(); renderMap(); renderRank(); renderTable(); renderDossier();
+  document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
+  document.querySelectorAll("[data-height]").forEach(b => b.setAttribute("aria-pressed", b.dataset.height===heightMode));
+  renderKpis(); renderMap(); renderRank(); renderTable(); renderDossier(); renderCenters();
 }
-
 function init(){
   load();
   if(typeof echarts === "undefined"){
     document.getElementById("loadmsg").textContent = "Không tải được thư viện bản đồ (ECharts). Kiểm tra kết nối mạng rồi tải lại trang.";
-    compute(); renderKpis(); renderTable(); renderDossier(); return;
+    compute(); renderKpis(); renderTable(); renderDossier(); renderCenters(); return;
   }
   echarts.registerMap("VN34", GEO);
   rankChart = echarts.init(document.getElementById("rank"), null, {renderer:"svg"});
   rankChart.on("click", p => select(p.name, true));
   try{
     mapChart = echarts.init(document.getElementById("map"));
-    mapChart.on("mouseover", p => { if(!pinned && p.name && !ISLANDS[p.name]) { selected = p.name; renderDossier(); highlightRow(); } });
-    mapChart.on("click", p => { if(p.name && !ISLANDS[p.name]){ if(pinned && selected===p.name){ pinned=false; renderDossier(); } else select(p.name, true); } });
+    mapChart.on("click", p => { if(p.seriesType === "scatter3D" && p.data && p.data.province) select(p.data.province, true); });
+    mapChart.on("finished", hookRegions);
     document.getElementById("loadmsg").hidden = true;
   }catch(e){
-    document.getElementById("loadmsg").textContent = "Trình duyệt chưa bật WebGL nên không hiển thị được bản đồ 3D. Các bảng xếp hạng và dữ liệu bên dưới vẫn dùng được.";
+    document.getElementById("loadmsg").textContent = "Trình duyệt chưa bật WebGL nên không hiển thị được bản đồ 3D. Hồ sơ, xếp hạng và bảng dữ liệu vẫn dùng được.";
     mapChart = null;
   }
-  renderAll();
+  renderAll(); hookRegions();
   window.addEventListener("resize", () => { mapChart && mapChart.resize(); rankChart && rankChart.resize(); });
-  const rethemed = () => { renderMap(); renderRank(); renderDossier(); };
+  const rethemed = () => renderAll();
   try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rethemed); }catch(e){}
   new MutationObserver(rethemed).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+  if(window.claude && typeof window.claude.use === "function"){
+    window.claude.use("sample").then(s => { sample = s; if(!s) aiDisabled = true; }).catch(() => { aiDisabled = true; });
+    window.claude.use("downloads").then(d => { downloads = d; }).catch(() => {});
+  } else aiDisabled = true;
 }
 init();
 })();

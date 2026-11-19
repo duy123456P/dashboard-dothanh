@@ -24,10 +24,12 @@
   "logistics": "Đầu mối giao thông phía Bắc: QL1, cao tốc Pháp Vân – Cầu Giẽ, Hà Nội – Hải Phòng, Nội Bài – Lào Cai; cảng cạn ICD Gia Lâm, Long Biên.",
   "culture": "Khách hàng chuộng thương hiệu, thủ tục rõ ràng; doanh nghiệp vận tải lớn, nhiều chủ xe cá nhân giao hàng nội đô. Quan tâm cao đến tài chính trả góp, dịch vụ hậu mãi nhanh.",
   "cvDemand": "Giới hạn giờ/tải trọng nội đô → tải nhẹ, van, xe điện/xanh; vành đai 4 và đô thị vệ tinh kéo nhu cầu ben, trộn bê tông; logistics TMĐT tăng mạnh.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Khu vực Hà Nội",
+  "elev": 30
  },
  {
   "name": "Huế",
@@ -54,10 +56,12 @@
   "logistics": "QL1, cao tốc Cam Lộ – La Sơn; cảng Chân Mây; hầm Hải Vân nối Đà Nẵng.",
   "culture": "Khách hàng thận trọng, ra quyết định chậm, coi trọng uy tín và quan hệ lâu dài. Mùa mưa bão dài ảnh hưởng mùa vụ bán hàng.",
   "cvDemand": "Xe khách du lịch, tải nhẹ phục vụ dịch vụ, ben cho hạ tầng Chân Mây.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 6",
+  "elev": 300
  },
  {
   "name": "Lai Châu",
@@ -87,7 +91,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 1100
  },
  {
   "name": "Điện Biên",
@@ -117,7 +123,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 900
  },
  {
   "name": "Sơn La",
@@ -147,7 +155,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 800
  },
  {
   "name": "Lạng Sơn",
@@ -174,10 +184,12 @@
   "logistics": "QL1A, QL4B, cao tốc Hữu Nghị – Chi Lăng; ga liên vận Đồng Đăng.",
   "culture": "Cửa ngõ xuất nhập khẩu với Trung Quốc: doanh nghiệp vận tải, giao nhận đông; quen với xe Trung Quốc giá rẻ.",
   "cvDemand": "Đầu kéo, sơ mi rơ mooc, xe đông lạnh chở nông sản xuất khẩu; nhu cầu tăng khi cao tốc hoàn thành.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 2",
+  "elev": 450
  },
  {
   "name": "Quảng Ninh",
@@ -207,7 +219,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 2",
+  "elev": 200
  },
  {
   "name": "Thanh Hóa",
@@ -234,10 +248,12 @@
   "logistics": "QL1, cao tốc Bắc – Nam; cảng Nghi Sơn; sân bay Thọ Xuân.",
   "culture": "Dân số đông thứ 3 cả nước sau sáp nhập ở nhóm đầu; nhiều doanh nghiệp vận tải gia đình, cạnh tranh giá gay gắt.",
   "cvDemand": "Tải nặng, đầu kéo cho Nghi Sơn (xi măng, thép, xăng dầu); ben, trộn bê tông; tải nhẹ nông thôn.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 5",
+  "elev": 300
  },
  {
   "name": "Nghệ An",
@@ -264,10 +280,12 @@
   "logistics": "QL1, QL7, QL48, cao tốc Bắc – Nam; cảng Cửa Lò; sân bay Vinh; cửa khẩu Nậm Cắn.",
   "culture": "Diện tích lớn nhất miền Bắc, dân đông; người Nghệ tiết kiệm, cân nhắc kỹ, coi trọng giá và độ bền.",
   "cvDemand": "Ben – trộn bê tông hạ tầng, tải trung phân phối, đầu kéo cho KCN mới; xe khách tuyến Bắc – Nam.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 5",
+  "elev": 450
  },
  {
   "name": "Hà Tĩnh",
@@ -294,10 +312,12 @@
   "logistics": "QL1, QL8, cao tốc Bắc – Nam; cảng Vũng Áng – Sơn Dương.",
   "culture": "Thị trường tập trung quanh Vũng Áng; khách hàng là nhà thầu phụ, vận tải phục vụ khu công nghiệp nặng.",
   "cvDemand": "Đầu kéo, tải nặng, xe chuyên dụng phục vụ thép và cảng.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 5",
+  "elev": 250
  },
  {
   "name": "Cao Bằng",
@@ -327,7 +347,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 3",
+  "elev": 650
  },
  {
   "name": "Tuyên Quang",
@@ -358,7 +380,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 3",
+  "elev": 700
  },
  {
   "name": "Lào Cai",
@@ -389,7 +413,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 900
  },
  {
   "name": "Thái Nguyên",
@@ -417,10 +443,12 @@
   "logistics": "Cao tốc HN – Thái Nguyên – Chợ Mới, QL3, vành đai 5.",
   "culture": "Công nghiệp FDI lớn, nhiều nhà thầu vận chuyển linh kiện; khách hàng chuộng xe chất lượng ổn định.",
   "cvDemand": "Tải trung thùng kín, xe đưa đón công nhân, ben xây dựng.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 3",
+  "elev": 300
  },
  {
   "name": "Phú Thọ",
@@ -449,10 +477,12 @@
   "logistics": "Cao tốc Nội Bài – Lào Cai, HN – Hòa Bình, vành đai 5; gần sân bay Nội Bài.",
   "culture": "Tăng trưởng nhanh nhờ sáp nhập Vĩnh Phúc; khách hàng FDI và nhà thầu xây dựng.",
   "cvDemand": "Tải trung, đầu kéo cho KCN Vĩnh Phúc, ben – trộn cho hạ tầng; xe đưa đón công nhân.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 300
  },
  {
   "name": "Bắc Ninh",
@@ -480,10 +510,12 @@
   "logistics": "QL1, QL18, cao tốc HN – Bắc Giang – Lạng Sơn; ICD, gần Nội Bài.",
   "culture": "Cực công nghiệp mới của miền Bắc; nhu cầu logistics hợp đồng rất lớn, ưu tiên đối tác giao xe nhanh.",
   "cvDemand": "Tải trung thùng kín, đầu kéo container, xe đưa đón công nhân, đông lạnh vải thiều theo mùa.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 2",
+  "elev": 50
  },
  {
   "name": "Hưng Yên",
@@ -511,10 +543,12 @@
   "logistics": "Cao tốc HN – HP, Cầu Giẽ – Ninh Bình, QL5, QL10.",
   "culture": "Kết hợp cực công nghiệp (Hưng Yên) và vùng nông nghiệp đông dân (Thái Bình); khách hàng đa dạng.",
   "cvDemand": "Tải nhẹ – trung phân phối, đầu kéo cho KCN, xe chở vật liệu.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 1",
+  "elev": 5
  },
  {
   "name": "Hải Phòng",
@@ -542,10 +576,12 @@
   "logistics": "Cao tốc HN – HP, Hạ Long – HP, QL5; cảng Lạch Huyện; sân bay Cát Bi.",
   "culture": "Nhiều doanh nghiệp logistics, container; cạnh tranh mạnh về giá thuê vận tải, khách hàng chú trọng chi phí vận hành.",
   "cvDemand": "Đầu kéo container là phân khúc chủ lực; tải nặng, rơ mooc; tải trung KCN.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 1",
+  "elev": 10
  },
  {
   "name": "Ninh Bình",
@@ -574,10 +610,12 @@
   "logistics": "Cao tốc Cầu Giẽ – Ninh Bình – Thanh Hóa, QL1, QL10, QL21.",
   "culture": "Dân số đông sau sáp nhập; truyền thống buôn bán, vận tải tư nhân mạnh (Nam Định).",
   "cvDemand": "Ben – trộn bê tông, tải nặng chở xi măng/đá; xe khách du lịch; tải nhẹ phân phối.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 4",
+  "elev": 15
  },
  {
   "name": "Quảng Trị",
@@ -605,10 +643,12 @@
   "logistics": "QL1, QL9 (hành lang Đông – Tây), cao tốc Bắc – Nam; cảng Hòn La, Mỹ Thủy (đang xây).",
   "culture": "Thị trường trung bình, thu nhập thấp hơn bình quân; vận tải quá cảnh Lào – Thái là điểm khác biệt.",
   "cvDemand": "Đầu kéo hành lang Đông – Tây, ben cho cảng và năng lượng; xe khách du lịch.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 5",
+  "elev": 350
  },
  {
   "name": "Đà Nẵng",
@@ -636,10 +676,12 @@
   "logistics": "QL1, cao tốc Đà Nẵng – Quảng Ngãi; cảng Tiên Sa, Chu Lai; sân bay quốc tế ĐN.",
   "culture": "Trung tâm miền Trung; khách hàng hiện đại, đề cao dịch vụ. Chu Lai là sân nhà của đối thủ lắp ráp trong nước.",
   "cvDemand": "Xe khách du lịch, tải nhẹ đô thị, đầu kéo cảng; ben cho Liên Chiểu.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 6",
+  "elev": 450
  },
  {
   "name": "Quảng Ngãi",
@@ -667,10 +709,12 @@
   "logistics": "QL1, QL24, cao tốc Bắc – Nam; cảng Dung Quất.",
   "culture": "Dung Quất tạo cầu vận tải nặng ổn định; phía Kon Tum là thị trường nông nghiệp vùng cao.",
   "cvDemand": "Đầu kéo, tải nặng thép – xăng dầu; tải trung chở nông sản Tây Nguyên.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 6",
+  "elev": 550
  },
  {
   "name": "Gia Lai",
@@ -698,10 +742,12 @@
   "logistics": "QL19 nối cảng Quy Nhơn – Tây Nguyên, QL14, QL1, cao tốc Quy Nhơn – Pleiku (chuẩn bị).",
   "culture": "Tỉnh rộng nhất cả nước; vùng biển (Bình Định) và cao nguyên (Gia Lai) có hành vi mua khác nhau.",
   "cvDemand": "Tải trung – nặng chở nông sản, đầu kéo QL19, ben cho cao tốc; tải nhẹ chở hàng nông thôn.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 6",
+  "elev": 550
  },
  {
   "name": "Khánh Hòa",
@@ -729,10 +775,12 @@
   "logistics": "QL1, cao tốc Bắc – Nam; cảng Cam Ranh, Vân Phong; sân bay Cam Ranh.",
   "culture": "Du lịch quốc tế kéo nhu cầu vận chuyển khách; khách hàng doanh nghiệp dịch vụ.",
   "cvDemand": "Xe khách du lịch, đông lạnh thủy sản, tải nhẹ dịch vụ; đầu kéo Vân Phong.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 7",
+  "elev": 350
  },
  {
   "name": "Lâm Đồng",
@@ -761,10 +809,12 @@
   "logistics": "QL20, QL27, QL28, QL14, QL1; cao tốc Dầu Giây – Liên Khương, Phan Thiết – Dầu Giây.",
   "culture": "Diện tích rất lớn, 3 tiểu vùng: cao nguyên – nông nghiệp, mỏ bauxite, ven biển du lịch.",
   "cvDemand": "Đông lạnh rau hoa, tải trung chở cà phê, xe chuyên dụng bauxite, xe khách du lịch.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 7",
+  "elev": 700
  },
  {
   "name": "Đắk Lắk",
@@ -792,10 +842,12 @@
   "logistics": "QL14, QL26, QL29, QL25; cao tốc Khánh Hòa – Buôn Ma Thuột (đang làm); cảng Vũng Rô.",
   "culture": "Mùa vụ nông sản quyết định dòng tiền mua xe; nông dân và đại lý thu mua là khách chính.",
   "cvDemand": "Tải trung chở cà phê – sầu riêng, đông lạnh, tải nhẹ nông thôn; ben cho cao tốc.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 7",
+  "elev": 450
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -824,10 +876,12 @@
   "logistics": "Vành đai 3, 4; cao tốc TP.HCM – Long Thành – Dầu Giây; cảng Cát Lái, Cái Mép – Thị Vải.",
   "culture": "Thị trường lớn và cạnh tranh nhất; khách hàng đánh giá TCO, tài chính, dịch vụ 24/7; nhiều đội xe logistics lớn.",
   "cvDemand": "Đầu kéo container (Cái Mép, Bình Dương), tải nhẹ – van nội đô (cấm giờ), xe điện, xe khách; ben hạ tầng vành đai.",
-  "dealers": 0,
+  "dealers": 3,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Khu vực TP. Hồ Chí Minh",
+  "elev": 20
  },
  {
   "name": "Đồng Nai",
@@ -855,10 +909,12 @@
   "logistics": "QL1, QL13, QL14, QL20, QL51; cao tốc TP.HCM – Long Thành, Biên Hòa – Vũng Tàu; sân bay Long Thành.",
   "culture": "Cực công nghiệp phía Nam; khách hàng FDI và vận tải hợp đồng; Bình Phước là vùng nông sản (điều, cao su).",
   "cvDemand": "Đầu kéo, tải trung thùng kín, ben – trộn cho Long Thành; tải chở nông sản Bình Phước.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 8",
+  "elev": 150
  },
  {
   "name": "Tây Ninh",
@@ -886,10 +942,12 @@
   "logistics": "QL1, QL22, QL50, cao tốc TP.HCM – Trung Lương, TP.HCM – Mộc Bài (đang làm).",
   "culture": "Vùng giáp ranh TP.HCM hưởng lợi dịch chuyển công nghiệp; thương mại biên giới Campuchia.",
   "cvDemand": "Đầu kéo, tải trung KCN, tải nông sản; xe khách hành hương.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 8",
+  "elev": 30
  },
  {
   "name": "Cần Thơ",
@@ -918,10 +976,12 @@
   "logistics": "QL1, QL91, cao tốc Cần Thơ – Cà Mau, Châu Đốc – Cần Thơ – Sóc Trăng.",
   "culture": "Thương lái và doanh nghiệp chế biến là khách chính; vận tải thủy cạnh tranh với đường bộ.",
   "cvDemand": "Tải nhẹ – trung chở lúa gạo, đông lạnh thủy sản, ben cho cao tốc.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 9",
+  "elev": 2
  },
  {
   "name": "Vĩnh Long",
@@ -953,7 +1013,9 @@
   "dealers": 0,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 9",
+  "elev": 2
  },
  {
   "name": "Đồng Tháp",
@@ -981,10 +1043,12 @@
   "logistics": "Cao tốc TP.HCM – Trung Lương – Mỹ Thuận, QL1, QL30, QL50; cầu Cao Lãnh.",
   "culture": "Cửa ngõ ĐBSCL gần TP.HCM; trái cây xuất khẩu tạo nhu cầu xe lạnh lớn.",
   "cvDemand": "Đông lạnh trái cây – cá tra, tải trung, đầu kéo container về cảng TP.HCM.",
-  "dealers": 0,
+  "dealers": 2,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 9",
+  "elev": 3
  },
  {
   "name": "Cà Mau",
@@ -1012,10 +1076,12 @@
   "logistics": "QL1, QL63; cao tốc Cần Thơ – Cà Mau.",
   "culture": "Kinh tế tôm và năng lượng; khách hàng là doanh nghiệp chế biến thủy sản, nhà thầu điện gió.",
   "cvDemand": "Đông lạnh thủy sản, tải trung, đầu kéo chở thủy sản đi cảng.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 9",
+  "elev": 1
  },
  {
   "name": "An Giang",
@@ -1043,9 +1109,11 @@
   "logistics": "QL80, QL91, cao tốc Châu Đốc – Cần Thơ – Sóc Trăng, Lộ Tẻ – Rạch Sỏi; sân bay Phú Quốc.",
   "culture": "Đông dân nhất ĐBSCL; khách hàng gắn với lúa gạo, xi măng và du lịch Phú Quốc.",
   "cvDemand": "Tải trung chở gạo, ben – tải nặng xi măng Kiên Lương, xe khách du lịch.",
-  "dealers": 0,
+  "dealers": 1,
   "sales": 0,
   "target": 0,
-  "note": ""
+  "note": "",
+  "zone": "Vùng 9",
+  "elev": 10
  }
 ]
