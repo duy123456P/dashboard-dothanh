@@ -1,0 +1,54 @@
+<section class="glass pad" id="opsSec" aria-label="Trung tâm điều hành">
+  <div class="opshead">
+    <div><h2>Trung tâm điều hành</h2>
+      <p class="muted" style="margin:4px 0 0;max-width:90ch">Mỗi đầu việc chốt trong họp có một người chịu trách nhiệm, chỉ số đo, bằng chứng, phòng ban xác nhận và hạn. Cập nhật tiến độ mỗi ngày; hệ thống tự cảnh báo sớm khi tiến độ thực tụt sau kỳ vọng, thiếu cập nhật hoặc điểm nghẽn tồn quá 2 ngày, để lãnh đạo hỗ trợ trước khi trễ hạn.</p></div>
+    <div class="toolbar" style="margin:0">
+      <span class="syncb" id="opsSync">Đang kết nối…</span>
+      <button type="button" class="primary" id="opsNew">+ Đầu việc</button>
+      <button type="button" id="opsBrief">Bản tin hôm nay</button>
+      <button type="button" id="opsMeet">Họp với Ben</button>
+      <button type="button" id="opsExport">Xuất bảng việc (.csv)</button>
+    </div>
+  </div>
+  <div class="opstiles num" id="opsTiles"></div>
+  <div class="opsgrid">
+    <div><h3>Lãnh đạo cần làm hôm nay</h3><ul class="todo" id="opsToday"></ul></div>
+    <div><h3>Năng lực thực thi theo người chịu trách nhiệm</h3><div style="overflow-x:auto;margin-top:6px" id="opsLeadMini"></div></div>
+  </div>
+  <nav class="otabs" role="tablist" aria-label="Điều hành">
+    <button type="button" role="tab" data-otab="T" aria-selected="true">Đầu việc</button>
+    <button type="button" role="tab" data-otab="L" aria-selected="false">Bảng năng lực Leader</button>
+    <button type="button" role="tab" data-otab="M" aria-selected="false">Cuộc họp &amp; biên bản</button>
+    <button type="button" role="tab" data-otab="H" aria-selected="false">Nhật ký thay đổi dữ liệu</button>
+  </nav>
+  <div id="opT">
+    <div class="toolbar">
+      <label class="field">Phòng ban<select id="ofDept"><option value="">Tất cả</option></select></label>
+      <label class="field">Người chịu trách nhiệm<select id="ofOwner"><option value="">Tất cả</option></select></label>
+      <label class="field">Trạng thái<select id="ofStatus"><option value="active">Đang mở</option><option value="">Tất cả</option><option value="todo">Chưa làm</option><option value="doing">Đang làm</option><option value="review">Chờ nghiệm thu</option><option value="done">Hoàn thành đạt chuẩn</option><option value="cancel">Hủy</option></select></label>
+      <label class="field">Tìm<input type="text" id="ofText" placeholder="Từ khóa, cuộc họp…"></label>
+    </div>
+    <div style="overflow-x:auto"><table class="tasktbl" id="opsTable"></table></div>
+  </div>
+  <div id="opL" hidden><div style="overflow-x:auto" id="opsLead"></div>
+    <p class="muted small" style="margin:8px 0 0">Điểm năng lực = 30% đúng hạn + 20% kỷ luật cập nhật hằng ngày + 20% kết quả có số liệu và bằng chứng + 15% xác nhận liên phòng + 15% xử lý dứt điểm điểm nghẽn. Đây là dữ liệu để kèm cặp và hỗ trợ, đánh giá trên kết quả và bằng chứng chứ không theo cảm tính.</p></div>
+  <div id="opM" hidden><div id="opsMeetings"></div></div>
+  <div id="opH" hidden><div style="overflow-x:auto" id="opsChanges"></div></div>
+</section>
+
+<dialog class="odlg" id="taskDlg" aria-labelledby="taskDlgT">
+  <header><h3 id="taskDlgT">Đầu việc</h3><span id="taskHealth"></span><button type="button" class="x" data-close>Đóng</button></header>
+  <div class="body" id="taskBody"></div>
+  <footer id="taskFoot"></footer>
+</dialog>
+
+<dialog class="odlg" id="minDlg" aria-labelledby="minDlgT">
+  <header><h3 id="minDlgT">Biên bản cuộc họp</h3><button type="button" class="x" data-close>Đóng</button></header>
+  <div class="body" id="minBody"></div>
+  <footer id="minFoot"></footer>
+</dialog>
+
+<dialog class="odlg" id="askDlg" style="width:min(520px,94vw)" aria-labelledby="askL">
+  <div class="body"><p id="askL" style="margin:0 0 10px"></p><input type="text" id="askIn" style="width:100%"></div>
+  <footer><button type="button" class="primary" id="askOk">Đồng ý</button><button type="button" id="askNo">Hủy</button></footer>
+</dialog>
