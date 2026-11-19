@@ -159,6 +159,21 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .src dt{color:var(--muted)}.src dd{margin:0 0 4px;color:#fff;font-weight:600}
 .src .t{font-size:11.5px;color:var(--muted);border-top:1px solid var(--glass-line);padding-top:6px;margin-top:auto}
 .src a{color:var(--cyan)}
+.cal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;margin-top:8px}
+.cal div{height:30px;border-radius:5px;display:grid;place-items:center;font-size:10.5px;font-weight:600;color:#fff;border:1px solid transparent}
+.cal div.now{border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,.5)}
+.life{counter-reset:st;list-style:none;padding:0;margin:6px 0 0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.life li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start}
+.life li::before{counter-increment:st;content:counter(st);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:rgba(70,227,255,.18);color:var(--cyan);border:1px solid rgba(70,227,255,.4)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.sbox{border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px;background:rgba(5,11,22,.35);min-width:0}
+.sbars{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.sb{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.4fr) auto;gap:8px;align-items:center;font-size:12.5px}
+.sl{display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st{height:9px;border-radius:5px;background:rgba(140,190,255,.08);overflow:hidden}.st span{display:block;height:100%;border-radius:5px}
+.sv{color:#fff;white-space:nowrap}.sv small{color:var(--muted)}
+.lvl{display:inline-flex;gap:3px;vertical-align:middle}.lvl i{width:12px;height:8px;border-radius:2px;background:rgba(140,190,255,.15)}.lvl i.on{background:var(--cyan);box-shadow:0 0 8px rgba(70,227,255,.5)}
+.btab td{white-space:normal}
 .front{border:1px solid;border-radius:14px;padding:12px 14px;background:rgba(5,11,22,.35)}
 .kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:12.5px;margin-top:8px}
 .kv span{color:var(--muted)}.kv b{font-weight:600;color:#fff}
@@ -307,7 +322,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
           <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
           <button id="btnView" type="button">Đổi góc nhìn</button>
         </div>
-        <label class="exag" for="exag">Độ nổi địa hình <input id="exag" type="range" min="5" max="60" step="1" value="28"></label>
+        <label class="exag" for="exag">Độ nổi địa hình <input id="exag" type="range" min="5" max="50" step="1" value="22"></label>
       </div>
       <div class="legend" id="legend"></div>
     </div>
@@ -327,6 +342,14 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <div id="matrixSum" style="display:flex;gap:6px;flex-wrap:wrap"></div>
     </div>
     <div class="matrixwrap" id="matrix" style="margin-top:10px"></div>
+  </section>
+
+  <section class="glass pad" id="structSec">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div><h2>Cơ cấu thị trường &amp; đối thủ</h2><p class="muted" style="margin:4px 0 0">Góc nhìn quản trị: tải trọng, loại thùng, màu sắc, model và sự hiện diện của các thương hiệu.</p></div>
+      <div class="seg" role="group" aria-label="Phạm vi"><button type="button" data-sscope="nation">Toàn quốc</button><button type="button" data-sscope="zone">Khu vực đang chọn</button><button type="button" data-sscope="province">Tỉnh đang chọn</button></div>
+    </div>
+    <div id="structBody" style="margin-top:12px"></div>
   </section>
 
   <section class="lower">
@@ -447,6 +470,9 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/lines/LineSegmentsGeometry.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/lines/LineMaterial.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/lines/LineSegments2.js"></script>
 <script id="geo-data" type="application/json">/*__GEO__*/</script>
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
 <script id="center-data" type="application/json">/*__CENTERS__*/</script>
@@ -475,7 +501,7 @@ const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
 let rows = clone(BASE), tam = 122235, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
-let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 28;
+let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
 
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
 function norm(s){ return String(s).normalize("NFC").toLowerCase().replace(/^(tp\.?|thành phố|tỉnh)\s*/,"").replace(/[\s.]/g,""); }
@@ -543,6 +569,10 @@ const METRICS = {
   uio:{label:"UIO xe thương mại", unit:"xe đang lưu hành", get:r=>r._uio, fmt:v=>fmtInt(v)},
   turn:{label:"Tỷ lệ ĐK mới / UIO", unit:"%", get:r=>r._turn, fmt:v=>fmt1(v)},
   attr:{label:"Sức hấp dẫn mặt trận", unit:"điểm /100", get:r=>r._attr, fmt:v=>fmtInt(v)},
+  cold:{label:"Thùng đông lạnh (ước)", unit:"% xe ĐK mới", get:r=>{ const s = structOf(r); return s.body[3]/(s.body.reduce((a,b)=>a+b,0)||1)*100; }, fmt:v=>fmt1(v)},
+  dump:{label:"Xe ben (ước)", unit:"% xe ĐK mới", get:r=>{ const s = structOf(r); return s.body[4]/(s.body.reduce((a,b)=>a+b,0)||1)*100; }, fmt:v=>fmt1(v)},
+  lightPay:{label:"Tải ≤ 3,5 tấn (ước)", unit:"xe/năm", get:r=>{ const p = structOf(r).payload; return p[0]+p[1]+p[2]; }, fmt:v=>fmtInt(v)},
+  season:{label:"Mùa vụ tháng này", unit:"mức 0–3", get:r=>r.season[new Date().getMonth()], fmt:v=>["Thấp","Vừa","Cao","Cao điểm"][v] || "—"},
   perCenter:{label:"Thị trường / trung tâm", unit:"xe/năm", get:r=>r._perCenter, fmt:v=>v==null?"chưa có TT":fmtInt(v)},
   grdp:{label:"GRDP", unit:"nghìn tỷ đ", get:r=>r.grdp, fmt:v=>fmtInt(v)},
   pop:{label:"Dân số", unit:"nghìn người", get:r=>r.pop, fmt:v=>fmtInt(v)},
@@ -620,7 +650,7 @@ const POLYS = GEO.features.map(f => {
 });
 function inRing(x, y, ring){ let ins = false; for(let i=0,j=ring.length-1;i<ring.length;j=i++){ const [xi,yi]=ring[i],[xj,yj]=ring[j]; if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) ins = !ins; } return ins; }
 function provinceAt(lng, lat){
-  for(const p of POLYS){ if(lng<p.bbox[0]||lng>p.bbox[2]||lat<p.bbox[1]||lat>p.bbox[3]) continue; if(p.rings.some(r => inRing(lng,lat,r))) return p.name; }
+  for(const p of POLYS){ if(p.name === "__VN__") continue; if(lng<p.bbox[0]||lng>p.bbox[2]||lat<p.bbox[1]||lat>p.bbox[3]) continue; if(p.rings.some(r => inRing(lng,lat,r))) return p.name; }
   return null;
 }
 function wx(lng){ return (lng - (LNG0+LNG1)/2) * K * COSL; }
@@ -628,9 +658,9 @@ function wz(lat){ return -(lat - (LAT0+LAT1)/2) * K; }
 
 /* ---------- 3D scene ---------- */
 const stage = document.getElementById("stage"), labelsEl = document.getElementById("labels"), tipEl = document.getElementById("tip");
-let renderer, scene, camera, controls, terrain, water, overlayCanvas, overlayCtx, overlayTex, reliefImg, H = null, HW = 0, HH = 0;
-let pinGroup, barGroup, mouse = {x:0,y:0,nx:0,ny:0,inside:false}, raycaster, needOverlay = true, exagShown = 0, introT0 = 0;
-const OW = 2048, OH = 2176;
+let renderer, scene, camera, controls, relief, terrain, overlayMesh, water, skirtMesh, skirtEdge = [], rimLine, overlayCanvas, overlayCtx, overlayTex, H = null, HW = 0, HH = 0;
+let pinGroup, barGroup, hlGroup, lineMats = [], mouse = {x:0,y:0,nx:0,ny:0,inside:false}, raycaster, needOverlay = true, needHl = true, exagShown = 0, introT0 = 0;
+const OW = 2048, OH = 2048, BASE_Y = -3.4, FAT = () => !!(THREE.LineSegments2 && THREE.LineSegmentsGeometry && THREE.LineMaterial);
 
 function loadImage(src){ return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; }); }
 function heightAt(lng, lat){
@@ -640,47 +670,69 @@ function heightAt(lng, lat){
   const g = (i,j) => H[j*HW+i];
   return g(x,y)*(1-tx)*(1-ty)+g(x+1,y)*tx*(1-ty)+g(x,y+1)*(1-tx)*ty+g(x+1,y+1)*tx*ty;
 }
-function yOf(m, ex){ ex = ex ?? exagShown; return m >= 0 ? m/111000*K*ex : Math.max(m,-4500)/111000*K*ex*0.12; }
+// height in world units at exaggeration 1; the relief group is scaled on Y by the exaggeration
+function yUnit(m){ return m >= 0 ? m/111000*K : Math.max(m,-4500)/111000*K*0.12; }
+function yOf(m, ex){ return yUnit(m) * (ex ?? exagShown); }
 
 async function initScene(){
   if(typeof THREE === "undefined") throw new Error("three");
   const [rel, hm] = await Promise.all([loadImage(RELIEF_SRC), loadImage(HEIGHT_SRC)]);
-  reliefImg = rel;
   const hc = document.createElement("canvas"); HW = hm.width; HH = hm.height; hc.width = HW; hc.height = HH;
   const hx = hc.getContext("2d"); hx.drawImage(hm,0,0); const d = hx.getImageData(0,0,HW,HH).data;
   H = new Float32Array(HW*HH); for(let i=0;i<HW*HH;i++) H[i] = d[i*4]*256 + d[i*4+1] - 12000;
 
-  renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:"high-performance"});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(max-width: 700px)").matches ? 1.5 : 2));
   renderer.outputEncoding = THREE.sRGBEncoding;
   stage.prepend(renderer.domElement);
   scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x061024, 260, 520);
-  camera = new THREE.PerspectiveCamera(38, 1, 1, 2000);
+  scene.fog = new THREE.Fog(0x061024, 420, 980);
+  camera = new THREE.PerspectiveCamera(38, 1, 0.3, 3000);
   controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxPolarAngle = Math.PI*0.47; controls.minDistance = 40; controls.maxDistance = 420;
-  controls.autoRotateSpeed = 0.6;
-  setView(0, true);
+  Object.assign(controls, {enableDamping:true, dampingFactor:0.08, maxPolarAngle:Math.PI*0.48, minDistance:10, maxDistance:460, screenSpacePanning:true, zoomSpeed:1.1, rotateSpeed:0.7, autoRotateSpeed:0.6});
+  setView(0);
 
-  scene.add(new THREE.HemisphereLight(0xcfe9ff, 0x0a1a30, 0.75));
-  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(-120, 160, -60); scene.add(sun);
-  const rim = new THREE.DirectionalLight(0x46e3ff, 0.25); rim.position.set(160, 40, 160); scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0xcfe9ff, 0x0a1a30, 0.8));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.7); sun.position.set(-120, 160, -60); scene.add(sun);
+  const rim = new THREE.DirectionalLight(0x46e3ff, 0.22); rim.position.set(160, 40, 160); scene.add(rim);
 
+  const aniso = renderer.capabilities.getMaxAnisotropy();
+  const reliefTex = new THREE.Texture(rel); reliefTex.encoding = THREE.sRGBEncoding; reliefTex.anisotropy = aniso; reliefTex.needsUpdate = true;
   overlayCanvas = document.createElement("canvas"); overlayCanvas.width = OW; overlayCanvas.height = OH; overlayCtx = overlayCanvas.getContext("2d");
-  overlayTex = new THREE.CanvasTexture(overlayCanvas); overlayTex.encoding = THREE.sRGBEncoding; overlayTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  const W = (LNG1-LNG0)*K*COSL, D = (LAT1-LAT0)*K, SX = 383, SY = 407;
+  overlayTex = new THREE.CanvasTexture(overlayCanvas); overlayTex.encoding = THREE.sRGBEncoding; overlayTex.anisotropy = aniso;
+
+  // lighter mesh on phones and low-memory devices, full detail elsewhere
+  const LOW = matchMedia("(max-width: 700px)").matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+  const W = (LNG1-LNG0)*K*COSL, D = (LAT1-LAT0)*K, SX = LOW ? 447 : 767, SY = LOW ? 475 : 815;
   const geo = new THREE.PlaneGeometry(W, D, SX, SY); geo.rotateX(-Math.PI/2);
-  terrain = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({map: overlayTex, roughness: 0.92, metalness: 0.0}));
-  terrain.userData.grid = {SX, SY};
-  scene.add(terrain);
-  // glass skirt: the diorama's cut edges
-  const skirtMat = new THREE.MeshStandardMaterial({color:0x46e3ff, transparent:true, opacity:0.10, roughness:0.15, metalness:0.6, side:THREE.DoubleSide});
-  const skirt = new THREE.Mesh(new THREE.BoxGeometry(W, 8, D, 1, 1, 1), skirtMat); skirt.position.y = -6.2; scene.add(skirt);
-  const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(W, 8, D)), new THREE.LineBasicMaterial({color:0x46e3ff, transparent:true, opacity:0.45}));
-  edge.position.y = -6.2; scene.add(edge);
-  // water: thin glossy glass sheet at sea level
-  water = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshStandardMaterial({color:0x2fc6d8, transparent:true, opacity:0.18, roughness:0.08, metalness:0.55}));
-  water.rotation.x = -Math.PI/2; water.position.y = 0.02; scene.add(water);
+  const pos = geo.attributes.position;
+  for(let j=0;j<=SY;j++) for(let i=0;i<=SX;i++) pos.setY(j*(SX+1)+i, yUnit(heightAt(LNG0 + i/SX*(LNG1-LNG0), LAT1 - j/SY*(LAT1-LAT0))));
+  geo.computeVertexNormals(); geo.computeBoundingBox(); geo.computeBoundingSphere();
+  relief = new THREE.Group(); scene.add(relief);
+  terrain = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({map: reliefTex, roughness: 0.95, metalness: 0}));
+  overlayMesh = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({map: overlayTex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -2}));
+  overlayMesh.renderOrder = 1;
+  relief.add(terrain, overlayMesh);
+  // solid diorama walls that follow the terrain edge, so the block stays closed at every zoom and exaggeration
+  for(let i=0;i<=SX;i++) skirtEdge.push(i);                                       // north edge
+  for(let j=1;j<=SY;j++) skirtEdge.push(j*(SX+1)+SX);                              // east edge
+  for(let i=SX-1;i>=0;i--) skirtEdge.push(SY*(SX+1)+i);                            // south edge
+  for(let j=SY-1;j>=0;j--) skirtEdge.push(j*(SX+1));                               // west edge
+  const n = skirtEdge.length, sp = new Float32Array(n*2*3), idx = [];
+  for(let k=0;k<n;k++){ const v = skirtEdge[k]; sp[k*6] = sp[k*6+3] = pos.getX(v); sp[k*6+2] = sp[k*6+5] = pos.getZ(v); sp[k*6+4] = BASE_Y;
+    if(k < n-1){ const a = k*2, b = a+1, c = a+2, e = a+3; idx.push(a,b,c, c,b,e); } }
+  const sg = new THREE.BufferGeometry(); sg.setAttribute("position", new THREE.BufferAttribute(sp, 3)); sg.setIndex(idx);
+  skirtMesh = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({color:0x0c2742, emissive:0x0a3a5a, emissiveIntensity:0.35, roughness:0.35, metalness:0.5, side:THREE.DoubleSide}));
+  scene.add(skirtMesh);
+  const rp = new Float32Array(n*3); for(let k=0;k<n;k++){ rp[k*3] = sp[k*6]; rp[k*3+2] = sp[k*6+2]; }
+  const rg = new THREE.BufferGeometry(); rg.setAttribute("position", new THREE.BufferAttribute(rp, 3));
+  rimLine = new THREE.Line(rg, new THREE.LineBasicMaterial({color:0x46e3ff, transparent:true, opacity:0.55})); scene.add(rimLine);
+  const base = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([[-W/2,-D/2],[W/2,-D/2],[W/2,D/2],[-W/2,D/2]].map(([x,z]) => new THREE.Vector3(x, BASE_Y, z))),
+    new THREE.LineBasicMaterial({color:0x46e3ff, transparent:true, opacity:0.7})); scene.add(base);
+  water = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshStandardMaterial({color:0x2fc6d8, transparent:true, opacity:0.16, roughness:0.08, metalness:0.55, depthWrite:false}));
+  water.rotation.x = -Math.PI/2; water.position.y = 0.01; water.renderOrder = 2; scene.add(water);
+  buildBorders();
+  hlGroup = new THREE.Group(); relief.add(hlGroup);
   pinGroup = new THREE.Group(); barGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup);
   raycaster = new THREE.Raycaster();
 
@@ -690,24 +742,55 @@ async function initScene(){
   stage.addEventListener("pointerdown", e => { down = [e.clientX, e.clientY]; });
   stage.addEventListener("pointerup", e => { if(down && Math.hypot(e.clientX-down[0], e.clientY-down[1]) < 5) onClick(); down = null; });
   document.getElementById("loadmsg").hidden = true;
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  introT0 = reduce ? -1e9 : performance.now();
+  introT0 = matchMedia("(prefers-reduced-motion: reduce)").matches ? -1e9 : performance.now();
   buildPins(); buildBars(); drawOverlay();
   requestAnimationFrame(loop);
 }
-function resize(){ const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+/* crisp vector borders draped on the terrain (pixel-width lines, sharp at any zoom) */
+function ringSegments(rings, lift){
+  const out = [];
+  // densify every ~1 km so the line follows ridges and valleys instead of cutting through them
+  const P = (x,y) => [wx(x), yUnit(Math.max(heightAt(x,y),0)) + lift, wz(y)];
+  rings.forEach(r => { for(let i=0;i<r.length-1;i++){ const [x1,y1] = r[i], [x2,y2] = r[i+1];
+    const n = Math.max(1, Math.ceil(Math.hypot(x2-x1, y2-y1) / 0.01)); let prev = P(x1,y1);
+    for(let k=1;k<=n;k++){ const cur = P(x1 + (x2-x1)*k/n, y1 + (y2-y1)*k/n); out.push(...prev, ...cur); prev = cur; } } });
+  return out;
+}
+function makeLines(arr, color, width, opacity){
+  if(FAT()){
+    const g = new THREE.LineSegmentsGeometry(); g.setPositions(arr);
+    const m = new THREE.LineMaterial({color, linewidth: width, transparent: opacity < 1, opacity, depthTest: true, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -8});
+    m.resolution.set(stage.clientWidth || 800, stage.clientHeight || 600); m.userData.base = width; m.linewidth = Math.max(1, width * (loop.f || 1)); lineMats.push(m);
+    const l = new THREE.LineSegments2(g, m); l.renderOrder = 3; return l;
+  }
+  const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.Float32BufferAttribute(arr, 3));
+  const l = new THREE.LineSegments(g, new THREE.LineBasicMaterial({color, transparent: true, opacity})); l.renderOrder = 3; return l;
+}
+function buildBorders(){
+  const prov = [], nat = [];
+  POLYS.forEach(p => { if(p.name === "__VN__") nat.push(...p.rings); else if(!ISLANDS[p.name]) prov.push(...p.rings); });
+  relief.add(makeLines(ringSegments(prov, 0.007), 0xffffff, 1.2, 0.7));
+  relief.add(makeLines(ringSegments(nat, 0.008), 0xffffff, 7, 0.22));
+  relief.add(makeLines(ringSegments(nat, 0.009), 0xffffff, 2.4, 0.95));
+}
+function updateHighlight(){
+  needHl = false; if(!hlGroup) return;
+  while(hlGroup.children.length){ const o = hlGroup.children.pop(); o.geometry.dispose(); const i = lineMats.indexOf(o.material); if(i >= 0) lineMats.splice(i,1); o.material.dispose(); }
+  const add = (name, col, w) => { const p = POLYS.find(q => q.name === name); if(!p) return; hlGroup.add(makeLines(ringSegments(p.rings, 0.011), new THREE.Color(col), w, 1)); };
+  if(selected && pinned) add(selected, css("--magenta"), 3.6);
+  if(hoverName && !ISLANDS[hoverName] && !(pinned && hoverName === selected)) add(hoverName, css("--cyan"), 3);
+}
+function resize(){ const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); lineMats.forEach(m => m.resolution.set(w, h)); }
 function setView(i){ const v = VIEWS[i]; camera.position.set(...v.pos); controls.target.set(...v.tgt); controls.update(); }
 stage.__view = (pos, tgt) => { camera.position.set(...pos); controls.target.set(...tgt); controls.update(); };
-function applyHeights(){
-  const pos = terrain.geometry.attributes.position, {SX, SY} = terrain.userData.grid;
-  for(let j=0;j<=SY;j++) for(let i=0;i<=SX;i++){
-    const lng = LNG0 + i/SX*(LNG1-LNG0), lat = LAT1 - j/SY*(LAT1-LAT0);
-    pos.setY(j*(SX+1)+i, yOf(heightAt(lng, lat)));
-  }
-  pos.needsUpdate = true; terrain.geometry.computeVertexNormals(); terrain.geometry.computeBoundingSphere(); terrain.geometry.computeBoundingBox();
+function applyExag(){
+  relief.scale.y = exagShown;
+  const sa = skirtMesh.geometry.attributes.position, ra = rimLine.geometry.attributes.position, tp = terrain.geometry.attributes.position;
+  skirtEdge.forEach((v,k) => { const y = tp.getY(v) * exagShown; sa.setY(k*2, y); ra.setY(k, y); });
+  sa.needsUpdate = true; ra.needsUpdate = true; skirtMesh.geometry.computeVertexNormals(); skirtMesh.geometry.computeBoundingSphere(); rimLine.geometry.computeBoundingSphere();
   placePins(); placeBars();
 }
-/* overlay texture: relief + province tint + borders */
+/* overlay texture: province fills only (borders are vector lines) */
 function px(lng, lat){ return [(lng-LNG0)/(LNG1-LNG0)*OW, (LAT1-lat)/(LAT1-LAT0)*OH]; }
 function pathFor(name){
   const p = POLYS.find(q => q.name === name), path = new Path2D();
@@ -717,46 +800,42 @@ function pathFor(name){
 const PATHS = {};
 function drawOverlay(){
   if(!overlayCtx) return;
-  const c = overlayCtx; c.globalAlpha = 1; c.drawImage(reliefImg, 0, 0, OW, OH);
+  const c = overlayCtx; c.clearRect(0, 0, OW, OH);
   POLYS.forEach(p => { PATHS[p.name] = PATHS[p.name] || pathFor(p.name); });
   rows.forEach(r => {
     const inZ = !zone || r.zone === zone, path = PATHS[r.name];
     if(!inZ){ c.globalAlpha = 0.55; c.fillStyle = "#06101f"; c.fill(path); return; }
     if(colorMode === "none") return;
-    c.globalAlpha = colorMode === "zone" ? 0.34 : 0.5; c.fillStyle = colorMode === "zone" ? zoneColor(r.zone) : metricColor(r); c.fill(path);
+    c.globalAlpha = colorMode === "zone" ? 0.36 : 0.5; c.fillStyle = colorMode === "zone" ? zoneColor(r.zone) : metricColor(r); c.fill(path);
   });
-  // national outline glow, then crisp inner borders
-  c.save(); c.globalAlpha = 1; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.95)"; c.lineWidth = 6; c.shadowColor = "rgba(255,255,255,.9)"; c.shadowBlur = 10;
-  rows.forEach(r => c.stroke(PATHS[r.name])); c.restore();
-  c.globalAlpha = 1; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.6)"; c.lineWidth = 1.8; rows.forEach(r => c.stroke(PATHS[r.name]));
-  Object.keys(ISLANDS).forEach(n => { c.globalAlpha = 1; c.fillStyle = "rgba(255,255,255,.85)"; c.fill(PATHS[n]); });
-  const hl = (name, col, w) => { if(!name || !PATHS[name]) return; c.save(); c.globalAlpha = 1; c.strokeStyle = col; c.lineWidth = w; c.shadowColor = col; c.shadowBlur = 18; c.stroke(PATHS[name]);
-    c.globalAlpha = 0.18; c.fillStyle = col; c.fill(PATHS[name]); c.restore(); };
-  if(selected && pinned) hl(selected, css("--magenta"), 6);
-  if(hoverName && !ISLANDS[hoverName]) hl(hoverName, css("--cyan"), 5);
-  overlayTex.needsUpdate = true; needOverlay = false;
+  Object.keys(ISLANDS).forEach(n => { c.globalAlpha = 0.85; c.fillStyle = "#ffffff"; c.fill(PATHS[n]); });
+  const hl = (name, col, a) => { if(!name || !PATHS[name]) return; c.globalAlpha = a; c.fillStyle = col; c.fill(PATHS[name]); };
+  if(selected && pinned) hl(selected, css("--magenta"), 0.18);
+  if(hoverName && !ISLANDS[hoverName]) hl(hoverName, css("--cyan"), 0.2);
+  c.globalAlpha = 1;
+  overlayTex.needsUpdate = true; needOverlay = false; needHl = true;
 }
-/* pins */
+/* pins: constant on-screen size so they never swamp the map when zooming in */
 function pinTexture(id, type){
-  const cv = document.createElement("canvas"); cv.width = 96; cv.height = 128; const c = cv.getContext("2d");
+  const cv = document.createElement("canvas"); cv.width = 192; cv.height = 256; const c = cv.getContext("2d");
   const col = css(type === "4S" ? "--pin-4s" : "--pin-3s");
-  c.shadowColor = col; c.shadowBlur = 14;
+  c.scale(2, 2); c.shadowColor = col; c.shadowBlur = 12;
   c.beginPath(); c.moveTo(48,124); c.bezierCurveTo(30,92,10,72,10,46); c.arc(48,46,38,Math.PI,0); c.bezierCurveTo(86,72,66,92,48,124); c.closePath();
   c.fillStyle = col; c.fill(); c.shadowBlur = 0; c.lineWidth = 5; c.strokeStyle = "#fff"; c.stroke();
   c.fillStyle = "#fff"; c.font = "700 36px Chakra Petch, Arial"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(String(id), 48, 48);
-  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t;
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t;
 }
 function buildPins(){
   CENTERS.forEach(c => {
-    const s = new THREE.Sprite(new THREE.SpriteMaterial({map: pinTexture(c.id, c.type), depthTest: true, transparent: true}));
-    const sz = c.type === "4S" ? 5.2 : 4.4; s.scale.set(sz*0.75, sz, 1); s.center.set(0.5, 0); s.userData = {center: c};
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({map: pinTexture(c.id, c.type), depthTest: true, transparent: true, sizeAttenuation: false}));
+    const sz = c.type === "4S" ? 0.046 : 0.038; s.scale.set(sz*0.75, sz, 1); s.center.set(0.5, 0); s.userData = {center: c, sz}; s.renderOrder = 5;
     pinGroup.add(s);
   });
   placePins();
 }
 function placePins(){
   if(!pinGroup) return;
-  pinGroup.children.forEach(s => { const c = s.userData.center; s.position.set(wx(c.lng), yOf(heightAt(c.lng, c.lat)) + 0.4, wz(c.lat)); });
+  pinGroup.children.forEach(s => { const c = s.userData.center; s.position.set(wx(c.lng), yOf(Math.max(heightAt(c.lng, c.lat),0)) + 0.15, wz(c.lat)); });
   pinGroup.visible = showPins;
   pinGroup.children.forEach(s => { const r = findRow(s.userData.center.province); s.visible = !zone || (r && r.zone === zone); });
 }
@@ -769,10 +848,10 @@ function buildBars(){
     visible().forEach(r => {
       const v = METRICS[metric].get(r); if(v == null || isNaN(v) || max <= 0) return;
       const h = 2 + 46 * Math.sqrt(Math.max(v,0)/max), col = new THREE.Color(metricColor(r));
-      const m = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, h, 6, 1, false),
-        new THREE.MeshStandardMaterial({color: col, emissive: col, emissiveIntensity: 0.45, transparent: true, opacity: 0.78, roughness: 0.2, metalness: 0.3}));
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, h, 24, 1, false),
+        new THREE.MeshStandardMaterial({color: col, emissive: col, emissiveIntensity: 0.45, transparent: true, opacity: 0.8, roughness: 0.2, metalness: 0.3}));
       m.userData = {name: r.name, h, value: v};
-      const cap = new THREE.Mesh(new THREE.CylinderGeometry(1.75, 1.75, 0.35, 6), new THREE.MeshBasicMaterial({color: 0xffffff, transparent:true, opacity:0.85}));
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(1.72, 1.72, 0.3, 24), new THREE.MeshBasicMaterial({color: 0xffffff, transparent:true, opacity:0.9}));
       cap.position.y = h/2; m.add(cap);
       barGroup.add(m);
     });
@@ -781,18 +860,20 @@ function buildBars(){
 }
 function placeBars(){
   if(!barGroup) return;
-  barGroup.children.forEach(m => { const r = findRow(m.userData.name); const [lng, lat] = r.lp; m.position.set(wx(lng), yOf(heightAt(lng, lat)) + m.userData.h/2, wz(lat)); });
+  barGroup.children.forEach(m => { const r = findRow(m.userData.name); const [lng, lat] = r.lp; m.position.set(wx(lng), yOf(Math.max(heightAt(lng, lat),0)) + m.userData.h/2, wz(lat)); });
   barGroup.visible = showBars;
 }
-/* labels (HTML overlay) */
+/* labels (HTML overlay) with collision culling: bigger markets win when space is tight */
 const labelEls = {};
 function updateLabels(){
   const w = stage.clientWidth, h = stage.clientHeight, v = new THREE.Vector3();
-  const items = rows.map(r => ({key: r.name, text: r.name, lng: r.lp[0], lat: r.lp[1], cls: "plabel", show: showLabels && (!zone || r.zone === zone), lift: 0.6}))
-    .concat([{key:"hs", text:"QĐ. Hoàng Sa", lng:112.0, lat:16.5, cls:"plabel", show: showLabels, lift:0.5},{key:"ts", text:"QĐ. Trường Sa", lng:114.6, lat:9.6, cls:"plabel", show: showLabels, lift:0.5}]);
+  const items = [...rows].sort((a,b)=>b._market-a._market).map((r,i) => ({key: r.name, text: r.name, lng: r.lp[0], lat: r.lp[1], cls: "plabel", show: showLabels && (!zone || r.zone === zone), lift: 0.25, pri: 100-i}))
+    .concat([{key:"hs", text:"QĐ. Hoàng Sa", lng:112.0, lat:16.5, cls:"plabel", show: showLabels, lift:0.2, pri: 90},{key:"ts", text:"QĐ. Trường Sa", lng:114.6, lat:9.6, cls:"plabel", show: showLabels, lift:0.2, pri: 90}]);
   if(showBars) barGroup.children.forEach(m => { const r = findRow(m.userData.name);
-    items.push({key:"v_"+r.name, text: METRICS[metric].fmt(m.userData.value), lng: r.lp[0], lat: r.lp[1], cls:"vlabel", show:true, abs: m.position.y + m.userData.h/2 + 0.6}); });
-  const seen = new Set();
+    items.push({key:"v_"+r.name, text: METRICS[metric].fmt(m.userData.value), lng: r.lp[0], lat: r.lp[1], cls:"vlabel", show:true, abs: m.position.y + m.userData.h/2 + 0.6, pri: 200}); });
+  if(hoverName) items.forEach(it => { if(it.key === hoverName || it.key === selected) it.pri = 500; });
+  items.sort((a,b) => b.pri - a.pri);
+  const placed = [], seen = new Set();
   items.forEach(it => {
     seen.add(it.key);
     let el = labelEls[it.key];
@@ -800,9 +881,12 @@ function updateLabels(){
     if(el.className !== it.cls) el.className = it.cls;
     if(el.textContent !== it.text) el.textContent = it.text;
     if(!it.show){ el.style.display = "none"; return; }
-    v.set(wx(it.lng), it.abs ?? (yOf(heightAt(it.lng, it.lat)) + it.lift), wz(it.lat)).project(camera);
-    if(v.z > 1 || v.x < -1.1 || v.x > 1.1 || v.y < -1.1 || v.y > 1.1){ el.style.display = "none"; return; }
-    el.style.display = ""; el.style.left = ((v.x+1)/2*w).toFixed(1)+"px"; el.style.top = ((1-v.y)/2*h).toFixed(1)+"px";
+    v.set(wx(it.lng), it.abs ?? (yOf(Math.max(heightAt(it.lng, it.lat),0)) + it.lift), wz(it.lat)).project(camera);
+    if(v.z > 1 || v.x < -1.05 || v.x > 1.05 || v.y < -1.05 || v.y > 1.05){ el.style.display = "none"; return; }
+    const x = (v.x+1)/2*w, y = (1-v.y)/2*h, bw = it.text.length*6.6 + 8, bh = 15, by = it.cls === "vlabel" ? y - bh : y - bh/2;
+    if(placed.some(b => Math.abs(b.x - x) < (b.w + bw)/2 && Math.abs(b.y - by) < bh)){ el.style.display = "none"; return; }
+    placed.push({x, y: by, w: bw});
+    el.style.display = ""; el.style.left = x.toFixed(1)+"px"; el.style.top = y.toFixed(1)+"px";
   });
   Object.keys(labelEls).forEach(k => { if(!seen.has(k)){ labelEls[k].remove(); delete labelEls[k]; } });
 }
@@ -839,9 +923,15 @@ function loop(t){
   requestAnimationFrame(loop);
   if(document.hidden) return;
   const k = Math.min(1, (t - introT0)/1600), e = 1 - Math.pow(1-k, 3), target = exag * (k >= 1 ? 1 : e);
-  if(Math.abs(target - exagShown) > 0.01){ exagShown = target; applyHeights(); }
+  if(Math.abs(target - exagShown) > 0.01){ exagShown = target; applyExag(); }
   controls.autoRotate = autoRotate; controls.update();
+  // keep pins and border glow in proportion: slimmer when zoomed far out, full size up close
+  const dist = camera.position.distanceTo(controls.target), f = Math.max(0.55, Math.min(1.1, 170/dist));
+  if(Math.abs(f - (loop.f || 0)) > 0.02){ loop.f = f;
+    pinGroup.children.forEach(sp => { const z = sp.userData.sz * f; sp.scale.set(z*0.75, z, 1); });
+    lineMats.forEach(m => { if(m.userData.base) m.linewidth = Math.max(1, m.userData.base * f); }); }
   if(needOverlay) drawOverlay();
+  if(needHl) updateHighlight();
   renderer.render(scene, camera);
   updateLabels();
 }
@@ -921,6 +1011,19 @@ const POST = {
   guerrilla:{label:"Du kích – chọn lọc", col:"#8ea7c7", desc:"Thị trường nhỏ, ta chưa có lực: đánh theo mùa vụ, chi phí thấp.",
     acts:["Đại lý vệ tinh hoặc điểm dịch vụ liên kết; xưởng lưu động theo mùa vụ nông sản.","Tập trung 1–2 phân khúc chủ lực của tỉnh, bán qua HTX, nhà thầu, thương lái.","Theo dõi dự án hạ tầng (cao tốc, cửa khẩu) để vào đúng thời điểm."]}
 };
+const MONTHS = ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12"];
+const SEASON_COL = ["rgba(140,190,255,.12)","rgba(70,227,255,.35)","rgba(255,195,90,.6)","rgba(255,77,141,.8)"];
+function seasonCal(r){ const now = new Date().getMonth();
+  return `<div class="cal" role="img" aria-label="Lịch mùa vụ 12 tháng">${r.season.map((v,i)=>`<div class="${i===now?"now":""}" style="background:${SEASON_COL[v]}" title="${MONTHS[i]}: ${["thấp","vừa","cao","cao điểm"][v]}">${MONTHS[i]}</div>`).join("")}</div>
+  <div class="muted" style="font-size:11.5px;margin-top:4px">Màu càng nóng, nhu cầu vận tải và dịch vụ càng cao. Viền trắng là tháng hiện tại; chạy chiến dịch chăm sóc trước cao điểm 1 tháng.</div>`; }
+const LIFECYCLE = [
+  "<b>Giao xe:</b> bàn giao tận nơi, hướng dẫn lái tiết kiệm nhiên liệu, kết nối nhóm chăm sóc Zalo của trung tâm.",
+  "<b>Sau 1 tháng / 1.000 km:</b> gọi hỏi thăm, bảo dưỡng lần đầu, ghi nhận góp ý.",
+  "<b>Bảo dưỡng định kỳ:</b> nhắc lịch tự động theo km, đặt hẹn để xe không phải chờ.",
+  "<b>Trước mùa cao điểm của tỉnh:</b> chiến dịch kiểm tra miễn phí theo lịch mùa vụ ở trên.",
+  "<b>Đăng kiểm, bảo hiểm:</b> nhắc trước 30 ngày, hỗ trợ làm thủ tục.",
+  "<b>Năm thứ 3–5:</b> định giá xe cũ, đề xuất thu cũ đổi mới, ưu đãi khách hàng thân thiết.",
+  "<b>Giới thiệu:</b> tri ân khách giới thiệu khách mới; mời khách tiêu biểu chia sẻ câu chuyện tại sự kiện."];
 function frontCard(r){
   const P = POST[r._post];
   return `<div class="front" style="border-color:${P.col}55;box-shadow:0 0 22px ${P.col}22">
@@ -1017,6 +1120,17 @@ function renderDossier(){
       </div>
       <ul class="actions">${suggestions(r).map(([c,t])=>`<li>${c?`<span class="pill ${c}">${c==="bad"?"Cần làm":c==="warn"?"Lưu ý":"Tốt"}</span> `:""}${t}</li>`).join("")}</ul>
       ${r.note ? `<p class="muted" style="margin:4px 0 0">Ghi chú: ${esc(r.note)}</p>` : ""}</div>
+    <div><h3>Mùa vụ &amp; lịch chiến dịch</h3>${seasonCal(r)}
+      <ul class="actions">${r.seasonNotes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>
+    <div><h3>Con người &amp; niềm tin</h3><p style="margin:6px 0 0;font-size:13.5px;color:#d3e3f5">${esc(r.psyche)}</p>
+      <p style="margin:6px 0 0;font-size:13.5px;color:#d3e3f5"><b>Lễ hội, thời điểm gắn kết cộng đồng:</b> ${esc(r.festivals)}</p></div>
+    <div><h3>Giữ chân khách cũ &amp; chiến dịch dịch vụ Đô Thành Auto</h3>
+      <ul class="actions">${r.campaigns.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>
+      <p class="muted" style="margin:8px 0 2px;font-size:12px">Vòng đời chăm sóc mỗi khách hàng:</p>
+      <ol class="life">${LIFECYCLE.map(x=>`<li><span>${x}</span></li>`).join("")}</ol></div>
+    <div><h3>Cơ cấu thị trường tỉnh (ước)</h3>${(() => { const st = structOf(r), top = (lab, v, k) => lab.map((l,i)=>[l,v[i]]).sort((a,b)=>b[1]-a[1]).slice(0,k).map(([l,x])=>`${esc(l)} ${fmt1(x/(v.reduce((a,b)=>a+b,0)||1)*100)}%`).join(" · ");
+      return `<p style="margin:6px 0 0;font-size:13px"><b>Tải trọng:</b> ${top(PAYLOAD, st.payload, 3)}<br><b>Loại thùng:</b> ${top(BODY, st.body, 3)}<br><b>Màu:</b> ${top(COLORS.map(c=>c[0]), st.color, 3)}</p>`; })()}
+      <button type="button" id="goStruct" style="margin-top:6px;font-size:12px">Xem cơ cấu &amp; đối thủ của ${esc(r.name)}</button></div>
     <div class="prose"><h3>Kinh tế chủ lực</h3><p>${esc(r.industries)}</p></div>
     <div class="prose"><h3>Hạ tầng &amp; logistics</h3><p>${esc(r.logistics)}</p></div>
     <div class="prose"><h3>Văn hóa · dân tộc · đặc sản</h3><p><b>Dân tộc:</b> ${esc(r.ethnic)}</p><p><b>Đặc sản:</b> ${esc(r.specialties)}</p><p><b>Văn hóa kinh doanh:</b> ${esc(r.culture)}</p></div>
@@ -1024,6 +1138,7 @@ function renderDossier(){
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="primary" id="instProv">Báo cáo nhanh ${esc(r.name)}</button><button type="button" id="askAiProv">Nhờ Ben phân tích sâu</button></div>`;
   const u = document.getElementById("unpin"); if(u) u.addEventListener("click", ()=>{ pinned=false; needOverlay = true; renderDossier(); });
   document.getElementById("instProv").addEventListener("click", () => instantReport("province"));
+  document.getElementById("goStruct").addEventListener("click", () => { pinned = true; structScope = "province"; renderStruct(); document.getElementById("structSec").scrollIntoView({behavior:"smooth", block:"start"}); });
   document.getElementById("askAiProv").addEventListener("click", () => askAi(`Phân tích chuyên sâu ${r.name}: vĩ mô, vi mô thị trường xe thương mại, mạng lưới trung tâm hiện có, rủi ro và 5 hành động ưu tiên trong 6 tháng tới.`));
   wireCtrRows(el);
 }
@@ -1042,7 +1157,7 @@ document.getElementById("tabC").addEventListener("click", () => showTab("C"));
 function select(name, pin){
   const r = findRow(name); if(!r) return false;
   selected = r.name; if(pin) pinned = true; needOverlay = true;
-  renderDossier(); highlightRow(); renderRank(); renderMatrix();
+  renderDossier(); highlightRow(); renderRank(); renderMatrix(); if(structScope === "province") renderStruct();
   return true;
 }
 
@@ -1145,6 +1260,8 @@ const QUICK = [
   ["Nên mở trung tâm ở đâu?", "Xếp hạng 8 tỉnh nên mở thêm trung tâm 3S/4S dựa trên số đăng ký mới, UIO, số xe trên mỗi trung tâm hiện có và động lực tăng trưởng. Nêu lý do và loại trung tâm phù hợp."],
   ["Địa hình & sản phẩm", "Phân tích ảnh hưởng của địa hình (miền núi, cao nguyên, đồng bằng) tới nhu cầu dòng xe và dịch vụ hậu mãi theo từng khu vực; đề xuất cấu hình xe và dịch vụ phù hợp."],
   ["Kế hoạch 90 ngày", "Đề xuất kế hoạch hành động 90 ngày cho mạng lưới: mục tiêu, việc cần làm theo khu vực, chỉ số theo dõi."],
+  ["Đối thủ & cơ cấu", "Phân tích cơ cấu thị trường (tải trọng, loại thùng, màu sắc) và sự hiện diện của các thương hiệu đối thủ ở khu vực/tỉnh đang chọn (hoặc toàn quốc); chỉ ra phân khúc Đô Thành Auto nên tấn công, model đối thủ cần đối đầu và cách đánh. Dùng get_market_structure."],
+  ["Khách trung thành", "Xây dựng chương trình khách hàng trung thành và lịch chiến dịch dịch vụ 12 tháng cho Đô Thành Auto theo mùa vụ, lễ hội và tâm lý từng vùng: mục tiêu, ưu đãi, kênh liên lạc, kịch bản chăm sóc, chỉ số đo (tỷ lệ quay lại xưởng, NPS, khách giới thiệu). Dùng get_customer_care cho các tỉnh trọng điểm."],
 ];
 function quickPrompt(i){
   if(i === 1) return zone ? `Phân tích ${zone}: các tỉnh, quy mô thị trường, trung tâm hiện có, khoảng trống độ phủ, so sánh với các khu vực khác và đề xuất.` : "Chưa chọn khu vực: hãy so sánh 11 khu vực kinh doanh về thị trường, số trung tâm và xe/trung tâm, rồi chỉ ra 3 khu vực cần ưu tiên.";
@@ -1163,7 +1280,7 @@ function syncSpeed(){ document.querySelectorAll("[data-speed]").forEach(b => b.s
 syncSpeed();
 
 /* instant reports: built from the page's own data, no AI wait */
-const INSTANT = [["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"]];
+const INSTANT = [["Cơ cấu thị trường","struct"],["Toàn quốc","nation"],["Khu vực đang chọn","zone"],["Tỉnh đang chọn","province"],["34 mặt trận","fronts"],["Khoảng trống độ phủ","gaps"],["Chăm sóc KH tháng này","care"]];
 document.getElementById("aiInstant").innerHTML = INSTANT.map(([l,k])=>`<button type="button" data-r="${k}">${esc(l)}</button>`).join("");
 document.getElementById("aiInstant").addEventListener("click", e => { const b = e.target.closest("button[data-r]"); if(b) instantReport(b.dataset.r); });
 const n0 = v => fmtInt(v), p1 = v => fmt1(v) + "%";
@@ -1243,8 +1360,42 @@ ${r._comp.length ? r._comp.map(([l,v])=>`- ${l}: ${fmt1(v)}%`).join("\n") : "- C
 ${P.acts.map(a=>"- "+a).join("\n")}
 ${suggestions(r).map(([,t])=>"- "+t.replace(/<\/?b>/g,"**")).join("\n")}
 
-## 8. Văn hóa kinh doanh
-${r.culture}
+## 8. Con người, văn hóa & mùa vụ
+- **Văn hóa kinh doanh:** ${r.culture}
+- **Tâm lý khách hàng & niềm tin:** ${r.psyche}
+- **Lễ hội, thời điểm gắn kết:** ${r.festivals}
+- **Lịch mùa vụ (cao điểm):** ${r.season.map((v,i)=>v>=3?MONTHS[i]:null).filter(Boolean).join(", ") || "không có tháng cao điểm rõ"}; ${r.seasonNotes.join("; ")}.
+
+## 9. Giữ chân khách cũ & chiến dịch dịch vụ
+${r.campaigns.map(c=>"- "+c).join("\n")}
+- Vòng đời chăm sóc: ${LIFECYCLE.map(x=>x.replace(/<\/?b>/g,"")).join(" → ")}
+${note}`};
+  }
+  if(kind === "struct"){
+    const list = zone ? all.filter(r=>r.zone===zone) : selected && pinned ? all.filter(r=>r.name===selected) : all, sc = zone ? zone : selected && pinned ? selected : "toàn quốc";
+    return {title:`Cơ cấu thị trường ${sc}`, md:`# Cơ cấu thị trường xe tải ${sc}\n_Ngày ${date} · ${n0(list.reduce((a,r)=>a+r._market,0))} xe ĐK mới/năm · tải trọng, loại thùng, màu là ước tính_\n\n${structMarkdown(list)}\n\n### Model cạnh tranh theo phân khúc\n${SEG_MODELS.map(x=>`- **${x[0]}:** ${x[1]}. Cách đánh: ${x[2]}.`).join("\n")}\n${note}`};
+  }
+  if(kind === "care"){
+    const m = new Date().getMonth(), m2 = (m+1)%12, list = zone ? all.filter(r=>r.zone===zone) : all;
+    const hot = list.filter(r=>r.season[m] >= 3).sort((a,b)=>b.season[m]-a.season[m] || b._uio-a._uio), next = list.filter(r=>r.season[m2] >= 3 && r.season[m] < 3);
+    return {title:`Chăm sóc khách hàng tháng ${m+1}`, md:
+`# Chăm sóc khách hàng & chiến dịch dịch vụ tháng ${m+1}
+_${zone || "Toàn quốc"} · ngày ${date} · mục tiêu: giữ khách cũ, tăng khách trung thành, củng cố niềm tin vào Đô Thành Auto_
+
+## 1. Mặt trận đang ở cao điểm (${hot.length} tỉnh)
+| Tỉnh | Mức mùa vụ | UIO xe TM | Trung tâm | Chiến dịch nên chạy |\n|---|---|---|---|---|
+${hot.map(r=>`| ${r.name} | ${["thấp","vừa","cao","cao điểm"][r.season[m]]} | ${n0(r._uio)} | ${r._c4+r._c3} | ${r.campaigns[0].split(":")[0]} |`).join("\n") || "| — | | | | |"}
+
+## 2. Chuẩn bị cho tháng ${m2+1} (sắp vào cao điểm)
+${next.map(r=>`- **${r.name}:** ${r.seasonNotes.join("; ")}. Gợi ý: ${r.campaigns[0]}.`).join("\n") || "- Không có tỉnh nào chuyển sang cao điểm."}
+
+## 3. Việc chăm sóc khách cũ trong tháng
+${LIFECYCLE.map((x,i)=>`${i+1}. ${x.replace(/<\/?b>/g,"**")}`).join("\n")}
+
+## 4. Chỉ số theo dõi
+- Tỷ lệ khách quay lại xưởng trong 12 tháng; tỷ lệ xe đến hẹn bảo dưỡng.
+- Điểm hài lòng (NPS) sau mỗi lần dịch vụ; số khiếu nại xử lý trong 24 giờ.
+- Số khách mua lại, số khách được giới thiệu; doanh thu dịch vụ, phụ tùng trên mỗi xe UIO.
 ${note}`};
   }
   if(kind === "fronts"){
@@ -1346,16 +1497,17 @@ function mdToHtml(md){
   closeList(); flushTable(); return html;
 }
 function dataSnapshot(){
-  const head = "Tỉnh|Khu vực|Dân số(nghìn)|Xã/phường|Đô thị hóa%|GRDP2024(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Cơ cấu NLTS/CNXD/DV/Thuế(%)|Độ cao TB(m)|UIO xe TM|ĐK mới xe tải 2025|ĐK/UIO%|Nguồn ĐK|Hạng|TT 4S|TT 3S|Xe/TT|Doanh số|Mục tiêu|Thế trận|Hấp dẫn|Sức mạnh|Mục tiêu 2026 đề xuất|Thị phần đối thủ|Cơ cấu phân khúc %(nhẹ/trung/nặng/đầu kéo/khách/van)";
+  const head = "Tỉnh|Khu vực|Dân số(nghìn)|Xã/phường|Đô thị hóa%|GRDP2024(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Cơ cấu NLTS/CNXD/DV/Thuế(%)|Độ cao TB(m)|UIO xe TM|ĐK mới xe tải 2025|ĐK/UIO%|Nguồn ĐK|Hạng|TT 4S|TT 3S|Xe/TT|Doanh số|Mục tiêu|Thế trận|Hấp dẫn|Sức mạnh|Mục tiêu 2026 đề xuất|Thị phần đối thủ|Cơ cấu phân khúc %(nhẹ/trung/nặng/đầu kéo/khách/van)|Mùa vụ T1..T12 (0-3)|Ghi chú mùa vụ";
   const body = rows.map(r => [r.name, r.zone, r.pop, r.communes, r.urban, r.grdp, r.gpc2025 || Math.round(r._gpc), r.growth ?? "", r.econ.join("/"), r.elev, r._uio, r._market, r._turn.toFixed(1),
     r._regReal?"thực":"ước", r._tier, r._c4, r._c3, r._perCenter==null?"":Math.round(r._perCenter), r.sales||0, r.target||0, POST[r._post].label, r._attr, r._str, r._tgt26,
-    r._comp.map(([l,v])=>l+" "+v+"%").join(", ") || "chưa có", r.mix.join("/")].join("|")).join("\n");
+    r._comp.map(([l,v])=>l+" "+v+"%").join(", ") || "chưa có", r.mix.join("/"), r.season.join(""), r.seasonNotes.join("; ")].join("|")).join("\n");
   return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (Cục Đăng kiểm 8/2026: xe tải + khách + chuyên dùng): ${uioNat} xe.\n\nNGUỒN MỚI NHẤT (cập nhật ${fmtTime(SRC.updated)}):\n${SRC.sources.map(x => `${x.org} (${x.period}): ` + x.items.map(i => i[0] + ": " + i[1]).join("; ")).join("\n")} Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\n35 trung tâm dịch vụ:\n${CENTERS.map(c => `${c.id}. ${c.name} (${c.type}) - ${c.province}`).join("\n")}`;
 }
 function rules(){
   return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho mạng lưới trung tâm dịch vụ xe thương mại (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
 Xưng "em", gọi người dùng là "anh/chị". Ben thường được dùng TRONG CUỘC HỌP: trả lời số trước, lời sau; câu ngắn. Mọi phép tính phải dùng công cụ calc; gộp/tách thị phần dùng merge_share / split_province. Khi viết sale talk: nghệ thuật bán hàng tư vấn (SPIN, Tính năng – Lợi ích – Bằng chứng, xử lý từ chối, chốt), dựa trên giá trị và tổng chi phí sở hữu, không chê bai đối thủ, không bịa thông số kỹ thuật. ${aiSpeed === "quick" ? "Chế độ NHANH: trả lời gọn, đi thẳng vào số liệu và kết luận, tối đa khoảng 350 từ, dùng bảng khi cần." : "Chế độ CHUYÊN SÂU: báo cáo đầy đủ, chi tiết."}
 Trả lời bằng tiếng Việt, ngắn gọn, có cấu trúc Markdown (tiêu đề ##, gạch đầu dòng, bảng khi so sánh). Luôn dựa trên số liệu được cung cấp; khi số liệu là ước tính (thị trường xe theo tỉnh, cơ cấu phân khúc, độ cao) hãy nói rõ là ước tính. Không bịa số liệu ngoài dữ liệu; nếu cần dữ liệu chưa có (ví dụ doanh số thực tế đang là 0), hãy nêu cần bổ sung gì.
+Trọng tâm thương hiệu Đô Thành Auto: phát triển khách mới VÀ đặc biệt chăm sóc khách cũ để tăng khách trung thành, làm chiến dịch dịch vụ theo mùa vụ, lễ hội, tâm lý từng vùng, củng cố niềm tin vào giá trị thương hiệu. Tháng hiện tại là tháng ${new Date().getMonth()+1}.
 Tư duy chỉ đạo: "phân tích trên từng mặt trận và đánh trên từng mặt trận" — mỗi tỉnh là một mặt trận với thế trận (Tổng tấn công / Mở mặt trận / Phòng thủ – khai thác / Du kích – chọn lọc), mục tiêu, lực lượng, cách đánh và chỉ số đo.
 Báo cáo nên có: Tóm tắt điều hành, Phân tích số liệu, Rủi ro/cơ hội, Khuyến nghị hành động cụ thể (ai, làm gì, khi nào, đo bằng chỉ số nào).
 Dùng công cụ get_province để lấy hồ sơ định tính khi phân tích sâu một tỉnh. Dùng focus_province / set_map khi phù hợp để minh họa trên bản đồ.
@@ -1379,6 +1531,14 @@ const AI_TOOLS = [
   {name:"split_province", description:"Tách một tỉnh mới thành các tỉnh cũ trước sáp nhập, ước tính ĐK mới và UIO từng phần.",
    inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
    execute: ({name}) => localAnswer("tách " + name) || "Không tìm thấy tỉnh" },
+  {name:"get_customer_care", description:"Trả về hồ sơ con người – văn hóa – mùa vụ – lễ hội – tâm lý khách hàng và gợi ý chiến dịch chăm sóc khách cũ của một tỉnh.",
+   inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
+   execute: ({name}) => { const r = findRow(String(name)); if(!r) throw new Error("Không tìm thấy tỉnh " + name);
+     return {tinh:r.name, mua_vu_T1_T12:r.season, ghi_chu_mua_vu:r.seasonNotes, le_hoi:r.festivals, tam_ly:r.psyche, dan_toc:r.ethnic, dac_san:r.specialties, van_hoa_kinh_doanh:r.culture, chien_dich:r.campaigns, uio:r._uio, trung_tam:centersOf(r.name).map(c=>c.name)}; }},
+  {name:"get_market_structure", description:"Cơ cấu thị trường xe tải (ước tính) theo tải trọng, loại thùng, màu sắc và mức hiện diện thương hiệu đối thủ cho một tỉnh, một khu vực kinh doanh hoặc toàn quốc (scope để trống).",
+   inputSchema:{type:"object",properties:{scope:{type:"string",description:"Tên tỉnh, tên khu vực (vd 'Vùng 9') hoặc để trống"}}},
+   execute: ({scope}) => { const z = ZONES.find(x => norm(x) === norm(scope||"")); const r = scope && !z ? findRow(String(scope)) : null;
+     const list = z ? rows.filter(x=>x.zone===z) : r ? [r] : rows; return structMarkdown(list) + "\n\nModel theo phân khúc: " + SEG_MODELS.map(x=>x[0]+": "+x[1]).join(" | "); }},
   {name:"focus_province", description:"Chọn và ghim một tỉnh trên bản đồ để người dùng xem hồ sơ. Trả về 'ok'.",
    inputSchema:{type:"object",properties:{name:{type:"string"}},required:["name"]},
    execute: ({name}) => { if(!select(String(name), true)) throw new Error("Không tìm thấy tỉnh " + name); showTab("P"); return "ok"; }},
@@ -1618,6 +1778,102 @@ function localAnswer(text){
   return null;
 }
 
+/* ---------- market structure: payload, body type, colour, brands, models ---------- */
+const PAYLOAD = ["< 1 tấn","1–2,5 tấn","2,5–3,5 tấn","3,5–5 tấn","5–10 tấn","10–15 tấn","> 15 tấn","Đầu kéo"];
+const BODY = ["Thùng lửng","Mui bạt","Thùng kín","Đông lạnh / bảo ôn","Ben tự đổ","Chuyên dùng (bồn, cẩu, trộn…)","Đầu kéo + sơ mi"];
+const BODY_BASE = {metro:[6,24,40,14,8,8], port:[6,26,34,10,10,14], industrial:[6,26,36,8,14,10], coast:[8,30,24,10,18,10],
+  highland:[12,36,16,12,16,8], delta:[10,34,18,22,8,8], mountain:[10,28,12,6,34,10], border:[8,30,20,18,14,10]};
+const COLORS = [["Trắng","#f4f7fb"],["Xanh dương","#3d7dd8"],["Bạc / xám","#9aa7b8"],["Đỏ","#d9363e"],["Cam / vàng","#f2a531"],["Xanh lá","#3fae6a"],["Khác","#6b5b95"]];
+const REGION_OF = z => ["Khu vực TP. Hồ Chí Minh","Vùng 8"].includes(z) ? "south" : z === "Vùng 9" ? "mekong" : z === "Vùng 7" ? "highland" : ["Vùng 5","Vùng 6"].includes(z) ? "central" : "north";
+const COLOR_BASE = {north:[46,18,10,10,10,3,3], central:[50,20,10,7,8,3,2], highland:[48,22,9,8,8,3,2], south:[54,20,10,5,6,3,2], mekong:[52,24,8,6,5,3,2]};
+const BRANDS = [
+  {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ – trung", models:"IZ49, IZ65, JMC (đối chiếu danh mục hiện hành)", pos:"Giá cạnh tranh, mạng lưới 35 trung tâm 4S/3S", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
+  {k:"thaco", name:"Thaco (Kia, Frontier, Fuso, Foton, Auman)", origin:"Việt Nam lắp ráp", seg:"Tải nhẹ → nặng, xe khách", models:"Kia K200/K250, Frontier TF, Ollin, Auman, Fuso Canter", pos:"Phủ rộng nhất, giá trung bình, sẵn xe", fact:"19.747 xe tải 10 tháng 2026 (VAMA, báo Xây dựng)"},
+  {k:"hyundai", name:"Hyundai (Thành Công Thương mại)", origin:"Hàn Quốc / lắp ráp VN", seg:"Tải nhẹ → nặng, xe khách", models:"Porter H150, New Mighty N250, Mighty EX8, HD240/HD320, County, Universe", pos:"Thương hiệu mạnh, giá trung – cao", fact:"Ví dụ địa phương: 17,65% thị phần Thanh Hóa (7 tháng 2025)"},
+  {k:"isuzu", name:"Isuzu Việt Nam", origin:"Nhật Bản", seg:"Tải nhẹ – trung – nặng", models:"QKR, NMR, NPR, NQR, FRR, FVR, Giga", pos:"Bền, tiết kiệm nhiên liệu, giá cao", fact:"Hơn 11.000 xe tải năm 2025, thứ 2 khối VAMA"},
+  {k:"hino", name:"Hino Motors Việt Nam", origin:"Nhật Bản", seg:"Tải trung – nặng", models:"Hino 300 (XZU), 500 (FC, FG, FL, FM), 700", pos:"Cao cấp, độ bền, giá trị bán lại tốt", fact:"Chưa có số công bố trong kỳ"},
+  {k:"china", name:"Xe Trung Quốc tải nặng (Howo/Sitrak, Shacman, Chenglong, FAW, Dongfeng)", origin:"Trung Quốc", seg:"Ben, tải nặng, đầu kéo", models:"Howo A7/TX, Sitrak, Shacman X3000, Chenglong H7, FAW J6", pos:"Giá thấp, tải khỏe; hậu mãi, giá bán lại yếu hơn", fact:"CNHTC dẫn đầu hơn 22% thị trường xe tải (7 tháng 2025, báo Thể thao & Văn hóa)"},
+  {k:"suzuki", name:"Suzuki", origin:"Nhật Bản", seg:"Tải siêu nhẹ, van", models:"Carry Pro, EECO van", pos:"Siêu nhẹ, len lỏi nội đô", fact:"EECO van 503 xe 10 tháng 2026"},
+  {k:"tera", name:"Teraco, JAC, SRM (tải nhẹ giá rẻ)", origin:"VN lắp ráp / Trung Quốc", seg:"Tải nhẹ", models:"Tera 100/190/345, JAC X125/N350, SRM T20", pos:"Giá thấp, cạnh tranh trực diện tải nhẹ", fact:"Chưa có số công bố trong kỳ"},
+];
+const SEG_MODELS = [
+  ["< 1 tấn & van", "Suzuki Carry Pro, EECO; Teraco Tera 100; SRM; VinFast EC Van (điện)", "Nhấn chi phí/km, độ bền khung, dịch vụ gần, giao xe nhanh nội đô"],
+  ["1–2,5 tấn", "Kia K200/K250, Hyundai Porter H150, Isuzu QKR, Tera 190, JAC X125", "Thế mạnh tải nhẹ của ta: thùng đa dạng (bạt, kín, lạnh), giấy phép lái hạng B, vào phố theo quy định"],
+  ["2,5–3,5 tấn", "Hyundai New Mighty N250, Isuzu QKR/NMR, Fuso Canter, Hino XZU, Tera 345", "So TCO với xe Nhật/Hàn; gói tài chính cho chủ xe cá nhân"],
+  ["3,5–10 tấn", "Thaco Ollin/Auman C, Hyundai Mighty EX8, Isuzu NQR/FRR, Hino 500 FC/FG", "Bán theo dự án KCN, logistics; hợp đồng bảo dưỡng trọn gói"],
+  ["> 10 tấn, ben", "Howo, Shacman, Chenglong, Hyundai HD, Hino 500 FM, Isuzu Giga, Thaco Auman", "Đối đầu xe Trung Quốc bằng TCO, giá bán lại, cứu hộ công trường"],
+  ["Đầu kéo", "Howo/Sitrak, Shacman, Chenglong, Hyundai Xcient, Thaco Auman, Hino 700", "Tập trung cảng, cửa khẩu; dịch vụ 24/7, kho phụ tùng sát tuyến"],
+];
+function structOf(r){
+  const reg = r._market, m = r.mix.map(v=>v/100), metro = r.archetype === "metro", big = ["port","industrial"].includes(r.archetype), rough = ["mountain","border"].includes(r.archetype);
+  const L = reg*m[0], M = reg*m[1], Hh = reg*m[2], T = reg*m[3], V = reg*m[5];
+  const payload = [L*(metro?0.18:0.14) + V, L*(metro?0.52:0.40), L*(metro?0.30:0.46), M*(big?0.35:0.45), M*(big?0.65:0.55), Hh*(rough?0.30:0.40), Hh*(rough?0.70:0.60), T];
+  let b = [...(BODY_BASE[r.archetype] || BODY_BASE.coast)];
+  if(r.seasonNotes.some(n => /trái|vải|sầu riêng|tôm|thủy sản|rau hoa/i.test(n))){ b[2] -= 6; b[3] += 6; }
+  const nonT = reg - T, body = b.map(v => nonT*v/100).concat([T]);
+  const hv = (r.mix[2]+r.mix[3])/100; let c = [...COLOR_BASE[REGION_OF(r.zone)]];
+  c[0] -= 16*hv; c[3] += 6*hv; c[4] += 10*hv; const cs = c.reduce((a,x)=>a+x,0); const color = c.map(x => reg*x/cs);
+  const n = r._c4 + r._c3, reg2 = REGION_OF(r.zone);
+  const lvl = {dothanh: n >= 2 ? 3 : n === 1 ? 2 : 0, thaco: 3,
+    hyundai: (r._tier === "A" || metro || big || r.archetype === "port") ? 3 : 2,
+    isuzu: (metro || big) ? 3 : rough ? 1 : 2, hino: (metro || r.archetype === "port") ? 3 : (rough || r.archetype === "delta") ? 1 : 2,
+    china: (rough || r.archetype === "port" || r.archetype === "coast") ? 3 : (big || r.archetype === "highland") ? 2 : 1,
+    suzuki: (metro || r.archetype === "delta") ? 2 : 1, tera: ["south","mekong","highland"].includes(reg2) ? 2 : 1};
+  return {payload, body, color, lvl};
+}
+function sumStruct(list){
+  const z = k => list.reduce((acc,r) => { const s = structOf(r)[k]; return acc.map((v,i)=>v+s[i]); }, Array(k==="payload"?PAYLOAD.length:k==="body"?BODY.length:COLORS.length).fill(0));
+  const lvl = {}; BRANDS.forEach(b => { lvl[b.k] = list.length ? list.reduce((a,r)=>a+structOf(r).lvl[b.k],0)/list.length : 0; });
+  return {payload: z("payload"), body: z("body"), color: z("color"), lvl};
+}
+let structScope = "nation";
+function structList(){ if(structScope === "zone" && zone) return rows.filter(r=>r.zone===zone); if(structScope === "province" && selected) return rows.filter(r=>r.name===selected); return rows; }
+function structLabel(){ return structScope === "zone" && zone ? zone : structScope === "province" && selected ? selected : "Toàn quốc"; }
+function barsHtml(labels, vals, cols){
+  const tot = vals.reduce((a,b)=>a+b,0) || 1, mx = Math.max(...vals) || 1;
+  return `<div class="sbars">${labels.map((l,i)=>`<div class="sb"><span class="sl">${cols ? `<i class="sw" style="background:${cols[i]};color:${cols[i]};border:1px solid rgba(255,255,255,.3)"></i>` : ""}${esc(l)}</span><span class="st"><span style="width:${(vals[i]/mx*100).toFixed(1)}%;background:${cols ? cols[i] : "linear-gradient(90deg,#46e3ff55,#46e3ff)"}"></span></span><span class="sv num">${fmtInt(vals[i])} <small>${fmt1(vals[i]/tot*100)}%</small></span></div>`).join("")}</div>`;
+}
+function structInsights(list, s){
+  const tot = s.payload.reduce((a,b)=>a+b,0) || 1, light = (s.payload[0]+s.payload[1]+s.payload[2])/tot*100, heavy = (s.payload[5]+s.payload[6]+s.payload[7])/tot*100;
+  const bt = s.body.reduce((a,b)=>a+b,0) || 1, cold = s.body[3]/bt*100, dump = s.body[4]/bt*100, closed = s.body[2]/bt*100, white = s.color[0]/s.color.reduce((a,b)=>a+b,0)*100;
+  const out = [];
+  out.push(`Tải ≤ 3,5 tấn chiếm <b>${fmt1(light)}%</b>: ${light > 55 ? "chiến trường chính là tải nhẹ (giấy phép lái hạng B, giới hạn tải trọng vào phố): ưu tiên tồn kho và trưng bày tải nhẹ." : "thị trường thiên tải trung – nặng: cần năng lực dịch vụ xe lớn, cứu hộ và phụ tùng nặng."}`);
+  if(heavy > 25) out.push(`Tải nặng + đầu kéo <b>${fmt1(heavy)}%</b>, xe Trung Quốc hiện diện mạnh: đánh bằng tổng chi phí sở hữu, giá bán lại, hậu mãi 24/7 (tab Giá trị SP của Ben).`);
+  if(cold > 14) out.push(`Thùng đông lạnh / bảo ôn <b>${fmt1(cold)}%</b>: liên kết nhà đóng thùng lạnh, có xe lạnh sẵn trước mùa nông sản, dịch vụ máy lạnh.`);
+  if(dump > 15) out.push(`Xe ben <b>${fmt1(dump)}%</b>: bám dự án hạ tầng, mỏ; gói bảo dưỡng ben, thủy lực, nhíp.`);
+  if(closed > 30) out.push(`Thùng kín <b>${fmt1(closed)}%</b> (logistics, thương mại điện tử): bán theo đội xe, hợp đồng dịch vụ trọn gói.`);
+  out.push(`Màu trắng chiếm khoảng <b>${fmt1(white)}%</b>: tồn kho chủ lực trắng + xanh dương; màu theo mệnh (Kim: trắng, bạc; Thủy: xanh dương, đen; Hỏa: đỏ, cam; Mộc: xanh lá; Thổ: vàng, nâu) đặt theo đơn để không ứ vốn.`);
+  return out;
+}
+function renderStruct(){
+  const el = document.getElementById("structBody"); if(!el) return;
+  const list = structList(), s = sumStruct(list), reg = list.reduce((a,r)=>a+r._market,0);
+  document.querySelectorAll("[data-sscope]").forEach(b => b.setAttribute("aria-pressed", b.dataset.sscope === structScope));
+  const real = list.filter(r => r._comp.length);
+  el.innerHTML = `<p class="muted" style="margin:0 0 10px">${esc(structLabel())} · ${fmtInt(reg)} xe tải ĐK mới/năm. Cơ cấu tải trọng, loại thùng, màu là <b>ước tính</b> từ cơ cấu phân khúc, loại hình kinh tế và mùa vụ của tỉnh; thay bằng dữ liệu bán hàng hoặc đăng ký thực tế khi có.</p>
+  <div class="sgrid">
+    <div class="sbox"><h3>Theo tải trọng</h3>${barsHtml(PAYLOAD, s.payload)}</div>
+    <div class="sbox"><h3>Theo loại thùng</h3>${barsHtml(BODY, s.body)}</div>
+    <div class="sbox"><h3>Theo màu sắc</h3>${barsHtml(COLORS.map(c=>c[0]), s.color, COLORS.map(c=>c[1]))}</div>
+    <div class="sbox"><h3>Nhận định quản trị</h3><ul class="actions">${structInsights(list, s).map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  </div>
+  <h3 style="margin-top:16px">Sự hiện diện của các thương hiệu ${real.length ? "(có " + real.length + " tỉnh đã nhập thị phần thực)" : ""}</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Thương hiệu</th><th style="text-align:left">Hiện diện</th><th style="text-align:left">Phân khúc</th><th style="text-align:left">Model chủ lực</th><th style="text-align:left">Định vị</th><th style="text-align:left">Số liệu đã công bố</th></tr></thead><tbody>
+  ${BRANDS.map(b => { const v = s.lvl[b.k]; return `<tr${b.k==="dothanh"?' class="sel"':""}><td>${esc(b.name)}</td><td style="text-align:left"><span class="lvl">${[1,2,3].map(i=>`<i class="${v >= i-0.5 ? "on" : ""}"></i>`).join("")}</span> <span class="muted">${["Chưa có","Thấp","Vừa","Mạnh"][Math.round(v)]}</span></td><td style="text-align:left">${esc(b.seg)}</td><td style="text-align:left;white-space:normal;min-width:200px">${esc(b.models)}</td><td style="text-align:left;white-space:normal;min-width:160px">${esc(b.pos)}</td><td style="text-align:left;white-space:normal;min-width:200px" class="muted">${esc(b.fact)}</td></tr>`; }).join("")}
+  </tbody></table></div>
+  <p class="muted" style="font-size:12px;margin:6px 0 0">Mức hiện diện là ước tính theo loại hình thị trường và mạng lưới; nhập thị phần đối thủ thực tế ở bảng dữ liệu (cột TP …) để thay thế. Danh mục model cần đối chiếu bảng giá hiện hành của từng hãng.</p>
+  <h3 style="margin-top:16px">Model cạnh tranh theo phân khúc tải trọng</h3>
+  <div class="tablewrap" style="max-height:none;margin-top:8px"><table class="btab"><thead><tr><th>Phân khúc</th><th style="text-align:left">Model đối thủ chính</th><th style="text-align:left">Cách đánh của Đô Thành Auto</th><th>Quy mô (ước)</th></tr></thead><tbody>
+  ${SEG_MODELS.map((x,i) => { const q = [s.payload[0], s.payload[1], s.payload[2], s.payload[3]+s.payload[4], s.payload[5]+s.payload[6], s.payload[7]][i];
+    return `<tr><td>${esc(x[0])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[1])}</td><td style="text-align:left;white-space:normal;min-width:240px">${esc(x[2])}</td><td class="num">${fmtInt(q)} xe</td></tr>`; }).join("")}
+  </tbody></table></div>`;
+}
+document.querySelectorAll("[data-sscope]").forEach(b => b.addEventListener("click", () => { structScope = b.dataset.sscope; renderStruct(); }));
+function structMarkdown(list){
+  const s = sumStruct(list), md = (labels, vals) => { const t = vals.reduce((a,b)=>a+b,0) || 1; return "| Nhóm | Xe/năm | Tỷ trọng |\n|---|---|---|\n" + labels.map((l,i)=>`| ${l} | ${fmtInt(vals[i])} | ${fmt1(vals[i]/t*100)}% |`).join("\n"); };
+  return `### Tải trọng\n${md(PAYLOAD, s.payload)}\n\n### Loại thùng\n${md(BODY, s.body)}\n\n### Màu sắc\n${md(COLORS.map(c=>c[0]), s.color)}\n\n### Hiện diện thương hiệu (ước, 0–3)\n${BRANDS.map(b=>`- ${b.name}: ${fmt1(s.lvl[b.k])} · ${b.fact}`).join("\n")}\n\n### Nhận định\n${structInsights(list, s).map(x=>"- "+x.replace(/<\/?b>/g,"**")).join("\n")}`;
+}
+
 /* ---------- data sources & timestamps ---------- */
 function fmtTime(iso){ const d = new Date(iso); return isNaN(d) ? "—" : d.toLocaleString("vi-VN", {timeZone:"Asia/Ho_Chi_Minh", hour:"2-digit", minute:"2-digit", day:"2-digit", month:"2-digit", year:"numeric"}); }
 function renderSources(){
@@ -1635,7 +1891,7 @@ function renderAll(){
   tamIn.value = tam; compute();
   chipBox.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k===metric));
   document.querySelectorAll("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color===colorMode));
-  uioIn.value = uioNat; benToolsRefresh(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
+  uioIn.value = uioNat; benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 function init(){
   load(); renderAll();
