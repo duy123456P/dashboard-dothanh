@@ -1,0 +1,727 @@
+{
+ "updated": "2026-11-20",
+ "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế.",
+ "docs": [
+  {
+   "id": "hp2025",
+   "so": "Nghị quyết 203/2025/QH15",
+   "ten": "Sửa đổi, bổ sung một số điều của Hiến pháp năm 2013",
+   "cq": "Quốc hội",
+   "bh": "2025-06-16",
+   "hl": "2025-07-01",
+   "lv": [
+    "Hiến pháp – bộ máy"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Sửa Điều 9, 10, khoản 1 Điều 84, Điều 110, 111",
+    "Chính quyền địa phương 2 cấp (tỉnh, xã), kết thúc hoạt động cấp huyện",
+    "Đi kèm Luật Tổ chức chính quyền địa phương 72/2025/QH15 và NQ 202/2025/QH15 sắp xếp còn 34 tỉnh, thành"
+   ],
+   "tacdong": "Địa chỉ pháp lý của công ty, đại lý, khách hàng trên hợp đồng, hóa đơn, hồ sơ đăng ký, đăng kiểm đổi theo tỉnh/xã mới; bản đồ kinh doanh đã dùng 34 tỉnh mới.",
+   "viec": [
+    "Rà soát địa chỉ trên hợp đồng mẫu, hóa đơn, website, hồ sơ đại lý",
+    "Cập nhật địa bàn phụ trách của từng đại lý theo xã/phường mới"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-sua-doi-Hien-phap-2013-655275.aspx"
+    ]
+   ]
+  },
+  {
+   "id": "gtgt2",
+   "so": "Nghị quyết 204/2025/QH15; Nghị định 174/2025/NĐ-CP",
+   "ten": "Giảm 2% thuế GTGT (10% → 8%)",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2025-07-01",
+   "hl": "2025-07-01",
+   "het": "2026-12-31",
+   "lv": [
+    "Thuế GTGT"
+   ],
+   "tt": "hiệu lực đến 31/12/2026",
+   "tin": "cao",
+   "diem": [
+    "Áp dụng từ 01/7/2025 đến hết 31/12/2026",
+    "Không phải mọi hàng hóa 10% đều được giảm: loại trừ theo phụ lục (hàng chịu thuế TTĐB, một số ngành)",
+    "Chưa thấy văn bản kéo dài sau 31/12/2026"
+   ],
+   "tacdong": "Giá bán, báo giá, hợp đồng giao xe xuyên năm. Xe chịu TTĐB (VAN có ≥2 hàng ghế, pickup chở người) thuộc nhóm loại trừ; xe tải phải đối chiếu mã hàng trong phụ lục.",
+   "viec": [
+    "Kế toán thuế xác nhận mã hàng từng dòng xe có được giảm hay không",
+    "Chuẩn bị bảng giá và điều khoản hợp đồng cho trường hợp trở lại 10% từ 01/01/2027",
+    "Hợp đồng ký 2026 giao xe 2027: thỏa thuận rõ thuế suất theo thời điểm xuất hóa đơn"
+   ],
+   "nguon": [
+    [
+     "VCCI",
+     "https://www.vcci.com.vn/tin-tuc/tiep-tuc-giam-2-thue-gia-tri-gia-tang-tu-ngay-1-7-2025-den-31-12-2026"
+    ],
+    [
+     "KPMG – NĐ 174",
+     "https://assets.kpmg.com/content/dam/kpmg/vn/pdf/2025/07/decree-174-extending-vat-reduction-to-2026-vi.pdf"
+    ]
+   ]
+  },
+  {
+   "id": "gtgtlaw",
+   "so": "Luật Thuế GTGT 48/2024/QH15; Nghị định 181/2025/NĐ-CP; Nghị định 144/2026/NĐ-CP",
+   "ten": "Thuế giá trị gia tăng",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2024-11-26",
+   "hl": "2025-07-01",
+   "lv": [
+    "Thuế GTGT"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Luật GTGT mới hiệu lực 01/7/2025, NĐ 181/2025 hướng dẫn",
+    "NĐ 144/2026 (hiệu lực 20/6/2026) sửa NĐ 181: khấu trừ thuế GTGT khi mua hàng trả chậm, trả góp"
+   ],
+   "tacdong": "Điều kiện khấu trừ thuế GTGT đầu vào khi mua linh kiện, xe trả chậm/trả góp; thanh toán không dùng tiền mặt.",
+   "viec": [
+    "Kế toán rà soát hồ sơ khấu trừ các hợp đồng mua trả chậm theo NĐ 144/2026"
+   ],
+   "nguon": [
+    [
+     "EY Tax Alert 5/2026",
+     "https://www.ey.com/content/dam/ey-unified-site/ey-com/vi-vn/technical/tax/documents/ey-vietnam-tax-alert_may-2026_decree-144-on-value-added-tax_vn.pdf"
+    ]
+   ]
+  },
+  {
+   "id": "qlt2025",
+   "so": "Luật Quản lý thuế 108/2025/QH15; Nghị định 252/2026/NĐ-CP; Thông tư 84, 86/2026/TT-BTC",
+   "ten": "Quản lý thuế",
+   "cq": "Quốc hội; Chính phủ; Bộ Tài chính",
+   "bh": "2025-12-10",
+   "hl": "2026-07-01",
+   "lv": [
+    "Quản lý thuế"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Hiệu lực 01/7/2026 (một số quy định về hộ, cá nhân kinh doanh từ 01/01/2026)",
+    "Thời hạn khai bổ sung rút từ 10 năm xuống 5 năm",
+    "Phân nhóm người nộp thuế theo mức độ tuân thủ, rủi ro; doanh nghiệp rủi ro phải giải trình, cung cấp tài liệu",
+    "Còn nợ thuế phải hoàn thành trước khi đăng ký doanh nghiệp mới"
+   ],
+   "tacdong": "Mức độ tuân thủ thuế của công ty và từng đại lý ảnh hưởng tới cách cơ quan thuế quản lý (kiểm tra, hoàn thuế). Đại lý có nợ thuế bị hạn chế khi mở pháp nhân mới.",
+   "viec": [
+    "Tự đánh giá mức độ tuân thủ thuế, xử lý nợ thuế tồn",
+    "Thẩm định tình trạng thuế khi tuyển đại lý mới",
+    "Cập nhật quy trình khai thuế theo NĐ 252/2026"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/toan-bo-diem-moi-luat-quan-ly-thue-2025-co-hieu-luc-tu-0172026-224912.html"
+    ],
+    [
+     "Crowe – NĐ 252",
+     "https://www.crowe.com/vn/vi-vn/news/decree-252-guiding-the-law-on-tax-administration-2025"
+    ]
+   ]
+  },
+  {
+   "id": "hoadon",
+   "so": "Nghị định 254/2026/NĐ-CP",
+   "ten": "Hóa đơn điện tử và chứng từ điện tử",
+   "cq": "Chính phủ",
+   "bh": "2026-06-30",
+   "hl": "2026-07-01",
+   "lv": [
+    "Hóa đơn – chứng từ"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Thay thế Nghị định 123/2020/NĐ-CP và Nghị định 70/2025/NĐ-CP từ 01/7/2026",
+    "Hướng dẫn Luật Quản lý thuế 2025 về hóa đơn, chứng từ điện tử"
+   ],
+   "tacdong": "Thời điểm lập hóa đơn khi giao xe, đặt cọc, bán trả góp; hóa đơn cho hàng khuyến mại, quà tặng; xử lý hóa đơn sai sót.",
+   "viec": [
+    "Cập nhật phần mềm hóa đơn và quy trình lập hóa đơn tại công ty và đại lý",
+    "Đào tạo kế toán đại lý về điểm mới NĐ 254/2026"
+   ],
+   "nguon": [
+    [
+     "EY",
+     "https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-254-2026-nd-cp-ve-hoa-don-dien-tu-va-chung-tu-dien-tu"
+    ],
+    [
+     "Crowe",
+     "https://www.crowe.com/vn/vi-vn/news/key-invoice-changes-under-decree-no-254-2026"
+    ]
+   ]
+  },
+  {
+   "id": "tndn",
+   "so": "Luật Thuế TNDN 67/2025/QH15; Nghị định 320/2025/NĐ-CP; Thông tư 20/2026/TT-BTC",
+   "ten": "Thuế thu nhập doanh nghiệp",
+   "cq": "Quốc hội; Chính phủ; Bộ Tài chính",
+   "bh": "2025-06-14",
+   "hl": "2025-10-01",
+   "lv": [
+    "Thuế TNDN"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Luật hiệu lực 01/10/2025; nguồn chưa thống nhất áp dụng từ kỳ tính thuế 2025 hay 2026",
+    "Chi phí được trừ khi đủ 3 điều kiện; chi không được trừ tại Điều 10 NĐ 320/2025, bổ sung nhóm 'khoản chi khác'",
+    "Mua hàng từ 5 triệu đồng phải có chứng từ thanh toán không dùng tiền mặt mới được trừ (theo một nguồn)",
+    "TT 20/2026/TT-BTC (12/3/2026) hướng dẫn chi tiết"
+   ],
+   "tacdong": "Chi phí hoa hồng đại lý, khuyến mại, hỗ trợ bán hàng, chi phí bảo hành phải đủ hồ sơ và thanh toán không dùng tiền mặt.",
+   "viec": [
+    "Rà soát chính sách hỗ trợ đại lý, chi khuyến mại theo điều kiện chi phí được trừ",
+    "Chuyển mọi khoản chi từ 5 triệu sang thanh toán ngân hàng"
+   ],
+   "nguon": [
+    [
+     "LuatVietnam – TT 20/2026",
+     "https://luatvietnam.vn/thue/thong-tu-20-2026-tt-btc-quy-dinh-chi-tiet-luat-thue-thu-nhap-doanh-nghiep-428454-d1.html"
+    ],
+    [
+     "MISA",
+     "https://amis.misa.vn/232301/luat-thue-thu-nhap-doanh-nghiep-2025/"
+    ]
+   ]
+  },
+  {
+   "id": "tncn",
+   "so": "Luật Thuế TNCN 109/2025/QH15; Nghị quyết 110/2025/UBTVQH15",
+   "ten": "Thuế thu nhập cá nhân",
+   "cq": "Quốc hội; UBTVQH",
+   "bh": "2025-12-10",
+   "hl": "2026-01-01",
+   "lv": [
+    "Thuế TNCN – tiền lương"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Giảm trừ gia cảnh: 15,5 triệu/tháng cho người nộp thuế, 6,2 triệu/tháng mỗi người phụ thuộc (từ kỳ tính thuế 2026)",
+    "Biểu lũy tiến rút từ 7 xuống 5 bậc (5%, 10%, 20%, 30%, 35% theo đa số nguồn)",
+    "Nguồn chưa thống nhất ngày áp dụng biểu 5 bậc (01/01/2026 hay 01/7/2026)"
+   ],
+   "tacdong": "Thu nhập thực nhận của tư vấn bán hàng, kỹ thuật viên tăng; khấu trừ thuế trên hoa hồng, thưởng doanh số.",
+   "viec": [
+    "Nhân sự – kế toán cập nhật bảng lương và mức khấu trừ",
+    "Truyền thông cho đội ngũ về thu nhập thực nhận tăng"
+   ],
+   "nguon": [
+    [
+     "Nhân Dân",
+     "https://nhandan.vn/nang-muc-giam-tru-gia-canh-nop-thue-len-155-trieu-dongthang-post920317.html"
+    ],
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/tong-hop-diem-moi-luat-thue-thu-nhap-ca-nhan-so-1092025qh15-217745.html"
+    ]
+   ]
+  },
+  {
+   "id": "ttdb",
+   "so": "Luật Thuế TTĐB 66/2025/QH15; Nghị định 360/2025/NĐ-CP; Luật 09/2026/QH16; VBHN 111/VBHN-VPQH",
+   "ten": "Thuế tiêu thụ đặc biệt",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2025-06-14",
+   "hl": "2026-01-01",
+   "lv": [
+    "Thuế TTĐB – ô tô"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Hiệu lực 01/01/2026, thay luật 2008",
+    "Ô tô dưới 24 chỗ chịu thuế, gồm pickup chở người và xe tải VAN có từ 2 hàng ghế trở lên, có vách ngăn cố định",
+    "Luật 09/2026/QH16 (24/4/2026) sửa đổi; văn bản hợp nhất 111/VBHN-VPQH (20/5/2026): cần kiểm tra thuế suất từng loại xe"
+   ],
+   "tacdong": "Xe tải thùng không chịu TTĐB. Dòng van MISSU, pickup cabin kép phải xác định đúng thiết kế (số hàng ghế, vách ngăn) để tránh truy thu.",
+   "viec": [
+    "Pháp chế – kỹ thuật xác nhận từng phiên bản van/pickup có thuộc diện chịu TTĐB không",
+    "Đối chiếu thuế suất tại Điều 8 văn bản hợp nhất 111/VBHN-VPQH"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-thue-tieu-thu-dac-biet-2025-so-66-2025-QH15-621225.aspx"
+    ]
+   ]
+  },
+  {
+   "id": "lptb",
+   "so": "Nghị định 10/2022/NĐ-CP (sửa bởi NĐ 175/2025, NĐ 51/2025); Nghị định 202/2026/NĐ-CP; Nghị quyết 66.22/2026/NQ-CP",
+   "ten": "Lệ phí trước bạ",
+   "cq": "Chính phủ",
+   "bh": "",
+   "hl": "2022-03-01",
+   "lv": [
+    "Lệ phí trước bạ"
+   ],
+   "tt": "hiệu lực; NĐ 202/2026 sắp hiệu lực 01/3/2027",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Ô tô tải: mức thu 2% theo NĐ 10/2022 (xe chở người dưới 10 chỗ: 10%, tỉnh có thể tăng)",
+    "NĐ 202/2026 (8/6/2026) sửa NĐ 10/2022, hiệu lực 01/3/2027, thay NĐ 51/2025",
+    "Ô tô điện chạy pin đăng ký lần đầu miễn 100% đến 31/12/2030",
+    "NQ 66.22/2026/NQ-CP: 15/8/2026–28/2/2027 giảm lệ phí khi nộp điện tử bằng tài khoản định danh mức 2 (xem đủ điều kiện)",
+    "Giá tính lệ phí theo bảng giá mới từ 01/01/2026"
+   ],
+   "tacdong": "Tổng chi phí lăn bánh khách phải trả; tư vấn khách nộp lệ phí trước bạ điện tử để hưởng ưu đãi đến 28/2/2027.",
+   "viec": [
+    "Cập nhật bảng tính chi phí lăn bánh cho TVBH",
+    "Hướng dẫn khách nộp lệ phí trước bạ điện tử bằng định danh mức 2 trước 28/2/2027",
+    "Theo dõi nội dung NĐ 202/2026 trước 01/3/2027"
+   ],
+   "nguon": [
+    [
+     "VOV – ô tô điện",
+     "https://vov.vn/o-to-xe-may/chinh-thuc-gia-han-mien-le-phi-truoc-ba-cho-o-to-dien-chay-pin-den-het-nam-2030-post1304724.vov"
+    ],
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/mua-o-to-xang-phai-nop-bao-nhieu-le-phi-truoc-ba-490124-226082.html"
+    ]
+   ]
+  },
+  {
+   "id": "monbai",
+   "so": "Nghị quyết 198/2025/QH15",
+   "ten": "Cơ chế đặc biệt phát triển kinh tế tư nhân (bãi bỏ lệ phí môn bài)",
+   "cq": "Quốc hội",
+   "bh": "2025-05-17",
+   "hl": "2025-05-17",
+   "lv": [
+    "Thuế – phí"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Bãi bỏ lệ phí môn bài từ 01/01/2026",
+    "Thể chế hóa Nghị quyết 68-NQ/TW về phát triển kinh tế tư nhân"
+   ],
+   "tacdong": "Công ty, chi nhánh, đại lý không còn khai nộp lệ phí môn bài từ năm 2026.",
+   "viec": [
+    "Kế toán ngừng kê khai môn bài từ 2026, xác nhận với cơ quan thuế quản lý"
+   ],
+   "nguon": [
+    [
+     "Cổng Chính phủ (tra cứu)",
+     "https://vbpl.vn"
+    ]
+   ]
+  },
+  {
+   "id": "luongtt",
+   "so": "Nghị định 293/2025/NĐ-CP",
+   "ten": "Lương tối thiểu vùng",
+   "cq": "Chính phủ",
+   "bh": "2025-11-10",
+   "hl": "2026-01-01",
+   "lv": [
+    "Lao động – tiền lương"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Tháng: vùng I 5.310.000đ, II 4.730.000đ, III 4.140.000đ, IV 3.700.000đ",
+    "Giờ: 25.500đ, 22.700đ, 20.000đ, 17.800đ",
+    "Thay NĐ 74/2024; danh mục xã, phường theo vùng trong phụ lục"
+   ],
+   "tacdong": "Lương tối thiểu của nhân viên công ty và đại lý; mức sàn đóng BHTN; trần BHTN = 20 lần lương tối thiểu vùng.",
+   "viec": [
+    "Rà soát lương thấp nhất tại từng địa bàn theo xã, phường mới"
+   ],
+   "nguon": [
+    [
+     "Báo Pháp luật",
+     "https://baophapluat.vn/chinh-phu-quyet-dinh-tang-luong-toi-thieu-vung-tu-1-1-2026.html"
+    ],
+    [
+     "Báo Đầu tư",
+     "https://baodautu.vn/dieu-chinh-luong-toi-thieu-vung-tai-34-tinh-thanh-tu-ngay-112026-d432501.html"
+    ]
+   ]
+  },
+  {
+   "id": "bhxh",
+   "so": "Luật BHXH 41/2024/QH15; quy định lương cơ sở 2026",
+   "ten": "Bảo hiểm xã hội bắt buộc",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2024-06-29",
+   "hl": "2025-07-01",
+   "lv": [
+    "Bảo hiểm xã hội"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Căn cứ đóng thấp nhất bằng mức tham chiếu, cao nhất 20 lần (đang bằng lương cơ sở)",
+    "Lương cơ sở 2.340.000đ đến 30/6/2026; từ 01/7/2026 là 2.530.000đ theo các nguồn báo chí → trần BHXH 50,6 triệu/tháng",
+    "Tỷ lệ đóng chung: doanh nghiệp 21,5% (BHXH 17,5%, BHYT 3%, BHTN 1%), người lao động 10,5% (8%, 1,5%, 1%)"
+   ],
+   "tacdong": "Chi phí nhân sự có lương cao (quản lý, kỹ sư) tăng từ 7/2026; đại lý nhỏ hay bị thanh tra về đóng BHXH đủ cho TVBH.",
+   "viec": [
+    "Cập nhật trần đóng từ kỳ lương tháng 7/2026",
+    "Kiểm tra đại lý đóng BHXH đủ cho nhân sự bán hàng, dịch vụ"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/hoi-dap-phap-luat/muc-dong-bhxh-toi-da-tu-ngay-0172026-la-bao-nhieu-138091227.html"
+    ],
+    [
+     "PLO",
+     "https://plo.vn/tu-1-7-tang-muc-dong-bhxh-toi-da-len-506-trieu-dongthang-post909003.html"
+    ]
+   ]
+  },
+  {
+   "id": "dlcn",
+   "so": "Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; Nghị định 356/2025/NĐ-CP; Nghị định 330/2026/NĐ-CP",
+   "ten": "Bảo vệ dữ liệu cá nhân",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2025-06-26",
+   "hl": "2026-01-01",
+   "lv": [
+    "Dữ liệu cá nhân – an ninh mạng"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Luật hiệu lực 01/01/2026; NĐ 356/2025 hướng dẫn, thay NĐ 13/2023",
+    "NĐ 330/2026 (19/8/2026) xử phạt riêng lĩnh vực an ninh mạng và dữ liệu cá nhân, hiệu lực ngay, không có chuyển tiếp",
+    "Doanh nghiệp nhỏ, khởi nghiệp được ân hạn 5 năm; doanh nghiệp khác tuân thủ ngay",
+    "Phải xóa dữ liệu người lao động khi chấm dứt hợp đồng (theo hướng dẫn)"
+   ],
+   "tacdong": "Dữ liệu khách hàng (CRM, số điện thoại, CCCD trong hồ sơ vay, đăng ký xe), dữ liệu nhân sự, ghi âm cuộc họp, camera tại showroom đều thuộc phạm vi. Rủi ro cao vì chuỗi đại lý cùng xử lý dữ liệu khách.",
+   "viec": [
+    "Lập sơ đồ dữ liệu cá nhân và căn cứ xử lý (đồng ý của khách)",
+    "Bổ sung điều khoản dữ liệu trong hợp đồng đại lý, mẫu đồng ý của khách",
+    "Thông báo, xin đồng ý khi ghi âm cuộc họp; hạn chế quyền truy cập dữ liệu",
+    "Đánh giá tác động xử lý dữ liệu theo NĐ 356/2025"
+   ],
+   "nguon": [
+    [
+     "EY – NĐ 356",
+     "https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-so-356-2025-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-va-bien-phap-thi-hanh-luat-bao-ve-du-lieu-ca-nhan"
+    ],
+    [
+     "EY – NĐ 330",
+     "https://www.ey.com/content/dam/ey-unified-site/ey-com/vi-vn/technical/tax/documents/ey-vn-decree-330-providing-sanctions-for-personal-data-protection.pdf"
+    ],
+    [
+     "PwC",
+     "https://www.pwc.com/vn/vn/publications/legal-news-brief/20260128-new-rules-personal-data-protection.html"
+    ]
+   ]
+  },
+  {
+   "id": "ketoan",
+   "so": "Thông tư 99/2025/TT-BTC",
+   "ten": "Chế độ kế toán doanh nghiệp",
+   "cq": "Bộ Tài chính",
+   "bh": "2025-10-27",
+   "hl": "2026-01-01",
+   "lv": [
+    "Kế toán – kiểm soát nội bộ"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Áp dụng cho năm tài chính bắt đầu từ 01/01/2026, thay Thông tư 200/2014 (trừ phần cổ phần hóa DNNN), thay TT 75/2015, 53/2016",
+    "Doanh nghiệp được tự thiết kế hệ thống tài khoản, chứng từ, sổ",
+    "Bảng cân đối kế toán đổi thành Báo cáo tình hình tài chính",
+    "Yêu cầu quy chế quản trị nội bộ và kiểm soát nội bộ"
+   ],
+   "tacdong": "Báo cáo tài chính năm 2026 của công ty và các đại lý theo mẫu mới; cần quy chế kiểm soát nội bộ.",
+   "viec": [
+    "Ban hành quy chế kế toán, kiểm soát nội bộ theo TT 99",
+    "Chuẩn hóa báo cáo đại lý gửi về công ty theo mẫu mới"
+   ],
+   "nguon": [
+    [
+     "KPMG",
+     "https://kpmg.com/vn/vi/home/phan-tich-chuyen-sau/2025/11/key-changes-in-vietnamese-accounting-system-for-enterprises.html"
+    ],
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/thue-phi-le-phi/diem-moi-cua-thong-tu-99-ve-che-do-ke-toan-doanh-nghiep-565-105064-article.html"
+    ]
+   ]
+  },
+  {
+   "id": "dn2025",
+   "so": "Luật Doanh nghiệp sửa đổi 76/2025/QH15; Nghị định 168/2025/NĐ-CP; Thông tư 68/2025/TT-BTC; Nghị định 296/2026/NĐ-CP",
+   "ten": "Doanh nghiệp, đăng ký doanh nghiệp, chủ sở hữu hưởng lợi",
+   "cq": "Quốc hội; Chính phủ; Bộ Tài chính",
+   "bh": "2025-06-17",
+   "hl": "2025-07-01",
+   "lv": [
+    "Doanh nghiệp – quản trị"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cao",
+   "diem": [
+    "Lần đầu quy định chủ sở hữu hưởng lợi: cá nhân sở hữu thực tế vốn hoặc có quyền chi phối",
+    "Doanh nghiệp phải kê khai, lưu giữ thông tin chủ sở hữu hưởng lợi (Điều 17, 18 NĐ 168/2025)",
+    "NĐ 296/2026 (23/7/2026) sửa NĐ 168: siết nắm giữ hộ cổ phần, bắt buộc xác thực điện tử"
+   ],
+   "tacdong": "Tập đoàn có nhiều pháp nhân, chi nhánh: phải cập nhật thông tin chủ sở hữu hưởng lợi; thẩm định đại lý về cấu trúc sở hữu.",
+   "viec": [
+    "Pháp chế rà soát hồ sơ chủ sở hữu hưởng lợi của các pháp nhân",
+    "Bổ sung thẩm định sở hữu khi ký đại lý mới"
+   ],
+   "nguon": [
+    [
+     "KPMG",
+     "https://kpmg.com/vn/vi/home/phan-tich-chuyen-sau/2025/07/new-law-on-enterprise.html"
+    ],
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/doanh-nghiep/luat-doanh-nghiep-sua-doi-2025-so-76-2025-qh15-403856-d1.html"
+    ]
+   ]
+  },
+  {
+   "id": "khuyenmai",
+   "so": "Nghị định 81/2018/NĐ-CP (sửa bởi NĐ 128/2024, NĐ 239/2026/NĐ-CP)",
+   "ten": "Khuyến mại, xúc tiến thương mại",
+   "cq": "Chính phủ",
+   "bh": "2026-06-26",
+   "hl": "2026-06-26",
+   "lv": [
+    "Thương mại – khuyến mại"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "NĐ 239/2026 (26/6/2026) hiệu lực ngay: thu hẹp danh mục hàng không được khuyến mại, quy định khuyến mại trên sàn thương mại điện tử và website",
+    "Trúng thưởng may rủi: xác định trúng thưởng có chứng kiến trực tiếp hoặc trực tuyến; sửa quy định giải không có người trúng",
+    "Theo NĐ 81/2018: giảm giá tối đa 50% giá trước khuyến mại; tổng thời gian giảm giá một nhãn hiệu không quá 120 ngày/năm (chưa xác nhận NĐ 239 có đổi hay không)"
+   ],
+   "tacdong": "Chương trình ưu đãi tháng (như T11/2026 tới 55 triệu/xe), bốc thăm trúng thưởng tại sự kiện, khuyến mại online của đại lý.",
+   "viec": [
+    "Pháp chế kiểm tra mức giảm, số ngày khuyến mại lũy kế theo từng dòng xe",
+    "Thông báo/đăng ký khuyến mại đúng thủ tục trước khi chạy chương trình"
+   ],
+   "nguon": [
+    [
+     "KPMG – NĐ 239",
+     "https://kpmg.com/vn/vi/insights/2026/07/decree-239-on-sales-promotion.html"
+    ],
+    [
+     "PwC",
+     "https://www.pwc.com/vn/vn/publications/news-brief/260716-decree-239-promotion-schemes.html"
+    ]
+   ]
+  },
+  {
+   "id": "gt",
+   "so": "Luật Trật tự, an toàn giao thông đường bộ 36/2024/QH15; Luật Đường bộ 35/2024/QH15; Nghị định 168/2024/NĐ-CP; Nghị định 238/2026/NĐ-CP",
+   "ten": "Giao thông đường bộ, xử phạt, trừ điểm giấy phép lái xe",
+   "cq": "Quốc hội; Chính phủ",
+   "bh": "2026-06-26",
+   "hl": "2025-01-01",
+   "lv": [
+    "Giao thông – vận tải"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "NĐ 168/2024 xử phạt và trừ điểm giấy phép lái xe; Điều 21 áp dụng cho ô tô tải chở hàng (quá tải)",
+    "NĐ 238/2026 (26/6/2026) sửa NĐ 168, một số điều từ 15/8/2026",
+    "Từ 01/7/2026 tải trọng trục đơn tối đa 10 tấn (TT 12/2025, TT 19/2026 về tải trọng, khổ giới hạn)",
+    "Từ 01/7/2026 phạt nguội chưa nộp được cập nhật lên hệ thống đăng kiểm"
+   ],
+   "tacdong": "Tư vấn khách chọn tải trọng, thùng đúng thiết kế; cảnh báo quá tải bị phạt và trừ điểm; xe còn phạt nguội bị vướng khi đăng kiểm.",
+   "viec": [
+    "Đưa nội dung tải trọng trục, quá tải vào sale talk và sổ tay giao xe",
+    "Đại lý kiểm tra phạt nguội trước khi nhận xe cũ đổi xe mới"
+   ],
+   "nguon": [
+    [
+     "Nhân Dân – tải trọng",
+     "https://nhandan.vn/tu-ngay-172026-tai-trong-xe-truc-don-toi-da-chi-10-tan-post967358.html"
+    ],
+    [
+     "Thư viện Pháp luật – NĐ 238",
+     "https://thuvienphapluat.vn/van-ban/EN/Vi-pham-hanh-chinh/Decree-238-2026-ND-CP-amendments-to-Decree-168-2024-ND-CP/726899/tieng-anh.aspx"
+    ],
+    [
+     "Tiền Phong",
+     "https://tienphong.vn/nhieu-quy-dinh-moi-lien-quan-den-o-to-co-hieu-luc-tu-17-post1855812.tpo"
+    ]
+   ]
+  },
+  {
+   "id": "dangkiem",
+   "so": "Thông tư 30/2026, 45/2026/TT-BXD; VBHN 66/2026/VBHN-TT-BXD",
+   "ten": "Đăng kiểm, cải tạo xe cơ giới",
+   "cq": "Bộ Xây dựng (Cục Đăng kiểm Việt Nam)",
+   "bh": "2026-08-27",
+   "hl": "2026-07-01",
+   "lv": [
+    "Đăng kiểm – kỹ thuật"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Bộ Giao thông vận tải đã hợp nhất vào Bộ Xây dựng; Cục Đăng kiểm trực thuộc Bộ Xây dựng",
+    "TT 30/2026 làm rõ khái niệm cải tạo xe cơ giới; TT 45/2026 sửa một số quy định đăng kiểm",
+    "VBHN 66/2026 (27/8/2026) hợp nhất quy định về cơ sở đăng kiểm"
+   ],
+   "tacdong": "Đóng thùng, hoán cải thùng (đông lạnh, ben, cẩu) phải đúng thiết kế được duyệt; ảnh hưởng thời gian giao xe chuyên dùng.",
+   "viec": [
+    "Kỹ thuật – đối tác đóng thùng cập nhật hồ sơ thiết kế theo TT 30/2026"
+   ],
+   "nguon": [
+    [
+     "Bộ Xây dựng",
+     "https://moc.gov.vn/vn/tin-tuc/1337/95651/thong-tu-sua-doi-bo-sung-mot-so-dieu-cua-cac-thong-tu-trong-linh-vuc-dang-kiem-phuong-tien-giao-thong-duong-bo.aspx"
+    ]
+   ]
+  },
+  {
+   "id": "gsht",
+   "so": "Nghị định 319/2026/NĐ-CP",
+   "ten": "Thiết bị giám sát hành trình (theo một nguồn)",
+   "cq": "Chính phủ",
+   "bh": "2026",
+   "hl": "2027-07-01",
+   "lv": [
+    "Giao thông – vận tải"
+   ],
+   "tt": "sắp hiệu lực 01/7/2027",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Yêu cầu thiết bị giám sát hành trình cho xe kinh doanh vận tải, đầu kéo, cứu thương, cứu hộ, vận tải nội bộ (một nguồn tư vấn, chưa đối chiếu văn bản gốc)"
+   ],
+   "tacdong": "Có thể thành điểm bán hàng: giao xe kèm thiết bị giám sát hành trình đạt chuẩn cho khách vận tải.",
+   "viec": [
+    "Pháp chế xác minh văn bản gốc NĐ 319/2026 và phạm vi xe tải",
+    "Chuẩn bị gói lắp thiết bị giám sát hành trình khi giao xe"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/hoi-dap-phap-luat/xe-tai-co-bat-buoc-lap-camera-hanh-trinh-khong-138101937.html"
+    ]
+   ]
+  },
+  {
+   "id": "ckd",
+   "so": "Nghị định 26/2023/NĐ-CP; Nghị định 199/2025/NĐ-CP",
+   "ten": "Thuế nhập khẩu ưu đãi linh kiện ô tô (CKD, công nghiệp hỗ trợ)",
+   "cq": "Chính phủ; Bộ Tài chính (Hải quan)",
+   "bh": "2023-05-31",
+   "hl": "2023-07-15",
+   "lv": [
+    "Xuất nhập khẩu – sản xuất lắp ráp"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Bộ linh kiện CKD lắp ráp ô tô áp dụng theo nhóm 98.21 (Phụ lục II NĐ 26/2023) nếu đáp ứng điều kiện; dùng sai mục đích bị truy thu theo thuế suất xe nguyên chiếc",
+    "NĐ 199/2025 sửa điều kiện sản lượng tối thiểu của Chương trình ưu đãi thuế linh kiện",
+    "Thuế nhập khẩu 0% cho linh kiện công nghiệp hỗ trợ ô tô được nêu kéo dài đến hết 2027 (VCCI)"
+   ],
+   "tacdong": "Giá thành xe lắp ráp trong nước (IZ, JP, MISSU) so với xe nhập khẩu nguyên chiếc; điều kiện sản lượng để hưởng ưu đãi.",
+   "viec": [
+    "Nhà máy, xuất nhập khẩu theo dõi sản lượng so với ngưỡng tối thiểu NĐ 199/2025",
+    "Kiểm tra phân loại bộ linh kiện xe tải có khung, cabin hàn liền"
+   ],
+   "nguon": [
+    [
+     "Thời báo Tài chính",
+     "https://thoibaotaichinhvietnam.vn/dieu-kien-ap-dung-muc-thue-nhap-khau-uu-dai-bo-linh-kien-ckd-o-to-135910.html"
+    ],
+    [
+     "VCCI",
+     "https://www.vcci.com.vn/tin-tuc/san-pham-cong-nghiep-ho-tro-oto-duoc-uu-dai-thue-den-het-nam-2027"
+    ]
+   ]
+  }
+ ],
+ "calendar": [
+  {
+   "t": "monthly",
+   "day": 20,
+   "viec": "Khai, nộp thuế GTGT và TNCN khấu trừ theo tháng (kỳ tháng trước)",
+   "cs": "Luật Quản lý thuế; đối chiếu NĐ 252/2026"
+  },
+  {
+   "t": "monthly",
+   "day": "last",
+   "viec": "Đóng BHXH, BHYT, BHTN tháng này",
+   "cs": "Luật BHXH 41/2024/QH15; kiểm tra thời hạn cụ thể với cơ quan BHXH"
+  },
+  {
+   "t": "quarterly",
+   "m": 1,
+   "day": "last",
+   "viec": "Khai thuế GTGT, TNCN theo quý (nếu khai quý)",
+   "cs": "Luật Quản lý thuế"
+  },
+  {
+   "t": "quarterly",
+   "m": 1,
+   "day": 30,
+   "viec": "Tạm nộp thuế TNDN quý trước",
+   "cs": "Luật Quản lý thuế; Luật Thuế TNDN 67/2025"
+  },
+  {
+   "t": "yearly",
+   "mm": 3,
+   "day": 31,
+   "viec": "Quyết toán thuế TNDN, TNCN năm trước; nộp báo cáo tài chính năm",
+   "cs": "Luật Quản lý thuế; Thông tư 99/2025/TT-BTC"
+  },
+  {
+   "t": "yearly",
+   "mm": 6,
+   "day": 5,
+   "viec": "Báo cáo tình hình thay đổi lao động 6 tháng đầu năm",
+   "cs": "Bộ luật Lao động và văn bản hướng dẫn"
+  },
+  {
+   "t": "yearly",
+   "mm": 12,
+   "day": 5,
+   "viec": "Báo cáo tình hình thay đổi lao động 6 tháng cuối năm",
+   "cs": "Bộ luật Lao động và văn bản hướng dẫn"
+  },
+  {
+   "t": "once",
+   "date": "2026-12-31",
+   "viec": "Hết giảm 2% thuế GTGT: chốt bảng giá, hợp đồng giao xe 2027 theo thuế suất mới",
+   "cs": "NQ 204/2025/QH15, NĐ 174/2025/NĐ-CP"
+  },
+  {
+   "t": "once",
+   "date": "2027-02-28",
+   "viec": "Hết ưu đãi lệ phí trước bạ khi nộp điện tử bằng định danh mức 2",
+   "cs": "NQ 66.22/2026/NQ-CP"
+  },
+  {
+   "t": "once",
+   "date": "2027-03-01",
+   "viec": "Nghị định 202/2026 về lệ phí trước bạ có hiệu lực",
+   "cs": "NĐ 202/2026/NĐ-CP"
+  },
+  {
+   "t": "once",
+   "date": "2027-07-01",
+   "viec": "Nghị định 319/2026 về thiết bị giám sát hành trình có hiệu lực (cần xác minh)",
+   "cs": "NĐ 319/2026/NĐ-CP"
+  }
+ ]
+}
