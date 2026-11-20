@@ -16,6 +16,9 @@
         <label class="field" for="mAbsent">Vắng mặt (mỗi dòng: Họ tên – lý do)<textarea id="mAbsent" rows="2"></textarea></label>
         <div class="bgrid"><label class="field" for="mUnit">Đơn vị tổ chức<input id="mUnit" type="text" value="ĐÔ THÀNH AUTO"></label><label class="field" for="mSec">Thư ký<input id="mSec" type="text" placeholder="Ben (trợ lý AI)"></label></div>
       </details>
+      <div class="mtgrow small"><button type="button" id="mStd">Chương trình họp chuẩn</button><label class="field" style="flex-direction:row;align-items:center;gap:6px">Thời lượng mục tiêu<input id="mBox" type="number" min="10" step="5" value="30" style="width:70px"> phút</label></div>
+      <div id="mHot" class="small"></div>
+      <label class="small"><input type="checkbox" id="mConsent"> Đã thông báo cho thành phần dự họp việc ghi lời thoại</label>
       <div class="mtgrow">
         <button type="button" class="rec" id="mRec" aria-pressed="false">● Bắt đầu ghi</button>
         <span class="muted small" id="mState">Chưa ghi</span>

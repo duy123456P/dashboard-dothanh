@@ -98,6 +98,9 @@ function setDealer(d, field, v, via){
   if(field === "leCum" || field === "khCum"){ const r = CV.findRow(d.province); const pf = field === "leCum" ? "sales" : "target"; if(r){ r[pf] = (+r[pf] || 0) + (v - (+before || 0)); } }
   logChange({kind:"dealer", key:d.id, name:d.salesKey || d.name, field, before: before ?? null, after: v, via}); CV.save(); CV.renderAll(); return before;
 }
+CV.setProvFields = (name, obj, via) => { const r = CV.findRow(name); if(!r) return 0; let n = 0;
+  Object.entries(obj).forEach(([f, v]) => { if(!CV.NUM_KEYS.includes(f)) return; v = v === "" || v == null ? null : +v; if(v != null && isNaN(v)) return; const b = r[f] ?? null; if(b === v) return; r[f] = v; n++; logChange({kind:"prov", key:r.name, field:f, before:b, after:v, via: via || "Biểu mẫu"}); });
+  if(n){ CV.save(); CV.renderAll(); } return n; };
 function undoLast(){
   const mine = [...S.changes].reverse().find(c => c.by === meId() && !c.undone && (c.kind === "prov" || c.kind === "dealer")); if(!mine) return null;
   if(mine.kind === "prov"){ const r = CV.findRow(mine.key); if(!r) return null; r[mine.field] = mine.before; }
@@ -172,12 +175,24 @@ function blankTask(o){ const s = ymd(); return {id: gid("t"), title:"", owner:""
 const tasksArr = () => Object.values(S.tasks).filter(Boolean);
 function lastCi(t){ const c = t.checkins || []; return c.length ? c[c.length-1] : null; }
 function confirmsOf(id){ const out = []; Object.entries(S.signoffs).forEach(([uid, d]) => { const c = d && (d.confirms || {})[id]; if(c) out.push({uid, ...c}); }); return out; }
+/* nhịp điều hành: cập nhật trước 17:00, bản tin 8:00, hỗ trợ trong 24 giờ, điểm nghẽn leo thang 3 cấp */
+const CI_HOUR = 17, BRIEF_HOUR = 8;
+const KPI_SRC = ["ERP / DMS Đô Thành","Hóa đơn, hợp đồng","Cục Đăng kiểm / CSGT","VAMA","Báo cáo phòng ban (có ký)","Biên bản bàn giao, ảnh hiện trường","Khác (ghi rõ đường dẫn)"];
+function multiOwner(o){ return /[,;&\/+]|\svà\s|\scùng\s|^(các|phòng|ban|bộ phận|team|nhóm)\b/i.test(String(o||"").trim()); }
+function blkLevel(b, td, dept){ const age = dd(String(b.since).slice(0,10), td || ymd());
+  return age >= 3 ? {lv:3, age, who:"Host quyết tại cuộc họp gần nhất"} : age >= 2 ? {lv:2, age, who:"Trưởng phòng " + (dept || "") + " vào cuộc"} : {lv:1, age, who:"Người chịu trách nhiệm tự gỡ"}; }
+function milestones(t, td){ td = td || ymd(); const start = t.start || String(t.createdAt||nowIso()).slice(0,10), due = t.due || start, tot = dd(start, due); if(tot <= 10) return [];
+  const out = [], cs = (t.checkins || []).filter(c => c.p != null);
+  for(let k = 7, w = 1; k < tot; k += 7, w++){ const d = addDays(start, k), exp = Math.round(k / tot * 100), at = cs.filter(c => c.d <= d).pop(), p = at ? +at.p : 0;
+    out.push({w, d, exp, p, past: d < td, hit: p >= exp - 5}); }
+  return out; }
 function dod(t){
   const k = t.kpi || {}, hasT = k.target !== "" && k.target != null && !isNaN(+k.target);
   const kpiOk = !hasT || (k.actual !== "" && k.actual != null && (k.dir === "down" ? +k.actual <= +k.target : +k.actual >= +k.target));
   const cf = confirmsOf(t.id).filter(c => c.ok), need = t.coDepts || [];
   const missing = need.filter(dp => !cf.some(c => c.dept === dp)), ev = (t.evidence || []).length > 0, blk = !(t.blockers || []).some(b => !b.resolved);
-  return {ev, kpiOk, hasT, cfOk: !missing.length, missing, blk, all: ev && kpiOk && !missing.length && blk};
+  const srcOk = !k.name || !!k.src;
+  return {ev, kpiOk, hasT, cfOk: !missing.length, missing, blk, srcOk, all: ev && kpiOk && !missing.length && blk && srcOk};
 }
 function health(t, td){
   td = td || ymd();
@@ -200,6 +215,9 @@ function health(t, td){
   if(t.support && t.support.open) A.push("Đang xin hỗ trợ" + (t.support.takenBy ? " (đã có người nhận)" : ""));
   if(t.status === "review" && !dod(t).all) A.push("Chưa đủ điều kiện nghiệm thu");
   if(p >= 50 && !(t.evidence || []).length) A.push("Đã ≥ 50% nhưng chưa có bằng chứng");
+  if(td === ymd() && new Date().getHours() >= CI_HOUR && start <= td && !(t.checkins || []).some(c => c.d === td)) A.push("Chưa cập nhật trước 17:00 hôm nay");
+  const miss = milestones(t, td).filter(m => m.past && !m.hit); if(miss.length) (miss.length >= 2 ? R : A).push(`Trượt ${miss.length} mốc tuần (mốc ${miss[miss.length-1].w}: ${miss[miss.length-1].p}%/${miss[miss.length-1].exp}%)`);
+  if(t.support && t.support.open && !t.support.takenBy && (Date.now() - new Date(t.support.at)) > 864e5) A.push("Xin hỗ trợ quá 24 giờ chưa có lãnh đạo nhận");
   return {k: R.length ? "red" : A.length ? "amber" : "green", reasons: R.concat(A), expected, gap, since, eta, open, left: dd(td, due)};
 }
 async function saveTask(t, act){
@@ -216,9 +234,11 @@ async function writeSignoff(fn){
 }
 
 /* ---------- daily brief & leader actions ---------- */
-function scorecard(){
-  const by = {}, td = ymd();
-  tasksArr().forEach(t => { if(t.status === "cancel") return; const o = (t.owner || "(chưa giao)").trim();
+function period(k){ const d = new Date(); if(k === "m") return [ymd(new Date(d.getFullYear(), d.getMonth(), 1)), ymd(new Date(d.getFullYear(), d.getMonth()+1, 0))];
+  if(k === "q"){ const q = Math.floor(d.getMonth()/3)*3; return [ymd(new Date(d.getFullYear(), q, 1)), ymd(new Date(d.getFullYear(), q+3, 0))]; } return null; }
+function scorecard(pk){
+  const by = {}, td = ymd(), P0 = period(pk);
+  tasksArr().forEach(t => { if(t.status === "cancel") return; if(P0 && !((t.start || "") <= P0[1] && (t.due || "9") >= P0[0])) return; const o = (t.owner || "(chưa giao)").trim();
     const s = by[o] || (by[o] = {owner:o, dept:t.dept||"", n:0, done:0, onTime:0, lateOpen:0, red:0, amber:0, ciDays:0, ciNeed:0, evOk:0, cfNeed:0, cfOk:0, blk:0, blkRes:0, blkDays:0, sup:0, kudos:0, open:0});
     s.n++; const h = health(t, td); if(h.k === "red") s.red++; if(h.k === "amber") s.amber++;
     const start = t.start || String(t.createdAt).slice(0,10), D = dod(t);
@@ -238,7 +258,8 @@ function scorecard(){
 }
 function leaderActions(){
   const td = ymd(), out = [], ts = tasksArr().filter(t => t.status !== "cancel");
-  ts.filter(t => t.support && t.support.open && !t.support.takenBy).forEach(t => out.push({c:"red", pri:0, t, txt:`Hỗ trợ ngay <b>${esc(t.owner)}</b>: “${esc(t.support.text || "cần hỗ trợ")}” · ${esc(t.title)}`, btn:["take","Tôi nhận hỗ trợ"]}));
+  ts.filter(t => t.support && t.support.open && !t.support.takenBy).forEach(t => { const h24 = (Date.now() - new Date(t.support.at)) / 36e5; out.push({c:"red", pri:0, t, txt:`Hỗ trợ ngay <b>${esc(t.owner)}</b>: “${esc(t.support.text || "cần hỗ trợ")}” · ${esc(t.title)} <span class="muted">· chờ ${fmtInt(h24)} giờ${h24 > 24 ? ", <b style=\"color:var(--bad)\">quá quy tắc 24 giờ</b>" : ""}</span>`, btn:["take","Tôi nhận hỗ trợ"]}); });
+  ts.filter(t => t.status !== "done").forEach(t => (t.blockers || []).filter(b => !b.resolved).forEach(b => { const L = blkLevel(b, td, t.dept); if(L.lv >= 3) out.push({c:"red", pri:0.5, t, txt:`Điểm nghẽn cấp 3 (${L.age} ngày), <b>Host quyết</b>: “${esc(b.text)}” · ${esc(t.title)} · ${esc(t.owner)}`, btn:["open","Mở"]}); }));
   ts.forEach(t => { const h = health(t, td); if(h.k === "red") out.push({c:"red", pri:1, t, txt:`Gỡ nghẽn cùng <b>${esc(t.owner)}</b> (15 phút, trước 10:00): ${esc(t.title)} · <span class="muted">${esc(h.reasons.slice(0,2).join("; "))}</span>`, btn:["open","Mở"]}); });
   ts.filter(t => t.status === "review").forEach(t => { const D = dod(t);
     out.push(D.all ? {c:"green", pri:2, t, txt:`Nghiệm thu: <b>${esc(t.title)}</b> (${esc(t.owner)}) đã đủ số liệu, bằng chứng, xác nhận`, btn:["open","Nghiệm thu"]}
@@ -255,7 +276,7 @@ function briefMd(){
   const cnt = k => H.filter(([,h]) => h.k === k).length, open = H.filter(([t]) => t.status !== "done");
   const row = ([t,h]) => `| ${t.title} | ${t.owner} (${t.dept}) | ${+t.progress||0}% / ${h.expected}% | ${vnDate(t.due)} | ${h.reasons.slice(0,2).join("; ") || "—"} |`;
   const tot = CV.rows.reduce((a,r) => a + (+r.sales||0), 0), kh = CV.rows.reduce((a,r) => a + (+r.target||0), 0);
-  const blk = []; ts.forEach(t => (t.blockers||[]).filter(b => !b.resolved).forEach(b => blk.push(`- **${b.text}** · việc “${t.title}” · ${t.owner} · tồn ${dd(String(b.since).slice(0,10), td)} ngày`)));
+  const blk = []; ts.forEach(t => (t.blockers||[]).filter(b => !b.resolved).forEach(b => { const L = blkLevel(b, td, t.dept); blk.push(`- **${b.text}** · việc “${t.title}” · ${t.owner} · tồn ${L.age} ngày · cấp ${L.lv}: ${L.who}`); }));
   const sup = ts.filter(t => t.support && t.support.open).map(t => `- ${t.owner}: “${t.support.text || "cần hỗ trợ"}” (${t.title})${t.support.takenBy ? " · đã có người nhận" : " · **chưa ai nhận**"}`);
   const acts = leaderActions().slice(0, 10).map((a,i) => `${i+1}. ${a.txt.replace(/<[^>]+>/g, "")}`);
   return `# Bản tin điều hành ${vnDate(td)}
@@ -304,14 +325,17 @@ function renderOps(){
   const live = Object.values(S.meetings).find(m => m && m.status === "live");
   $("opsBar").innerHTML = `<b>Điều hành</b><span>${open.length} việc mở</span><span><i class="dot3 d-green"></i>${nb("green")}</span><span><i class="dot3 d-amber"></i>${nb("amber")}</span><span><i class="dot3 d-red"></i>${nb("red")}</span>`
     + `<span>Quá hạn <b style="color:var(--bad)">${tiles[4][2]}</b></span><span>Cần hỗ trợ <b style="color:var(--warn)">${tiles[5][2]}</b></span><span>Chưa cập nhật hôm nay ${tiles[6][2]}</span>`
-    + (live ? `<span class="live">● Đang họp: ${esc(live.title || "Cuộc họp")}</span>` : "") + `<span class="muted" style="margin-left:auto">Xem trung tâm điều hành ↓</span>`;
+    + (live ? `<span class="live">● Đang họp: ${esc(live.title || "Cuộc họp")}</span>` : "") + (briefDue() ? `<button type="button" id="opsMorning" class="primary" style="padding:3px 10px">☀ Bản tin sáng ${vnDate(td).slice(0,5)}</button>` : "")
+    + (new Date().getHours() < CI_HOUR ? `<span class="muted small">Hạn cập nhật 17:00</span>` : "") + `<span class="muted" style="margin-left:auto">Xem trung tâm điều hành ↓</span>`;
+  drawHot();
   const acts = leaderActions();
   $("opsToday").innerHTML = acts.slice(0, 12).map((a,i) => `<li class="${a.c}">${a.txt}${a.btn ? `<button type="button" data-act="${a.btn[0]}" data-i="${i}">${a.btn[1]}</button>` : ""}</li>`).join("") || '<li class="green">Chưa có việc cần lãnh đạo can thiệp. Tạo đầu việc từ cuộc họp hoặc bấm “+ Đầu việc”.</li>';
   $("opsToday")._acts = acts;
   const sc = scorecard(), P = v => v == null ? "—" : fmtInt(v) + "%";
   const scoreCol = v => v == null ? "" : v >= 80 ? "var(--good)" : v >= 60 ? "var(--warn)" : "var(--bad)";
   $("opsLeadMini").innerHTML = sc.length ? `<table class="lead"><thead><tr><th>Người chịu trách nhiệm</th><th>Việc</th><th>Nguy cơ</th><th>Đúng hạn</th><th>Cập nhật</th><th>Điểm</th></tr></thead><tbody>${sc.slice(0,8).map(s => `<tr><td>${esc(s.owner)}<span class="reason">${esc(s.dept)}</span></td><td>${s.n}</td><td style="color:${s.red ? "var(--bad)" : ""}">${s.red}</td><td>${P(s.onTimeP)}</td><td>${P(s.ciP)}</td><td><b style="color:${scoreCol(s.score)}">${s.score ?? "—"}</b></td></tr>`).join("")}</tbody></table>` : '<p class="muted small">Chưa có dữ liệu.</p>';
-  $("opsLead").innerHTML = sc.length ? `<table class="lead"><thead><tr><th>Người chịu trách nhiệm</th><th>Phòng ban</th><th>Tổng việc</th><th>Đang mở</th><th>Nguy cơ / cảnh báo</th><th>Đúng hạn</th><th>Kỷ luật cập nhật</th><th>Có số liệu + bằng chứng</th><th>Xác nhận liên phòng</th><th>Nghẽn đã xử lý</th><th>Ngày xử lý TB</th><th>Xin hỗ trợ</th><th>Ghi nhận</th><th>Điểm năng lực</th></tr></thead><tbody>${sc.map(s => `<tr><td>${esc(s.owner)}</td><td style="text-align:left">${esc(s.dept)}</td><td>${s.n}</td><td>${s.open}</td><td><span style="color:var(--bad)">${s.red}</span> / <span style="color:var(--warn)">${s.amber}</span></td><td>${P(s.onTimeP)}</td><td>${P(s.ciP)}</td><td>${P(s.evP)}</td><td>${P(s.cfP)}</td><td>${s.blk ? s.blkRes + "/" + s.blk : "—"}</td><td>${s.blkAvg == null ? "—" : fmt1(s.blkAvg)}</td><td>${s.sup}</td><td>${s.kudos}</td><td><b style="color:${scoreCol(s.score)}">${s.score ?? "—"}</b></td></tr>`).join("")}</tbody></table>` : '<p class="muted">Chưa có đầu việc nào.</p>';
+  const scP = scorecard($("ofPeriod") ? $("ofPeriod").value : "m"); $("opsLead")._sc = scP;
+  $("opsLead").innerHTML = scP.length ? `<table class="lead"><thead><tr><th>Người chịu trách nhiệm</th><th>Phòng ban</th><th>Tổng việc</th><th>Đang mở</th><th>Nguy cơ / cảnh báo</th><th>Đúng hạn</th><th>Kỷ luật cập nhật</th><th>Có số liệu + bằng chứng</th><th>Xác nhận liên phòng</th><th>Nghẽn đã xử lý</th><th>Ngày xử lý TB</th><th>Xin hỗ trợ</th><th>Ghi nhận</th><th>Điểm năng lực</th><th></th></tr></thead><tbody>${scP.map((s,i) => `<tr><td>${esc(s.owner)}</td><td style="text-align:left">${esc(s.dept)}</td><td>${s.n}</td><td>${s.open}</td><td><span style="color:var(--bad)">${s.red}</span> / <span style="color:var(--warn)">${s.amber}</span></td><td>${P(s.onTimeP)}</td><td>${P(s.ciP)}</td><td>${P(s.evP)}</td><td>${P(s.cfP)}</td><td>${s.blk ? s.blkRes + "/" + s.blk : "—"}</td><td>${s.blkAvg == null ? "—" : fmt1(s.blkAvg)}</td><td>${s.sup}</td><td>${s.kudos}</td><td><b style="color:${scoreCol(s.score)}">${s.score ?? "—"}</b></td><td><button type="button" data-coach="${i}">Kèm cặp</button></td></tr>`).join("")}</tbody></table>` : '<p class="muted">Chưa có đầu việc trong kỳ này.</p>';
   // filters
   const owners = [...new Set(all.map(t => t.owner).filter(Boolean))].sort((a,b) => a.localeCompare(b,"vi"));
   const fo = $("ofOwner"), fv = fo.value; fo.innerHTML = '<option value="">Tất cả</option>' + owners.map(o => `<option>${esc(o)}</option>`).join(""); fo.value = owners.includes(fv) ? fv : "";
@@ -371,6 +395,8 @@ function drawTask(){
     ${fld("Đầu kỳ", `<input type="number" data-k="base" value="${esc(k.base)}">`)}
     ${fld("Mục tiêu", `<input type="number" data-k="target" value="${esc(k.target)}">`)}
     ${fld("Thực tế hiện tại", `<input type="number" data-k="actual" value="${esc(k.actual)}">`)}
+    ${fld("Nguồn số liệu kiểm chứng", `<select data-k="src"><option value="">Chọn nguồn…</option>${KPI_SRC.map(x => `<option${x === k.src ? " selected" : ""}>${esc(x)}</option>`).join("")}</select>`, "w2")}
+    ${fld("Đường dẫn nguồn (báo cáo ERP, file…)", `<input type="url" data-k="srcLink" value="${esc(k.srcLink||"")}" placeholder="https://">`, "w2")}
     ${fld("Trạng thái", `<select data-f="status">${Object.entries(STATUS).map(([v,l]) => `<option value="${v}"${t.status === v ? " selected" : ""}${v === "done" ? " disabled" : ""}>${l}</option>`).join("")}</select>`)}
     ${fld("Bằng chứng bắt buộc khi hoàn thành", `<input type="text" data-f="evidenceReq" value="${esc(t.evidenceReq)}" placeholder="VD: Báo cáo ERP xuất ngày, hợp đồng, hóa đơn, ảnh bàn giao xe">`, "w4")}
     ${fld("Bắt đầu", `<input type="date" data-f="start" value="${esc(t.start)}">`)}
@@ -382,8 +408,9 @@ function drawTask(){
   ${mtg ? `<p class="muted small">Từ cuộc họp: <b>${esc(mtg.title)}</b> (${vnTime(mtg.startedAt)}), chủ trì ${esc(mtg.host||"")}.</p>` : ""}
   ${dlgNew ? "" : `
   <h3 style="margin-top:14px">Điều kiện nghiệm thu (đạt chuẩn Ban Lãnh đạo)</h3>
-  <div class="dod">${[[D.hasT ? D.kpiOk : !!k.name, D.hasT ? "KPI đạt mục tiêu" : "Có chỉ số đo"], [D.ev, "Có bằng chứng"], [D.cfOk, D.missing.length ? "Chờ xác nhận: " + D.missing.join(", ") : "Đủ xác nhận liên phòng"], [D.blk, "Không còn điểm nghẽn"]].map(([ok,l]) => `<span class="${ok ? "ok" : "no"}">${ok ? "✓" : "✗"} ${esc(l)}</span>`).join("")}</div>
+  <div class="dod">${[[D.hasT ? D.kpiOk : !!k.name, D.hasT ? "KPI đạt mục tiêu" : "Có chỉ số đo"], [D.ev, "Có bằng chứng"], [D.cfOk, D.missing.length ? "Chờ xác nhận: " + D.missing.join(", ") : "Đủ xác nhận liên phòng"], [D.blk, "Không còn điểm nghẽn"], [D.srcOk, "Số liệu có nguồn kiểm chứng"]].map(([ok,l]) => `<span class="${ok ? "ok" : "no"}">${ok ? "✓" : "✗"} ${esc(l)}</span>`).join("")}</div>
   ${h.reasons.length ? `<p class="small" style="color:${h.k === "red" ? "var(--bad)" : "var(--warn)"}">${esc(h.reasons.join(" · "))}</p>` : ""}
+  ${(() => { const ms = milestones(t); return ms.length ? `<h3>Mốc kiểm tra hằng tuần (việc dài ${dd(t.start, t.due)} ngày)</h3><div class="dod">${ms.map(m => `<span class="${!m.past ? "" : m.hit ? "ok" : "no"}" title="Kỳ vọng ${m.exp}%">Tuần ${m.w} · ${vnDate(m.d).slice(0,5)} · ${m.past ? m.p + "%/" : ""}${m.exp}%</span>`).join("")}</div>` : ""; })()}
   <div class="opsgrid">
     <div>
       <h3>Cập nhật hôm nay ${vnDate(ymd())}</h3>
@@ -406,7 +433,7 @@ function drawTask(){
       <ul class="tl">${(t.coDepts||[]).map(dp => { const c = cf.filter(x => x.dept === dp); return `<li><b>${esc(dp)}</b>: ${c.length ? c.map(x => `${x.ok ? '<span style="color:var(--good)">Đạt</span>' : '<span style="color:var(--bad)">Chưa đạt</span>'} · ${esc(who(x.uid))} · ${vnTime(x.at)}${x.note ? " · " + esc(x.note) : ""}`).join("; ") : '<span class="muted">chưa xác nhận</span>'}</li>`; }).join("") || '<li class="muted">Không yêu cầu xác nhận liên phòng.</li>'}</ul>
       ${(t.coDepts||[]).length ? `<div class="fgrid">${fld("Tôi xác nhận cho phòng", `<select id="cfDept">${opt(t.coDepts, t.coDepts[0])}</select>`, "w2")}${fld("Ghi chú", `<input type="text" id="cfNote">`, "w2")}</div><div class="toolbar"><button type="button" id="cfOk">Xác nhận đạt</button><button type="button" id="cfNo">Chưa đạt</button></div><p class="muted tiny">Xác nhận lưu dưới tài khoản người bấm, người khác không sửa được.</p>` : ""}
       <h3>Điểm nghẽn</h3>
-      <ul class="tl">${(t.blockers||[]).map((b,i) => `<li>${b.resolved ? "✅" : "⛔"} ${esc(b.text)} <span class="muted tiny">· từ ${vnTime(b.since)}${b.resolved ? " · xử lý " + vnTime(b.resolvedAt) + ": " + esc(b.resolution||"") : ""}</span>${b.resolved ? "" : ` <button type="button" data-blk="${i}">Đã xử lý dứt điểm</button>`}</li>`).join("") || '<li class="muted">Không có.</li>'}</ul>
+      <ul class="tl">${(t.blockers||[]).map((b,i) => `<li>${b.resolved ? "✅" : "⛔"} ${esc(b.text)} <span class="muted tiny">· từ ${vnTime(b.since)}${b.resolved ? " · xử lý " + vnTime(b.resolvedAt) + ": " + esc(b.resolution||"") : ""}</span>${b.resolved ? "" : (L => ` <span class="pill ${L.lv >= 3 ? "bad" : L.lv === 2 ? "warn" : ""}">Cấp ${L.lv}: ${esc(L.who)}</span> <button type="button" data-blk="${i}">Đã xử lý dứt điểm</button>`)(blkLevel(b, ymd(), t.dept))}</li>`).join("") || '<li class="muted">Không có.</li>'}</ul>
       <h3>Nhật ký cập nhật</h3>
       <ul class="tl">${[...(t.checkins||[])].reverse().slice(0,20).map(c => `<li><b>${vnDate(c.d)}</b> · ${c.p}%${c.a !== "" && c.a != null ? " · KPI " + esc(String(c.a)) : ""} · ${esc(c.note||"")}${c.next ? ' <span class="muted">→ mai: ' + esc(c.next) + "</span>" : ""} <span class="muted tiny">· ${esc(who(c.by))}</span></li>`).join("") || '<li class="muted">Chưa có cập nhật.</li>'}
         ${[...(t.log||[])].reverse().slice(0,12).map(l => `<li class="muted tiny">${vnTime(l.at)} · ${esc(who(l.by))} · ${esc(l.act)}</li>`).join("")}</ul>
@@ -436,7 +463,7 @@ $("taskDlg").addEventListener("close", () => { dlgDirty = false; dlgTask = null;
 $("taskDlg").addEventListener("click", async e => {
   if(e.target.closest("[data-close]")) return $("taskDlg").close();
   const id = e.target.id, t = dlgTask; if(!t) return;
-  if(id === "tSave"){ readForm(); const miss = [!t.title && "tên việc", !t.owner && "người chịu trách nhiệm", !t.due && "hạn hoàn thành", !(t.kpi||{}).name && "chỉ số đo", !t.evidenceReq && "bằng chứng bắt buộc"].filter(Boolean);
+  if(id === "tSave"){ readForm(); if(multiOwner(t.owner)) return toast("Mỗi việc chỉ một người chịu trách nhiệm chính; người khác đưa vào phòng phối hợp"); const miss = [!t.title && "tên việc", !t.owner && "người chịu trách nhiệm", !t.due && "hạn hoàn thành", !(t.kpi||{}).name && "chỉ số đo", !t.evidenceReq && "bằng chứng bắt buộc"].filter(Boolean);
     if(miss.length) return toast("Ban lãnh đạo yêu cầu đủ: " + miss.join(", "));
     if(t.due < t.start) return toast("Hạn phải sau ngày bắt đầu");
     if(t.status === "done") t.status = S.tasks[t.id] ? S.tasks[t.id].status : "todo";
@@ -523,7 +550,18 @@ function startDict(m){
     else if(c === "not_granted") toast("Micro chưa được cho phép cho trang này"); else if(c && c !== "stopped" && c !== "dismissed") toast("Không mở được micro (" + c + ")"); });
 }
 function stopMeeting(){ if(dict && dict.active() && dictMode === "meet") dict.stop().catch(() => {}); flush(true); clearInterval(recT); if(rec) putMeeting({id: rec.id, status: meet(rec.id) && meet(rec.id).status === "confirmed" ? "confirmed" : "draft", endedAt: nowIso(), lineCount: rec.lines.length}); }
-$("mRec").addEventListener("click", () => { if(dict && dict.active() && dictMode === "meet"){ stopMeeting(); return; } startDict("meet"); });
+$("mRec").addEventListener("click", () => { if(dict && dict.active() && dictMode === "meet"){ stopMeeting(); return; }
+  if(!$("mConsent").checked){ toast("Thông báo cho thành phần dự họp trước khi ghi, rồi tích ô xác nhận"); $("mConsent").focus(); return; } startDict("meet"); });
+setInterval(() => { if(!rec || !(dict && dict.active() && dictMode === "meet")) return; const min = (Date.now() - rec.t0) / 6e4, box = +$("mBox").value || 30;
+  $("mState").textContent = `● Đang ghi ${fmtInt(min)}/${box} phút${min > box ? " · QUÁ GIỜ: chốt kết luận và phân công" : min > box * 0.8 ? " · còn " + fmtInt(box - min) + " phút: chuyển sang chốt việc" : ""}`; $("mState").style.color = min > box ? "var(--bad)" : ""; }, 5000);
+function hotList(){ const td = ymd(), ts = tasksArr().filter(t => t.status !== "done" && t.status !== "cancel"), red = ts.filter(t => health(t, td).k === "red");
+  const b3 = []; ts.forEach(t => (t.blockers||[]).filter(b => !b.resolved).forEach(b => { const L = blkLevel(b, td, t.dept); if(L.lv >= 3) b3.push({t, b, L}); }));
+  return {red, b3, sup: ts.filter(t => t.support && t.support.open && !t.support.takenBy)}; }
+function drawHot(){ const H = hotList(), el = $("mHot"); if(!el) return;
+  el.innerHTML = H.red.length || H.b3.length || H.sup.length ? `<b>Cần bàn trong họp:</b> ${H.red.length} việc đỏ · ${H.b3.length} điểm nghẽn cấp 3 · ${H.sup.length} yêu cầu hỗ trợ chưa ai nhận` : '<span class="muted">Không có việc đỏ hay điểm nghẽn cấp 3: họp chỉ chốt quyết định mới.</span>'; }
+$("mStd").addEventListener("click", () => { const H = hotList();
+  const items = ["Bản tin điều hành: số bán, việc đỏ/vàng (5 phút)"].concat(H.b3.map(x => `Host quyết điểm nghẽn: ${x.b.text} (${x.t.owner})`), H.red.slice(0, 6).map(t => `Gỡ việc đỏ: ${t.title} (${t.owner})`), H.sup.map(t => `Hỗ trợ ${t.owner}: ${t.support.text || t.title}`), ["Quyết định mới", "Phân công: người chịu trách nhiệm, chỉ số, bằng chứng, hạn"]);
+  $("mAgenda").value = items.join("\n"); const d = $("mAgenda").closest("details"); if(d) d.open = true; if(!$("mReason").value) $("mReason").value = "Giao ban điều hành định kỳ"; toast("Đã lập chương trình chuẩn: chỉ bàn việc đỏ, điểm nghẽn cấp 3 và quyết định mới"); });
 $("mNote").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); $("mNoteAdd").click(); } });
 $("mNoteAdd").addEventListener("click", () => { const v = $("mNote").value.trim(); if(!v) return; addLine(v); $("mNote").value = ""; flush(); });
 document.querySelectorAll("#bMeet [data-tag]").forEach(b => b.addEventListener("click", () => { if(!rec || !rec.lines.length){ toast("Chưa có câu nào để đánh dấu"); return; } const l = rec.lines[rec.lines.length-1]; l.tag = b.dataset.tag; rec.dirty = true; drawScript(); }));
@@ -815,7 +853,7 @@ $("minDlg").addEventListener("click", async e => {
   if(id === "mnBack") return drawMinutes();
   if(id === "mnSign"){ const note = await ask("Xác nhận biên bản. Ghi chú (có thể để trống):", {ph:"VD: Đồng ý, phòng DV nhận việc 2 và 5"}); if(note === null) return; if(await writeSignoff(s => { s.meetings = s.meetings || {}; s.meetings[m.id] = {at: nowIso(), note}; })){ toast("Đã xác nhận biên bản"); setTimeout(drawMinutes, 300); } return; }
   if(id === "mnConfirm"){ readDraft(); await saveMeta(); m = meet(minId) || m;
-    const bad = draft.tasks.map((t,i) => [i+1, [!t.title && "tên việc", !t.owner && "người chịu trách nhiệm", !t.kpiName && "chỉ số", !t.evidenceReq && "bằng chứng", !t.due && "hạn", /CẦN CHỐT/i.test(Object.values(t).join(" ")) && "còn “CẦN CHỐT”"].filter(Boolean)]).filter(x => x[1].length);
+    const bad = draft.tasks.map((t,i) => [i+1, [!t.title && "tên việc", !t.owner && "người chịu trách nhiệm", multiOwner(t.owner) && "nhiều người chịu trách nhiệm (chỉ 1 người)", !t.kpiName && "chỉ số", !t.evidenceReq && "bằng chứng", !t.due && "hạn", /CẦN CHỐT/i.test(Object.values(t).join(" ")) && "còn “CẦN CHỐT”"].filter(Boolean)]).filter(x => x[1].length);
     const badB = draft.blockers.filter(b => b.text && (!b.owner || !b.due));
     if(bad.length || badB.length) return toast("Chưa chốt được: " + bad.map(([i,l]) => `việc ${i} thiếu ${l.join(", ")}`).concat(badB.length ? ["điểm nghẽn thiếu người xử lý/hạn"] : []).join("; ").slice(0, 220));
     if(!draft.tasks.length && !draft.blockers.length && !(await ask("Biên bản không có đầu việc nào. Vẫn chốt?", {confirm:true}))) return;
@@ -828,6 +866,14 @@ $("minDlg").addEventListener("click", async e => {
   }
 });
 
+function coachMd(s, pk){
+  const P = v => v == null ? "chưa đủ dữ liệu" : fmtInt(v) + "%", comp = [["Đúng hạn", s.onTimeP], ["Kỷ luật cập nhật hằng ngày", s.ciP], ["Kết quả có số liệu + bằng chứng", s.evP], ["Xác nhận liên phòng", s.cfP], ["Xử lý dứt điểm điểm nghẽn", s.blkP]];
+  const good = comp.filter(c => c[1] != null && c[1] >= 80), weak = comp.filter(c => c[1] != null && c[1] < 60);
+  const mine = tasksArr().filter(t => (t.owner||"").trim() === s.owner && t.status !== "cancel"), red = mine.filter(t => health(t).k === "red");
+  return `# Phiếu kèm cặp: ${s.owner}\n_${s.dept} · kỳ ${pk === "q" ? "quý này (xét thưởng)" : pk === "m" ? "tháng này (kèm cặp)" : "toàn bộ"} · ${vnDate(ymd())}_\n\n## Số liệu\n| Tiêu chí | Kết quả |\n|---|---|\n${comp.map(c => `| ${c[0]} | ${P(c[1])} |`).join("\n")}\n| Việc / đang mở / nguy cơ | ${s.n} / ${s.open} / ${s.red} |\n| Điểm năng lực | **${s.score ?? "—"}** |\n\n## Điểm mạnh cần ghi nhận\n${good.map(c => `- ${c[0]}: ${P(c[1])}`).join("\n") || "- Chưa đủ dữ liệu để kết luận"}${s.kudos ? `\n- Đã được ghi nhận ${s.kudos} lần` : ""}\n\n## Cần cải thiện\n${weak.map(c => `- ${c[0]}: ${P(c[1])}`).join("\n") || "- Không có tiêu chí dưới 60%"}${red.length ? "\n- Việc nguy cơ trễ: " + red.map(t => t.title).join("; ") : ""}\n\n## Câu hỏi kèm cặp (GROW)\n- **Mục tiêu:** tháng tới anh/chị cam kết con số nào, đo bằng nguồn nào?\n- **Thực trạng:** việc nào đang chậm nhất, chậm ở khâu nào, số liệu cho thấy gì?\n- **Phương án:** có 2–3 cách nào để gỡ? cần ai phối hợp?\n- **Cam kết:** việc làm ngay trong 24 giờ, mốc kiểm tra tuần, lãnh đạo hỗ trợ gì cụ thể?\n\n## Lãnh đạo hỗ trợ\n${s.sup ? `- Đã xin hỗ trợ ${s.sup} lần: rà soát lãnh đạo đã nhận và xử lý trong 24 giờ chưa.` : "- Hỏi trực tiếp: điều gì đang cản trở mà lãnh đạo gỡ được?"}\n- Kèm cặp tháng dựa trên số liệu và bằng chứng; xét thưởng theo quý.\n`; }
+$("opsLead").addEventListener("click", e => { const b = e.target.closest("[data-coach]"); if(!b) return; const s = ($("opsLead")._sc || [])[+b.dataset.coach]; if(!s) return;
+  CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", esc("Phiếu kèm cặp " + s.owner)); const m = CV.addMsg("a", ""); CV.finishBubble(m, coachMd(s, $("ofPeriod").value), false, "Kèm cặp " + s.owner, true); });
+$("ofPeriod").addEventListener("change", () => renderOps());
 /* ---------- section events ---------- */
 $("ofDept").innerHTML = '<option value="">Tất cả</option>' + DEPTS.map(d => `<option>${esc(d)}</option>`).join("");
 ["ofDept","ofOwner","ofStatus"].forEach(id => $(id).addEventListener("change", () => { tileF = ""; renderOps(); }));
@@ -844,7 +890,8 @@ document.querySelectorAll("[data-otab]").forEach(b => b.addEventListener("click"
 $("opsNew").addEventListener("click", () => openTask(blankTask({}), true));
 $("opsBrief").addEventListener("click", () => { CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Bản tin điều hành hôm nay"); const b = CV.addMsg("a", ""); CV.finishBubble(b, briefMd(), false, "Bản tin điều hành " + vnDate(ymd()), true); });
 $("opsMeet").addEventListener("click", () => { CV.openAi(true); CV.benTab("Meet"); });
-$("opsBar").addEventListener("click", () => $("opsSec").scrollIntoView({behavior:"smooth", block:"start"}));
+$("opsBar").addEventListener("click", e => { if(e.target.id === "opsMorning"){ e.stopPropagation(); try{ localStorage.setItem("cv-brief-seen", ymd()); }catch(_){} $("opsBrief").click(); renderOps(); return; } $("opsSec").scrollIntoView({behavior:"smooth", block:"start"}); });
+function briefDue(){ let seen = ""; try{ seen = localStorage.getItem("cv-brief-seen") || ""; }catch(_){} return new Date().getHours() >= BRIEF_HOUR && seen !== ymd() && tasksArr().length > 0; }
 $("opsExport").addEventListener("click", () => { const q = v => { const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; };
   const head = ["Đầu việc","Người chịu trách nhiệm","Phòng ban","Phối hợp/xác nhận","Ưu tiên","Trạng thái","Sức khỏe","Lý do","Tiến độ %","Kỳ vọng %","KPI","Thực tế","Mục tiêu","Đơn vị","Bằng chứng","Xác nhận","Bắt đầu","Hạn","Cập nhật gần nhất","Cuộc họp"];
   const body = tasksArr().map(t => { const h = health(t), lc = lastCi(t); return [t.title, t.owner, t.dept, (t.coDepts||[]).join("; "), t.priority, STATUS[t.status], HL[h.k][0], h.reasons.join("; "), +t.progress||0, h.expected, (t.kpi||{}).name, (t.kpi||{}).actual, (t.kpi||{}).target, (t.kpi||{}).unit, (t.evidence||[]).length, confirmsOf(t.id).filter(c => c.ok).length + "/" + (t.coDepts||[]).length, t.start, t.due, lc ? lc.d + " " + lc.note : "", (S.meetings[t.meetingId]||{}).title || ""].map(q).join(","); });
@@ -870,7 +917,7 @@ CV.tools.push(
      return {id: t.id, viec: t.title, nguoi: t.owner, phong: t.dept, phoi_hop: t.coDepts, trang_thai: STATUS[t.status], suc_khoe: HL[h.k][0], ly_do: h.reasons, tien_do: +t.progress||0, ky_vong: h.expected, kpi: t.kpi, bang_chung: (t.evidence||[]).length, thieu_xac_nhan: D.missing, du_dk_nghiem_thu: D.all, bat_dau: t.start, han: t.due, du_bao_xong: h.eta, diem_nghen_mo: (t.blockers||[]).filter(b => !b.resolved).map(b => b.text), can_ho_tro: t.support && t.support.open ? t.support.text : null, cap_nhat: (t.checkins||[]).slice(-3).map(c => ({ngay: c.d, p: c.p, kpi: c.a, ghi_chu: c.note}))}; })},
   {name:"create_task", label:"Đang giao việc…", description:"Tạo một đầu việc mới (chỉ khi người dùng yêu cầu giao việc). Bắt buộc: title, owner, due (YYYY-MM-DD), kpi_name, evidence_req. Tùy chọn: dept, co_depts, kpi_target, kpi_unit, kpi_dir (up|down), start, priority (P1|P2|P3), first_step.",
    inputSchema:{type:"object",properties:{title:{type:"string"},owner:{type:"string"},dept:{type:"string"},co_depts:{type:"array",items:{type:"string"}},kpi_name:{type:"string"},kpi_target:{type:"number"},kpi_unit:{type:"string"},kpi_dir:{type:"string"},evidence_req:{type:"string"},start:{type:"string"},due:{type:"string"},priority:{type:"string"},first_step:{type:"string"}},required:["title","owner","due","kpi_name","evidence_req"]},
-   execute: async (i) => { const t = blankTask({title: i.title, owner: i.owner, dept: DEPTS.includes(i.dept) ? i.dept : "Kinh doanh", coDepts: (i.co_depts||[]).filter(x => DEPTS.includes(x)), priority: ["P1","P2","P3"].includes(i.priority) ? i.priority : "P2", kpi: {name: i.kpi_name, unit: i.kpi_unit || "", base: "", target: i.kpi_target ?? "", actual: "", dir: i.kpi_dir === "down" ? "down" : "up"}, evidenceReq: i.evidence_req, start: /^\d{4}-\d\d-\d\d$/.test(i.start||"") ? i.start : ymd(), due: /^\d{4}-\d\d-\d\d$/.test(i.due||"") ? i.due : addDays(ymd(), 7), firstStep: i.first_step || ""});
+   execute: async (i) => { if(multiOwner(i.owner)) throw new Error("Mỗi việc chỉ một người chịu trách nhiệm chính"); const t = blankTask({title: i.title, owner: i.owner, dept: DEPTS.includes(i.dept) ? i.dept : "Kinh doanh", coDepts: (i.co_depts||[]).filter(x => DEPTS.includes(x)), priority: ["P1","P2","P3"].includes(i.priority) ? i.priority : "P2", kpi: {name: i.kpi_name, unit: i.kpi_unit || "", base: "", target: i.kpi_target ?? "", actual: "", dir: i.kpi_dir === "down" ? "down" : "up"}, evidenceReq: i.evidence_req, start: /^\d{4}-\d\d-\d\d$/.test(i.start||"") ? i.start : ymd(), due: /^\d{4}-\d\d-\d\d$/.test(i.due||"") ? i.due : addDays(ymd(), 7), firstStep: i.first_step || ""});
      if(!(await saveTask(t, "Ben giao việc"))) throw new Error("Chưa lưu được (quyền ghi)"); return {id: t.id, ok: true}; }},
   {name:"update_task", label:"Đang cập nhật đầu việc…", description:"Cập nhật tiến độ hằng ngày cho một đầu việc (id hoặc từ khóa tên việc): progress (%), actual (số KPI), note (đã làm gì, có số liệu), blocker (điểm nghẽn mới), need_support (văn bản cần hỗ trợ). Chỉ dùng khi người dùng báo cáo tiến độ.",
    inputSchema:{type:"object",properties:{task:{type:"string"},progress:{type:"number"},actual:{type:"number"},note:{type:"string"},blocker:{type:"string"},need_support:{type:"string"}},required:["task","note"]},
