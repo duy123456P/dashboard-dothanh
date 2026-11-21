@@ -57,6 +57,35 @@ const MET = [
   ["gap27", "Đô Thành", "Dự báo / KH 2027", "%", r => { const x = A(r); return x.kh27 ? x.f27 / x.kh27 * 100 : null; }, 1, "dự báo / KH"],
 ];
 const MID = Object.fromEntries(MET.map(m => [m[0], m]));
+/* nguồn cụ thể cho từng chỉ số: [tên, link] hoặc [tên, null] cho dữ liệu nội bộ DAC (file gốc anh gửi) */
+const U = {
+  nqs: ["Nghị quyết 202/2025/QH15 sắp xếp đơn vị hành chính cấp tỉnh", "https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-202-2025-QH15-660927.aspx"],
+  vne: ["VnEconomy: vị thế kinh tế 34 tỉnh sau sáp nhập (dân số, GRDP)", "https://vneconomy.vn/vi-the-kinh-te-tinh-thanh-pho-sau-sap-nhap-dua-theo-mot-so-chi-tieu-chu-yeu.htm"],
+  vnx: ["VnExpress: quy mô kinh tế các địa phương sau sáp nhập", "https://vnexpress.net/quy-mo-kinh-te-cac-dia-phuong-the-nao-sau-sap-nhap-4874073.html"],
+  g25: ["Cục Thống kê: thông cáo GRDP 34 tỉnh năm 2025", "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"],
+  g9: ["VOV: GRDP 34 tỉnh 9 tháng 2026", "https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"],
+  ksms: ["Cục Thống kê: Khảo sát mức sống dân cư 2025 (PDF)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/Thong-cao-bao-chi-ksms2025.pdf"],
+  fdi: ["Người Quan Sát: FDI 10 tháng 2026 theo địa phương", "https://nguoiquansat.vn/dia-phuong-hut-von-fdi-cap-moi-nhieu-nhat-viet-nam-voi-hon-10-ty-usd-gan-gap-doi-thai-nguyen-vuot-ca-ha-noi-va-bac-ninh-326316.html"],
+  csgt: ["Dân trí: ô tô đăng ký mới 2025 theo địa phương (Cục CSGT)", "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"],
+  csgt9: ["Tuổi Trẻ: xe đăng ký mới 9 tháng 2026 (Cục CSGT)", "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"],
+  dk: ["Báo Xây dựng: phương tiện lưu hành 8 tháng 2026 (Cục Đăng kiểm)", "https://baoxaydung.vn/hon-500-nghin-luot-phuong-tien-truot-kiem-dinh-8-thang-dau-nam-2026-192260818102808066.htm"],
+  dtweb: ["dothanhauto.com: hệ thống đại lý", "https://www.dothanhauto.com/dai-ly.html"],
+  tdbh: ["ERP Đô Thành: Tổng hợp TDBH chốt T10/2026", null], tx: ["File DAC_SL_bán_2024-YTD2026.xlsx (từng xe, TT 100%)", null],
+  inv: ["File MoM_Tồn_SR_W2.M11.Y26_21.11.26.xlsx", null], kh27: ["ERP Đô Thành: Đánh giá KH 2027", null],
+  model: ["Mô hình phân bổ của bản đồ (không phải số thống kê): tổng toàn quốc Cục CSGT, Cục Đăng kiểm chia theo GRDP, cơ cấu ngành", null],
+  est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
+  comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
+const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["g25"], growth: ["g25"], gpc: ["vne"], income: ["ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
+  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+  dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
+// nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
+const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
+  if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0])).concat([U.g9]); return null; };
+const kindOf = t => /^(File|ERP)/.test(t) ? "dữ liệu nội bộ DAC" : "ước tính của bản đồ, chưa có số công bố";
+const srcList = (id, r) => provSrc(id, r) || (SRCOF[id] || []).map(k => U[k]);
+const srcHtml = (id, r) => srcList(id, r).map(([t, u]) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>` : `<span>${esc(t)}</span>`).join(" · ");
+const srcMd = (id, r) => srcList(id, r).map(([t, u]) => u ? `[${t}](${u})` : t).join("; ");
+CV.boardSrc = {U, SRCOF, srcHtml, srcMd};
 function ranks(id){ const m = MID[id]; const vals = CV.rows.map(r => [r.name, m[4](r)]).filter(([, v]) => v != null && isFinite(v)); const s = vals.slice().sort((a,b) => b[1] - a[1]); const o = {}; s.forEach(([n, v], i) => { o[n] = i && v === s[i-1][1] ? o[s[i-1][0]] : i + 1; }); return {o, n: vals.length}; } // bằng nhau cùng hạng
 let RK = null; const R = () => RK || (RK = Object.fromEntries(MET.map(m => [m[0], ranks(m[0])])));
 const rankOf = (id, r) => { const x = R()[id]; return x && x.o[r.name] ? [x.o[r.name], x.n] : null; };
@@ -124,14 +153,14 @@ function tile(id, r){
   const m = MID[id], v = m[4](r), rk = rankOf(id, r), off = official(id, r), q = rk ? (rk[0] - 1) / Math.max(1, rk[1] - 1) : null;
   const col = m[5] === 0 || q == null ? C.muted : (m[5] > 0 ? q : 1 - q) <= 0.25 ? C.good : (m[5] > 0 ? q : 1 - q) >= 0.75 ? C.bad : C.warn;
   const val = v == null || !isFinite(v) ? "—" : id === "cover" && v >= 99 ? "không bán" : (m[3] === "%" || m[3] === "tháng" || id === "income" || id === "growth") ? f1(v) : n0(v);
-  return `<div class="stat bdt" data-gl-text="${esc(m[2])}" data-tip="<b>${esc(m[2])}</b><br>${esc(val)} ${esc(m[3])}<br>Hạng ${rk ? rk[0] + "/" + rk[1] : "—"}${off ? " (công bố: " + off + "/34)" : ""}<br>Nguồn: ${esc(m[6])}"><div class="v">${esc(val)}<span class="bdu"> ${esc(m[3])}</span></div><div class="l">${esc(m[2])}</div><div class="bdr" style="color:${col}">${rk ? `#${off || rk[0]}/${off ? 34 : rk[1]}` : "chưa có số"}</div></div>`;
+  return `<div class="stat bdt" data-gl-text="${esc(m[2])}" data-tip="<b>${esc(m[2])}</b><br>${esc(val)} ${esc(m[3])}<br>Hạng ${rk ? rk[0] + "/" + rk[1] : "—"}${off ? " (công bố: " + off + "/34)" : ""}<br>Nguồn: ${esc(srcList(id, r).map(z => z[0]).join(" · ") || m[6])}"><div class="v">${esc(val)}<span class="bdu"> ${esc(m[3])}</span></div><div class="l">${esc(m[2])}</div><div class="bdr" style="color:${col}">${rk ? `#${off || rk[0]}/${off ? 34 : rk[1]}` : "chưa có số"}</div><div class="bdsrc">${(() => { const L = srcList(id, r), w = L.find(z => z[1]); return w ? `<a href="${esc(w[1])}" target="_blank" rel="noopener noreferrer" title="${esc(L.map(z => z[0]).join(" · "))}">nguồn ↗</a>` : `<span title="${esc(L.map(z => z[0]).join(" · "))}">${/^(File|ERP)/.test((L[0] || [""])[0]) ? "nguồn: file nội bộ DAC" : "ước tính"}</span>`; })()}</div></div>`;
 }
 function render(name){
   const r = CV.findRow(name); if(!r) return; sel.value = r.name; RK = null; cache = null;
   const T = tactics(r), P = T.P, x = A(r), ext = r.ext || {};
   const groups = [...new Set(MET.map(m => m[1]))];
   const dl = x.dealers.filter(d => d.salesKey).map(d => { const iv = CV.invOf ? CV.invOf(d.salesKey) : null, fd = (CV.salesForecast() || {D: []}).D.find(z => z.name === d.salesKey);
-    return `<tr><td><b>${esc(d.salesKey)}</b> <span class="muted tiny">${d.tier}</span> <button type="button" class="tiny" data-d360="${esc(d.salesKey)}">360°</button></td><td class="num">${n0(d.leCum)}/${n0(d.khCum)}</td><td class="num">${d.thT10 ?? "—"}/${d.khT10 ?? "—"}</td><td class="num">${iv ? iv.ton : "—"}</td><td class="num">${iv && iv.cover != null ? f1(iv.cover) : iv ? "không bán" : "—"}</td><td class="num">${fd ? n0(fd.f27) : "—"}</td><td class="num">${fd && fd.kh27 ? n0(fd.kh27) : "—"}</td><td>${d.grade ? d.grade + " · " + f1(d.score) : ""}</td></tr>`; }).join("");
+    return `<tr><td><b>${CV.gmapA(d, esc(d.salesKey))}</b> <span class="muted tiny">${d.tier}</span> <button type="button" class="tiny" data-d360="${esc(d.salesKey)}">360°</button></td><td class="num">${n0(d.leCum)}/${n0(d.khCum)}</td><td class="num">${d.thT10 ?? "—"}/${d.khT10 ?? "—"}</td><td class="num">${iv ? iv.ton : "—"}</td><td class="num">${iv && iv.cover != null ? f1(iv.cover) : iv ? "không bán" : "—"}</td><td class="num">${fd ? n0(fd.f27) : "—"}</td><td class="num">${fd && fd.kh27 ? n0(fd.kh27) : "—"}</td><td>${d.grade ? d.grade + " · " + f1(d.score) : ""}</td></tr>`; }).join("");
   document.getElementById("bdBody").innerHTML = `
     <div class="bdhead"><div><div class="eyebrow">${esc(r.region)} · ${esc(r.zone)} · gộp từ ${esc((r.merged || []).join(", "))}</div><h2 style="margin:4px 0">${esc(r.name)}</h2><div class="muted small">${esc(r.industries)}</div></div>
       <div class="bdpost" style="border-color:${P.c};box-shadow:0 0 24px ${P.c}55"><div class="tiny muted">THẾ TRẬN ĐỀ XUẤT</div><div class="bdpt" style="color:${P.c}">${esc(P.t)}</div><div class="tiny">Hấp dẫn thị trường ${fmtInt(P.attr*100)}/100 · Nội lực Đô Thành ${fmtInt(P.str*100)}/100</div><div class="small" style="margin-top:4px">${esc(P.why)}</div></div></div>
@@ -144,6 +173,7 @@ function render(name){
       <div class="hp w6"><h3>Chính trị, pháp lý, hạ tầng</h3><div class="small"><p><b>Hành chính:</b> ${esc(ext.units || (r.communes ? r.communes + " xã/phường" : ""))}; trung tâm ${esc(r.capital)}; biển số ${esc(r.plates)}.</p><p><b>Hạ tầng, logistics:</b> ${esc(r.logistics)}</p>${ext.localRules ? ext.localRules.map(q => `<p><b>${esc(q.t)}:</b> ${esc(q.d)}<br><span class="muted">→ ${esc(q.impact)}</span></p>`).join("") : '<p class="muted">Chưa có quy định địa phương riêng trong dữ liệu (quy định quốc gia: mục Pháp lý).</p>'}${ext.publicInv ? `<p><b>Đầu tư công:</b> ${esc(ext.publicInv.targets)}</p>` : ""}</div></div>
     </div>
     ${CV.warplan ? CV.warplan(r).html : ""}
+    <details class="lgdoc" style="margin-top:10px"><summary><b>Nguồn số liệu của ${esc(r.name)}</b> (bấm để mở từng link)</summary><ul class="small">${[...new Map(MET.flatMap(m => srcList(m[0], r)).concat((r.ext || {}).src || []).map(z => [z[0], z])).values()].map(([t, u]) => `<li>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>` : esc(t) + " <span class='muted'>(" + kindOf(t) + ")</span>"}</li>`).join("")}</ul></details>
     <p class="note">Hạng: #1 là cao nhất. Màu xanh = tốt cho kinh doanh, đỏ = bất lợi, xám = trung tính. Xếp hạng “công bố” lấy theo Cục Thống kê / Cục ĐTNN khi có; còn lại xếp trên số đang có trên bản đồ (n = số tỉnh có dữ liệu). ${esc(Object.values(PS.notes || {}).join(" · "))}</p>`;
   try{ CV.select(r.name, true); }catch(e){}
 }
@@ -160,7 +190,7 @@ CV.openBoard = open; CV.boardPosture = posture;
 function boardMd(name){
   const r = CV.findRow(name); if(!r) return "Không tìm thấy tỉnh.";
   const T = tactics(r), P = T.P;
-  return `# Phòng chiến lược: ${r.name}\n_Thế trận đề xuất: **${P.t}** (hấp dẫn ${fmtInt(P.attr*100)}/100, nội lực ${fmtInt(P.str*100)}/100). ${P.why}_\n\n${[...new Set(MET.map(m => m[1]))].map(g => `## ${g}\n| Chỉ số | Giá trị | Hạng |\n|---|---|---|\n${MET.filter(m => m[1] === g).map(m => { const v = m[4](r), rk = rankOf(m[0], r), off = official(m[0], r); return `| ${m[2]} | ${v == null || !isFinite(v) ? "—" : (m[0] === "cover" && v >= 99 ? "không bán" : fmt1(v)) + " " + m[3]} | ${rk ? (off || rk[0]) + "/" + (off ? 34 : rk[1]) : "—"} |`; }).join("\n")}`).join("\n\n")}\n\n## Đối sách ngắn hạn 30–90 ngày\n${T.lines.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Chiến lược dài hạn 1–3 năm\n${T.longs.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Văn hóa, mùa vụ\n- ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Lễ hội: ${r.festivals}; đặc sản: ${r.specialties}\n- Mùa vụ: ${(r.seasonNotes || []).join("; ")}\n`;
+  return `# Phòng chiến lược: ${r.name}\n_Thế trận đề xuất: **${P.t}** (hấp dẫn ${fmtInt(P.attr*100)}/100, nội lực ${fmtInt(P.str*100)}/100). ${P.why}_\n\n${[...new Set(MET.map(m => m[1]))].map(g => `## ${g}\n| Chỉ số | Giá trị | Hạng | Nguồn |\n|---|---|---|---|\n${MET.filter(m => m[1] === g).map(m => { const v = m[4](r), rk = rankOf(m[0], r), off = official(m[0], r); return `| ${m[2]} | ${v == null || !isFinite(v) ? "—" : (m[0] === "cover" && v >= 99 ? "không bán" : fmt1(v)) + " " + m[3]} | ${rk ? (off || rk[0]) + "/" + (off ? 34 : rk[1]) : "—"} | ${srcMd(m[0], r)} |`; }).join("\n")}`).join("\n\n")}\n\n## Đối sách ngắn hạn 30–90 ngày\n${T.lines.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Chiến lược dài hạn 1–3 năm\n${T.longs.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Văn hóa, mùa vụ\n- ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Lễ hội: ${r.festivals}; đặc sản: ${r.specialties}\n- Mùa vụ: ${(r.seasonNotes || []).join("; ")}\n`;
 }
 function overviewMd(){
   const rows = CV.rows.map(r => ({r, P: posture(r)})).sort((a,b) => b.P.attr + b.P.str - a.P.attr - a.P.str);
