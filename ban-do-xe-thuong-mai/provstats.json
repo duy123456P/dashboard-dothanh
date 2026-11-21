@@ -4,7 +4,9 @@
 "gdpGrowth2025": 8.02,
 "income2025": 6.0,
 "fdi10m26": 54850,
-"publicInv10m26": 74.1
+"publicInv10m26": 74.1,
+"gdp9m26": 9.01,
+"publicInv9m26": 64.8
 },
 "growth2025": {
 "Quảng Ninh": {
@@ -285,7 +287,8 @@
 "grdp2025": "quy mô GRDP 2025, nghìn tỷ đồng (bảng tổng hợp, 14/34 tỉnh); xếp hạng quy mô trên bản đồ dùng GRDP 2024 đủ 34 tỉnh",
 "income2025": "thu nhập bình quân đầu người/tháng, Khảo sát mức sống dân cư 2025 (Cục Thống kê); mới có 7/34 tỉnh công bố rộng rãi; cả nước 6,0 triệu",
 "fdi10m26": "vốn FDI 10 tháng 2026, triệu USD (Cục Đầu tư nước ngoài qua báo chí); mới có nhóm dẫn đầu",
-"publicInv10m26": "chấm điểm giải ngân đầu tư công 10 tháng 2026 (Bộ Tài chính, BC 908/BC-BTC 3/11/2026); mới có một phần bảng"
+"publicInv10m26": "chấm điểm giải ngân đầu tư công 10 tháng 2026 (Bộ Tài chính, BC 908/BC-BTC 3/11/2026); mới có một phần bảng",
+"growth9m26": "tăng trưởng GRDP 9 tháng 2026 (Cục Thống kê qua báo chí, 20/34 tỉnh; cả nước 9,01%)"
 },
 "sources": [
 [
@@ -311,6 +314,100 @@
 [
 "Báo Chính phủ: chấm điểm giải ngân đầu tư công 10 tháng 2026",
 "https://baochinhphu.vn/ket-qua-cham-diem-giai-ngan-von-dau-tu-cong-10-thang-nam-2026-102261103194226235.htm"
+],
+[
+"VOV: GRDP 34 tỉnh 9 tháng 2026",
+"https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"
+],
+[
+"Nhân Dân: infographic GRDP 9 tháng 2026",
+"https://nhandan.vn/infographic-tang-truong-grdp-cua-34-tinh-thanh-pho-9-thang-nam-2026-post993603.html"
+],
+[
+"Cục Thống kê: KT-XH quý III, 9 tháng 2026",
+"https://www.nso.gov.vn/bai-top/2026/10/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
 ]
-]
+],
+"growth9m26": {
+"Quảng Ninh": {
+"v": 12.54,
+"rank": 1
+},
+"Hà Tĩnh": {
+"v": 12.36,
+"rank": 2
+},
+"Hải Phòng": {
+"v": 12.08,
+"rank": 3
+},
+"Bắc Ninh": {
+"v": 11.81,
+"rank": null
+},
+"Ninh Bình": {
+"v": 11.31,
+"rank": null
+},
+"Thái Nguyên": {
+"v": 11.24,
+"rank": null
+},
+"Hưng Yên": {
+"v": 11.22,
+"rank": null
+},
+"Thanh Hóa": {
+"v": 10.49,
+"rank": null
+},
+"Đà Nẵng": {
+"v": 10.3,
+"rank": null
+},
+"Nghệ An": {
+"v": 10.11,
+"rank": null
+},
+"Quảng Ngãi": {
+"v": 9.16,
+"rank": 17
+},
+"Hà Nội": {
+"v": 8.85,
+"rank": null
+},
+"Lâm Đồng": {
+"v": 8.51,
+"rank": null
+},
+"Đắk Lắk": {
+"v": 8.22,
+"rank": null
+},
+"Gia Lai": {
+"v": 8.03,
+"rank": null
+},
+"Cần Thơ": {
+"v": 7.89,
+"rank": 29
+},
+"Đồng Tháp": {
+"v": 7.44,
+"rank": 31
+},
+"Cà Mau": {
+"v": 7.37,
+"rank": null
+},
+"Vĩnh Long": {
+"v": 7.32,
+"rank": 33
+},
+"Sơn La": {
+"v": 5.59,
+"rank": null
+}
+}
 }

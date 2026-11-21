@@ -88,7 +88,27 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 8.85,
+    "rank": null,
+    "note": "9 tháng 2026 (ước)"
+   },
+   "localRules": [
+    {
+     "t": "Hạn chế xe tải nội đô (QĐ 01/2026/QĐ-UBND, hiệu lực 15/1/2026, thay QĐ 06/2013)",
+     "d": "Xe tải từ 2 tấn bị hạn chế ban ngày trong nội đô (các nguồn ghi 6h–21h); xe dưới 2 tấn cấm giờ cao điểm (6h–9h, 16h–19h30). Các nguồn chưa thống nhất ngưỡng 1,25–2,5 tấn; phạt 4–6 triệu theo NĐ 168/2024.",
+     "src": [
+      "Daehan Motors: Hà Nội cấm xe tải nhiều tuyến từ 15/1/2026",
+      "https://daehan.vn/ha-noi-cam-xe-tai"
+     ],
+     "impact": "Phân khúc giao hàng nội đô Hà Nội nghiêng về xe dưới 2 tấn và van: T26, T33L, V56/V65, IZ45S (1,99 tấn); xe từ 2 tấn bán cho tuyến liên tỉnh, KCN, chạy đêm. Đối chiếu nguyên văn QĐ 01/2026 trước khi tư vấn khách."
+    }
+   ]
+  }
  },
  {
   "name": "Huế",
@@ -454,7 +474,16 @@
    "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 5.59,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Lạng Sơn",
@@ -642,7 +671,16 @@
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 12.54,
+    "rank": 1,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Thanh Hóa",
@@ -735,7 +773,23 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VietnamPlus: GRDP 9 tháng 2026 34 tỉnh",
+     "https://www.vietnamplus.vn/tang-truong-grdp-9-thang-nam-2026-cua-34-tinh-thanh-pho-post1139792.vnp"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 10.49,
+    "rank": null,
+    "note": "9 tháng 2026",
+    "target": null
+   },
+   "note9m": "Quý IV được giao tăng 17,1%"
+  }
  },
  {
   "name": "Nghệ An",
@@ -830,7 +884,21 @@
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VietnamPlus: GRDP 9 tháng 2026 34 tỉnh",
+     "https://www.vietnamplus.vn/tang-truong-grdp-9-thang-nam-2026-cua-34-tinh-thanh-pho-post1139792.vnp"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 10.11,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Hà Tĩnh",
@@ -921,7 +989,16 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 12.36,
+    "rank": 2,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Cao Bằng",
@@ -1310,7 +1387,16 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 11.24,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Phú Thọ",
@@ -1515,7 +1601,16 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 11.81,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Hưng Yên",
@@ -1615,7 +1710,16 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 11.22,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Hải Phòng",
@@ -1715,7 +1819,35 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Vải tươi tới cửa khẩu”: kiểm tra thùng lạnh, ưu tiên sửa nhanh 24 giờ trong mùa vải tháng 5 – 7"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Báo Hải Phòng: đạt, vượt 10/13 chỉ tiêu KT-XH",
+     "https://baohaiphong.vn/hai-phong-dat-va-vuot-10-13-chi-tieu-kinh-te-xa-hoi-chu-yeu-554425.html"
+    ],
+    [
+     "Thống kê Hải Phòng: KT-XH 9 tháng 2026",
+     "https://thongkehaiphong.gov.vn/thong-tin-kinh-te-xa-hoi/tinh-hinh-kinh-te-xa-hoi-thang-9-9-thang-nam-2026-thanh-pho-hai-phong-705.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 12.08,
+    "rank": 3,
+    "note": "9 tháng 2026",
+    "target": 13
+   },
+   "publicInv": {
+    "pct9m26": 83.37,
+    "targets": "mục tiêu GRDP cả năm ≥ 13%; quý IV được giao 15,39%",
+    "nat10m26": 74.1,
+    "note": ""
+   },
+   "missing": [
+    "3 chỉ tiêu chưa đạt kịch bản 9 tháng: GRDP, IIP, doanh nghiệp thành lập mới"
+   ]
+  }
  },
  {
   "name": "Ninh Bình",
@@ -1822,7 +1954,16 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 11.31,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "Quảng Trị",
@@ -2216,7 +2357,30 @@
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Vào vụ mía”: bảo dưỡng xe tải nặng, đầu kéo chở mía trước tháng 11; gói phụ tùng theo vụ"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Thống kê Quảng Ngãi: GRDP quý III, 9 tháng 2026",
+     "https://thongke.quangngai.gov.vn/tin-tuc/thong-tin-kinh-te-xa-hoi/tinh-hinh-tang-truong-grdp-quy-iii-va-9-thang-nam-2026-cua-tinh-quang-ngai.html"
+    ],
+    [
+     "SGGP: Quảng Ngãi GRDP 9 tháng +9,16%",
+     "https://www.sggp.org.vn/quang-ngai-grdp-9-thang-tang-916-go-vuong-hon-100-du-an-post877922.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 9.16,
+    "rank": 17,
+    "note": "9 tháng 2026"
+   },
+   "retail9m26": {
+    "v": 38300,
+    "g": 14.73
+   },
+   "note9m": "Quý III +9,34%; gỡ vướng hơn 100 dự án; xuất khẩu, vận tải > 4.000 tỷ (+46%)"
+  }
  },
  {
   "name": "Gia Lai",
@@ -2318,7 +2482,29 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Báo Gia Lai: KT-XH tiếp tục tăng trưởng khá",
+     "https://baogialai.com.vn/kinh-te-xa-hoi-gia-lai-tiep-tuc-da-tang-truong-kha-post601550.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 8.03,
+    "rank": null,
+    "note": "9 tháng 2026"
+   },
+   "retail9m26": {
+    "v": 171774,
+    "g": 15.28
+   },
+   "missing": [
+    "GRDP 9 tháng chưa đạt kịch bản; điện chưa phát huy vai trò động lực"
+   ],
+   "note9m": "21 dự án công nghiệp 7.850 tỷ đi vào hoạt động quý III; 13,51 triệu lượt khách (+25%)"
+  }
  },
  {
   "name": "Khánh Hòa",
@@ -2525,7 +2711,27 @@
    "“Rau hoa tới chợ”: kiểm tra phanh đèo, thùng lạnh xe chở rau hoa Đà Lạt",
    "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Hà Nội Mới: Lâm Đồng GRDP 9 tháng 8,51%",
+     "https://hanoimoi.vn/tinh-lam-dong-tang-truong-grdp-9-thang-dat-8-51-don-luc-but-pha-quy-iv-1760042.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 8.51,
+    "rank": null,
+    "note": "9 tháng 2026",
+    "target": 9.2
+   },
+   "retail9m26": {
+    "v": 150375,
+    "g": 19.03
+   },
+   "note9m": "Vốn đầu tư toàn xã hội 84.104,8 tỷ (+12,09%); công nghiệp – xây dựng +10,64%; thu ngân sách 80,4% dự toán"
+  }
  },
  {
   "name": "Đắk Lắk",
@@ -2623,7 +2829,33 @@
    "“Vào mùa cà phê”: khám xe miễn phí tháng 9, gói trả góp theo mùa thu hoạch, trạm dịch vụ lưu động tại vùng thu mua",
    "“Lạnh chuẩn mùa sầu riêng”: kiểm tra thùng lạnh, máy lạnh trước tháng 5; hỗ trợ xe giao hàng cửa khẩu"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Công Thương: Đắk Lắk xuất khẩu 2,312 tỷ USD",
+     "https://congthuong.vn/dak-lak-xuat-khau-dat-2-312-ty-usd-go-diem-nghen-tang-truong-475914.html"
+    ],
+    [
+     "VietnamPlus: Đắk Lắk thúc đẩy tăng trưởng cuối năm",
+     "https://www.vietnamplus.vn/dak-lak-tap-trung-cao-nhat-cho-muc-tieu-tang-truong-cua-ca-nam-nay-post1139604.vnp"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 8.22,
+    "rank": null,
+    "note": "9 tháng 2026",
+    "target": 10.02
+   },
+   "note9m": "Cần ~13,6% quý IV để đạt cả năm; xuất khẩu 2,312 tỷ USD; IIP +15,01%; xây dựng chỉ +3,95%; 2.830 DN mới (+19,7%)",
+   "publicInv": {
+    "rank10m26": "23/34 (90,76 điểm)",
+    "targets": "",
+    "nat10m26": 74.1,
+    "note": ""
+   }
+  }
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -2728,7 +2960,42 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "SGGP: TP.HCM giải ngân trên 80% vốn đầu tư công 10 tháng",
+     "https://www.sggp.org.vn/tphcm-giai-ngan-tren-80-von-dau-tu-cong-trong-10-thang-nam-2026-post880193.html"
+    ],
+    [
+     "Thời báo Tài chính: TP.HCM thu hút 19,1 tỷ USD FDI 10 tháng",
+     "https://thoibaotaichinhvietnam.vn/tp-ho-chi-minh-thu-hut-19-1-ty-usd-fdi-sau-10-thang-mo-rong-co-hoi-don-von-quoc-te-206268.html"
+    ]
+   ],
+   "publicInv": {
+    "pct10m26": 80.1,
+    "vnd10m26": 118278,
+    "targets": "mục tiêu GRDP > 10%, giải ngân 100% trong 2 tháng cuối năm",
+    "nat10m26": 74.1,
+    "note": ""
+   },
+   "fdi": {
+    "v10m26": 19100,
+    "note": "gồm cả tăng vốn; cấp mới ≈ 10.300"
+   },
+   "localRules": [
+    {
+     "t": "Giờ cấm xe tải nội đô (QĐ 23/2018, sửa đổi QĐ 23/2019 UBND TP.HCM)",
+     "d": "Xe tải nhẹ: cấm 6h–9h và 16h–20h trong khu vực hạn chế; xe tải từ 2,5 tấn: cấm 6h–22h.",
+     "src": [
+      "xetaivietnam.com.vn: quy định xe tải vào nội đô TP.HCM 2026",
+      "https://xetaivietnam.com.vn/luat-quy-dinh/gio-cam-tuyen-pho/quy-dinh-xe-tai-vao-thanh-pho-ho-chi-minh"
+     ],
+     "impact": "Khách giao hàng nội đô cần xe dưới 2,5 tấn chạy ngoài giờ cao điểm: T26, T33L, van V56/V65, IZ45S; IZ65M, IZ71SL phục vụ tuyến ngoại thành, KCN, chạy đêm. Nguồn tổng hợp thương mại: đối chiếu văn bản gốc trước khi tư vấn."
+    }
+   ]
+  }
  },
  {
   "name": "Đồng Nai",
@@ -3033,7 +3300,33 @@
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VOV: Phó Thủ tướng yêu cầu Cần Thơ, Vĩnh Long, Đồng Tháp tăng tốc",
+     "https://vov.vn/kinh-te/pho-thu-tuong-yeu-cau-can-tho-vinh-long-dong-thap-tang-toc-post1346721.vov"
+    ],
+    [
+     "SGGP: cần đột phá để tăng trưởng 2 con số",
+     "https://www.sggp.org.vn/can-tho-vinh-long-dong-thap-can-dot-pha-de-dat-muc-tieu-tang-truong-2-con-so-post879703.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 7.89,
+    "rank": 29,
+    "note": "9 tháng 2026",
+    "target": 10.07
+   },
+   "publicInv": {
+    "pct9m26": 58.18,
+    "targets": "thấp hơn bình quân cả nước 9 tháng 64,8%",
+    "nat10m26": 74.1,
+    "note": ""
+   },
+   "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
+  }
  },
  {
   "name": "Vĩnh Long",
@@ -3140,7 +3433,33 @@
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VOV: Phó Thủ tướng yêu cầu Cần Thơ, Vĩnh Long, Đồng Tháp tăng tốc",
+     "https://vov.vn/kinh-te/pho-thu-tuong-yeu-cau-can-tho-vinh-long-dong-thap-tang-toc-post1346721.vov"
+    ],
+    [
+     "SGGP: cần đột phá để tăng trưởng 2 con số",
+     "https://www.sggp.org.vn/can-tho-vinh-long-dong-thap-can-dot-pha-de-dat-muc-tieu-tang-truong-2-con-so-post879703.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 7.32,
+    "rank": 33,
+    "note": "9 tháng 2026",
+    "target": 10.0
+   },
+   "publicInv": {
+    "pct9m26": 55.3,
+    "targets": "thấp hơn bình quân cả nước 9 tháng 64,8%",
+    "nat10m26": 74.1,
+    "note": ""
+   },
+   "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
+  }
  },
  {
   "name": "Đồng Tháp",
@@ -3240,7 +3559,33 @@
    "“Theo mùa lúa”: chăm sóc xe trước mỗi vụ thu hoạch, hỗ trợ thương lái, HTX; tư vấn tài chính trả theo vụ",
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VOV: Phó Thủ tướng yêu cầu Cần Thơ, Vĩnh Long, Đồng Tháp tăng tốc",
+     "https://vov.vn/kinh-te/pho-thu-tuong-yeu-cau-can-tho-vinh-long-dong-thap-tang-toc-post1346721.vov"
+    ],
+    [
+     "SGGP: cần đột phá để tăng trưởng 2 con số",
+     "https://www.sggp.org.vn/can-tho-vinh-long-dong-thap-can-dot-pha-de-dat-muc-tieu-tang-truong-2-con-so-post879703.html"
+    ]
+   ],
+   "grdp9m26": {
+    "g": 7.44,
+    "rank": 31,
+    "note": "9 tháng 2026",
+    "target": 8.21
+   },
+   "publicInv": {
+    "pct9m26": 58.0,
+    "targets": "thấp hơn bình quân cả nước 9 tháng 64,8%",
+    "nat10m26": 74.1,
+    "note": ""
+   },
+   "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
+  }
  },
  {
   "name": "Cà Mau",
@@ -3338,7 +3683,16 @@
    "“Tôm tươi đi cảng”: kiểm tra thùng bảo ôn, chống ăn mòn muối cho xe vùng ven biển",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "src": [],
+   "grdp9m26": {
+    "g": 7.37,
+    "rank": null,
+    "note": "9 tháng 2026"
+   }
+  }
  },
  {
   "name": "An Giang",
