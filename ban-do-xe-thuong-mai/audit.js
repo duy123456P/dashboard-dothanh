@@ -1,0 +1,55 @@
+/* ===== Hồ sơ 360° đại lý: gom mọi nguồn trên bản đồ + kiểm tra khớp số liệu giữa các nguồn ===== */
+(function(){
+"use strict";
+const CV = window.__CV; if(!CV) return;
+const {esc, fmtInt, fmt1} = CV;
+const sum = a => a.reduce((x,y) => x + (y || 0), 0);
+const tool = n => (CV.tools.find(t => t.name === n) || {}).execute;
+const MO = ["2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10"];
+const vnMonth = () => new Date().getMonth();
+
+function findDealer(q){
+  const up = s => String(s || "").normalize("NFC").toUpperCase(); q = up(q).replace(/^(ĐẠI LÝ|ĐL)\s+/, "");
+  const net = CV.NET.dealers.find(d => d.salesKey && (up(d.salesKey) === q || up(d.name) === q)) || CV.NET.dealers.find(d => d.salesKey && (up(d.salesKey).includes(q) || q.includes(up(d.salesKey)) || up(d.name).includes(q)));
+  return net || null;
+}
+function dealer360(q){
+  const d = findDealer(q); if(!d) return null; const name = d.salesKey, r = CV.findRow(d.province), TX = CV.TX, I = CV.inv, F = CV.salesForecast ? CV.salesForecast() : null;
+  const so = CV.salesOf ? CV.salesOf(name) : null, tdbh = so ? MO.map(m => so.d.m[m] || {}) : [];
+  const di = TX ? TX.dealers.indexOf(name) : -1, tx = {}; if(di >= 0) TX.tx.forEach(t => { if(t[1] === di){ const x = tx[t[0]] = tx[t[0]] || {le: 0, si: 0, xk: 0}; x.le += t[5]; x.si += t[6]; x.xk += t[7]; } });
+  const inv = CV.invOf ? CV.invOf(name) : null, fd = F ? F.D.find(x => x.name === name) : null, ext = r && r.ext;
+  const flags = [], ok = [];
+  // 1) bán lẻ: TDBH (báo cáo đại lý) vs file giao dịch (TT 100%)
+  const leT = sum(tdbh.map(x => x.le)), leX = sum(MO.map(m => (tx[m] || {}).le)), diffM = MO.map((m,i) => [m, tdbh[i].le || 0, (tx[m] || {}).le || 0]).filter(([, a, b]) => Math.abs(a - b) >= 3);
+  (Math.abs(leT - leX) <= Math.max(3, leT*0.05) ? ok : flags).push(`Bán lẻ T1–T10/2026: TDBH ${fmtInt(leT)} xe, file giao dịch (TT 100%) ${fmtInt(leX)} xe${diffM.length ? `; lệch theo tháng ≥ 3 xe ở ${diffM.map(([m,a,b]) => `T${+m.slice(5)} (${a}/${b})`).join(", ")} do khác thời điểm ghi nhận` : ""}.`);
+  if(d.leCum != null) (d.leCum === leT ? ok : flags).push(`Lũy kế T10 trên bản đồ (network) ${fmtInt(d.leCum)} so với tổng tháng TDBH ${fmtInt(leT)}.`);
+  if(r) (r.sales === d.leCum ? ok : flags).push(`Doanh số tỉnh ${r.name} ${fmtInt(r.sales)} (cộng các đại lý trong tỉnh) so với đại lý ${fmtInt(d.leCum)}${r.sales !== d.leCum ? " (tỉnh có nhiều đại lý)" : ""}.`);
+  // 2) bán sỉ
+  const siT = sum(tdbh.slice(0, 9).map(x => x.si)), siX = sum(MO.slice(0, 9).map(m => (tx[m] || {}).si));
+  (Math.abs(siT - siX) <= Math.max(3, siT*0.08) ? ok : flags).push(`Bán sỉ T1–T9: TDBH ${fmtInt(siT)}, file giao dịch (TT 10%) ${fmtInt(siX)}.`);
+  // 3) tồn
+  const tonT9 = (tdbh[8] || {}).ton, invL = inv && inv.lines[0];
+  if(inv) flags.push(`Tồn: TDBH cuối T9 ${tonT9 ?? "—"} xe → file tồn SR: lũy kế T10 ${invL && invL.pv ? invL.pv[0] : "—"}, mua T11 ${invL && invL.pv ? invL.pv[1] : "—"}, tồn 21/11 ${inv.ton} xe. Tồn tăng ${inv.ton - (tonT9 || 0)} xe từ T9 trong khi bán lẻ T10 ${(tdbh[9] || {}).le ?? "—"}, T11 (21 ngày) ${inv.leT11}: đại lý đang nhận sỉ nhanh hơn bán.`);
+  const leT11x = (tx["2026-11"] || {}).le || 0; if(inv && leT11x !== inv.leT11) flags.push(`Bán lẻ T11 (đến 21/11): file tồn SR ${inv.leT11} xe, file giao dịch TT 100% ${leT11x} xe (thanh toán đủ chưa chắc đã xuất hóa đơn cho khách lẻ).`);
+  // 4) tỉnh
+  if(r && r.ext && r.ext.popOfficial) flags.push(`Dân số: bản đồ dùng ${fmtInt(r.pop)} nghìn (bình quân 2024, đồng nhất 34 tỉnh); hồ sơ sáp nhập ${fmt1(r.ext.popOfficial.v)} nghìn.`);
+  if(r && r.growth == null) flags.push(`Tỉnh ${r.name} chưa có tăng trưởng GRDP 2025.`);
+  if(r && (r.cpi == null || r.cpi === "")) flags.push(`Tỉnh ${r.name} chưa có CPI riêng (đang dùng CPI cả nước).`);
+  const seasonNow = r ? (r.season || [])[vnMonth()] : null, SE = F && F.SE;
+  return {d, name, r, tdbh, tx, inv, fd, ext, flags, ok, leT, leX, seasonNow, SE};
+}
+function md360(q){
+  const A = dealer360(q); if(!A) return `Không tìm thấy đại lý "${q}".`;
+  const {d, name, r, tdbh, tx, inv, fd, ext} = A, mo = vnMonth(), P = CV.salesPlan || {};
+  let diag = ""; try{ if(r && tool("diagnose_province")) diag = String(tool("diagnose_province")({name: r.name}) || ""); }catch(e){}
+  const comp = r ? CV.CNET.points.filter(p => p.province === r.name).map(p => { const bn = (CV.CNET.brands[p.b] || {}).name || ""; return `${p.name.toUpperCase().startsWith(bn.split(" ")[0].toUpperCase()) ? "" : bn + " "}${p.name} (${p.type})`; }) : [];
+  const models = r && CV.salesModelsOfProvince ? CV.salesModelsOfProvince(r.name).slice(0, 8) : [];
+  const L = inv && inv.lines[0];
+  return `# Hồ sơ 360° ${d.name} (${name})\n_${d.tier === "C1" ? "Đại lý cấp 1" : "Đại lý cấp 2"} · ${d.region} · ${d.province}. Kiểm tra khớp số liệu giữa các nguồn trên bản đồ, ngày ${new Date().toLocaleDateString("vi-VN")}._\n\n## 1. Kiểm tra khớp số liệu\n**Khớp:**\n${A.ok.map(x => "- ✓ " + x).join("\n") || "- (không có)"}\n\n**Cần lưu ý:**\n${A.flags.map(x => "- ⚠ " + x).join("\n") || "- (không có)"}\n\n## 2. Bán hàng 2026\n| Tháng | KH | Bán lẻ TDBH | Bán lẻ TT 100% | Bán sỉ TDBH | Bán sỉ TT 10% | Tồn cuối tháng (TDBH) |\n|---|---|---|---|---|---|---|\n${MO.map((m,i) => `| T${+m.slice(5)} | ${tdbh[i].kh ?? "—"} | ${tdbh[i].le ?? "—"} | ${(tx[m] || {}).le ?? 0} | ${tdbh[i].si ?? "—"} | ${(tx[m] || {}).si ?? 0} | ${tdbh[i].ton ?? "—"} |`).join("\n")}\n| T11 (đến 21/11) | | ${inv ? inv.leT11 + " (tồn SR)" : "—"} | ${(tx["2026-11"] || {}).le || 0} | | ${(tx["2026-11"] || {}).si || 0} | ${inv ? inv.ton + " (21/11)" : ""} |\n| **Cộng T1–T10** | **${fmtInt(sum(tdbh.map(x => x.kh)))}** | **${fmtInt(A.leT)}** | **${fmtInt(A.leX)}** | | | |\n\nNăm 2025 (file giao dịch): bán lẻ ${fmtInt(Object.entries(tx).filter(([m]) => m.startsWith("2025")).reduce((a,[,x]) => a + x.le, 0))} xe. Tháng 10: IZ ${d.izT10}/${d.izKhT10}, MISSU ${d.msT10}/${d.msKhT10}. Năng lực: hạng ${d.grade} (${fmt1(d.score)} điểm), ${d.tvbh} tư vấn bán hàng.\n\n## 3. Tồn kho đại lý 21/11/2026\n${inv && L ? `- ${inv.ton} xe (mua bán ${L.mb}, MBTB ${L.mbtb}), bán T11 ${inv.leT11} xe → ${inv.cover == null ? "không bán xe nào trong T11" : fmt1(inv.cover) + " tháng bán"}.\n- Tuổi: ${["0-90","91-180","181-365",">365"].map(a => a + " ngày " + ((L.age || {})[a] || 0)).join(", ")}.\n- Theo model: ${Object.entries(L.models).map(([m,n]) => m + " " + n).join(", ")}.` : "- Chưa có."}\n\n## 4. Dự báo, kế hoạch 2027\n${fd ? `- Dự báo 2027: ${fmtInt(fd.f27)} xe (80%: ${fmtInt(fd.lo27)}–${fmtInt(fd.hi27)}); KH 2027 ${fd.kh27 ?? "—"} xe (${fd.kh27 ? fmtInt(fd.f27/fd.kh27*100) + "%" : "—"}); dự báo ERP ${fd.erp ?? "—"}; xếp loại ERP: ${fd.cls || "—"}.` : "- Chưa có."}\n\n## 5. Kinh tế – xã hội ${r ? r.name : ""}\n${r ? `- Diện tích ${fmtInt(r.area)} km²; dân số ${fmtInt(r.pop)} nghìn (2024)${ext && ext.popOfficial ? `, hồ sơ sáp nhập ${fmt1(ext.popOfficial.v)} nghìn` : ""}; mật độ ${fmtInt(r._density)} người/km²; đô thị hóa ~${r.urban}% (ước).\n- GRDP 2024: ${fmt1(r.grdp)} nghìn tỷ; GRDP/người ~${fmtInt(r._gpc)} triệu; tăng trưởng 2025: ${r.growth == null ? "chưa có" : fmt1(r.growth) + "%"}.${ext && ext.grdp9m26 ? ` GRDP 9 tháng 2026 tăng ${fmt1(ext.grdp9m26.g)}% (mục tiêu ${fmt1(ext.grdp9m26.target)}%).` : ""}\n${ext && ext.incomePc2025 ? `- Thu nhập bình quân đầu người 2025: ${ext.incomePc2025.v} triệu/năm (≈ ${fmt1(ext.incomePc2025.v/12)} triệu/tháng), hạng ${ext.incomePc2025.rank}.\n` : ""}- Cơ cấu GRDP: nông – lâm – thủy sản ${r.econ[0]}%, công nghiệp – xây dựng ${r.econ[1]}%, dịch vụ ${r.econ[2]}%, thuế ${r.econ[3]}%.${ext && ext.servicesShare ? ` (Dịch vụ 6 tháng 2025: ${fmt1(ext.servicesShare.v)}%.)` : ""}\n${ext && ext.fdi ? `- FDI: 10 tháng 2026 ≈ ${fmtInt(ext.fdi.v10m26)} triệu USD; năm 2025 ${fmt1(ext.fdi.v2025)} triệu USD. Tỷ trọng FDI trong GRDP: chưa công bố.\n` : "- FDI: chưa có số liệu.\n"}${ext && ext.publicInv ? `- Giải ngân đầu tư công 2026: 9 tháng ${fmt1(ext.publicInv.pct9m26)}% (${fmtInt(ext.publicInv.vnd9m26)} tỷ); lộ trình ${ext.publicInv.targets}.\n` : ""}- Ngành mũi nhọn: ${r.industries}\n- Nhu cầu xe theo ngành: ${r.cvDemand}\n- Hạ tầng, logistics: ${r.logistics}\n- Phân khúc thị trường xe (ước): nhẹ ${r.mix[0]}%, trung ${r.mix[1]}%, nặng ${r.mix[2]}%, đầu kéo ${r.mix[3]}%, khách ${r.mix[4]}%, pickup/van ${r.mix[5]}%; ĐK mới ~${fmtInt(r._market)} xe/năm (${r._regReal ? "thực tế" : "ước"}).\n${ext && ext.missing ? `- Chưa có: ${ext.missing.join("; ")}.\n` : ""}` : ""}\n## 6. Quy định địa phương\n${ext && ext.localRules ? ext.localRules.map(q => `- **${q.t}:** ${q.d}\n  - Tác động: ${q.impact}`).join("\n") : "- Chưa có quy định địa phương trong dữ liệu; quy định quốc gia xem mục Pháp lý."}\n\n## 7. Văn hóa, con người, mùa vụ\n${r ? `- Văn hóa kinh doanh: ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Dân tộc: ${r.ethnic}\n- Đặc sản: ${r.specialties}\n- Lễ hội: ${r.festivals}\n- **Mùa vụ tháng ${mo+1}:** mức nhu cầu ${["thấp","thấp","vừa","cao","cao điểm"][(r.season||[])[mo]||0] || (r.season||[])[mo]}; ${(r.seasonNotes||[]).join("; ")}.${A.SE ? ` Chỉ số mùa vụ toàn hệ thống tháng ${mo+1}: ${fmt1(A.SE[mo])} (bình quân = 1).` : ""}\n- Chiến dịch phù hợp: ${(r.campaigns||[]).join(" · ")}` : ""}\n\n## 8. Cạnh tranh tại tỉnh\n- Điểm đối thủ đã xác minh: ${comp.join("; ") || "chưa có"}.\n- Model Đô Thành bán tại tỉnh 2026 (CSI): ${models.map(([m,n]) => m + " " + n).join(", ") || "—"}.\n\n${diag ? "## 9. Chẩn đoán\n" + diag.replace(/^# .*\n/, "") : ""}\n`;
+}
+CV.dealer360 = dealer360;
+CV.tools.push({name: "ho_so_dai_ly", label: "Đang lập hồ sơ 360°…", description: "Hồ sơ 360° một đại lý Đô Thành: kiểm tra khớp số liệu giữa các nguồn (TDBH, file giao dịch, tồn SR, dự báo), bán hàng theo tháng, tồn kho theo model và tuổi, dự báo và KH 2027, kinh tế – xã hội tỉnh (diện tích, dân số, GRDP, thu nhập, FDI, cơ cấu ngành, đầu tư công), quy định địa phương, văn hóa, mùa vụ hiện tại, đối thủ, chẩn đoán. dai_ly: tên đại lý (ví dụ 'ĐT Đà Nẵng').", inputSchema: {type: "object", properties: {dai_ly: {type: "string"}}, required: ["dai_ly"]}, execute: ({dai_ly}) => md360(dai_ly)});
+CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim(); const m = t.match(/(?:hồ sơ 360|hồ sơ đại lý|kiểm tra (?:số liệu|đồng bộ)|soát số liệu)\s*(?:đại lý)?\s*(.+)/i); return m ? md360(m[1]) : null; });
+document.addEventListener("click", e => { const b = e.target.closest && e.target.closest("[data-d360]"); if(!b) return; e.stopPropagation(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Hồ sơ 360° " + b.dataset.d360); const m = CV.addMsg("a", ""); CV.finishBubble(m, md360(b.dataset.d360), false, "Hồ sơ 360° " + b.dataset.d360, true); }, true);
+const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nHỒ SƠ 360° ĐẠI LÝ: hỏi tổng hợp, kiểm tra khớp số liệu một đại lý dùng ho_so_dai_ly.`;
+})();

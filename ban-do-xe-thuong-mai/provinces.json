@@ -1933,8 +1933,8 @@
   "archetype": "coast",
   "pop": 2765,
   "area": 11860,
-  "grdp": 290,
-  "growth": null,
+  "grdp": 280.3,
+  "growth": 9.18,
   "mix": [
    30,
    22,
@@ -1985,13 +1985,13 @@
     "name": "Đà Nẵng",
     "pop": 1245,
     "area": 1285,
-    "grdp": 150
+    "grdp": 151.3
    },
    {
     "name": "Quảng Nam",
     "pop": 1520,
     "area": 10575,
-    "grdp": 140
+    "grdp": 129.0
    }
   ],
   "season": [
@@ -2020,7 +2020,103 @@
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "asOf": "21/11/2026",
+   "popOfficial": {
+    "v": 3065.6,
+    "note": "3.065.628 người theo hồ sơ sáp nhập (NQ 202/2025, gồm cả dân tạm trú); bản đồ dùng dân số trung bình 2024 của Cục Thống kê (2.765 nghìn) cho đồng nhất 34 tỉnh"
+   },
+   "units": "23 phường, 70 xã, 1 đặc khu Hoàng Sa (đô thị trực thuộc TW có diện tích lớn nhất cả nước, 11.859,6 km²)",
+   "grdp2025": {
+    "v": 316.1,
+    "g": 9.18,
+    "note": "ước 2025, nghìn tỷ đồng"
+   },
+   "grdp9m26": {
+    "g": 10.3,
+    "target": 11.2,
+    "note": "9 tháng 2026; mục tiêu cả năm 11,2%"
+   },
+   "incomePc2025": {
+    "v": 110,
+    "usd": 4287,
+    "rank": "10/34",
+    "note": "thu nhập bình quân đầu người ước 2025, triệu đồng/năm (≈ 9,2 triệu/tháng)"
+   },
+   "grdpPcUsd2025": 4392,
+   "servicesShare": {
+    "v": 55.68,
+    "note": "tỷ trọng dịch vụ trong GRDP 6 tháng 2025 (Chi cục Thống kê)"
+   },
+   "fdi": {
+    "v10m26": 804,
+    "v9m26": 686.6,
+    "g9m26": 144.1,
+    "v2025": 502.88,
+    "note": "vốn FDI đăng ký mới và tăng thêm, triệu USD; 10 tháng 2026 ≈ 804"
+   },
+   "domesticInv9m26": {
+    "v": 187.6,
+    "g": 67.9,
+    "note": "vốn đầu tư trong nước đăng ký mới và tăng thêm 9 tháng 2026, nghìn tỷ đồng"
+   },
+   "publicInv": {
+    "pct9m26": 77.16,
+    "vnd9m26": 13265,
+    "targets": "T10 88% · T11 93% · T12 98% · 31/1/2027 100%",
+    "nat10m26": 74.1,
+    "note": "giải ngân vốn đầu tư công 2026 (tỷ đồng, % kế hoạch TTg giao)"
+   },
+   "urbanNote": "Tỷ lệ đô thị 55% là ước tính gộp (Đà Nẵng cũ ~87%, Quảng Nam cũ ~27%); chưa có số chính thức sau sáp nhập.",
+   "missing": [
+    "Dân số theo vùng: miền núi (9 huyện miền núi Quảng Nam cũ), đồng bằng – ven biển, nông thôn: chưa có số chính thức sau sáp nhập",
+    "Tỷ trọng khu vực FDI trong GRDP: chưa công bố",
+    "CPI riêng của thành phố 10 tháng 2026"
+   ],
+   "localRules": [
+    {
+     "t": "Điều tiết xe tải vào trung tâm",
+     "d": "Xe tải 1,5–2,5 tấn: cấm vào vùng hạn chế (biển ZONE) khung 6h30–8h30, 11h–12h, 16h–19h. Xe tải trên 2,5 tấn: cấm từ đường bao vào khu vực hạn chế, được lưu thông 22h–6h.",
+     "src": [
+      "Cổng hỏi đáp TP Đà Nẵng",
+      "https://hoidap.danang.gov.vn/CD_Chitiet.aspx?idch=9453"
+     ],
+     "impact": "IZ45S/IZ50S (1,99–2,49 tấn), MISSU nằm trong nhóm 1,5–2,5 tấn bị cấm giờ cao điểm; IZ65M-PLUS, IZ71SL-PLUS (3,49 tấn) bị cấm ban ngày ở trung tâm: chào khách giao hàng nội đô các xe ≤ 1,5 tấn (T26, V56/V65 van, T33L) và tư vấn tuyến, giờ chạy."
+    },
+    {
+     "t": "Cấm tạm thời theo sự kiện 2026",
+     "d": "Bầu cử 15/3 (xe ben, xe từ 7,5 tấn, 6h–18h); Lễ hội Quán Thế Âm 4–7/4; thi tốt nghiệp THPT 10–11/6 (dự phòng 13/6).",
+     "src": [
+      "Tuổi Trẻ: tạm dừng xe ben, xe tải ≥ 7,5 tấn ngày bầu cử",
+      "https://tuoitre.vn/da-nang-tam-dung-xe-ben-xe-tai-tren-7-5-tan-luu-thong-trong-ngay-bau-cu-20260313160918299.htm"
+     ],
+     "impact": "Lên lịch giao xe, lái thử tránh các ngày cấm; xe ben, JP120 cần lịch vận hành riêng."
+    }
+   ],
+   "src": [
+    [
+     "VnExpress: Thủ tướng: Đà Nẵng phát triển tốt hơn sau sáp nhập",
+     "https://vnexpress.net/thu-tuong-da-nang-phat-trien-tot-hon-sau-sap-nhap-5045136.html"
+    ],
+    [
+     "Tuổi Trẻ: số liệu kinh tế Đà Nẵng, Quảng Nam trước và sau sáp nhập",
+     "https://tuoitre.vn/cong-bo-so-lieu-kinh-te-da-nang-quang-nam-truoc-va-sau-sap-nhap-2025070316223195.htm"
+    ],
+    [
+     "Báo Văn hóa: GRDP 2025 tăng 9,18%",
+     "https://baovanhoa.vn/kinh-te/da-nang-tiep-tuc-giu-vai-tro-dong-luc-kinh-te-mien-trung-194153.html"
+    ],
+    [
+     "VietTimes: GRDP 9 tháng 2026 tăng 10,3%",
+     "https://viettimes.vn/grdp-tang-103-sau-9-thang-da-nang-chay-nuoc-rut-ra-sao-post207390.html"
+    ],
+    [
+     "VietnamPlus: giải ngân đầu tư công 9 tháng 2026 đạt 77%",
+     "https://www.vietnamplus.vn/da-nang-giai-ngan-dau-tu-cong-9-thang-dat-hon-77-ke-hoach-von-duoc-giao-post1140506.vnp"
+    ]
+   ]
+  }
  },
  {
   "name": "Quảng Ngãi",
