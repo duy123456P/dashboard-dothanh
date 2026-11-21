@@ -15,3 +15,14 @@ Các trường Đô Thành tự nhập: `dealers` (điểm bán), `sales` (doanh
 
 ## Nguồn dữ liệu (`sources.json`)
 VAMA, Cục CSGT, Cục Đăng kiểm, Thuế (lệ phí trước bạ), Cục Thống kê. Mỗi nguồn ghi kỳ số liệu và thời điểm lấy dữ liệu (`retrieved`, giờ Việt Nam); `updated` là lần cập nhật gần nhất. Sửa file này khi có số mới rồi chạy `python3 build.py`.
+
+## Xem bản đồ có mật khẩu (Chrome)
+- Đường dẫn: https://duy123456p.github.io/dashboard-dothanh/ban-do/ (chỉ cần mật khẩu, không cần tên đăng nhập).
+- Toàn bộ trang được mã hóa AES-256-GCM (khóa PBKDF2-SHA256, 600.000 vòng); trình duyệt giải mã tại chỗ.
+- `index.html`, `artifact.html` chưa mã hóa không còn đưa lên repo (xem `.gitignore`).
+
+### Đổi mật khẩu (khuyến nghị 9:00 sáng mỗi ngày)
+1. GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWORD` thành mật khẩu mới.
+2. Tab Actions → "Đổi mật khẩu bản đồ 3D" → Run workflow. Khoảng 1–2 phút sau trang dùng mật khẩu mới.
+- Mật khẩu trùng bất kỳ mật khẩu đã dùng sẽ bị từ chối (lịch sử chỉ lưu dạng băm trong `ban-do/.mat-khau-da-dung.json`).
+- Tại máy: `MAP_PASSWORD='...' python3 tools_lock.py` sau khi chạy `python3 build.py`.
