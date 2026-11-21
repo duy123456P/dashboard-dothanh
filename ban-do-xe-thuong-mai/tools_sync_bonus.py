@@ -22,6 +22,43 @@ def sheet_rows(name):
 
 # ---------- dữ liệu nguồn (từng xe / từng dòng TVBH) ----------
 src = sheet_rows("DỮ LIỆU NGUỒN"); hdr = src[3]; rows = [dict(zip(hdr, r)) for r in src[4:] if r[0]]
+# ---------- rà soát số khung trùng: mỗi xe chỉ tính cho đại lý xuất hóa đơn sau cùng ----------
+import re as _re
+def _vin(r): return str(r["Số khung gốc"] or "").strip().upper()
+def _mdl(r): return _re.sub(r"[^A-Z0-9]", "", str(r["Model gốc"] or "").upper()).replace("PLUS", "PL")
+dup = []; drop = set(); kept_dup = set()
+byvin = collections.defaultdict(list)
+for i, r in enumerate(rows):
+    if len(_vin(r)) >= 17: byvin[_vin(r)].append(i)
+pairs = [ix for ix in byvin.values() if len(ix) > 1]
+# đại lý "sau cùng" theo ngày hóa đơn; cùng ngày thì theo chiều đa số của cùng cặp đại lý
+win = collections.Counter()
+for ix in pairs:
+    ds = sorted(ix, key=lambda i: str(rows[i]["Ngày HĐ / kỳ nguồn"]))
+    if str(rows[ds[-1]]["Ngày HĐ / kỳ nguồn"]) != str(rows[ds[-2]]["Ngày HĐ / kỳ nguồn"]): win[(rows[ds[-2]]["Đại lý tổng hợp"], rows[ds[-1]]["Đại lý tổng hợp"])] += 1
+for ix in pairs:
+    ds = sorted(ix, key=lambda i: str(rows[i]["Ngày HĐ / kỳ nguồn"]))
+    last = ds[-1]
+    if str(rows[ds[-1]]["Ngày HĐ / kỳ nguồn"]) == str(rows[ds[-2]]["Ngày HĐ / kỳ nguồn"]):
+        a_, b_ = rows[ds[-2]]["Đại lý tổng hợp"], rows[ds[-1]]["Đại lý tổng hợp"]
+        last = ds[-2] if win[(b_, a_)] > win[(a_, b_)] else ds[-1]
+    for i in ix:
+        if i != last: drop.add(i)
+    kept_dup.add(last)
+    dup.append({"vin": "…" + _vin(rows[last])[-6:], "model": str(rows[last]["Model gốc"]), "kept": rows[last]["Đại lý tổng hợp"], "keptDate": str(rows[last]["Ngày HĐ / kỳ nguồn"])[:10],
+                "dropped": [rows[i]["Đại lý tổng hợp"] + " " + str(rows[i]["Ngày HĐ / kỳ nguồn"])[:10] for i in ix if i != last], "rule": "hóa đơn sau cùng" if last == sorted(ix, key=lambda i: str(rows[i]["Ngày HĐ / kỳ nguồn"]))[-1] and str(rows[ix[0]]["Ngày HĐ / kỳ nguồn"]) != str(rows[ix[1]]["Ngày HĐ / kỳ nguồn"]) else "cùng ngày: theo chiều bán của các xe trùng còn lại"})
+# số khung rút gọn trùng trong cùng đại lý + cùng model + cùng ngày + cùng TVBH = nhập trùng
+seen = {}
+for i, r in enumerate(rows):
+    v = _vin(r)
+    if 2 <= len(v) < 17 and v.isdigit() and int(v) > 1:
+        k = (r["Đại lý tổng hợp"], v, _mdl(r), str(r["Ngày HĐ / kỳ nguồn"]), r["Họ và tên TVBH"])
+        if k in seen:
+            drop.add(i); dup.append({"vin": "…" + v, "model": str(r["Model gốc"]), "kept": r["Đại lý tổng hợp"], "keptDate": str(r["Ngày HĐ / kỳ nguồn"])[:10], "dropped": [r["Đại lý tổng hợp"] + " (dòng nhập lặp)"], "rule": "số khung rút gọn, cùng model, ngày, TVBH"})
+        else: seen[k] = i
+rows_all = rows; rows = [r for i, r in enumerate(rows_all) if i not in drop]
+kept_rows = [rows_all[i] for i in kept_dup]
+print("trùng:", len(dup), "loại", len(drop), "dòng")
 GROUP = {"IZ": "iz", "MISSU": "missu", "JP120": "jp", "Khác / Daewoo": "daewoo", "IZ_XTL": "xtl", "IZ/JP (Chưa tách)": "izjp"}
 pts = collections.OrderedDict(); c1m = collections.defaultdict(lambda: collections.defaultdict(collections.Counter)); c1t = collections.Counter(); excl = collections.Counter()
 for r in rows:
@@ -41,6 +78,25 @@ for r in sheet_rows("TỔNG HỢP TOÀN QUỐC")[8:37]:
         summ[r[1]] = {"tvbhN": r[2], "xe": r[4], "izLe": r[5] if isinstance(r[5], (int, float)) else None, "misLe": r[6] if isinstance(r[6], (int, float)) else None,
                       "dlMonth": r[7] if isinstance(r[7], (int, float)) else None, "dlQuarter": r[8] if isinstance(r[8], (int, float)) else None,
                       "tvbhMonth": r[9] if isinstance(r[9], (int, float)) else None, "total": r[10] if isinstance(r[10], (int, float)) else None, "status": r[11] if len(r) > 11 else None}
+# điều chỉnh tổng hợp thưởng theo kết quả rà soát trùng (mức trần như file: IZ 2,5 + 0,7 + TVBH 1,5; MISSU 1,8 + 0,5 + TVBH 1,2 triệu)
+RT = {"IZ": (2.5e6, .7e6, 1.5e6), "MISSU": (1.8e6, .5e6, 1.2e6)}
+for i in drop:
+    r = rows_all[i]; p = summ.get(r["Đại lý tổng hợp"])
+    if p:
+        p["xe"] -= (r["Xe trong kỳ"] or 0); same = sum(1 for k in kept_rows if _vin(k) == _vin(r)) == 0
+        p["lap" if same else "dedupe"] = p.get("lap" if same else "dedupe", 0) + 1
+        g = r["Nhóm tính thưởng"]
+        if r["Căn cứ\nBán lẻ"] and g in RT:
+            m, q, t = RT[g]; p["dlMonth"] -= m; p["dlQuarter"] -= q; p["tvbhMonth"] -= t; p["total"] -= m + q + t; p["izLe" if g == "IZ" else "misLe"] -= 1
+for r in kept_rows:
+    p = summ.get(r["Đại lý tổng hợp"]); g = r["Nhóm tính thưởng"]
+    if p and g in RT and not r["Căn cứ\nBán lẻ"]:
+        m, q, t = RT[g]; p["dlMonth"] += m; p["dlQuarter"] += q; p["tvbhMonth"] += t; p["total"] += m + q + t
+        p["izLe" if g == "IZ" else "misLe"] = (p["izLe" if g == "IZ" else "misLe"] or 0) + 1; p["added"] = p.get("added", 0) + 1
+for k, p in summ.items():
+    if p.get("lap"): p["status"] = f"Đã rà trùng: −{p['lap']} dòng nhập lặp (cùng số khung, model, ngày, TVBH)"
+    if p.get("dedupe") or p.get("added"):
+        p["status"] = ("Đã rà trùng: " + (f"+{p['added']} xe trùng tính cho đại lý này" if p.get("added") else "") + ("; " if p.get("added") and p.get("dedupe") else "") + (f"−{p['dedupe']} xe trùng chuyển cho đại lý bán sau cùng" if p.get("dedupe") else "") + (" · 2 xe KG/TB chờ hồ sơ" if k == "Vũ Hùng" else ""))
 budget = [[c for c in r if c not in (None, "")] for r in sheet_rows("TỔNG HỢP TOÀN QUỐC")[40:44]]
 quarters = {}
 for r in sheet_rows("PHÂN BỔ THEO QUÝ")[5:24]:
@@ -144,7 +200,7 @@ out = {"asOf": "T1–T10/2026 (file cập nhật 19/11/2026)", "source": "Báo c
        "points": [{**{k: v for k, v in p.items() if k not in ("tvbh", "m", "flags")}, "tvbhN": len(p["tvbh"]), "m": [p["m"].get(i, 0) for i in range(1, 11)], "flags": dict(p["flags"]),
                    "province": byid[p["c2id"]]["province"] if p["c2id"] else byk[p["c1"]]["province"], **({"bonus": summ[p["name"]]} if p["name"] in summ else {}),
                    "q": quarters.get(p["name"]), "bm": months.get(p["name"])} for p in pts.values()],
-       "west": west, "tvbh": tvbh, "budget": budget, "rates": rates, "tiers": tiers, "cond": cond, "log": log, "tier": tier, "recon": recon, "excluded": dict(excl),
+       "west": west, "tvbh": tvbh, "budget": budget, "rates": rates, "tiers": tiers, "cond": cond, "log": log, "tier": tier, "recon": recon, "dup": dup, "excluded": dict(excl),
        "salesByProvince": {k: v for k, v in new_s.items()}, "targetByProvince": {k: v for k, v in new_t.items()}}
 json.dump(out, open("bonus2026.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("điểm bán", len(pts), "· tổng xe", sum(c1t.values()), "· loại", dict(excl))

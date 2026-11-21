@@ -717,8 +717,8 @@
    "region": "Miền Nam",
    "c1": "Tân Vạn",
    "c2id": null,
-   "xe": 134,
-   "iz": 122,
+   "xe": 133,
+   "iz": 121,
    "missu": 4,
    "jp": 5,
    "daewoo": 3,
@@ -729,7 +729,7 @@
     12,
     1,
     24,
-    25,
+    24,
     22,
     11,
     12,
@@ -741,14 +741,15 @@
    "province": "TP. Hồ Chí Minh",
    "bonus": {
     "tvbhN": 8,
-    "xe": 134,
-    "izLe": 122,
+    "xe": 133,
+    "izLe": 121,
     "misLe": 4,
-    "dlMonth": 312200000,
-    "dlQuarter": 87400000,
-    "tvbhMonth": 187800000,
-    "total": 587400000,
-    "status": "Đủ căn cứ theo tháng/quý"
+    "dlMonth": 309700000.0,
+    "dlQuarter": 86700000.0,
+    "tvbhMonth": 186300000.0,
+    "total": 582700000.0,
+    "status": "Đã rà trùng: −1 dòng nhập lặp (cùng số khung, model, ngày, TVBH)",
+    "lap": 1
    },
    "q": [
     168000000,
@@ -804,12 +805,13 @@
     "tvbhN": 6,
     "xe": 65,
     "izLe": 48,
-    "misLe": 9,
-    "dlMonth": 136200000,
-    "dlQuarter": 38100000,
-    "tvbhMonth": 84800000,
-    "total": 259100000,
-    "status": "Tạm tách 4 trùng khung"
+    "misLe": 13,
+    "dlMonth": 143400000.0,
+    "dlQuarter": 40100000.0,
+    "tvbhMonth": 89600000.0,
+    "total": 273100000.0,
+    "status": "Đã rà trùng: +4 xe trùng tính cho đại lý này",
+    "added": 4
    },
    "q": [
     64600000,
@@ -837,9 +839,9 @@
    "region": "Miền Nam",
    "c1": "Vũ Hùng",
    "c2id": null,
-   "xe": 139,
+   "xe": 135,
    "iz": 48,
-   "missu": 91,
+   "missu": 87,
    "jp": 0,
    "daewoo": 0,
    "xtl": 0,
@@ -852,26 +854,26 @@
     17,
     14,
     21,
-    21,
+    20,
     11,
-    18,
-    20
+    17,
+    18
    ],
    "flags": {
-    "Rà hồ sơ ký gửi / trưng bày": 2,
-    "Trùng số khung đầy đủ (Phú Mỹ–Vũ Hùng)": 4
+    "Rà hồ sơ ký gửi / trưng bày": 2
    },
    "province": "TP. Hồ Chí Minh",
    "bonus": {
     "tvbhN": 6,
-    "xe": 139,
+    "xe": 135,
     "izLe": 47,
     "misLe": 86,
     "dlMonth": 272300000,
     "dlQuarter": 75900000,
     "tvbhMonth": 173700000,
     "total": 521900000,
-    "status": "Tạm tách 4 trùng khung + 2 KG/TB"
+    "status": "Đã rà trùng: −4 xe trùng chuyển cho đại lý bán sau cùng · 2 xe KG/TB chờ hồ sơ",
+    "dedupe": 4
    },
    "q": [
     69200000,
@@ -1811,14 +1813,14 @@
    }
   },
   "Tân Vạn": {
-   "maxTr": 399.6,
-   "estTr": 88.8,
+   "maxTr": 396.4,
+   "estTr": 88.0,
    "monthsHit75": 3,
    "monthPct": {
     "1": 80,
     "2": 8,
     "3": 109,
-    "4": 78,
+    "4": 75,
     "5": 67,
     "6": 46,
     "7": 48,
@@ -1845,7 +1847,7 @@
    }
   },
   "Vũ Hùng": {
-   "maxTr": 362.9,
+   "maxTr": 353.7,
    "estTr": 63.0,
    "monthsHit75": 3,
    "monthPct": {
@@ -1855,10 +1857,10 @@
     "4": 100,
     "5": 88,
     "6": 48,
-    "7": 46,
+    "7": 43,
     "8": 26,
-    "9": 42,
-    "10": 47
+    "9": 40,
+    "10": 42
    }
   },
   "Hưng Vượng": {
@@ -1907,18 +1909,18 @@
   {
    "c1": "Vũ Hùng",
    "region": "Miền Nam",
-   "file": 139,
+   "file": 135,
    "tdbh": 138,
    "tx": 138,
-   "diff": 1
+   "diff": -3
   },
   {
    "c1": "Tân Vạn",
    "region": "Miền Nam",
-   "file": 134,
+   "file": 133,
    "tdbh": 132,
    "tx": 117,
-   "diff": 2
+   "diff": 1
   },
   {
    "c1": "Phú Mỹ",
@@ -2001,6 +2003,58 @@
    "diff": 0
   }
  ],
+ "dup": [
+  {
+   "vin": "…000071",
+   "model": "V65 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-07-18",
+   "dropped": [
+    "Vũ Hùng 2026-07-17"
+   ],
+   "rule": "hóa đơn sau cùng"
+  },
+  {
+   "vin": "…000114",
+   "model": "V65 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-09-25",
+   "dropped": [
+    "Vũ Hùng 2026-09-24"
+   ],
+   "rule": "hóa đơn sau cùng"
+  },
+  {
+   "vin": "…000079",
+   "model": "V65 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-10-14",
+   "dropped": [
+    "Vũ Hùng 2026-10-14"
+   ],
+   "rule": "cùng ngày: theo chiều bán của các xe trùng còn lại"
+  },
+  {
+   "vin": "…000041",
+   "model": "V56 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-10-28",
+   "dropped": [
+    "Vũ Hùng 2026-10-27"
+   ],
+   "rule": "hóa đơn sau cùng"
+  },
+  {
+   "vin": "…305",
+   "model": "IZ71SL-Plus",
+   "kept": "Đô Thành Tân Vạn",
+   "keptDate": "2026-04-17",
+   "dropped": [
+    "Đô Thành Tân Vạn (dòng nhập lặp)"
+   ],
+   "rule": "số khung rút gọn, cùng model, ngày, TVBH"
+  }
+ ],
  "excluded": {
   "Bảng tổng hợp tháng (chưa có số khung)": 16,
   "Ngoài kỳ 2026 (31/12/2025)": 1,
@@ -2021,7 +2075,7 @@
   "Đắk Lắk": 98,
   "Gia Lai": 13,
   "Quảng Ngãi": 15,
-  "TP. Hồ Chí Minh": 338,
+  "TP. Hồ Chí Minh": 333,
   "Đồng Nai": 55,
   "Lâm Đồng": 54,
   "Vĩnh Long": 23,
