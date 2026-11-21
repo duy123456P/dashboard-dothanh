@@ -40,7 +40,8 @@ const MET = [
   ["grdp", "Kinh tế – xã hội", "GRDP 2024", "nghìn tỷ", r => r.grdp, 1, "Cục Thống kê / tỉnh"],
   ["grdp25", "Kinh tế – xã hội", "GRDP 2025", "nghìn tỷ", r => (PS.grdp2025 || {})[r.name] ?? null, 1, "bảng tổng hợp 2025 (một phần)"],
   ["growth", "Kinh tế – xã hội", "Tăng trưởng GRDP 2025", "%", r => r.growth, 1, "Cục Thống kê (đủ 34 tỉnh)"],
-  ["gpc", "Kinh tế – xã hội", "GRDP bình quân đầu người", "triệu đ", r => r._gpc, 1, "tính từ GRDP 2024 / dân số"],
+  ["gpc", "Kinh tế – xã hội", "GRDP bình quân đầu người 2025", "triệu đ", r => (PS.gpc2025 || {})[r.name] ?? r._gpc, 1, "Niên giám Thống kê 2025"],
+  ["retail", "Kinh tế – xã hội", "Bán lẻ hàng hóa, dịch vụ 2025", "nghìn tỷ", r => (PS.retail2025 || {})[r.name] != null ? PS.retail2025[r.name] / 1000 : null, 1, "Niên giám Thống kê 2025"],
   ["income", "Kinh tế – xã hội", "Thu nhập bình quân/tháng 2025", "triệu đ", r => ((PS.income2025 || {})[r.name] || {}).v ?? null, 1, "Khảo sát mức sống 2025 (một phần)"],
   ["ind", "Kinh tế – xã hội", "Tỷ trọng công nghiệp – xây dựng", "% GRDP", r => r.econ ? r.econ[1] : null, 0, "cơ cấu GRDP"],
   ["serv", "Kinh tế – xã hội", "Tỷ trọng dịch vụ", "% GRDP", r => r.econ ? r.econ[2] : null, 0, "cơ cấu GRDP"],
@@ -75,6 +76,7 @@ const U = {
   cfinc: ["CafeF: thu nhập bình quân tháng 34 tỉnh (KSMS 2025)", "https://cafef.vn/lan-dau-tien-cong-bo-bang-xep-hang-thu-nhap-binh-quan-thang-cua-34-tinh-thanh-sau-sap-nhap-dia-phuong-nao-dang-dan-dau-188260711090453958.chn"], cfcar: ["CafeF: tỉnh thành mua ô tô nhiều nhất 2025 (Cục CSGT)", "https://cafef.vn/lo-dien-nhung-tinh-thanh-mua-o-to-xe-may-nhieu-nhat-nam-2025-188251229100610196.chn"],
   fdi: ["Người Quan Sát: FDI 10 tháng 2026 theo địa phương", "https://nguoiquansat.vn/dia-phuong-hut-von-fdi-cap-moi-nhieu-nhat-viet-nam-voi-hon-10-ty-usd-gan-gap-doi-thai-nguyen-vuot-ca-ha-noi-va-bac-ninh-326316.html"],
   csgt: ["Dân trí: ô tô đăng ký mới 2025 theo địa phương (Cục CSGT)", "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"],
+  ng: ["Cục Thống kê: Niên giám Thống kê 2025 (quy đổi 63 tỉnh cũ → 34 tỉnh)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/NG-TOAN-QUOC-2025_WM.pdf"],
   vama: ["Vietnamnet: doanh số ô tô 2025 (VAMA 375.736 xe; cộng VinFast, Hyundai ≈ 604.000 xe)", "https://vietnamnet.vn/en/vietnam-s-2025-car-sales-race-these-9-models-led-their-brands-2483168.html"],
   vamaest: ["Ước phân bổ theo GRDP, dân số từ tổng VAMA (tỉnh chưa có số Cục CSGT)", null],
   csgt9: ["Tuổi Trẻ: xe đăng ký mới 9 tháng 2026 (Cục CSGT)", "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"],
@@ -85,13 +87,13 @@ const U = {
   model: ["Mô hình phân bổ của bản đồ (không phải số thống kê): tổng toàn quốc Cục CSGT, Cục Đăng kiểm chia theo GRDP, cơ cấu ngành", null],
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
-const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["g25"], growth: ["g25"], gpc: ["vne"], income: ["cfinc", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
+const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
   g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
   if(id === "carreg") return r.carReg2025 ? (x.filter(z => /ô tô/i.test(z[0])).length ? x.filter(z => /ô tô/i.test(z[0])) : [U.csgt, U.cfcar]) : [U.vama, U.vamaest];
-  if(id === "grdp25"){ const m = x.filter(z => /2025/.test(z[0]) && /GRDP|quy mô|kinh tế/i.test(z[0])); if(m.length) return m.concat([U.g25]); }
+  if(id === "income") return ((PS.income2025 || {})[r.name] || {}).src === "công bố" ? [U.cfinc, U.ksms] : [U.ng, U.ksms];
   if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0]) && !/2025/.test(z[0])).concat([U.g9]); return null; };
 const kindOf = t => /^(File|ERP)/.test(t) ? "dữ liệu nội bộ DAC" : "ước tính của bản đồ, chưa có số công bố";
 const srcList = (id, r) => provSrc(id, r) || (SRCOF[id] || []).map(k => U[k]);
@@ -103,7 +105,7 @@ let RK = null; const R = () => RK || (RK = Object.fromEntries(MET.map(m => [m[0]
 const rankOf = (id, r) => { const x = R()[id]; return x && x.o[r.name] ? [x.o[r.name], x.n] : null; };
 const pct = (id, r) => { const k = rankOf(id, r); return k ? 1 - (k[0] - 1) / Math.max(1, k[1] - 1) : null; };
 // xếp hạng chính thức đã công bố (ưu tiên hiển thị)
-const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || {}).rank : id === "income" ? ((PS.income2025 || {})[r.name] || {}).rank : id === "fdi" ? ((PS.fdi10m26 || {})[r.name] || {}).rank : id === "g9m26" ? ((PS.growth9m26 || {})[r.name] || {}).rank : null;
+const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || {}).rank : id === "income" ? (((PS.income2025 || {})[r.name] || {}).src === "công bố" ? PS.income2025[r.name].rank : null) : id === "fdi" ? ((PS.fdi10m26 || {})[r.name] || {}).rank : id === "g9m26" ? ((PS.growth9m26 || {})[r.name] || {}).rank : null;
 
 /* ---------- thế trận ---------- */
 function posture(r){
