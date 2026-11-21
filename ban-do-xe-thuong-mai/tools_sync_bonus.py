@@ -24,7 +24,24 @@ def sheet_rows(name):
 src = sheet_rows("DỮ LIỆU NGUỒN"); hdr = src[3]; rows = [dict(zip(hdr, r)) for r in src[4:] if r[0]]
 # ---------- rà soát số khung trùng: mỗi xe chỉ tính cho đại lý xuất hóa đơn sau cùng ----------
 import re as _re
-def _vin(r): return str(r["Số khung gốc"] or "").strip().upper()
+def _raw(r): return _re.sub(r"[^A-Z0-9]", "", str(r["Số khung gốc"] or "").upper())
+def _fam(r):
+    m = _re.sub(r"[^A-Z0-9]", "", str(r["Model gốc"] or "").upper()).replace("MISSU", "")
+    x = _re.match(r"([VT]\d\d)", m); return x.group(1) if x else None
+# mã đầu (7 ký tự) chuẩn của dòng MISSU theo đa số số khung 17 ký tự trong file
+_pre = collections.defaultdict(collections.Counter)
+for r in rows:
+    v = _raw(r)
+    if len(v) == 17 and _fam(r): _pre[_fam(r)][v[:7]] += 1
+PRE = {k: c.most_common(1)[0][0] for k, c in _pre.items()}
+vinfix = []
+def _vin(r):
+    v = _raw(r)
+    if len(v) == 18 and v[11] == "0": v = v[:11] + v[12:]          # thừa một số 0 ở phần số thứ tự
+    f = _fam(r)
+    if len(v) == 17 and f in PRE and v[:7] != PRE[f] and v[:4] == PRE[f][:4]: v = PRE[f] + v[7:]   # sai mã dòng xe (V56 ↔ V65…)
+    if v != _raw(r) and len(_raw(r)) >= 17 and not any(x["from"] == "…" + _raw(r)[-8:] and x["dl"] == r["Đại lý tổng hợp"] and x["date"] == str(r["Ngày HĐ / kỳ nguồn"])[:10] for x in vinfix): vinfix.append({"dl": r["Đại lý tổng hợp"], "model": str(r["Model gốc"]), "date": str(r["Ngày HĐ / kỳ nguồn"])[:10], "from": "…" + _raw(r)[-8:], "to": "…" + v[-8:]})
+    return v
 def _mdl(r): return _re.sub(r"[^A-Z0-9]", "", str(r["Model gốc"] or "").upper()).replace("PLUS", "PL")
 dup = []; drop = set(); kept_dup = set()
 byvin = collections.defaultdict(list)
@@ -200,7 +217,7 @@ out = {"asOf": "T1–T10/2026 (file cập nhật 19/11/2026)", "source": "Báo c
        "points": [{**{k: v for k, v in p.items() if k not in ("tvbh", "m", "flags")}, "tvbhN": len(p["tvbh"]), "m": [p["m"].get(i, 0) for i in range(1, 11)], "flags": dict(p["flags"]),
                    "province": byid[p["c2id"]]["province"] if p["c2id"] else byk[p["c1"]]["province"], **({"bonus": summ[p["name"]]} if p["name"] in summ else {}),
                    "q": quarters.get(p["name"]), "bm": months.get(p["name"])} for p in pts.values()],
-       "west": west, "tvbh": tvbh, "budget": budget, "rates": rates, "tiers": tiers, "cond": cond, "log": log, "tier": tier, "recon": recon, "dup": dup, "excluded": dict(excl),
+       "west": west, "tvbh": tvbh, "budget": budget, "rates": rates, "tiers": tiers, "cond": cond, "log": log, "tier": tier, "recon": recon, "dup": dup, "vinfix": vinfix, "excluded": dict(excl),
        "salesByProvince": {k: v for k, v in new_s.items()}, "targetByProvince": {k: v for k, v in new_t.items()}}
 json.dump(out, open("bonus2026.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("điểm bán", len(pts), "· tổng xe", sum(c1t.values()), "· loại", dict(excl))
