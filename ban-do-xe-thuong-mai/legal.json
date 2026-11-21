@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-21",
- "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế. Lưu ý: đợt cập nhật 21/11/2026 chưa trích được nguyên văn điều khoản vì môi trường chặn truy cập vbpl.vn, thuvienphapluat.vn; nội dung là tóm tắt từ nguồn dẫn kèm.",
+ "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế. Nguyên văn điều khoản trích từ bản toàn văn trên LuatVietnam (21/11/2026); văn bản có dấu “Trích nguyên văn” là đã đối chiếu câu chữ, còn lại là tóm tắt từ nguồn dẫn kèm.",
  "docs": [
   {
    "id": "hp2025",
@@ -46,8 +46,9 @@
    "tt": "hiệu lực đến 31/12/2026",
    "tin": "cao",
    "diem": [
-    "Áp dụng từ 01/7/2025 đến hết 31/12/2026",
-    "Không phải mọi hàng hóa 10% đều được giảm: loại trừ theo phụ lục (hàng chịu thuế TTĐB, một số ngành)",
+    "NQ 204/2025/QH15 thông qua 17/6/2025 (người ký: Chủ tịch Quốc hội Trần Thanh Mẫn), hiệu lực 01/7/2025 đến hết 31/12/2026",
+    "Áp dụng cho nhóm hàng hóa, dịch vụ thuế suất 10% tại khoản 3 Điều 9 Luật Thuế GTGT 48/2024/QH15",
+    "Không giảm: viễn thông, tài chính, ngân hàng, chứng khoán, bảo hiểm, bất động sản, sản phẩm kim loại, khai khoáng (trừ than), hàng hóa dịch vụ chịu thuế TTĐB (trừ xăng) (tóm tắt LuatVietnam)",
     "Chưa thấy văn bản kéo dài sau 31/12/2026"
    ],
    "tacdong": "Giá bán, báo giá, hợp đồng giao xe xuyên năm. Xe chịu TTĐB (VAN có ≥2 hàng ghế, pickup chở người) thuộc nhóm loại trừ; xe tải phải đối chiếu mã hàng trong phụ lục.",
@@ -57,6 +58,10 @@
     "Hợp đồng ký 2026 giao xe 2027: thỏa thuận rõ thuế suất theo thời điểm xuất hóa đơn"
    ],
    "nguon": [
+    [
+     "LuatVietnam – NQ 204/2025",
+     "https://luatvietnam.vn/thue/nghi-quyet-204-2025-qh15-cua-quoc-hoi-ve-giam-thue-gia-tri-gia-tang-403956-d1.html"
+    ],
     [
      "VCCI",
      "https://www.vcci.com.vn/tin-tuc/tiep-tuc-giam-2-thue-gia-tri-gia-tang-tu-ngay-1-7-2025-den-31-12-2026"
@@ -245,28 +250,33 @@
     "Thuế TTĐB – ô tô"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
     "Hiệu lực 01/01/2026, thay luật 2008",
     "Ô tô dưới 24 chỗ chịu thuế, gồm pickup chở người và xe tải VAN có từ 2 hàng ghế trở lên, có vách ngăn cố định",
-    "Luật 09/2026/QH16 (24/4/2026) sửa đổi; văn bản hợp nhất 111/VBHN-VPQH (20/5/2026): cần kiểm tra thuế suất từng loại xe"
+    "Pick-up chở hàng cabin kép, tải VAN ≥ 2 hàng ghế có vách ngăn cố định chạy xăng dầu, dung tích ≤ 2.500 cm3: 15% (2026) → 18% (2027) → 21% (2028) → 24% (2029); 2.500–3.000 cm3: 20% → 23% → 26% → 29%; trên 3.000 cm3: từ 25% (2026), tăng 3 điểm mỗi năm",
+    "Luật 09/2026/QH16 sửa phần xe chạy pin (xem văn bản xe điện)"
    ],
-   "tacdong": "Xe tải thùng không chịu TTĐB. Dòng van MISSU, pickup cabin kép phải xác định đúng thiết kế (số hàng ghế, vách ngăn) để tránh truy thu.",
+   "tacdong": "Xe tải thùng không chịu TTĐB. Van, pick-up cabin kép chạy xăng dầu có thuế tăng 3 điểm mỗi năm đến 2029: lợi thế giá cho bản xe tải (thùng) và bản điện; phải xác định đúng thiết kế (số hàng ghế, vách ngăn) để tránh truy thu.",
    "viec": [
     "Pháp chế – kỹ thuật xác nhận từng phiên bản van/pickup có thuộc diện chịu TTĐB không",
     "Đối chiếu thuế suất tại Điều 8 văn bản hợp nhất 111/VBHN-VPQH"
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/luat-thue-tieu-thu-dac-biet-2025-so-66-2025-qh15-405694-d1.html"
+    ],
+    [
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-thue-tieu-thu-dac-biet-2025-so-66-2025-QH15-621225.aspx"
     ]
    ],
-   "trich": ""
+   "trich": "Luật 66/2025/QH15, khoản 1 Điều 8, Biểu thuế mục 4 điểm d: “d) Xe ô tô pick-up chở hàng cabin kép, xe ô tô tải VAN có từ hai hàng ghế trở lên, có thiết kế vách ngăn cố định giữa khoang chở người và khoang chở hàng, trừ loại quy định tại các mục 4đ, 4e và 4g của Biểu thuế quy định tại khoản này: - Loại có dung tích xi lanh từ 2.500 cm3 trở xuống: Từ 01/01/2026: 15; Từ 01/01/2027: 18; Từ 01/01/2028: 21; Từ 01/01/2029: 24. - Loại có dung tích xi lanh trên 2.500 cm3 đến 3.000 cm3: Từ 01/01/2026: 20; Từ 01/01/2027: 23; Từ 01/01/2028: 26; Từ 01/01/2029: 29. - Loại có dung tích xi lanh trên 3.000 cm3: Từ 01/01/2026: 25; Từ 01/01/2027: 28 …” (đơn vị: %)"
   },
   {
    "id": "lptb",
-   "so": "Nghị định 10/2022/NĐ-CP (sửa bởi NĐ 175/2025, NĐ 51/2025); Nghị định 202/2026/NĐ-CP; Nghị quyết 66.22/2026/NQ-CP",
+   "so": "Nghị định 10/2022/NĐ-CP, khoản 5 Điều 8 (sửa bởi NĐ 175/2025, NĐ 51/2025); Nghị định 202/2026/NĐ-CP; Nghị quyết 66.22/2026/NQ-CP",
    "ten": "Lệ phí trước bạ",
    "cq": "Chính phủ",
    "bh": "",
@@ -275,21 +285,27 @@
     "Lệ phí trước bạ"
    ],
    "tt": "hiệu lực; NĐ 202/2026 sắp hiệu lực 01/3/2027",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Ô tô tải: mức thu 2% theo NĐ 10/2022 (xe chở người dưới 10 chỗ: 10%, tỉnh có thể tăng)",
+    "Ô tô tải, rơ moóc, sơ mi rơ moóc: 2% (khoản 5 Điều 8 NĐ 10/2022)",
+    "Ô tô chở người ≤ 9 chỗ (kể cả xe con pick-up): 10%, HĐND tỉnh được tăng tối đa 50%",
+    "Pick-up chở hàng và tải VAN có khối lượng chuyên chở < 950 kg: bằng 60% mức của xe ≤ 9 chỗ (thường 6%)",
     "NĐ 202/2026 (8/6/2026) sửa NĐ 10/2022, hiệu lực 01/3/2027, thay NĐ 51/2025",
     "Ô tô điện chạy pin đăng ký lần đầu miễn 100% đến 31/12/2030",
     "NQ 66.22/2026/NQ-CP: 15/8/2026–28/2/2027 giảm lệ phí khi nộp điện tử bằng tài khoản định danh mức 2 (xem đủ điều kiện)",
     "Giá tính lệ phí theo bảng giá mới từ 01/01/2026"
    ],
-   "tacdong": "Tổng chi phí lăn bánh khách phải trả; tư vấn khách nộp lệ phí trước bạ điện tử để hưởng ưu đãi đến 28/2/2027.",
+   "tacdong": "Xe tải Đô Thành chịu 2%; dòng VAN MISSU có tải dưới 950 kg chịu 60% mức xe con (thường 6%): cần tính đúng chi phí lăn bánh từng phiên bản.",
    "viec": [
     "Cập nhật bảng tính chi phí lăn bánh cho TVBH",
     "Hướng dẫn khách nộp lệ phí trước bạ điện tử bằng định danh mức 2 trước 28/2/2027",
     "Theo dõi nội dung NĐ 202/2026 trước 01/3/2027"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/nghi-dinh-10-2022-nd-cp-chinh-phu-215819-d1.html"
+    ],
     [
      "VOV – ô tô điện",
      "https://vov.vn/o-to-xe-may/chinh-thuc-gia-han-mien-le-phi-truoc-ba-cho-o-to-dien-chay-pin-den-het-nam-2030-post1304724.vov"
@@ -299,7 +315,7 @@
      "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/mua-o-to-xang-phai-nop-bao-nhieu-le-phi-truoc-ba-490124-226082.html"
     ]
    ],
-   "trich": ""
+   "trich": "Nghị định 10/2022/NĐ-CP, khoản 5 Điều 8: “5. Ô tô, rơ moóc hoặc sơ mi rơ moóc được kéo bởi ô tô, các loại xe tương tự xe ô tô: Mức thu là 2%. Riêng: a) Ô tô chở người từ 09 chỗ ngồi trở xuống (bao gồm cả xe con pick-up): nộp lệ phí trước bạ lần đầu với mức thu là 10%. Trường hợp cần áp dụng mức thu cao hơn cho phù hợp với điều kiện thực tế tại từng địa phương, Hội đồng nhân dân tỉnh, thành phố trực thuộc trung ương quyết định điều chỉnh tăng nhưng tối đa không quá 50% mức thu quy định chung tại điểm này. b) Ô tô pick-up chở hàng có khối lượng chuyên chở cho phép tham gia giao thông nhỏ hơn 950 kg và có từ 5 chỗ ngồi trở xuống, Ô tô tải VAN có khối lượng chuyên chở cho phép tham gia giao thông nhỏ hơn 950 kg nộp lệ phí trước bạ lần đầu với mức thu bằng 60% mức thu lệ phí trước bạ lần đầu đối với ô tô chở người từ 09 chỗ ngồi trở xuống. …”"
   },
   {
    "id": "monbai",
@@ -351,6 +367,10 @@
     "Rà soát lương thấp nhất tại từng địa bàn theo xã, phường mới"
    ],
    "nguon": [
+    [
+     "LuatVietnam – NĐ 293/2025",
+     "https://luatvietnam.vn/lao-dong/nghi-dinh-293-2025-nd-cp-ve-muc-luong-toi-thieu-cho-nguoi-lao-dong-hop-dong-418212-d1.html"
+    ],
     [
      "Báo Pháp luật",
      "https://baophapluat.vn/chinh-phu-quyet-dinh-tang-luong-toi-thieu-vung-tu-1-1-2026.html"
@@ -672,7 +692,7 @@
   },
   {
    "id": "ev_ttdb",
-   "so": "Luật 09/2026/QH16 (sửa Luật Thuế TTĐB 66/2025/QH15)",
+   "so": "Luật Thuế TTĐB 66/2025/QH15, khoản 1 Điều 8, Biểu thuế mục 4 điểm g; sửa đổi bởi Điều 4 Luật 09/2026/QH16",
    "ten": "Thuế TTĐB ưu đãi ô tô điện chạy pin đến hết 2030",
    "cq": "Quốc hội",
    "bh": "2026-04-24",
@@ -683,12 +703,14 @@
     "Thuế TTĐB – ô tô"
    ],
    "tt": "hiệu lực đến 31/12/2030",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Ô tô điện chạy pin dưới 9 chỗ: 3% đến hết 31/12/2030, từ 01/01/2031 là 11% (trước đây dự kiến tăng 11% từ 01/3/2027)",
-    "Xe điện 16 đến dưới 24 chỗ: 1% đến hết 2030, từ 2031 là 4%",
-    "Pick-up điện có vách ngăn cố định: 2% đến hết 2030, từ 2031 là 7%",
-    "Xe tải điện không thuộc đối tượng chịu TTĐB"
+    "Ô tô điện chạy pin từ 9 chỗ trở xuống, pick-up chở người: 3% từ 01/01/2026, 11% từ 01/01/2031",
+    "10 đến dưới 16 chỗ: 2%, từ 2031 là 7%; 16 đến dưới 24 chỗ: 1%, từ 2031 là 4%",
+    "Pick-up chở hàng cabin kép, tải VAN ≥ 2 hàng ghế có vách ngăn cố định chạy pin: 2%, từ 2031 là 7%",
+    "Xe dưới 24 chỗ chạy điện khác (không phải chạy pin): 15% / 10% / 5% / 10% theo nhóm",
+    "Luật 09/2026/QH16 hiệu lực từ ngày thông qua (24/4/2026); Điều 1, 2, 3 hiệu lực từ 01/01/2026 (Điều 5)",
+    "Xe tải thùng không thuộc đối tượng chịu TTĐB"
    ],
    "tacdong": "Xe điện chở người và van/pickup điện giữ lợi thế giá đến 2030; đối thủ xe điện (VinFast, BYD, Wuling…) cạnh tranh mạnh ở phân khúc van, pickup chở hàng đô thị.",
    "viec": [
@@ -697,19 +719,19 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn) – Luật 09/2026/QH16",
+     "https://luatvietnam.vn/thue/luat-thue-sua-doi-2026-so-09-2026-qh16-434729-d1.html"
+    ],
+    [
+     "LuatVietnam (bản toàn văn) – Luật 66/2025/QH15",
+     "https://luatvietnam.vn/thue/luat-thue-tieu-thu-dac-biet-2025-so-66-2025-qh15-405694-d1.html"
+    ],
+    [
      "Người Quan Sát",
      "https://nguoiquansat.vn/vi-sao-quoc-hoi-chot-giu-thue-tieu-thu-dac-biet-voi-xe-dien-3-den-het-2030-288739.html"
-    ],
-    [
-     "Thời báo Tài chính",
-     "https://thoibaotaichinhvietnam.vn/tiep-tuc-gia-han-thue-tieu-thu-dac-biet-khuyen-khich-phat-trien-xe-o-to-dien-195577.html"
-    ],
-    [
-     "Diễn đàn Doanh nghiệp",
-     "https://diendandoanhnghiep.vn/keo-dai-uu-dai-thue-doi-voi-xe-o-to-dien-chay-pin-den-het-nam-2030-10177820.html"
     ]
    ],
-   "trich": ""
+   "trich": "Luật 09/2026/QH16, Điều 4 (sửa mục 4 điểm g Biểu thuế, khoản 1 Điều 8 Luật Thuế TTĐB): “g) Xe có gắn động cơ dưới 24 chỗ chạy điện. * Xe có gắn động cơ dưới 24 chỗ chạy bằng pin: - Xe ô tô chở người và xe chở người bốn bánh có gắn động cơ từ 9 chỗ trở xuống, xe ô tô pick-up chở người: Từ 01/01/2026: 3; Từ 01/01/2031: 11. - Xe ô tô chở người và xe chở người bốn bánh có gắn động cơ từ 10 đến dưới 16 chỗ: Từ 01/01/2026: 2; Từ 01/01/2031: 7. - Xe ô tô chở người và xe chở người bốn bánh có gắn động cơ từ 16 đến dưới 24 chỗ: Từ 01/01/2026: 1; Từ 01/01/2031: 4. - Xe ô tô pick-up chở hàng cabin kép, xe ô tô tải VAN có từ hai hàng ghế trở lên, có thiết kế vách ngăn cố định giữa khoang chở người và khoang chở hàng: Từ 01/01/2026: 2; Từ 01/01/2031: 7.” Điều 5: “1. Luật này có hiệu lực thi hành từ ngày được thông qua, trừ quy định tại khoản 2 Điều này. 2. Quy định tại các điều 1, 2 và 3 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.” (đơn vị: %)"
   },
   {
    "id": "ev_lptb",
@@ -727,13 +749,18 @@
    "tin": "cao",
    "diem": [
     "Ô tô điện chạy pin đăng ký lần đầu: lệ phí trước bạ 0% từ 01/3/2027 đến hết 31/12/2030 (nối tiếp mức miễn hiện hành)",
-    "NĐ 202/2026 thay NĐ 51/2025 từ 01/3/2027"
+    "NĐ 202/2026 thay NĐ 51/2025 từ 01/3/2027",
+    "Việc phân loại ô tô điện chạy pin theo quy định của Bộ trưởng Bộ Xây dựng (tóm tắt NĐ 202/2026 của LuatVietnam)"
    ],
    "tacdong": "Tổng chi phí lăn bánh xe điện thấp hơn xe xăng dầu, kể cả xe tải điện (xe tải xăng dầu chịu 2%).",
    "viec": [
     "Đưa lợi ích lệ phí trước bạ vào bảng TCO xe tải điện khi có sản phẩm"
    ],
    "nguon": [
+    [
+     "LuatVietnam – tóm tắt NĐ 202/2026",
+     "https://luatvietnam.vn/thue/nghi-dinh-202-2026-nd-cp-sua-doi-bo-sung-le-phi-truoc-ba-hieu-luc-2027-436912-d1.html"
+    ],
     [
      "Tạp chí Thuế – Hải quan",
      "https://thuehaiquan.tapchikinhtetaichinh.vn/o-to-dien-tiep-tuc-duoc-mien-100-le-phi-truoc-ba-lan-dau-den-het-nam-2030-158352.html"
@@ -830,7 +857,7 @@
   },
   {
    "id": "ev_tramdung",
-   "so": "Luật Đường bộ 35/2024/QH15 (Điều 52); Thông tư 58/2024/TT-BGTVT; QCVN 43:2024/BGTVT",
+   "so": "Luật Đường bộ 35/2024/QH15, điểm đ khoản 1 Điều 39; Thông tư 58/2024/TT-BGTVT; QCVN 43:2024/BGTVT",
    "ten": "Sạc điện tại trạm dừng nghỉ cao tốc",
    "cq": "Quốc hội; Bộ GTVT (nay Bộ Xây dựng)",
    "bh": "2024-06-27",
@@ -843,7 +870,7 @@
    "tt": "hiệu lực; hạn hoàn thiện sạc 01/01/2027",
    "tin": "cần đối chiếu",
    "diem": [
-    "Điều 52 Luật Đường bộ quy định trạm dừng nghỉ, điểm dừng, đỗ xe; TT 58/2024 hướng dẫn",
+    "Điểm đ khoản 1 Điều 39 Luật Đường bộ: trạm dừng nghỉ, bến xe phải có hệ thống sạc điện; ưu tiên bố trí sạc tại bãi đỗ xe",
     "QCVN 43:2024/BGTVT: tối thiểu 10% tổng số chỗ đỗ tại trạm dừng nghỉ dành cho sạc xe điện",
     "Năm 2026 mới 4/21 trạm dừng nghỉ vận hành một phần hệ thống sạc; yêu cầu hoàn thiện trước 01/01/2027"
    ],
@@ -853,6 +880,10 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/giao-thong/luat-duong-bo-2024-so-35-2024-qh15-360336-d1.html"
+    ],
+    [
      "Bộ Xây dựng",
      "https://moc.gov.vn/vn/tin-tuc/1176/96159/khan-truong-hoan-thien-ha-tang-sac-dien-tai-cac-tram-dung-nghi-duong-bo.aspx"
     ],
@@ -861,7 +892,7 @@
      "https://lsvn.vn/hoan-thien-he-thong-sac-dien-tai-cac-tram-dung-nghi-truoc-01-01-2027-a177742.html"
     ]
    ],
-   "trich": ""
+   "trich": "Luật Đường bộ 35/2024/QH15, điểm đ khoản 1 Điều 39 (Bến xe, bãi đỗ xe, trạm dừng nghỉ, điểm dừng xe…): “đ) Trạm dừng nghỉ, bến xe phải có hệ thống sạc điện cho phương tiện giao thông cơ giới sử dụng năng lượng điện theo quy định của pháp luật về tiêu chuẩn, quy chuẩn kỹ thuật. Ưu tiên bố trí hệ thống sạc điện cho phương tiện giao thông cơ giới sử dụng năng lượng điện tại bãi đỗ xe. Bến xe, bãi đỗ xe, trạm dừng nghỉ được kết hợp đầu tư, xây dựng để thực hiện hoạt động dịch vụ thương mại.”"
   },
   {
    "id": "ev_876",
@@ -910,10 +941,13 @@
     "Đăng kiểm – kỹ thuật"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Toàn quốc: xe sản xuất từ 2022 áp dụng Mức 4 từ 01/3/2026, Mức 5 từ 01/01/2032",
-    "Hà Nội, TP.HCM chặt hơn: xe 2017–2021 đạt Mức 4 từ 2027; xe từ 2022 đạt Mức 5 từ 2028 (một nguồn ghi 2030); từ 2029 mọi ô tô lưu thông phải từ Mức 2 trở lên"
+    "Hiệu lực 01/3/2026; bãi bỏ QĐ 16/2019/QĐ-TTg; xe đang có giấy chứng nhận kiểm định còn hiệu lực được lưu hành đến kỳ đăng kiểm kế tiếp",
+    "Xe sản xuất 2017–2021: Mức 3 từ khi Quyết định có hiệu lực; riêng Hà Nội, TP.HCM Mức 4 từ 01/01/2027",
+    "Xe sản xuất từ 2022: Mức 4 từ khi có hiệu lực, Mức 5 từ 01/01/2032; riêng Hà Nội, TP.HCM Mức 5 từ 01/01/2028",
+    "Từ 01/01/2029, xe tại Hà Nội và TP.HCM phải đáp ứng từ Mức 2 trở lên",
+    "Nội dung theo bản tóm tắt văn bản của LuatVietnam; chưa trích nguyên văn"
    ],
    "tacdong": "Xe tải cũ ở Hà Nội, TP.HCM sẽ khó qua đăng kiểm từ 2027: cơ hội lớn cho chương trình thu cũ đổi mới xe tải đạt chuẩn khí thải.",
    "viec": [
@@ -921,6 +955,10 @@
     "Lọc khách UIO xe đời cũ để tiếp cận"
    ],
    "nguon": [
+    [
+     "LuatVietnam – tóm tắt QĐ 43/2025",
+     "https://luatvietnam.vn/giao-thong/quyet-dinh-43-2025-qd-ttg-lo-trinh-ap-dung-quy-chuan-khi-thai-o-to-tu-2026-420126-d1.html"
+    ],
     [
      "Bộ Xây dựng",
      "https://moc.gov.vn/vn/tin-tuc/1268/89953/quy-dinh-lo-trinh-ap-dung-quy-chuan-ky-thuat-quoc-gia-ve-khi-thai-xe-o-to-tham-gia-giao-thong-duong-bo.aspx"
@@ -1152,7 +1190,7 @@
   ],
   [
    "2028",
-   "Hà Nội, TP.HCM: xe từ 2022 đạt Mức 5 (nguồn lệch 2030)"
+   "Hà Nội, TP.HCM: xe sản xuất từ 2022 phải đạt Mức 5 (01/01/2028)"
   ],
   [
    "2029",
@@ -1164,7 +1202,7 @@
   ],
   [
    "2031",
-   "TTĐB ô tô điện: dưới 9 chỗ 11%, 16–24 chỗ 4%, pickup 7%"
+   "TTĐB ô tô điện chạy pin: ≤ 9 chỗ 11%, 10–<16 chỗ 7%, 16–<24 chỗ 4%, pick-up/VAN cabin kép 7%"
   ],
   [
    "2032",
