@@ -180,6 +180,8 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .matrixwrap{overflow-x:auto}
 .zone{border-top:1px solid var(--glass-line);padding-top:10px}
 .zone h4{margin:0 0 4px;display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+a.gm{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(70,227,255,.55);cursor:pointer}a.gm:hover{color:var(--cyan);border-bottom-style:solid}
+.crowx{display:flex;align-items:center;gap:2px}.crowx .crow{flex:1}.gmi{flex:none;text-decoration:none;font-size:13px;padding:2px 5px;border-radius:6px;opacity:.75}.gmi:hover{opacity:1;background:rgba(70,227,255,.12)}
 .crow{display:flex;align-items:center;gap:10px;padding:5px 6px;border-radius:9px;cursor:pointer;border:1px solid transparent;background:transparent;width:100%;text-align:left;box-shadow:none}
 .crow:hover{background:rgba(70,227,255,.08);border-color:var(--glass-line)}
 .crow .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none}
@@ -673,6 +675,17 @@ const nf1 = new Intl.NumberFormat("vi-VN",{minimumFractionDigits:1,maximumFracti
 function fmtInt(v){ return v==null||isNaN(v) ? "—" : nf0.format(v); }
 function fmt1(v){ return v==null||isNaN(v) ? "—" : nf1.format(v); }
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+/* Google Maps: tọa độ chính thức (gm) → ghim đúng điểm; nếu chưa có → tìm theo tên + địa chỉ + tỉnh */
+function gmapUrl(o){ if(!o) return ""; const b = "https://www.google.com/maps/search/?api=1&query=";
+  if(o.gm) return b + o.gm[0] + "," + o.gm[1];
+  return b + encodeURIComponent([o.webName || o.name, o.addr || o.address, o.province].filter(Boolean).join(", ")); }
+function gmapMd(k, label){ const o = placeOf(k); return o ? `[${label}](${gmapUrl(o).replace(/\(/g, "%28").replace(/\)/g, "%29")})` : label; }
+function placeOf(k){ if(!k) return null; if(typeof k === "object") return k; const n = String(k).trim();
+  return NET.dealers.find(d => d.salesKey === n) || NET.dealers.find(d => d.name === n) || NET.stations.find(s => s.name === n)
+    || NET.dealers.find(d => d.salesKey && (n.includes(d.salesKey) || d.salesKey.includes(n))) || null; }
+function gmapA(k, label){ const o = placeOf(k); if(!o) return label; const where = o.addr || o.address || o.province || "";
+  return `<a class="gm" href="${esc(gmapUrl(o))}" target="_blank" rel="noopener noreferrer" title="Mở trên Google Maps: ${esc(where)}">${label}</a>`; }
+document.addEventListener("click", e => { if(e.target.closest && e.target.closest("a.gm")) e.stopPropagation(); }, true);
 function css(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 function zoneColor(z){ return css(ZTOK[z] || "--muted"); }
 function visible(){ return rows.filter(r => !zone || r.zone === zone); }
@@ -1001,13 +1014,13 @@ function onMove(e){
   mouse = {x:e.clientX, y:e.clientY, nx:(e.clientX-r.left)/r.width*2-1, ny:-(e.clientY-r.top)/r.height*2+1, inside:true};
   pick();
 }
-let lastPick = 0;
+let lastPick = 0, hoverPlace = null;
 function pick(){
   if(!raycaster || !mouse.inside) return;
   const now = performance.now(); if(now - lastPick < 40) return; lastPick = now;
-  raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera);
-  if(showComp && compGroup){ const hc = raycaster.intersectObjects(compGroup.children.filter(s=>s.visible), false)[0]; if(hc){ const p = hc.object.userData.comp; setHover(p.province); showTipHtml(compTip(p)); return; } }
-  if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
+  raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera); hoverPlace = null;
+  if(showComp && compGroup){ const hc = raycaster.intersectObjects(compGroup.children.filter(s=>s.visible), false)[0]; if(hc){ const p = hc.object.userData.comp; hoverPlace = p; setHover(p.province); showTipHtml(compTip(p)); return; } }
+  if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ hoverPlace = hp.object.userData.center; setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
   if(showSites && siteGroup){ const hs = raycaster.intersectObjects(siteGroup.children, true).find(h => h.object.userData.site); if(hs){ setHover(hs.object.userData.site.prov.name); showTipHtml(infraTip({site: hs.object.userData.site})); return; } }
   if(showInfra && infraGroup){ const hi = raycaster.intersectObjects(infraGroup.children.filter(o => o.isSprite), false)[0]; if(hi){ const d = hi.object.userData; if(d.city){ const pv = provinceOfPoint(d.city.lng, d.city.lat); if(pv) setHover(pv.name); } showTipHtml(infraTip(d)); return; } }
   if(showBars){ const hb = raycaster.intersectObjects(barGroup.children, false)[0]; if(hb){ setHover(hb.object.userData.name); if(hb.object.userData.dealer) showTip(null, hb.object.userData.dealer); else showTip(hb.object.userData.name); return; } }
@@ -1022,6 +1035,7 @@ function setHover(n){
   stage.style.cursor = n ? "pointer" : "";
 }
 function onClick(){
+  if(hoverPlace){ const u = gmapUrl(hoverPlace); if(u) window.open(u, "_blank", "noopener"); }
   if(!hoverName || ISLANDS[hoverName]) return;
   if(pinned && selected === hoverName){ pinned = false; renderDossier(); needOverlay = true; }
   else select(hoverName, true);
@@ -1061,14 +1075,14 @@ function showTipHtml(html){ tipEl.innerHTML = html; tipEl.hidden = false;
   tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px"; }
 function compTip(p){
   const b = CNET.brands[p.b] || {}, near = CENTERS.reduce((a,c) => { const d = km(p, c); return !a || d < a.d ? {d, c} : a; }, null);
-  return `<div class="t"><span class="dot" style="background:${b.color}"></span>${esc(b.name)} · ${esc(p.name)}</div><div class="muted">${esc(p.type)} · ${esc(p.addr)}, ${esc(p.province)}</div>
+  return `<div class="t"><span class="dot" style="background:${b.color}"></span>${esc(b.name)} · ${esc(p.name)}</div><div class="muted">${esc(p.type)} · ${esc(p.addr)}, ${esc(p.province)}</div><div class="tiny" style="color:var(--cyan)">Nhấn vào điểm để mở Google Maps</div>
     ${near ? `<div class="muted">Điểm Đô Thành gần nhất: ${esc(near.c.salesKey || near.c.name)} · ${fmtInt(near.d)} km</div>` : ""}<div class="muted tiny">Tọa độ gần đúng cấp phường/xã · ${esc((CNET.sources[p.src]||[""])[0])}</div>`;
 }
 function centerTip(c){
   const r = findRow(c.province);
   return `<div class="t"><span class="dot" style="background:${css(c.type==="C1"?"--pin-4s":c.type==="C2"?"--pin-3s":"--pin-tdv")}"></span>${c.id}. ${esc(c.name)}</div>
     <div class="muted">${c.type==="C1"?"Đại lý cấp 1 · "+esc(c.region):c.type==="C2"?"Đại lý cấp 2 · "+esc(c.region):"Trạm dịch vụ ủy quyền"}${c.svc?" · có trạm dịch vụ ủy quyền":""}</div>
-    ${c.address ? `<div class="muted">${esc(c.address)}${c.phone?" · "+esc(c.phone):""}</div>` : ""}
+    ${(c.addr || c.address) ? `<div class="muted">${esc(c.addr || c.address)}${c.phone?" · "+esc(c.phone):""}</div>` : ""}<div class="tiny" style="color:var(--cyan)">Nhấn vào ghim để mở Google Maps${c.gm ? " (tọa độ chính thức dothanhauto.com)" : " (tìm theo tên)"}</div>
     <div class="g num"><span>Tỉnh</span><b>${esc(c.province)}</b><span>Khu vực</span><b>${esc(r?r.zone:"")}</b>
     ${c.leCum!=null ? `<span>Bán lẻ lũy kế T10</span><b>${fmtInt(c.leCum)} xe</b><span>KH lũy kế T10</span><b>${fmtInt(c.khCum)} xe · ${fmtInt(c.leCum/c.khCum*100)}%</b><span>Tháng 10 (TH/KH)</span><b>${fmtInt(c.thT10)} / ${fmtInt(c.khT10)} xe</b><span>Bán sỉ lũy kế T9</span><b>${fmtInt(c.siT9)} xe</b>${c.grade?`<span>Xếp hạng năng lực</span><b>${c.grade} · ${fmt1(c.score)} điểm</b>`:""}` : c.tier==="C2" ? `<span>Số bán</span><b>gộp vào đại lý cấp 1 / ĐL khác</b>` : ""}
     <span>ĐK mới xe tải tỉnh</span><b>${r?fmtInt(r._market):"—"} xe</b></div>`;
@@ -1126,7 +1140,7 @@ function suggestions(r){
 }
 function ctrRow(c){ const col = css(c.type==="C1"?"--pin-4s":c.type==="C2"?"--pin-3s":"--pin-tdv");
   const s = c.leCum != null ? ` · <b class="num" style="color:${css(c.leCum/c.khCum>=0.7?"--good":c.leCum/c.khCum>=0.5?"--warn":"--bad")}">${fmtInt(c.leCum)}/${fmtInt(c.khCum)}</b>` : "";
-  return `<button type="button" class="crow" data-p="${esc(c.province)}" data-lng="${c.lng}" data-lat="${c.lat}"><span class="n" style="background:${col};box-shadow:0 0 10px ${col}${c.type==="TDV"?";color:#1a1300":""}">${c.id}</span><span>${esc(c.name)}${c.svc?' <span class="muted">· trạm DV</span>':""}</span><span class="p">${esc(c.province)}${s}</span></button>`; }
+  return `<button type="button" class="crow" data-p="${esc(c.province)}" data-lng="${c.lng}" data-lat="${c.lat}"><span class="n" style="background:${col};box-shadow:0 0 10px ${col}${c.type==="TDV"?";color:#1a1300":""}">${c.id}</span><span>${esc(c.name)}${c.svc?' <span class="muted">· trạm DV</span>':""}</span><span class="p">${esc(c.province)}${s}</span></button>`.replace(/^/, '<div class="crowx">') + `<a class="gmi" href="${esc(gmapUrl(c))}" target="_blank" rel="noopener noreferrer" title="Google Maps: ${esc(c.addr || c.address || c.province)}" aria-label="Mở ${esc(c.name)} trên Google Maps">📍</a></div>`; }
 function wireCtrRows(root){ root.querySelectorAll(".crow").forEach(b => b.addEventListener("click", () => { select(b.dataset.p, true); showTab("P"); if(b.dataset.lng) focusOn(+b.dataset.lng, +b.dataset.lat, 60); })); }
 const ECON = ["Nông – lâm – thủy sản","Công nghiệp – xây dựng","Dịch vụ","Thuế SP trừ trợ cấp"];
 const ECON_COL = ["#4fd17a","#ff9f45","#46c8ff","#8ea7c7"];
@@ -1286,7 +1300,7 @@ function renderCenters(){
       <div class="stat"><div class="v">${fmtInt(T.khYear)}</div><div class="l">KH cả năm 2026 · còn ${fmtInt(T.khYear-le)} xe</div></div>
       <div class="stat"><div class="v">${fmtInt(NET.vama.dothanh)}</div><div class="l">VAMA DOTHANH ${esc(NET.vama.period)}</div></div></div>
     <h4 style="margin:10px 0 4px">Top bán lẻ lũy kế T10</h4>${[...DEALER_SALES].sort((a,b)=>b.leCum-a.leCum).map((d,i)=>{ const p = d.leCum/d.khCum*100, col = css(p>=70?"--good":p>=50?"--warn":"--bad");
-      return `<div class="rk" style="cursor:default"><span class="i num">${i+1}</span><span class="nm">${esc(d.salesKey)}</span><span class="b" style="width:${(d.leCum/Math.max(...DEALER_SALES.map(x=>x.leCum))*100).toFixed(1)}%;background:linear-gradient(90deg,${col}55,${col})"></span><span class="v">${fmtInt(d.leCum)} · ${fmtInt(p)}%</span></div>`; }).join("")}
+      return `<div class="rk" style="cursor:default"><span class="i num">${i+1}</span><span class="nm">${gmapA(d, esc(d.salesKey))}</span><span class="b" style="width:${(d.leCum/Math.max(...DEALER_SALES.map(x=>x.leCum))*100).toFixed(1)}%;background:linear-gradient(90deg,${col}55,${col})"></span><span class="v">${fmtInt(d.leCum)} · ${fmtInt(p)}%</span></div>`; }).join("")}
     <div class="pinl" style="margin-top:8px"><span><i class="dot" style="background:var(--pin-4s)"></i>Cấp 1 (${c4})</span><span><i class="dot" style="background:var(--pin-3s)"></i>Cấp 2 (${c3})</span><span><i class="dot" style="background:var(--pin-tdv)"></i>Trạm DV riêng (${CENTERS.length-c4-c3})</span></div>
     <div class="muted" style="margin-top:6px">Số trên mỗi dòng: bán lẻ lũy kế T10 / KH lũy kế T10. Đại lý cấp 2 chưa tách số bán. Nguồn: ${esc(NET.sourceDealers)}; ${esc(NET.sourceStations)}. ${esc(NET.coordNote)}.</div></div>` +
     ZONES.filter(z => !zone || z === zone).map(z => {
@@ -1633,7 +1647,9 @@ function greet(){
 function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
 function mdToHtml(md){
   const lines = esc(md).split("\n"); let html = "", list = null, table = [];
-  const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/(^|\s)_([^_]+)_(?=\s|$)/g,"$1<i>$2</i>");
+  const inline = s0 => { const L = []; let s = s0.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, t, u) => { L.push(`<a ${/google\.com\/maps/.test(u) ? 'class="gm" ' : ""}href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>`); return "\u0001" + (L.length - 1) + "\u0002"; });
+    s = inl(s); return s.replace(/\u0001(\d+)\u0002/g, (m, i) => L[+i]); };
+  const inl = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*(?!\*)/g,"$1<i>$2</i>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/(^|\s)_([^_]+)_(?=\s|$)/g,"$1<i>$2</i>");
   const closeList = () => { if(list){ html += `</${list}>`; list = null; } };
   const flushTable = () => { if(!table.length) return;
     const rowsT = table.filter(r => !/^\s*\|?\s*:?-{2,}/.test(r)).map(r => r.replace(/^\s*\||\|\s*$/g,"").split("|").map(c=>inline(c.trim())));
@@ -2247,7 +2263,7 @@ function renderAll(){
   uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 window.__CV = {
-  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, get showComp(){ return showComp; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
+  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, gmapUrl, gmapA, gmapMd, placeOf, get showComp(){ return showComp; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
   get tam(){ return tam; }, set tam(v){ tam = v; }, get uioNat(){ return uioNat; }, set uioNat(v){ uioNat = v; },
   get zone(){ return zone; }, get selected(){ return selected; }, get metric(){ return metric; },
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;

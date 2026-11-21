@@ -2,7 +2,7 @@
  "updated": "2026-11-19T20:30:00+07:00",
  "sourceDealers": "ERP Dashboard Đô Thành Auto (tab Bản đồ KD, Doanh số IZ - Missu, Năng lực ĐL, Nhân sự ĐL) – cập nhật 22/10/2026; TH tháng 10 theo Tổng hợp TDBH chốt hết T10/2026",
  "sourceStations": "dothanhauto.com/tram-dich-vu.html – danh sách trạm dịch vụ ủy quyền, tra cứu 19/11/2026",
- "coordNote": "Tọa độ ước theo địa chỉ (phường/xã, KCN) hoặc theo thành phố của tỉnh khi chưa có địa chỉ",
+ "coordNote": "Tọa độ, địa chỉ, điện thoại lấy từ bản đồ Google nhúng trên trang chính thức dothanhauto.com (Hệ thống đại lý, Trạm dịch vụ), truy cập 21/11/2026; điểm không có trên web dùng tọa độ ước theo phường/xã và link Google Maps tìm theo tên + tỉnh.",
  "totals": {
   "khT9": 3260,
   "siT9": 2254,
@@ -88,8 +88,8 @@
    "region": "Miền Bắc",
    "name": "Đầu Tư Ô Tô Đông Nam",
    "province": "Hà Nội",
-   "lng": 105.77,
-   "lat": 21.19,
+   "lng": 105.7703,
+   "lat": 21.1811,
    "salesKey": "ĐT Đông Nam",
    "khT9": 528,
    "siT9": 385,
@@ -108,7 +108,15 @@
    "grade": "A",
    "score": 87.2,
    "tvbh": 7,
-   "ns": 59.6
+   "ns": 59.6,
+   "addr": "Km số 9, Võ Văn Kiệt, KCN Quang Minh, Xã Quang Minh, TP. Hà Nội",
+   "phone": "0862.996.196",
+   "webName": "[TP. HÀ NỘI] AUTO ĐÔNG NAM (X. QUANG MINH)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.181065,
+    105.77034
+   ]
   },
   {
    "id": 2,
@@ -116,8 +124,8 @@
    "region": "Miền Bắc",
    "name": "Ô Tô Quang Dương",
    "province": "Hải Phòng",
-   "lng": 106.18,
-   "lat": 20.87,
+   "lng": 106.1584,
+   "lat": 20.9248,
    "salesKey": "Quang Dương",
    "khT9": 245,
    "siT9": 160,
@@ -136,7 +144,15 @@
    "grade": "A",
    "score": 83.5,
    "tvbh": 6,
-   "ns": 26.5
+   "ns": 26.5,
+   "addr": "Thôn Ngọc Mai - CCN Hưng Thịnh, xã Kẻ Sặt, Tp. Hải Phòng",
+   "phone": "0865.297.966",
+   "webName": "[HẢI DƯƠNG] ĐÔ THÀNH HẢI DƯƠNG (X. KẺ SẶT)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.924774,
+    106.158358
+   ]
   },
   {
    "id": 3,
@@ -144,8 +160,8 @@
    "region": "Miền Bắc",
    "name": "19-5 Thanh Hóa",
    "province": "Thanh Hóa",
-   "lng": 105.79,
-   "lat": 19.84,
+   "lng": 105.8061,
+   "lat": 19.8919,
    "salesKey": "Ô Tô 19/5",
    "khT9": 98,
    "siT9": 53,
@@ -164,7 +180,15 @@
    "grade": "B",
    "score": 73.6,
    "tvbh": 5,
-   "ns": 10.2
+   "ns": 10.2,
+   "addr": "Km 313/314, QL1A, xã Hoằng Phú, tỉnh Thanh Hoá",
+   "phone": "0976.884.113",
+   "webName": "[THANH HÓA] CTY CP CƠ KHÍ Ô TÔ 19/5 (X. HOẰNG PHÚ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    19.891924,
+    105.80612
+   ]
   },
   {
    "id": 4,
@@ -172,8 +196,8 @@
    "region": "Miền Bắc",
    "name": "TM Tổng Hợp DL",
    "province": "Nghệ An",
-   "lng": 105.68,
-   "lat": 18.67,
+   "lng": 105.6749,
+   "lat": 18.6992,
    "salesKey": "Dũng Lạc",
    "khT9": 66,
    "siT9": 17,
@@ -192,7 +216,15 @@
    "grade": "B",
    "score": 62.8,
    "tvbh": 3,
-   "ns": 6.0
+   "ns": 6.0,
+   "addr": "Số 20, Đường Nguyễn Trãi, Phường Vinh Phú, Tỉnh Nghệ An",
+   "phone": "0916.800.979",
+   "webName": "[NGHỆ AN] Ô TÔ DŨNG LẠC (P. VINH PHÚ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    18.699164,
+    105.674926
+   ]
   },
   {
    "id": 5,
@@ -200,8 +232,8 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Ô Tô Đô Thành Đà Nẵng",
    "province": "Đà Nẵng",
-   "lng": 108.22,
-   "lat": 16.0,
+   "lng": 108.212,
+   "lat": 15.966,
    "salesKey": "ĐT Đà Nẵng",
    "khT9": 179,
    "siT9": 144,
@@ -220,7 +252,15 @@
    "grade": "A",
    "score": 82.6,
    "tvbh": 7,
-   "ns": 19.9
+   "ns": 19.9,
+   "addr": "Thửa đất số 3, tờ bản đồ số 74, Quốc lộ 1A, Phường Hòa Xuân, TP. Đà Nẵng",
+   "phone": "0905.541.009",
+   "webName": "[TP. ĐÀ NẴNG] ĐÔ THÀNH ĐÀ NẴNG (P. HÒA XUÂN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    15.965973,
+    108.212034
+   ]
   },
   {
    "id": 6,
@@ -228,8 +268,8 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Vận Tải & Xây Dựng Phi Hưng",
    "province": "Đắk Lắk",
-   "lng": 109.28,
-   "lat": 13.1,
+   "lng": 109.2856,
+   "lat": 13.1094,
    "salesKey": "Phi Hưng",
    "khT9": 82,
    "siT9": 65,
@@ -248,7 +288,15 @@
    "grade": "A",
    "score": 76.1,
    "tvbh": 4,
-   "ns": 15.2
+   "ns": 15.2,
+   "addr": "Km số 3, đường Nguyễn Tất Thành, Phường Bình Kiến, Tỉnh Đăk Lăk",
+   "phone": "Kinh doanh: 0968.96.58.57 - Dịch vụ: 0986.96.58.57",
+   "webName": "[ĐẮK LẮK] ĐÔ THÀNH PHÚ YÊN (P. BÌNH KIẾN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    13.109446,
+    109.28557
+   ]
   },
   {
    "id": 7,
@@ -256,8 +304,8 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "MTV Hùng Tuyến",
    "province": "Gia Lai",
-   "lng": 108.0,
-   "lat": 13.98,
+   "lng": 108.0563,
+   "lat": 13.9808,
    "salesKey": "Hùng Tuyến",
    "khT9": 53,
    "siT9": 11,
@@ -276,7 +324,15 @@
    "grade": "B",
    "score": 62.8,
    "tvbh": 2,
-   "ns": 5.0
+   "ns": 5.0,
+   "addr": "206A, Lê Duẩn, Phường Hội Phú, Tỉnh Gia Lai",
+   "phone": "0961.617.175",
+   "webName": "[GIA LAI] CTY TNHH MTV HÙNG TUYẾN (P. HỘI PHÚ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    13.98077,
+    108.056277
+   ]
   },
   {
    "id": 8,
@@ -284,8 +340,8 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Cương Nguyễn (Ngọc Thy)",
    "province": "Quảng Ngãi",
-   "lng": 108.0,
-   "lat": 14.37,
+   "lng": 107.9892,
+   "lat": 14.3237,
    "salesKey": "Cương Nguyễn",
    "khT9": 31,
    "siT9": 15,
@@ -304,7 +360,15 @@
    "grade": "B",
    "score": 74.2,
    "tvbh": 2,
-   "ns": 6.0
+   "ns": 6.0,
+   "addr": "Lô T1A Khu Công Nghiệp Hoà Bình, Phường Đắkbla, Tỉnh Quảng Ngãi",
+   "phone": "Kinh doanh: 0901.934.939 - Dịch vụ: 0983.058.129",
+   "webName": "[QUẢNG NGÃI] CTY TNHH MTV CƯƠNG NGUYỄN (P. ĐẮKBLA)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    14.323694,
+    107.989194
+   ]
   },
   {
    "id": 9,
@@ -312,8 +376,8 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "XNK Ô Tô Tây Nguyên",
    "province": "Đắk Lắk",
-   "lng": 108.05,
-   "lat": 12.69,
+   "lng": 108.0805,
+   "lat": 12.7058,
    "salesKey": "Ô Tô Tây Nguyên",
    "khT9": 31,
    "siT9": 39,
@@ -332,7 +396,15 @@
    "grade": "A",
    "score": 75.1,
    "tvbh": 9,
-   "ns": 3.4
+   "ns": 3.4,
+   "addr": "Số 159, Nguyễn Chí Thanh, Phường Tân An, tỉnh Đắk Lắk",
+   "phone": "0948.811.369",
+   "webName": "[ĐẮK LẮK] CTY TNHH XNK Ô TÔ TÂY NGUYÊN (P. TÂN AN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    12.705844,
+    108.080458
+   ]
   },
   {
    "id": 10,
@@ -340,8 +412,8 @@
    "region": "Miền Nam",
    "name": "Ô Tô TM Phú Mỹ",
    "province": "TP. Hồ Chí Minh",
-   "lng": 106.8,
-   "lat": 10.765,
+   "lng": 106.774,
+   "lat": 10.7679,
    "salesKey": "Phú Mỹ",
    "khT9": 194,
    "siT9": 79,
@@ -360,7 +432,15 @@
    "grade": "A",
    "score": 77.0,
    "tvbh": 9,
-   "ns": 11.6
+   "ns": 11.6,
+   "addr": "Lô D3 Đường D1, Khu công nghiệp Cát Lái, Phường Cát Lái, TP Hồ Chí Minh",
+   "phone": "Kinh doanh: 0862.994.968 - Dịch vụ: 0862.884.968",
+   "webName": "[TP. HCM] ĐÔ THÀNH PHÚ MỸ (P. CÁT LÁI)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.767901,
+    106.774036
+   ]
   },
   {
    "id": 11,
@@ -368,8 +448,8 @@
    "region": "Miền Nam",
    "name": "Ô Tô TM Tân Vạn",
    "province": "TP. Hồ Chí Minh",
-   "lng": 106.79,
-   "lat": 10.9,
+   "lng": 106.822,
+   "lat": 10.898,
    "salesKey": "Tân Vạn",
    "khT9": 203,
    "siT9": 135,
@@ -388,7 +468,15 @@
    "grade": "A",
    "score": 80.7,
    "tvbh": 9,
-   "ns": 14.3
+   "ns": 14.3,
+   "addr": "Số 420, đường ĐT 743A, Khu phố Ngãi Thắng, Phường Đông Hòa, TP Hồ Chí Minh",
+   "phone": "Kinh doanh: 0912.776.077 - Dịch vụ: 0918.396.579",
+   "webName": "[TP. HCM] ĐÔ THÀNH TÂN VẠN (P. ĐÔNG HÒA)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.898013,
+    106.822014
+   ]
   },
   {
    "id": 12,
@@ -396,8 +484,8 @@
    "region": "Miền Nam",
    "name": "Ô Tô Việt Nhật Anh",
    "province": "Đồng Nai",
-   "lng": 106.86,
-   "lat": 10.93,
+   "lng": 106.8896,
+   "lat": 10.8978,
    "salesKey": "Việt Nhật Anh",
    "khT9": 119,
    "siT9": 46,
@@ -416,7 +504,15 @@
    "grade": "A",
    "score": 75.7,
    "tvbh": 5,
-   "ns": 10.4
+   "ns": 10.4,
+   "addr": "Số 20, Võ Nguyên Giáp, Phường Long Hưng, TP. Đồng Nai",
+   "phone": "0901.767.051",
+   "webName": "[TP. ĐỒNG NAI] ĐÔ THÀNH ĐỒNG NAI (P. LONG HƯNG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.897792,
+    106.889564
+   ]
   },
   {
    "id": 13,
@@ -424,8 +520,8 @@
    "region": "Miền Nam",
    "name": "TM Ô Tô Vũ Hùng",
    "province": "TP. Hồ Chí Minh",
-   "lng": 106.62,
-   "lat": 10.8,
+   "lng": 106.7152,
+   "lat": 10.8613,
    "salesKey": "Vũ Hùng",
    "khT9": 245,
    "siT9": 189,
@@ -444,7 +540,15 @@
    "grade": "A",
    "score": 90.0,
    "tvbh": 5,
-   "ns": 16.4
+   "ns": 16.4,
+   "addr": "Số 950, Quốc Lộ 1A, Phường Bình Tân, TP Hồ Chí Minh",
+   "phone": "0987.683.898",
+   "webName": "[TP. HCM] Ô TÔ VŨ HÙNG (P. BÌNH TÂN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.861323,
+    106.71516
+   ]
   },
   {
    "id": 14,
@@ -452,8 +556,8 @@
    "region": "Miền Nam",
    "name": "TM & DV Hưng Vượng",
    "province": "Lâm Đồng",
-   "lng": 108.37,
-   "lat": 11.73,
+   "lng": 108.3796,
+   "lat": 11.7564,
    "salesKey": "Hưng Vượng",
    "khT9": 60,
    "siT9": 35,
@@ -472,7 +576,15 @@
    "grade": "A",
    "score": 76.6,
    "tvbh": 2,
-   "ns": 16.5
+   "ns": 16.5,
+   "addr": "Số 1, Khu phố 6, Xã Đức Trọng, Tỉnh Lâm Đồng",
+   "phone": "0915.636.016",
+   "webName": "[LÂM ĐỒNG] CTY TNHH TM VÀ DV HƯNG VƯỢNG (X. ĐỨC TRỌNG)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    11.756369,
+    108.379612
+   ]
   },
   {
    "id": 15,
@@ -508,8 +620,8 @@
    "region": "Miền Tây",
    "name": "TMDV Vận Tải Phúc Châu",
    "province": "Vĩnh Long",
-   "lng": 106.33,
-   "lat": 10.27,
+   "lng": 106.3558,
+   "lat": 10.2776,
    "salesKey": "Phúc Châu",
    "khT9": 46,
    "siT9": 23,
@@ -528,7 +640,15 @@
    "grade": "B",
    "score": 68.4,
    "tvbh": 3,
-   "ns": 7.0
+   "ns": 7.0,
+   "addr": "Số 201K, Khu Phố 3, P. Phú Tân, Tỉnh Vĩnh Long",
+   "phone": "Kinh doanh: 0838.533.933 - Dịch vụ: 0899.050.790",
+   "webName": "[VĨNH LONG] VẬN TẢI PHÚC CHÂU (P. PHÚ TÂN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.277645,
+    106.355836
+   ]
   },
   {
    "id": 17,
@@ -536,8 +656,8 @@
    "region": "Miền Tây",
    "name": "Ô Tô Mỹ Phú Hưng",
    "province": "Đồng Tháp",
-   "lng": 105.64,
-   "lat": 10.47,
+   "lng": 105.6542,
+   "lat": 10.4537,
    "salesKey": "Mỹ Phú Hưng",
    "khT9": 68,
    "siT9": 63,
@@ -556,7 +676,15 @@
    "grade": "A",
    "score": 84.2,
    "tvbh": 5,
-   "ns": 11.2
+   "ns": 11.2,
+   "addr": "Số 02 Đỗ Thị Đệ, Khóm Mỹ Thượng, Phường Mỹ Trà, Đồng Tháp",
+   "phone": "0911.881.088",
+   "webName": "[ĐỒNG THÁP] Ô TÔ MỸ PHÚ HƯNG (P. MỸ TRÀ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.453672,
+    105.654208
+   ]
   },
   {
    "id": 18,
@@ -564,8 +692,8 @@
    "region": "Miền Tây",
    "name": "Ô Tô Hồng Vinh",
    "province": "Đồng Tháp",
-   "lng": 105.34,
-   "lat": 10.8,
+   "lng": 105.2,
+   "lat": 10.622,
    "salesKey": "Hồng Vinh",
    "khT9": 45,
    "siT9": 24,
@@ -584,7 +712,15 @@
    "grade": "B",
    "score": 67.3,
    "tvbh": 1,
-   "ns": 24.0
+   "ns": 24.0,
+   "addr": "Đường ĐT 841, Khóm Trà Đư, P. Thường Lạc, T. Đồng Tháp",
+   "phone": "0901.066.604",
+   "webName": "[ĐỒNG THÁP] Ô TÔ HỒNG VINH (P. THƯỜNG LẠC)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.622001,
+    105.199965
+   ]
   },
   {
    "id": 19,
@@ -592,8 +728,8 @@
    "region": "Miền Tây",
    "name": "Ô Tô Trường Vũ",
    "province": "Cần Thơ",
-   "lng": 105.72,
-   "lat": 10.06,
+   "lng": 105.7358,
+   "lat": 10.0439,
    "salesKey": "Trường Vũ",
    "khT9": 493,
    "siT9": 465,
@@ -612,7 +748,15 @@
    "grade": "A",
    "score": 82.1,
    "tvbh": 21,
-   "ns": 10.0
+   "ns": 10.0,
+   "addr": "666/10, Ql 9B, Kv Bình Trung, phường Long Tuyền, TP. Cần Thơ",
+   "phone": "Kinh doanh: 0907.394.646 - Dịch vụ: 0939.574.646",
+   "webName": "[TP. CẦN THƠ] Ô TÔ TRƯỜNG VŨ (P. LONG TUYỀN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.043946,
+    105.73578
+   ]
   },
   {
    "id": 20,
@@ -620,8 +764,8 @@
    "region": "Miền Tây",
    "name": "Ô Tô TM Phú Mỹ Hậu Giang",
    "province": "Cần Thơ",
-   "lng": 105.82,
-   "lat": 9.93,
+   "lng": 105.7254,
+   "lat": 9.933,
    "salesKey": "ĐT Hậu Giang",
    "khT9": 129,
    "siT9": 111,
@@ -640,7 +784,15 @@
    "grade": "A",
    "score": 85.2,
    "tvbh": 6,
-   "ns": 16.5
+   "ns": 16.5,
+   "addr": "Thuở đất số 109, tờ bản đồ số 10, ấp Tân Phú, xã Đông Phước, TP. Cần Thơ",
+   "phone": "Kinh doanh: 0979.575.086 - Dịch vụ: 0931.000.995",
+   "webName": "[TP. CẦN THƠ] ĐÔ THÀNH HẬU GIANG (X. ĐÔNG PHƯỚC)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    9.932992,
+    105.725401
+   ]
   },
   {
    "id": 21,
@@ -648,8 +800,8 @@
    "region": "Miền Tây",
    "name": "Phú Mỹ Hậu Giang - CN Kiên Giang",
    "province": "An Giang",
-   "lng": 105.09,
-   "lat": 10.01,
+   "lng": 105.1067,
+   "lat": 10.0073,
    "salesKey": "ĐT Kiên Giang",
    "khT9": 94,
    "siT9": 77,
@@ -668,7 +820,15 @@
    "grade": "A",
    "score": 80.0,
    "tvbh": 5,
-   "ns": 17.0
+   "ns": 17.0,
+   "addr": "208 Lạc Hồng, Phường Rạch Giá, An Giang",
+   "phone": "Kinh doanh: 0938.636.879 - Dịch vụ: 0818.192.039",
+   "webName": "[AN GIANG] ĐÔ THÀNH KIÊN GIANG (P. RẠCH GIÁ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.007301,
+    105.106685
+   ]
   },
   {
    "id": 22,
@@ -676,8 +836,8 @@
    "region": "Miền Tây",
    "name": "Đô Thành Long An - CN Tiền Giang",
    "province": "Đồng Tháp",
-   "lng": 106.1,
-   "lat": 10.4,
+   "lng": 106.1672,
+   "lat": 10.4029,
    "salesKey": "ĐT Tiền Giang",
    "khT9": 62,
    "siT9": 32,
@@ -696,7 +856,15 @@
    "grade": "A",
    "score": 77.4,
    "tvbh": 4,
-   "ns": 12.2
+   "ns": 12.2,
+   "addr": "Tổ số 12, QL1A , Khu Phố Quý Phước, Phường Nhị Quý, Tỉnh Đồng Tháp",
+   "phone": "Kinh doanh: 0977.674.839 - Dịch vụ: 0932.826.737",
+   "webName": "[ĐỒNG THÁP] ĐÔ THÀNH TIỀN GIANG (P. NHỊ QUÝ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.402938,
+    106.167187
+   ]
   },
   {
    "id": 23,
@@ -704,8 +872,8 @@
    "region": "Miền Tây",
    "name": "Ô Tô Đô Thành Long An",
    "province": "Tây Ninh",
-   "lng": 106.41,
-   "lat": 10.54,
+   "lng": 106.3902,
+   "lat": 10.523,
    "salesKey": "ĐT Long An",
    "khT9": 92,
    "siT9": 71,
@@ -724,7 +892,15 @@
    "grade": "B",
    "score": 74.7,
    "tvbh": 6,
-   "ns": 7.3
+   "ns": 7.3,
+   "addr": "Thửa số 402, Khu phố Bình Quân 2, Phường Long An, Tây Ninh",
+   "phone": "Kinh doanh: 0862.530.968 - Dịch vụ: 0862.730.968",
+   "webName": "[TÂY NINH] ĐÔ THÀNH LONG AN (P. LONG AN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.523014,
+    106.390235
+   ]
   },
   {
    "id": 24,
@@ -732,8 +908,16 @@
    "region": "Miền Bắc",
    "name": "TM An Mạnh",
    "province": "Lào Cai",
-   "lng": 103.97,
-   "lat": 22.48
+   "lng": 104.9254,
+   "lat": 21.6937,
+   "addr": "Nhà bà Nguyễn Thị Hồng Thơm, Thôn Giao Bình, Xã Gia Phú, Tỉnh Lào Cai",
+   "phone": "0978.858.008",
+   "webName": "[LÀO CAI] CTY TNHH MTV THƯƠNG MẠI AN MẠNH (X. GIA PHÚ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.693672,
+    104.925448
+   ]
   },
   {
    "id": 25,
@@ -741,8 +925,16 @@
    "region": "Miền Bắc",
    "name": "Ô Tô Khánh Chi",
    "province": "Sơn La",
-   "lng": 103.93,
-   "lat": 21.3
+   "lng": 103.043,
+   "lat": 21.4098,
+   "addr": "Đường Lê Duẩn, Tổ 4, Phường Chiềng Sinh, Tỉnh Sơn La",
+   "phone": "0986.195.350",
+   "webName": "[SƠN LA] CÔNG TY TNHH Ô TÔ KHÁNH CHI (P. CHIỀNG SINH)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.409833,
+    103.043
+   ]
   },
   {
    "id": 26,
@@ -750,8 +942,16 @@
    "region": "Miền Bắc",
    "name": "TM & XNK Ô Tô Mỹ An",
    "province": "Hưng Yên",
-   "lng": 106.05,
-   "lat": 20.66
+   "lng": 106.0536,
+   "lat": 20.6754,
+   "addr": "Số 1 đường Trần Hưng Đạo, Phường Sơn Nam, Tỉnh Hưng Yên",
+   "phone": "0979.419.258",
+   "webName": "[HƯNG YÊN] CTY TNHH TM & XNK Ô TÔ MỸ AN (P. SƠN NAM)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.675404,
+    106.053581
+   ]
   },
   {
    "id": 27,
@@ -759,8 +959,16 @@
    "region": "Miền Bắc",
    "name": "Ô Tô Hiền Nhung",
    "province": "Phú Thọ",
-   "lng": 105.3,
-   "lat": 21.45
+   "lng": 105.382,
+   "lat": 21.3305,
+   "addr": "Khu Công nghệ Ô tô Kỹ thuật cao - Khu 4 xã Phù Ninh - Tỉnh Phú Thọ",
+   "phone": "0912.084.864",
+   "webName": "[PHÚ THỌ] CÔNG TY TNHH Ô TÔ HIỀN NHUNG (X. PHÚ NINH)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.330528,
+    105.381981
+   ]
   },
   {
    "id": 28,
@@ -777,8 +985,16 @@
    "region": "Miền Bắc",
    "name": "Đầu Tư TM Thiên Trường",
    "province": "Hưng Yên",
-   "lng": 106.36,
-   "lat": 20.43
+   "lng": 106.3603,
+   "lat": 20.4371,
+   "addr": "Lô đất 9.384,5 m2, khu phố II, đường Hoàng Văn Thái, Phường Trần Lãm, Hưng Yên",
+   "phone": "0853.394.822",
+   "webName": "[HƯNG YÊN] CTY TNHH ĐẦU TƯ THƯƠNG MẠI THIÊN TRƯỜNG (P. TRẦN LÃM)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.437144,
+    106.360315
+   ]
   },
   {
    "id": 30,
@@ -786,8 +1002,16 @@
    "region": "Miền Bắc",
    "name": "TM Sunray Việt Nam",
    "province": "Hà Nội",
-   "lng": 105.8,
-   "lat": 21.03
+   "lng": 105.8931,
+   "lat": 21.0529,
+   "addr": "Số 86 Vũ Đức Thận, Phường Việt Hưng, TP. Hồ Chí Minh",
+   "phone": "0836.236.868",
+   "webName": "[TP. HÀ NỘI] CTY TNHH TM SUNRAY VIỆT NAM (P. VIỆT HƯNG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.052917,
+    105.893083
+   ]
   },
   {
    "id": 31,
@@ -795,8 +1019,16 @@
    "region": "Miền Bắc",
    "name": "Auto Đông Nam - CN Chương Mỹ",
    "province": "Hà Nội",
-   "lng": 105.69,
-   "lat": 20.93
+   "lng": 105.6776,
+   "lat": 20.9285,
+   "addr": "KCN Phú Nghĩa, xã Chương Mỹ, TP. Hà Nội",
+   "phone": "0862.996.196",
+   "webName": "[TP. HÀ NỘI] AUTO ĐÔNG NAM (X. CHƯƠNG MỸ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.928504,
+    105.677639
+   ]
   },
   {
    "id": 32,
@@ -804,8 +1036,16 @@
    "region": "Miền Bắc",
    "name": "Auto Đông Nam - CN Nam Định",
    "province": "Ninh Bình",
-   "lng": 106.15,
-   "lat": 20.41
+   "lng": 106.1482,
+   "lat": 20.4306,
+   "addr": "Lô C2-4, KCN Hoà Xá, Phường Đông A, Tỉnh Ninh Bình",
+   "phone": "0862.996.196",
+   "webName": "[NINH BÌNH] AUTO ĐÔNG NAM (P. ĐÔNG A)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.430621,
+    106.148171
+   ]
   },
   {
    "id": 33,
@@ -813,8 +1053,16 @@
    "region": "Miền Bắc",
    "name": "Auto Đông Nam - CN Thanh Trì",
    "province": "Hà Nội",
-   "lng": 105.86,
-   "lat": 20.88
+   "lng": 105.8495,
+   "lat": 20.9,
+   "addr": "CCN Duyên Thái, Xã Thường Tín, Thủ đô Hà Nội",
+   "phone": "0862.996.196",
+   "webName": "[TP. HÀ NỘI] AUTO ĐÔNG NAM (X. THƯỜNG TÍN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.90002,
+    105.849468
+   ]
   },
   {
    "id": 34,
@@ -822,8 +1070,16 @@
    "region": "Miền Bắc",
    "name": "Ô Tô Nhật Dương",
    "province": "Bắc Ninh",
-   "lng": 106.2,
-   "lat": 21.27
+   "lng": 106.0461,
+   "lat": 21.1677,
+   "addr": "CCN Võ Cường, Phường Võ Cường, Tỉnh Bắc Ninh",
+   "phone": "0976.592.716",
+   "webName": "[BẮC NINH] CTY TNHH Ô TÔ NHẬT DƯƠNG (P. VÕ CƯỜNG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    21.167718,
+    106.046125
+   ]
   },
   {
    "id": 35,
@@ -840,8 +1096,16 @@
    "region": "Miền Bắc",
    "name": "XKN Ô Tô Ninh Bình",
    "province": "Ninh Bình",
-   "lng": 105.97,
-   "lat": 20.25
+   "lng": 105.9396,
+   "lat": 20.1703,
+   "addr": "QL 1A, Phố Ghềnh, Phường Yên Thắng, Tỉnh Ninh Bình",
+   "phone": "0981.456.556",
+   "webName": "[NINH BÌNH] CTY TNHH XNK Ô TÔ NINH BÌNH (P. YÊN THẮNG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    20.17034,
+    105.939589
+   ]
   },
   {
    "id": 37,
@@ -849,8 +1113,16 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Phước Lộc",
    "province": "Huế",
-   "lng": 107.5,
-   "lat": 16.5
+   "lng": 107.4954,
+   "lat": 16.5123,
+   "addr": "107 Lý Nhân Tông, phường Hương Trà, Thành phố Huế",
+   "phone": "0932.568.799",
+   "webName": "[TP. HUẾ] CÔNG TY TNHH PHƯỚC LỘC (P. HƯƠNG TRÀ)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    16.512278,
+    107.495404
+   ]
   },
   {
    "id": 38,
@@ -858,8 +1130,16 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Ô Tô Núi Ấn Sông Trà",
    "province": "Quảng Ngãi",
-   "lng": 108.8,
-   "lat": 15.12
+   "lng": 108.8046,
+   "lat": 15.1319,
+   "addr": "118-120 Trường Chinh, P. Cẩm Thành, Tỉnh Quảng Ngãi",
+   "phone": "0977.229.379",
+   "webName": "[QUẢNG NGÃI] Ô TÔ NÚI ẤN SÔNG TRÀ (P. CẨM THÀNH)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    15.131897,
+    108.804558
+   ]
   },
   {
    "id": 39,
@@ -867,8 +1147,16 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "TM & DV Nam Sơn Auto",
    "province": "Quảng Trị",
-   "lng": 107.1,
-   "lat": 16.82
+   "lng": 106.6165,
+   "lat": 17.4769,
+   "addr": "Số 33, Trần Quang Khải, P. Đồng Hới, T. Quảng Trị",
+   "phone": "0886.751.172",
+   "webName": "[QUẢNG TRỊ] CTY TNHH TM & DV NAM SƠN AUTO (P. ĐỒNG HỚI)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    17.476908,
+    106.616456
+   ]
   },
   {
    "id": 40,
@@ -876,8 +1164,16 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Ô Tô Hải Thành",
    "province": "Gia Lai",
-   "lng": 109.2,
-   "lat": 13.8
+   "lng": 109.182,
+   "lat": 13.7812,
+   "addr": "Đường Tây Sơn, Tổ 2, Khu vực 8, Phường Quy Nhơn Bắc, Tỉnh Gia Lai",
+   "phone": "0935.380.082",
+   "webName": "[GIA LAI] CÔNG TY Ô TÔ HẢI THÀNH (P. QUY NHƠN BẮC)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    13.781156,
+    109.181984
+   ]
   },
   {
    "id": 41,
@@ -886,7 +1182,12 @@
    "name": "TM Quốc Tú",
    "province": "Gia Lai",
    "lng": 108.02,
-   "lat": 13.95
+   "lat": 13.95,
+   "addr": "Khu Phố Bình Chương, Phường Bồng Sơn, Tỉnh Gia Lai",
+   "phone": "0975.772.977",
+   "webName": "[GIA LAI] CTY TNHH TM QUỐC TÚ (P. BỒNG SƠN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gmNote": "trang chính thức chưa có bản đồ, dùng địa chỉ"
   },
   {
    "id": 42,
@@ -894,8 +1195,16 @@
    "region": "Miền Nam",
    "name": "Lộc Ánh Đạt",
    "province": "Lâm Đồng",
-   "lng": 108.44,
-   "lat": 11.95
+   "lng": 108.4632,
+   "lat": 11.9476,
+   "addr": "Số 36 Hùng Vương, P. Lâm Viên - Đà Lạt, Lâm Đồng",
+   "phone": "0919.562.279",
+   "webName": "[LÂM ĐỒNG] CÔNG TY TNHH LỘC ÁNH ĐẠT (P. LÂM VIÊN)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    11.947588,
+    108.463237
+   ]
   },
   {
    "id": 43,
@@ -912,8 +1221,16 @@
    "region": "Miền Tây",
    "name": "Ô Tô Trường Vũ - CN Hậu Giang",
    "province": "Cần Thơ",
-   "lng": 105.47,
-   "lat": 9.78
+   "lng": 105.7598,
+   "lat": 9.8936,
+   "addr": "Quốc lộ 1A, xã Thạnh Hòa, TP. Cần Thơ",
+   "phone": "0965.055.517",
+   "webName": "[TP. CẦN THƠ] Ô TÔ TRƯỜNG VŨ (X. THẠNH HÒA)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    9.893593,
+    105.759757
+   ]
   },
   {
    "id": 45,
@@ -921,8 +1238,16 @@
    "region": "Miền Tây",
    "name": "Ô Tô Trường Vũ - CN An Giang",
    "province": "An Giang",
-   "lng": 105.43,
-   "lat": 10.38
+   "lng": 105.3957,
+   "lat": 10.4372,
+   "addr": "Quốc Lộ 91, xã An Châu, Tỉnh An Giang",
+   "phone": "0979.449.049",
+   "webName": "[AN GIANG] Ô TÔ TRƯỜNG VŨ (X. AN CHÂU)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.437183,
+    105.395719
+   ]
   },
   {
    "id": 46,
@@ -930,8 +1255,16 @@
    "region": "Miền Tây",
    "name": "Ô Tô Trường Vũ - CN Vĩnh Long",
    "province": "Vĩnh Long",
-   "lng": 105.97,
-   "lat": 10.25
+   "lng": 105.9443,
+   "lat": 10.2042,
+   "addr": "Quốc lộ 1A, phường Tân Hạnh, tỉnh Vĩnh Long",
+   "phone": "0901.227.237",
+   "webName": "[VĨNH LONG] Ô TÔ TRƯỜNG VŨ (P. TÂN HẠNH)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.204205,
+    105.944323
+   ]
   },
   {
    "id": 47,
@@ -948,8 +1281,16 @@
    "region": "Miền Trung - Tây Nguyên",
    "name": "Ô Tô Tây Nguyên - CN Khánh Hòa",
    "province": "Khánh Hòa",
-   "lng": 109.17,
-   "lat": 12.24
+   "lng": 109.1651,
+   "lat": 12.3008,
+   "addr": "Số 59, QL 1A, Thôn Đắc Lộc, Phường Bắc Nha Trang, Khánh Hòa",
+   "phone": "0948.811.369",
+   "webName": "[KHÁNH HÒA] CTY TNHH XNK Ô TÔ TÂY NGUYÊN (P. BẮC NHA TRANG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    12.300817,
+    109.165136
+   ]
   },
   {
    "id": 49,
@@ -957,8 +1298,16 @@
    "region": "Miền Nam",
    "name": "XNK TM Ô Tô Vũ Hùng",
    "province": "TP. Hồ Chí Minh",
-   "lng": 106.6,
-   "lat": 10.75
+   "lng": 106.5904,
+   "lat": 10.7632,
+   "addr": "Số 16, Quốc Lộ 1A, Phường An Phú Đông, TP Hồ Chí Minh",
+   "phone": "0987.683.898",
+   "webName": "[TP. HCM] Ô TÔ VŨ HÙNG (P. AN PHÚ ĐÔNG)",
+   "placeSrc": "https://www.dothanhauto.com/dai-ly.html",
+   "gm": [
+    10.763194,
+    106.590417
+   ]
   },
   {
    "id": 50,
@@ -977,8 +1326,15 @@
    "province": "TP. Hồ Chí Minh",
    "address": "Lô D3 đường D1, KCN Cát Lái, P. Cát Lái, TP. Hồ Chí Minh",
    "phone": "0862.884.968",
-   "lng": 106.79,
-   "lat": 10.775
+   "lng": 106.774,
+   "lat": 10.7679,
+   "addr": "Lô D3 đường D1, KCN Cát Lái, P. Cát Lái, TP. Hồ Chí Minh",
+   "webName": "[TP. HCM] CÔNG TY CP Ô TÔ TÂN BÌNH (P. CÁT LÁI)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.767901,
+    106.774036
+   ]
   },
   {
    "id": 2,
@@ -986,8 +1342,15 @@
    "province": "Đà Nẵng",
    "address": "Thửa đất số 03, tờ bản đồ số 74, Quốc lộ 1A, P. Hòa Xuân, TP. Đà Nẵng",
    "phone": "0905.545.310",
-   "lng": 108.22,
-   "lat": 16.0
+   "lng": 108.212,
+   "lat": 15.966,
+   "addr": "Thửa đất số 03, tờ bản đồ số 74, Quốc lộ 1A, Phường Hòa Xuân, TP. Đà Nẵng",
+   "webName": "[TP. ĐÀ NẴNG] CÔNG TY CP ĐÔ THÀNH ĐÀ NẴNG (P. HÒA XUÂN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    15.965973,
+    108.212034
+   ]
   },
   {
    "id": 3,
@@ -995,8 +1358,15 @@
    "province": "Hà Nội",
    "address": "Km số 9, đường Võ Văn Kiệt, KCN Quang Minh, Xã Quang Minh, TP. Hà Nội",
    "phone": "0983.584.166",
-   "lng": 105.77,
-   "lat": 21.19
+   "lng": 105.7814,
+   "lat": 21.191,
+   "addr": "Km số 9, đường Võ Văn Kiệt, KCN Quang Minh, Xã Quang Minh, TP. Hà Nội",
+   "webName": "[TP. HÀ NỘI] CTY CP ĐẦU TƯ Ô TÔ ĐÔNG NAM (X. QUANG MINH)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    21.190963,
+    105.781415
+   ]
   },
   {
    "id": 4,
@@ -1004,8 +1374,15 @@
    "province": "Hải Phòng",
    "address": "Thôn Ngọc Mai, CCN Hưng Thịnh, Xã Kẻ Sặt, TP. Hải Phòng",
    "phone": "0969.831.686",
-   "lng": 106.18,
-   "lat": 20.87
+   "lng": 106.1585,
+   "lat": 20.9247,
+   "addr": "Thôn Ngọc Mai, Cụm công nghiệp Hưng Thịnh, Xã Kẻ Sặt, Thành phố Hải Phòng",
+   "webName": "[TP. HẢI PHÒNG] CÔNG TY Ô TÔ TÔ QUANG DƯƠNG (X. KẺ SẶT)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    20.924732,
+    106.158496
+   ]
   },
   {
    "id": 5,
@@ -1013,8 +1390,15 @@
    "province": "Hưng Yên",
    "address": "Khu phố II, đường Hoàng Văn Thái, P. Trần Lãm, Hưng Yên",
    "phone": "0974.804.063",
-   "lng": 106.36,
-   "lat": 20.43
+   "lng": 106.3603,
+   "lat": 20.437,
+   "addr": "Lô đất 9.384,5m2, khu phố II, đường Hoàng Văn Thái, Phường Trần Lãm, Hưng Yên",
+   "webName": "[HƯNG YÊN] CTY TNHH ĐT VÀ TM THIÊN TRƯỜNG AUTO (P. TRẦN LÃM)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    20.437002,
+    106.360297
+   ]
   },
   {
    "id": 6,
@@ -1023,7 +1407,11 @@
    "address": "Số 280 đường Bà Triệu, P. Hàm Rồng, Thanh Hóa",
    "phone": "0973.739.368",
    "lng": 105.79,
-   "lat": 19.84
+   "lat": 19.84,
+   "addr": "Số 280 đường Bà Triệu, P. Hàm Rồng, tỉnh Thanh Hóa",
+   "webName": "[THANH HÓA] CÔNG TY CP 19-5 THANH HÓA (P. HÀM RỒNG)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gmNote": "tọa độ trên web lệch (kinh độ 105,50), dùng địa chỉ"
   },
   {
    "id": 7,
@@ -1031,17 +1419,31 @@
    "province": "Hà Tĩnh",
    "address": "Xóm Gia Ngãi 1, Xã Thạch Hà, Hà Tĩnh",
    "phone": "0916.397.668",
-   "lng": 105.87,
-   "lat": 18.37
+   "lng": 105.8449,
+   "lat": 18.3823,
+   "addr": "Xóm Gia Ngãi 1, Xã Thạch Hà, Tỉnh Hà Tĩnh",
+   "webName": "[HÀ TĨNH] CTY TNHH THƯƠNG MẠI TỔNG HỢP DL- HÀ TĨNH (X. THẠCH HÀ)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    18.382285,
+    105.844941
+   ]
   },
   {
    "id": 8,
    "name": "CTY TNHH TM Tổng hợp DL - Nghệ An",
    "province": "Nghệ An",
    "address": "Số 58 đường Nguyễn Trãi, P. Vĩnh Phú, Nghệ An",
-   "phone": "",
-   "lng": 105.68,
-   "lat": 18.67
+   "phone": "0916.397.668",
+   "lng": 105.6749,
+   "lat": 18.6992,
+   "addr": "Số 58, đường Nguyễn Trãi, Phường Vĩnh Phú, Tỉnh Nghệ An",
+   "webName": "[NGHỆ AN] CTY TNHH THƯƠNG MẠI TỔNG HỢP DL-NGHỆ AN (P. VĨNH PHÚ)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    18.699164,
+    105.674926
+   ]
   },
   {
    "id": 9,
@@ -1049,8 +1451,15 @@
    "province": "Đắk Lắk",
    "address": "Km3 Nguyễn Tất Thành, P. Bình Kiến, Đắk Lắk",
    "phone": "0935.568.539",
-   "lng": 109.28,
-   "lat": 13.1
+   "lng": 109.2856,
+   "lat": 13.1094,
+   "addr": "Km3, Nguyễn Tất Thành, Phường Bình Kiến, Tỉnh Đắk Lắk",
+   "webName": "[ĐẮK LẮK] ĐÔ THÀNH PHÚ YÊN (P. BÌNH KIẾN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    13.109446,
+    109.28557
+   ]
   },
   {
    "id": 10,
@@ -1058,8 +1467,15 @@
    "province": "Quảng Ngãi",
    "address": "Lô T1A, KCN Hòa Bình, P. Đắk Cấm, Quảng Ngãi",
    "phone": "0983.058.129",
-   "lng": 108.0,
-   "lat": 14.37
+   "lng": 107.9892,
+   "lat": 14.3237,
+   "addr": "Lô T1A, KCN Hòa Bình, Phường Đắk Cấm, Tỉnh Quảng Ngãi",
+   "webName": "[QUẢNG NGÃI] CÔNG TY TNHH NGỌC THY (P. ĐẮK CẤM)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    14.323694,
+    107.989194
+   ]
   },
   {
    "id": 11,
@@ -1067,8 +1483,15 @@
    "province": "Đắk Lắk",
    "address": "159 Nguyễn Chí Thanh, P. Tân An, Đắk Lắk",
    "phone": "0842.050.607",
-   "lng": 108.05,
-   "lat": 12.69
+   "lng": 108.0805,
+   "lat": 12.7058,
+   "addr": "159 Nguyễn Chí Thanh, phường Tân An, tỉnh Đắk Lắk",
+   "webName": "[ĐẮK LẮK] CTY TNHH XNK Ô TÔ TÂY NGUYÊN (P. TÂN AN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    12.705844,
+    108.080458
+   ]
   },
   {
    "id": 12,
@@ -1076,17 +1499,31 @@
    "province": "Lâm Đồng",
    "address": "Số 1, Khu phố 6, Xã Đức Trọng, Lâm Đồng",
    "phone": "0915.636.016",
-   "lng": 108.37,
-   "lat": 11.73
+   "lng": 108.3796,
+   "lat": 11.7564,
+   "addr": "Số 1, Khu phố 6, Xã Đức Trọng, Tỉnh Lâm Đồng",
+   "webName": "[LÂM ĐỒNG] CTY TNHH TM VÀ DV HƯNG VƯỢNG (X. ĐỨC TRỌNG)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    11.756369,
+    108.379612
+   ]
   },
   {
    "id": 13,
    "name": "Công ty CP Ô tô TM Phú Mỹ",
    "province": "TP. Hồ Chí Minh",
    "address": "P. Cát Lái, TP. Hồ Chí Minh",
-   "phone": "",
-   "lng": 106.8,
-   "lat": 10.765
+   "phone": "0862.884.968",
+   "lng": 106.774,
+   "lat": 10.7679,
+   "addr": "Lô D3 đường D1, KCN Cát Lái, P. Cát Lái, TP. Hồ Chí Minh",
+   "webName": "[TP. HCM] CÔNG TY CP Ô TÔ TM PHÚ MỸ (P. CÁT LÁI)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.767901,
+    106.774036
+   ]
   },
   {
    "id": 14,
@@ -1094,8 +1531,15 @@
    "province": "TP. Hồ Chí Minh",
    "address": "140 đường Lê Thị Riêng, P. Thới An, TP. Hồ Chí Minh",
    "phone": "0933.558.708",
-   "lng": 106.65,
-   "lat": 10.87
+   "lng": 106.6443,
+   "lat": 10.868,
+   "addr": "140 đường Lê Thị Riêng, Phường Thới An, TP. Hồ Chí Minh",
+   "webName": "[TP. HCM] CTY CP KD Ô TÔ THÁI DƯƠNG (P. THỚI AN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.86799,
+    106.644337
+   ]
   },
   {
    "id": 15,
@@ -1103,8 +1547,15 @@
    "province": "TP. Hồ Chí Minh",
    "address": "Số 420 đường ĐT 743A, KP Ngãi Thắng, P. Đông Hòa, TP. Hồ Chí Minh",
    "phone": "0918.396.579",
-   "lng": 106.79,
-   "lat": 10.9
+   "lng": 106.822,
+   "lat": 10.898,
+   "addr": "Số 420, đường ĐT 743A, TBĐ số 5, Khu phố Ngãi Thắng, Phường Đông Hòa, TP. Hồ Chí Minh",
+   "webName": "[TP.HCM] CÔNG TY CP Ô TÔ TM TÂN VẠN (P. ĐÔNG HÒA)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.898013,
+    106.822014
+   ]
   },
   {
    "id": 16,
@@ -1112,8 +1563,15 @@
    "province": "Đồng Nai",
    "address": "Số 20 Võ Nguyên Giáp, P. Long Hưng, Đồng Nai",
    "phone": "0987.985.520",
-   "lng": 106.86,
-   "lat": 10.93
+   "lng": 106.8896,
+   "lat": 10.8978,
+   "addr": "Số 20, Võ Nguyên Giáp, phường Long Hưng, TP. Đồng Nai",
+   "webName": "[ĐỒNG NAI] CTY CP Ô TÔ VIỆT NHẬT ANH (P. LONG HƯNG)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.897792,
+    106.889564
+   ]
   },
   {
    "id": 17,
@@ -1121,8 +1579,15 @@
    "province": "Tây Ninh",
    "address": "Thửa số 402, KP Bình Quân 2, P. Long An, Tây Ninh",
    "phone": "0862.730.968",
-   "lng": 106.41,
-   "lat": 10.54
+   "lng": 106.3902,
+   "lat": 10.523,
+   "addr": "Thửa số 402, Khu phố Bình Quân 2, Phường Long An, Tây Ninh",
+   "webName": "[TÂY NINH] ĐÔ THÀNH LONG AN (P. LONG AN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.523014,
+    106.390235
+   ]
   },
   {
    "id": 18,
@@ -1130,8 +1595,15 @@
    "province": "Đồng Tháp",
    "address": "Tổ 12, Quốc lộ 1A, Ấp Quý Phước, P. Nhị Quý, Đồng Tháp",
    "phone": "0932.826.737",
-   "lng": 106.1,
-   "lat": 10.4
+   "lng": 106.1672,
+   "lat": 10.4029,
+   "addr": "Tổ 12, Quốc Lộ 1A, Ấp Quý Phước, Phường Nhị Quý, Tỉnh Đồng Tháp",
+   "webName": "[ĐỒNG THÁP] ĐÔ THÀNH TIỀN GIANG (P. NHỊ QUÝ)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.402938,
+    106.167187
+   ]
   },
   {
    "id": 19,
@@ -1139,8 +1611,15 @@
    "province": "Vĩnh Long",
    "address": "Số 37E, Quốc lộ 60, Ấp Phú Hữu, P. Phú Tân, Vĩnh Long",
    "phone": "0899.050.790",
-   "lng": 106.33,
-   "lat": 10.27
+   "lng": 106.3558,
+   "lat": 10.2776,
+   "addr": "Số 37E, Quốc lộ 60, Ấp Phú Hữu, Phường Phú Tân, Tỉnh Vĩnh Long",
+   "webName": "[VĨNH LONG] CTY TNHH TM DV VẬN TẢI PHÚC CHÂU (P. PHÚ TÂN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.277645,
+    106.355836
+   ]
   },
   {
    "id": 20,
@@ -1148,8 +1627,15 @@
    "province": "Đồng Tháp",
    "address": "Số 02 Đỗ Thị Đệ, Khóm Mỹ Thượng, P. Mỹ Trà, Đồng Tháp",
    "phone": "0911.881.081",
-   "lng": 105.64,
-   "lat": 10.47
+   "lng": 105.6542,
+   "lat": 10.4537,
+   "addr": "Số 02 Đỗ Thị Đệ, Khóm Mỹ Thượng, Phường Mỹ Trà, Tỉnh Đồng Tháp",
+   "webName": "[ĐỒNG THÁP] CTY TNHH MTV Ô TÔ MỸ PHÚ HƯNG (P. MỸ TRÀ)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.453672,
+    105.654208
+   ]
   },
   {
    "id": 21,
@@ -1157,8 +1643,15 @@
    "province": "Đồng Tháp",
    "address": "48A Quốc lộ 80, Khóm Hòa An, P. Sa Đéc, Đồng Tháp",
    "phone": "0911.878.807",
-   "lng": 105.76,
-   "lat": 10.3
+   "lng": 105.7769,
+   "lat": 10.283,
+   "addr": "48A, quốc lộ 80, khóm Hoà An, Phường Sa Đéc, Tỉnh Đồng Tháp",
+   "webName": "[ĐỒNG THÁP] CTY TNHH MTV Ô TÔ MỸ PHÚ HƯNG (P. SA ĐÉC)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.283006,
+    105.776944
+   ]
   },
   {
    "id": 22,
@@ -1166,8 +1659,15 @@
    "province": "Đồng Tháp",
    "address": "Đường ĐT 841, Khóm Trà Đư, P. Thường Lạc, Đồng Tháp",
    "phone": "0901.066.604",
-   "lng": 105.34,
-   "lat": 10.8
+   "lng": 105.2,
+   "lat": 10.622,
+   "addr": "Đường ĐT 841, Khóm Trà Đư, Phường Thường Lạc, Đồng Tháp",
+   "webName": "[ĐỒNG THÁP] CTY TNHH Ô TÔ HỒNG VINH (P. THƯỜNG LẠC)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.622001,
+    105.199965
+   ]
   },
   {
    "id": 23,
@@ -1175,8 +1675,15 @@
    "province": "Cần Thơ",
    "address": "Ấp Tân Phú, Xã Đông Phước, TP. Cần Thơ",
    "phone": "0931.000.995",
-   "lng": 105.82,
-   "lat": 9.93
+   "lng": 105.7254,
+   "lat": 9.933,
+   "addr": "Thửa đất số 109, tờ bản đồ số 10, Ấp Tân Phú, Xã Đông Phước, TP. Cần Thơ",
+   "webName": "[TP. CẦN THƠ] CTY CP Ô TÔ TM PHÚ MỸ HẬU GIANG (X. ĐÔNG PHƯỚC)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    9.932992,
+    105.725401
+   ]
   },
   {
    "id": 24,
@@ -1184,8 +1691,15 @@
    "province": "Cần Thơ",
    "address": "666/10 Quốc lộ 91B, KV Bình Trung, P. Long Tuyền, TP. Cần Thơ",
    "phone": "0907.701.266",
-   "lng": 105.72,
-   "lat": 10.06
+   "lng": 105.7358,
+   "lat": 10.0439,
+   "addr": "666/10, Quốc lộ 91B, Khu vực Bình Trung, Phường Long Tuyền, TP. Cần Thơ",
+   "webName": "[TP. CẦN THƠ] CTY TNHH Ô TÔ TRƯỜNG VŨ (P. LONG TUYỀN)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.043946,
+    105.73578
+   ]
   },
   {
    "id": 25,
@@ -1193,8 +1707,41 @@
    "province": "An Giang",
    "address": "Số 208 đường Lạc Hồng, P. Rạch Giá, An Giang",
    "phone": "0846.868.956",
-   "lng": 105.09,
-   "lat": 10.01
+   "lng": 105.1067,
+   "lat": 10.0073,
+   "addr": "Số 208 đường Lạc Hồng, Phường Rạch Giá, Tỉnh An Giang",
+   "webName": "[AN GIANG] ĐÔ THÀNH KIÊN GIANG (P. RẠCH GIÁ)",
+   "placeSrc": "https://www.dothanhauto.com/tram-dich-vu.html",
+   "gm": [
+    10.007301,
+    105.106685
+   ]
+  }
+ ],
+ "unlisted": [
+  {
+   "name": "[BẮC NINH] CTY TNHH XNK TM TỔNG HỢP TẤN ĐẠT (P. BẮC GIANG)",
+   "addr": "Số 12 Đường Giáp Lễ, Phường Bắc Giang, Tỉnh Bắc Ninh",
+   "gm": [
+    21.2867639,
+    106.2294285
+   ]
+  },
+  {
+   "name": "[LÂM ĐỒNG] ĐÔ THÀNH LÂM ĐỒNG (X. ĐỨC TRỌNG)",
+   "addr": "151 Quốc lộ 20, Phú Hội, Xã Đức Trọng, Lâm Đồng",
+   "gm": [
+    11.6892979,
+    108.3422263
+   ]
+  },
+  {
+   "name": "[TP. ĐỒNG NAI] ĐÔ THÀNH ĐỒNG NAI (X. AN VIỄN)",
+   "addr": "Số 1, Quốc Lộ 1A, KCN Bàu Xéo, Xã An Viễn, Tỉnh Đồng Nai",
+   "gm": [
+    10.953879899999999,
+    107.0380337
+   ]
   }
  ]
 }
