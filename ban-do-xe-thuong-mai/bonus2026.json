@@ -1,0 +1,2056 @@
+{
+ "asOf": "T1–T10/2026 (file cập nhật 19/11/2026)",
+ "source": "Báo cáo tổng hợp thưởng DAC 2026 (xlsx anh gửi 21/11/2026)",
+ "points": [
+  {
+   "name": "Quang Dương",
+   "region": "Miền Bắc",
+   "c1": "Quang Dương",
+   "c2id": null,
+   "xe": 138,
+   "iz": 119,
+   "missu": 6,
+   "jp": 13,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 5,
+   "m": [
+    13,
+    0,
+    26,
+    11,
+    19,
+    18,
+    12,
+    7,
+    21,
+    11
+   ],
+   "flags": {},
+   "province": "Hải Phòng",
+   "bonus": {
+    "tvbhN": 5,
+    "xe": 138,
+    "izLe": 119,
+    "misLe": 6,
+    "dlMonth": 308300000,
+    "dlQuarter": 86300000,
+    "tvbhMonth": 185700000,
+    "total": 580300000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    180900000,
+    191500000,
+    157400000,
+    50500000
+   ],
+   "bm": [
+    61100000,
+    0,
+    119800000,
+    50500000,
+    89300000,
+    51700000,
+    51700000,
+    16400000,
+    89300000,
+    50500000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ô tô Nhật Dương",
+   "region": "Miền Bắc",
+   "c1": "Quang Dương",
+   "c2id": 34,
+   "xe": 13,
+   "iz": 11,
+   "missu": 1,
+   "jp": 1,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 4,
+   "m": [
+    1,
+    0,
+    4,
+    2,
+    1,
+    0,
+    1,
+    0,
+    1,
+    3
+   ],
+   "flags": {},
+   "province": "Bắc Ninh",
+   "bonus": {
+    "tvbhN": 4,
+    "xe": 13,
+    "izLe": 11,
+    "misLe": 1,
+    "dlMonth": 29300000,
+    "dlQuarter": 8200000,
+    "tvbhMonth": 17700000,
+    "total": 55200000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    22300000,
+    9400000,
+    9400000,
+    14100000
+   ],
+   "bm": [
+    4700000,
+    0,
+    17600000,
+    9400000,
+    0,
+    0,
+    4700000,
+    0,
+    4700000,
+    14100000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ô tô Quang Phát",
+   "region": "Miền Bắc",
+   "c1": "Quang Dương",
+   "c2id": 35,
+   "xe": 20,
+   "iz": 16,
+   "missu": 4,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    2,
+    0,
+    0,
+    2,
+    5,
+    1,
+    3,
+    2,
+    3,
+    2
+   ],
+   "flags": {},
+   "province": "Bắc Ninh",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 20,
+    "izLe": 16,
+    "misLe": 4,
+    "dlMonth": 47200000,
+    "dlQuarter": 13200000,
+    "tvbhMonth": 28800000,
+    "total": 89200000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    9400000,
+    32800000,
+    37600000,
+    9400000
+   ],
+   "bm": [
+    9400000,
+    0,
+    0,
+    7000000,
+    21100000,
+    4700000,
+    14100000,
+    9400000,
+    14100000,
+    9400000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ô tô 19-5",
+   "region": "Miền Bắc",
+   "c1": "Ô Tô 19/5",
+   "c2id": null,
+   "xe": 61,
+   "iz": 59,
+   "missu": 2,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 6,
+   "m": [
+    5,
+    3,
+    13,
+    9,
+    4,
+    6,
+    8,
+    0,
+    7,
+    6
+   ],
+   "flags": {
+    "Bảng tổng hợp tháng (chưa có số khung)": 36
+   },
+   "province": "Thanh Hóa",
+   "bonus": {
+    "tvbhN": 6,
+    "xe": 61,
+    "izLe": 59,
+    "misLe": 2,
+    "dlMonth": 151100000,
+    "dlQuarter": 42300000,
+    "tvbhMonth": 90900000,
+    "total": 284300000,
+    "status": "Tổng hợp tháng (chờ số khung)"
+   },
+   "q": [
+    98700000,
+    89300000,
+    68100000,
+    28200000
+   ],
+   "bm": [
+    23500000,
+    14100000,
+    61100000,
+    42300000,
+    18800000,
+    28200000,
+    36400000,
+    0,
+    31700000,
+    28200000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Đông Nam",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": null,
+   "xe": 436,
+   "iz": 368,
+   "missu": 37,
+   "jp": 24,
+   "daewoo": 7,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 33,
+   "m": [
+    38,
+    12,
+    68,
+    43,
+    57,
+    28,
+    50,
+    33,
+    62,
+    45
+   ],
+   "flags": {},
+   "province": "Hà Nội",
+   "bonus": {
+    "tvbhN": 33,
+    "xe": 436,
+    "izLe": 368,
+    "misLe": 37,
+    "dlMonth": 986600000,
+    "dlQuarter": 276100000,
+    "tvbhMonth": 596400000,
+    "total": 1859100000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    525100000,
+    565000000,
+    585900000,
+    183100000
+   ],
+   "bm": [
+    172700000,
+    50500000,
+    301900000,
+    199700000,
+    250200000,
+    115100000,
+    205400000,
+    125700000,
+    254800000,
+    183100000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Thiên Trường",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 29,
+   "xe": 11,
+   "iz": 9,
+   "missu": 2,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    2,
+    1,
+    2,
+    2,
+    2,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "flags": {},
+   "province": "Hưng Yên",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 11,
+    "izLe": 9,
+    "misLe": 2,
+    "dlMonth": 26100000,
+    "dlQuarter": 7300000,
+    "tvbhMonth": 15900000,
+    "total": 49300000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    23500000,
+    22300000,
+    3500000,
+    0
+   ],
+   "bm": [
+    9400000,
+    4700000,
+    9400000,
+    8200000,
+    9400000,
+    4700000,
+    0,
+    3500000,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "An Mạnh",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 24,
+   "xe": 12,
+   "iz": 11,
+   "missu": 0,
+   "jp": 1,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    3,
+    0,
+    0,
+    1,
+    2,
+    1,
+    2,
+    0,
+    2,
+    1
+   ],
+   "flags": {},
+   "province": "Lào Cai",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 12,
+    "izLe": 11,
+    "misLe": 0,
+    "dlMonth": 27500000,
+    "dlQuarter": 7700000,
+    "tvbhMonth": 16500000,
+    "total": 51700000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    14100000,
+    18800000,
+    14100000,
+    4700000
+   ],
+   "bm": [
+    14100000,
+    0,
+    0,
+    4700000,
+    9400000,
+    4700000,
+    9400000,
+    0,
+    4700000,
+    4700000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Ngân Phát",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 28,
+   "xe": 15,
+   "iz": 11,
+   "missu": 4,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 3,
+   "m": [
+    1,
+    0,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    2,
+    0
+   ],
+   "flags": {},
+   "province": "Bắc Ninh",
+   "bonus": {
+    "tvbhN": 3,
+    "xe": 15,
+    "izLe": 11,
+    "misLe": 4,
+    "dlMonth": 34700000,
+    "dlQuarter": 9700000,
+    "tvbhMonth": 21300000,
+    "total": 65700000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    18800000,
+    34000000,
+    12900000,
+    0
+   ],
+   "bm": [
+    4700000,
+    0,
+    14100000,
+    12900000,
+    12900000,
+    8200000,
+    3500000,
+    0,
+    9400000,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Mỹ An",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 26,
+   "xe": 12,
+   "iz": 10,
+   "missu": 2,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    2,
+    0,
+    3,
+    0,
+    2,
+    1,
+    0,
+    1,
+    2,
+    1
+   ],
+   "flags": {},
+   "province": "Hưng Yên",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 12,
+    "izLe": 10,
+    "misLe": 2,
+    "dlMonth": 28600000,
+    "dlQuarter": 8000000,
+    "tvbhMonth": 17400000,
+    "total": 54000000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    23500000,
+    14100000,
+    12900000,
+    3500000
+   ],
+   "bm": [
+    9400000,
+    0,
+    14100000,
+    0,
+    9400000,
+    4700000,
+    0,
+    4700000,
+    8200000,
+    3500000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Sunray",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 30,
+   "xe": 7,
+   "iz": 7,
+   "missu": 0,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 2,
+   "m": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    3,
+    0,
+    1,
+    1,
+    0
+   ],
+   "flags": {},
+   "province": "Hà Nội",
+   "bonus": {
+    "tvbhN": 2,
+    "xe": 7,
+    "izLe": 7,
+    "misLe": 0,
+    "dlMonth": 17500000,
+    "dlQuarter": 4900000,
+    "tvbhMonth": 10500000,
+    "total": 32900000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    4700000,
+    18800000,
+    9400000,
+    0
+   ],
+   "bm": [
+    0,
+    4700000,
+    0,
+    4700000,
+    0,
+    14100000,
+    0,
+    4700000,
+    4700000,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Khánh Chi",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 25,
+   "xe": 17,
+   "iz": 16,
+   "missu": 1,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    0,
+    0,
+    1,
+    3,
+    2,
+    1,
+    4,
+    2,
+    3,
+    1
+   ],
+   "flags": {},
+   "province": "Sơn La",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 17,
+    "izLe": 16,
+    "misLe": 1,
+    "dlMonth": 41800000,
+    "dlQuarter": 11700000,
+    "tvbhMonth": 25200000,
+    "total": 78700000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    4700000,
+    28200000,
+    41100000,
+    4700000
+   ],
+   "bm": [
+    0,
+    0,
+    4700000,
+    14100000,
+    9400000,
+    4700000,
+    17600000,
+    9400000,
+    14100000,
+    4700000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Hiền Nhung",
+   "region": "Miền Bắc",
+   "c1": "ĐT Đông Nam",
+   "c2id": 27,
+   "xe": 9,
+   "iz": 9,
+   "missu": 0,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 1,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    3,
+    1,
+    1,
+    0
+   ],
+   "flags": {},
+   "province": "Phú Thọ",
+   "bonus": {
+    "tvbhN": 1,
+    "xe": 9,
+    "izLe": 9,
+    "misLe": 0,
+    "dlMonth": 22500000,
+    "dlQuarter": 6300000,
+    "tvbhMonth": 13500000,
+    "total": 42300000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    0,
+    18800000,
+    23500000,
+    0
+   ],
+   "bm": [
+    0,
+    0,
+    0,
+    0,
+    9400000,
+    9400000,
+    14100000,
+    4700000,
+    4700000,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Đô Thành Tân Vạn",
+   "region": "Miền Nam",
+   "c1": "Tân Vạn",
+   "c2id": null,
+   "xe": 134,
+   "iz": 122,
+   "missu": 4,
+   "jp": 5,
+   "daewoo": 3,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 8,
+   "m": [
+    12,
+    1,
+    24,
+    25,
+    22,
+    11,
+    12,
+    8,
+    12,
+    7
+   ],
+   "flags": {},
+   "province": "TP. Hồ Chí Minh",
+   "bonus": {
+    "tvbhN": 8,
+    "xe": 134,
+    "izLe": 122,
+    "misLe": 4,
+    "dlMonth": 312200000,
+    "dlQuarter": 87400000,
+    "tvbhMonth": 187800000,
+    "total": 587400000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    168000000,
+    262000000,
+    135100000,
+    22300000
+   ],
+   "bm": [
+    50500000,
+    4700000,
+    112800000,
+    116300000,
+    98700000,
+    47000000,
+    51700000,
+    28200000,
+    55200000,
+    22300000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Đô Thành Phú Mỹ",
+   "region": "Miền Nam",
+   "c1": "Phú Mỹ",
+   "c2id": null,
+   "xe": 65,
+   "iz": 48,
+   "missu": 13,
+   "jp": 1,
+   "daewoo": 2,
+   "xtl": 1,
+   "izjp": 0,
+   "tvbhN": 5,
+   "m": [
+    7,
+    1,
+    6,
+    7,
+    6,
+    6,
+    6,
+    7,
+    6,
+    13
+   ],
+   "flags": {
+    "Trùng số khung đầy đủ (Phú Mỹ–Vũ Hùng)": 4
+   },
+   "province": "TP. Hồ Chí Minh",
+   "bonus": {
+    "tvbhN": 6,
+    "xe": 65,
+    "izLe": 48,
+    "misLe": 9,
+    "dlMonth": 136200000,
+    "dlQuarter": 38100000,
+    "tvbhMonth": 84800000,
+    "total": 259100000,
+    "status": "Tạm tách 4 trùng khung"
+   },
+   "q": [
+    64600000,
+    84200000,
+    69200000,
+    41100000
+   ],
+   "bm": [
+    31700000,
+    4700000,
+    28200000,
+    32900000,
+    24300000,
+    27000000,
+    16400000,
+    29300000,
+    23500000,
+    41100000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Vũ Hùng",
+   "region": "Miền Nam",
+   "c1": "Vũ Hùng",
+   "c2id": null,
+   "xe": 139,
+   "iz": 48,
+   "missu": 91,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 0,
+   "tvbhN": 6,
+   "m": [
+    1,
+    3,
+    13,
+    17,
+    14,
+    21,
+    21,
+    11,
+    18,
+    20
+   ],
+   "flags": {
+    "Rà hồ sơ ký gửi / trưng bày": 2,
+    "Trùng số khung đầy đủ (Phú Mỹ–Vũ Hùng)": 4
+   },
+   "province": "TP. Hồ Chí Minh",
+   "bonus": {
+    "tvbhN": 6,
+    "xe": 139,
+    "izLe": 47,
+    "misLe": 86,
+    "dlMonth": 272300000,
+    "dlQuarter": 75900000,
+    "tvbhMonth": 173700000,
+    "total": 521900000,
+    "status": "Tạm tách 4 trùng khung + 2 KG/TB"
+   },
+   "q": [
+    69200000,
+    204800000,
+    178900000,
+    69000000
+   ],
+   "bm": [
+    4700000,
+    14100000,
+    50400000,
+    67900000,
+    53800000,
+    83100000,
+    73700000,
+    42100000,
+    63100000,
+    69000000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Hưng Vượng",
+   "region": "Miền Nam",
+   "c1": "Hưng Vượng",
+   "c2id": null,
+   "xe": 39,
+   "iz": 35,
+   "missu": 3,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 1,
+   "izjp": 0,
+   "tvbhN": 3,
+   "m": [
+    3,
+    0,
+    5,
+    2,
+    4,
+    7,
+    3,
+    3,
+    6,
+    6
+   ],
+   "flags": {},
+   "province": "Lâm Đồng",
+   "bonus": {
+    "tvbhN": 3,
+    "xe": 39,
+    "izLe": 35,
+    "misLe": 3,
+    "dlMonth": 92900000,
+    "dlQuarter": 26000000,
+    "tvbhMonth": 58100000,
+    "total": 177000000,
+    "status": "Đủ căn cứ theo tháng/quý"
+   },
+   "q": [
+    37600000,
+    58700000,
+    53700000,
+    27000000
+   ],
+   "bm": [
+    14100000,
+    0,
+    23500000,
+    8200000,
+    18800000,
+    31700000,
+    14100000,
+    14100000,
+    25500000,
+    27000000,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "Đô Thành Hậu Giang",
+   "region": "Miền Tây",
+   "c1": "ĐT Hậu Giang",
+   "c2id": null,
+   "xe": 117,
+   "iz": 0,
+   "missu": 15,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 102,
+   "tvbhN": 6,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 10
+   },
+   "province": "Cần Thơ",
+   "bonus": {
+    "tvbhN": 6,
+    "xe": 117,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Đô Thành Kiên Giang",
+   "region": "Miền Tây",
+   "c1": "ĐT Kiên Giang",
+   "c2id": null,
+   "xe": 93,
+   "iz": 0,
+   "missu": 27,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 66,
+   "tvbhN": 3,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 6
+   },
+   "province": "An Giang",
+   "bonus": {
+    "tvbhN": 3,
+    "xe": 93,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Đô Thành Long An",
+   "region": "Miền Tây",
+   "c1": "ĐT Long An",
+   "c2id": null,
+   "xe": 57,
+   "iz": 0,
+   "missu": 5,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 52,
+   "tvbhN": 8,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 13
+   },
+   "province": "Tây Ninh",
+   "bonus": {
+    "tvbhN": 8,
+    "xe": 57,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Đô Thành Tiền Giang",
+   "region": "Miền Tây",
+   "c1": "ĐT Tiền Giang",
+   "c2id": null,
+   "xe": 56,
+   "iz": 0,
+   "missu": 3,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 53,
+   "tvbhN": 4,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 6
+   },
+   "province": "Đồng Tháp",
+   "bonus": {
+    "tvbhN": 4,
+    "xe": 56,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Hồng Vinh",
+   "region": "Miền Tây",
+   "c1": "Hồng Vinh",
+   "c2id": null,
+   "xe": 27,
+   "iz": 0,
+   "missu": 7,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 20,
+   "tvbhN": 5,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 6
+   },
+   "province": "Đồng Tháp",
+   "bonus": {
+    "tvbhN": 5,
+    "xe": 27,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Mỹ Phú Hưng",
+   "region": "Miền Tây",
+   "c1": "Mỹ Phú Hưng",
+   "c2id": null,
+   "xe": 66,
+   "iz": 0,
+   "missu": 11,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 55,
+   "tvbhN": 10,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 16
+   },
+   "province": "Đồng Tháp",
+   "bonus": {
+    "tvbhN": 12,
+    "xe": 66,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Trường Vũ",
+   "region": "Miền Tây",
+   "c1": "Trường Vũ",
+   "c2id": null,
+   "xe": 341,
+   "iz": 0,
+   "missu": 133,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 208,
+   "tvbhN": 16,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 27
+   },
+   "province": "Cần Thơ",
+   "bonus": {
+    "tvbhN": 16,
+    "xe": 341,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  },
+  {
+   "name": "Phúc Châu",
+   "region": "Miền Tây",
+   "c1": "Phúc Châu",
+   "c2id": null,
+   "xe": 23,
+   "iz": 0,
+   "missu": 3,
+   "jp": 0,
+   "daewoo": 0,
+   "xtl": 0,
+   "izjp": 20,
+   "tvbhN": 4,
+   "m": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flags": {
+    "Chờ tách tháng & tách JP120": 6
+   },
+   "province": "Vĩnh Long",
+   "bonus": {
+    "tvbhN": 4,
+    "xe": 23,
+    "izLe": null,
+    "misLe": null,
+    "dlMonth": null,
+    "dlQuarter": null,
+    "tvbhMonth": null,
+    "total": null,
+    "status": "Chờ tách tháng & tách JP120"
+   },
+   "q": null,
+   "bm": null
+  }
+ ],
+ "west": [
+  {
+   "name": "Trường Vũ",
+   "tvbhN": 16,
+   "active": 16,
+   "left": 0,
+   "missu": 133,
+   "izjp": 208,
+   "xe": 341,
+   "capLe": 971500000,
+   "capTvbh": 471600000,
+   "capFull": 2693200000
+  },
+  {
+   "name": "Đô Thành Hậu Giang",
+   "tvbhN": 6,
+   "active": 6,
+   "left": 0,
+   "missu": 15,
+   "izjp": 102,
+   "xe": 117,
+   "capLe": 360900000,
+   "capTvbh": 171000000,
+   "capFull": 979200000
+  },
+  {
+   "name": "Đô Thành Kiên Giang",
+   "tvbhN": 3,
+   "active": 3,
+   "left": 0,
+   "missu": 27,
+   "izjp": 66,
+   "xe": 93,
+   "capLe": 273300000,
+   "capTvbh": 131400000,
+   "capFull": 751200000
+  },
+  {
+   "name": "Mỹ Phú Hưng",
+   "tvbhN": 12,
+   "active": 7,
+   "left": 5,
+   "missu": 11,
+   "izjp": 55,
+   "xe": 66,
+   "capLe": 201300000,
+   "capTvbh": 95700000,
+   "capFull": 547800000
+  },
+  {
+   "name": "Đô Thành Long An",
+   "tvbhN": 8,
+   "active": 6,
+   "left": 2,
+   "missu": 5,
+   "izjp": 52,
+   "xe": 57,
+   "capLe": 177900000,
+   "capTvbh": 84000000,
+   "capFull": 481200000
+  },
+  {
+   "name": "Đô Thành Tiền Giang",
+   "tvbhN": 4,
+   "active": 4,
+   "left": 0,
+   "missu": 3,
+   "izjp": 53,
+   "xe": 56,
+   "capLe": 176500000,
+   "capTvbh": 83100000,
+   "capFull": 476200000
+  },
+  {
+   "name": "Hồng Vinh",
+   "tvbhN": 5,
+   "active": 5,
+   "left": 0,
+   "missu": 7,
+   "izjp": 20,
+   "xe": 27,
+   "capLe": 80100000,
+   "capTvbh": 38400000,
+   "capFull": 219600000
+  },
+  {
+   "name": "Phúc Châu",
+   "tvbhN": 4,
+   "active": 4,
+   "left": 0,
+   "missu": 3,
+   "izjp": 20,
+   "xe": 23,
+   "capLe": 70900000,
+   "capTvbh": 33600000,
+   "capFull": 192400000
+  }
+ ],
+ "tvbh": {
+  "Miền Bắc": {
+   "n": 59,
+   "reachIZ": 5,
+   "reachMISSU": 0,
+   "near": 4,
+   "annualPaid": 93500000,
+   "monthPaid": 1039800000,
+   "top10share": 45.4,
+   "median": 10,
+   "zero": 0,
+   "b": [
+    17,
+    21,
+    15,
+    6
+   ]
+  },
+  "Miền Nam": {
+   "n": 23,
+   "reachIZ": 4,
+   "reachMISSU": 1,
+   "near": 3,
+   "annualPaid": 67600000,
+   "monthPaid": 504400000,
+   "top10share": 72.1,
+   "median": 16,
+   "zero": 1,
+   "b": [
+    6,
+    2,
+    9,
+    6
+   ]
+  },
+  "Miền Tây": {
+   "n": 58,
+   "reachIZ": 6,
+   "reachMISSU": 2,
+   "zero": 2,
+   "median": 8,
+   "note": "IZ/JP chưa tách JP120: số đạt mốc IZ là trần"
+  }
+ },
+ "budget": [
+  [
+   "Miền Bắc",
+   12,
+   1733000000,
+   2813800000,
+   1410000000,
+   5956800000,
+   93500000,
+   1133300000,
+   7090100000,
+   "Đầy đủ 12 ĐL (đã tách theo ĐL XHĐ & thêm Ô tô 19-5)"
+  ],
+  [
+   "Miền Nam",
+   4,
+   834000000,
+   1318800000,
+   708000000,
+   2860800000,
+   67600000,
+   572000000,
+   3432800000,
+   "4 ĐL Miền Nam (đã tách 8 trùng khung & 2 KG/TB)"
+  ],
+  [
+   "TỔNG CHÍNH THỨC (BẮC + NAM)",
+   16,
+   2567000000,
+   4132600000,
+   2118000000,
+   8817600000,
+   161100000,
+   1705300000,
+   10522900000,
+   "Ngân sách trần chính thức cho 16 đại lý đủ căn cứ"
+  ],
+  [
+   "Miền Tây (Ước tính trần riêng)",
+   8,
+   1848000000,
+   2932800000,
+   1560000000,
+   6340800000,
+   0,
+   1108800000,
+   7449600000,
+   "Tham khảo dự phòng (giả định tạm 100% IZ/JP là IZ); CHƯA cộng tổng"
+  ]
+ ],
+ "rates": [
+  [
+   "IZ",
+   1500000,
+   500000,
+   500000,
+   2500000,
+   700000,
+   900000,
+   2000000,
+   1500000,
+   500000,
+   "TB 03/2026/ĐT-TB (≥105% Lẻ, ≥95% Sỉ)"
+  ],
+  [
+   "MISSU",
+   1000000,
+   500000,
+   500000,
+   1800000,
+   500000,
+   500000,
+   2000000,
+   1200000,
+   300000,
+   "TB 009/2026/ĐT-TB (≥95% KHBH)"
+  ],
+  [
+   "IZ_XTL",
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2000000,
+   0,
+   "TB 138/2026 (Giá cuối, chỉ thưởng TVBH)"
+  ],
+  [
+   "JP120",
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   "Không áp dụng CS Tháng/Quý/Năm"
+  ],
+  [
+   "Khác / Daewoo",
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   "Ngoài phạm vi TB 03 & TB 009"
+  ]
+ ],
+ "tiers": [
+  [
+   "IZ-Euro5 (TB 03)",
+   "Mua sỉ",
+   "75% đến dưới 85%",
+   800000,
+   200000,
+   200000,
+   1200000,
+   "Thanh toán đủ 100% theo HĐ trong kỳ"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Mua sỉ",
+   "85% đến dưới 95%",
+   1200000,
+   300000,
+   300000,
+   1800000,
+   "Thanh toán đủ 100% theo HĐ trong kỳ"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Mua sỉ",
+   "Từ 95% trở lên",
+   1500000,
+   500000,
+   500000,
+   2500000,
+   "Mức cao nhất đang dùng tham chiếu"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Bán lẻ",
+   "75% đến dưới 85%",
+   800000,
+   200000,
+   200000,
+   1200000,
+   "Quý: ≥75%/tháng trong 2 tháng; Năm: 9 tháng"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Bán lẻ",
+   "85% đến dưới 95%",
+   1200000,
+   400000,
+   400000,
+   2000000,
+   "Quý: ≥75%/tháng trong 2 tháng; Năm: 9 tháng"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Bán lẻ",
+   "95% đến dưới 105%",
+   1800000,
+   600000,
+   600000,
+   3000000,
+   "Quý: ≥75%/tháng trong 2 tháng; Năm: 9 tháng"
+  ],
+  [
+   "IZ-Euro5 (TB 03)",
+   "Bán lẻ",
+   "Từ 105% trở lên",
+   2500000,
+   700000,
+   900000,
+   4100000,
+   "Mức cao nhất đang dùng tham chiếu"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Mua sỉ",
+   "75% đến dưới 85%",
+   500000,
+   200000,
+   200000,
+   900000,
+   "Thanh toán đủ 100% theo HĐ trong kỳ"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Mua sỉ",
+   "85% đến dưới 95%",
+   700000,
+   300000,
+   300000,
+   1300000,
+   "Thanh toán đủ 100% theo HĐ trong kỳ"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Mua sỉ",
+   "Từ 95% trở lên",
+   1000000,
+   500000,
+   500000,
+   2000000,
+   "Mức cao nhất đang dùng tham chiếu"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Bán lẻ",
+   "75% đến dưới 85%",
+   800000,
+   200000,
+   200000,
+   1200000,
+   "Quý: ≥75%/tháng trong 2 tháng; Năm: 9 tháng"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Bán lẻ",
+   "85% đến dưới 95%",
+   1200000,
+   300000,
+   300000,
+   1800000,
+   "Quý: ≥75%/tháng trong 2 tháng; Năm: 9 tháng"
+  ],
+  [
+   "MISSU-E5 (TB 009)",
+   "Bán lẻ",
+   "Từ 95% trở lên",
+   1800000,
+   500000,
+   500000,
+   2800000,
+   "Mức cao nhất đang dùng tham chiếu"
+  ]
+ ],
+ "cond": [
+  [
+   "Điều kiện chung ĐL",
+   "TB 03 & 009",
+   "Chỉ áp dụng cho Đại lý ủy quyền đã ký Kế hoạch mua sỉ/bán lẻ 2026. DAC có thể tạm ngưng cấp hàng nếu tồn kho cuối tháng vượt KHBH 2 tháng. Mức thưởng đã gồm VAT/thuế TNCN."
+  ],
+  [
+   "Hiệu quả Mua sỉ",
+   "TB 03 & 009",
+   "Tính theo xe ĐL đã thanh toán đủ 100% theo HĐ trong tháng/quý/năm; đối chiếu ngày 10 hàng tháng; được cấn trừ vào đơn hàng sau."
+  ],
+  [
+   "Hiệu quả Bán lẻ & Hồ sơ",
+   "TB 03 & 009",
+   "Tính theo ngày xuất hóa đơn bán lẻ; đối chiếu ngày 20 (IZ) / ngày 15 (MISSU). Hồ sơ (cà vẹt/giấy hẹn + hóa đơn) gửi hckd@dothanhauto.com chậm nhất ngày 03 tháng sau."
+  ],
+  [
+   "Điều kiện Bán lẻ Quý & Năm",
+   "TB 03 & 009",
+   "Thưởng Quý: đạt KHBH tối thiểu 75%/tháng trong 2 tháng bất kỳ của quý. Thưởng Năm: đạt tối thiểu 75%/tháng trong 9 tháng bất kỳ của năm."
+  ],
+  [
+   "Bán lẻ đúng vùng & Chế tài",
+   "TB 02/2026",
+   "Phân vùng: Miền Bắc (16 tỉnh), Miền Trung–TN (9 tỉnh), Miền Nam (Lâm Đồng, Đồng Nai, TP.HCM), Miền Tây (6 tỉnh). Vi phạm lấn vùng: phạt 20.000.000 đ/xe, thu hồi chiết khấu, ngưng cấp hàng & thanh toán thưởng."
+  ],
+  [
+   "Thưởng TVBH (Tháng & Năm)",
+   "TB 03 & 009",
+   "Hỗ trợ truyền thông tháng: 1,5tr/xe IZ & 1,2tr/xe MISSU. Thưởng năm: 0,5tr/xe IZ (lũy kế ≥26 xe) & 0,3tr/xe MISSU (lũy kế ≥20 xe), yêu cầu HĐLĐ tại điểm bán DAC tối thiểu 08 tháng."
+  ],
+  [
+   "Xe Tập lái (XTL)",
+   "TB 138 & 186",
+   "Giá bán cuối cùng sau CTKM; không hưởng thêm chính sách ĐL; vẫn tính vào % KHBH. Thưởng TVBH 2.000.000 đ/xe + tặng 5 voucher × 5.000.000 đ cho thầy giáo/trường."
+  ],
+  [
+   "Các dòng loại trừ",
+   "TB 03 & 009",
+   "Xe IZ Euro4 chỉ ghi nhận sản lượng, không hưởng mức thưởng tiền. Dòng JP120 và Daewoo không nằm trong khung chính sách Tháng/Quý/Năm này."
+  ]
+ ],
+ "log": [
+  [
+   "Miền Bắc – Đông Nam",
+   "1 dòng",
+   "Hóa đơn ngày 31/12/2025 (IZ71SL-PLUS) nằm ngoài kỳ 2026 → Đã loại khỏi sản lượng và tiền thưởng 2026."
+  ],
+  [
+   "Miền Bắc – Ô tô 19-5",
+   "59 xe",
+   "Báo cáo tổng hợp theo tháng (T1–T10/2026) chưa có số khung chi tiết từng xe (2 xe khác có số khung) → Đã đưa vào tạm tính; cần bổ sung bảng kê số khung & hóa đơn khi quyết toán."
+  ],
+  [
+   "Miền Nam – Phú Mỹ & Vũ Hùng",
+   "8 dòng (4 cặp)",
+   "Trùng 4 số khung đầy đủ xe MISSU Van giữa Phú Mỹ và Vũ Hùng → Giữ sản lượng ghi nhận gốc, tạm tách ngoài cơ sở tính thưởng chờ đối chiếu hóa đơn gốc."
+  ],
+  [
+   "Miền Nam – Vũ Hùng",
+   "2 xe",
+   "1 xe MISSU V65/2S (Xe ký gửi, T3) & 1 xe IZ65M Plus (Xe trưng bày, T7) → Tạm tách ngoài cơ sở tính thưởng chờ xác nhận hóa đơn bán cho người mua cuối cùng."
+  ],
+  [
+   "Miền Tây – 8 Đại lý",
+   "780 xe",
+   "Nguồn mới có tổng lũy kế 10T/2026 (576 IZ/JP + 204 MISSU), chưa tách theo tháng và chưa tách JP120 khỏi IZ → Tách riêng ở sheet MIỀN TÂY, chỉ ghi nhận ước tính trần tham khảo."
+  ]
+ ],
+ "tier": {
+  "Quang Dương": {
+   "maxTr": 498.9,
+   "estTr": 128.9,
+   "monthsHit75": 3,
+   "monthPct": {
+    "1": 52,
+    "2": 0,
+    "3": 107,
+    "4": 44,
+    "5": 69,
+    "6": 79,
+    "7": 48,
+    "8": 45,
+    "9": 96,
+    "10": 53
+   }
+  },
+  "Ô Tô 19/5": {
+   "maxTr": 187.0,
+   "estTr": 34.8,
+   "monthsHit75": 2,
+   "monthPct": {
+    "1": 38,
+    "2": 43,
+    "3": 109,
+    "4": 64,
+    "5": 27,
+    "6": 75,
+    "7": 62,
+    "8": 0,
+    "9": 70,
+    "10": 36
+   }
+  },
+  "ĐT Đông Nam": {
+   "maxTr": 1517.0,
+   "estTr": 707.0,
+   "monthsHit75": 6,
+   "monthPct": {
+    "1": 80,
+    "2": 42,
+    "3": 125,
+    "4": 73,
+    "5": 90,
+    "6": 70,
+    "7": 91,
+    "8": 91,
+    "9": 124,
+    "10": 70
+   }
+  },
+  "Tân Vạn": {
+   "maxTr": 399.6,
+   "estTr": 88.8,
+   "monthsHit75": 3,
+   "monthPct": {
+    "1": 80,
+    "2": 8,
+    "3": 109,
+    "4": 78,
+    "5": 67,
+    "6": 46,
+    "7": 48,
+    "8": 50,
+    "9": 52,
+    "10": 33
+   }
+  },
+  "Phú Mỹ": {
+   "maxTr": 183.5,
+   "estTr": 0,
+   "monthsHit75": 0,
+   "monthPct": {
+    "1": 44,
+    "2": 8,
+    "3": 29,
+    "4": 24,
+    "5": 21,
+    "6": 26,
+    "7": 25,
+    "8": 35,
+    "9": 32,
+    "10": 72
+   }
+  },
+  "Vũ Hùng": {
+   "maxTr": 362.9,
+   "estTr": 63.0,
+   "monthsHit75": 3,
+   "monthPct": {
+    "1": 8,
+    "2": 33,
+    "3": 87,
+    "4": 100,
+    "5": 88,
+    "6": 48,
+    "7": 46,
+    "8": 26,
+    "9": 42,
+    "10": 47
+   }
+  },
+  "Hưng Vượng": {
+   "maxTr": 118.9,
+   "estTr": 25.2,
+   "monthsHit75": 3,
+   "monthPct": {
+    "1": 60,
+    "2": 0,
+    "3": 71,
+    "4": 22,
+    "5": 36,
+    "6": 140,
+    "7": 43,
+    "8": 75,
+    "9": 86,
+    "10": 67
+   }
+  }
+ },
+ "recon": [
+  {
+   "c1": "ĐT Đông Nam",
+   "region": "Miền Bắc",
+   "file": 519,
+   "tdbh": 514,
+   "tx": 489,
+   "diff": 5
+  },
+  {
+   "c1": "Quang Dương",
+   "region": "Miền Bắc",
+   "file": 173,
+   "tdbh": 173,
+   "tx": 166,
+   "diff": 0
+  },
+  {
+   "c1": "Ô Tô 19/5",
+   "region": "Miền Bắc",
+   "file": 59,
+   "tdbh": 54,
+   "tx": 47,
+   "diff": 5
+  },
+  {
+   "c1": "Vũ Hùng",
+   "region": "Miền Nam",
+   "file": 139,
+   "tdbh": 138,
+   "tx": 138,
+   "diff": 1
+  },
+  {
+   "c1": "Tân Vạn",
+   "region": "Miền Nam",
+   "file": 134,
+   "tdbh": 132,
+   "tx": 117,
+   "diff": 2
+  },
+  {
+   "c1": "Phú Mỹ",
+   "region": "Miền Nam",
+   "file": 65,
+   "tdbh": 100,
+   "tx": 94,
+   "diff": -35
+  },
+  {
+   "c1": "Hưng Vượng",
+   "region": "Miền Nam",
+   "file": 39,
+   "tdbh": 39,
+   "tx": 39,
+   "diff": 0
+  },
+  {
+   "c1": "Trường Vũ",
+   "region": "Miền Tây",
+   "file": 341,
+   "tdbh": 351,
+   "tx": 383,
+   "diff": -10
+  },
+  {
+   "c1": "ĐT Hậu Giang",
+   "region": "Miền Tây",
+   "file": 117,
+   "tdbh": 115,
+   "tx": 107,
+   "diff": 2
+  },
+  {
+   "c1": "ĐT Kiên Giang",
+   "region": "Miền Tây",
+   "file": 93,
+   "tdbh": 87,
+   "tx": 78,
+   "diff": 6
+  },
+  {
+   "c1": "Mỹ Phú Hưng",
+   "region": "Miền Tây",
+   "file": 66,
+   "tdbh": 61,
+   "tx": 57,
+   "diff": 5
+  },
+  {
+   "c1": "ĐT Long An",
+   "region": "Miền Tây",
+   "file": 57,
+   "tdbh": 59,
+   "tx": 70,
+   "diff": -2
+  },
+  {
+   "c1": "ĐT Tiền Giang",
+   "region": "Miền Tây",
+   "file": 56,
+   "tdbh": 47,
+   "tx": 35,
+   "diff": 9
+  },
+  {
+   "c1": "Hồng Vinh",
+   "region": "Miền Tây",
+   "file": 27,
+   "tdbh": 26,
+   "tx": 29,
+   "diff": 1
+  },
+  {
+   "c1": "Phúc Châu",
+   "region": "Miền Tây",
+   "file": 23,
+   "tdbh": 23,
+   "tx": 24,
+   "diff": 0
+  }
+ ],
+ "excluded": {
+  "Bảng tổng hợp tháng (chưa có số khung)": 16,
+  "Ngoài kỳ 2026 (31/12/2025)": 1,
+  "0 xe": 1,
+  "Chờ tách tháng & tách JP120": 26
+ },
+ "salesByProvince": {
+  "Hà Nội": 443,
+  "Hưng Yên": 23,
+  "Lào Cai": 12,
+  "Bắc Ninh": 48,
+  "Sơn La": 17,
+  "Phú Thọ": 9,
+  "Hải Phòng": 140,
+  "Thanh Hóa": 59,
+  "Nghệ An": 11,
+  "Đà Nẵng": 144,
+  "Đắk Lắk": 98,
+  "Gia Lai": 13,
+  "Quảng Ngãi": 15,
+  "TP. Hồ Chí Minh": 338,
+  "Đồng Nai": 55,
+  "Lâm Đồng": 54,
+  "Vĩnh Long": 23,
+  "Đồng Tháp": 149,
+  "Cần Thơ": 458,
+  "An Giang": 93,
+  "Tây Ninh": 57
+ },
+ "targetByProvince": {
+  "Hà Nội": 510,
+  "Hưng Yên": 26,
+  "Lào Cai": 14,
+  "Bắc Ninh": 70,
+  "Sơn La": 20,
+  "Phú Thọ": 10,
+  "Hải Phòng": 224,
+  "Thanh Hóa": 112,
+  "Nghệ An": 75,
+  "Đà Nẵng": 199,
+  "Đắk Lắk": 133,
+  "Gia Lai": 58,
+  "Quảng Ngãi": 36,
+  "TP. Hồ Chí Minh": 724,
+  "Đồng Nai": 131,
+  "Lâm Đồng": 103,
+  "Vĩnh Long": 50,
+  "Đồng Tháp": 192,
+  "Cần Thơ": 709,
+  "An Giang": 104,
+  "Tây Ninh": 101
+ }
+}
