@@ -73,3 +73,52 @@ dialog.odlg::backdrop{background:rgba(2,6,14,.7);backdrop-filter:blur(3px)}
 .evy{border-left:3px solid var(--cyan);background:rgba(5,11,22,.38);border-radius:8px;padding:6px 9px;font-size:12px;display:flex;flex-direction:column;gap:2px}
 .evy b{font-family:var(--display);font-size:16px;color:#fff}.evy.past{border-left-color:var(--good);opacity:.8}
 .lgq{margin:6px 0;padding:8px 12px;border-left:3px solid var(--amber);background:rgba(255,195,90,.08);border-radius:6px;font-size:12.5px;line-height:1.55}
+/* ---------- Hologram HUD theme ---------- */
+#fxBg{position:fixed;inset:0;width:100vw;height:100vh;z-index:-2;pointer-events:none;opacity:.9}
+.glass::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;z-index:1;
+  background:
+   linear-gradient(var(--cyan),var(--cyan)) top left/18px 2px no-repeat, linear-gradient(var(--cyan),var(--cyan)) top left/2px 18px no-repeat,
+   linear-gradient(var(--cyan),var(--cyan)) top right/18px 2px no-repeat, linear-gradient(var(--cyan),var(--cyan)) top right/2px 18px no-repeat,
+   linear-gradient(var(--cyan),var(--cyan)) bottom left/18px 2px no-repeat, linear-gradient(var(--cyan),var(--cyan)) bottom left/2px 18px no-repeat,
+   linear-gradient(var(--cyan),var(--cyan)) bottom right/18px 2px no-repeat, linear-gradient(var(--cyan),var(--cyan)) bottom right/2px 18px no-repeat;
+  opacity:.55;filter:drop-shadow(0 0 4px rgba(70,227,255,.8));transition:opacity .25s}
+.glass:hover::before{opacity:1}
+.glass{transition:box-shadow .3s,border-color .3s}
+.glass:hover{border-color:rgba(70,227,255,.32);box-shadow:inset 0 1px 0 var(--glass-hi),0 24px 60px rgba(0,0,0,.45),0 0 46px rgba(70,227,255,.12)}
+section.glass > h2,section.glass .opshead h2{position:relative;padding-bottom:6px}
+section.glass > h2::after,section.glass .opshead h2::after{content:"";position:absolute;left:0;bottom:0;width:72px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);box-shadow:0 0 10px var(--cyan)}
+.stat{position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(70,227,255,.10),rgba(5,11,22,.35) 60%) !important;border:1px solid rgba(70,227,255,.22) !important}
+.stat::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.8}
+.stat::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.07) 50%,transparent 70%);transform:translateX(-120%);animation:sheen 7s ease-in-out infinite;pointer-events:none}
+.stat .v{text-shadow:0 0 14px rgba(70,227,255,.45)}
+@keyframes sheen{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.tasktbl thead th{border-bottom:1px solid rgba(70,227,255,.35);color:var(--cyan);font-family:var(--display);letter-spacing:.06em;font-size:11.5px;text-transform:uppercase}
+.tasktbl tbody tr{transition:background .15s}.tasktbl tbody tr:hover td{background:rgba(70,227,255,.06)}
+/* HUD dashboard */
+#hudSec{padding:16px 18px;overflow:hidden}
+#hudSec .hudhead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:flex-end;justify-content:space-between;margin-bottom:12px}
+#hudSec .clock{font-family:var(--display);font-size:13px;color:var(--cyan);letter-spacing:.12em;text-shadow:0 0 10px rgba(70,227,255,.6)}
+.hudgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.hp{grid-column:span 4;position:relative;border:1px solid rgba(70,227,255,.2);border-radius:14px;padding:12px 14px 10px;min-width:0;
+  background:linear-gradient(160deg,rgba(70,227,255,.09),rgba(8,18,38,.55) 55%,rgba(5,11,22,.4));box-shadow:inset 0 0 30px rgba(70,227,255,.05)}
+.hp::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+.hp.w8{grid-column:span 8}.hp.w12{grid-column:1/-1}.hp.w6{grid-column:span 6}
+@media (max-width:1100px){.hp,.hp.w8,.hp.w6{grid-column:span 6}}
+@media (max-width:720px){.hp,.hp.w8,.hp.w6{grid-column:1/-1}}
+.hp h3{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 8px;margin-bottom:6px}.hp h3 span{color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:none}
+.hp svg{display:block;width:100%;height:auto;overflow:visible}
+.hp .note{font-size:11.5px;color:var(--muted);margin:4px 0 0}
+.rings{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.ring{text-align:center}.ring svg{max-width:132px;margin:0 auto}
+.ring .lbl{font-size:12px;color:var(--muted);margin-top:2px}.ring .sub2{font-size:11px;color:var(--dim)}
+.hudtip{position:fixed;z-index:60;pointer-events:none;background:rgba(6,14,30,.94);border:1px solid rgba(70,227,255,.45);border-radius:10px;padding:7px 10px;font-size:12.5px;box-shadow:0 0 22px rgba(70,227,255,.25);max-width:280px}
+.hudtip b{color:#fff}
+.hp [data-tip]{cursor:default}
+.hp .bar,.hp .seg{transform-box:fill-box;transform-origin:left center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.hp .colb{transform-box:fill-box;transform-origin:center bottom;animation:growy .9s cubic-bezier(.2,.8,.2,1) both}
+.hp .arc{transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)}
+.hp .glow{filter:drop-shadow(0 0 6px rgba(70,227,255,.7))}
+.hp [data-tip]:hover{filter:brightness(1.25) drop-shadow(0 0 6px rgba(70,227,255,.6))}
+@keyframes grow{from{transform:scaleX(0)}}@keyframes growy{from{transform:scaleY(0)}}
+.hlegend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin-top:4px}.hlegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+@media (prefers-reduced-motion:reduce){.stat::after{animation:none}.hp .bar,.hp .seg,.hp .colb{animation:none}.hp .arc{transition:none}}

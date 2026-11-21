@@ -323,6 +323,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
           <button id="btnBars" type="button" aria-pressed="false">Cột chỉ số</button>
           <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
           <button id="btnPins" type="button" aria-pressed="true">Đại lý</button>
+          <button id="btnComp" type="button" aria-pressed="false" title="Showroom, đại lý 3S, xưởng dịch vụ của Thaco, Teraco, JAC, Foton, TMT">Đối thủ</button>
           <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
           <button id="btnView" type="button">Đổi góc nhìn</button>
         </div>
@@ -503,6 +504,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="geo-data" type="application/json">/*__GEO__*/</script>
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
 <script id="center-data" type="application/json">/*__NETWORK__*/</script>
+<script id="compnet-data" type="application/json">/*__COMPNET__*/</script>
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script id="infra-data" type="application/json">/*__INFRA__*/</script>
 <script id="prod-data" type="application/json">/*__PRODUCTS__*/</script>
@@ -515,6 +517,8 @@ const HEIGHT_SRC = "/*__HEIGHT__*/";
 const GEO = JSON.parse(document.getElementById("geo-data").textContent);
 const BASE = JSON.parse(document.getElementById("prov-data").textContent);
 const NET = JSON.parse(document.getElementById("center-data").textContent);
+const CNET = (() => { try{ return JSON.parse(document.getElementById("compnet-data").textContent); }catch(e){ return {brands:{}, points:[]}; } })();
+const cnetIn = (b, prov) => CNET.points.filter(p => p.b === b && p.province === prov).length;
 // dealers C1/C2 + authorised service stations not co-located with a dealer (>3 km)
 const CENTERS = (() => {
   const kmq = (a,b) => Math.hypot((a.lng-b.lng)*111*Math.cos(a.lat*Math.PI/180), (a.lat-b.lat)*111);
@@ -575,6 +579,7 @@ const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
 let rows = clone(BASE), tam = 122235, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
+let showComp = false, compGroup = null;
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
 
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
@@ -808,7 +813,7 @@ async function initScene(){
   water.rotation.x = -Math.PI/2; water.position.y = 0.01; water.renderOrder = 2; scene.add(water);
   buildBorders();
   hlGroup = new THREE.Group(); relief.add(hlGroup);
-  pinGroup = new THREE.Group(); barGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup);
+  pinGroup = new THREE.Group(); barGroup = new THREE.Group(); compGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup); scene.add(compGroup);
   raycaster = new THREE.Raycaster();
 
   const ro = new ResizeObserver(resize); ro.observe(stage); resize();
@@ -900,6 +905,18 @@ function pinTexture(id, type){
   c.fillStyle = type === "TDV" ? "#1a1300" : "#fff"; c.font = (String(id).length > 2 ? "700 28px" : "700 36px") + " Chakra Petch, Arial"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(String(id), 48, 48);
   const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t;
 }
+function compTexture(col){
+  const cv = document.createElement("canvas"); cv.width = 96; cv.height = 96; const c = cv.getContext("2d");
+  c.shadowColor = col; c.shadowBlur = 10; c.beginPath(); c.moveTo(48,8); c.lineTo(86,48); c.lineTo(48,88); c.lineTo(10,48); c.closePath();
+  c.fillStyle = col; c.fill(); c.shadowBlur = 0; c.lineWidth = 6; c.strokeStyle = "#0b1426"; c.stroke();
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t;
+}
+function buildCompPins(){
+  if(!compGroup || compGroup.children.length) return;
+  const tex = {}; Object.entries(CNET.brands).forEach(([k,b]) => tex[k] = compTexture(b.color));
+  CNET.points.forEach(p => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: tex[p.b], depthTest: true, transparent: true, sizeAttenuation: false}));
+    const sz = 0.022; s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {comp: p, sz, sq: true}; s.renderOrder = 4; compGroup.add(s); });
+}
 function buildPins(){
   CENTERS.forEach(c => {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({map: pinTexture(c.id, c.type), depthTest: true, transparent: true, sizeAttenuation: false}));
@@ -913,6 +930,8 @@ function placePins(){
   pinGroup.children.forEach(s => { const c = s.userData.center; s.position.set(wx(c.lng), yOf(Math.max(heightAt(c.lng, c.lat),0)) + 0.15, wz(c.lat)); });
   pinGroup.visible = showPins;
   pinGroup.children.forEach(s => { const r = findRow(s.userData.center.province); s.visible = !zone || (r && r.zone === zone); });
+  if(compGroup){ if(showComp) buildCompPins(); compGroup.visible = showComp;
+    compGroup.children.forEach(s => { const p = s.userData.comp, r = findRow(p.province); s.position.set(wx(p.lng), yOf(Math.max(heightAt(p.lng, p.lat),0)) + 0.6, wz(p.lat)); s.visible = !zone || (r && r.zone === zone); }); }
 }
 /* metric columns */
 function buildBars(){
@@ -987,6 +1006,7 @@ function pick(){
   if(!raycaster || !mouse.inside) return;
   const now = performance.now(); if(now - lastPick < 40) return; lastPick = now;
   raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera);
+  if(showComp && compGroup){ const hc = raycaster.intersectObjects(compGroup.children.filter(s=>s.visible), false)[0]; if(hc){ const p = hc.object.userData.comp; setHover(p.province); showTipHtml(compTip(p)); return; } }
   if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
   if(showSites && siteGroup){ const hs = raycaster.intersectObjects(siteGroup.children, true).find(h => h.object.userData.site); if(hs){ setHover(hs.object.userData.site.prov.name); showTipHtml(infraTip({site: hs.object.userData.site})); return; } }
   if(showInfra && infraGroup){ const hi = raycaster.intersectObjects(infraGroup.children.filter(o => o.isSprite), false)[0]; if(hi){ const d = hi.object.userData; if(d.city){ const pv = provinceOfPoint(d.city.lng, d.city.lat); if(pv) setHover(pv.name); } showTipHtml(infraTip(d)); return; } }
@@ -1018,6 +1038,7 @@ function loop(t){
   const dist = camera.position.distanceTo(controls.target), f = Math.max(0.55, Math.min(1.1, 170/dist));
   if(Math.abs(f - (loop.f || 0)) > 0.02){ loop.f = f;
     pinGroup.children.forEach(sp => { const z = sp.userData.sz * f; sp.scale.set(z*0.75, z, 1); });
+    if(compGroup) compGroup.children.forEach(sp => { const z = sp.userData.sz * f; sp.scale.set(z, z, 1); });
     if(infraGroup) infraGroup.children.forEach(sp => { if(sp.userData.sz){ const z = sp.userData.sz * f; sp.scale.set(z, z, 1); } });
     lineMats.forEach(m => { if(m.userData.base) m.linewidth = Math.max(1, m.userData.base * f); }); }
   if(needOverlay) drawOverlay();
@@ -1038,6 +1059,11 @@ function showTipHtml(html){ tipEl.innerHTML = html; tipEl.hidden = false;
   const w = tipEl.offsetWidth, h = tipEl.offsetHeight; let x = mouse.x + 18, y = mouse.y + 18;
   if(x + w > innerWidth - 8) x = mouse.x - w - 18; if(y + h > innerHeight - 8) y = innerHeight - h - 8;
   tipEl.style.left = Math.max(8,x) + "px"; tipEl.style.top = Math.max(8,y) + "px"; }
+function compTip(p){
+  const b = CNET.brands[p.b] || {}, near = CENTERS.reduce((a,c) => { const d = km(p, c); return !a || d < a.d ? {d, c} : a; }, null);
+  return `<div class="t"><span class="dot" style="background:${b.color}"></span>${esc(b.name)} · ${esc(p.name)}</div><div class="muted">${esc(p.type)} · ${esc(p.addr)}, ${esc(p.province)}</div>
+    ${near ? `<div class="muted">Điểm Đô Thành gần nhất: ${esc(near.c.salesKey || near.c.name)} · ${fmtInt(near.d)} km</div>` : ""}<div class="muted tiny">Tọa độ gần đúng cấp phường/xã · ${esc((CNET.sources[p.src]||[""])[0])}</div>`;
+}
 function centerTip(c){
   const r = findRow(c.province);
   return `<div class="t"><span class="dot" style="background:${css(c.type==="C1"?"--pin-4s":c.type==="C2"?"--pin-3s":"--pin-tdv")}"></span>${c.id}. ${esc(c.name)}</div>
@@ -1074,13 +1100,14 @@ function renderLegend(){
   const el = document.getElementById("legend");
   const c4 = CENTERS.filter(c=>c.type==="C1").length, c3 = CENTERS.filter(c=>c.type==="C2").length, ct = CENTERS.filter(c=>c.type==="TDV").length;
   const pinsL = `<div class="pinl"><span><i class="dot" style="background:var(--pin-4s);box-shadow:0 0 8px var(--pin-4s)"></i>Đại lý cấp 1 (${c4})</span><span><i class="dot" style="background:var(--pin-3s);box-shadow:0 0 8px var(--pin-3s)"></i>Đại lý cấp 2 (${c3})</span><span><i class="dot" style="background:var(--pin-tdv);box-shadow:0 0 8px var(--pin-tdv)"></i>Trạm DV riêng (${ct})</span></div>`
+  const compL = showComp ? `<div class="pinl" style="margin-top:4px">${Object.entries(CNET.brands).map(([k,b]) => `<span><i class="dot" style="background:${b.color};border-radius:2px;transform:rotate(45deg)"></i>${esc(b.name)} (${CNET.points.filter(p=>p.b===k).length})</span>`).join("")}<span class="muted tiny">điểm đã xác minh</span></div>` : "";
     + (showBars && metric === "sales" ? `<div class="pinl"><span><i class="dot" style="background:var(--good)"></i>≥ 70% KH</span><span><i class="dot" style="background:var(--warn)"></i>50–70%</span><span><i class="dot" style="background:var(--bad)"></i>&lt; 50%</span></div>` : "");
   const relief = `<div class="gr"><div class="lh"><b>Độ cao địa hình</b></div><div class="bar" style="background:linear-gradient(90deg,#d6f0c4,#a0d696,#6eb478,#aabe78,#d6c480,#c49664,#a06e50,#ece2d6)"></div><div class="ends num"><span>0 m</span><span>1.000</span><span>2.000</span><span>3.000 m</span></div></div>`;
   let main = "";
   if(colorMode === "zone") main = `<div class="lh"><b>Khu vực kinh doanh</b></div><div class="zl">${ZONES.map(z=>`<span><i class="sw" style="background:${zoneColor(z)};color:${zoneColor(z)}"></i>${esc(z.replace("Khu vực ","KV "))}</span>`).join("")}</div>`;
   else if(colorMode === "metric"){ const M = METRICS[metric], {min,max} = metricRange();
     main = `<div class="gr"><div class="lh"><b>${esc(M.label)}</b><span class="muted">${esc(M.unit)}</span></div><div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div><div class="ends num"><span>${M.fmt(min)}</span><span>${M.fmt(max)}</span></div></div>${max<=0?'<span style="color:var(--warn)">Chưa có dữ liệu: nhập ở bảng bên dưới</span>':""}`; }
-  el.innerHTML = main + relief + pinsL + (showBars ? `<span class="muted">Cột 3D: ${esc(METRICS[metric].label)}${metric==="sales"?" theo từng đại lý":""}</span>` : "");
+  el.innerHTML = main + relief + pinsL + compL + (showBars ? `<span class="muted">Cột 3D: ${esc(METRICS[metric].label)}${metric==="sales"?" theo từng đại lý":""}</span>` : "");
 }
 
 /* ---------- dossier ---------- */
@@ -1363,10 +1390,11 @@ toggleBtn("btnLabels", ()=>showLabels, v=>showLabels=v, syncButtons);
 toggleBtn("btnInfra", ()=>showInfra, v=>showInfra=v, () => { placeInfra(); syncButtons(); });
 toggleBtn("btnSites", ()=>showSites, v=>showSites=v, () => { placeInfra(); syncButtons(); });
 toggleBtn("btnPins", ()=>showPins, v=>showPins=v, () => { placePins(); syncButtons(); });
+toggleBtn("btnComp", ()=>showComp, v=>showComp=v, () => { placePins(); syncButtons(); renderLegend(); });
 toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v, syncButtons);
 document.getElementById("btnView").addEventListener("click", () => { if(!camera) return; viewIdx=(viewIdx+1)%VIEWS.length; setView(viewIdx); });
 document.getElementById("exag").addEventListener("input", e => { exag = +e.target.value; introT0 = -1e9; });
-function syncButtons(){ [["btnInfra",showInfra],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
+function syncButtons(){ [["btnInfra",showInfra],["btnComp",showComp],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
 function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); placePins(); buildSites(); }
 
 /* ---------- AI analyst ---------- */
@@ -2060,21 +2088,24 @@ const REGION_OF = z => ["Khu vực TP. Hồ Chí Minh","Vùng 8"].includes(z) ? 
 const COLOR_BASE = {north:[46,18,10,10,10,3,3], central:[50,20,10,7,8,3,2], highland:[48,22,9,8,8,3,2], south:[54,20,10,5,6,3,2], mekong:[52,24,8,6,5,3,2]};
 const BRANDS = [
   {k:"dothanh", name:"Đô Thành Auto (ta)", origin:"Việt Nam", seg:"Tải nhẹ → nặng, ben, đầu kéo", models:"MISSU (V56, V65, T26, T33L) · IZ Series (IZ45S → IZ71SL Plus) · JP Series (JP120SL, JP120EXL) · Daewoo Trucks (HC6, HC8, Novus, ben, đầu kéo)", pos:"Giá lẻ công bố T11/2026: MISSU 237–362 tr, IZ 353–563 tr, JP120 590–769 tr; ưu đãi T11 tới 55 tr/xe; 50 đại lý (23 cấp 1) + 25 trạm dịch vụ; bán lẻ lũy kế T1–T10/2026: 2.270 xe", fact:"Nhóm Đô Thành 2.103 xe, trong đó JMC 1.802 xe (10 tháng 2026, VAMA, báo Xây dựng)"},
-  {k:"thaco", name:"Thaco (Kia, Frontier, Fuso, Foton, Auman)", origin:"Việt Nam lắp ráp", seg:"Tải nhẹ → nặng, xe khách", models:"Kia K200/K250, Frontier TF, Ollin, Auman, Fuso Canter", pos:"Phủ rộng nhất, giá trung bình, sẵn xe", fact:"19.747 xe tải 10 tháng 2026 (VAMA, báo Xây dựng)"},
+  {k:"thaco", name:"Thaco Truck (Kia, Frontier, Towner, Fuso, Ollin, Auman)", origin:"Việt Nam lắp ráp (Chu Lai)", seg:"Tải nhẹ → nặng, xe khách", models:"Kia K200/K250, Frontier TF220/TF230/TF420V–TF480V, Towner 990, Ollin, Auman, Fuso Canter", pos:"Phủ rộng nhất: hơn 450 showroom, xưởng THACO AUTO khắp 34 tỉnh; giá tham khảo van 285–343 tr, K200 339–390 tr", fact:"VAMA YTM T9/2026: 17.947 xe (gấp 9,2 lần DOTHANH); 19.747 xe 10 tháng (báo Xây dựng)"},
   {k:"hyundai", name:"Hyundai (Thành Công Thương mại)", origin:"Hàn Quốc / lắp ráp VN", seg:"Tải nhẹ → nặng, xe khách", models:"Porter H150, New Mighty N250, Mighty EX8, HD240/HD320, County, Universe", pos:"Thương hiệu mạnh, giá trung – cao", fact:"Ví dụ địa phương: 17,65% thị phần Thanh Hóa (7 tháng 2025)"},
   {k:"isuzu", name:"Isuzu Việt Nam", origin:"Nhật Bản", seg:"Tải nhẹ – trung – nặng", models:"QKR, NMR, NPR, NQR, FRR, FVR, Giga", pos:"Bền, tiết kiệm nhiên liệu, giá cao", fact:"Hơn 11.000 xe tải năm 2025, thứ 2 khối VAMA"},
   {k:"hino", name:"Hino Motors Việt Nam", origin:"Nhật Bản", seg:"Tải trung – nặng", models:"Hino 300 (XZU), 500 (FC, FG, FL, FM), 700", pos:"Cao cấp, độ bền, giá trị bán lại tốt", fact:"Chưa có số công bố trong kỳ"},
   {k:"china", name:"Xe Trung Quốc tải nặng (Howo/Sitrak, Shacman, Chenglong, FAW, Dongfeng)", origin:"Trung Quốc", seg:"Ben, tải nặng, đầu kéo", models:"Howo A7/TX, Sitrak, Shacman X3000, Chenglong H7, FAW J6", pos:"Giá thấp, tải khỏe; hậu mãi, giá bán lại yếu hơn", fact:"CNHTC dẫn đầu hơn 22% thị trường xe tải (7 tháng 2025, báo Thể thao & Văn hóa)"},
   {k:"suzuki", name:"Suzuki", origin:"Nhật Bản", seg:"Tải siêu nhẹ, van", models:"Carry Pro, EECO van", pos:"Siêu nhẹ, len lỏi nội đô", fact:"EECO van 503 xe 10 tháng 2026"},
-  {k:"tera", name:"Teraco (Daehan Motors), JAC, SRM", origin:"VN lắp ráp (Teraco tại TP.HCM) / Trung Quốc", seg:"Van, tải nhẹ 1–1,5 tấn, tải 1,9–3,5 tấn", models:"Teraco: TERA-V6/V8 van, TERA100S, TERA-STAR/STAR PLUS, TERA150S, TERA350 Plus, TERA190SL/245SL/345SL Plus; JAC X125/N350; SRM T20", pos:"Teraco: giá bán tối đa 228–562 tr (bảng giá 24/12/2025), KM T11/2026 chỉ 5–10 tr/xe; xem mục Đối thủ: giá & chính sách", fact:"Chưa có số đăng ký công bố trong kỳ"},
+  {k:"teraco", name:"Teraco (Daehan Motors)", origin:"VN lắp ráp (TP.HCM), 100% vốn Hàn", seg:"Van, tải nhẹ 1–1,5 tấn, tải 1,9–3,5 tấn, thùng dài", models:"TERA-V6/V8 van, TERA100S, TERA-STAR/STAR PLUS, TERA150S, TERA350 Plus, TERA190SL/245SL/345SL Plus", pos:"Bảng giá ĐL 24/12/2025: giá bán tối đa 228–562 tr, KM T11/2026 0–10 tr; biên ĐL ~7%", fact:"Hơn 50 đại lý ủy quyền, 60 điểm bán (tự công bố); không báo cáo VAMA"},
+  {k:"jac", name:"JAC", origin:"Trung Quốc, lắp ráp VN", seg:"Tải 1,9–9 tấn, ben nhỏ", models:"N200S, N350S Pro, N500, X150 ben", pos:"Giá tham khảo N200S 405–460 tr, N350S Pro 425–467 tr; đại lý chào giảm 15 tr", fact:"Hệ thống VTruck, 3S ở HN, HP, Đà Nẵng, TP.HCM, Đồng Nai, Cần Thơ; không báo cáo VAMA"},
+  {k:"foton", name:"Foton (ADCV, Thành Công)", origin:"Trung Quốc", seg:"990 kg → 9 tấn, đầu kéo", models:"Wonder, Aumark X25/S35/S50/S70, Auman C160, FV270–FV460", pos:"Giá tham khảo Wonder 240–251 tr, S35 445–490 tr, S70 598–621 tr", fact:"20 đại lý tại 11 tỉnh (đầu 2026), đang mở thêm 3S; không báo cáo VAMA"},
+  {k:"tmt", name:"TMT Cửu Long (Howo, DFSK, Forland)", origin:"VN lắp ráp (Hưng Yên)", seg:"Tải nhẹ, ben, tải nặng", models:"DFSK 0,99 tấn, Captain E250/C750, Forland FL6025D–FL9260D, Howo ST850D2/ST860D2", pos:"Giá rẻ phân khúc 1 tấn (DFSK 180–201 tr), mạnh ben nông thôn", fact:"64 đại lý (trang đại lý); DT 2025 2.106 tỷ, lãi 62,7 tỷ"},
 ];
 const SEG_MODELS = [
-  ["< 1 tấn & van", "Suzuki Carry Pro, EECO; Teraco Tera 100; SRM; VinFast EC Van (điện)", "Nhấn chi phí/km, độ bền khung, dịch vụ gần, giao xe nhanh nội đô"],
-  ["1–2,5 tấn", "Kia K200/K250, Hyundai Porter H150, Isuzu QKR, Tera 190, JAC X125", "Thế mạnh tải nhẹ của ta: thùng đa dạng (bạt, kín, lạnh), giấy phép lái hạng B, vào phố theo quy định"],
-  ["2,5–3,5 tấn", "Hyundai New Mighty N250, Isuzu QKR/NMR, Fuso Canter, Hino XZU, Tera 345", "So TCO với xe Nhật/Hàn; gói tài chính cho chủ xe cá nhân"],
-  ["3,5–10 tấn", "Thaco Ollin/Auman C, Hyundai Mighty EX8, Isuzu NQR/FRR, Hino 500 FC/FG", "Bán theo dự án KCN, logistics; hợp đồng bảo dưỡng trọn gói"],
-  ["> 10 tấn, ben", "Howo, Shacman, Chenglong, Hyundai HD, Hino 500 FM, Isuzu Giga, Thaco Auman", "Đối đầu xe Trung Quốc bằng TCO, giá bán lại, cứu hộ công trường"],
-  ["Đầu kéo", "Howo/Sitrak, Shacman, Chenglong, Hyundai Xcient, Thaco Auman, Hino 700", "Tập trung cảng, cửa khẩu; dịch vụ 24/7, kho phụ tùng sát tuyến"],
+  ["< 1 tấn & van", "Suzuki Carry Pro, EECO; Thaco Towner 990, Frontier TF220, van TF420V–TF480V; Teraco TERA100S, TERA-V6/V8; TMT DFSK; Foton Wonder; SRM; VinFast EC Van (điện)", "Đối thủ rẻ hơn sau ưu đãi T11 (TMT DFSK, Thaco TF420V, TF230): bán bằng độ bền khung, chi phí/km, dịch vụ gần, giao nhanh nội đô; không đua giá"],
+  ["1–2,5 tấn", "Kia K200/K250, Hyundai Porter H150, Isuzu QKR, Teraco TERA190SL/245SL Plus, JAC N200S, Foton Aumark X25, TMT Captain E250", "Đô Thành rẻ nhất sau ưu đãi T11 (IZ45S/IZ50S rẻ hơn đối thủ cùng thùng 60–85 tr): truyền thông giá ròng, thùng dài, giấy phép hạng B"],
+  ["2,5–3,5 tấn", "Hyundai New Mighty N250, Isuzu QKR/NMR, Fuso Canter, Hino XZU, Teraco TERA350 Plus/345SL Plus, JAC N350S Pro, Foton Aumark S35, TMT Captain C750", "JAC N350S Pro rẻ hơn IZ65M Plus khoảng 23 tr sau KM: so TCO, động cơ, mạng dịch vụ; gói tài chính cho chủ xe cá nhân"],
+  ["3,5–10 tấn", "Thaco Ollin/Auman C, Hyundai Mighty EX8, Isuzu NQR/FRR, Hino 500 FC/FG, JAC N500, Foton Aumark S50/S70", "Đô Thành chưa có 5 tấn (JAC N500, Foton S50 chiếm chỗ); JP120SL rẻ hơn Foton S70 sau ưu đãi: bán theo dự án KCN, logistics, bảo dưỡng trọn gói"],
+  ["> 10 tấn, ben", "Howo (TMT ST850D2/ST860D2), Shacman, Chenglong, Hyundai HD, Hino 500 FM, Isuzu Giga, Thaco Auman, Foton Auman C160, TMT Forland ben", "Đối đầu xe Trung Quốc bằng TCO, giá bán lại, cứu hộ công trường; TMT có bảo hành lưu động, cần gói tương đương"],
+  ["Đầu kéo", "Howo/Sitrak, Shacman, Chenglong, Hyundai Xcient, Thaco Auman, Foton FV270–FV460, Hino 700", "Tập trung cảng, cửa khẩu; dịch vụ 24/7, kho phụ tùng sát tuyến"],
 ];
 function structOf(r){
   const reg = r._market, m = r.mix.map(v=>v/100), metro = r.archetype === "metro", big = ["port","industrial"].includes(r.archetype), rough = ["mountain","border"].includes(r.archetype);
@@ -2090,7 +2121,9 @@ function structOf(r){
     hyundai: (r._tier === "A" || metro || big || r.archetype === "port") ? 3 : 2,
     isuzu: (metro || big) ? 3 : rough ? 1 : 2, hino: (metro || r.archetype === "port") ? 3 : (rough || r.archetype === "delta") ? 1 : 2,
     china: (rough || r.archetype === "port" || r.archetype === "coast") ? 3 : (big || r.archetype === "highland") ? 2 : 1,
-    suzuki: (metro || r.archetype === "delta") ? 2 : 1, tera: ["south","mekong","highland"].includes(reg2) ? 2 : 1};
+    suzuki: (metro || r.archetype === "delta") ? 2 : 1};
+  // Teraco, JAC, Foton, TMT: from verified showroom/3S/service points (CNET); 1 = only present in the same macro region
+  ["teraco","jac","foton","tmt"].forEach(k => { const n = cnetIn(k, r.name), inReg = CNET.points.some(p => p.b === k && (findRow(p.province)||{}).zone && REGION_OF(findRow(p.province).zone) === reg2); lvl[k] = n >= 2 ? 3 : n === 1 ? 2 : inReg ? 1 : 0; });
   return {payload, body, color, lvl};
 }
 function sumStruct(list){
@@ -2214,11 +2247,11 @@ function renderAll(){
   uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 window.__CV = {
-  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
+  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, get showComp(){ return showComp; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
   get tam(){ return tam; }, set tam(v){ tam = v; }, get uioNat(){ return uioNat; }, set uioNat(v){ uioNat = v; },
   get zone(){ return zone; }, get selected(){ return selected; }, get metric(){ return metric; },
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
-    if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
+    if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.comp === "boolean") showComp = o.comp; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
     if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,

@@ -28,7 +28,7 @@ function insights(brand){
 function compMd(k){
   if(k === "all" || k === "toan canh") return panoMd();
   const B = C.brands.find(b => b.k === (k || "teraco")) || C.brands[0], I = insights(B), maxP = Math.max(0, ...B.items.map(x => x.promo || 0));
-  return `# Đối thủ ${B.name}: giá, chính sách và so sánh với Đô Thành\n_${B.maker}. ${B.priceDoc}. ${B.promoDoc}. Cập nhật ${C.updated.split("-").reverse().join("/")}_\n\n## Doanh nghiệp\n${(B.profile||[]).map(x => "- " + x).join("\n")}\n\n## Thông số và cặp đối đầu\n| Dòng xe | Tải trọng, thùng | Động cơ | Đô Thành |\n|---|---|---|---|\n${(B.specs||[]).map(s => "| " + s.join(" | ") + " |").join("\n")}\n\n## Chính sách khuyến mãi\n${B.promoRules.map(x => "- " + x).join("\n")}\n${(B.promoHistory||[]).map(x => "- " + x).join("\n")}\n\n## Nhận định chiến lược\n${(B.insight||[]).map(x => "- " + x).join("\n")}\n\n## So sánh theo phân khúc (giá tối đa ${B.name} so với giá lẻ công bố Đô Thành T11/2026; biên ĐL đối thủ chỉ có khi có giá giao đại lý)\n| Phân khúc | Cặp đối đầu | Chênh giá công bố (ĐT − đối thủ) | Chênh giá ròng sau KM T11 | Biên ĐL đối thủ | Biên ĐL Đô Thành |\n|---|---|---|---|---|---|\n${I.seg.map(x => `| ${x.s} | ${x.pair} | ${x.list >= 0 ? "+" : "−"}${tr(Math.abs(x.list))} tr | ${x.net >= 0 ? "+" : "−"}${tr(Math.abs(x.net))} tr | ${x.cm == null ? "—" : fmt1(x.cm) + "%"} | ${fmt1(x.dm)}% |`).join("\n")}\n\n## Nhận định\n${I.out.map(x => "- " + x).join("\n")}\n${I.cheaperNet.length ? `- **Đô Thành có lợi thế giá ròng** ở: ${I.cheaperNet.join(", ")} (nhờ ưu đãi T11 lớn hơn nhiều: Đô Thành 24,8–55 tr/xe, ${B.name} tối đa ${tr(maxP)} tr/xe).` : ""}\n${I.dearerNet.length ? `- **Đô Thành đắt hơn sau khuyến mãi** ở: ${I.dearerNet.join(", ")}: cần sale talk về chất lượng, TCO, mạng lưới dịch vụ.` : ""}\n${I.dealerLose.length ? `- **Rủi ro đại lý:** biên lợi nhuận của ${B.name} cao hơn ở ${I.dealerLose.join(", ")}: đối thủ có thể lôi kéo đại lý đa thương hiệu.` : ""}\n- Phiên bản chưa có đối thủ trực tiếp của Đô Thành: ${I.unmatched.join("; ") || "không"}.\n\n## Lưu ý dữ liệu\n${B.notes.map(x => "- " + x).join("\n")}\n`;
+  return `# Đối thủ ${B.name}: giá, chính sách và so sánh với Đô Thành\n_${B.maker}. ${B.priceDoc}. ${B.promoDoc}. Cập nhật ${C.updated.split("-").reverse().join("/")}_\n\n## Doanh nghiệp\n${(B.profile||[]).map(x => "- " + x).join("\n")}\n\n## Mạng lưới bán hàng, dịch vụ\n${(() => { const nb = (CNs().brands||{})[B.k], P = CNs().points.filter(p => p.b === B.k); return nb ? `- Quy mô: ${nb.total}\n- Dịch vụ: ${nb.svc}\n- Điểm đã xác minh (${P.length}): ${P.map(p => p.name + " (" + p.province + ", " + p.type + ")").join("; ")}` : "- Chưa có dữ liệu"; })()}\n\n## Thông số và cặp đối đầu\n| Dòng xe | Tải trọng, thùng | Động cơ | Đô Thành |\n|---|---|---|---|\n${(B.specs||[]).map(s => "| " + s.join(" | ") + " |").join("\n")}\n\n## Chính sách khuyến mãi\n${B.promoRules.map(x => "- " + x).join("\n")}\n${(B.promoHistory||[]).map(x => "- " + x).join("\n")}\n\n## Nhận định chiến lược\n${(B.insight||[]).map(x => "- " + x).join("\n")}\n\n## So sánh theo phân khúc (giá tối đa ${B.name} so với giá lẻ công bố Đô Thành T11/2026; biên ĐL đối thủ chỉ có khi có giá giao đại lý)\n| Phân khúc | Cặp đối đầu | Chênh giá công bố (ĐT − đối thủ) | Chênh giá ròng sau KM T11 | Biên ĐL đối thủ | Biên ĐL Đô Thành |\n|---|---|---|---|---|---|\n${I.seg.map(x => `| ${x.s} | ${x.pair} | ${x.list >= 0 ? "+" : "−"}${tr(Math.abs(x.list))} tr | ${x.net >= 0 ? "+" : "−"}${tr(Math.abs(x.net))} tr | ${x.cm == null ? "—" : fmt1(x.cm) + "%"} | ${fmt1(x.dm)}% |`).join("\n")}\n\n## Nhận định\n${I.out.map(x => "- " + x).join("\n")}\n${I.cheaperNet.length ? `- **Đô Thành có lợi thế giá ròng** ở: ${I.cheaperNet.join(", ")} (nhờ ưu đãi T11 lớn hơn nhiều: Đô Thành 24,8–55 tr/xe, ${B.name} tối đa ${tr(maxP)} tr/xe).` : ""}\n${I.dearerNet.length ? `- **Đô Thành đắt hơn sau khuyến mãi** ở: ${I.dearerNet.join(", ")}: cần sale talk về chất lượng, TCO, mạng lưới dịch vụ.` : ""}\n${I.dealerLose.length ? `- **Rủi ro đại lý:** biên lợi nhuận của ${B.name} cao hơn ở ${I.dealerLose.join(", ")}: đối thủ có thể lôi kéo đại lý đa thương hiệu.` : ""}\n- Phiên bản chưa có đối thủ trực tiếp của Đô Thành: ${I.unmatched.join("; ") || "không"}.\n\n## Lưu ý dữ liệu\n${B.notes.map(x => "- " + x).join("\n")}\n`;
 }
 
 /* toàn cảnh: giá ròng thấp nhất mỗi hãng theo phân khúc so với Đô Thành */
@@ -59,6 +59,24 @@ function renderPano(el){
   document.getElementById("cpIns").innerHTML = `<li>Xanh = Đô Thành rẻ nhất phân khúc sau ưu đãi T11; đỏ = có đối thủ rẻ hơn. Hàng "chưa có" là khoảng trống sản phẩm.</li><li class="muted small">Teraco: bảng giá đại lý chính thức. Thaco, JAC, Foton, TMT: giá tham khảo website đại lý 08–11/2026.</li>`;
 }
 
+/* mạng lưới showroom, 3S, xưởng dịch vụ đối thủ (CNET) so với Đô Thành */
+const CNs = () => CV.CNET || {brands:{}, points:[]};
+const isSvc = p => /3S|xưởng|bảo hành|dịch vụ/i.test(p.type);
+function netStats(){
+  const N = CNs(), dtProv = new Set(CV.NET.dealers.map(d => d.province)), dtSvc = new Set(CV.NET.stations.map(s => s.province).concat([...dtProv]));
+  const rows = Object.entries(N.brands).map(([k,b]) => { const P = N.points.filter(p => p.b === k), prov = [...new Set(P.map(p => p.province))];
+    return {k, b, n: P.length, svc: P.filter(isSvc).length, prov, noDT: prov.filter(p => !dtProv.has(p))}; });
+  const byProv = {}; N.points.forEach(p => { (byProv[p.province] = byProv[p.province] || new Set()).add(p.b); });
+  const white = Object.entries(byProv).filter(([p]) => !dtProv.has(p)).map(([p,s]) => ({p, n: s.size, svc: dtSvc.has(p)})).sort((a,b) => b.n - a.n);
+  const dense = Object.entries(byProv).map(([p,s]) => ({p, brands: s.size, pts: N.points.filter(x => x.province === p).length, dt: CV.NET.dealers.filter(d => d.province === p).length + CV.NET.stations.filter(x => x.province === p).length})).filter(x => x.pts > x.dt).sort((a,b) => (b.pts - b.dt) - (a.pts - a.dt));
+  const far = N.points.map(p => { let m = 1e9, w = null; CV.NET.dealers.concat(CV.NET.stations).forEach(x => { const d = CV.km(p, x); if(d < m){ m = d; w = x; } }); return {p, d: m, w}; }).filter(x => x.d > 30).sort((a,b) => b.d - a.d);
+  return {N, rows, white, dense, far, dt: {dealers: CV.NET.dealers.length, stations: CV.NET.stations.length, prov: dtProv.size}};
+}
+function netMd(){
+  const S = netStats();
+  return `# Mạng lưới showroom, 3S, xưởng dịch vụ: Đô Thành so với đối thủ\n_Cập nhật ${S.N.updated.split("-").reverse().join("/")}. ${S.N.note}_\n\n| Hãng | Quy mô công bố | Điểm đã xác minh | 3S / xưởng DV | Tỉnh có điểm | Tỉnh đối thủ có, Đô Thành chưa có đại lý |\n|---|---|---|---|---|---|\n| **Đô Thành** | ${S.dt.dealers} đại lý + ${S.dt.stations} trạm dịch vụ ủy quyền | ${S.dt.dealers + S.dt.stations} | ${S.dt.stations} trạm + đại lý kiêm DV | ${S.dt.prov} | — |\n${S.rows.map(r => `| ${r.b.name} | ${r.b.total} | ${r.n} | ${r.svc} | ${r.prov.length} | ${r.noDT.join(", ") || "không"} |`).join("\n")}\n\n## Khoảng trống mạng lưới\n${S.white.length ? S.white.map(w => `- **${w.p}**: ${w.n} hãng đối thủ có điểm, Đô Thành chưa có đại lý${w.svc ? " (đã có trạm dịch vụ)" : ", cũng chưa có trạm dịch vụ"}.`).join("\n") : "- Không có tỉnh nào đối thủ có điểm mà Đô Thành không có đại lý."}\n\n## Tỉnh đối thủ dày hơn Đô Thành\n${S.dense.slice(0, 8).map(x => `- ${x.p}: ${x.pts} điểm đối thủ (${x.brands} hãng) so với ${x.dt} điểm Đô Thành.`).join("\n") || "- Không có."}\n\n## Điểm đối thủ xa mạng Đô Thành (> 30 km)\n${S.far.slice(0, 8).map(x => `- ${(S.N.brands[x.p.b]||{}).name} ${x.p.name} (${x.p.province}): cách ${x.w.salesKey || x.w.name} ${Math.round(x.d)} km.`).join("\n") || "- Không có."}\n\n## Nhận định\n- Thaco phủ dày nhất (hơn 450 showroom, xưởng đa thương hiệu, 34 tỉnh): khách ở tỉnh xa luôn có xưởng Thaco gần hơn. Đô Thành cần bù bằng trạm dịch vụ ủy quyền và dịch vụ lưu động.\n- Teraco (hơn 50 đại lý, phần lớn 3S) và JAC tập trung ở các đầu mối HN, HP, Thanh Hóa, Nghệ An, Đà Nẵng, TP.HCM, Đồng Nai, Cần Thơ: đúng các thị trường lớn của Đô Thành.\n- Foton (20 đại lý, 11 tỉnh) đang mở nhanh 3S từ 2025–2026 dưới ADCV: cần theo dõi khi họ mở thêm ở miền Trung, Tây Nguyên.\n- TMT mạnh ở ben nông thôn, dịch vụ bảo hành lưu động; Đô Thành nên có gói cứu hộ 24h tương đương.\n\n## Lưu ý dữ liệu\n- Danh sách đối thủ chưa đầy đủ: chỉ gồm điểm xác minh được qua website công ty tỉnh, đại lý, báo chí. Website tổng của hãng chưa truy cập được từ môi trường này.\n- Tọa độ đối thủ gần đúng cấp phường/xã.\n`;
+}
+
 /* section */
 const anchor = document.getElementById("priceSec");
 if(anchor){
@@ -66,7 +84,8 @@ if(anchor){
   s.innerHTML = `<div class="opshead"><div><h2>Đối thủ: giá &amp; chính sách</h2><p class="muted" style="margin:4px 0 0">So sánh từng phiên bản đối thủ với xe Đô Thành cùng phân khúc, cùng loại thùng: giá công bố, khuyến mãi tháng, giá ròng và biên lợi nhuận đại lý.</p></div>
     <div class="toolbar" style="margin:0"><label class="field">Đối thủ<select id="cpBrand"><option value="all">Toàn cảnh thị trường</option>${C.brands.map(b => `<option value="${esc(b.k)}">${esc(b.name)}</option>`).join("")}</select></label><button type="button" class="primary" id="cpBrief">Ben phân tích đối thủ</button><button type="button" id="cpTalk">Sale talk đối đầu</button></div></div>
     <div id="cpMeta" class="small muted" style="margin:8px 0"></div><details class="lgdoc" style="margin-bottom:10px"><summary><b>Hồ sơ đối thủ, thông số, lịch sử khuyến mãi</b></summary><div id="cpProf" class="small"></div></details><div class="opstiles num" id="cpTiles"></div>
-    <div style="overflow-x:auto"><table class="tasktbl" id="cpTable"></table></div><ul class="actions" id="cpIns"></ul>`;
+    <div style="overflow-x:auto"><table class="tasktbl" id="cpTable"></table></div><ul class="actions" id="cpIns"></ul>
+    <details class="lgdoc" id="cpNetBox" style="margin-top:10px"><summary><b>Mạng lưới showroom, 3S, xưởng dịch vụ: Đô Thành so với đối thủ</b></summary><div class="toolbar"><button type="button" class="primary" id="cpNetMap">Xem trên bản đồ 3D</button><button type="button" id="cpNetBen">Ben phân tích mạng lưới</button></div><div id="cpNet" class="small"></div></details>`;
   anchor.after(s);
 }
 function render(){
@@ -90,13 +109,30 @@ document.addEventListener("click", e => {
   if(e.target.id === "cpBrief"){ CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phân tích đối thủ"); const b = CV.addMsg("a", ""); CV.finishBubble(b, compMd(k), false, "Đối thủ " + k, true); }
   if(e.target.id === "cpTalk") CV.askAi(`Dùng so_sanh_doi_thu (brand ${k}) và get_price: viết sale talk đối đầu cho từng phân khúc (van 2 chỗ, tải 1 tấn, 1,5 tấn, 3,5 tấn, thùng dài) khi khách so với ${k}: khai thác chênh lệch giá ròng sau khuyến mãi, tổng chi phí sở hữu, mạng lưới dịch vụ, độ bền động cơ; xử lý câu "bên kia rẻ hơn"; không chê bai đối thủ, không bịa thông số.`);
 });
+function renderNet(){
+  const el = document.getElementById("cpNet"); if(!el) return; const S = netStats();
+  el.innerHTML = `<div style="overflow-x:auto"><table class="tasktbl"><thead><tr><th>Hãng</th><th>Quy mô công bố</th><th>Điểm xác minh</th><th>3S / xưởng DV</th><th>Tỉnh</th><th>Tỉnh chưa có đại lý ĐT</th></tr></thead><tbody>
+    <tr><td><b>Đô Thành</b></td><td>${S.dt.dealers} đại lý + ${S.dt.stations} trạm DV ủy quyền</td><td class="num">${S.dt.dealers + S.dt.stations}</td><td class="num">${S.dt.stations}</td><td class="num">${S.dt.prov}</td><td>—</td></tr>
+    ${S.rows.map(r => `<tr><td><i class="dot" style="background:${r.b.color};border-radius:2px"></i> ${esc(r.b.name)}</td><td>${esc(r.b.total)}</td><td class="num">${r.n}</td><td class="num">${r.svc}</td><td class="num">${r.prov.length}</td><td>${esc(r.noDT.join(", ") || "—")}</td></tr>`).join("")}</tbody></table></div>
+    <p class="muted">${esc(S.N.note)} Nguồn: ${Object.values(S.N.brands).map(b => `<a href="${esc(b.src[1])}" target="_blank" rel="noopener noreferrer">${esc(b.src[0])}</a>`).join(" · ")}</p>`;
+}
+renderNet();
+document.addEventListener("click", e => {
+  if(e.target.id === "cpNetMap"){ CV.setMap({comp: true, pins: true}); const st = document.getElementById("stage"); if(st) st.scrollIntoView({behavior: "smooth", block: "center"}); CV.toast("Đã bật lớp đối thủ: ô vuông màu theo hãng, rê chuột để xem địa chỉ"); }
+  if(e.target.id === "cpNetBen"){ CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phân tích mạng lưới đối thủ"); const b = CV.addMsg("a", ""); CV.finishBubble(b, netMd(), false, "Mạng lưới đối thủ", true); }
+});
 render();
+CV.compPano = pano; CV.netStats = netStats;
 
 /* Ben */
+CV.tools.push({name:"mang_luoi_doi_thu", label:"Đang so mạng lưới…", description:"Mạng lưới showroom, đại lý 3S, xưởng dịch vụ, trạm bảo hành của Thaco, Teraco, JAC, Foton, TMT (điểm đã xác minh, quy mô công bố) so với 50 đại lý + 25 trạm dịch vụ Đô Thành: khoảng trống tỉnh, tỉnh đối thủ dày hơn, điểm đối thủ xa mạng Đô Thành. Muốn xem theo tỉnh thì dùng get_indicators (mục mang_luoi). map:true bật lớp đối thủ trên bản đồ.",
+  inputSchema:{type:"object",properties:{map:{type:"boolean"}}}, execute: ({map}) => { if(map) CV.setMap({comp: true}); return netMd(); }});
 CV.tools.push({name:"so_sanh_doi_thu", label:"Đang so sánh đối thủ…", description:"Bảng giá, khuyến mãi tháng và so sánh đối đầu từng phiên bản đối thủ (TERACO, THACO, JAC, FOTON, TMT) hoặc toàn cảnh thị trường theo phân khúc (brand all) với xe Đô Thành cùng phân khúc: giá công bố, giá ròng sau khuyến mãi, biên lợi nhuận đại lý, nhận định. brand: all (toàn cảnh, mặc định) | teraco | thaco | jac | foton | tmt.",
   inputSchema:{type:"object",properties:{brand:{type:"string"}}}, execute: ({brand}) => compMd(String(brand||"all").toLowerCase())});
-CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim().toLowerCase(); const b = C.brands.find(x => t.includes(x.k));
+CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim().toLowerCase();
+  if(/(mạng lưới|showroom|3s|trạm (dịch vụ|bảo hành)|xưởng dịch vụ)/.test(t) && /(đối thủ|thaco|teraco|jac|foton|tmt|hãng)/.test(t) && !CV.rows.some(r => CV.norm(t).includes(CV.norm(r.name)))){ CV.setMap({comp: true}); return netMd(); }
+  const b = C.brands.find(x => t.includes(x.k));
   if(!b && /toàn cảnh/.test(t) && /(đối thủ|thị trường|hãng)/.test(t)) return panoMd();
   return b && /(so sánh|đối thủ|giá|khuyến mãi|chính sách|phân tích)/.test(t) ? compMd(b.k) : null; });
-const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nĐỐI THỦ CÓ BẢNG GIÁ CHI TIẾT: ${C.brands.map(b => b.name + " (" + b.priceDoc + "; " + b.promoDoc + ")").join("; ")}. Khi hỏi về giá, khuyến mãi, chính sách đối thủ hay so sánh với Đô Thành, dùng so_sanh_doi_thu; tải trọng đối thủ là ước tính theo tên model.`;
+const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nĐỐI THỦ CÓ BẢNG GIÁ CHI TIẾT: ${C.brands.map(b => b.name + " (" + b.priceDoc + "; " + b.promoDoc + ")").join("; ")}. Khi hỏi về giá, khuyến mãi, chính sách đối thủ hay so sánh với Đô Thành, dùng so_sanh_doi_thu; hỏi showroom, 3S, xưởng dịch vụ, trạm bảo hành đối thủ dùng mang_luoi_doi_thu (theo tỉnh: get_indicators mục mang_luoi); tải trọng đối thủ là ước tính theo tên model.`;
 })();
