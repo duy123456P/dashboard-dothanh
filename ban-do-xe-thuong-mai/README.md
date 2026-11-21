@@ -26,3 +26,8 @@ VAMA, Cục CSGT, Cục Đăng kiểm, Thuế (lệ phí trước bạ), Cục T
 2. Tab Actions → "Đổi mật khẩu bản đồ 3D" → Run workflow. Khoảng 1–2 phút sau trang dùng mật khẩu mới.
 - Mật khẩu trùng bất kỳ mật khẩu đã dùng sẽ bị từ chối (lịch sử chỉ lưu dạng băm trong `ban-do/.mat-khau-da-dung.json`).
 - Tại máy: `MAP_PASSWORD='...' python3 tools_lock.py` sau khi chạy `python3 build.py`.
+
+## Đồng bộ dữ liệu bán hàng chi tiết và tồn thành phẩm
+- `python3 tools_sync_sales_xlsx.py <file giao dịch.xlsx> [YYYY-MM-DD]` → `tx.json`: số xe theo tháng × đại lý × model × loại thùng × dự án (bán lẻ = TT 100%, bán sỉ = TT 10%, xuất kho = ngày XK; −1 = hủy cọc); xe đã cọc 10% chưa TT 100% theo tuổi. Không lưu số khung, hợp đồng.
+- `factory.json`: tồn thành phẩm kho DAC theo model × thùng × màu (thành phẩm, chờ xuất, chassis).
+- Sau khi cập nhật: `python3 build.py` rồi `MAP_PASSWORD='…' python3 tools_lock.py` (đúng mật khẩu đang dùng thì chỉ khóa lại nội dung).
