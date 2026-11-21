@@ -1,39 +1,1881 @@
 {
- "asOf": "2026-11-21",
- "source": "Báo cáo tồn kho hệ thống đại lý DAC đến 21/11/2026 (bảng PV), Anh Duy cung cấp",
- "total": 957,
- "recon": {"tonT10": 970, "muaT11": 108, "banLeT11": 121, "thuHoi": 2, "chuyenMBTBsangMB": 11, "mbtbKhongTinh": 13,
-   "note": "970 + 108 − 121 = 957 đúng bằng tồn chốt; nếu trừ thêm 2 xe thu hồi và cộng 11 xe chuyển MBTB→MB thì ra 966 (chênh 9 xe). Cần kế toán kho xác nhận cách hạch toán 2 khoản này."},
- "mbtb": {"xe": 400, "note": "Hợp đồng MBTB: bán sỉ cho đại lý theo cơ chế giá riêng (Anh xác nhận). 13 xe MBTB không tính trong tồn."},
- "daysT11": 21, "retailT11": 121, "regT10": 226,
- "models": [
-  {"m": "IZ50S", "ton": 419, "leT11": 35, "cover": 8.4},
-  {"m": "IZ50M", "ton": 99, "cover": 10},
-  {"m": "JP120SL/EXL", "ton": 48, "leT11": 2, "cover": 16.8},
-  {"m": "IZ50M-PLUS", "coverRange": [5.6, 8.4]},
-  {"m": "IZ62M", "coverRange": [5.6, 8.4]},
-  {"m": "IZ45S", "coverRange": [5.6, 8.4]},
-  {"m": "IZ65M-PLUS", "cover": 3.6},
-  {"m": "V65", "cover": 2.8},
-  {"m": "IZ71SL-PLUS", "cover": 2.5},
-  {"m": "T33L", "cover": 1.7}
- ],
- "age": {"withPayDate": 553, "over180": 107, "over365": 15, "model2025": 80},
- "dealers": [
-  {"name": "Trường Vũ", "ton": 215},
-  {"name": "ĐT Đông Nam", "ton": 150},
-  {"name": "Quang Dương", "ton": 94, "cover": 7},
-  {"name": "Phú Mỹ", "ton": 55},
-  {"name": "Phi Hưng", "ton": 49, "leT11": 3, "cover": 11.4},
-  {"name": "Vũ Hùng", "ton": 48, "cover": 2.4},
-  {"name": "ĐT Hậu Giang", "ton": 31, "manual": true},
-  {"name": "ĐT Kiên Giang", "ton": 16, "manual": true},
-  {"name": "Cương Nguyễn", "ton": 5, "manual": true, "note": "Không có showroom trưng bày riêng: đang dùng showroom Đô Thành Kon Tum (đại lý VinFast)"},
-  {"name": "Hùng Tuyến", "ton": 3, "manual": true, "note": "Chuyển từ đại lý cấp 1 xuống cấp 2; còn 3 xe chưa thu hồi"},
-  {"name": "Ô Tô Tây Nguyên", "leT11": 1},
-  {"name": "Dũng Lạc", "leT11": 0}
- ],
- "regions": [["Tây", 388], ["Bắc", 272], ["Nam", 179], ["Trung", 118]],
- "regionNote": "Nhãn miền theo file (ĐT Đông Nam ghi miền Bắc).",
- "manualNote": "Hậu Giang 31, Kiên Giang 16, Cương Nguyễn 5, Hùng Tuyến 3 (55 xe) là số thực tế Anh xác nhận do đại lý chưa cập nhật hệ thống."
+"asOf": "2026-11-21",
+"source": "Hùng Tuyến (sheet PV + Tồn SR T11, từng xe)",
+"total": 957,
+"recon": {
+"tonT10": 970,
+"muaT11": 108,
+"mbtb": 13,
+"mbtbToMb": 11,
+"banLeT11": 121,
+"thuHoi": 2,
+"ton": 957,
+"ok": true,
+"note": "Tồn = tồn lũy kế T10 970 + mua T11 108 + MBTB 13 − MBTB→MB 11 − bán lẻ T11 121 − thu hồi 2 = 957 xe; khớp 957 xe chi tiết."
+},
+"mbtb": {
+"xe": 400,
+"note": "Hợp đồng MBTB: bán sỉ cho đại lý theo cơ chế giá riêng; không có ngày TT 10% nên không tính tuổi."
+},
+"contracts": {
+"Mua bán": 554,
+"MBTB": 400,
+"Ký gửi": 3
+},
+"daysT11": 21,
+"retailT11": 121,
+"regT10": 226,
+"models": [
+{
+"m": "IZ50S",
+"ton": 419,
+"leT11": 35,
+"cover": 8.4,
+"mbtb": 247,
+"y2025": 5,
+"age": {
+">365": 3,
+"181-365": 10,
+"91-180": 26,
+"0-90": 132
+},
+"bodies": {
+"Mui bạt": 300,
+"Thùng kín": 76,
+"Thùng lửng": 26,
+"Xe tập lái": 17
+},
+"colors": {
+"T": 217,
+"X": 201,
+"XANH": 1
+}
+},
+{
+"m": "IZ50M",
+"ton": 99,
+"leT11": 7,
+"cover": 9.9,
+"mbtb": 49,
+"y2025": 40,
+"age": {
+">365": 1,
+"181-365": 4,
+"0-90": 45
+},
+"bodies": {
+"Mui bạt": 76,
+"Thùng kín": 23
+},
+"colors": {
+"X": 54,
+"T": 45
+}
+},
+{
+"m": "IZ65M-PLUS",
+"ton": 98,
+"leT11": 19,
+"cover": 3.6,
+"mbtb": 23,
+"y2025": 7,
+"age": {
+">365": 4,
+"181-365": 14,
+"91-180": 29,
+"0-90": 27
+},
+"bodies": {
+"Mui bạt": 71,
+"Thùng kín": 24,
+"Xe tập lái": 2,
+"Thùng lửng": 1
+},
+"colors": {
+"T": 47,
+"X": 42,
+"XANH": 6,
+"TRẮNG": 3
+}
+},
+{
+"m": "T26",
+"ton": 64,
+"leT11": 9,
+"cover": 5.0,
+"mbtb": 11,
+"y2025": 4,
+"age": {
+"181-365": 5,
+"91-180": 47,
+"0-90": 1
+},
+"bodies": {
+"Thùng lửng": 39,
+"Mui bạt": 21,
+"Thùng kín": 4
+},
+"colors": {
+"T": 29,
+"X": 28,
+"TRẮNG": 5,
+"XANH": 2
+}
+},
+{
+"m": "IZ71SL-PLUS",
+"ton": 42,
+"leT11": 12,
+"cover": 2.5,
+"mbtb": 10,
+"y2025": 0,
+"age": {
+"181-365": 9,
+"91-180": 13,
+"0-90": 10
+},
+"bodies": {
+"Mui bạt": 30,
+"Thùng kín": 7,
+"Thùng lửng": 5
+},
+"colors": {
+"T": 23,
+"X": 18,
+"TRẮNG": 1
+}
+},
+{
+"m": "T33L",
+"ton": 40,
+"leT11": 17,
+"cover": 1.6,
+"mbtb": 6,
+"y2025": 1,
+"age": {
+"181-365": 18,
+"91-180": 14,
+"0-90": 2
+},
+"bodies": {
+"Mui bạt": 28,
+"Thùng lửng": 10,
+"Thùng kín": 2
+},
+"colors": {
+"T": 25,
+"X": 12,
+"TRẮNG": 3
+}
+},
+{
+"m": "V65",
+"ton": 36,
+"leT11": 9,
+"cover": 2.8,
+"mbtb": 7,
+"y2025": 0,
+"age": {
+"181-365": 2,
+"91-180": 27
+},
+"bodies": {
+"Chassis": 33,
+"Van": 3
+},
+"colors": {
+"T": 29,
+"X": 7
+}
+},
+{
+"m": "V56",
+"ton": 25,
+"leT11": 3,
+"cover": 5.8,
+"mbtb": 12,
+"y2025": 11,
+"age": {
+"181-365": 2,
+"91-180": 8,
+"0-90": 2
+},
+"bodies": {
+"Chassis": 13,
+"Van": 12
+},
+"colors": {
+"T": 12,
+"TRẮNG": 12,
+"X": 1
+}
+},
+{
+"m": "JP120SL",
+"ton": 25,
+"leT11": 1,
+"cover": 17.5,
+"mbtb": 7,
+"y2025": 0,
+"age": {
+"181-365": 6,
+"91-180": 7,
+"0-90": 5
+},
+"bodies": {
+"Mui bạt": 24,
+"Thùng kín": 1
+},
+"colors": {
+"T": 18,
+"X": 5,
+"XÁM": 2
+}
+},
+{
+"m": "IZ50M-PLUS",
+"ton": 24,
+"leT11": 2,
+"cover": 8.4,
+"mbtb": 3,
+"y2025": 6,
+"age": {
+">365": 2,
+"181-365": 9,
+"91-180": 5,
+"0-90": 5
+},
+"bodies": {
+"Mui bạt": 15,
+"Thùng kín": 9
+},
+"colors": {
+"T": 14,
+"X": 7,
+"Đ": 1,
+"TRẮNG": 1
+}
+},
+{
+"m": "IZ45S",
+"ton": 24,
+"leT11": 3,
+"cover": 5.6,
+"mbtb": 7,
+"y2025": 0,
+"age": {
+"181-365": 5,
+"91-180": 2,
+"0-90": 10
+},
+"bodies": {
+"Mui bạt": 16,
+"Thùng kín": 7,
+"Thùng lửng": 1
+},
+"colors": {
+"T": 16,
+"X": 8
+}
+},
+{
+"m": "JP120EXL",
+"ton": 23,
+"leT11": 1,
+"cover": 16.1,
+"mbtb": 12,
+"y2025": 0,
+"age": {
+"181-365": 4,
+"91-180": 5,
+"0-90": 2
+},
+"bodies": {
+"Mui bạt": 21,
+"Thùng kín": 2
+},
+"colors": {
+"T": 18,
+"X": 4,
+"XÁM": 1
+}
+},
+{
+"m": "IZ62M",
+"ton": 19,
+"leT11": 2,
+"cover": 6.7,
+"mbtb": 4,
+"y2025": 5,
+"age": {
+">365": 3,
+"181-365": 1,
+"91-180": 2,
+"0-90": 9
+},
+"bodies": {
+"Mui bạt": 14,
+"Thùng kín": 4,
+"Chassis": 1
+},
+"colors": {
+"X": 11,
+"T": 7,
+"XANH": 1
+}
+},
+{
+"m": "IZ60SL-PLUS",
+"ton": 9,
+"leT11": 1,
+"cover": 6.3,
+"mbtb": 2,
+"y2025": 1,
+"age": {
+">365": 1,
+"181-365": 3,
+"0-90": 3
+},
+"bodies": {
+"Mui bạt": 7,
+"Thùng kín": 2
+},
+"colors": {
+"T": 7,
+"X": 2
+}
+},
+{
+"m": "CL4TF",
+"ton": 7,
+"leT11": 0,
+"cover": null,
+"mbtb": 0,
+"y2025": 0,
+"age": {
+"0-90": 7
+},
+"bodies": {
+"Khác": 7
+},
+"colors": {
+"T": 7
+}
+},
+{
+"m": "HC8AA",
+"ton": 1,
+"leT11": 0,
+"cover": null,
+"mbtb": 0,
+"y2025": 0,
+"age": {
+">365": 1
+},
+"bodies": {
+"Chassis": 1
+},
+"colors": {
+"T": 1
+}
+},
+{
+"m": "JP120M",
+"ton": 1,
+"leT11": 0,
+"cover": null,
+"mbtb": 0,
+"y2025": 0,
+"age": {
+"0-90": 1
+},
+"bodies": {
+"Chassis": 1
+},
+"colors": {
+"T": 1
+}
+},
+{
+"m": "IZ350-2.5T",
+"ton": 1,
+"leT11": 0,
+"cover": null,
+"mbtb": 0,
+"y2025": 1,
+"age": {},
+"bodies": {
+"Mui bạt": 1
+},
+"colors": {
+"X": 1
+}
+}
+],
+"dealers": [
+{
+"name": "Trường Vũ",
+"link": "Trường Vũ",
+"region": "Tây",
+"ton": 215,
+"leT11": 26,
+"muaT11": 17,
+"cover": 5.8,
+"mb": 149,
+"mbtb": 66,
+"kg": 0,
+"age": {
+"181-365": 20,
+"91-180": 75,
+"0-90": 54
+},
+"models": {
+"IZ50S": 86,
+"T26": 49,
+"IZ50M": 32,
+"T33L": 22,
+"IZ65M-PLUS": 17,
+"JP120SL": 4,
+"IZ62M": 3,
+"IZ71SL-PLUS": 1,
+"JP120EXL": 1
+},
+"manual": false,
+"pv": [
+226,
+17,
+0,
+2,
+26,
+0,
+215
+]
+},
+{
+"name": "ĐT Đông Nam",
+"link": "ĐT Đông Nam",
+"region": "Bắc",
+"ton": 150,
+"leT11": 23,
+"muaT11": 9,
+"cover": 4.6,
+"mb": 57,
+"mbtb": 93,
+"kg": 0,
+"age": {
+">365": 1,
+"181-365": 10,
+"91-180": 17,
+"0-90": 29
+},
+"models": {
+"IZ50S": 73,
+"IZ50M": 20,
+"IZ65M-PLUS": 17,
+"IZ71SL-PLUS": 7,
+"T33L": 6,
+"V65": 6,
+"JP120EXL": 5,
+"JP120SL": 4,
+"IZ50M-PLUS": 3,
+"IZ45S": 2,
+"IZ62M": 2,
+"T26": 2,
+"V56": 2,
+"HC8AA": 1
+},
+"manual": false,
+"pv": [
+162,
+9,
+7,
+5,
+23,
+0,
+150
+]
+},
+{
+"name": "Quang Dương",
+"link": "Quang Dương",
+"region": "Bắc",
+"ton": 94,
+"leT11": 9,
+"muaT11": 13,
+"cover": 7.3,
+"mb": 52,
+"mbtb": 42,
+"kg": 0,
+"age": {
+">365": 1,
+"181-365": 12,
+"91-180": 8,
+"0-90": 31
+},
+"models": {
+"IZ50S": 40,
+"IZ50M": 11,
+"IZ65M-PLUS": 10,
+"JP120SL": 6,
+"JP120EXL": 6,
+"IZ71SL-PLUS": 5,
+"T33L": 4,
+"IZ45S": 3,
+"IZ50M-PLUS": 3,
+"T26": 3,
+"IZ62M": 1,
+"V56": 1,
+"V65": 1
+},
+"manual": false,
+"pv": [
+87,
+13,
+3,
+0,
+9,
+0,
+94
+]
+},
+{
+"name": "Phú Mỹ",
+"link": "Phú Mỹ",
+"region": "Nam",
+"ton": 55,
+"leT11": 6,
+"muaT11": 11,
+"cover": 6.4,
+"mb": 30,
+"mbtb": 25,
+"kg": 0,
+"age": {
+">365": 4,
+"181-365": 3,
+"91-180": 3,
+"0-90": 20
+},
+"models": {
+"IZ50S": 34,
+"IZ65M-PLUS": 4,
+"IZ50M": 4,
+"IZ50M-PLUS": 3,
+"IZ62M": 2,
+"IZ71SL-PLUS": 2,
+"JP120SL": 2,
+"JP120EXL": 1,
+"IZ60SL-PLUS": 1,
+"V56": 1,
+"T26": 1
+},
+"manual": false,
+"pv": [
+50,
+11,
+0,
+0,
+6,
+0,
+55
+]
+},
+{
+"name": "Phi Hưng",
+"link": "Phi Hưng",
+"region": "Trung",
+"ton": 49,
+"leT11": 3,
+"muaT11": 8,
+"cover": 11.4,
+"mb": 29,
+"mbtb": 20,
+"kg": 0,
+"age": {
+">365": 5,
+"181-365": 2,
+"91-180": 2,
+"0-90": 20
+},
+"models": {
+"IZ50S": 15,
+"IZ45S": 12,
+"IZ65M-PLUS": 7,
+"IZ50M": 5,
+"V56": 3,
+"IZ71SL-PLUS": 2,
+"IZ50M-PLUS": 1,
+"T26": 1,
+"IZ62M": 1,
+"T33L": 1,
+"JP120EXL": 1
+},
+"manual": false,
+"pv": [
+45,
+8,
+0,
+1,
+3,
+0,
+49
+]
+},
+{
+"name": "Vũ Hùng",
+"link": "Vũ Hùng",
+"region": "Nam",
+"ton": 48,
+"leT11": 14,
+"muaT11": 1,
+"cover": 2.4,
+"mb": 42,
+"mbtb": 6,
+"kg": 0,
+"age": {
+"181-365": 7,
+"91-180": 35
+},
+"models": {
+"V65": 29,
+"V56": 9,
+"IZ60SL-PLUS": 4,
+"IZ50M-PLUS": 2,
+"IZ71SL-PLUS": 2,
+"IZ50S": 1,
+"IZ65M-PLUS": 1
+},
+"manual": false,
+"pv": [
+62,
+1,
+0,
+0,
+14,
+1,
+48
+]
+},
+{
+"name": "ĐT Đà Nẵng",
+"link": "ĐT Đà Nẵng",
+"region": "Trung",
+"ton": 41,
+"leT11": 0,
+"muaT11": 11,
+"cover": null,
+"mb": 35,
+"mbtb": 6,
+"kg": 0,
+"age": {
+"181-365": 10,
+"91-180": 4,
+"0-90": 21
+},
+"models": {
+"IZ50S": 10,
+"IZ65M-PLUS": 4,
+"IZ71SL-PLUS": 4,
+"IZ50M-PLUS": 4,
+"IZ50M": 4,
+"V56": 3,
+"IZ45S": 3,
+"IZ60SL-PLUS": 3,
+"T26": 2,
+"T33L": 2,
+"JP120EXL": 1,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+30,
+11,
+0,
+0,
+0,
+0,
+41
+]
+},
+{
+"name": "ĐT Long An",
+"link": "ĐT Long An",
+"region": "Tây",
+"ton": 37,
+"leT11": 2,
+"muaT11": 1,
+"cover": 13.0,
+"mb": 15,
+"mbtb": 22,
+"kg": 0,
+"age": {
+"91-180": 7,
+"0-90": 8
+},
+"models": {
+"IZ50S": 27,
+"IZ65M-PLUS": 4,
+"JP120M": 1,
+"T33L": 1,
+"V56": 1,
+"IZ50M": 1,
+"JP120EXL": 1,
+"IZ71SL-PLUS": 1
+},
+"manual": false,
+"pv": [
+38,
+1,
+1,
+0,
+2,
+1,
+37
+]
+},
+{
+"name": "ĐT Hậu Giang",
+"link": "ĐT Hậu Giang",
+"region": "Tây",
+"ton": 31,
+"leT11": 0,
+"muaT11": 0,
+"cover": null,
+"mb": 0,
+"mbtb": 31,
+"kg": 0,
+"age": {},
+"models": {
+"IZ50S": 24,
+"IZ50M": 4,
+"V56": 1,
+"IZ71SL-PLUS": 1,
+"JP120EXL": 1
+},
+"manual": true,
+"pv": [
+31,
+0,
+0,
+0,
+0,
+0,
+31
+]
+},
+{
+"name": "Ô Tô 19/5",
+"link": "Ô Tô 19/5",
+"region": "Bắc",
+"ton": 28,
+"leT11": 4,
+"muaT11": 2,
+"cover": 4.9,
+"mb": 18,
+"mbtb": 10,
+"kg": 0,
+"age": {
+">365": 2,
+"181-365": 5,
+"91-180": 7,
+"0-90": 4
+},
+"models": {
+"IZ50S": 13,
+"IZ71SL-PLUS": 5,
+"IZ65M-PLUS": 4,
+"IZ50M": 2,
+"JP120SL": 1,
+"IZ62M": 1,
+"T26": 1,
+"V56": 1
+},
+"manual": false,
+"pv": [
+29,
+2,
+1,
+0,
+4,
+0,
+28
+]
+},
+{
+"name": "Phú Mỹ HG",
+"link": "ĐT Hậu Giang",
+"region": "Tây",
+"ton": 26,
+"leT11": 4,
+"muaT11": 0,
+"cover": 4.6,
+"mb": 26,
+"mbtb": 0,
+"kg": 0,
+"age": {
+">365": 1,
+"181-365": 1,
+"91-180": 10,
+"0-90": 14
+},
+"models": {
+"IZ50S": 13,
+"IZ65M-PLUS": 8,
+"IZ50M": 2,
+"IZ50M-PLUS": 1,
+"JP120EXL": 1,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+30,
+0,
+0,
+0,
+4,
+0,
+26
+]
+},
+{
+"name": "Hưng Vượng",
+"link": "Hưng Vượng",
+"region": "Nam",
+"ton": 26,
+"leT11": 0,
+"muaT11": 1,
+"cover": null,
+"mb": 9,
+"mbtb": 17,
+"kg": 0,
+"age": {
+"181-365": 1,
+"0-90": 8
+},
+"models": {
+"IZ50S": 18,
+"IZ50M": 3,
+"IZ50M-PLUS": 1,
+"IZ62M": 1,
+"IZ65M-PLUS": 1,
+"T33L": 1,
+"JP120EXL": 1
+},
+"manual": false,
+"pv": [
+26,
+1,
+0,
+1,
+0,
+0,
+26
+]
+},
+{
+"name": "Mỹ Phú Hưng",
+"link": "Mỹ Phú Hưng",
+"region": "Tây",
+"ton": 24,
+"leT11": 5,
+"muaT11": 7,
+"cover": 3.4,
+"mb": 12,
+"mbtb": 12,
+"kg": 0,
+"age": {
+"181-365": 2,
+"0-90": 10
+},
+"models": {
+"IZ50S": 20,
+"IZ50M": 3,
+"IZ65M-PLUS": 1
+},
+"manual": false,
+"pv": [
+22,
+7,
+0,
+0,
+5,
+0,
+24
+]
+},
+{
+"name": "ĐT Tiền Giang",
+"link": "ĐT Tiền Giang",
+"region": "Tây",
+"ton": 24,
+"leT11": 6,
+"muaT11": 2,
+"cover": 2.8,
+"mb": 11,
+"mbtb": 13,
+"kg": 0,
+"age": {
+"181-365": 1,
+"91-180": 4,
+"0-90": 6
+},
+"models": {
+"IZ50S": 19,
+"IZ65M-PLUS": 2,
+"IZ50M": 2,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+29,
+2,
+0,
+1,
+6,
+0,
+24
+]
+},
+{
+"name": "Tân Vạn",
+"link": "Tân Vạn",
+"region": "Nam",
+"ton": 24,
+"leT11": 5,
+"muaT11": 6,
+"cover": 3.4,
+"mb": 21,
+"mbtb": 3,
+"kg": 0,
+"age": {
+"181-365": 3,
+"91-180": 5,
+"0-90": 13
+},
+"models": {
+"IZ65M-PLUS": 6,
+"IZ71SL-PLUS": 4,
+"IZ50S": 3,
+"IZ50M-PLUS": 3,
+"JP120EXL": 2,
+"IZ62M": 2,
+"IZ45S": 1,
+"IZ50M": 1,
+"V56": 1,
+"T26": 1
+},
+"manual": false,
+"pv": [
+23,
+6,
+0,
+0,
+5,
+0,
+24
+]
+},
+{
+"name": "ĐT Kiên Giang",
+"link": "ĐT Kiên Giang",
+"region": "Tây",
+"ton": 16,
+"leT11": 0,
+"muaT11": 0,
+"cover": null,
+"mb": 0,
+"mbtb": 16,
+"kg": 0,
+"age": {},
+"models": {
+"IZ50S": 13,
+"IZ62M": 2,
+"JP120SL": 1
+},
+"manual": true,
+"pv": [
+16,
+0,
+0,
+0,
+0,
+0,
+16
+]
+},
+{
+"name": "Việt Nhật Anh",
+"link": "Việt Nhật Anh",
+"region": "Nam",
+"ton": 13,
+"leT11": 0,
+"muaT11": 0,
+"cover": null,
+"mb": 12,
+"mbtb": 1,
+"kg": 0,
+"age": {
+">365": 1,
+"181-365": 6,
+"91-180": 4
+},
+"models": {
+"IZ71SL-PLUS": 3,
+"IZ60SL-PLUS": 1,
+"IZ50M-PLUS": 1,
+"IZ50M": 1,
+"V56": 1,
+"IZ65M-PLUS": 1,
+"JP120SL": 1,
+"IZ45S": 1,
+"T33L": 1,
+"IZ350-2.5T": 1,
+"T26": 1
+},
+"manual": false,
+"pv": [
+13,
+0,
+0,
+0,
+0,
+0,
+13
+]
+},
+{
+"name": "Dũng Lạc",
+"link": "Dũng Lạc",
+"region": "Trung",
+"ton": 11,
+"leT11": 0,
+"muaT11": 1,
+"cover": null,
+"mb": 8,
+"mbtb": 3,
+"kg": 0,
+"age": {
+"181-365": 7,
+"0-90": 1
+},
+"models": {
+"IZ71SL-PLUS": 3,
+"IZ50M": 2,
+"IZ50M-PLUS": 2,
+"T26": 2,
+"IZ45S": 1,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+10,
+1,
+0,
+0,
+0,
+0,
+11
+]
+},
+{
+"name": "Ô Tô Tây Nguyên",
+"link": "Ô Tô Tây Nguyên",
+"region": "Trung",
+"ton": 10,
+"leT11": 1,
+"muaT11": 0,
+"cover": 7.0,
+"mb": 6,
+"mbtb": 4,
+"kg": 0,
+"age": {
+"0-90": 6
+},
+"models": {
+"IZ65M-PLUS": 3,
+"IZ50S": 3,
+"IZ62M": 2,
+"IZ50M": 1,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+11,
+0,
+0,
+0,
+1,
+0,
+10
+]
+},
+{
+"name": "Phú Mỹ HG-KG",
+"link": "ĐT Kiên Giang",
+"region": "Tây",
+"ton": 9,
+"leT11": 8,
+"muaT11": 5,
+"cover": 0.8,
+"mb": 9,
+"mbtb": 0,
+"kg": 0,
+"age": {
+"91-180": 4,
+"0-90": 5
+},
+"models": {
+"IZ50S": 4,
+"IZ65M-PLUS": 3,
+"IZ71SL-PLUS": 1,
+"IZ62M": 1
+},
+"manual": false,
+"pv": [
+13,
+5,
+0,
+1,
+8,
+0,
+9
+]
+},
+{
+"name": "Hồng Vinh",
+"link": "Hồng Vinh",
+"region": "Tây",
+"ton": 6,
+"leT11": 2,
+"muaT11": 0,
+"cover": 2.1,
+"mb": 3,
+"mbtb": 3,
+"kg": 0,
+"age": {
+"181-365": 2,
+"0-90": 1
+},
+"models": {
+"T33L": 2,
+"IZ65M-PLUS": 2,
+"IZ50S": 1,
+"JP120SL": 1
+},
+"manual": false,
+"pv": [
+7,
+0,
+1,
+0,
+2,
+0,
+6
+]
+},
+{
+"name": "Môi Trường Sống",
+"link": "Môi Trường Sống",
+"region": "Nam",
+"ton": 5,
+"leT11": 0,
+"muaT11": 5,
+"cover": null,
+"mb": 5,
+"mbtb": 0,
+"kg": 0,
+"age": {
+"0-90": 5
+},
+"models": {
+"CL4TF": 5
+},
+"manual": false,
+"pv": [
+0,
+5,
+0,
+0,
+0,
+0,
+5
+]
+},
+{
+"name": "Cương Nguyễn",
+"link": "Cương Nguyễn",
+"region": "Trung",
+"ton": 5,
+"leT11": 0,
+"muaT11": 0,
+"cover": null,
+"mb": 0,
+"mbtb": 5,
+"kg": 0,
+"age": {},
+"models": {
+"IZ65M-PLUS": 1,
+"IZ50S": 1,
+"T26": 1,
+"IZ71SL-PLUS": 1,
+"JP120EXL": 1
+},
+"manual": true,
+"pv": [
+5,
+0,
+0,
+0,
+0,
+0,
+5
+]
+},
+{
+"name": "ĐT Bình Thuận",
+"link": "ĐT Bình Thuận",
+"region": "Nam",
+"ton": 3,
+"leT11": 3,
+"muaT11": 3,
+"cover": 0.7,
+"mb": 0,
+"mbtb": 0,
+"kg": 3,
+"age": {},
+"models": {
+"IZ50S": 1,
+"IZ65M-PLUS": 1,
+"V56": 1
+},
+"manual": false,
+"pv": [
+3,
+3,
+0,
+0,
+3,
+0,
+3
+]
+},
+{
+"name": "ĐT Đồng Nai",
+"link": "ĐT Đồng Nai",
+"region": "Nam",
+"ton": 3,
+"leT11": 0,
+"muaT11": 3,
+"cover": null,
+"mb": 3,
+"mbtb": 0,
+"kg": 0,
+"age": {
+"0-90": 3
+},
+"models": {
+"IZ62M": 1,
+"IZ45S": 1,
+"IZ50M": 1
+},
+"manual": false,
+"pv": [
+0,
+3,
+0,
+0,
+0,
+0,
+3
+]
+},
+{
+"name": "Mai Phước Vinh",
+"link": "Mai Phước Vinh",
+"region": "Nam",
+"ton": 2,
+"leT11": 0,
+"muaT11": 2,
+"cover": null,
+"mb": 2,
+"mbtb": 0,
+"kg": 0,
+"age": {
+"0-90": 2
+},
+"models": {
+"CL4TF": 2
+},
+"manual": false,
+"pv": [
+0,
+2,
+0,
+0,
+0,
+0,
+2
+]
+},
+{
+"name": "Hùng Tuyến",
+"link": "Hùng Tuyến",
+"region": "Trung",
+"ton": 2,
+"leT11": 0,
+"muaT11": 0,
+"cover": null,
+"mb": 0,
+"mbtb": 2,
+"kg": 0,
+"age": {},
+"models": {
+"IZ65M-PLUS": 1,
+"JP120EXL": 1
+},
+"manual": true,
+"pv": [
+2,
+0,
+0,
+0,
+0,
+0,
+2
+]
+}
+],
+"age": {
+"withPayDate": 553,
+"buckets": {
+">365": 15,
+"181-365": 92,
+"91-180": 185,
+"0-90": 261
+},
+"over180": 107,
+"over365": 15,
+"model2025": 81
+},
+"old": [
+[
+"Trường Vũ",
+"T33L",
+2026,
+"181-365",
+13
+],
+[
+"ĐT Đà Nẵng",
+"IZ65M-PLUS",
+2026,
+"181-365",
+4
+],
+[
+"Trường Vũ",
+"T26",
+2026,
+"181-365",
+4
+],
+[
+"Quang Dương",
+"T33L",
+2026,
+"181-365",
+3
+],
+[
+"Vũ Hùng",
+"IZ60SL-PLUS",
+2026,
+"181-365",
+3
+],
+[
+"Dũng Lạc",
+"IZ71SL-PLUS",
+2026,
+"181-365",
+3
+],
+[
+"ĐT Đông Nam",
+"IZ65M-PLUS",
+2026,
+"181-365",
+3
+],
+[
+"Phú Mỹ",
+"IZ62M",
+2025,
+">365",
+2
+],
+[
+"Phi Hưng",
+"IZ65M-PLUS",
+2025,
+">365",
+2
+],
+[
+"Phi Hưng",
+"IZ50S",
+2025,
+">365",
+2
+],
+[
+"Hồng Vinh",
+"T33L",
+2026,
+"181-365",
+2
+],
+[
+"ĐT Đà Nẵng",
+"IZ71SL-PLUS",
+2026,
+"181-365",
+2
+],
+[
+"Quang Dương",
+"JP120SL",
+2026,
+"181-365",
+2
+],
+[
+"Quang Dương",
+"JP120EXL",
+2026,
+"181-365",
+2
+],
+[
+"Ô Tô 19/5",
+"IZ50S",
+2026,
+"181-365",
+2
+],
+[
+"Quang Dương",
+"IZ71SL-PLUS",
+2026,
+"181-365",
+2
+],
+[
+"Mỹ Phú Hưng",
+"IZ50S",
+2026,
+"181-365",
+2
+],
+[
+"Vũ Hùng",
+"V65",
+2026,
+"181-365",
+2
+],
+[
+"ĐT Đông Nam",
+"IZ45S",
+2026,
+"181-365",
+2
+],
+[
+"ĐT Đông Nam",
+"HC8AA",
+0,
+">365",
+1
+],
+[
+"Ô Tô 19/5",
+"IZ50S",
+2025,
+">365",
+1
+],
+[
+"Quang Dương",
+"IZ62M",
+2025,
+">365",
+1
+],
+[
+"Phú Mỹ",
+"IZ50M-PLUS",
+2025,
+">365",
+1
+],
+[
+"Phú Mỹ HG",
+"IZ50M-PLUS",
+2025,
+">365",
+1
+],
+[
+"Phú Mỹ",
+"IZ65M-PLUS",
+2025,
+">365",
+1
+],
+[
+"Ô Tô 19/5",
+"IZ65M-PLUS",
+2025,
+">365",
+1
+],
+[
+"Phi Hưng",
+"IZ50M",
+2025,
+">365",
+1
+],
+[
+"Việt Nhật Anh",
+"IZ60SL-PLUS",
+2025,
+">365",
+1
+],
+[
+"Việt Nhật Anh",
+"IZ50M-PLUS",
+2025,
+"181-365",
+1
+],
+[
+"Quang Dương",
+"IZ65M-PLUS",
+2025,
+"181-365",
+1
+],
+[
+"Việt Nhật Anh",
+"IZ71SL-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Trường Vũ",
+"IZ65M-PLUS",
+2025,
+"181-365",
+1
+],
+[
+"Hưng Vượng",
+"IZ50M-PLUS",
+2025,
+"181-365",
+1
+],
+[
+"Phú Mỹ",
+"IZ50S",
+2025,
+"181-365",
+1
+],
+[
+"ĐT Đà Nẵng",
+"T26",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đà Nẵng",
+"V56",
+2026,
+"181-365",
+1
+],
+[
+"Dũng Lạc",
+"IZ50M",
+2026,
+"181-365",
+1
+],
+[
+"Việt Nhật Anh",
+"IZ50M",
+2026,
+"181-365",
+1
+],
+[
+"Trường Vũ",
+"IZ50S",
+2026,
+"181-365",
+1
+],
+[
+"Dũng Lạc",
+"IZ45S",
+2026,
+"181-365",
+1
+],
+[
+"Tân Vạn",
+"IZ71SL-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Việt Nhật Anh",
+"V56",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Tiền Giang",
+"JP120SL",
+2026,
+"181-365",
+1
+],
+[
+"Phú Mỹ HG",
+"JP120EXL",
+2026,
+"181-365",
+1
+],
+[
+"Ô Tô 19/5",
+"JP120SL",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đông Nam",
+"IZ50M",
+2025,
+"181-365",
+1
+],
+[
+"ĐT Đông Nam",
+"IZ50M-PLUS",
+2025,
+"181-365",
+1
+],
+[
+"Tân Vạn",
+"JP120EXL",
+2026,
+"181-365",
+1
+],
+[
+"Việt Nhật Anh",
+"IZ65M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Việt Nhật Anh",
+"JP120SL",
+2026,
+"181-365",
+1
+],
+[
+"Ô Tô 19/5",
+"IZ65M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Quang Dương",
+"IZ45S",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đà Nẵng",
+"IZ45S",
+2026,
+"181-365",
+1
+],
+[
+"Quang Dương",
+"IZ50S",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đà Nẵng",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Phú Mỹ",
+"IZ65M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Phú Mỹ",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Vũ Hùng",
+"IZ50S",
+2026,
+"181-365",
+1
+],
+[
+"Vũ Hùng",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Trường Vũ",
+"IZ65M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Dũng Lạc",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Phi Hưng",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Dũng Lạc",
+"JP120SL",
+2026,
+"181-365",
+1
+],
+[
+"Phi Hưng",
+"IZ65M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"Tân Vạn",
+"IZ50S",
+2026,
+"181-365",
+1
+],
+[
+"Ô Tô 19/5",
+"IZ62M",
+2025,
+"181-365",
+1
+],
+[
+"ĐT Đông Nam",
+"IZ50M",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đông Nam",
+"IZ50M-PLUS",
+2026,
+"181-365",
+1
+],
+[
+"ĐT Đông Nam",
+"IZ50S",
+2026,
+"181-365",
+1
+]
+],
+"bodies": {
+"Mui bạt": 624,
+"Thùng kín": 161,
+"Thùng lửng": 82,
+"Chassis": 49,
+"Xe tập lái": 19,
+"Van": 15,
+"Khác": 7
+},
+"colors": {
+"T": 516,
+"X": 401,
+"TRẮNG": 25,
+"XANH": 11,
+"XÁM": 3,
+"Đ": 1
+},
+"regions": [
+[
+"Tây",
+388
+],
+[
+"Bắc",
+272
+],
+[
+"Nam",
+179
+],
+[
+"Trung",
+118
+]
+],
+"regionNote": "Miền theo cột MIỀN trong file (ĐT Đông Nam ghi miền Bắc).",
+"manualNote": "ĐT Hậu Giang, ĐT Kiên Giang, Cương Nguyễn, Hùng Tuyến: dòng số tổng nhập tay trong file (đại lý chưa cập nhật từng xe)."
 }
