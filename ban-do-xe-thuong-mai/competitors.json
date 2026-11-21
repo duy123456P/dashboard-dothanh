@@ -16,8 +16,8 @@
    ],
    "notes": [
     "Giá đã bao gồm VAT theo thông lệ bảng giá (cần xác nhận)",
-    "Tải trọng ước theo tên model, cần xác nhận thông số kỹ thuật chính thức của Teraco",
-    "Giá bán tối đa (*) là trần giá đại lý được bán"
+    "Giá bán tối đa (*) là trần giá đại lý được bán",
+    "Tải trọng, động cơ theo daehan.vn và website đại lý (tra cứu 21/11/2026); TERA190SL Plus, động cơ TERA-STAR có nguồn lệch nhau"
    ],
    "items": [
     {
@@ -67,7 +67,7 @@
      "minRetail": 225000000,
      "maxRetail": 228000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -77,7 +77,7 @@
      "minRetail": 238000000,
      "maxRetail": 241000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -87,7 +87,7 @@
      "minRetail": 242500000,
      "maxRetail": 245500000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -97,7 +97,7 @@
      "minRetail": 248000000,
      "maxRetail": 251000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -107,7 +107,7 @@
      "minRetail": 245000000,
      "maxRetail": 248000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -117,7 +117,7 @@
      "minRetail": 257000000,
      "maxRetail": 260000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -127,7 +127,7 @@
      "minRetail": 257000000,
      "maxRetail": 260000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -137,7 +137,7 @@
      "minRetail": 282000000,
      "maxRetail": 285000000,
      "promo": 0,
-     "seg": "Tải nhẹ ~1 tấn",
+     "seg": "Tải nhẹ 990 kg",
      "dt": "T26"
     },
     {
@@ -147,7 +147,7 @@
      "minRetail": 240000000,
      "maxRetail": 243000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -157,7 +157,7 @@
      "minRetail": 253000000,
      "maxRetail": 256000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -167,7 +167,7 @@
      "minRetail": 265000000,
      "maxRetail": 268000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -177,7 +177,7 @@
      "minRetail": 265000000,
      "maxRetail": 268000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -187,7 +187,7 @@
      "minRetail": 274000000,
      "maxRetail": 277000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -197,7 +197,7 @@
      "minRetail": 276500000,
      "maxRetail": 279500000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "seg": "Tải nhẹ 990 kg (cabin rộng)",
      "dt": "T26"
     },
     {
@@ -207,7 +207,7 @@
      "minRetail": 245000000,
      "maxRetail": 248000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "seg": "Tải nhẹ 1,25 tấn",
      "dt": "T26"
     },
     {
@@ -217,7 +217,7 @@
      "minRetail": 270000000,
      "maxRetail": 273000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "seg": "Tải nhẹ 1,25 tấn",
      "dt": "T26"
     },
     {
@@ -227,7 +227,7 @@
      "minRetail": 270000000,
      "maxRetail": 273000000,
      "promo": 10000000,
-     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "seg": "Tải nhẹ 1,25 tấn",
      "dt": "T26"
     },
     {
@@ -237,7 +237,7 @@
      "minRetail": 291000000,
      "maxRetail": 296000000,
      "promo": 5000000,
-     "seg": "Tải 1,5 tấn",
+     "seg": "Tải 1,49 tấn",
      "dt": "T33L"
     },
     {
@@ -247,7 +247,7 @@
      "minRetail": 309000000,
      "maxRetail": 314000000,
      "promo": 5000000,
-     "seg": "Tải 1,5 tấn",
+     "seg": "Tải 1,49 tấn",
      "dt": "T33L"
     },
     {
@@ -257,7 +257,7 @@
      "minRetail": 319000000,
      "maxRetail": 324000000,
      "promo": 5000000,
-     "seg": "Tải 1,5 tấn",
+     "seg": "Tải 1,49 tấn",
      "dt": "T33L"
     },
     {
@@ -267,7 +267,7 @@
      "minRetail": 325000000,
      "maxRetail": 330000000,
      "promo": 5000000,
-     "seg": "Tải 1,5 tấn",
+     "seg": "Tải 1,49 tấn",
      "dt": "T33L"
     },
     {
@@ -277,7 +277,7 @@
      "minRetail": 450000000,
      "maxRetail": 460000000,
      "promo": 5000000,
-     "seg": "Tải 3,5 tấn thùng ngắn",
+     "seg": "Tải 3,49 tấn thùng 5,2 m",
      "dt": "IZ65M Plus"
     },
     {
@@ -287,7 +287,7 @@
      "minRetail": 487000000,
      "maxRetail": 497000000,
      "promo": 5000000,
-     "seg": "Tải 3,5 tấn thùng ngắn",
+     "seg": "Tải 3,49 tấn thùng 5,2 m",
      "dt": "IZ65M Plus"
     },
     {
@@ -297,7 +297,7 @@
      "minRetail": 499000000,
      "maxRetail": 509000000,
      "promo": 5000000,
-     "seg": "Tải 3,5 tấn thùng ngắn",
+     "seg": "Tải 3,49 tấn thùng 5,2 m",
      "dt": "IZ65M Plus"
     },
     {
@@ -307,7 +307,7 @@
      "minRetail": 502000000,
      "maxRetail": 512000000,
      "promo": 5000000,
-     "seg": "Tải 3,5 tấn thùng ngắn",
+     "seg": "Tải 3,49 tấn thùng 5,2 m",
      "dt": "IZ65M Plus"
     },
     {
@@ -317,7 +317,7 @@
      "minRetail": 486000000,
      "maxRetail": 496000000,
      "promo": 10000000,
-     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "seg": "Tải 1,9–2,49 tấn thùng 6,2 m",
      "dt": "IZ60SL Plus"
     },
     {
@@ -327,7 +327,7 @@
      "minRetail": 529000000,
      "maxRetail": 539000000,
      "promo": 10000000,
-     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "seg": "Tải 1,9–2,49 tấn thùng 6,2 m",
      "dt": "IZ60SL Plus"
     },
     {
@@ -337,7 +337,7 @@
      "minRetail": 543000000,
      "maxRetail": 553000000,
      "promo": 10000000,
-     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "seg": "Tải 1,9–2,49 tấn thùng 6,2 m",
      "dt": "IZ60SL Plus"
     },
     {
@@ -347,7 +347,7 @@
      "minRetail": 547000000,
      "maxRetail": 557000000,
      "promo": 10000000,
-     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "seg": "Tải 1,9–2,49 tấn thùng 6,2 m",
      "dt": "IZ60SL Plus"
     },
     {
@@ -357,7 +357,7 @@
      "minRetail": 491000000,
      "maxRetail": 501000000,
      "promo": 10000000,
-     "seg": "Tải 3,45 tấn thùng dài",
+     "seg": "Tải 3,49 tấn thùng 6,2 m",
      "dt": "IZ71SL Plus"
     },
     {
@@ -367,7 +367,7 @@
      "minRetail": 534000000,
      "maxRetail": 544000000,
      "promo": 10000000,
-     "seg": "Tải 3,45 tấn thùng dài",
+     "seg": "Tải 3,49 tấn thùng 6,2 m",
      "dt": "IZ71SL Plus"
     },
     {
@@ -377,7 +377,7 @@
      "minRetail": 548000000,
      "maxRetail": 558000000,
      "promo": 10000000,
-     "seg": "Tải 3,45 tấn thùng dài",
+     "seg": "Tải 3,49 tấn thùng 6,2 m",
      "dt": "IZ71SL Plus"
     },
     {
@@ -387,9 +387,114 @@
      "minRetail": 552000000,
      "maxRetail": 562000000,
      "promo": 10000000,
-     "seg": "Tải 3,45 tấn thùng dài",
+     "seg": "Tải 3,49 tấn thùng 6,2 m",
      "dt": "IZ71SL Plus"
     }
+   ],
+   "profile": [
+    "Công ty TNHH Daehan Motors (DMC), thành lập 2015, 100% vốn Hàn Quốc, thành viên tập đoàn LVMC; sản xuất, lắp ráp xe tải nhẹ và van tại KCN Cơ khí ô tô TP.HCM",
+    "Tự công bố: TOP 5 nhà sản xuất xe tải nhẹ và van tại Việt Nam (sau Thaco, Suzuki, Isuzu, Hyundai); hơn 50 đại lý ủy quyền và 60 điểm bán toàn quốc; TERA100S hơn 10.000 xe lăn bánh",
+    "Chưa có số liệu doanh số, thị phần độc lập (Teraco không báo cáo VAMA): cần đối chiếu số đăng ký theo hãng"
+   ],
+   "specs": [
+    [
+     "TERA100S",
+     "990 kg",
+     "Xăng Mitsubishi 4G13S1 1,3L, Euro 4 (nguồn đại lý lệch công suất 92–95 mã lực)",
+     "T26 (990 kg)"
+    ],
+    [
+     "TERA-STAR / STAR PLUS",
+     "990 kg / 1,25 tấn, thùng 3,1 m",
+     "Xăng 1,5L GDI-DVVT (JL474QAK theo đa số nguồn; một số đại lý ghi khác)",
+     "T26 (990 kg)"
+    ],
+    [
+     "TERA150S",
+     "1.490 kg, thùng 3,55 m",
+     "Xăng DAM16KR 1,6L EFI-DVVT, Euro 5 (daehan.vn)",
+     "T33L (1.490 kg)"
+    ],
+    [
+     "TERA350 Plus",
+     "3,49 tấn, thùng 5,2 m",
+     "Dầu Isuzu JE493ZLQ5 2,77L turbo, 116 mã lực, 285 Nm, Euro 5; GVW 7.100 kg",
+     "IZ65M Plus (3.490 kg)"
+    ],
+    [
+     "TERA190SL Plus",
+     "1,9 tấn (một đại lý ghi 1,75 tấn), thùng 6,2 m",
+     "Dầu Isuzu JE493ZLQ5, 116 mã lực, 285 Nm",
+     "IZ60SL Plus (2.490 kg)"
+    ],
+    [
+     "TERA245SL Plus",
+     "2,49 tấn, thùng 6,2 m",
+     "Dầu Isuzu JE493ZLQ5",
+     "IZ60SL Plus (2.490 kg)"
+    ],
+    [
+     "TERA345SL Plus",
+     "3,49 tấn, thùng 6,2 m × 2,18 m",
+     "Dầu Isuzu JE493ZLQ5",
+     "IZ71SL Plus (3.495 kg)"
+    ],
+    [
+     "TERA-V6 / V8 van",
+     "V6 5 chỗ chở 790 kg; bản 2 chỗ: cần xác nhận",
+     "V6 xăng 1,5L JL474QAK GDI-DVVT; V8 xăng 1,6L",
+     "V56 / V65 (945 kg, 2 chỗ)"
+    ]
+   ],
+   "promoHistory": [
+    "Tháng 4/2026: TERA-V6 tặng 5 triệu tiền mặt; TERA-V8 tặng camera hành trình, bản quyền Vietmap",
+    "Tháng 6, 7, 9, 10/2026: ưu đãi tiền mặt đến 10 triệu đồng",
+    "Tháng 11/2026: quà tặng đến 10 triệu (phiếu nhiên liệu, bảo hiểm vật chất) cho STAR, V3, V6, V8, 150S, 350 Plus, dòng thùng 6,2 m; đại lý quảng bá thêm “hỗ trợ tài chính” (chưa rõ điều kiện)",
+    "Trả góp: đại lý quảng cáo “trả trước 80 triệu nhận xe” TERA STAR"
+   ],
+   "insight": [
+    "Teraco giữ mức khuyến mãi ổn định 5–10 triệu/tháng cả năm 2026, không chạy giảm giá sâu; cạnh tranh bằng giá niêm yết thấp và biên đại lý cao.",
+    "Dòng thùng dài 6,2 m máy Isuzu (190/245/345SL Plus) đối đầu trực tiếp IZ60SL/IZ71SL Plus: cùng tầm giá công bố, nên quyết định nằm ở ưu đãi, trả góp và dịch vụ.",
+    "TERA350 Plus thùng 5,2 m máy Isuzu đắt hơn IZ65M Plus 29,5 tr giá công bố: lợi thế rõ cho Đô Thành ở phân khúc 3,5 tấn.",
+    "Phân khúc dưới 1,5 tấn Teraco dùng máy xăng giá rẻ: sale talk Đô Thành nên nhấn độ bền, chi phí vận hành, giá trị bán lại."
+   ],
+   "sources": [
+    [
+     "daehan.vn – Tera350 Plus",
+     "https://daehan.vn/tera350-plus"
+    ],
+    [
+     "daehan.vn – Tera150S",
+     "https://daehan.vn/tera150s"
+    ],
+    [
+     "daehan.vn – Tera245SL Plus",
+     "https://daehan.vn/tera245sl-plus"
+    ],
+    [
+     "daehan.vn – giới thiệu",
+     "https://daehan.vn/gioi-thieu"
+    ],
+    [
+     "daehan.vn – ưu đãi T9/2026",
+     "https://daehan.vn/uu-dai-vang-cho-cac-dong-xe-teraco-trong-thang-9-2026"
+    ],
+    [
+     "Teraco Việt Hàn Bắc Giang (KM T11)",
+     "https://teracoviethan.com/"
+    ],
+    [
+     "teraco.vn – Tera Star",
+     "https://teraco.vn/san-pham/tera-star-990kg-1-25-tan/"
+    ],
+    [
+     "Ô tô An Sương – Tera100S",
+     "https://otoansuong.vn/xe-tai-tera-100"
+    ],
+    [
+     "bonbanh – thông số Tera-V",
+     "https://bonbanh.com/thong-so-ky-thuat-xe-teraco-tera-v"
+    ]
    ]
   }
  ]
