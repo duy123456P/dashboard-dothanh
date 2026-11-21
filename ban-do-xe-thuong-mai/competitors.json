@@ -6,8 +6,8 @@
    "name": "TERACO",
    "maker": "Công ty TNHH Daehan Motors (DMC), KCN Cơ khí ô tô TP.HCM, xã Bình Mỹ",
    "origin": "Lắp ráp tại TP.HCM",
-   "priceDoc": "Bảng giá số 383/2025/CV-DMC (24/12/2025), áp dụng từ 24/12/2025, gửi Đại lý 3S ủy quyền",
-   "promoDoc": "Thông báo 745/2026/TB-DMC (31/10/2026): CTKM tháng 11/2026",
+   "priceDoc": "Bảng giá số 383/2025/CV-DMC (24/12/2025), áp dụng từ 24/12/2025, vẫn đang áp dụng (Anh xác nhận 21/11/2026)",
+   "promoDoc": "Thông báo 745/2026/TB-DMC (31/10/2026): CTKM tháng 11/2026, đang áp dụng (hóa đơn 01–30/11/2026)",
    "promoRules": [
     "Tặng chi phí nhiên liệu (và bảo hiểm vật chất thân xe với V6, V8, STAR, STAR PLUS), quy đổi tiền mặt 5–10 triệu đồng/xe",
     "Áp dụng khách hàng cuối ký hợp đồng tại đại lý ủy quyền DMC toàn quốc; đại lý xuất hóa đơn 01/11–30/11/2026",
@@ -17,8 +17,7 @@
    "notes": [
     "Giá đã bao gồm VAT theo thông lệ bảng giá (cần xác nhận)",
     "Tải trọng ước theo tên model, cần xác nhận thông số kỹ thuật chính thức của Teraco",
-    "Giá bán tối đa (*) là trần giá đại lý được bán",
-    "Bảng giá áp dụng từ 24/12/2025: kiểm tra có bảng giá mới hơn không"
+    "Giá bán tối đa (*) là trần giá đại lý được bán"
    ],
    "items": [
     {
