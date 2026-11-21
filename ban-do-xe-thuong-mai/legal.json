@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-21",
- "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế. Nguyên văn điều khoản trích từ bản toàn văn trên LuatVietnam (21/11/2026); văn bản có dấu “Trích nguyên văn” là đã đối chiếu câu chữ, còn lại là tóm tắt từ nguồn dẫn kèm.",
+ "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế. Nguyên văn trích từ bản Công báo có chữ ký số (congbaocdn.chinhphu.vn) và bản toàn văn LuatVietnam, tra cứu 21/11/2026; văn bản có khối “Trích nguyên văn” là đã đối chiếu câu chữ, còn lại là tóm tắt từ nguồn dẫn kèm.",
  "docs": [
   {
    "id": "hp2025",
@@ -26,11 +26,15 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/tu-phap/nghi-quyet-203-2025-qh15-sua-doi-hien-phap-viet-nam-co-hieu-luc-tu-16-06-2025-402946-d1.html"
+    ],
+    [
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-sua-doi-Hien-phap-2013-655275.aspx"
     ]
    ],
-   "trich": ""
+   "trich": "Nghị quyết 203/2025/QH15, khoản 4 Điều 1 sửa đổi Điều 110 Hiến pháp: “Điều 110. 1. Các đơn vị hành chính của nước Cộng hòa xã hội chủ nghĩa Việt Nam được tổ chức thành hai cấp, gồm tỉnh, thành phố trực thuộc trung ương và các đơn vị hành chính dưới tỉnh, thành phố trực thuộc trung ương do luật định. 2. Đơn vị hành chính - kinh tế đặc biệt do Quốc hội thành lập. …”"
   },
   {
    "id": "gtgt2",
@@ -51,13 +55,17 @@
     "Không giảm: viễn thông, tài chính, ngân hàng, chứng khoán, bảo hiểm, bất động sản, sản phẩm kim loại, khai khoáng (trừ than), hàng hóa dịch vụ chịu thuế TTĐB (trừ xăng) (tóm tắt LuatVietnam)",
     "Chưa thấy văn bản kéo dài sau 31/12/2026"
    ],
-   "tacdong": "Giá bán, báo giá, hợp đồng giao xe xuyên năm. Xe chịu TTĐB (VAN có ≥2 hàng ghế, pickup chở người) thuộc nhóm loại trừ; xe tải phải đối chiếu mã hàng trong phụ lục.",
+   "tacdong": "Xe tải không chịu TTĐB nên thuộc diện được giảm (8%) nếu không nằm trong Phụ lục I; van, pick-up chịu TTĐB (Phụ lục II) không được giảm. Chuẩn bị chuyển về 10% từ 01/01/2027.",
    "viec": [
     "Kế toán thuế xác nhận mã hàng từng dòng xe có được giảm hay không",
     "Chuẩn bị bảng giá và điều khoản hợp đồng cho trường hợp trở lại 10% từ 01/01/2027",
     "Hợp đồng ký 2026 giao xe 2027: thỏa thuận rõ thuế suất theo thời điểm xuất hóa đơn"
    ],
    "nguon": [
+    [
+     "Công báo (bản có chữ ký số) – NĐ 174/2025",
+     "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2025/6/45374/57334-1-2025895-896174-2025-nd-cp.pdf"
+    ],
     [
      "LuatVietnam – NQ 204/2025",
      "https://luatvietnam.vn/thue/nghi-quyet-204-2025-qh15-cua-quoc-hoi-ve-giam-thue-gia-tri-gia-tang-403956-d1.html"
@@ -71,7 +79,7 @@
      "https://assets.kpmg.com/content/dam/kpmg/vn/pdf/2025/07/decree-174-extending-vat-reduction-to-2026-vi.pdf"
     ]
    ],
-   "trich": ""
+   "trich": "Nghị định 174/2025/NĐ-CP (Công báo số 895+896, 15/7/2025), Điều 1: “1. Giảm thuế giá trị gia tăng đối với các nhóm hàng hóa, dịch vụ đang áp dụng mức thuế suất 10%, trừ nhóm hàng hóa, dịch vụ sau: a) Viễn thông, hoạt động tài chính, ngân hàng, chứng khoán, bảo hiểm, kinh doanh bất động sản, sản phẩm kim loại, sản phẩm khai khoáng (trừ than). Chi tiết tại Phụ lục I ban hành kèm theo Nghị định này. b) Sản phẩm hàng hóa và dịch vụ chịu thuế tiêu thụ đặc biệt (trừ xăng). Chi tiết tại Phụ lục II ban hành kèm theo Nghị định này. … 2. Mức giảm thuế giá trị gia tăng: a) Cơ sở kinh doanh tính thuế giá trị gia tăng theo phương pháp khấu trừ được áp dụng mức thuế suất thuế giá trị gia tăng 8% đối với hàng hóa, dịch vụ quy định tại khoản 1 Điều này.” Khoản 1 Điều 2: “Nghị định này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025 đến hết ngày 31 tháng 12 năm 2026.”"
   },
   {
    "id": "gtgtlaw",
@@ -127,6 +135,10 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/luat-quan-ly-thue-2025-so-108-2025-qh15-421539-d1.html"
+    ],
+    [
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/toan-bo-diem-moi-luat-quan-ly-thue-2025-co-hieu-luc-tu-0172026-224912.html"
     ],
@@ -135,7 +147,7 @@
      "https://www.crowe.com/vn/vi-vn/news/decree-252-guiding-the-law-on-tax-administration-2025"
     ]
    ],
-   "trich": ""
+   "trich": "Luật Quản lý thuế 108/2025/QH15, Điều 52: “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026, trừ quy định tại khoản 2 Điều này. 2. Quy định tại Điều 13 và việc sử dụng hóa đơn điện tử của hộ kinh doanh, cá nhân kinh doanh quy định tại Điều 26 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026. 3. Luật Quản lý thuế số 38/2019/QH14 … ” (Thời hạn khai bổ sung 05 năm theo khoản 5 Điều 12: nội dung tóm tắt của LuatVietnam.)"
   },
   {
    "id": "hoadon",
@@ -160,6 +172,10 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/nghi-dinh-254-2026-nd-cp-huong-dan-thi-hanh-luat-quan-ly-thue-2025-ve-hoa-don-dien-tu-439381-d1.html"
+    ],
+    [
      "EY",
      "https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-254-2026-nd-cp-ve-hoa-don-dien-tu-va-chung-tu-dien-tu"
     ],
@@ -168,7 +184,7 @@
      "https://www.crowe.com/vn/vi-vn/news/key-invoice-changes-under-decree-no-254-2026"
     ]
    ],
-   "trich": ""
+   "trich": "Nghị định 254/2026/NĐ-CP, Điều 43: “1. Nghị định này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026. 2. Kể từ ngày Nghị định này có hiệu lực thi hành, các Nghị định sau đây hết hiệu lực thi hành: a) Nghị định số 123/2020/NĐ-CP ngày 19 tháng 10 năm 2020 của Chính phủ quy định về hóa đơn, chứng từ; b) Điều 1 Nghị định số 41/2022/NĐ-CP … ”"
   },
   {
    "id": "tndn",
@@ -181,12 +197,11 @@
     "Thuế TNDN"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Luật hiệu lực 01/10/2025; nguồn chưa thống nhất áp dụng từ kỳ tính thuế 2025 hay 2026",
-    "Chi phí được trừ khi đủ 3 điều kiện; chi không được trừ tại Điều 10 NĐ 320/2025, bổ sung nhóm 'khoản chi khác'",
-    "Mua hàng từ 5 triệu đồng phải có chứng từ thanh toán không dùng tiền mặt mới được trừ (theo một nguồn)",
-    "TT 20/2026/TT-BTC (12/3/2026) hướng dẫn chi tiết"
+    "Luật hiệu lực 01/10/2025, áp dụng từ kỳ tính thuế TNDN năm 2025 (theo LuatVietnam); thay Luật 14/2008/QH12",
+    "Chi phí được trừ phải có hóa đơn, chứng từ thanh toán không dùng tiền mặt (điểm c khoản 1 Điều 9), trừ trường hợp đặc thù do Chính phủ quy định",
+    "NĐ 320/2025 và TT 20/2026/TT-BTC hướng dẫn chi tiết (ngưỡng 5 triệu đồng theo hướng dẫn: cần đối chiếu NĐ 320)"
    ],
    "tacdong": "Chi phí hoa hồng đại lý, khuyến mại, hỗ trợ bán hàng, chi phí bảo hành phải đủ hồ sơ và thanh toán không dùng tiền mặt.",
    "viec": [
@@ -194,6 +209,10 @@
     "Chuyển mọi khoản chi từ 5 triệu sang thanh toán ngân hàng"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/luat-thue-thu-nhap-doanh-nghiep-2025-so-67-2025-qh15-404386-d1.html"
+    ],
     [
      "LuatVietnam – TT 20/2026",
      "https://luatvietnam.vn/thue/thong-tu-20-2026-tt-btc-quy-dinh-chi-tiet-luat-thue-thu-nhap-doanh-nghiep-428454-d1.html"
@@ -203,7 +222,7 @@
      "https://amis.misa.vn/232301/luat-thue-thu-nhap-doanh-nghiep-2025/"
     ]
    ],
-   "trich": ""
+   "trich": "Luật Thuế TNDN 67/2025/QH15, Điều 9 (Các khoản chi được trừ và không được trừ khi xác định thu nhập chịu thuế), điểm c khoản 1: “c) Các khoản chi có đủ hoá đơn, chứng từ thanh toán không dùng tiền mặt theo quy định của pháp luật, trừ các trường hợp đặc thù theo quy định của Chính phủ.” Khoản 2: “2. Các khoản chi không được trừ khi xác định thu nhập chịu thuế bao gồm: a) Khoản chi không đáp ứng đủ các điều kiện quy định tại khoản 1 Điều này; b) Khoản tiền phạt do vi phạm hành chính; c) Khoản chi được bù đắp bằng nguồn kinh phí khác; …”"
   },
   {
    "id": "tncn",
@@ -216,11 +235,11 @@
     "Thuế TNCN – tiền lương"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Giảm trừ gia cảnh: 15,5 triệu/tháng cho người nộp thuế, 6,2 triệu/tháng mỗi người phụ thuộc (từ kỳ tính thuế 2026)",
-    "Biểu lũy tiến rút từ 7 xuống 5 bậc (5%, 10%, 20%, 30%, 35% theo đa số nguồn)",
-    "Nguồn chưa thống nhất ngày áp dụng biểu 5 bậc (01/01/2026 hay 01/7/2026)"
+    "Giảm trừ: 15,5 triệu/tháng cho người nộp thuế, 6,2 triệu/tháng mỗi người phụ thuộc (khoản 1 Điều 10)",
+    "Luật hiệu lực 01/7/2026; quy định về tiền lương, tiền công, kinh doanh của cá nhân cư trú áp dụng từ kỳ tính thuế năm 2026 (Điều 29), tức áp dụng cho cả năm 2026",
+    "Biểu thuế lũy tiến từng phần tại Điều 9 (5 bậc theo đa số nguồn: cần đối chiếu bảng thuế suất)"
    ],
    "tacdong": "Thu nhập thực nhận của tư vấn bán hàng, kỹ thuật viên tăng; khấu trừ thuế trên hoa hồng, thưởng doanh số.",
    "viec": [
@@ -228,6 +247,10 @@
     "Truyền thông cho đội ngũ về thu nhập thực nhận tăng"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/thue/luat-thue-thu-nhap-ca-nhan-2025-so-109-2025-qh15-422733-d1.html"
+    ],
     [
      "Nhân Dân",
      "https://nhandan.vn/nang-muc-giam-tru-gia-canh-nop-thue-len-155-trieu-dongthang-post920317.html"
@@ -237,7 +260,7 @@
      "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/tong-hop-diem-moi-luat-thue-thu-nhap-ca-nhan-so-1092025qh15-217745.html"
     ]
    ],
-   "trich": ""
+   "trich": "Luật Thuế TNCN 109/2025/QH15, khoản 1 Điều 10 (Giảm trừ gia cảnh): “… Giảm trừ gia cảnh gồm: a) Mức giảm trừ đối với người nộp thuế là 15,5 triệu đồng/tháng (186 triệu đồng/năm); b) Mức giảm trừ đối với mỗi người phụ thuộc là 6,2 triệu đồng/tháng.” Điều 29: “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026, trừ trường hợp quy định tại khoản 2 Điều này. 2. Các quy định liên quan đến thu nhập từ kinh doanh, từ tiền lương, tiền công của cá nhân cư trú áp dụng từ kỳ tính thuế năm 2026.”"
   },
   {
    "id": "ttdb",
@@ -328,16 +351,21 @@
     "Thuế – phí"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
     "Bãi bỏ lệ phí môn bài từ 01/01/2026",
-    "Thể chế hóa Nghị quyết 68-NQ/TW về phát triển kinh tế tư nhân"
+    "Thể chế hóa Nghị quyết 68-NQ/TW về phát triển kinh tế tư nhân",
+    "Tóm tắt LuatVietnam: chấm dứt việc thu và nộp lệ phí môn bài kể từ 01/01/2026"
    ],
    "tacdong": "Công ty, chi nhánh, đại lý không còn khai nộp lệ phí môn bài từ năm 2026.",
    "viec": [
     "Kế toán ngừng kê khai môn bài từ 2026, xác nhận với cơ quan thuế quản lý"
    ],
    "nguon": [
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/doanh-nghiep/nghi-quyet-198-2025-qh15-cua-quoc-hoi-ve-mot-so-co-che-chinh-sach-dac-biet-phat-trien-kinh-te-tu-nhan-400419-d1.html"
+    ],
     [
      "Cổng Chính phủ (tra cứu)",
      "https://vbpl.vn"
@@ -355,7 +383,7 @@
    "lv": [
     "Lao động – tiền lương"
    ],
-   "tt": "hiệu lực",
+   "tt": "hiệu lực đến 31/12/2026, thay bởi NĐ 399/2026",
    "tin": "cao",
    "diem": [
     "Tháng: vùng I 5.310.000đ, II 4.730.000đ, III 4.140.000đ, IV 3.700.000đ",
@@ -380,11 +408,12 @@
      "https://baodautu.vn/dieu-chinh-luong-toi-thieu-vung-tai-34-tinh-thanh-tu-ngay-112026-d432501.html"
     ]
    ],
-   "trich": ""
+   "trich": "",
+   "het": "2026-12-31"
   },
   {
    "id": "bhxh",
-   "so": "Luật BHXH 41/2024/QH15; quy định lương cơ sở 2026",
+   "so": "Luật BHXH 41/2024/QH15 (Điều 31); quy định lương cơ sở 2026",
    "ten": "Bảo hiểm xã hội bắt buộc",
    "cq": "Quốc hội; Chính phủ",
    "bh": "2024-06-29",
@@ -406,6 +435,10 @@
    ],
    "nguon": [
     [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/lao-dong/luat-bao-hiem-xa-hoi-2024-so-41-2024-qh15-360809-d1.html"
+    ],
+    [
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/hoi-dap-phap-luat/muc-dong-bhxh-toi-da-tu-ngay-0172026-la-bao-nhieu-138091227.html"
     ],
@@ -414,7 +447,7 @@
      "https://plo.vn/tu-1-7-tang-muc-dong-bhxh-toi-da-len-506-trieu-dongthang-post909003.html"
     ]
    ],
-   "trich": ""
+   "trich": "Luật Bảo hiểm xã hội 41/2024/QH15, Điều 31 (Căn cứ đóng bảo hiểm xã hội), điểm đ khoản 1: “đ) Tiền lương làm căn cứ đóng bảo hiểm xã hội bắt buộc thấp nhất bằng mức tham chiếu và cao nhất bằng 20 lần mức tham chiếu tại thời điểm đóng.”"
   },
   {
    "id": "dlcn",
@@ -442,6 +475,10 @@
     "Đánh giá tác động xử lý dữ liệu theo NĐ 356/2025"
    ],
    "nguon": [
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/dan-su/luat-bao-ve-du-lieu-ca-nhan-2025-so-91-2025-qh15-405135-d1.html"
+    ],
     [
      "EY – NĐ 356",
      "https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-so-356-2025-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-va-bien-phap-thi-hanh-luat-bao-ve-du-lieu-ca-nhan"
@@ -482,6 +519,10 @@
    ],
    "nguon": [
     [
+     "LuatVietnam",
+     "https://luatvietnam.vn/doanh-nghiep/thong-tu-99-2025-tt-btc-huong-dan-che-do-ke-toan-doanh-nghiep-tu-01-01-2026-417085-d1.html"
+    ],
+    [
      "KPMG",
      "https://kpmg.com/vn/vi/home/phan-tich-chuyen-sau/2025/11/key-changes-in-vietnamese-accounting-system-for-enterprises.html"
     ],
@@ -515,6 +556,10 @@
     "Bổ sung thẩm định sở hữu khi ký đại lý mới"
    ],
    "nguon": [
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/doanh-nghiep/luat-doanh-nghiep-sua-doi-2025-so-76-2025-qh15-403856-d1.html"
+    ],
     [
      "KPMG",
      "https://kpmg.com/vn/vi/home/phan-tich-chuyen-sau/2025/07/new-law-on-enterprise.html"
@@ -784,19 +829,23 @@
     "Trạm sạc"
    ],
    "tt": "sắp hiệu lực 01/7/2027",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Áp dụng cho trạm sạc khu vực công cộng, nơi trông giữ xe tập trung, trạm dừng nghỉ; đối tượng gồm nhà sản xuất, nhập khẩu, chủ đầu tư, đơn vị vận hành",
-    "Không áp dụng cho trạm sạc nội bộ và thiết bị sạc không dây",
-    "Yêu cầu an toàn điện, phòng cháy chữa cháy, khả năng dùng chung (tương thích), đo lường và minh bạch; trạm thu tiền phải công khai thông tin giao dịch",
-    "Có lộ trình áp dụng cho trạm hiện hữu và trạm đang đầu tư"
+    "Thông tư 61/2026/TT-BCT ban hành QCVN 32:2026/BCT; hiệu lực 01/7/2027",
+    "Trụ sạc lắp đặt hợp pháp trước đó được tiếp tục sử dụng; trạm đang hoạt động thuộc phạm vi phải rà soát an toàn trong 06 tháng, khắc phục trong 24 tháng",
+    "Không áp dụng: trạm sạc bố trí bên trong công trình xây dựng (hầm, nhà để xe trong nhà…), thiết bị sạc không dây…; trạm ngoài trời hoặc dưới mái che độc lập vẫn thuộc phạm vi",
+    "Trụ sạc phải công bố hợp quy, gắn dấu hợp quy trước khi lưu thông; yêu cầu an toàn điện, PCCC, dùng chung, đo lường, công khai giao dịch"
    ],
-   "tacdong": "Trạm sạc tại đại lý chỉ phục vụ xe của mình (nội bộ) không thuộc phạm vi; nếu mở sạc thu tiền cho khách bên ngoài thì phải đạt QCVN 32 từ 01/7/2027.",
+   "tacdong": "Trạm sạc ngoài trời tại showroom, xưởng dịch vụ nếu thuộc phạm vi (khu vực công cộng, bãi đỗ tập trung) phải đạt QCVN 32 từ 01/7/2027; trạm trong nhà xưởng kín không thuộc phạm vi quy chuẩn này.",
    "viec": [
     "Khi đầu tư trạm sạc tại showroom/xưởng, chọn thiết bị đạt QCVN 32 ngay từ đầu",
     "Phân định rõ trạm nội bộ và trạm kinh doanh"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn) – TT 61/2026",
+     "https://luatvietnam.vn/khoa-hoc/thong-tu-61-2026-tt-bct-quy-chuan-ky-thuat-quoc-gia-ve-tru-sac-tram-sac-xe-dien-449309-d1.html"
+    ],
     [
      "LuatVietnam",
      "https://luatvietnam.vn/van-ban/xem-truoc-file-3e679a56-1615-a900-4f2e-cea53e111a48"
@@ -814,11 +863,11 @@
      "https://tienphong.vn/quy-dinh-moi-ve-tram-sac-xe-dien-post1882519.tpo"
     ]
    ],
-   "trich": ""
+   "trich": "Thông tư 61/2026/TT-BCT, Điều 2: “1. Thông tư này có hiệu lực thi hành kể từ ngày 01 tháng 7 năm 2027. 2. Trụ sạc đã được lắp đặt hợp pháp trước ngày Thông tư có hiệu lực thi hành được tiếp tục sử dụng. … 3. Đối với trạm sạc thuộc phạm vi điều chỉnh của Quy chuẩn đã hoạt động trước ngày Thông tư có hiệu lực thi hành, chủ đầu tư, chủ sở hữu, đơn vị vận hành có trách nhiệm: a) Rà soát việc đáp ứng các yêu cầu an toàn của Quy chuẩn trong thời hạn 06 tháng kể từ ngày Thông tư có hiệu lực thi hành; b) Hoàn thành việc khắc phục các nội dung chưa đáp ứng yêu cầu an toàn của Quy chuẩn trong thời hạn 24 tháng kể từ ngày Thông tư có hiệu lực thi hành.” QCVN 32:2026/BCT, mục 1.1.5: “Quy chuẩn này không áp dụng đối với: 1.1.5.1. Trạm sạc được bố trí trong phạm vi bên trong công trình xây dựng, bao gồm: các tầng hầm, tầng nửa hầm và tầng trên mặt đất; trong nhà để xe, khu vực đỗ xe trong nhà và các không gian khác được bao che một phần hoặc toàn bộ bởi các kết cấu xây dựng. Trạm sạc bố trí ngoài trời hoặc dưới mái che độc lập chỉ có chức năng che mưa, che nắng cho khu vực sạc không thuộc trường hợp quy định tại mục này. 1.1.5.2. Thiết bị sạc không dây; …”"
   },
   {
    "id": "ev_giadien",
-   "so": "Thông tư 60/2025/TT-BCT; Quyết định 14/2025/QĐ-TTg",
+   "so": "Quyết định 14/2025/QĐ-TTg (Phụ lục cơ cấu biểu giá, mục 3.2); Thông tư 60/2025/TT-BCT",
    "ten": "Giá bán điện cho trạm sạc xe điện",
    "cq": "Bộ Công Thương; Thủ tướng Chính phủ",
    "bh": "2025-05-29",
@@ -828,11 +877,12 @@
     "Trạm sạc"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Có nhóm giá riêng cho sạc xe điện; trạm, trụ sạc, tủ đổi pin phục vụ kinh doanh phải lắp công tơ riêng",
-    "Giá khoảng 1.534–4.212 đồng/kWh tùy cấp điện áp và khung giờ; thấp nhất ở trung áp giờ thấp điểm",
-    "Giờ thấp điểm 0h–6h các ngày; sạc tại nhà bằng công tơ sinh hoạt vẫn theo giá bậc thang"
+    "QĐ 14/2025/QĐ-TTg (29/5/2025) thay QĐ 28/2014/QĐ-TTg, hiệu lực từ ngày ký; bổ sung nhóm giá bán lẻ điện cho sạc xe điện",
+    "Giá sạc xe điện tính theo % giá bán lẻ điện bình quân: trung áp 118% bình thường, 71% thấp điểm, 174% cao điểm; hạ áp 125%, 75%, 195%",
+    "Trạm, trụ sạc, tủ đổi pin phục vụ kinh doanh lắp công tơ riêng (TT 60/2025/TT-BCT, hiệu lực 02/12/2025); giờ thấp điểm 0h–6h",
+    "Mức tuyệt đối khoảng 1.534–4.212 đ/kWh tùy cấp điện áp, khung giờ (theo báo chí, phụ thuộc giá bình quân từng thời kỳ)"
    ],
    "tacdong": "Chi phí năng lượng xe tải điện thấp khi sạc đêm tại bãi doanh nghiệp: luận điểm TCO mạnh cho khách đội xe.",
    "viec": [
@@ -840,6 +890,10 @@
     "Tư vấn khách đội xe lắp công tơ riêng, sạc 0h–6h"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn) – QĐ 14/2025",
+     "https://luatvietnam.vn/chinh-sach/quyet-dinh-14-2025-qd-ttg-cua-thu-tuong-chinh-phu-quy-dinh-ve-co-cau-bieu-gia-ban-le-dien-401724-d1.html"
+    ],
     [
      "Người Quan Sát",
      "https://nguoiquansat.vn/ap-dung-muc-gia-dien-rieng-cho-tram-sac-xe-dien-326449.html"
@@ -853,7 +907,7 @@
      "https://lsvn.vn/chinh-thuc-co-quy-dinh-rieng-ve-gia-dien-cho-xe-sac-dien-a166968.html"
     ]
    ],
-   "trich": ""
+   "trich": "Quyết định 14/2025/QĐ-TTg, Phụ lục cơ cấu biểu giá bán lẻ điện, mục 3.2: “3.2 Giá bán lẻ điện cho sạc xe điện (*) 3.2.1 Cấp điện áp từ trung áp trở lên (trên 01 kV): a) Giờ bình thường 118%; b) Giờ thấp điểm 71%; c) Giờ cao điểm 174%. 3.2.2 Cấp điện áp hạ áp đến 01 kV: a) Giờ bình thường 125%; b) Giờ thấp điểm 75%; c) Giờ cao điểm 195%.” (tỷ lệ so với giá bán lẻ điện bình quân). Khoản 1 Điều 7: “Quyết định này có hiệu lực thi hành kể từ ngày ký ban hành, thay thế Quyết định số 28/2014/QĐ-TTg …”"
   },
   {
    "id": "ev_tramdung",
@@ -972,7 +1026,7 @@
   },
   {
    "id": "ev_ct20",
-   "so": "Chỉ thị 20/CT-TTg",
+   "so": "Chỉ thị 20/CT-TTg (12/7/2025)",
    "ten": "Hạn chế phương tiện dùng nhiên liệu hóa thạch tại Hà Nội (vùng phát thải thấp)",
    "cq": "Thủ tướng Chính phủ; UBND Hà Nội",
    "bh": "2025-07-12",
@@ -982,17 +1036,22 @@
     "Chiến lược – định hướng"
    ],
    "tt": "đang triển khai thí điểm",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Mục tiêu: từ 01/7/2026 không còn xe máy xăng dầu trong Vành đai 1; hạn chế ô tô cá nhân nhiên liệu hóa thạch trong Vành đai 1, 2; từ 2030 mở rộng Vành đai 3",
-    "Thực tế: Hà Nội thí điểm vùng phát thải thấp tại 9 phường trong Vành đai 1 theo khung giờ; một nguồn nêu lùi một số mốc sang 01/01/2028",
-    "Chưa thấy quy định riêng hạn chế xe tải; hỗ trợ đổi xe máy điện 20% giá trị, tối đa 5 triệu đồng"
+    "Hà Nội: 01/7/2026 không xe mô tô, xe gắn máy nhiên liệu hóa thạch trong Vành đai 1",
+    "Từ 01/01/2028: hạn chế ô tô cá nhân nhiên liệu hóa thạch trong Vành đai 1, 2; từ 2030 mở rộng Vành đai 3",
+    "Nghiên cứu tăng lệ phí trước bạ, lệ phí biển số, giá trông giữ xe với phương tiện nhiên liệu hóa thạch ở khu trung tâm",
+    "Thực tế đang thí điểm vùng phát thải thấp theo khu vực, khung giờ; chỉ thị không nêu riêng xe tải"
    ],
    "tacdong": "Xu hướng vùng phát thải thấp ở đô thị lớn sẽ lan sang xe tải giao hàng nội đô: cần chuẩn bị xe tải nhẹ điện, van điện cho logistics chặng cuối.",
    "viec": [
     "Theo dõi quyết định của UBND Hà Nội, TP.HCM về vùng phát thải thấp với xe tải"
    ],
    "nguon": [
+    [
+     "LuatVietnam (bản toàn văn) – CT 20/2025",
+     "https://luatvietnam.vn/tai-nguyen/chi-thi-20-ct-ttg-2025-ngan-chan-va-giai-quyet-tinh-trang-o-nhiem-moi-truong-405421-d1.html"
+    ],
     [
      "VCCI",
      "https://www.vcci.com.vn/tin-tuc/ha-noi-cam-xe-may-chay-xang-dau-trong-vanh-dai-1-tu-thang-7-2026"
@@ -1006,11 +1065,11 @@
      "https://moc.gov.vn/vn/tin-tuc/1184/93216/ha-noi-se-thi-diem-cam-xe-xang--dau-theo-tung-khu-vuc.aspx"
     ]
    ],
-   "trich": ""
+   "trich": "Chỉ thị 20/CT-TTg, nhiệm vụ giao UBND thành phố Hà Nội: “Thực hiện các giải pháp, biện pháp để các tổ chức, cá nhân chuyển đổi phương tiện, lộ trình đến ngày 01 tháng 7 năm 2026 không có xe mô tô, xe gắn máy sử dụng nhiên liệu hóa thạch lưu thông trong Vành đai 1; từ ngày 01 tháng 01 năm 2028 không có xe mô tô, xe gắn máy, hạn chế xe ô tô cá nhân sử dụng nhiên liệu hóa thạch lưu thông trong đường Vành đai 1, Vành đai 2; từ năm 2030 tiếp tục mở rộng thực hiện trong đường Vành đai 3.” Cùng chỉ thị: “Nghiên cứu tăng lệ phí trước bạ, lệ phí đăng ký, cấp biển số phương tiện giao thông cơ giới, xe máy chuyên dùng, giá dịch vụ trông giữ phương tiện trong khu vực trung tâm đối với phương tiện sử dụng nhiên liệu hóa thạch …”"
   },
   {
    "id": "ev_epr",
-   "so": "Nghị định 110/2026/NĐ-CP",
+   "so": "Nghị định 110/2026/NĐ-CP (khoản 4 Điều 4; Phụ lục I mục B, E.1.1; Điều 24)",
    "ten": "Trách nhiệm tái chế sản phẩm, bao bì của nhà sản xuất, nhập khẩu (EPR), gồm pin, ắc quy",
    "cq": "Chính phủ",
    "bh": "2026-04-01",
@@ -1020,17 +1079,25 @@
     "Môi trường"
    ],
    "tt": "hiệu lực",
-   "tin": "cần đối chiếu",
+   "tin": "cao",
    "diem": [
-    "Thay thế, kế thừa NĐ 08/2022 (đã sửa bởi NĐ 05/2025, NĐ 48/2026), hiệu lực 25/5/2026",
-    "Tỷ lệ tái chế bắt buộc theo nguồn tổng hợp: ắc quy chì 12%, ắc quy loại khác 8%, pin sạc 8%; pin lithium, NiMH dùng cho phương tiện giao thông 0% (cần đối chiếu NĐ 110)",
-    "Doanh nghiệp ô tô công bố thông tin EPR trên website (ví dụ Toyota từ 25/5/2026)"
+    "Hiệu lực 25/5/2026 (Điều 24)",
+    "Nhà sản xuất, nhập khẩu phương tiện giao thông đường bộ có trách nhiệm tái chế với xe đưa ra thị trường từ 01/01/2027 (khoản 4 Điều 4)",
+    "Tỷ lệ tái chế bắt buộc nhóm E.1.1 (ô tô chở hàng, ô tô chở hàng chuyên dùng, ô tô chở người từ 9 người trở lên…): 0,5%; quy cách: phá dỡ, phân loại, thu hồi vật liệu đưa đi tái chế",
+    "Ắc quy chì 12%, ắc quy loại khác 8%, pin sạc nhiều lần 8%; pin Lithium, NiMH dùng cho phương tiện giao thông 0%",
+    "Gói hỗ trợ tái chế tối đa 20 tỷ đồng cho nhóm ắc quy, pin, điện – điện tử, phương tiện giao thông"
    ],
-   "tacdong": "Đô Thành là nhà sản xuất, lắp ráp: có trách nhiệm tái chế với ắc quy, dầu nhớt, lốp, bao bì; xe tải điện về sau thêm pin lithium.",
+   "tacdong": "Từ 01/01/2027, mỗi năm Đô Thành phải tái chế (tự phá dỡ, thuê đơn vị tái chế hoặc đóng góp tài chính vào Quỹ Bảo vệ môi trường) tối thiểu 0,5% khối lượng xe tải đã đưa ra thị trường, cộng nghĩa vụ với ắc quy, dầu nhớt, lốp, bao bì.",
    "viec": [
-    "Pháp chế xác nhận nghĩa vụ EPR của công ty theo NĐ 110/2026 và hạn công bố thông tin"
+    "Pháp chế – nhà máy lập phương án thực hiện EPR cho xe tải từ 01/01/2027: tự tái chế hay đóng góp Quỹ",
+    "Thống kê khối lượng xe tải đưa ra thị trường theo năm để tính nghĩa vụ 0,5%",
+    "Thu hồi xe cũ trong chương trình đổi cũ lấy mới để đáp ứng nghĩa vụ tái chế"
    ],
    "nguon": [
+    [
+     "Công báo (bản có chữ ký số) – NĐ 110/2026",
+     "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469301-1776647243_v1_1776647876_signed.pdf"
+    ],
     [
      "Bộ Công Thương",
      "https://moit.gov.vn/phat-trien-ben-vung/epr-viet-nam-hoan-thien-khung-phap-ly-voi-nghi-dinh-110-2026-nd-cp.html"
@@ -1040,7 +1107,7 @@
      "https://vneconomy.vn/cu-the-ty-le-tai-che-san-pham-bao-bi-cua-cac-nha-san-xuat-nhap-khau.htm"
     ]
    ],
-   "trich": ""
+   "trich": "Nghị định 110/2026/NĐ-CP (Công báo số 229, 19/4/2026), khoản 4 Điều 4: “4. Nhà sản xuất, nhập khẩu phương tiện giao thông đường bộ có trách nhiệm tái chế đối với phương tiện giao thông đường bộ do mình sản xuất, nhập khẩu được đưa ra thị trường từ ngày 01 tháng 01 năm 2027.” Phụ lục I, mục E.1.1: “Ô tô chở hàng, ô tô chở hàng chuyên dùng; ô tô chở người có số người cho phép chở từ 09 người trở lên (không kể người lái xe) … — Tỷ lệ tái chế bắt buộc 0,5% — Quy cách: Phá dỡ, phân loại, thu hồi theo từng loại vật liệu bao gồm kim loại, nhựa và các vật liệu khác để đưa đi tái chế.” Mục B: “B.1.1. Ắc quy chì 12%; B.1.2. Ắc quy các loại khác 08%; B.2.1. Pin sạc nhiều lần (trừ Pin Lithium, Pin Nickel-Metal Hydrid sử dụng cho phương tiện giao thông) 08%; Pin Lithium, Pin Nickel-Metal Hydrid sử dụng cho phương tiện giao thông 0%.” Khoản 1 Điều 24: “Nghị định này có hiệu lực thi hành từ ngày 25 tháng 5 năm 2026.”"
   },
   {
    "id": "ev_chienluoc",
@@ -1076,6 +1143,36 @@
     ]
    ],
    "trich": ""
+  },
+  {
+   "id": "luong399",
+   "so": "Nghị định 399/2026/NĐ-CP",
+   "ten": "Lương tối thiểu vùng từ 01/01/2027",
+   "cq": "Chính phủ",
+   "bh": "2026-11-03",
+   "hl": "2027-01-01",
+   "lv": [
+    "Lao động – tiền lương"
+   ],
+   "tt": "sắp hiệu lực 01/01/2027",
+   "tin": "cao",
+   "diem": [
+    "Tháng: vùng I 5.700.000đ, II 5.080.000đ, III 4.450.000đ, IV 4.040.000đ",
+    "Giờ: 27.400đ, 24.400đ, 21.400đ, 19.400đ",
+    "NĐ 293/2025 hết hiệu lực từ 01/01/2027"
+   ],
+   "trich": "Nghị định 399/2026/NĐ-CP, khoản 1 Điều 3: “Quy định mức lương tối thiểu tháng và mức lương tối thiểu giờ đối với người lao động làm việc cho người sử dụng lao động theo vùng như sau: Vùng I 5.700.000 đồng/tháng, 27.400 đồng/giờ; Vùng II 5.080.000, 24.400; Vùng III 4.450.000, 21.400; Vùng IV 4.040.000, 19.400.” Điều 5: “1. Nghị định này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2027. 2. Nghị định số 293/2025/NĐ-CP ngày 10 tháng 11 năm 2025 của Chính phủ quy định mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động hết hiệu lực kể từ ngày Nghị định này có hiệu lực thi hành.”",
+   "tacdong": "Quỹ lương tối thiểu của công ty và đại lý tăng khoảng 7,3% (vùng I) từ 2027; sàn đóng BHTN, trần BHTN (20 lần) tăng theo.",
+   "viec": [
+    "Nhân sự rà soát lương thấp nhất tại từng địa bàn trước 01/01/2027",
+    "Cập nhật ngân sách lương 2027 của công ty và hướng dẫn đại lý"
+   ],
+   "nguon": [
+    [
+     "LuatVietnam (bản toàn văn)",
+     "https://luatvietnam.vn/lao-dong/nghi-dinh-399-2026-nd-cp-quy-dinh-muc-luong-toi-thieu-cho-nguoi-lao-dong-theo-hop-dong-454318-d1.html"
+    ]
+   ]
   }
  ],
  "calendar": [
@@ -1177,6 +1274,20 @@
    "viec": "Hết ưu đãi TTĐB 3%/1%/2% và lệ phí trước bạ 0% cho ô tô điện",
    "cs": "Luật 09/2026/QH16; NĐ 202/2026",
    "ev": 1
+  },
+  {
+   "t": "once",
+   "date": "2027-01-01",
+   "viec": "Lương tối thiểu vùng mới theo NĐ 399/2026 (vùng I 5.700.000đ)",
+   "cs": "NĐ 399/2026/NĐ-CP",
+   "ev": 1
+  },
+  {
+   "t": "once",
+   "date": "2027-01-01",
+   "viec": "Bắt đầu trách nhiệm tái chế xe tải đưa ra thị trường (0,5%)",
+   "cs": "khoản 4 Điều 4 NĐ 110/2026/NĐ-CP",
+   "ev": 1
   }
  ],
  "trend": [
@@ -1186,11 +1297,11 @@
   ],
   [
    "2027",
-   "Sạc tại trạm dừng nghỉ hoàn thiện (01/01); Hà Nội, TP.HCM siết khí thải xe 2017–2021; LPTB 0% xe điện theo NĐ 202 (01/3); QCVN 32 trạm sạc (01/7)"
+   "Sạc tại trạm dừng nghỉ hoàn thiện (01/01); Hà Nội, TP.HCM siết khí thải xe 2017–2021; LPTB 0% xe điện theo NĐ 202 (01/3); QCVN 32 trạm sạc (01/7); trách nhiệm tái chế ô tô (NĐ 110, 01/01); lương tối thiểu mới (NĐ 399)"
   ],
   [
    "2028",
-   "Hà Nội, TP.HCM: xe sản xuất từ 2022 phải đạt Mức 5 (01/01/2028)"
+   "Hà Nội, TP.HCM: xe sản xuất từ 2022 phải đạt Mức 5 (01/01/2028); Hà Nội hạn chế ô tô cá nhân xăng dầu trong Vành đai 1, 2 (CT 20)"
   ],
   [
    "2029",
