@@ -118,7 +118,33 @@ def main():
             by_dm[(y, dl, mo)] += 1; total[y] += 1
             if pv: by_pm[(y, pv, mo)] += 1
             else: nop += 1
-    out = {"updated": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=7))).strftime("%Y-%m-%d %H:%M"),
+    # 3. Tab "Đánh giá KH 2027": mùa vụ (từ dự báo cơ sở theo mùa vụ 2025), KH 2027 theo tháng / đại lý / model, dự báo ERP
+    dg = sec("dg", "cp"); plan = {}
+    for m in re.finditer(r'Plotly\.newPlot\(\s*"[^"]+",\s*(\[.*?\]),\s*(\{.*?\}),\s*\{"displayModeBar', dg, flags=re.S):
+        for t in json.loads(m.group(1)):
+            nm, x, y = t.get("name"), arr(t.get("x")), arr(t.get("y"))
+            if nm == "KH 2027 theo tháng": plan["kh27m"] = y
+            elif nm and nm.startswith("Dự báo cơ sở (theo mùa vụ"): plan["erpBase27m"] = y
+            elif nm == "Thận trọng" and isinstance(x, list) and len(x) == 12: plan["erpLow27m"] = y
+            elif nm == "Kế hoạch nhập": plan["msImport27m"] = y
+            elif nm == "Kế hoạch bán": plan["msSell27m"] = y
+            elif nm == "KH 2027" and isinstance(x, list) and x and str(x[0]).startswith("IZ"): plan["models"] = x; plan["kh27model"] = y
+            elif nm == "Mức đăng ký T09 quy năm": plan["reg09model"] = y
+            elif nm == "Dự báo cơ sở" and isinstance(x, list) and x and str(x[0]).startswith("IZ"): plan["erpBase27model"] = y
+    for t in re.finditer(r"<table.*?</table>", dg, flags=re.S):
+        h = rows(t.group(0))
+        if h and h[0][:4] == ["Đại lý", "Vùng", "Bán lẻ 2026 quy năm", "KH 2027"]:
+            plan["dealers"] = []
+            for r in h[1:]:
+                rg = re.match(r"([\d,.]+)\s*\(([\d,.]+)\s*-\s*([\d,.]+)\)", r[5] or "")
+                plan["dealers"].append({"name": r[0], "region": r[1], "run26": num(r[2]), "kh27": num(r[3]), "erpBase": num(rg.group(1)) if rg else None, "erpLow": num(rg.group(2)) if rg else None, "erpHigh": num(rg.group(3)) if rg else None, "class": r[7]})
+    kpi = re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", re.sub(r"<script.*?</script>", "", dg, flags=re.S)))
+    mm = re.search(r"Dự báo cơ sở 2027 ([\d,]+) xe khoảng ([\d,]+) đến ([\d,]+)", kpi); kk = re.search(r"KH kinh doanh 2027 ([\d,]+) xe", kpi)
+    if mm: plan["erpTotal27"] = [num(mm.group(1)), num(mm.group(2)), num(mm.group(3))]
+    if kk: plan["kh27"] = num(kk.group(1))
+    if plan.get("erpBase27m"):
+        b = plan["erpBase27m"]; avg = sum(b) / len(b); plan["season"] = [round(v / avg, 4) for v in b]
+    out = {"plan": plan, "updated": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=7))).strftime("%Y-%m-%d %H:%M"),
            "sourceUpdated": upd.group(1) if upd else "", "source": URL,
            "note": "Kế hoạch/thực hiện 2026 theo Tổng hợp TDBH; xe theo model đếm từ danh sách CSI (unique số khung, theo năm). Không lưu thông tin cá nhân khách hàng.",
            "missu": sorted(MISSU), "nat": nat, "dealers": list(dealers.values()),
