@@ -90,6 +90,7 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .maptools{position:absolute;right:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:62%;z-index:2}
 .maptools button{font-size:12px;padding:6px 10px;background:rgba(5,11,22,.6)}
 .maptools button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+.maptools #btnBoard{background:linear-gradient(135deg,#16a0bd,#4b8fe0);color:#fff;border-color:#7fe3ff;font-weight:700}
 .exag{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);
   background:rgba(5,11,22,.6);border:1px solid var(--glass-line);border-radius:10px;padding:4px 10px;z-index:2}
 .exag input{width:120px}
@@ -228,6 +229,9 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 #ai header b{font-family:var(--display);font-size:18px;text-transform:uppercase;letter-spacing:.06em}
 #ai header .x{margin-left:auto;padding:4px 10px}
 .aiq{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--glass-line)}
+#bChat.chatting .aiq{max-height:44px;overflow:hidden;transition:max-height .25s ease;position:relative;padding-top:8px;padding-bottom:8px}
+#bChat.chatting .aiq:hover,#bChat.chatting .aiq:focus-within{max-height:320px}
+#bChat.chatting .aiq .aiql::after{content:" ▾ trỏ chuột để xem thêm";font-weight:400;opacity:.7;text-transform:none;letter-spacing:0}
 .aiq button{font-size:12px;padding:5px 10px;border-radius:999px}
 .aiq .seg button{border-radius:0;padding:4px 10px}
 .btabs{display:flex;border-bottom:1px solid var(--glass-line);padding:0 8px;flex:none}
@@ -643,6 +647,10 @@ function compute(){
     r._tgt26 = Math.round(r._market * 1.08 * r._tgtShare / 100);
     r._comp = COMP.map(([k,l]) => [l, +r[k]||0]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
   });
+  // một thế trận duy nhất cho toàn hệ thống: dùng chấm điểm của Phòng chiến lược HĐQT (xếp hạng 34 tỉnh, số bán, tồn, đối thủ)
+  const CVx = window.__CV; if(CVx && CVx.boardPosture){ try{ CVx.postureReset && CVx.postureReset(); rows.forEach(r => { const P = CVx.boardPosture(r);
+    r._post = {fast:"attack", slow:"open", hold:"hold", guer:"guerrilla"}[P.k]; r._attr = Math.round(P.attr*100); r._str = Math.round(P.str*100);
+    r._tgtShare = {attack:12, open:8, hold:15, guerrilla:5}[r._post]; r._tgt26 = Math.round(r._market * 1.08 * r._tgtShare / 100); }); }catch(e){ console.warn(e); } }
   ["_market","grdp","pop","_gpc","_uio"].forEach(key => [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }));
 }
 const METRICS = {
@@ -1145,13 +1153,13 @@ function wireCtrRows(root){ root.querySelectorAll(".crow").forEach(b => b.addEve
 const ECON = ["Nông – lâm – thủy sản","Công nghiệp – xây dựng","Dịch vụ","Thuế SP trừ trợ cấp"];
 const ECON_COL = ["#4fd17a","#ff9f45","#46c8ff","#8ea7c7"];
 const POST = {
-  attack:{label:"Tổng tấn công", col:"#ff4d8d", desc:"Thị trường lớn, ta đã có lực: dồn hàng, giành thị phần.",
+  attack:{label:"Đánh nhanh, thắng nhanh", col:"#ff4d8d", desc:"Thị trường hấp dẫn, Đô Thành đã có chỗ đứng: dồn lực 30–90 ngày giành thị phần.",
     acts:["Giao chỉ tiêu thị phần cao, chiến dịch bán đội xe (fleet) cho doanh nghiệp vận tải lớn, KCN, cảng.","Đủ xe sẵn kho các dòng chủ lực; gói tài chính 70–80%, giao nhanh trong 72 giờ.","Hậu mãi 24/7, xe cứu hộ, kho phụ tùng tại chỗ để khóa chân khách hàng."]},
-  open:{label:"Mở mặt trận", col:"#ffc35a", desc:"Thị trường lớn, ta còn mỏng: đầu tư điểm bán và dịch vụ.",
+  open:{label:"Đánh chậm, thắng chắc", col:"#ffc35a", desc:"Thị trường hấp dẫn, nội lực còn mỏng: xây mạng lưới, dịch vụ 12–24 tháng.",
     acts:["Mở thêm đại lý cấp 2 hoặc điểm dịch vụ ủy quyền tại cửa ngõ KCN/đầu mối logistics.","Đội bán hàng lưu động, lái thử tại công trình, hội chợ; liên kết ngân hàng địa phương.","Bám sát danh sách chủ xe từ UIO để chào thay thế xe cũ."]},
-  hold:{label:"Phòng thủ – khai thác", col:"#46e3ff", desc:"Thị trường vừa/nhỏ, ta đã phủ tốt: giữ khách, tối ưu lợi nhuận.",
+  hold:{label:"Giữ chắc, khai thác", col:"#46e3ff", desc:"Thị trường vừa/nhỏ, Đô Thành mạnh: giữ khách, tối ưu lợi nhuận, tồn kho.",
     acts:["Chăm sóc khách hàng hiện hữu, gói bảo dưỡng định kỳ, phụ tùng chính hãng.","Bán chéo thùng chuyên dùng, bảo hiểm, tài chính; khai thác xe đã qua sử dụng.","Kiểm soát chi phí điểm bán, chia sẻ tồn kho trong khu vực."]},
-  guerrilla:{label:"Du kích – chọn lọc", col:"#8ea7c7", desc:"Thị trường nhỏ, ta chưa có lực: đánh theo mùa vụ, chi phí thấp.",
+  guerrilla:{label:"Du kích, chọn lọc", col:"#8ea7c7", desc:"Thị trường nhỏ, nội lực yếu: đánh theo mùa vụ, dự án, chi phí thấp.",
     acts:["Đại lý vệ tinh hoặc điểm dịch vụ liên kết; xưởng lưu động theo mùa vụ nông sản.","Tập trung 1–2 phân khúc chủ lực của tỉnh, bán qua HTX, nhà thầu, thương lái.","Theo dõi dự án hạ tầng (cao tốc, cửa khẩu) để vào đúng thời điểm."]}
 };
 const MONTHS = ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12"];
@@ -1644,7 +1652,7 @@ function greet(){
   addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Trong họp anh/chị cứ gõ thẳng: \`122.235 × 8%\`, \`gộp Hà Nội, Bắc Ninh, Hưng Yên\`, \`tách TP. Hồ Chí Minh\`: em trả lời ngay. Các tab **Tính nhanh**, **Giá trị SP** (so sánh TCO) và **Sale talk** dùng được cả khi không có AI.\n\n Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực, 50 đại lý, 25 trạm dịch vụ và số bán lẻ lũy kế T10/2026 của từng đại lý.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
   if(aiDisabled) aiState.textContent = "Báo cáo tức thì dùng được ở mọi nơi; Ben phân tích chỉ chạy khi mở trang trong Claude.";
 }
-function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+function addMsg(role, html){ if(role === "u"){ const bc = document.getElementById("bChat"); if(bc) bc.classList.add("chatting"); } const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
 function mdToHtml(md){
   const lines = esc(md).split("\n"); let html = "", list = null, table = [];
   const inline = s0 => { const L = []; let s = s0.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, t, u) => { L.push(`<a ${/google\.com\/maps/.test(u) ? 'class="gm" ' : ""}href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>`); return "\u0001" + (L.length - 1) + "\u0002"; });

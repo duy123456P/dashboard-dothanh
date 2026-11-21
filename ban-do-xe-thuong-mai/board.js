@@ -51,7 +51,7 @@ const MET = [
   ["tx12", "Đô Thành", "Bán lẻ 12 tháng (TT 100%)", "xe", r => A(r).tx12 || null, 1, "file giao dịch từng xe"],
   ["dealers", "Đô Thành", "Đại lý Đô Thành", "điểm", r => (r._c4 || 0) + (r._c3 || 0), 1, "mạng lưới"],
   ["inv", "Đô Thành", "Tồn đại lý 21/11", "xe", r => A(r).inv || null, -1, "file tồn SR"],
-  ["cover", "Đô Thành", "Tháng bán của tồn", "tháng", r => { const x = A(r); return x.inv ? (x.invLe ? x.inv / (x.invLe / invRate()) : 99) : null; }, -1, "tồn SR / bán lẻ T11"],
+  ["cover", "Đô Thành", "Tháng bán của tồn", "tháng", r => { const x = A(r); return x.inv ? (x.tx12 ? x.inv / (x.tx12 / 12) : x.invLe ? x.inv / (x.invLe / invRate()) : 99) : null; }, -1, "tồn SR 21/11 / bán lẻ bình quân 12 tháng"],
   ["f27", "Đô Thành", "Dự báo 2027", "xe", r => A(r).f27 || null, 1, "mô hình dự báo"],
   ["kh27", "Đô Thành", "KH 2027", "xe", r => A(r).kh27 || null, 0, "Đánh giá KH 2027 (ERP)"],
   ["gap27", "Đô Thành", "Dự báo / KH 2027", "%", r => { const x = A(r); return x.kh27 ? x.f27 / x.kh27 * 100 : null; }, 1, "dự báo / KH"],
@@ -185,7 +185,8 @@ dlg.addEventListener("click", e => { const names = [...sel.options].map(o => o.v
   if(e.target.id === "bdBen"){ const md = boardMd(sel.value); dlg.close(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phòng chiến lược " + sel.value); const b = CV.addMsg("a", ""); CV.finishBubble(b, md, false, "Phòng chiến lược " + sel.value, true); } });
 // nút trên thanh công cụ bản đồ + trên trang
 const tools = document.querySelector(".maptools"); if(tools){ const b = document.createElement("button"); b.type = "button"; b.id = "btnBoard"; b.className = "primary"; b.textContent = "Phòng chiến lược HĐQT"; b.addEventListener("click", () => open()); tools.prepend(b); }
-CV.openBoard = open; CV.boardPosture = posture;
+CV.openBoard = open; CV.boardPosture = posture; CV.postureReset = () => { RK = null; cache = null; };
+try{ CV.renderAll && CV.renderAll(); }catch(e){ console.warn(e); }
 
 function boardMd(name){
   const r = CV.findRow(name); if(!r) return "Không tìm thấy tỉnh.";
