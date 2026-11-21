@@ -201,7 +201,21 @@
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão",
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 9.25,
+    "rank": null,
+    "note": "9 tháng 2026; UBND TP ước 9–9,5% (lấy giữa khoảng)"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Nhân Dân: GRDP nhiều tỉnh 9 tháng 2026",
+     "https://nhandan.vn/tang-truong-grdp-nhieu-tinh-thanh-pho-9-thang-nam-2026-vuot-muc-dat-ra-post993624.html"
+    ]
+   ]
+  }
  },
  {
   "name": "Lai Châu",
@@ -292,7 +306,21 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 9.62,
+    "rank": 15,
+    "note": "9 tháng 2026"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Nhân Dân: Lai Châu quyết tâm tăng trưởng hai con số",
+     "https://nhandan.vn/lai-chau-but-toc-quyet-tam-tang-truong-hai-con-so-post996183.html"
+    ]
+   ]
+  }
  },
  {
   "name": "Điện Biên",
@@ -383,7 +411,21 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 9.81,
+    "rank": null,
+    "note": "9 tháng 2026; quý III 11,67%; GRDP 9 tháng 23.721 tỷ (giá SS 2020)"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Thống kê Điện Biên: KT-XH 9 tháng 2026",
+     "https://thongkedienbien.nso.gov.vn/thong-tin-kinh-te-xa-hoi/tinh-hinh-kinh-te-xa-hoi-tinh-dien-bien-thang-9-va-9-thang-nam-2026-645.html"
+    ]
+   ]
+  }
  },
  {
   "name": "Sơn La",
@@ -576,7 +618,21 @@
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 7.52,
+    "rank": null,
+    "note": "9 tháng 2026; mục tiêu năm 10,61%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Vietnambiz: GRDP 9 tháng 2026 của 34 tỉnh (Cục Thống kê)",
+     "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+    ]
+   ]
+  }
  },
  {
   "name": "Quảng Ninh",
@@ -780,6 +836,10 @@
     [
      "VietnamPlus: GRDP 9 tháng 2026 34 tỉnh",
      "https://www.vietnamplus.vn/tang-truong-grdp-9-thang-nam-2026-cua-34-tinh-thanh-pho-post1139792.vnp"
+    ],
+    [
+     "Báo Văn hóa: Thanh Hóa dẫn đầu Bắc Trung Bộ về quy mô GRDP 2025",
+     "https://baovanhoa.vn/thanh-hoa-dan-dau-bac-trung-bo-ve-quy-mo-grdp-nam-2025-183759.html"
     ]
    ],
    "grdp9m26": {
@@ -1089,7 +1149,21 @@
    "“Cửa khẩu thông suốt”: dịch vụ nhanh cho đầu kéo, xe lạnh xuất khẩu; kho phụ tùng sát cửa khẩu",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 7.96,
+    "rank": null,
+    "note": "9 tháng 2026; quý III 8,93%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VietnamPlus: Cao Bằng tháo gỡ điểm nghẽn quý 4",
+     "https://www.vietnamplus.vn/cao-bang-tap-trung-thao-go-diem-nghen-tao-du-dia-tang-truong-trong-quy-4-post1140632.vnp"
+    ]
+   ]
+  }
  },
  {
   "name": "Tuyên Quang",
@@ -1189,7 +1263,21 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 8.04,
+    "rank": null,
+    "note": "9 tháng 2026; quý III 8,26%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VietnamPlus: Tuyên Quang 9 tháng 2026",
+     "https://www.vietnamplus.vn/tuyen-quang-chi-so-san-xuat-cong-nghiep-9-thang-uoc-tang-9-so-voi-cung-ky-post1141570.vnp"
+    ]
+   ]
+  }
  },
  {
   "name": "Lào Cai",
@@ -1289,7 +1377,21 @@
    "“Mùa trái Tây Bắc”: kiểm tra phanh, hộp số, thùng lạnh trước mùa mận, xoài; cứu hộ đèo dốc",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 9.09,
+    "rank": null,
+    "note": "9 tháng 2026; quý III 10,58% (#10)"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Công Luận: Lào Cai GRDP 9 tháng 9,09%",
+     "https://congluan.vn/lao-cai-tang-truong-grdp-9-thang-dat-909-phan-dau-tang-truong-ca-nam-tren-10-post362711.html"
+    ]
+   ]
+  }
  },
  {
   "name": "Thái Nguyên",
@@ -1501,7 +1603,21 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh trước mùa khô; xưởng lưu động tại công trường lớn"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 10.01,
+    "rank": null,
+    "note": "9 tháng 2026; bằng Đồng Nai"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Vietnambiz: GRDP 9 tháng 2026 của 34 tỉnh (Cục Thống kê)",
+     "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+    ]
+   ]
+  }
  },
  {
   "name": "Bắc Ninh",
@@ -2061,7 +2177,21 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 8.42,
+    "rank": 24,
+    "note": "9 tháng 2026; quý III 9,57%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "VnEconomy (Báo Mới): Quảng Trị GRDP 9 tháng 8,42%",
+     "https://baomoi.com/quang-tri-tang-truong-grdp-8-42-sau-9-thang-c56244550.epi"
+    ]
+   ]
+  }
  },
  {
   "name": "Đà Nẵng",
@@ -2489,6 +2619,10 @@
     [
      "Báo Gia Lai: KT-XH tiếp tục tăng trưởng khá",
      "https://baogialai.com.vn/kinh-te-xa-hoi-gia-lai-tiep-tuc-da-tang-truong-kha-post601550.html"
+    ],
+    [
+     "Thống kê Gia Lai: GRDP 2025 tăng 7,2%",
+     "https://thongkegialai.nso.gov.vn/tin-tuc/28"
     ]
    ],
    "grdp9m26": {
@@ -2604,7 +2738,21 @@
    "“Chạy mùa khô”: kiểm tra két nước, điều hòa, lốp cho mùa nắng nóng; ưu đãi phụ tùng thay thế",
    "“Đồng hành mùa bão”: kiểm tra miễn phí trước tháng 9, đường dây cứu hộ 24/7, hỗ trợ sửa chữa xe ngập nước sau bão"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 11.21,
+    "rank": null,
+    "note": "9 tháng 2026; UBND tỉnh ước; quý III theo Cục Thống kê 10,66%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Cổng TT Khánh Hòa: GRDP 9 tháng 2026 ước 11,21%",
+     "https://khanhhoa.gov.vn/vi/hoat-dong-cua-lanh-dao-tinh/9-thang-nam-2026-khanh-hoa-tang-truong-grdp-uoc-dat-11-21"
+    ]
+   ]
+  }
  },
  {
   "name": "Lâm Đồng",
@@ -2781,7 +2929,7 @@
   "ethnic": "Kinh ~70%; Ê Đê ~13%, Nùng, Tày, M'nông",
   "specialties": "Cà phê Buôn Ma Thuột, sầu riêng, bò một nắng, cá ngừ đại dương Phú Yên",
   "gpc2025": null,
-  "carReg2025": null,
+  "carReg2025": 12029,
   "reg": 0,
   "uio": 0,
   "c_thaco": 0,
@@ -2840,6 +2988,10 @@
     [
      "VietnamPlus: Đắk Lắk thúc đẩy tăng trưởng cuối năm",
      "https://www.vietnamplus.vn/dak-lak-tap-trung-cao-nhat-cho-muc-tieu-tang-truong-cua-ca-nam-nay-post1139604.vnp"
+    ],
+    [
+     "Báo Đắk Lắk: năm 2025 hơn 12.000 ô tô đăng ký mới",
+     "https://baodaklak.vn/xa-hoi/202512/nam-2025-tinh-dak-lak-co-hon-12000-o-to-dang-ky-moi-5dd1de6/"
     ]
    ],
    "grdp9m26": {
@@ -2971,6 +3123,10 @@
     [
      "Thời báo Tài chính: TP.HCM thu hút 19,1 tỷ USD FDI 10 tháng",
      "https://thoibaotaichinhvietnam.vn/tp-ho-chi-minh-thu-hut-19-1-ty-usd-fdi-sau-10-thang-mo-rong-co-hoi-don-von-quoc-te-206268.html"
+    ],
+    [
+     "Vietnambiz: GRDP 9 tháng 2026 của 34 tỉnh (Cục Thống kê)",
+     "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
     ]
    ],
    "publicInv": {
@@ -2994,7 +3150,12 @@
      ],
      "impact": "Khách giao hàng nội đô cần xe dưới 2,5 tấn chạy ngoài giờ cao điểm: T26, T33L, van V56/V65, IZ45S; IZ65M, IZ71SL phục vụ tuyến ngoại thành, KCN, chạy đêm. Nguồn tổng hợp thương mại: đối chiếu văn bản gốc trước khi tư vấn."
     }
-   ]
+   ],
+   "grdp9m26": {
+    "g": 9.06,
+    "rank": null,
+    "note": "9 tháng 2026; quý III ước 9,86%"
+   }
   }
  },
  {
@@ -3093,7 +3254,21 @@
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)",
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 10.01,
+    "rank": 12,
+    "note": "9 tháng 2026; quý III 10,21% (#15)"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Cổng TT Đồng Nai: KT-XH 9 tháng 2026",
+     "https://stc.dongnai.gov.vn/vi/news/Kinh-te-Xa-hoi/tinh-hinh-phat-trien-kinh-te-xa-hoi-quoc-phong-an-ninh-thang-9-va-9-thang-nam-2026-cua-thanh-pho-dong-nai-12191.html"
+    ]
+   ]
+  }
  },
  {
   "name": "Tây Ninh",
@@ -3193,7 +3368,21 @@
    "“Sẵn sàng mùa công trình”: gói bảo dưỡng ben, thủy lực, phanh; trực dịch vụ tại khu công nghiệp, vành đai",
    "“Xe khỏe chạy Tết”: kiểm tra 30 hạng mục miễn phí, ưu tiên khoang dịch vụ đêm cho xe vận tải hàng Tết (tháng 11 – 12)"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 10.3,
+    "rank": null,
+    "note": "9 tháng 2026; nhóm 12 tỉnh tăng hai con số"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Vietnambiz: GRDP 9 tháng 2026 của 34 tỉnh (Cục Thống kê)",
+     "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+    ]
+   ]
+  }
  },
  {
   "name": "Cần Thơ",
@@ -3311,6 +3500,10 @@
     [
      "SGGP: cần đột phá để tăng trưởng 2 con số",
      "https://www.sggp.org.vn/can-tho-vinh-long-dong-thap-can-dot-pha-de-dat-muc-tieu-tang-truong-2-con-so-post879703.html"
+    ],
+    [
+     "VnEconomy: kinh tế Cần Thơ 2025",
+     "https://vneconomy.vn/kinh-te-can-tho-nam-2025-khong-dat-muc-tieu-de-ra.htm"
     ]
    ],
    "grdp9m26": {
@@ -3792,6 +3985,20 @@
    "“Vững xe mùa nước nổi”: kiểm tra chống nước hệ điện, phanh; cứu hộ xe ngập tháng 9 – 11",
    "“Mùa du lịch an toàn”: kiểm tra xe khách, xe du lịch trước hè; tri ân nhà xe bằng gói bảo dưỡng đội xe"
   ],
-  "cpi": null
+  "cpi": null,
+  "ext": {
+   "grdp9m26": {
+    "g": 9.23,
+    "rank": null,
+    "note": "9 tháng 2026; một nguồn khác ghi 9,32%"
+   },
+   "asOf": "21/11/2026",
+   "src": [
+    [
+     "Mekong ASEAN: An Giang 9 tháng GRDP 9,23%",
+     "https://mekongasean.vn/kinh-te-an-giang-9-thang-grdp-tang-923-von-dau-tu-hon-80000-ty-dong-60331.html"
+    ]
+   ]
+  }
  }
 ]

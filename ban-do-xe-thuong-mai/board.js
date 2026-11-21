@@ -90,8 +90,9 @@ const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["es
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
-  if(id === "carreg") return r.carReg2025 ? [U.csgt, U.cfcar] : [U.vama, U.vamaest];
-  if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0])).concat([U.g9]); return null; };
+  if(id === "carreg") return r.carReg2025 ? (x.filter(z => /ô tô/i.test(z[0])).length ? x.filter(z => /ô tô/i.test(z[0])) : [U.csgt, U.cfcar]) : [U.vama, U.vamaest];
+  if(id === "grdp25"){ const m = x.filter(z => /2025/.test(z[0]) && /GRDP|quy mô|kinh tế/i.test(z[0])); if(m.length) return m.concat([U.g25]); }
+  if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0]) && !/2025/.test(z[0])).concat([U.g9]); return null; };
 const kindOf = t => /^(File|ERP)/.test(t) ? "dữ liệu nội bộ DAC" : "ước tính của bản đồ, chưa có số công bố";
 const srcList = (id, r) => provSrc(id, r) || (SRCOF[id] || []).map(k => U[k]);
 const srcHtml = (id, r) => srcList(id, r).map(([t, u]) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>` : `<span>${esc(t)}</span>`).join(" · ");
