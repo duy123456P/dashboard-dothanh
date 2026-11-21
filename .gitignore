@@ -4,3 +4,5 @@ ban-do-xe-thuong-mai/artifact.html
 ban-do-xe-thuong-mai/*.png
 !ban-do-xe-thuong-mai/height.png
 !ban-do-xe-thuong-mai/logo-dothanh.png
+ban-do-xe-thuong-mai/*.md
+!ban-do-xe-thuong-mai/README.md
