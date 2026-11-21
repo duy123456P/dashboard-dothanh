@@ -49,13 +49,14 @@ button:disabled{opacity:.6;cursor:progress}
 (function(){
   var P = JSON.parse(document.getElementById("payload").textContent), f = document.getElementById("f"), m = document.getElementById("m"), go = document.getElementById("go");
   var b64 = function(s){ var b = atob(s), u = new Uint8Array(b.length); for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
-  if(!window.crypto || !crypto.subtle){ m.className = "msg bad"; m.textContent = "Trình duyệt chưa hỗ trợ giải mã. Hãy mở bằng Chrome bản mới qua đường dẫn https."; go.disabled = true; return; }
+  if(!window.crypto || !crypto.subtle || (P.z && !window.DecompressionStream)){ m.className = "msg bad"; m.textContent = "Trình duyệt chưa hỗ trợ giải mã. Hãy mở bằng Google Chrome (bản 80 trở lên)."; go.disabled = true; return; }
   f.addEventListener("submit", function(e){
     e.preventDefault(); var pw = document.getElementById("pw").value; if(!pw) return;
     go.disabled = true; m.className = "msg"; m.textContent = "Đang giải mã…";
     crypto.subtle.importKey("raw", new TextEncoder().encode(pw.trim()), "PBKDF2", false, ["deriveKey"])
       .then(function(k){ return crypto.subtle.deriveKey({name:"PBKDF2", salt:b64(P.s), iterations:P.n, hash:"SHA-256"}, k, {name:"AES-GCM", length:256}, false, ["decrypt"]); })
       .then(function(key){ return crypto.subtle.decrypt({name:"AES-GCM", iv:b64(P.i)}, key, b64(P.c)); })
+      .then(function(buf){ return P.z ? new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer() : buf; })
       .then(function(buf){ var html = new TextDecoder().decode(buf); m.textContent = "Đang mở bản đồ…"; setTimeout(function(){ document.open(); document.write(html); document.close(); }, 30); })
       .catch(function(){ go.disabled = false; m.className = "msg bad"; m.textContent = "Sai mật khẩu. Mật khẩu được đổi định kỳ, hãy hỏi người quản lý mật khẩu mới."; document.getElementById("pw").select(); });
   });

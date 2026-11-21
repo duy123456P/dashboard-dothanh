@@ -10,7 +10,7 @@ trong ../ban-do/.mat-khau-da-dung.json, không lưu mật khẩu gốc.
 Cách dùng:  MAP_PASSWORD='mật-khẩu-mới' python3 tools_lock.py
             (hoặc python3 tools_lock.py rồi nhập mật khẩu khi được hỏi)
 """
-import base64, getpass, hashlib, hmac, json, os, secrets, sys, datetime
+import base64, getpass, gzip, hashlib, hmac, json, os, secrets, sys, datetime
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -34,10 +34,10 @@ def main():
         for h in hist:
             if same(h):
                 sys.exit("Mật khẩu này đã từng dùng (%s). Hãy chọn mật khẩu khác." % h.get("date", ""))
-    src = open(os.path.join(HERE, "index.html"), "rb").read()
+    src = gzip.compress(open(os.path.join(HERE, "index.html"), "rb").read(), 9, mtime=0)  # nén trước khi mã hóa (giải nén bằng DecompressionStream của Chrome)
     salt, iv = secrets.token_bytes(16), secrets.token_bytes(12)
     ct = AESGCM(kdf(pw, salt)).encrypt(iv, src, None)
-    payload = json.dumps({"s": base64.b64encode(salt).decode(), "i": base64.b64encode(iv).decode(), "n": ITER, "c": base64.b64encode(ct).decode()})
+    payload = json.dumps({"s": base64.b64encode(salt).decode(), "i": base64.b64encode(iv).decode(), "n": ITER, "z": 1, "c": base64.b64encode(ct).decode()})
     page = open(os.path.join(HERE, "lock.html"), encoding="utf-8").read().replace("/*__PAYLOAD__*/", payload)
     open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(page)
     if keep:

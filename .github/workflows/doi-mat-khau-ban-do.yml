@@ -18,7 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - run: pip install cryptography==44.0.0
+      - run: cd ban-do-xe-thuong-mai && npm install --no-save --no-audit --no-fund esbuild@0.24.0
       - name: Dựng và mã hóa bản đồ
         env:
           MAP_PASSWORD: ${{ secrets.MAP_PASSWORD }}
