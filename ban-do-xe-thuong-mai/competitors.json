@@ -496,6 +496,728 @@
      "https://bonbanh.com/thong-so-ky-thuat-xe-teraco-tera-v"
     ]
    ]
+  },
+  {
+   "k": "thaco",
+   "name": "Thaco Truck",
+   "maker": "Tập đoàn Trường Hải (THACO), thương hiệu Thaco Frontier, Towner, Kia K-series, Mitsubishi Fuso, Ollin",
+   "origin": "Việt Nam lắp ráp (Chu Lai, Quảng Nam), công nghệ Hàn, Nhật",
+   "priceDoc": "Giá bán lẻ tham khảo đại lý Thaco 08–11/2026",
+   "promoDoc": "KM đại lý: Frontier TF480V giảm 343 → 329 tr; còn lại không công bố",
+   "promoRules": [
+    "Van TF480V giảm 14 tr (343 → 329 tr) tại đại lý Thaco An Sương",
+    "Mạng đại lý Thaco dày nhất thị trường, trả góp liên kết nhiều ngân hàng"
+   ],
+   "notes": [
+    "Giá là giá bán lẻ tham khảo tổng hợp từ website đại lý và trang tổng hợp (cập nhật 08–11/2026, lệch nhau tới vài chục triệu); chưa có bảng giá giao đại lý chính thức nên không tính được biên lợi nhuận đại lý.",
+    "Giá Kia K200/K250 tổng hợp từ tin rao đại lý trên Chợ Tốt, mức thùng kín K250 là giá rao."
+   ],
+   "items": [
+    {
+     "model": "Towner 990",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": 219000000,
+     "maxRetail": 233000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Towner 990",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 230000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Frontier TF220",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 210000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Frontier TF220",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 238000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Frontier TF230",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 237000000,
+     "promo": 0,
+     "seg": "Tải 1,25–1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "Frontier TF230",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 272000000,
+     "promo": 0,
+     "seg": "Tải 1,25–1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "Kia K200 1,9 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 339000000,
+     "maxRetail": 390000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ45S"
+    },
+    {
+     "model": "Kia K200 1,9 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 388000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ45S"
+    },
+    {
+     "model": "Kia K250 2,49 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 392000000,
+     "maxRetail": 434500000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ50S"
+    },
+    {
+     "model": "Kia K250 2,49 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 480000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ50S"
+    },
+    {
+     "model": "Frontier TF420V",
+     "body": "Van 02 chỗ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 285000000,
+     "promo": 0,
+     "seg": "Van 2 chỗ",
+     "dt": "V56"
+    },
+    {
+     "model": "Frontier TF450V",
+     "body": "Van 02 chỗ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 309000000,
+     "promo": 0,
+     "seg": "Van 2 chỗ",
+     "dt": "V56"
+    },
+    {
+     "model": "Frontier TF480V",
+     "body": "Van 02 chỗ",
+     "dealer": null,
+     "minRetail": 329000000,
+     "maxRetail": 343000000,
+     "promo": 14000000,
+     "seg": "Van 2 chỗ",
+     "dt": "V65"
+    }
+   ],
+   "profile": [
+    "THACO (Trường Hải) là nhà sản xuất ô tô lớn nhất Việt Nam; năm 2025 bán 91.377 xe các loại",
+    "VAMA YTM T9/2026: THACO TRUCK 17.947 xe (T9: 1.913), gấp 9,2 lần Đô Thành (1.958); dẫn đầu xe tải",
+    "Lắp ráp tại Chu Lai, Quảng Nam: Frontier, Towner, Kia K-series, Mitsubishi Fuso, Ollin; mạng đại lý và xưởng dịch vụ phủ toàn quốc"
+   ],
+   "specs": [
+    [
+     "Towner 990 / Frontier TF220",
+     "990 kg – 1,2 tấn",
+     "Xăng Suzuki/Mitsubishi",
+     "T26 (990 kg)"
+    ],
+    [
+     "Frontier TF230",
+     "1,25–1,5 tấn",
+     "Xăng",
+     "T33L (1,49 tấn)"
+    ],
+    [
+     "Kia K200",
+     "1,9 tấn",
+     "Diesel Hyundai D4CB 2.5, Euro 5",
+     "IZ45S (1,99 tấn)"
+    ],
+    [
+     "Kia K250 / K250L",
+     "2,49 tấn, thùng 3,5 m",
+     "Diesel Hyundai D4CB",
+     "IZ50S (2,49 tấn)"
+    ],
+    [
+     "Frontier TF420V / TF450V / TF480V",
+     "Van 2 chỗ 945 kg",
+     "Xăng 1,5 L",
+     "V56, V65"
+    ],
+    [
+     "Fuso Canter, Ollin S490/S720",
+     "3,5–7 tấn",
+     "Diesel",
+     "IZ65M Plus, JP120SL (chưa có giá tham khảo)"
+    ]
+   ],
+   "promoHistory": [
+    "2026: TF480V giảm 14 tr; đại lý Thaco liên tục ưu đãi trả góp",
+    "Ra mắt Frontier TF2800 diesel 1,99 tấn (2022) để đấu IZ45S, K200"
+   ],
+   "insight": [
+    "Thaco là chuẩn tham chiếu của thị trường: giá van và tải dưới 1 tấn thấp hơn Đô Thành 20–60 tr giá công bố, cộng mạng đại lý dày nhất.",
+    "Kia K200/K250 là đối thủ số 1 của IZ45S/IZ50S: giá công bố ngang nhau nhưng thương hiệu Kia, động cơ Hyundai và giá trị bán lại cao hơn; Đô Thành cần thắng bằng giá ròng sau ưu đãi, thùng dài và tải thật.",
+    "Sản lượng VAMA của Thaco Truck gấp 9 lần Đô Thành: không cạnh tranh dàn trải, tập trung các tỉnh và phân khúc Đô Thành có lợi thế giá ròng."
+   ],
+   "sources": [
+    [
+     "Tin bán xe: bảng giá xe tải 11/2026",
+     "https://tinbanxe.vn/xe-tai/"
+    ],
+    [
+     "Ô tô An Sương: bảng giá xe van 11/2026",
+     "https://otoansuong.vn/bang-gia-xe-tai-van-cap-nhat-moi-nhat"
+    ],
+    [
+     "Xe tải giá gốc: Thaco",
+     "https://xetaigiagoc.vn/xe-tai-thaco/"
+    ],
+    [
+     "Thaco An Sương: van Thaco",
+     "https://thacoansuong.com/thaco"
+    ],
+    [
+     "Chợ Tốt: Kia K200/K250",
+     "https://xe.chotot.com/mua-ban-xe-tai-xe-ben-kia-sdtb16"
+    ],
+    [
+     "The Investor: thị trường ô tô 2025",
+     "https://theinvestor.vn/vietnams-auto-market-in-2025-commercial-vehicles-gain-the-upper-hand-d18435.html"
+    ]
+   ]
+  },
+  {
+   "k": "jac",
+   "name": "JAC",
+   "maker": "JAC Motors (Anhui Jianghuai, Trung Quốc); lắp ráp và phân phối tại Việt Nam qua mạng lưới đại lý JAC",
+   "origin": "Trung Quốc",
+   "priceDoc": "Giá bán lẻ tham khảo đại lý 10–11/2026",
+   "promoDoc": "KM đại lý: giảm 15 tr dòng N200S/N250S/N350S Pro E5 (chưa xác nhận còn hiệu lực T11)",
+   "promoRules": [
+    "Đại lý công bố giảm 15 triệu cho N200S Pro, N250S Pro, N350S Pro E5; tặng bảo dưỡng lần đầu",
+    "Trả góp 70–80% giá trị xe qua ngân hàng liên kết"
+   ],
+   "notes": [
+    "Giá là giá bán lẻ tham khảo tổng hợp từ website đại lý và trang tổng hợp (cập nhật 08–11/2026, lệch nhau tới vài chục triệu); chưa có bảng giá giao đại lý chính thức nên không tính được biên lợi nhuận đại lý.",
+    "Mức giảm 15 tr có thể là chương trình cũ; cần xác minh tại đại lý JAC khu vực."
+   ],
+   "items": [
+    {
+     "model": "N200S 1,9 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 405000000,
+     "maxRetail": 446000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ45S"
+    },
+    {
+     "model": "N200S 1,9 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 410000000,
+     "maxRetail": 450000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ45S"
+    },
+    {
+     "model": "N350S Pro E5 3,5 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 425000000,
+     "promo": 15000000,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "N350S Pro E5 3,5 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 467000000,
+     "promo": 15000000,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "N500 5 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 527000000,
+     "maxRetail": 540000000,
+     "promo": 0,
+     "seg": "Tải 5 tấn",
+     "dt": null
+    },
+    {
+     "model": "N500 5 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 533000000,
+     "maxRetail": 548000000,
+     "promo": 0,
+     "seg": "Tải 5 tấn",
+     "dt": null
+    },
+    {
+     "model": "X150 1,49 tấn",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 370000000,
+     "promo": 0,
+     "seg": "Ben",
+     "dt": null
+    }
+   ],
+   "profile": [
+    "Thương hiệu xe tải nhẹ–trung Trung Quốc, định vị 'động cơ Cummins/Isuzu công nghệ' với giá thấp hơn xe Nhật–Hàn",
+    "Thế mạnh: dải tải 1,9–9 tấn đầy đủ, thùng dài, cabin rộng; điểm yếu: giá trị bán lại thấp, mạng dịch vụ mỏng ở tỉnh",
+    "Không công bố doanh số qua VAMA nên không có số liệu thị phần chính thức"
+   ],
+   "specs": [
+    [
+     "N200S",
+     "1,9 tấn, thùng 4,3–4,4 m",
+     "Diesel Cummins ISF 2.8, Euro 5",
+     "IZ45S (1,99 tấn)"
+    ],
+    [
+     "N350S Pro",
+     "3,5 tấn, thùng 4,4–4,5 m",
+     "Diesel Cummins, Euro 5",
+     "IZ65M Plus (3,49 tấn)"
+    ],
+    [
+     "N500",
+     "5 tấn, thùng 5,2 m",
+     "Diesel Cummins, Euro 5",
+     "Chưa có (khoảng trống 5 tấn)"
+    ],
+    [
+     "X150",
+     "Ben 1,49 tấn",
+     "Xăng/diesel cỡ nhỏ",
+     "Chưa có"
+    ]
+   ],
+   "promoHistory": [
+    "2026: đại lý chạy giảm 15 tr dòng Pro E5 kèm bảo dưỡng lần đầu",
+    "Trả góp 80%, lăn bánh N200S khoảng 450–465 tr"
+   ],
+   "insight": [
+    "JAC đánh vào phân khúc 1,9 tấn và 3,5 tấn bằng động cơ Cummins và thùng dài; giá công bố N200S cao hơn IZ45S nhưng N350S Pro thấp hơn IZ65M Plus.",
+    "Phân khúc 5 tấn (N500) là khoảng trống của Đô Thành: khách cần 5 tấn sẽ đi thẳng sang JAC, Foton, Isuzu."
+   ],
+   "sources": [
+    [
+     "Ô tô Sài Gòn: bảng giá JAC 11/2026",
+     "https://otosaigonvn.com/xe-jac"
+    ],
+    [
+     "Xe tải Phú Mẫn: giá JAC 10/2026",
+     "https://xetaiphuman.vn/gia-xe-tai-jac-t163.html"
+    ],
+    [
+     "Thế giới xe tải: giá JAC",
+     "https://thegioixetai.org/xe-tai/jac/gia"
+    ],
+    [
+     "Britfoot: giá JAC 11/2026",
+     "https://www.britfoot.com/gia-xe-tai-jac/"
+    ]
+   ]
+  },
+  {
+   "k": "foton",
+   "name": "Foton",
+   "maker": "Beiqi Foton (Trung Quốc); phân phối Aumark, Wonder, Auman qua đại lý Foton tại Việt Nam",
+   "origin": "Trung Quốc",
+   "priceDoc": "Giá bán lẻ tham khảo đại lý 03–11/2026",
+   "promoDoc": "Không tìm thấy khuyến mãi tháng 11/2026 công khai",
+   "promoRules": [
+    "Chưa có chương trình khuyến mãi tháng 11/2026 công khai; đại lý chào trả góp lãi thấp",
+    "Giá Aumark 5–9 tấn giữ ổn định so với 2025"
+   ],
+   "notes": [
+    "Giá là giá bán lẻ tham khảo tổng hợp từ website đại lý và trang tổng hợp (cập nhật 08–11/2026, lệch nhau tới vài chục triệu); chưa có bảng giá giao đại lý chính thức nên không tính được biên lợi nhuận đại lý."
+   ],
+   "items": [
+    {
+     "model": "Wonder 990 kg",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": 240000000,
+     "maxRetail": 251200000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Aumark X25 2,5 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 392000000,
+     "maxRetail": 423000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ50S"
+    },
+    {
+     "model": "Aumark S35 3,5 tấn",
+     "body": "Chassis",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 445000000,
+     "promo": 0,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "Aumark S35 3,5 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 490000000,
+     "promo": 0,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "Aumark S50 5 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": 539000000,
+     "maxRetail": 574000000,
+     "promo": 0,
+     "seg": "Tải 5 tấn",
+     "dt": null
+    },
+    {
+     "model": "Aumark S70 7 tấn",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 598000000,
+     "promo": 0,
+     "seg": "Tải 7 tấn",
+     "dt": "JP120SL"
+    },
+    {
+     "model": "Aumark S70 7 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 621000000,
+     "promo": 0,
+     "seg": "Tải 7 tấn",
+     "dt": "JP120SL"
+    },
+    {
+     "model": "Auman C160 9 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 840000000,
+     "maxRetail": 975000000,
+     "promo": 0,
+     "seg": "Tải nặng, ben, đầu kéo",
+     "dt": null
+    },
+    {
+     "model": "Auman FV400 đầu kéo",
+     "body": "Đầu kéo",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 1150000000,
+     "promo": 0,
+     "seg": "Tải nặng, ben, đầu kéo",
+     "dt": null
+    }
+   ],
+   "profile": [
+    "Foton (Beiqi Foton) là một trong các hãng xe tải lớn nhất Trung Quốc; năm 2025 bán khoảng 445 nghìn xe tải nhẹ tại thị trường nội địa",
+    "Tại Việt Nam, Foton trải dải 990 kg (Wonder), 2,5–9 tấn (Aumark), tải nặng và đầu kéo (Auman)",
+    "Không công bố doanh số qua VAMA"
+   ],
+   "specs": [
+    [
+     "Wonder",
+     "990 kg",
+     "Xăng 1,5 L",
+     "T26 (990 kg)"
+    ],
+    [
+     "Aumark X25",
+     "2–2,5 tấn",
+     "Diesel, Euro 5",
+     "IZ50S (2,49 tấn)"
+    ],
+    [
+     "Aumark S35",
+     "3,5 tấn",
+     "Diesel Cummins, Euro 5",
+     "IZ65M Plus (3,49 tấn)"
+    ],
+    [
+     "Aumark S50 / S70",
+     "5 / 7 tấn",
+     "Diesel Cummins, Euro 5",
+     "S70 ↔ JP120SL; 5 tấn chưa có"
+    ],
+    [
+     "Auman C160, FV270–FV460",
+     "9 tấn, đầu kéo",
+     "Diesel",
+     "Chưa có"
+    ]
+   ],
+   "promoHistory": [
+    "03/2026: đại lý cập nhật bảng giá S70 598 tr thùng lửng",
+    "Năm 2026 chưa ghi nhận đợt giảm giá sâu"
+   ],
+   "insight": [
+    "Foton chen vào dải 3,5–7 tấn bằng động cơ Cummins và giá thấp hơn Đô Thành: S70 7 tấn rẻ hơn JP120SL tới khoảng 37–46 tr giá công bố.",
+    "Wonder 990 kg đặt giá ngang T26, nhưng Đô Thành có ưu đãi T11 lớn hơn nên rẻ hơn khi tính giá ròng."
+   ],
+   "sources": [
+    [
+     "Foton miền Bắc: bảng giá 2026",
+     "https://fotonmienbac.vn/bang-gia-xe-tai-foton-moi-nhat-2026"
+    ],
+    [
+     "Ô tô Sài Gòn: Foton",
+     "https://otosaigonvn.com/xe-foton"
+    ],
+    [
+     "Hyundai Việt Hàn: giá Foton lăn bánh",
+     "https://hyundaiviethan.vn/news/gia-xe-tai-foton-lan-banh"
+    ],
+    [
+     "Ô tô Sài Gòn: Aumark S70",
+     "https://otosaigonvn.com/xe-tai-foton-7-tan-aumark-s70-s70l"
+    ]
+   ]
+  },
+  {
+   "k": "tmt",
+   "name": "TMT Cửu Long",
+   "maker": "CTCP Ô tô TMT (HOSE: TMT), lắp ráp xe tải Cửu Long, TMT Captain, DFSK, Forland, Sinotruk Howo",
+   "origin": "Việt Nam lắp ráp, linh kiện Trung Quốc",
+   "priceDoc": "Giá bán lẻ tham khảo đại lý 10/2026",
+   "promoDoc": "KM: trả trước 25% nhận xe, không công bố mức giảm tiền mặt",
+   "promoRules": [
+    "Đại lý quảng bá trả trước 25% nhận xe, trả góp tới 75–80%",
+    "Không có mức giảm tiền mặt công khai tháng 11/2026"
+   ],
+   "notes": [
+    "Giá là giá bán lẻ tham khảo tổng hợp từ website đại lý và trang tổng hợp (cập nhật 08–11/2026, lệch nhau tới vài chục triệu); chưa có bảng giá giao đại lý chính thức nên không tính được biên lợi nhuận đại lý.",
+    "Forland và Howo chủ yếu là ben tự đổ, không có đối thủ trực tiếp trong dải Đô Thành."
+   ],
+   "items": [
+    {
+     "model": "DFSK 0,99 tấn",
+     "body": "Thùng lửng",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 180000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "DFSK 0,99 tấn",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 201000000,
+     "promo": 0,
+     "seg": "Tải dưới 1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "Captain E250 2,28 tấn",
+     "body": "Chassis",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 380000000,
+     "promo": 0,
+     "seg": "Tải 1,9–2,5 tấn",
+     "dt": "IZ50S"
+    },
+    {
+     "model": "Captain C750 3,5 tấn",
+     "body": "Chassis",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 477000000,
+     "promo": 0,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "Captain C750 3,5 tấn",
+     "body": "Thùng mui bạt",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 531000000,
+     "promo": 0,
+     "seg": "Tải 3,5 tấn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "Forland FL6025D 2,35 tấn",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 365000000,
+     "promo": 0,
+     "seg": "Ben",
+     "dt": null
+    },
+    {
+     "model": "Forland FL6045D 4,5 tấn",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 420000000,
+     "promo": 0,
+     "seg": "Ben",
+     "dt": null
+    },
+    {
+     "model": "Forland FL9260D 6 tấn",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 488000000,
+     "promo": 0,
+     "seg": "Ben",
+     "dt": null
+    },
+    {
+     "model": "Howo ST850D2",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 825000000,
+     "promo": 0,
+     "seg": "Tải nặng, ben, đầu kéo",
+     "dt": null
+    },
+    {
+     "model": "Howo ST860D2",
+     "body": "Ben tự đổ",
+     "dealer": null,
+     "minRetail": null,
+     "maxRetail": 890000000,
+     "promo": 0,
+     "seg": "Tải nặng, ben, đầu kéo",
+     "dt": null
+    }
+   ],
+   "profile": [
+    "CTCP Ô tô TMT (mã TMT), nhà máy tại Hưng Yên; mảng lắp ráp xe tải Cửu Long, Captain, ben Forland, Howo",
+    "Năm 2025: doanh thu thuần 2.106 tỷ đồng, lãi sau thuế 62,7 tỷ (2024 lỗ 325,3 tỷ); mục tiêu 2026 lãi trước thuế 217 tỷ",
+    "Quý IV/2025 doanh thu lắp ráp xe tải 486,4 tỷ, giảm 25%; từng thiếu nguồn cung xe trên 10 tấn"
+   ],
+   "specs": [
+    [
+     "DFSK",
+     "0,9–1 tấn",
+     "Xăng 1,3 L",
+     "T26 (990 kg)"
+    ],
+    [
+     "Captain E250",
+     "2,28 tấn",
+     "Diesel, Euro 5",
+     "IZ50S (2,49 tấn)"
+    ],
+    [
+     "Captain C750",
+     "3,5 tấn",
+     "Diesel, Euro 5",
+     "IZ65M Plus (3,49 tấn)"
+    ],
+    [
+     "Forland FL6025D / FL6045D / FL9260D",
+     "Ben 2,35 / 4,5 / 6 tấn",
+     "Diesel",
+     "Chưa có"
+    ],
+    [
+     "Howo ST850D2 / ST860D2",
+     "Ben 8–9 tấn",
+     "Diesel Sinotruk",
+     "Chưa có (Daewoo hạng nặng ngoài bảng giá)"
+    ]
+   ],
+   "promoHistory": [
+    "2026: chính sách trả trước 25%, hỗ trợ đăng ký lưu hành",
+    "Thế mạnh ở xe ben nông thôn, công trình tỉnh"
+   ],
+   "insight": [
+    "TMT mạnh ở ben và tải nặng nông thôn, cạnh tranh trực diện với Đô Thành chủ yếu ở 1 tấn (DFSK rẻ hơn T26 khoảng 50–65 tr) và 3,5 tấn (Captain C750 đắt hơn IZ65M Plus).",
+    "Tài chính đã có lãi trở lại 2025 nhưng doanh thu xe tải giảm: TMT có động lực đẩy giá rẻ, trả góp dễ để lấy lại sản lượng."
+   ],
+   "sources": [
+    [
+     "Giá xe ô tô: TMT Cửu Long 10/2026",
+     "https://giaxeoto.vn/gia-xe-tai-tmt-181"
+    ],
+    [
+     "Xe tải giá gốc: TMT Cửu Long",
+     "https://xetaigiagoc.vn/gia-xe-tai-tmt-cuu-long/"
+    ],
+    [
+     "Thế giới xe tải: TMT",
+     "https://thegioixetai.vn/xe-tai/tmt"
+    ],
+    [
+     "Báo Pháp luật: TMT có lãi 2025",
+     "https://doanhnhan.baophapluat.vn/tmt-motors-tmt-co-lai-tro-lai-trong-nam-2025-dat-muc-tieu-lai-truoc-thue-2026-dat-217-ty-dong.html"
+    ]
+   ]
   }
  ]
 }
