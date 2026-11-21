@@ -122,3 +122,9 @@ section.glass > h2::after,section.glass .opshead h2::after{content:"";position:a
 @keyframes grow{from{transform:scaleX(0)}}@keyframes growy{from{transform:scaleY(0)}}
 .hlegend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin-top:4px}.hlegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 @media (prefers-reduced-motion:reduce){.stat::after{animation:none}.hp .bar,.hp .seg,.hp .colb{animation:none}.hp .arc{transition:none}}
+
+/* chú giải chỉ số */
+.hasgl .l,.hasgl .lbl,h3.hasgl{text-decoration:underline dotted rgba(70,227,255,.55);text-underline-offset:3px;cursor:help}
+.gltip{max-width:360px;font-size:12.5px;line-height:1.45}
+.gltip .glr{margin-top:6px}.gltip .glr span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.mdbox .tasktbl td,.mdbox .tasktbl th{white-space:normal;vertical-align:top}.mdbox .tasktbl{width:100%;table-layout:auto}.mdsteps p{margin:0 0 8px}
