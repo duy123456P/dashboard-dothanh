@@ -1,0 +1,835 @@
+{
+ "updated": "2026-11-21",
+ "note": "Điểm bán, dịch vụ đã xác minh qua website công ty tỉnh, đại lý và báo chí; chưa đầy đủ vì website tổng của hãng không truy cập được từ môi trường này. Tọa độ gần đúng cấp phường/xã.",
+ "brands": {
+  "thaco": {
+   "name": "Thaco Truck",
+   "color": "#d0731d",
+   "total": "Hơn 450 showroom và xưởng dịch vụ THACO AUTO (đa thương hiệu), phủ toàn bộ 34 tỉnh, thành",
+   "totalN": 450,
+   "svc": "Xưởng dịch vụ tải bus tại hầu hết công ty tỉnh; kho phụ tùng THACO Parts",
+   "src": [
+    "Thương hiệu & Công luận: hơn 450 showroom, xưởng dịch vụ",
+    "https://thuonghieucongluan.com.vn/he-thong-hon-450-showroom-va-xuong-dich-vu-thaco-auto-tren-toan-quoc-dap-ung-moi-nhu-cau-cua-khach-hang-a277818.html"
+   ]
+  },
+  "teraco": {
+   "name": "Teraco",
+   "color": "#9568d6",
+   "total": "Hơn 50 đại lý ủy quyền, 60 điểm bán (tự công bố); đa số đại lý 3S",
+   "totalN": 50,
+   "svc": "Đại lý 3S kiêm xưởng dịch vụ",
+   "src": [
+    "Daehan Motors: hệ thống đại lý (qua tìm kiếm)",
+    "https://daehan.vn/he-thong-dai-ly"
+   ]
+  },
+  "jac": {
+   "name": "JAC",
+   "color": "#22a874",
+   "total": "Chưa công bố tổng số; tổng đài 1800 1711; hệ thống VTruck và đại lý 3S ở các đầu mối",
+   "totalN": null,
+   "svc": "Trung tâm bảo hành Long Biên (HN), Cần Thơ (miền Tây)",
+   "src": [
+    "Ô tô Sài Gòn: trạm bảo hành JAC 2026",
+    "https://otosaigonvn.com/tram-bao-hanh-xe-tai-jac-2026-danh-sach-dai-ly-toan-quoc"
+   ]
+  },
+  "foton": {
+   "name": "Foton",
+   "color": "#4b8fe0",
+   "total": "20 đại lý chính thức tại 11 tỉnh, thành (đầu 2026); ADCV (Thành Công) phân phối từ 08/2025, đang mở thêm 3S",
+   "totalN": 20,
+   "svc": "Đại lý 3S",
+   "src": [
+    "Foton DCC: mạng lưới 2026",
+    "https://foton-dcc.vn/tin-hoat-dong/tin-thuong-hieu/foton-viet-nam-tu-nen-tang-cong-nghe-toan-cau-den-giai-phap-van-tai-toan-dien.htm"
+   ]
+  },
+  "tmt": {
+   "name": "TMT Cửu Long",
+   "color": "#e2557f",
+   "total": "64 đại lý toàn quốc (số liệu trang đại lý, khoảng 2025)",
+   "totalN": 64,
+   "svc": "Trung tâm dịch vụ tại nhà máy Phố Nối (Hưng Yên), bảo hành lưu động tại hiện trường",
+   "src": [
+    "Long Biên Truck: 64 đại lý TMT",
+    "https://longbientruck.com/dai-ly-ban-xe-tai-tmt-cuu-long-toan-quoc.html"
+   ]
+  }
+ },
+ "sources": {
+  "daehan": [
+   "Daehan Motors: hệ thống đại lý (qua tìm kiếm)",
+   "https://daehan.vn/he-thong-dai-ly"
+  ],
+  "oto360t": [
+   "Oto360: đại lý Teraco",
+   "https://oto360.net/dai-ly-teraco"
+  ],
+  "tc_th": [
+   "THACO AUTO Thanh Hóa",
+   "https://thacoautothanhhoa.vn/gioi-thieu"
+  ],
+  "tc_na": [
+   "THACO AUTO Nghệ An: showroom",
+   "https://thacoautonghean.vn/showrooms"
+  ],
+  "tc_bn": [
+   "THACO AUTO Bắc Ninh",
+   "https://thacoautobacninh.vn/en/about-us"
+  ],
+  "tc_hcm": [
+   "THACO AUTO TP.HCM: liên hệ",
+   "https://thacoautotphcm.vn/lien-he"
+  ],
+  "tc_ct": [
+   "THACO AUTO Cần Thơ: liên hệ",
+   "https://thacoautocantho.vn/en/contact"
+  ],
+  "tc_hp": [
+   "THACO AUTO Hải Phòng: showroom",
+   "https://thacoautohaiphong.vn/showrooms"
+  ],
+  "tc_pt": [
+   "THACO AUTO Phú Thọ",
+   "https://thacoautophutho.vn/lien-he"
+  ],
+  "tc_dn": [
+   "VOV: Thaco showroom xe tải, bus thông minh",
+   "https://vov.vn/en/economy/thaco-opens-smart-truck-bus-showroom-367680.vov"
+  ],
+  "jac": [
+   "Oto360: đại lý JAC",
+   "https://oto360.net/dai-ly-jac"
+  ],
+  "jacbh": [
+   "Ô tô Sài Gòn: trạm bảo hành JAC 2026",
+   "https://otosaigonvn.com/tram-bao-hanh-xe-tai-jac-2026-danh-sach-dai-ly-toan-quoc"
+  ],
+  "fsg": [
+   "Ô tô Sài Gòn: Foton",
+   "https://otosaigonvn.com/xe-foton"
+  ],
+  "fhn": [
+   "Ô tô Hợp Nhất: khai trương 3S Foton",
+   "https://otohopnhat.com/tin-tuc/mua-xe-foton-thang-8-nhan-ngay-5-trieu-dong-tien-mat-or-uu-dai-dac-biet-mung-khai-truong-dai-ly-3s-foton-hop-nhat"
+  ],
+  "fhp": [
+   "Vietnam.vn: khai trương 3S Foton Hòa Phúc",
+   "https://www.vietnam.vn/en/khai-truong-dai-ly-3s-foton-hoa-phuc-tai-phuong-dau-giay"
+  ],
+  "fmb": [
+   "Foton Miền Bắc",
+   "https://fotonmienbac.vn/xe-tai-foton-co-tot-khong-3"
+  ],
+  "fdcc": [
+   "Foton DCC: mạng lưới 2026",
+   "https://foton-dcc.vn/tin-hoat-dong/tin-thuong-hieu/foton-viet-nam-tu-nen-tang-cong-nghe-toan-cau-den-giai-phap-van-tai-toan-dien.htm"
+  ],
+  "tmtlb": [
+   "TMT Long Biên",
+   "http://tmtlongbien.com/"
+  ],
+  "tmtcl": [
+   "TMT Cửu Long: giới thiệu",
+   "https://tmtcuulong.com.vn/gioi-thieu-tmt-motors/"
+  ],
+  "tmtna": [
+   "TMT Tâm Trí Mạnh",
+   "https://xetaitmtnghean.com/"
+  ],
+  "tmtap": [
+   "Ô tô An Phước: Cửu Long TMT",
+   "https://otoanphuoc.com/cuu-long-tmt.htm"
+  ],
+  "tmtjob": [
+   "JobsGO: TMT Motors (nhà máy, TT dịch vụ)",
+   "https://jobsgo.vn/viec-lam/ky-thuat-vien-sua-chua-28150869322.html"
+  ],
+  "tmt64": [
+   "Long Biên Truck: 64 đại lý TMT",
+   "https://longbientruck.com/dai-ly-ban-xe-tai-tmt-cuu-long-toan-quoc.html"
+  ],
+  "dah": [
+   "Đức Anh Hưng Thịnh",
+   "http://ducanhhungthinh.com.vn/xe-tai-ben-24-tan-tmt-cuu-long-lien-he-gia-tot-0974082222-1-1-1225579.html"
+  ],
+  "phuman": [
+   "Ô tô Phú Mẫn",
+   "https://otophuman.vn/san-pham/chuyen-sua-chua-thay-moi-phu-tung-xe-tai-cuu-long-383.html"
+  ]
+ },
+ "points": [
+  {
+   "b": "teraco",
+   "name": "Teraco Tây Đô",
+   "province": "Hà Nội",
+   "addr": "883 Quang Trung, Hà Đông",
+   "type": "3S",
+   "lat": 20.955,
+   "lng": 105.748,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Thiên Hòa An (Long Biên)",
+   "province": "Hà Nội",
+   "addr": "28 Lý Sơn, Long Biên",
+   "type": "3S",
+   "lat": 21.057,
+   "lng": 105.893,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Thái Phong",
+   "province": "Hà Nội",
+   "addr": "TT36 đường CN9, KCN Từ Liêm",
+   "type": "3S",
+   "lat": 21.05,
+   "lng": 105.76,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Huy Khánh",
+   "province": "Hà Nội",
+   "addr": "Km9+600 QL2, xã Nội Bài",
+   "type": "3S",
+   "lat": 21.24,
+   "lng": 105.8,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Quang Minh",
+   "province": "Hải Phòng",
+   "addr": "1 Phạm Văn Đồng, P. Hưng Đạo",
+   "type": "1S",
+   "lat": 20.83,
+   "lng": 106.71,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Tây Thiên Phú",
+   "province": "Hải Phòng",
+   "addr": "Hải Phòng",
+   "type": "3S",
+   "lat": 20.865,
+   "lng": 106.66,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Việt Thăng Long",
+   "province": "Ninh Bình",
+   "addr": "Ninh Bình",
+   "type": "3S",
+   "lat": 20.25,
+   "lng": 105.97,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Ô tô Miền Trung",
+   "province": "Thanh Hóa",
+   "addr": "Km325 đường tránh, P. Quảng Thành",
+   "type": "3S",
+   "lat": 19.83,
+   "lng": 105.79,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Dũng Lạc",
+   "province": "Nghệ An",
+   "addr": "96 Mai Hắc Đế, P. Vinh Phú",
+   "type": "3S",
+   "lat": 18.68,
+   "lng": 105.67,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Thăng Bình",
+   "province": "Quảng Trị",
+   "addr": "Quảng Trị",
+   "type": "3S",
+   "lat": 16.8,
+   "lng": 107.1,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hồng Sơn Star CN1",
+   "province": "Đà Nẵng",
+   "addr": "QL1A, P. Hòa Xuân",
+   "type": "3S",
+   "lat": 16.0,
+   "lng": 108.22,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hồng Sơn Star CN2",
+   "province": "Đà Nẵng",
+   "addr": "01 Phan Bội Châu, P. Bàn Thạch (Tam Kỳ)",
+   "type": "3S",
+   "lat": 15.57,
+   "lng": 108.48,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hải Thành",
+   "province": "Gia Lai",
+   "addr": "Đường Tây Sơn, P. Quy Nhơn Bắc",
+   "type": "3S",
+   "lat": 13.8,
+   "lng": 109.2,
+   "src": "oto360t"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Gia Lai",
+   "province": "Gia Lai",
+   "addr": "Pleiku",
+   "type": "3S",
+   "lat": 13.98,
+   "lng": 108.0,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hưng Vượng",
+   "province": "Lâm Đồng",
+   "addr": "Lâm Đồng",
+   "type": "3S",
+   "lat": 11.95,
+   "lng": 108.44,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Năm Châu Duy Nhất",
+   "province": "Đắk Lắk",
+   "addr": "Buôn Ma Thuột",
+   "type": "3S",
+   "lat": 12.68,
+   "lng": 108.04,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco An Sương",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "QL1A, An Sương",
+   "type": "3S",
+   "lat": 10.85,
+   "lng": 106.61,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hợp Nhất",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "16/1B đường dẫn cầu Phú Long, P. Lái Thiêu",
+   "type": "3S",
+   "lat": 10.9,
+   "lng": 106.7,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hòa Phúc (Thống Nhất)",
+   "province": "Đồng Nai",
+   "addr": "86 QL1A, xã Dầu Giây",
+   "type": "3S",
+   "lat": 10.94,
+   "lng": 107.14,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Hòa Phúc (Trảng Bom)",
+   "province": "Đồng Nai",
+   "addr": "579 QL1A, P. Hố Nai",
+   "type": "Showroom",
+   "lat": 10.95,
+   "lng": 106.93,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Đông Anh 61",
+   "province": "Cần Thơ",
+   "addr": "61 QL1A, P. Ba Láng, Cái Răng",
+   "type": "3S",
+   "lat": 9.98,
+   "lng": 105.74,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Trường Xuân CN Cần Thơ",
+   "province": "Cần Thơ",
+   "addr": "Võ Nguyên Giáp, P. Phú Thứ, Cái Răng",
+   "type": "3S",
+   "lat": 10.0,
+   "lng": 105.79,
+   "src": "daehan"
+  },
+  {
+   "b": "teraco",
+   "name": "Teraco Ngọc Anh",
+   "province": "An Giang",
+   "addr": "Rạch Giá (Kiên Giang cũ)",
+   "type": "3S",
+   "lat": 10.01,
+   "lng": 105.09,
+   "src": "daehan"
+  },
+  {
+   "b": "thaco",
+   "name": "THACO AUTO Thanh Hóa",
+   "province": "Thanh Hóa",
+   "addr": "759 Bà Triệu, P. Hạc Thành",
+   "type": "Showroom + xưởng",
+   "lat": 19.82,
+   "lng": 105.78,
+   "src": "tc_th"
+  },
+  {
+   "b": "thaco",
+   "name": "THACO Hoằng Hóa",
+   "province": "Thanh Hóa",
+   "addr": "QL1A, xã Hoằng Giang",
+   "type": "Showroom",
+   "lat": 19.86,
+   "lng": 105.83,
+   "src": "tc_th"
+  },
+  {
+   "b": "thaco",
+   "name": "THACO Thọ Xuân",
+   "province": "Thanh Hóa",
+   "addr": "Hữu Lễ 4, xã Lam Sơn",
+   "type": "Showroom",
+   "lat": 19.92,
+   "lng": 105.4,
+   "src": "tc_th"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Hưng Nguyên",
+   "province": "Nghệ An",
+   "addr": "Xóm 6, xã Hưng Nguyên",
+   "type": "Showroom tải bus",
+   "lat": 18.66,
+   "lng": 105.63,
+   "src": "tc_na"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Diễn Châu",
+   "province": "Nghệ An",
+   "addr": "15 QL1A, xã Diễn Châu",
+   "type": "Showroom tải bus",
+   "lat": 18.98,
+   "lng": 105.6,
+   "src": "tc_na"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Lê Lợi",
+   "province": "Nghệ An",
+   "addr": "219 Lê Lợi, P. Thành Vinh",
+   "type": "Showroom tải bus",
+   "lat": 18.69,
+   "lng": 105.67,
+   "src": "tc_na"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Bắc Ninh",
+   "province": "Bắc Ninh",
+   "addr": "Km3 QL18A, P. Võ Cường",
+   "type": "Showroom tải bus",
+   "lat": 21.16,
+   "lng": 106.05,
+   "src": "tc_bn"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Bắc Giang",
+   "province": "Bắc Ninh",
+   "addr": "QL1A, TDP Riễu, P. Bắc Giang",
+   "type": "Showroom tải bus",
+   "lat": 21.28,
+   "lng": 106.2,
+   "src": "tc_bn"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Thuận An",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "164 Đại lộ Bình Dương, Thuận An",
+   "type": "Showroom tải bus",
+   "lat": 10.93,
+   "lng": 106.68,
+   "src": "tc_hcm"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Cần Thơ",
+   "province": "Cần Thơ",
+   "addr": "KĐT Nam Cần Thơ, P. Hưng Thạnh",
+   "type": "Showroom + xưởng",
+   "lat": 10.01,
+   "lng": 105.77,
+   "src": "tc_ct"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Hậu Giang",
+   "province": "Cần Thơ",
+   "addr": "QL1A, ấp Long An B, Châu Thành A",
+   "type": "Showroom tải bus",
+   "lat": 9.93,
+   "lng": 105.68,
+   "src": "tc_ct"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Bạc Liêu",
+   "province": "Cà Mau",
+   "addr": "Số 1 QL1A, P. Bạc Liêu",
+   "type": "Showroom tải bus",
+   "lat": 9.29,
+   "lng": 105.73,
+   "src": "tc_ct"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus An Dương",
+   "province": "Hải Phòng",
+   "addr": "Tổ 03 Do Nha, P. An Dương",
+   "type": "Showroom tải bus",
+   "lat": 20.86,
+   "lng": 106.6,
+   "src": "tc_hp"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Chí Linh (+ xưởng DV)",
+   "province": "Hải Phòng",
+   "addr": "QL18, khu Bình Giang, P. Chí Linh",
+   "type": "Showroom + xưởng",
+   "lat": 21.12,
+   "lng": 106.38,
+   "src": "tc_hp"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Hải An",
+   "province": "Hải Phòng",
+   "addr": "04/13A Lê Hồng Phong, P. Hải An",
+   "type": "Showroom tải",
+   "lat": 20.83,
+   "lng": 106.73,
+   "src": "tc_hp"
+  },
+  {
+   "b": "thaco",
+   "name": "Tải Bus Phú Thọ (+ xưởng DV)",
+   "province": "Phú Thọ",
+   "addr": "Khu Đồng Đồi, Thụy Vân, Việt Trì",
+   "type": "Showroom + xưởng",
+   "lat": 21.33,
+   "lng": 105.37,
+   "src": "tc_pt"
+  },
+  {
+   "b": "thaco",
+   "name": "Showroom, TT dịch vụ tải bus Đà Nẵng",
+   "province": "Đà Nẵng",
+   "addr": "Đà Nẵng",
+   "type": "Showroom + xưởng",
+   "lat": 16.04,
+   "lng": 108.2,
+   "src": "tc_dn"
+  },
+  {
+   "b": "jac",
+   "name": "JAC VTruck Hà Nội",
+   "province": "Hà Nội",
+   "addr": "LK38-N01, Khu A đất dịch vụ Yên Nghĩa",
+   "type": "3S",
+   "lat": 20.95,
+   "lng": 105.73,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Hà Nội: trung tâm bảo hành",
+   "province": "Hà Nội",
+   "addr": "451 Nguyễn Văn Linh, Long Biên",
+   "type": "Xưởng dịch vụ",
+   "lat": 21.04,
+   "lng": 105.9,
+   "src": "jacbh"
+  },
+  {
+   "b": "jac",
+   "name": "JAC VTruck Hải Phòng",
+   "province": "Hải Phòng",
+   "addr": "Bãi Traco Đình Vũ, đường 365, P. Đông Hải",
+   "type": "3S",
+   "lat": 20.84,
+   "lng": 106.76,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Bắc Hải Nam",
+   "province": "Hải Phòng",
+   "addr": "1/92 Lê Thánh Tông, P. Ngô Quyền",
+   "type": "Đại lý",
+   "lat": 20.86,
+   "lng": 106.7,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Thanh Hóa",
+   "province": "Thanh Hóa",
+   "addr": "Km325 đường tránh, Quảng Thành",
+   "type": "Đại lý",
+   "lat": 19.833,
+   "lng": 105.795,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Nghệ An",
+   "province": "Nghệ An",
+   "addr": "QL1A, xã Nghi Lộc",
+   "type": "Đại lý",
+   "lat": 18.78,
+   "lng": 105.65,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Đà Nẵng",
+   "province": "Đà Nẵng",
+   "addr": "QL1A, Hòa Châu / Hòa Xuân",
+   "type": "Đại lý",
+   "lat": 15.98,
+   "lng": 108.2,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Bình Dương (Giang Hoài)",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "20 Đại lộ Bình Dương, P. Vĩnh Phú",
+   "type": "3S",
+   "lat": 10.89,
+   "lng": 106.69,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Thế Giới Xe Tải",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "466 QL1A, P. An Phú Đông",
+   "type": "Đại lý",
+   "lat": 10.86,
+   "lng": 106.7,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC An Sương",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "2450 QL1A",
+   "type": "Đại lý",
+   "lat": 10.85,
+   "lng": 106.62,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Cần Thơ: TT bảo hành miền Tây",
+   "province": "Cần Thơ",
+   "addr": "188 Lê Hồng Phong, Bình Thủy",
+   "type": "3S",
+   "lat": 10.07,
+   "lng": 105.75,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC VTruck Đồng Nai",
+   "province": "Đồng Nai",
+   "addr": "QL51, KP Thiên Bình, P. Tam Phước",
+   "type": "3S",
+   "lat": 10.86,
+   "lng": 106.92,
+   "src": "jac"
+  },
+  {
+   "b": "jac",
+   "name": "JAC Quốc Thịnh",
+   "province": "Đồng Nai",
+   "addr": "03 ấp Bàu Cá, QL1A, Trung Hòa, Trảng Bom",
+   "type": "Đại lý",
+   "lat": 10.95,
+   "lng": 107.03,
+   "src": "jac"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Sài Gòn",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "466 QL1A, P. An Phú Đông",
+   "type": "3S",
+   "lat": 10.861,
+   "lng": 106.705,
+   "src": "fsg"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Hợp Nhất",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "9A Mỹ Phước – Tân Vạn",
+   "type": "3S",
+   "lat": 10.92,
+   "lng": 106.73,
+   "src": "fhn"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Hòa Phúc",
+   "province": "Đồng Nai",
+   "addr": "P. Dầu Giây",
+   "type": "3S",
+   "lat": 10.945,
+   "lng": 107.15,
+   "src": "fhp"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Miền Bắc (Thanh Trì)",
+   "province": "Hà Nội",
+   "addr": "Km14 QL1A, Thanh Trì",
+   "type": "3S",
+   "lat": 20.92,
+   "lng": 105.86,
+   "src": "fmb"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Miền Bắc (Phú Nghĩa)",
+   "province": "Hà Nội",
+   "addr": "KCN Phú Nghĩa, Chương Mỹ",
+   "type": "Showroom",
+   "lat": 20.93,
+   "lng": 105.65,
+   "src": "fmb"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Miền Bắc (Mê Linh)",
+   "province": "Hà Nội",
+   "addr": "Mê Linh",
+   "type": "Showroom",
+   "lat": 21.18,
+   "lng": 105.72,
+   "src": "fmb"
+  },
+  {
+   "b": "foton",
+   "name": "Foton Thanh Hóa",
+   "province": "Thanh Hóa",
+   "addr": "992 Đại lộ Hùng Vương",
+   "type": "Đại lý",
+   "lat": 19.8,
+   "lng": 105.8,
+   "src": "fsg"
+  },
+  {
+   "b": "tmt",
+   "name": "TMT Long Biên",
+   "province": "Hà Nội",
+   "addr": "55 Nguyễn Văn Linh, Long Biên",
+   "type": "3S",
+   "lat": 21.04,
+   "lng": 105.905,
+   "src": "tmtlb"
+  },
+  {
+   "b": "tmt",
+   "name": "TMT Hà Đông",
+   "province": "Hà Nội",
+   "addr": "Gần bến xe Yên Nghĩa, Hà Đông",
+   "type": "3S",
+   "lat": 20.952,
+   "lng": 105.735,
+   "src": "tmtcl"
+  },
+  {
+   "b": "tmt",
+   "name": "Đức Anh Hưng Thịnh",
+   "province": "Hà Nội",
+   "addr": "14 Huỳnh Tấn Phát, Thạch Bàn, Long Biên",
+   "type": "Đại lý + bảo hành",
+   "lat": 21.02,
+   "lng": 105.92,
+   "src": "dah"
+  },
+  {
+   "b": "tmt",
+   "name": "Nhà máy, TT dịch vụ Cửu Long",
+   "province": "Hưng Yên",
+   "addr": "KCN Phố Nối A",
+   "type": "Xưởng dịch vụ",
+   "lat": 20.94,
+   "lng": 106.06,
+   "src": "tmtjob"
+  },
+  {
+   "b": "tmt",
+   "name": "TMT Tâm Trí Mạnh",
+   "province": "Nghệ An",
+   "addr": "QL1A, Diễn Châu",
+   "type": "Đại lý",
+   "lat": 18.99,
+   "lng": 105.61,
+   "src": "tmtna"
+  },
+  {
+   "b": "tmt",
+   "name": "Ô tô An Phước",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "934 QL1A, P. Linh Trung, Thủ Đức",
+   "type": "Đại lý",
+   "lat": 10.87,
+   "lng": 106.78,
+   "src": "tmtap"
+  },
+  {
+   "b": "tmt",
+   "name": "Ô tô Phú Mẫn",
+   "province": "TP. Hồ Chí Minh",
+   "addr": "632 QL1A, P. An Phú Đông",
+   "type": "Đại lý + xưởng",
+   "lat": 10.862,
+   "lng": 106.71,
+   "src": "phuman"
+  }
+ ]
+}

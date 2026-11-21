@@ -13,6 +13,14 @@ const n0 = v => v == null || isNaN(v) ? "—" : fmtInt(v);
 const median = a => { const s = a.filter(x => x != null && isFinite(x)).sort((x,y) => x-y); return s.length ? s[Math.floor(s.length/2)] : null; };
 const dealersOf = r => CV.NET.dealers.filter(d => d.province === r.name);
 function nearestStation(r){ const p = {lng: r.lp[0], lat: r.lp[1]}; let best = null; CV.NET.stations.concat(CV.NET.dealers).forEach(s => { const d = CV.km(p, s); if(!best || d < best.d) best = {d, s}; }); return best; }
+/* mạng lưới đối thủ đã xác minh (CNET) so với Đô Thành */
+const CN = () => CV.CNET || {brands:{}, points:[]};
+function netOf(r){ const P = CN().points.filter(p => p.province === r.name), by = {};
+  P.forEach(p => { (by[p.b] = by[p.b] || []).push(p); });
+  const dts = CV.NET.dealers.filter(d => d.province === r.name).length, dst = CV.NET.stations.filter(s => s.province === r.name).length;
+  const svc = P.filter(p => /3S|xưởng|bảo hành|dịch vụ/i.test(p.type)).length;
+  const far = P.map(p => { let m = 1e9; CV.NET.dealers.concat(CV.NET.stations).forEach(x => { const d = CV.km(p, x); if(d < m) m = d; }); return {p, d: m}; });
+  return {P, by, dts, dst, svc, brands: Object.keys(by).length, gap: P.length - (dts + dst), far}; }
 let nodeCache = null;
 function nodesOf(r){ if(!nodeCache){ nodeCache = {}; (CV.INFRA.nodes || []).forEach(n => { const pv = CV.provinceOfPoint(n.lng, n.lat); if(pv) (nodeCache[pv.name] = nodeCache[pv.name] || []).push(n); }); } return nodeCache[r.name] || []; }
 function arteriesOf(r){ return (CV.INFRA.arteries || []).filter(a => (a.path || []).some(([lng, lat]) => { const pv = CV.provinceOfPoint(lng, lat); return pv && pv.name === r.name; })).map(a => a.name); }
@@ -49,6 +57,13 @@ function diagnose(r){
   if(r.elev >= 500) add(1, "terrain", "Địa hình đồi núi, khách ưu tiên độ bền và khả năng leo dốc", `Độ cao trung bình ${n0(r.elev)} m; xe chạy đèo dốc, tải nặng. Khách tin hãng đã có xe chạy lâu năm trong vùng.`, "Chứng minh bằng lái thử đường đèo, xe mẫu của khách đang chạy, bảo hành dài, phanh khí xả.");
   // 6. Kênh khách, truyền miệng
   if(/người quen|giới thiệu|truyền miệng|thương lái|quan hệ|uy tín/i.test(r.psyche || "") && share < N.share) add(2, "trust", "Thị trường mua theo người quen, Đô Thành có ít xe đang chạy để được giới thiệu", `Tâm lý khách: “${esc(String(r.psyche).slice(0, 140))}…”. Bán lẻ T1–T10 ${n0(r.sales)} xe trên UIO ${n0(r._uio)} xe: cơ sở khách cũ để giới thiệu còn mỏng.`, "Chương trình khách giới thiệu khách, chăm sóc khách cũ, hội chủ xe; mời khách đang chạy xe Đô Thành làm người chứng thực.");
+  // 6b. Mạng lưới đối thủ (điểm bán, 3S, xưởng dịch vụ đã xác minh)
+  const NW = netOf(r);
+  if(NW.P.length){ const lst = Object.entries(NW.by).map(([k,a]) => (CN().brands[k]||{}).name + " " + a.length).join(", ");
+    if(!nd) add(3, "cnet", "Đối thủ có showroom, xưởng dịch vụ tại tỉnh, Đô Thành không có", `Điểm đối thủ đã xác minh: ${lst} (${NW.svc} điểm 3S/xưởng dịch vụ); Đô Thành 0 đại lý, ${NW.dst} trạm dịch vụ.`, "Ưu tiên mở đại lý 3S hoặc trạm dịch vụ ủy quyền; trước mắt cử xe dịch vụ lưu động, đặt kho phụ tùng vệ tinh.");
+    else if(NW.P.length > NW.dts + NW.dst && NW.brands >= 2) add(2, "cnet", "Mạng lưới đối thủ dày hơn Đô Thành", `${NW.P.length} điểm đối thủ đã xác minh (${lst}) so với ${NW.dts} đại lý + ${NW.dst} trạm dịch vụ Đô Thành.`, "Thêm đại lý cấp 2 hoặc điểm dịch vụ tại cụm có đối thủ; tận dụng lợi thế giá ròng sau ưu đãi để chào trực tiếp khách của đối thủ.");
+    else add(0, "cnet", "Mạng lưới Đô Thành không kém đối thủ đã xác minh", `${NW.dts} đại lý + ${NW.dst} trạm Đô Thành; đối thủ: ${lst}.`, "Giữ chất lượng dịch vụ, thời gian sửa chữa.");
+  }
   // 7. Cạnh tranh
   const comp = (r._comp || []); if(comp.length){ const [n, v] = comp[0]; add(v >= 30 ? 2 : 1, "comp", `Đối thủ dẫn đầu tại tỉnh: ${n} ${fmt1(v)}%`, `Thị phần trong tỉnh: ${comp.map(([a,b]) => a + " " + fmt1(b) + "%").join(", ")}.`, "Phân tích đại lý, giá, chính sách của " + n + " tại tỉnh; chọn model đối đầu trực tiếp."); }
   else { const vb = CV.NET.vama.brands, th = vb.find(x => /THACO/i.test(x[0])), dt = vb.find(x => x[0] === "DOTHANH"); gaps.push("thị phần từng hãng trong tỉnh (Cục Đăng kiểm/CSGT hoặc đại lý báo về)");
@@ -88,6 +103,11 @@ const LENS = {
       <h4>Cả nước, YTM T9/2026 (VAMA)</h4>${bars(vb.map(b => b[0]), vb.map(b => b[1]), " xe")}${kv([["Đô Thành tại tỉnh", `${n0(r.sales)} xe bán lẻ T1–T10 ≈ ${fmt1(shareOf(r))}% ĐK mới năm`]])}
       <h4>Bổ sung dữ liệu còn thiếu cho ${esc(r.name)}</h4><div class="fgrid gapform">${GAPF.map(([k,l]) => `<label class="field">${esc(l)}<input type="number" step="0.1" data-gap="${k}" value="${r[k] == null || r[k] === 0 && k.startsWith("c_") ? "" : esc(r[k])}"></label>`).join("")}</div>
       <div class="toolbar"><button type="button" class="primary" data-gapsave="1">Lưu dữ liệu tỉnh</button><span class="muted small">Nguồn nên dùng: Cục Đăng kiểm/CSGT (đăng ký theo hãng), Cục Thống kê tỉnh (CPI). Mọi thay đổi ghi vào nhật ký.</span></div>`; }},
+  mangluoi: {label:"Mạng lưới bán hàng & dịch vụ", metric:"netgap", body: r => { const NW = netOf(r), B = CN().brands;
+      return `<div class="stats num">${stat(n0(NW.dts), "đại lý Đô Thành")}${stat(n0(NW.dst), "trạm DV Đô Thành")}${stat(n0(NW.P.length), "điểm đối thủ đã xác minh")}${stat(n0(NW.svc), "3S / xưởng DV đối thủ")}${stat(n0(NW.brands), "hãng đối thủ có điểm")}</div>
+      <div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Hãng</th><th>Điểm</th><th>Loại</th><th>Địa chỉ</th><th>Cách Đô Thành gần nhất</th></tr></thead><tbody>${NW.far.map(({p,d}) => `<tr><td><i class="dot" style="background:${B[p.b].color}"></i> ${esc(B[p.b].name)}</td><td>${esc(p.name)}</td><td>${esc(p.type)}</td><td>${esc(p.addr)}</td><td class="num">${n0(d)} km</td></tr>`).join("") || '<tr><td colspan="5" class="muted">Chưa có điểm đối thủ đã xác minh tại tỉnh</td></tr>'}</tbody></table></div>
+      <h4>Quy mô mạng lưới cả nước</h4>${kv(Object.values(B).map(b => [b.name, esc(b.total)]).concat([["Đô Thành", `${CV.NET.dealers.length} đại lý + ${CV.NET.stations.length} trạm dịch vụ ủy quyền`]]))}
+      <p class="muted small">Bật nút “Đối thủ” trên bản đồ để xem vị trí. ${esc(CN().note || "")}</p>`; }},
   dothanh: {label:"Năng lực Đô Thành tại tỉnh", metric:"kpct", body: r => { const ds = dealersOf(r), ns = nearestStation(r);
       return `<div class="stats num">${stat(n0(r.sales), "bán lẻ lũy kế T10")}${stat(r.target ? n0(r._kpct) + "%" : "—", "đạt KH lũy kế")}${stat(r._c4 + " · " + r._c3, "đại lý cấp 1 · 2")}${stat(n0(r._perCenter), "xe thị trường / đại lý")}${stat(n0(ns && ns.d) + " km", "tới điểm DV gần nhất")}${stat(r._tgt26 ? n0(r._tgt26) : "—", "mục tiêu 2026 đề xuất")}</div>
       <div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Đại lý</th><th>Cấp</th><th>Bán lẻ T10 lũy kế / KH</th><th>T10</th><th>Tồn T9</th><th>TVBH</th><th>Hạng</th></tr></thead><tbody>${ds.map(d => `<tr><td>${esc(d.salesKey || d.name)}</td><td>${d.tier}</td><td>${d.leCum != null ? n0(d.leCum) + " / " + n0(d.khCum) + " (" + fmtInt(d.leCum/d.khCum*100) + "%)" : "—"}</td><td>${d.thT10 != null ? d.thT10 + "/" + d.khT10 : "—"}</td><td>${d.tonT9 ?? "—"}</td><td>${d.tvbh ?? "—"}</td><td>${d.grade ? d.grade + " · " + fmt1(d.score) : "—"}</td></tr>`).join("") || '<tr><td colspan="7">Chưa có đại lý</td></tr>'}</tbody></table></div>`; }},
@@ -96,12 +116,13 @@ const LENS = {
       ${D.good.length ? `<p class="small" style="color:var(--good)">Thuận lợi: ${D.good.map(f => esc(f.title)).join("; ")}</p>` : ""}${D.gaps.length ? `<p class="muted small">Cần bổ sung để kết luận chắc chắn: ${esc(D.gaps.join("; "))}.</p>` : ""}`; }},
 };
 const GAPF = [["c_thaco","Thaco %"],["c_hyundai","Hyundai %"],["c_isuzu","Isuzu %"],["c_hino","Hino %"],["c_fuso","Fuso %"],["c_china","Xe Trung Quốc %"],["c_other","Hãng khác %"],["reg","ĐK mới thực tế (xe/năm)"],["uio","UIO thực tế (xe)"],["cpi","CPI 10T/2026 của tỉnh %"]];
-const ALIAS = [["chandoan",/chẩn đoán|vì sao|tại sao|nguyên nhân|không bán được|bán không được/], ["kinhte",/kinh tế|grdp|cpi|lạm phát|vĩ mô/], ["nganh",/cơ cấu ngành|tỷ trọng ngành|ngành nghề|ngành|mũi nhọn/], ["xahoi",/xã hội|dân cư|dân số|đô thị/],
+const ALIAS = [["chandoan",/chẩn đoán|vì sao|tại sao|nguyên nhân|không bán được|bán không được/], ["mangluoi",/mạng lưới|showroom|3s|trạm dịch vụ|xưởng|bảo hành|bảo dưỡng|hậu mãi/], ["kinhte",/kinh tế|grdp|cpi|lạm phát|vĩ mô/], ["nganh",/cơ cấu ngành|tỷ trọng ngành|ngành nghề|ngành|mũi nhọn/], ["xahoi",/xã hội|dân cư|dân số|đô thị/],
   ["vanhoa",/văn hóa|con người|tâm lý|lễ hội/], ["chinhtri",/chính trị|hành chính|chính sách|sáp nhập/], ["hatang",/hạ tầng|logistics|giao thông|cảng|kcn/], ["diahinh",/địa hình|mùa vụ|thời tiết|khí hậu/],
   ["thitruong",/thị trường|dung lượng|đăng ký|uio|phân khúc/], ["canhtranh",/cạnh tranh|đối thủ|thị phần/], ["dothanh",/năng lực|đại lý|đô thành|nội lực/]];
 
 /* hidden metrics for map colouring (not shown as chips) */
 Object.assign(CV.METRICS, {
+  netgap: {label:"Điểm đối thủ trừ điểm Đô Thành", unit:"điểm", get: r => netOf(r).gap, fmt: v => fmtInt(v)},
   cpi: {label:"CPI 10T/2026", unit:"%", get: r => r.cpi == null || r.cpi === "" ? null : +r.cpi, fmt: v => fmt1(v)},
   density: {label:"Mật độ dân số", unit:"người/km²", get: r => r._density, fmt: v => fmtInt(v)},
   nodes: {label:"Đầu mối logistics", unit:"điểm", get: r => nodesOf(r).length, fmt: v => fmtInt(v)},
@@ -115,7 +136,7 @@ Object.defineProperty(CV, "lens", {get: () => lensKey, configurable: true});
 function setLens(k, prov){
   lensKey = k && LENS[k] ? k : null;
   if(prov){ const r = CV.findRow(prov); if(r) CV.select(r.name, true); }
-  const m = lensKey && LENS[lensKey].metric; if(m && CV.METRICS[m]) CV.setMap({metric: m, color: "metric"}); else if(!lensKey) CV.setMap({color: "zone"}); else CV.renderDossier();
+  const m = lensKey && LENS[lensKey].metric; if(m && CV.METRICS[m]) CV.setMap(Object.assign({metric: m, color: "metric"}, lensKey === "mangluoi" ? {comp: true} : {})); else if(!lensKey) CV.setMap({color: "zone"}); else CV.renderDossier();
   CV.showTab("P"); return lensKey;
 }
 CV.setLens = setLens;
@@ -163,6 +184,7 @@ function indicators(r){ const D = diagnose(r), ns = nearestStation(r);
     hanh_chinh: {gop_tu: r.merged, trung_tam: r.capital, bien_so: r.plates}, ha_tang: {dau_moi: nodesOf(r).map(n => NODE[n.type] + " " + n.name), truc: arteriesOf(r), logistics: r.logistics},
     dia_hinh_mua_vu: {do_cao: r.elev, kieu: r.archetype, mua_vu_T1_T12: r.season, ghi_chu: r.seasonNotes},
     thi_truong: {dk_moi_nam: r._market, so_thuc: r._regReal, uio: r._uio, phan_khuc_pct: Object.fromEntries(SEG.map((s,i) => [s, r.mix[i]])), ty_trong_ca_nuoc: +r._mshare.toFixed(2)},
+    mang_luoi: (() => { const NW = netOf(r); return {do_thanh_dai_ly: NW.dts, do_thanh_tram_dv: NW.dst, doi_thu_xac_minh: NW.far.map(({p,d}) => ({hang: (CN().brands[p.b]||{}).name, ten: p.name, loai: p.type, dia_chi: p.addr, cach_DT_km: Math.round(d)})), quy_mo_ca_nuoc: Object.fromEntries(Object.values(CN().brands).map(b => [b.name, b.total]))}; })(),
     canh_tranh: {thi_phan_tinh: Object.fromEntries((r._comp||[]).map(c => [c[0], c[1]])), vama_ca_nuoc_YTM_T9: CV.NET.vama.brands},
     do_thanh: {ban_le_T1_T10: r.sales, kh_luy_ke: r.target, dat_kh_pct: r._kpct, dai_ly: dealersOf(r).map(d => ({ten: d.salesKey || d.name, cap: d.tier, le: d.leCum, kh: d.khCum, t10: d.thT10, kh_t10: d.khT10, ton: d.tonT9, tvbh: d.tvbh, hang: d.grade})), km_toi_diem_dv: ns && Math.round(ns.d)},
     chan_doan: {ket_luan: D.verdict, nguyen_nhan: D.factors.map(f => ({muc_do: f.sev, van_de: f.title, bang_chung: f.ev.replace(/<[^>]+>/g,""), hanh_dong: f.act})), thieu_du_lieu: D.gaps}}; }
