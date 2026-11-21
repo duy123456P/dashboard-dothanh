@@ -22,8 +22,11 @@ function dealer360(q){
   // 1) bán lẻ: TDBH (báo cáo đại lý) vs file giao dịch (TT 100%)
   const leT = sum(tdbh.map(x => x.le)), leX = sum(MO.map(m => (tx[m] || {}).le)), diffM = MO.map((m,i) => [m, tdbh[i].le || 0, (tx[m] || {}).le || 0]).filter(([, a, b]) => Math.abs(a - b) >= 3);
   (Math.abs(leT - leX) <= Math.max(3, leT*0.05) ? ok : flags).push(`Bán lẻ T1–T10/2026: TDBH ${fmtInt(leT)} xe, file giao dịch (TT 100%) ${fmtInt(leX)} xe${diffM.length ? `; lệch theo tháng ≥ 3 xe ở ${diffM.map(([m,a,b]) => `T${+m.slice(5)} (${a}/${b})`).join(", ")} do khác thời điểm ghi nhận` : ""}.`);
-  if(d.leCum != null) (d.leCum === leT ? ok : flags).push(`Lũy kế T10 trên bản đồ (network) ${fmtInt(d.leCum)} so với tổng tháng TDBH ${fmtInt(leT)}.`);
-  if(r) (r.sales === d.leCum ? ok : flags).push(`Doanh số tỉnh ${r.name} ${fmtInt(r.sales)} (cộng các đại lý trong tỉnh) so với đại lý ${fmtInt(d.leCum)}${r.sales !== d.leCum ? " (tỉnh có nhiều đại lý)" : ""}.`);
+  if(d.leCum != null){ const bp = CV.bonus && CV.bonus.recon.find(x => x.c1 === d.salesKey);
+    if(bp) (Math.abs(bp.file - leT) <= 10 ? ok : flags).push(`Bán lẻ T1–T10/2026 chính thức theo báo cáo thưởng (hóa đơn bán lẻ tại điểm bán, gồm đại lý cấp 2): ${fmtInt(bp.file)} xe; TDBH ${fmtInt(leT)}, file giao dịch ${fmtInt(bp.tx)} (lệch ${bp.file - leT > 0 ? "+" : ""}${bp.file - leT}${Math.abs(bp.file - leT) > 10 ? ", cần xác nhận" : ", do khác thời điểm ghi nhận"}).`);
+    else (d.leCum === leT ? ok : flags).push(`Lũy kế T10 trên bản đồ (network) ${fmtInt(d.leCum)} so với tổng tháng TDBH ${fmtInt(leT)}.`); }
+  if(r){ const c2 = CV.bonus ? CV.bonus.points.filter(p => p.c1 === d.salesKey && p.c2id) : [], c2x = c2.reduce((a, p) => a + p.xe, 0), oth = c2.filter(p => p.province !== r.name);
+    (r.sales === d.leCum || oth.length ? ok : flags).push(`Doanh số tỉnh ${r.name} ${fmtInt(r.sales)} so với đại lý ${fmtInt(d.leCum)}${oth.length ? `: ${fmtInt(oth.reduce((a, p) => a + p.xe, 0))} xe bán qua đại lý cấp 2 tại tỉnh khác (${oth.map(p => p.name + " " + p.xe + " xe, " + p.province).join("; ")}) được ghi về tỉnh của điểm bán` : r.sales !== d.leCum ? " (tỉnh có nhiều đại lý)" : ""}.`); }
   // 2) bán sỉ
   const siT = sum(tdbh.slice(0, 9).map(x => x.si)), siX = sum(MO.slice(0, 9).map(m => (tx[m] || {}).si));
   (Math.abs(siT - siX) <= Math.max(3, siT*0.08) ? ok : flags).push(`Bán sỉ T1–T9: TDBH ${fmtInt(siT)}, file giao dịch (TT 10%) ${fmtInt(siX)}.`);

@@ -25,8 +25,8 @@
   "culture": "Khách hàng chuộng thương hiệu, thủ tục rõ ràng; doanh nghiệp vận tải lớn, nhiều chủ xe cá nhân giao hàng nội đô. Quan tâm cao đến tài chính trả góp, dịch vụ hậu mãi nhanh.",
   "cvDemand": "Giới hạn giờ/tải trọng nội đô → tải nhẹ, van, xe điện/xanh; vành đai 4 và đô thị vệ tinh kéo nhu cầu ben, trộn bê tông; logistics TMĐT tăng mạnh.",
   "dealers": 4,
-  "sales": 514,
-  "target": 597,
+  "sales": 443,
+  "target": 510,
   "note": "",
   "zone": "Khu vực Hà Nội",
   "elev": 30,
@@ -108,7 +108,9 @@
      "impact": "Phân khúc giao hàng nội đô Hà Nội nghiêng về xe dưới 2 tấn và van: T26, T33L, V56/V65, IZ45S (1,99 tấn); xe từ 2 tấn bán cho tuyến liên tỉnh, KCN, chạy đêm. Đối chiếu nguyên văn QĐ 01/2026 trước khi tư vấn khách."
     }
    ]
-  }
+  },
+  "salesTDBH": 514,
+  "targetTDBH": 597
  },
  {
   "name": "Huế",
@@ -453,8 +455,8 @@
   "culture": "Vựa trái cây miền Bắc: nhu cầu vận chuyển theo mùa vụ rất rõ; thương lái, HTX là khách hàng chính.",
   "cvDemand": "Tải trung thùng kín/đông lạnh chở trái cây về HN và xuất khẩu; ben cho cao tốc.",
   "dealers": 1,
-  "sales": 0,
-  "target": 0,
+  "sales": 17,
+  "target": 20,
   "note": "",
   "zone": "Vùng 4",
   "elev": 800,
@@ -525,7 +527,9 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "salesTDBH": 0,
+  "targetTDBH": 0
  },
  {
   "name": "Lạng Sơn",
@@ -764,7 +768,7 @@
   "culture": "Dân số đông thứ 3 cả nước sau sáp nhập ở nhóm đầu; nhiều doanh nghiệp vận tải gia đình, cạnh tranh giá gay gắt.",
   "cvDemand": "Tải nặng, đầu kéo cho Nghi Sơn (xi măng, thép, xăng dầu); ben, trộn bê tông; tải nhẹ nông thôn.",
   "dealers": 1,
-  "sales": 54,
+  "sales": 59,
   "target": 112,
   "note": "",
   "zone": "Vùng 5",
@@ -849,7 +853,9 @@
     "target": null
    },
    "note9m": "Quý IV được giao tăng 17,1%"
-  }
+  },
+  "salesTDBH": 54,
+  "targetTDBH": 112
  },
  {
   "name": "Nghệ An",
@@ -958,7 +964,9 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "salesTDBH": 11,
+  "targetTDBH": 75
  },
  {
   "name": "Hà Tĩnh",
@@ -1306,8 +1314,8 @@
   "culture": "Cửa khẩu đường bộ lớn với Vân Nam; doanh nghiệp xuất nhập khẩu nông sản, khoáng sản đông.",
   "cvDemand": "Đầu kéo, xe đông lạnh nông sản, ben mỏ; xe khách du lịch Sa Pa.",
   "dealers": 1,
-  "sales": 0,
-  "target": 0,
+  "sales": 12,
+  "target": 14,
   "note": "",
   "zone": "Vùng 4",
   "elev": 900,
@@ -1391,7 +1399,9 @@
      "https://congluan.vn/lao-cai-tang-truong-grdp-9-thang-dat-909-phan-dau-tang-truong-ca-nam-tren-10-post362711.html"
     ]
    ]
-  }
+  },
+  "salesTDBH": 0,
+  "targetTDBH": 0
  },
  {
   "name": "Thái Nguyên",
@@ -1528,8 +1538,8 @@
   "culture": "Tăng trưởng nhanh nhờ sáp nhập Vĩnh Phúc; khách hàng FDI và nhà thầu xây dựng.",
   "cvDemand": "Tải trung, đầu kéo cho KCN Vĩnh Phúc, ben – trộn cho hạ tầng; xe đưa đón công nhân.",
   "dealers": 1,
-  "sales": 0,
-  "target": 0,
+  "sales": 9,
+  "target": 10,
   "note": "",
   "zone": "Vùng 4",
   "elev": 300,
@@ -1617,7 +1627,9 @@
      "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
     ]
    ]
-  }
+  },
+  "salesTDBH": 0,
+  "targetTDBH": 0
  },
  {
   "name": "Bắc Ninh",
@@ -1646,8 +1658,8 @@
   "culture": "Cực công nghiệp mới của miền Bắc; nhu cầu logistics hợp đồng rất lớn, ưu tiên đối tác giao xe nhanh.",
   "cvDemand": "Tải trung thùng kín, đầu kéo container, xe đưa đón công nhân, đông lạnh vải thiều theo mùa.",
   "dealers": 3,
-  "sales": 0,
-  "target": 0,
+  "sales": 48,
+  "target": 70,
   "note": "",
   "zone": "Vùng 2",
   "elev": 50,
@@ -1726,7 +1738,9 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "salesTDBH": 0,
+  "targetTDBH": 0
  },
  {
   "name": "Hưng Yên",
@@ -1755,8 +1769,8 @@
   "culture": "Kết hợp cực công nghiệp (Hưng Yên) và vùng nông nghiệp đông dân (Thái Bình); khách hàng đa dạng.",
   "cvDemand": "Tải nhẹ – trung phân phối, đầu kéo cho KCN, xe chở vật liệu.",
   "dealers": 2,
-  "sales": 0,
-  "target": 0,
+  "sales": 23,
+  "target": 26,
   "note": "",
   "zone": "Vùng 1",
   "elev": 5,
@@ -1835,7 +1849,9 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "salesTDBH": 0,
+  "targetTDBH": 0
  },
  {
   "name": "Hải Phòng",
@@ -1864,8 +1880,8 @@
   "culture": "Nhiều doanh nghiệp logistics, container; cạnh tranh mạnh về giá thuê vận tải, khách hàng chú trọng chi phí vận hành.",
   "cvDemand": "Đầu kéo container là phân khúc chủ lực; tải nặng, rơ mooc; tải trung KCN.",
   "dealers": 1,
-  "sales": 173,
-  "target": 277,
+  "sales": 140,
+  "target": 224,
   "note": "",
   "zone": "Vùng 1",
   "elev": 10,
@@ -1963,7 +1979,9 @@
    "missing": [
     "3 chỉ tiêu chưa đạt kịch bản 9 tháng: GRDP, IIP, doanh nghiệp thành lập mới"
    ]
-  }
+  },
+  "salesTDBH": 173,
+  "targetTDBH": 277
  },
  {
   "name": "Ninh Bình",
@@ -2387,7 +2405,9 @@
      "https://www.vietnamplus.vn/da-nang-giai-ngan-dau-tu-cong-9-thang-dat-hon-77-ke-hoach-von-duoc-giao-post1140506.vnp"
     ]
    ]
-  }
+  },
+  "salesTDBH": 144,
+  "targetTDBH": 199
  },
  {
   "name": "Quảng Ngãi",
@@ -2510,7 +2530,9 @@
     "g": 14.73
    },
    "note9m": "Quý III +9,34%; gỡ vướng hơn 100 dự án; xuất khẩu, vận tải > 4.000 tỷ (+46%)"
-  }
+  },
+  "salesTDBH": 15,
+  "targetTDBH": 36
  },
  {
   "name": "Gia Lai",
@@ -2638,7 +2660,9 @@
     "GRDP 9 tháng chưa đạt kịch bản; điện chưa phát huy vai trò động lực"
    ],
    "note9m": "21 dự án công nghiệp 7.850 tỷ đi vào hoạt động quý III; 13,51 triệu lượt khách (+25%)"
-  }
+  },
+  "salesTDBH": 13,
+  "targetTDBH": 58
  },
  {
   "name": "Khánh Hòa",
@@ -2879,7 +2903,9 @@
     "g": 19.03
    },
    "note9m": "Vốn đầu tư toàn xã hội 84.104,8 tỷ (+12,09%); công nghiệp – xây dựng +10,64%; thu ngân sách 80,4% dự toán"
-  }
+  },
+  "salesTDBH": 54,
+  "targetTDBH": 103
  },
  {
   "name": "Đắk Lắk",
@@ -3007,7 +3033,9 @@
     "nat10m26": 74.1,
     "note": ""
    }
-  }
+  },
+  "salesTDBH": 98,
+  "targetTDBH": 133
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -3037,7 +3065,7 @@
   "culture": "Thị trường lớn và cạnh tranh nhất; khách hàng đánh giá TCO, tài chính, dịch vụ 24/7; nhiều đội xe logistics lớn.",
   "cvDemand": "Đầu kéo container (Cái Mép, Bình Dương), tải nhẹ – van nội đô (cấm giờ), xe điện, xe khách; ben hạ tầng vành đai.",
   "dealers": 5,
-  "sales": 370,
+  "sales": 338,
   "target": 724,
   "note": "",
   "zone": "Khu vực TP. Hồ Chí Minh",
@@ -3156,7 +3184,9 @@
     "rank": null,
     "note": "9 tháng 2026; quý III ước 9,86%"
    }
-  }
+  },
+  "salesTDBH": 370,
+  "targetTDBH": 724
  },
  {
   "name": "Đồng Nai",
@@ -3268,7 +3298,9 @@
      "https://stc.dongnai.gov.vn/vi/news/Kinh-te-Xa-hoi/tinh-hinh-phat-trien-kinh-te-xa-hoi-quoc-phong-an-ninh-thang-9-va-9-thang-nam-2026-cua-thanh-pho-dong-nai-12191.html"
     ]
    ]
-  }
+  },
+  "salesTDBH": 55,
+  "targetTDBH": 131
  },
  {
   "name": "Tây Ninh",
@@ -3297,7 +3329,7 @@
   "culture": "Vùng giáp ranh TP.HCM hưởng lợi dịch chuyển công nghiệp; thương mại biên giới Campuchia.",
   "cvDemand": "Đầu kéo, tải trung KCN, tải nông sản; xe khách hành hương.",
   "dealers": 1,
-  "sales": 59,
+  "sales": 57,
   "target": 101,
   "note": "",
   "zone": "Vùng 8",
@@ -3382,7 +3414,9 @@
      "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
     ]
    ]
-  }
+  },
+  "salesTDBH": 59,
+  "targetTDBH": 101
  },
  {
   "name": "Cần Thơ",
@@ -3412,7 +3446,7 @@
   "culture": "Thương lái và doanh nghiệp chế biến là khách chính; vận tải thủy cạnh tranh với đường bộ.",
   "cvDemand": "Tải nhẹ – trung chở lúa gạo, đông lạnh thủy sản, ben cho cao tốc.",
   "dealers": 3,
-  "sales": 466,
+  "sales": 458,
   "target": 709,
   "note": "",
   "zone": "Vùng 9",
@@ -3519,7 +3553,9 @@
     "note": ""
    },
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
-  }
+  },
+  "salesTDBH": 466,
+  "targetTDBH": 709
  },
  {
   "name": "Vĩnh Long",
@@ -3652,7 +3688,9 @@
     "note": ""
    },
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
-  }
+  },
+  "salesTDBH": 23,
+  "targetTDBH": 50
  },
  {
   "name": "Đồng Tháp",
@@ -3681,7 +3719,7 @@
   "culture": "Cửa ngõ ĐBSCL gần TP.HCM; trái cây xuất khẩu tạo nhu cầu xe lạnh lớn.",
   "cvDemand": "Đông lạnh trái cây – cá tra, tải trung, đầu kéo container về cảng TP.HCM.",
   "dealers": 3,
-  "sales": 134,
+  "sales": 149,
   "target": 192,
   "note": "",
   "zone": "Vùng 9",
@@ -3778,7 +3816,9 @@
     "note": ""
    },
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
-  }
+  },
+  "salesTDBH": 134,
+  "targetTDBH": 192
  },
  {
   "name": "Cà Mau",
@@ -3914,7 +3954,7 @@
   "culture": "Đông dân nhất ĐBSCL; khách hàng gắn với lúa gạo, xi măng và du lịch Phú Quốc.",
   "cvDemand": "Tải trung chở gạo, ben – tải nặng xi măng Kiên Lương, xe khách du lịch.",
   "dealers": 2,
-  "sales": 87,
+  "sales": 93,
   "target": 104,
   "note": "",
   "zone": "Vùng 9",
@@ -3999,6 +4039,8 @@
      "https://mekongasean.vn/kinh-te-an-giang-9-thang-grdp-tang-923-von-dau-tu-hon-80000-ty-dong-60331.html"
     ]
    ]
-  }
+  },
+  "salesTDBH": 87,
+  "targetTDBH": 104
  }
 ]
