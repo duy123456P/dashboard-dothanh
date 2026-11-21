@@ -1,0 +1,471 @@
+{
+ "updated": "21/11/2026",
+ "doc": "DAC Economic & Commercial Radar – 20 chỉ số quốc gia (file anh gửi 21/11/2026)",
+ "src": {
+  "nso10": [
+   "Cục Thống kê: Báo cáo KT-XH tháng 10 và 10 tháng 2026",
+   "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/"
+  ],
+  "nsoX": [
+   "Cục Thống kê: Biểu số liệu tháng 10/2026 (xlsx)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx"
+  ],
+  "nsoQ3": [
+   "Cục Thống kê: Thông cáo KT-XH quý III và 9 tháng 2026",
+   "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  ],
+  "nso25": [
+   "Cục Thống kê: Thông cáo KT-XH quý IV và năm 2025",
+   "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025/"
+  ],
+  "ksms": [
+   "Cục Thống kê: Thông cáo Khảo sát mức sống 2025 (PDF)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/07/Thong-cao-bao-chi-ksms2025.pdf"
+  ],
+  "ng25": [
+   "Cục Thống kê: Niên giám Thống kê 2025 (PDF)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/07/NG-TOAN-QUOC-2025_WM.pdf"
+  ],
+  "g9": [
+   "VOV: GRDP 34 tỉnh 9 tháng 2026",
+   "https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"
+  ],
+  "lab": [
+   "Nhân Dân: thị trường lao động 9 tháng 2026 (Cục Thống kê)",
+   "https://nhandan.vn/thi-truong-lao-dong-9-thang-nam-2026-kha-quan-post992770.html"
+  ],
+  "pmi": [
+   "VnEconomy: PMI sản xuất tháng 10/2026 (S&P Global)",
+   "https://en.vneconomy.vn/vietnams-manufacturing-pmi-ticks-up-to-523-in-october.htm"
+  ],
+  "spg": [
+   "S&P Global PMI",
+   "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html"
+  ],
+  "sbv": [
+   "Ngân hàng Nhà nước Việt Nam",
+   "https://www.sbv.gov.vn/"
+  ],
+  "credit": [
+   "Báo Nghệ An: tín dụng đạt 20,87 triệu tỷ đồng (báo cáo Thống đốc trước Quốc hội 31/10/2026)",
+   "https://baonghean.vn/tin-dung-dat-2087-trieu-ty-dong-von-cho-tang-truong-hai-con-so-van-trong-cho-vao-ngan-hang-10356196.html"
+  ],
+  "rate": [
+   "Thời báo Tài chính: NHNN thanh tra việc giảm lãi suất tháng 11/2026",
+   "https://thoibaotaichinhvietnam.vn/ngan-hang-nha-nuoc-yeu-cau-mo-dot-thanh-tra-kiem-tra-viec-giam-lai-suat-trong-thang-11-206940.html"
+  ],
+  "budget": [
+   "VietnamPlus: thu ngân sách 10 tháng 2026 đạt 2.438,9 nghìn tỷ",
+   "https://www.vietnamplus.vn/thu-ngan-sach-uoc-dat-24389-nghin-ty-dong-hoan-thanh-964-du-toan-nam-post1145831.vnp"
+  ],
+  "mof": [
+   "Bộ Tài chính",
+   "https://mof.gov.vn/"
+  ],
+  "debt": [
+   "Báo Chính phủ: năm 2026 bơm vốn hạ tầng, bảo đảm an toàn nợ công",
+   "https://baochinhphu.vn/nam-2026-bom-von-ha-tang-di-doi-voi-bao-dam-an-toan-no-cong-102260422150734283.htm"
+  ],
+  "bop": [
+   "Thời báo Tài chính: cán cân thanh toán quốc tế trở lại thặng dư",
+   "https://thoibaotaichinhvietnam.vn/can-can-thanh-toan-quoc-te-bop-tro-lai-thang-du-suc-ep-ty-gia-chua-voi-206261-206261.html"
+  ],
+  "fx": [
+   "Báo Đấu thầu: dự trữ ngoại hối 87,6 tỷ USD (18/6/2026)",
+   "https://baodauthau.vn/den-186-du-tru-ngoai-hoi-dat-876-ty-usd-post201374.html"
+  ],
+  "m2": [
+   "Dữ liệu kinh tế: cung tiền M2 (tổng hợp từ NHNN)",
+   "https://dulieukinhte.com/du-lieu/cung-tien-m2-huy-dong-385"
+  ],
+  "vpa": [
+   "VPA: sản lượng container tháng 10/2026",
+   "https://www.vpa.org.vn/vn/san-luong-container-thang-10-2026-dat-270-trieu-teu-tang-84-so-voi-cung-ky/"
+  ],
+  "imf": [
+   "IMF DataMapper: Vietnam",
+   "https://www.imf.org/external/datamapper/profile/VNM"
+  ],
+  "wb": [
+   "World Bank: Vietnam country data",
+   "https://data.worldbank.org/country/VN?locale=vi"
+  ]
+ },
+ "ind": [
+  {
+   "id": "01",
+   "g": "Kinh tế vĩ mô",
+   "n": "GDP",
+   "v": "+9,01%",
+   "p": "9 tháng 2026",
+   "d": "Quý III +9,95%; năm 2025 +8,02%, quy mô ≈ 514 tỷ USD",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nsoQ3",
+    "nso25"
+   ],
+   "dac": "Quy mô và tốc độ tăng kinh tế: bối cảnh nhu cầu vận tải và đầu tư phương tiện."
+  },
+  {
+   "id": "02",
+   "g": "Kinh tế vĩ mô",
+   "n": "GRDP 34 tỉnh",
+   "v": "12/34 tỉnh ≥ 10%",
+   "p": "9 tháng 2026",
+   "d": "Dẫn đầu Quảng Ninh 12,54%, Hà Tĩnh 12,36%, Hải Phòng 12,08%; thấp nhất Sơn La 5,59%",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "g9"
+   ],
+   "dac": "So sánh sức mạnh kinh tế tỉnh; phân vùng cơ hội bán xe (xem điểm Radar từng tỉnh)."
+  },
+  {
+   "id": "03",
+   "g": "Kinh tế vĩ mô",
+   "n": "Thu nhập bình quân/tháng",
+   "v": "6,005 triệu đ",
+   "p": "năm 2025",
+   "d": "+10,9%; thành thị 7,354, nông thôn 5,159 triệu; Đông Nam Bộ 7,708, TD-MN phía Bắc 4,151",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "ksms",
+    "ng25"
+   ],
+   "dac": "Khả năng mua xe, sức khỏe hộ kinh doanh, doanh nghiệp nhỏ."
+  },
+  {
+   "id": "04",
+   "g": "Kinh tế vĩ mô",
+   "n": "Thất nghiệp",
+   "v": "2,22%",
+   "p": "quý III/2026",
+   "d": "Bằng quý trước; thiếu việc làm 1,31%; thanh niên 15–24 tuổi 9,07%",
+   "s": "neutral",
+   "q": "A",
+   "src": [
+    "lab",
+    "nsoQ3"
+   ],
+   "dac": "Tình hình hoạt động doanh nghiệp, thu nhập, tiêu dùng."
+  },
+  {
+   "id": "05",
+   "g": "Sản xuất & thương mại",
+   "n": "Bán lẻ hàng hóa, dịch vụ",
+   "v": "6.618,9 nghìn tỷ",
+   "p": "10 tháng 2026",
+   "d": "+13,5%; riêng tháng 10 +14,7% (695,5 nghìn tỷ)",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nso10",
+    "nsoX"
+   ],
+   "dac": "Luân chuyển hàng tiêu dùng, phân phối, giao nhận: cầu xe tải nhẹ, thùng kín, xe giao hàng."
+  },
+  {
+   "id": "06",
+   "g": "Sản xuất & thương mại",
+   "n": "IIP – sản xuất công nghiệp",
+   "v": "+12,4%",
+   "p": "10 tháng 2026",
+   "d": "Tháng 10 +15,0%; chế biến chế tạo 10 tháng +13,0%",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nsoX",
+    "nso10"
+   ],
+   "dac": "Hoạt động nhà máy: nhu cầu chở nguyên liệu, thành phẩm (xe tải trung, nặng)."
+  },
+  {
+   "id": "07",
+   "g": "Sản xuất & thương mại",
+   "n": "PMI sản xuất",
+   "v": "52,3",
+   "p": "tháng 10/2026",
+   "d": "Tháng 9: 51,9; 16 tháng liên tiếp trên 50; đơn hàng xuất khẩu mới giảm",
+   "s": "good",
+   "q": "B",
+   "src": [
+    "pmi",
+    "spg"
+   ],
+   "dac": "Tín hiệu sớm đơn hàng, sản xuất, tồn kho (dẫn trước nhu cầu xe 1–3 tháng)."
+  },
+  {
+   "id": "08",
+   "g": "Sản xuất & thương mại",
+   "n": "Đầu tư công (vốn NSNN)",
+   "v": "783,9 nghìn tỷ",
+   "p": "10 tháng 2026",
+   "d": "Đạt 69,0% kế hoạch năm, +19,8%; địa phương 671,8 nghìn tỷ (69,2%)",
+   "s": "neutral",
+   "q": "A",
+   "src": [
+    "nsoX",
+    "nso10"
+   ],
+   "dac": "Hạ tầng, xây dựng, dự án: cơ hội xe ben, tải nặng, chuyên dụng; dồn giải ngân quý IV."
+  },
+  {
+   "id": "09",
+   "g": "Sản xuất & thương mại",
+   "n": "FDI",
+   "v": "54,85 tỷ USD",
+   "p": "đăng ký đến 31/10/2026",
+   "d": "+74,0%, cao nhất 17 năm; giải ngân 24,08 tỷ USD +13,1%",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nso10",
+    "nsoX"
+   ],
+   "dac": "Nhà máy, KCN, chuỗi cung ứng: nhu cầu logistics, xe tải công nghiệp."
+  },
+  {
+   "id": "10",
+   "g": "Thương mại quốc tế",
+   "n": "Xuất khẩu",
+   "v": "499,2 tỷ USD",
+   "p": "10 tháng 2026",
+   "d": "+27,5%; tháng 10 đạt 64,67 tỷ USD",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nsoX"
+   ],
+   "dac": "Sản xuất hướng xuất khẩu, luồng hàng đi cảng: đầu kéo, tải trung/nặng."
+  },
+  {
+   "id": "11",
+   "g": "Thương mại quốc tế",
+   "n": "Nhập khẩu",
+   "v": "511,3 tỷ USD",
+   "p": "10 tháng 2026",
+   "d": "+37,4%; tháng 10 đạt 57,36 tỷ USD",
+   "s": "neutral",
+   "q": "A",
+   "src": [
+    "nsoX"
+   ],
+   "dac": "Nguyên liệu, máy móc, luồng phân phối nội địa."
+  },
+  {
+   "id": "12",
+   "g": "Thương mại quốc tế",
+   "n": "Cán cân thương mại",
+   "v": "−12,07 tỷ USD",
+   "p": "10 tháng 2026",
+   "d": "Nhập siêu lũy kế; tháng 10 xuất siêu 7,31 tỷ USD (tháng thứ 2 liên tiếp)",
+   "s": "warn",
+   "q": "A",
+   "src": [
+    "nso10"
+   ],
+   "dac": "Sức khỏe luồng hàng ngoại thương; áp lực tỷ giá lên giá linh kiện nhập."
+  },
+  {
+   "id": "13",
+   "g": "Tiền tệ & giá",
+   "n": "CPI & lạm phát cơ bản",
+   "v": "+4,57%",
+   "p": "bình quân 10 tháng 2026",
+   "d": "Tháng 10 +5,09% so cùng kỳ; lạm phát cơ bản 4,24%; nhóm giao thông +15,57%",
+   "s": "warn",
+   "q": "A",
+   "src": [
+    "nsoX",
+    "nso10"
+   ],
+   "dac": "Sức mua thực giảm, chi phí vận hành xe tăng (nhiên liệu, phụ tùng, bảo dưỡng)."
+  },
+  {
+   "id": "14",
+   "g": "Tiền tệ & giá",
+   "n": "Tỷ giá, lãi suất, tín dụng",
+   "v": "Tín dụng +12,27%",
+   "p": "đến 31/10/2026",
+   "d": "Dư nợ 20,87 triệu tỷ (mục tiêu năm ≈ 15%); lãi suất cho vay mới giảm 0,2–0,5 điểm; NHNN thanh tra việc giảm lãi suất tháng 11; giá USD bình quân 10 tháng +0,78%",
+   "s": "good",
+   "q": "B",
+   "src": [
+    "credit",
+    "rate",
+    "sbv",
+    "nsoX"
+   ],
+   "dac": "Chi phí vay mua xe, vốn lưu động: lãi giảm hỗ trợ trả góp."
+  },
+  {
+   "id": "15",
+   "g": "Tài khóa",
+   "n": "Thu ngân sách",
+   "v": "2.438,9 nghìn tỷ",
+   "p": "10 tháng 2026",
+   "d": "96,4% dự toán, +11,0%",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "budget",
+    "nso10",
+    "mof"
+   ],
+   "dac": "Sức khỏe tài khóa, dư địa chi đầu tư công."
+  },
+  {
+   "id": "16",
+   "g": "Tài khóa",
+   "n": "Chi ngân sách",
+   "v": "2.108,7 nghìn tỷ",
+   "p": "10 tháng 2026",
+   "d": "66,8% dự toán, +14,8%; chi đầu tư phát triển ≈ 735 nghìn tỷ (65,6%)",
+   "s": "neutral",
+   "q": "A",
+   "src": [
+    "budget",
+    "nso10"
+   ],
+   "dac": "Giải ngân dự án, hạ tầng: dồn chi quý IV, cơ hội xe công trình."
+  },
+  {
+   "id": "17",
+   "g": "Tài khóa",
+   "n": "Nợ công",
+   "v": "≈ 35–36% GDP",
+   "p": "kế hoạch 2026",
+   "d": "Trần 60%; nợ Chính phủ ≈ 33–34% (trần 50%); IMF dự báo 28,3%",
+   "s": "good",
+   "q": "B",
+   "src": [
+    "debt",
+    "imf"
+   ],
+   "dac": "Rủi ro tài khóa thấp, còn dư địa đầu tư công."
+  },
+  {
+   "id": "18",
+   "g": "Đối ngoại",
+   "n": "Cán cân thanh toán",
+   "v": "+81 triệu USD",
+   "p": "quý II/2026",
+   "d": "Quý I thâm hụt 1,078 tỷ USD; vãng lai quý II thâm hụt, bù bằng FDI",
+   "s": "warn",
+   "q": "B",
+   "src": [
+    "bop",
+    "sbv"
+   ],
+   "dac": "Áp lực tỷ giá, ngoại tệ nhập linh kiện CKD."
+  },
+  {
+   "id": "19",
+   "g": "Đối ngoại",
+   "n": "Dự trữ ngoại hối",
+   "v": "≈ 87,6 tỷ USD",
+   "p": "18/6/2026",
+   "d": "Thấp hơn đỉnh 111,8 tỷ USD (1/2022) khoảng 24 tỷ",
+   "s": "warn",
+   "q": "B",
+   "src": [
+    "fx",
+    "sbv"
+   ],
+   "dac": "Khả năng ổn định tỷ giá, thanh toán nhập khẩu."
+  },
+  {
+   "id": "20",
+   "g": "Tiền tệ & giá",
+   "n": "Cung tiền M2",
+   "v": "≈ 20,77 triệu tỷ",
+   "p": "tháng 8/2026",
+   "d": "Cuối 2025 ≈ 19,44 triệu tỷ; nguồn tổng hợp, chưa đối chiếu văn bản NHNN",
+   "s": "neutral",
+   "q": "C",
+   "src": [
+    "m2",
+    "sbv"
+   ],
+   "dac": "Thanh khoản, điều kiện tài chính, sức mua."
+  }
+ ],
+ "extra": [
+  {
+   "n": "Vận tải hàng hóa đường bộ",
+   "v": "2.186,6 triệu tấn",
+   "p": "10 tháng 2026",
+   "d": "+16,5%; tháng 10 +17,6%; luân chuyển toàn ngành +13,1%",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nsoX"
+   ],
+   "dac": "Chỉ báo trực tiếp nhất cho nhu cầu xe tải: khối lượng hàng đi đường bộ tăng mạnh."
+  },
+  {
+   "n": "Container qua cảng",
+   "v": "2.703.689 TEU",
+   "p": "tháng 10/2026",
+   "d": "+8,38%, cao nhất từ đầu năm; 10 tháng > 24,4 triệu TEU (+9,2%). Theo khu vực tháng 10: Đông Nam Bộ 978.255 (+9,83%), miền Bắc 871.003 (+9,69%), Cái Mép – Thị Vải 749.378 (+6,8%), Nam Trung Bộ 86.556 (−7,14%), Bắc Trung Bộ 10.763 (+19,96%), ĐBSCL 7.734 (+30,07%)",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "vpa"
+   ],
+   "dac": "Luồng container: đầu kéo, tải nặng hậu cảng (không quy đổi trực tiếp ra số xe)."
+  },
+  {
+   "n": "Doanh nghiệp thành lập mới",
+   "v": "≈ 12,6 nghìn",
+   "p": "tháng 10/2026",
+   "d": "Vốn đăng ký ≈ 254,8 nghìn tỷ (+45% so tháng 9)",
+   "s": "good",
+   "q": "A",
+   "src": [
+    "nso10"
+   ],
+   "dac": "Khách hàng mới tiềm năng (hộ, doanh nghiệp vận tải, phân phối)."
+  }
+ ],
+ "weights": [
+  [
+   "scale",
+   "Quy mô & sức mua",
+   20,
+   "GRDP 2025, thu nhập, dân số, bán lẻ"
+  ],
+  [
+   "prod",
+   "Sản xuất & đầu tư",
+   20,
+   "FDI 10 tháng, vốn NSNN, tăng trưởng 9 tháng 2026"
+  ],
+  [
+   "logi",
+   "Luồng hàng & logistics",
+   20,
+   "cảng, KCN, cửa khẩu, sân bay, ĐK xe tải"
+  ],
+  [
+   "fin",
+   "Năng lực tài chính KH",
+   15,
+   "thu nhập, GRDP/người 2025"
+  ],
+  [
+   "sect",
+   "Tín hiệu ngành hàng",
+   15,
+   "tỷ trọng công nghiệp, bán lẻ/người, ô tô ĐK"
+  ],
+  [
+   "dac",
+   "Tín hiệu DAC",
+   10,
+   "thị phần, đạt KH, tồn kho"
+  ]
+ ]
+}

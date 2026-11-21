@@ -47,7 +47,9 @@ const MET = [
   ["serv", "Kinh tế – xã hội", "Tỷ trọng dịch vụ", "% GRDP", r => r.econ ? r.econ[2] : null, 0, "cơ cấu GRDP"],
   ["agri", "Kinh tế – xã hội", "Tỷ trọng nông – lâm – thủy sản", "% GRDP", r => r.econ ? r.econ[0] : null, 0, "cơ cấu GRDP"],
   ["g9m26", "Kinh tế – xã hội", "Tăng trưởng GRDP 9 tháng 2026", "%", r => ((PS.growth9m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, báo địa phương (một phần)"],
-  ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục ĐTNN qua báo chí (một phần)"],
+  ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (top 20)"],
+  ["pinv", "Kinh tế – xã hội", "Vốn đầu tư NSNN 10 tháng 2026", "tỷ đ", r => ((PS.publicInv10m26 || {})[r.name] || {}).vnd ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (21 tỉnh)"],
+  ["radar", "Radar DAC", "Điểm Radar DAC (20/20/20/15/15/10)", "/100", r => CV.radarScore ? CV.radarScore(r) : null, 1, "Radar kinh tế – tài chính DAC"],
   ["market", "Thị trường xe", "ĐK mới xe tải/năm", "xe", r => r._market, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["carreg", "Thị trường xe", "Ô tô mọi loại 2025 (ĐK thật hoặc ước từ VAMA)", "xe", r => carEst(r).v, 1, "Cục CSGT (tỉnh có số) · ước từ tổng VAMA + VinFast + Hyundai"],
@@ -77,6 +79,8 @@ const U = {
   fdi: ["Người Quan Sát: FDI 10 tháng 2026 theo địa phương", "https://nguoiquansat.vn/dia-phuong-hut-von-fdi-cap-moi-nhieu-nhat-viet-nam-voi-hon-10-ty-usd-gan-gap-doi-thai-nguyen-vuot-ca-ha-noi-va-bac-ninh-326316.html"],
   csgt: ["Dân trí: ô tô đăng ký mới 2025 theo địa phương (Cục CSGT)", "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"],
   ng: ["Cục Thống kê: Niên giám Thống kê 2025 (quy đổi 63 tỉnh cũ → 34 tỉnh)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/NG-TOAN-QUOC-2025_WM.pdf"],
+  nsoX: ["Cục Thống kê: biểu số liệu tháng 10/2026 (FDI, vốn NSNN theo tỉnh)", "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx"],
+  radar: ["Radar DAC: điểm tổng hợp từ Niên giám 2025, biểu tháng 10/2026, dữ liệu DAC (khung chưa backtest)", null],
   vama: ["Vietnamnet: doanh số ô tô 2025 (VAMA 375.736 xe; cộng VinFast, Hyundai ≈ 604.000 xe)", "https://vietnamnet.vn/en/vietnam-s-2025-car-sales-race-these-9-models-led-their-brands-2483168.html"],
   vamaest: ["Ước phân bổ theo GRDP, dân số từ tổng VAMA (tỉnh chưa có số Cục CSGT)", null],
   csgt9: ["Tuổi Trẻ: xe đăng ký mới 9 tháng 2026 (Cục CSGT)", "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"],
@@ -88,7 +92,7 @@ const U = {
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
 const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+  g9m26: ["g9"], fdi: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
@@ -199,7 +203,7 @@ dlg.addEventListener("click", e => { const names = [...sel.options].map(o => o.v
   if(e.target.id === "bdBen"){ const md = boardMd(sel.value); dlg.close(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phòng chiến lược " + sel.value); const b = CV.addMsg("a", ""); CV.finishBubble(b, md, false, "Phòng chiến lược " + sel.value, true); } });
 // nút trên thanh công cụ bản đồ + trên trang
 const tools = document.querySelector(".maptools"); if(tools){ const b = document.createElement("button"); b.type = "button"; b.id = "btnBoard"; b.className = "primary"; b.textContent = "Phòng chiến lược HĐQT"; b.addEventListener("click", () => open()); tools.prepend(b); }
-CV.openBoard = open; CV.boardPosture = posture; CV.postureReset = () => { RK = null; cache = null; };
+CV.openBoard = open; CV.boardPosture = posture; CV.boardAgg = A; CV.postureReset = () => { RK = null; cache = null; if(CV.radarReset) CV.radarReset(); };
 try{ CV.renderAll && CV.renderAll(); }catch(e){ console.warn(e); }
 
 function boardMd(name){

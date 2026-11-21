@@ -363,44 +363,164 @@
  ],
  "fdi10m26": {
   "TP. Hồ Chí Minh": {
-   "v": 10300,
+   "v": 20140.1,
    "rank": 1,
-   "note": "cấp mới; gồm tăng vốn ≈ 19.100"
+   "new": 10301.3,
+   "adj": 5701.4,
+   "projects": 1761,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
   "Thái Nguyên": {
-   "v": 5800,
+   "v": 8014.4,
    "rank": 2,
-   "note": "cấp mới"
-  },
-  "Hà Nội": {
-   "v": 3750,
-   "rank": 3,
-   "note": "cấp mới"
+   "new": 5824.5,
+   "adj": 2154.1,
+   "projects": 28,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
   "Bắc Ninh": {
-   "v": 3480,
+   "v": 4571.4,
+   "rank": 3,
+   "new": 1912.3,
+   "adj": 2600.9,
+   "projects": 311,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Hà Nội": {
+   "v": 4171.9,
    "rank": 4,
-   "note": "cấp mới"
+   "new": 708.9,
+   "adj": 700.8,
+   "projects": 589,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
   "Hải Phòng": {
-   "v": 3050,
+   "v": 3959.9,
    "rank": 5,
-   "note": "cấp mới"
+   "new": 2325.9,
+   "adj": 1431.1,
+   "projects": 178,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
   "Nghệ An": {
-   "v": 2380,
+   "v": 2453.0,
    "rank": 6,
-   "note": "cấp mới"
+   "new": 2390.7,
+   "adj": 62.0,
+   "projects": 13,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Phú Thọ": {
+   "v": 1777.7,
+   "rank": 7,
+   "new": 180.3,
+   "adj": 1584.1,
+   "projects": 26,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Tây Ninh": {
+   "v": 1709.3,
+   "rank": 8,
+   "new": 865.9,
+   "adj": 727.8,
+   "projects": 127,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Ninh Bình": {
+   "v": 1464.8,
+   "rank": 9,
+   "new": 505.7,
+   "adj": 928.1,
+   "projects": 47,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Đồng Nai": {
+   "v": 1432.8,
+   "rank": 10,
+   "new": 1143.2,
+   "adj": 30.0,
+   "projects": 92,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Hưng Yên": {
+   "v": 1004.8,
+   "rank": 11,
+   "new": 936.6,
+   "adj": 36.2,
+   "projects": 64,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Quảng Ninh": {
+   "v": 697.0,
+   "rank": 12,
+   "new": 684.3,
+   "adj": 3.0,
+   "projects": 30,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Điện Biên": {
+   "v": 549.4,
+   "rank": 13,
+   "new": 549.4,
+   "adj": 0,
+   "projects": 3,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Đà Nẵng": {
+   "v": 543.2,
+   "rank": 14,
+   "new": 491.3,
+   "adj": 38.8,
+   "projects": 121,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Hà Tĩnh": {
+   "v": 502.6,
+   "rank": 15,
+   "new": 502.6,
+   "adj": 0,
+   "projects": 5,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
   "Thanh Hóa": {
    "v": 374.8,
    "rank": 16,
-   "note": ""
+   "new": 279.9,
+   "adj": 81.0,
+   "projects": 23,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   },
-  "Đà Nẵng": {
-   "v": 804,
-   "rank": null,
-   "note": "đăng ký mới + tăng thêm"
+  "Gia Lai": {
+   "v": 354.8,
+   "rank": 17,
+   "new": 342.6,
+   "adj": 10.1,
+   "projects": 11,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Đồng Tháp": {
+   "v": 177.3,
+   "rank": 18,
+   "new": 176.7,
+   "adj": 0.1,
+   "projects": 7,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Quảng Trị": {
+   "v": 173.9,
+   "rank": 19,
+   "new": 155.6,
+   "adj": 0,
+   "projects": 4,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
+  },
+  "Huế": {
+   "v": 162.4,
+   "rank": 20,
+   "new": 156.3,
+   "adj": 6.0,
+   "projects": 3,
+   "note": "tổng vốn đăng ký cấp mới, điều chỉnh, góp vốn (chính thức)"
   }
  },
  "fdiTop7": [
@@ -413,35 +533,131 @@
   "Hưng Yên"
  ],
  "publicInv10m26": {
-  "Điện Biên": {
-   "rank": 1,
-   "diem": 100
+  "Hà Nội": {
+   "vnd": 127959,
+   "pct": 74.8,
+   "yoy": 84.7,
+   "rank": 1
   },
-  "Hải Phòng": {
-   "rank": 2,
-   "diem": 99.97
+  "TP. Hồ Chí Minh": {
+   "vnd": 114043,
+   "pct": 77.3,
+   "yoy": 19.4,
+   "rank": 2
   },
-  "Cà Mau": {
+  "Hưng Yên": {
+   "vnd": 35860,
+   "pct": 66.2,
+   "yoy": 19.0,
    "rank": 3
   },
-  "Gia Lai": {
+  "Ninh Bình": {
+   "vnd": 31225,
+   "pct": 53.9,
+   "yoy": -19.0,
    "rank": 4
   },
-  "Khánh Hòa": {
+  "Hải Phòng": {
+   "vnd": 29253,
+   "pct": 72.4,
+   "yoy": 16.8,
    "rank": 5
   },
-  "Đắk Lắk": {
-   "rank": 23,
-   "diem": 90.76
+  "Tây Ninh": {
+   "vnd": 26231,
+   "pct": 74.3,
+   "yoy": 101.5,
+   "rank": 6
   },
-  "Lào Cai": {
-   "diem": 100
+  "Đồng Nai": {
+   "vnd": 23624,
+   "pct": 60.0,
+   "yoy": 16.2,
+   "rank": 7
   },
-  "Tuyên Quang": {
-   "diem": 100
+  "Phú Thọ": {
+   "vnd": 20307,
+   "pct": 73.4,
+   "yoy": 5.1,
+   "rank": 8
+  },
+  "Gia Lai": {
+   "vnd": 20182,
+   "pct": 66.5,
+   "yoy": 66.6,
+   "rank": 9
+  },
+  "Quảng Ninh": {
+   "vnd": 20065,
+   "pct": 54.5,
+   "yoy": 77.3,
+   "rank": 10
+  },
+  "An Giang": {
+   "vnd": 18969,
+   "pct": 66.2,
+   "yoy": 49.3,
+   "rank": 11
+  },
+  "Bắc Ninh": {
+   "vnd": 15770,
+   "pct": 71.4,
+   "yoy": 18.8,
+   "rank": 12
+  },
+  "Thanh Hóa": {
+   "vnd": 13894,
+   "pct": 54.8,
+   "yoy": -1.5,
+   "rank": 13
+  },
+  "Nghệ An": {
+   "vnd": 13524,
+   "pct": 71.5,
+   "yoy": 80.0,
+   "rank": 14
+  },
+  "Khánh Hòa": {
+   "vnd": 12956,
+   "pct": 78.9,
+   "yoy": 22.2,
+   "rank": 15
+  },
+  "Cần Thơ": {
+   "vnd": 12755,
+   "pct": 67.6,
+   "yoy": -33.8,
+   "rank": 16
   },
   "Đà Nẵng": {
-   "pct9m": 77.16
+   "vnd": 12523,
+   "pct": 75.1,
+   "yoy": 4.3,
+   "rank": 17
+  },
+  "Lâm Đồng": {
+   "vnd": 12235,
+   "pct": 60.8,
+   "yoy": 24.7,
+   "rank": 18
+  },
+  "Đắk Lắk": {
+   "vnd": 10191,
+   "pct": 67.3,
+   "yoy": 3.2,
+   "rank": 19
+  },
+  "Vĩnh Long": {
+   "vnd": 9127,
+   "pct": 68.5,
+   "yoy": -23.2,
+   "rank": 20
+  },
+  "Đồng Tháp": {
+   "vnd": 8913,
+   "pct": 72.8,
+   "yoy": -30.2,
+   "rank": 21
   }
  },
  "notes": {
@@ -452,9 +668,15 @@
   "publicInv10m26": "chấm điểm giải ngân đầu tư công 10 tháng 2026 (Bộ Tài chính, BC 908/BC-BTC 3/11/2026); mới có một phần bảng",
   "growth9m26": "tăng trưởng GRDP 9 tháng 2026 (Cục Thống kê qua báo chí, 20/34 tỉnh; cả nước 9,01%)",
   "income": "Thu nhập bình quân tháng 2025 (KSMS): 10 tỉnh theo số công bố; 24 tỉnh quy đổi từ Niên giám Thống kê 2025 (63 tỉnh cũ, bình quân gia quyền theo dân số 2025), kiểm chứng lệch ≤ 3 nghìn đồng so với 10 tỉnh đã công bố.",
-  "g9": "Tăng trưởng 9 tháng 2026: đủ 34/34 tỉnh; Khánh Hòa, Huế là số UBND tỉnh ước, các tỉnh khác theo Cục Thống kê hoặc thống kê tỉnh."
+  "g9": "Tăng trưởng 9 tháng 2026: đủ 34/34 tỉnh; Khánh Hòa, Huế là số UBND tỉnh ước, các tỉnh khác theo Cục Thống kê hoặc thống kê tỉnh.",
+  "fdi": "FDI 10 tháng 2026: 20 địa phương dẫn đầu theo Cục Thống kê (biểu tháng 10/2026); tỉnh ngoài danh sách = chưa công bố, thấp hơn 162 triệu USD.",
+  "publicInv": "Vốn đầu tư thực hiện từ NSNN 10 tháng 2026: 21 tỉnh có số theo Cục Thống kê; tỉnh khác chưa công bố riêng."
  },
  "sources": [
+  [
+   "Cục Thống kê: Biểu số liệu KT-XH tháng 10/2026 (FDI, vốn NSNN theo tỉnh)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx"
+  ],
   [
    "Cục Thống kê: Niên giám Thống kê 2025 (bảng 17, 86, 254, 348)",
    "https://www.nso.gov.vn/wp-content/uploads/2026/07/NG-TOAN-QUOC-2025_WM.pdf"
