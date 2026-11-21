@@ -23,6 +23,13 @@ function agg(){
 const A = r => agg()[r.name] || {dealers: [], tx12: 0, inv: 0, invLe: 0, invOld: 0, f27: 0, kh27: 0, erp27: 0, comp: 0, compBrands: new Set()};
 const invRate = () => CV.inv ? CV.inv.daysT11 / 30 : 0.7;
 
+/* ---------- ô tô mọi loại 2025: số ĐK thật (Cục CSGT) nếu có; còn lại ước từ tổng thị trường VAMA + VinFast + Hyundai ---------- */
+const CAR_TOTAL_2025 = 604000; // VAMA 375.736 + VinFast 175.099 + Hyundai 53.229 (Vietnamnet, 1/2026)
+function carEst(r){ const rs = CV.rows, real = rs.filter(x => x.carReg2025), rest = rs.filter(x => !x.carReg2025);
+  const w = x => Math.pow(Math.max(x.grdp || 0, 0), 0.65) * Math.pow(Math.max(x.pop || 0, 0), 0.35), sw = rest.reduce((a, x) => a + w(x), 0) || 1;
+  const left = Math.max(0, CAR_TOTAL_2025 - real.reduce((a, x) => a + x.carReg2025, 0));
+  return r.carReg2025 ? {v: r.carReg2025, est: false} : {v: Math.round(left * w(r) / sw), est: true}; }
+CV.carEst = carEst;
 /* ---------- danh mục chỉ số (có xếp hạng /34) ---------- */
 const MET = [
   // [id, nhóm, nhãn, đơn vị, getter, hướng (+1 cao là tốt / −1 thấp là tốt / 0 trung tính), nguồn]
@@ -42,7 +49,7 @@ const MET = [
   ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục ĐTNN qua báo chí (một phần)"],
   ["market", "Thị trường xe", "ĐK mới xe tải/năm", "xe", r => r._market, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
-  ["carreg", "Thị trường xe", "Ô tô mọi loại ĐK 2025", "xe", r => r.carReg2025, 1, "Cục CSGT theo tỉnh cũ"],
+  ["carreg", "Thị trường xe", "Ô tô mọi loại 2025 (ĐK thật hoặc ước từ VAMA)", "xe", r => carEst(r).v, 1, "Cục CSGT (tỉnh có số) · ước từ tổng VAMA + VinFast + Hyundai"],
   ["heavy", "Thị trường xe", "Tỷ trọng tải nặng + đầu kéo", "% thị trường", r => r.mix ? r.mix[2] + r.mix[3] : null, 0, "ước theo cơ cấu ngành"],
   ["comp", "Thị trường xe", "Điểm bán, dịch vụ đối thủ đã xác minh", "điểm", r => A(r).comp, -1, "mạng lưới đối thủ"],
   ["sales", "Đô Thành", "Bán lẻ T1–T10/2026 (TDBH)", "xe", r => r.sales, 1, "Tổng hợp TDBH"],
@@ -68,6 +75,8 @@ const U = {
   cfinc: ["CafeF: thu nhập bình quân tháng 34 tỉnh (KSMS 2025)", "https://cafef.vn/lan-dau-tien-cong-bo-bang-xep-hang-thu-nhap-binh-quan-thang-cua-34-tinh-thanh-sau-sap-nhap-dia-phuong-nao-dang-dan-dau-188260711090453958.chn"], cfcar: ["CafeF: tỉnh thành mua ô tô nhiều nhất 2025 (Cục CSGT)", "https://cafef.vn/lo-dien-nhung-tinh-thanh-mua-o-to-xe-may-nhieu-nhat-nam-2025-188251229100610196.chn"],
   fdi: ["Người Quan Sát: FDI 10 tháng 2026 theo địa phương", "https://nguoiquansat.vn/dia-phuong-hut-von-fdi-cap-moi-nhieu-nhat-viet-nam-voi-hon-10-ty-usd-gan-gap-doi-thai-nguyen-vuot-ca-ha-noi-va-bac-ninh-326316.html"],
   csgt: ["Dân trí: ô tô đăng ký mới 2025 theo địa phương (Cục CSGT)", "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"],
+  vama: ["Vietnamnet: doanh số ô tô 2025 (VAMA 375.736 xe; cộng VinFast, Hyundai ≈ 604.000 xe)", "https://vietnamnet.vn/en/vietnam-s-2025-car-sales-race-these-9-models-led-their-brands-2483168.html"],
+  vamaest: ["Ước phân bổ theo GRDP, dân số từ tổng VAMA (tỉnh chưa có số Cục CSGT)", null],
   csgt9: ["Tuổi Trẻ: xe đăng ký mới 9 tháng 2026 (Cục CSGT)", "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"],
   dk: ["Báo Xây dựng: phương tiện lưu hành 8 tháng 2026 (Cục Đăng kiểm)", "https://baoxaydung.vn/hon-500-nghin-luot-phuong-tien-truot-kiem-dinh-8-thang-dau-nam-2026-192260818102808066.htm"],
   dtweb: ["dothanhauto.com: hệ thống đại lý", "https://www.dothanhauto.com/dai-ly.html"],
@@ -77,10 +86,11 @@ const U = {
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
 const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["g25"], growth: ["g25"], gpc: ["vne"], income: ["cfinc", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
+  if(id === "carreg") return r.carReg2025 ? [U.csgt, U.cfcar] : [U.vama, U.vamaest];
   if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0])).concat([U.g9]); return null; };
 const kindOf = t => /^(File|ERP)/.test(t) ? "dữ liệu nội bộ DAC" : "ước tính của bản đồ, chưa có số công bố";
 const srcList = (id, r) => provSrc(id, r) || (SRCOF[id] || []).map(k => U[k]);
@@ -97,7 +107,7 @@ const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || 
 /* ---------- thế trận ---------- */
 function posture(r){
   const avg = a => { const v = a.filter(x => x != null); return v.length ? sum(v) / v.length : 0.5; };
-  const attr = avg([pct("market", r), pct("growth", r), pct("gpc", r), pct("uio", r), pct("carreg", r), pct("grdp", r)]);
+  const attr = avg([pct("market", r), pct("growth", r), pct("gpc", r), pct("uio", r), (r.carReg2025 ? pct("carreg", r) : null), pct("grdp", r)]);
   const x = A(r), cov = MID.cover[4](r);
   const nd = (r._c4 || 0) + (r._c3 || 0), z = v => v == null ? 0.2 : v; // thiếu số liệu nội lực = yếu, không coi là trung bình
   let str = avg([z(pct("share", r)), z(pct("kpct", r)), z(pct("dealers", r)), z(pct("tx12", r)), cov == null ? 0.3 : cov <= 3 ? 0.8 : cov <= 6 ? 0.4 : 0.1, x.comp ? Math.max(0, 1 - x.comp / 12) : 0.6]);
@@ -153,7 +163,7 @@ CV.METRICS.posture = {label: "Thế trận (1 du kích · 2 giữ chắc · 3 đ
 function tile(id, r){
   const m = MID[id], v = m[4](r), rk = rankOf(id, r), off = official(id, r), q = rk ? (rk[0] - 1) / Math.max(1, rk[1] - 1) : null;
   const col = m[5] === 0 || q == null ? C.muted : (m[5] > 0 ? q : 1 - q) <= 0.25 ? C.good : (m[5] > 0 ? q : 1 - q) >= 0.75 ? C.bad : C.warn;
-  const val = v == null || !isFinite(v) ? "—" : id === "cover" && v >= 99 ? "không bán" : (m[3] === "%" || m[3] === "tháng" || id === "income" || id === "growth") ? f1(v) : n0(v);
+  const val = v == null || !isFinite(v) ? "—" : id === "carreg" && carEst(r).est ? "~" + n0(v) : id === "cover" && v >= 99 ? "không bán" : (m[3] === "%" || m[3] === "tháng" || id === "income" || id === "growth") ? f1(v) : n0(v);
   return `<div class="stat bdt" data-gl-text="${esc(m[2])}" data-tip="<b>${esc(m[2])}</b><br>${esc(val)} ${esc(m[3])}<br>Hạng ${rk ? rk[0] + "/" + rk[1] : "—"}${off ? " (công bố: " + off + "/34)" : ""}<br>Nguồn: ${esc(srcList(id, r).map(z => z[0]).join(" · ") || m[6])}"><div class="v">${esc(val)}<span class="bdu"> ${esc(m[3])}</span></div><div class="l">${esc(m[2])}</div><div class="bdr" style="color:${col}">${rk ? `#${off || rk[0]}/${off ? 34 : rk[1]}` : "chưa có số"}</div><div class="bdsrc">${(() => { const L = srcList(id, r), w = L.find(z => z[1]); return w ? `<a href="${esc(w[1])}" target="_blank" rel="noopener noreferrer" title="${esc(L.map(z => z[0]).join(" · "))}">nguồn ↗</a>` : `<span title="${esc(L.map(z => z[0]).join(" · "))}">${/^(File|ERP)/.test((L[0] || [""])[0]) ? "nguồn: file nội bộ DAC" : "ước tính"}</span>`; })()}</div></div>`;
 }
 function render(name){

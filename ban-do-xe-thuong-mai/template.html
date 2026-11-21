@@ -1258,7 +1258,7 @@ function renderDossier(){
         <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2025 ${r._regReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_market}</div></div>
         <div class="stat"><div class="v">${fmt1(r._turn)}%</div><div class="l">ĐK mới / UIO</div></div>
         <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>
-        <div class="stat"><div class="v">${r.carReg2025 ? fmtInt(r.carReg2025) : "—"}</div><div class="l">Ô tô mọi loại ĐK mới 2025${r.carReg2025?" (Cục CSGT)":""}</div></div>
+        <div class="stat"><div class="v">${r.carReg2025 ? fmtInt(r.carReg2025) : (window.__CV && __CV.carEst ? "~" + fmtInt(__CV.carEst(r).v) : "—")}</div><div class="l">Ô tô mọi loại 2025${r.carReg2025?" ĐK mới (Cục CSGT)":" (ước từ VAMA)"}</div></div>
         <div class="stat"><div class="v">${r._perCenter==null?"—":fmtInt(r._perCenter)}</div><div class="l">xe ĐK mới / đại lý</div></div>
       </div>
       <div class="segbar">${r.mix.map((v,i)=>`<span style="width:${v}%;background:${segColors[i]}" title="${SEGS[i]} ${v}%"></span>`).join("")}</div>
@@ -1513,7 +1513,7 @@ _${r.zone} · ${r.region} · ngày ${date}_
 | UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":"ước"}) |
 | ĐK mới xe tải 2025 | ${n0(r._market)} xe (${r._regReal?"số thực":"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
 | ĐK mới / UIO | ${p1(r._turn)} |
-| Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : "chưa có số công bố"} |
+| Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : (window.__CV && __CV.carEst ? "~" + n0(__CV.carEst(r).v) + " xe (ước từ tổng VAMA + VinFast + Hyundai ≈ 604.000 xe, phân bổ theo GRDP, dân số)" : "chưa có số công bố")} |
 | Độ cao trung bình | ${n0(r.elev)} m |
 
 **Cơ cấu phân khúc (ước):** ${r.mix.map((v,i)=>`${SEGS[i]} ${n0(r._market*v/100)} xe`).join("; ")}. Trọng tâm: **${top2.join("**, **")}**.
