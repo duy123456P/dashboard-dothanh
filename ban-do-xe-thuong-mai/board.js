@@ -65,6 +65,7 @@ const U = {
   g25: ["Cục Thống kê: thông cáo GRDP 34 tỉnh năm 2025", "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"],
   g9: ["VOV: GRDP 34 tỉnh 9 tháng 2026", "https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"],
   ksms: ["Cục Thống kê: Khảo sát mức sống dân cư 2025 (PDF)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/Thong-cao-bao-chi-ksms2025.pdf"],
+  cfinc: ["CafeF: thu nhập bình quân tháng 34 tỉnh (KSMS 2025)", "https://cafef.vn/lan-dau-tien-cong-bo-bang-xep-hang-thu-nhap-binh-quan-thang-cua-34-tinh-thanh-sau-sap-nhap-dia-phuong-nao-dang-dan-dau-188260711090453958.chn"], cfcar: ["CafeF: tỉnh thành mua ô tô nhiều nhất 2025 (Cục CSGT)", "https://cafef.vn/lo-dien-nhung-tinh-thanh-mua-o-to-xe-may-nhieu-nhat-nam-2025-188251229100610196.chn"],
   fdi: ["Người Quan Sát: FDI 10 tháng 2026 theo địa phương", "https://nguoiquansat.vn/dia-phuong-hut-von-fdi-cap-moi-nhieu-nhat-viet-nam-voi-hon-10-ty-usd-gan-gap-doi-thai-nguyen-vuot-ca-ha-noi-va-bac-ninh-326316.html"],
   csgt: ["Dân trí: ô tô đăng ký mới 2025 theo địa phương (Cục CSGT)", "https://dantri.com.vn/thoi-su/5-dia-phuong-co-so-luong-o-to-xe-may-dang-ky-moi-nhieu-nhat-nam-2025-20251226185131842.htm"],
   csgt9: ["Tuổi Trẻ: xe đăng ký mới 9 tháng 2026 (Cục CSGT)", "https://tuoitre.vn/ca-nuoc-co-hon-33-trieu-xe-duoc-dang-ky-moi-trong-9-thang-dau-nam-2026-100260924115759761.htm"],
@@ -75,8 +76,8 @@ const U = {
   model: ["Mô hình phân bổ của bản đồ (không phải số thống kê): tổng toàn quốc Cục CSGT, Cục Đăng kiểm chia theo GRDP, cơ cấu ngành", null],
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
-const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["g25"], growth: ["g25"], gpc: ["vne"], income: ["ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["g25"], growth: ["g25"], gpc: ["vne"], income: ["cfinc", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
+  g9m26: ["g9"], fdi: ["fdi"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
