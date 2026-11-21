@@ -128,3 +128,12 @@ section.glass > h2::after,section.glass .opshead h2::after{content:"";position:a
 .gltip{max-width:360px;font-size:12.5px;line-height:1.45}
 .gltip .glr{margin-top:6px}.gltip .glr span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
 .mdbox .tasktbl td,.mdbox .tasktbl th{white-space:normal;vertical-align:top}.mdbox .tasktbl{width:100%;table-layout:auto}.mdsteps p{margin:0 0 8px}
+
+/* Phòng chiến lược HĐQT */
+#boardDlg .body{max-height:calc(96vh - 70px)}#boardDlg{max-height:96vh}
+.bdhead{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.bdpost{border:1px solid;border-radius:14px;padding:10px 14px;max-width:520px;background:rgba(5,11,22,.45)}
+.bdpt{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:.02em}
+.bdgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.bdt .v{font-size:19px}.bdt .bdu{font-size:11px;color:var(--muted);font-weight:500}.bdt .bdr{font-family:var(--display);font-weight:700;font-size:13px;margin-top:2px}
+#btnBoard{box-shadow:0 0 18px rgba(70,227,255,.4)}
