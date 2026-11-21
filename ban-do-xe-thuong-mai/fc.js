@@ -72,9 +72,13 @@ function hw(y, h){
   const m3 = mean(y.slice(-3)); return {name: "Trung bình 3 tháng (dữ liệu quá ngắn)", fit: y.map(() => m3), fc: Array(h).fill(m3)};
 }
 function baseline(S1, S2){
-  const h = D.cfg.horizon, y = S1.clean, M = hw(y, h), fut = Array.from({length: h}, (_,k) => addM(S1.months[S1.months.length-1], k+1));
+  const h = D.cfg.horizon, y = S1.clean, SE = CV.salesSeason, useS = SE && y.length < 24 && y.length >= 6, mIdx = k => +k.slice(5) - 1;
+  let M; if(useS){ const ds = y.map((v,i) => v / SE[mIdx(S1.months[i])]), m0 = hw(ds, h), lastK = S1.months[S1.months.length-1];
+    M = {name: "Holt trên chuỗi khử mùa vụ (chỉ số mùa vụ 2025 từ ERP)" + m0.name.replace(/^Holt[^(]*/, " "), fit: m0.fit.map((v,i) => v * SE[mIdx(S1.months[i])]), fc: m0.fc.map((v,k) => v * SE[mIdx(addM(lastK, k+1))])}; }
+  else M = hw(y, h);
+  const fut = Array.from({length: h}, (_,k) => addM(S1.months[S1.months.length-1], k+1));
   // MAPE kiểm định: bỏ 3 tháng cuối, dự báo lại
-  let mape = null; if(y.length >= 12){ const t = hw(y.slice(0, -3), 3), act = y.slice(-3); const e = act.map((a,i) => a ? Math.abs(a - t.fc[i])/a : null).filter(v => v != null); mape = e.length ? mean(e)*100 : null; }
+  let mape = null; if(y.length >= 12 || (useS && y.length >= 9)){ const yy = y.slice(0, -3), t = useS ? (() => { const ds = yy.map((v,i) => v / SE[mIdx(S1.months[i])]), r = hw(ds, 3); return {fc: r.fc.map((v,k) => v * SE[mIdx(S1.months[yy.length + k])])}; })() : hw(yy, 3), act = y.slice(-3); const e = act.map((a,i) => a ? Math.abs(a - t.fc[i])/a : null).filter(v => v != null); mape = e.length ? mean(e)*100 : null; }
   // Hiệu chỉnh vĩ mô: hồi quy phần dư theo biến vĩ mô đã trễ L tháng (z-score); chỉ áp cho tháng tương lai đã biết giá trị vĩ mô trễ
   let macro = Array(h).fill(0), beta = null;
   if(S2 && S2.best && S2.best.sig){ const L = S2.best.lag, xs = S2.xs, valid = xs.filter(v => v != null), mx = mean(valid), sd = Math.sqrt(mean(valid.map(v => (v-mx)**2))) || 1;
@@ -258,7 +262,7 @@ function fcMd(seg, body){
 }
 CV.tools.push({name: "du_bao_kinh_doanh", label: "Đang dự báo…", description: "Dự báo số bán theo tải trọng và loại thùng, 3 bước: (1) làm sạch đường cơ sở, loại đơn fleet và đột biến; (2) tương quan chéo tìm độ trễ biến vĩ mô (ví dụ giải ngân đầu tư công → xe ben); (3) S&OP: đường cơ sở + điều chỉnh có bằng chứng → số chốt, trạng thái ký 3 phòng. tai_trong: '< 1 tấn' | '1–2,5 tấn' | '2,5–3,5 tấn' | '3,5–10 tấn' | '> 10 tấn' | bỏ trống = tất cả; loai_thung: 'Thùng kín' | 'Mui bạt' | 'Ben' | 'Chuyên dùng' | 'Khác (lửng, chassis, van)' | bỏ trống.",
   inputSchema: {type: "object", properties: {tai_trong: {type: "string"}, loai_thung: {type: "string"}}}, execute: ({tai_trong, loai_thung}) => fcMd(tai_trong || "", loai_thung || "")});
-CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim().toLowerCase(); if(!/dự báo|forecast|s&op/.test(t)) return null;
+CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim().toLowerCase(); if(!/dự báo|forecast|s&op/.test(t)) return null; if(CV.salesForecast && /dự báo (doanh số|bán hàng|2027|năm)|khả năng đạt/.test(t) && !/s&op|thùng|tải trọng|\bben\b|fleet|độ trễ/.test(t)) return null;
   const body = BODIES.find(b => t.includes(b.toLowerCase().split(" (")[0].toLowerCase())) || (/\bben\b/.test(t) ? "Ben" : /kín/.test(t) ? "Thùng kín" : /bạt/.test(t) ? "Mui bạt" : /chuyên dùng/.test(t) ? "Chuyên dùng" : "");
   return fcMd("", body); });
 const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nDỰ BÁO KINH DOANH: hỏi dự báo, S&OP, độ trễ vĩ mô, loại fleet thì dùng du_bao_kinh_doanh. ${D.sales.length ? `Đã có ${D.sales.length} dòng lịch sử bán, ${new Set(D.macro.map(x => x.k)).size} biến vĩ mô.` : "Chưa có lịch sử bán theo tháng: hướng dẫn nạp CSV, không tự bịa số dự báo."}`;
