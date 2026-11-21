@@ -53,7 +53,7 @@ landc=landc*vn[...,None]+nb*(1-vn[...,None])
 dep=np.clip(-E,0,4000)/4000
 sea=np.array([64,190,200])*(1-dep[...,None]**0.5)+np.array([10,48,78])*(dep[...,None]**0.5)
 img=np.where(land[...,None],landc,sea).astype(np.uint8)
-Image.fromarray(img).resize((4096,4096),Image.LANCZOS).save(f"{OUT}/relief.jpg",quality=80,optimize=True,progressive=True)
+Image.fromarray(img).resize((4096,4096),Image.LANCZOS).save(f"{OUT}/relief.webp","WEBP",quality=75,method=6)
 # heightmap grid 512 x 544, encoded meters+12000 in R,G
 HW,HH=1024,1088
 Eh=sample(HW,HH)
@@ -63,7 +63,9 @@ for f in geo["features"]:
   for p in polys: dk.polygon([to_px(x,y,HW,HH) for x,y in p[0]],fill=255)
 mk=np.asarray(mk)>127
 Eh=np.where(mk&(Eh<2),2+np.clip(Eh,0,None),Eh)
+# biển: làm tròn độ sâu 25 m (đáy biển chỉ vẽ mờ), đất liền giữ nguyên từng mét → ảnh nhẹ một nửa
+Eh=np.where(Eh<0,np.minimum(-1,np.maximum(-4500,np.round(Eh/25)*25)),Eh)
 v=np.clip(np.round(Eh+12000),0,65535).astype(np.uint32)
 enc=np.stack([(v>>8)&255,v&255,np.zeros_like(v)],-1).astype(np.uint8)
-Image.fromarray(enc).save(f"{OUT}/height.png",optimize=True)
+Image.fromarray(enc).save(f"{OUT}/height.webp","WEBP",lossless=True,method=6,quality=100)
 print("max",E.max(),"min",E.min())

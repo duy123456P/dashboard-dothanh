@@ -1,0 +1,7 @@
+{
+  "name": "ban-do-xe-thuong-mai-dac",
+  "private": true,
+  "description": "Công cụ dựng bản đồ 3D DAC: chỉ cần esbuild để thu gọn JS/CSS khi build",
+  "scripts": { "build": "python3 build.py" },
+  "devDependencies": { "esbuild": "0.24.0" }
+}

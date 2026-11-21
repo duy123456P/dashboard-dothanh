@@ -2,7 +2,10 @@
 ban-do-xe-thuong-mai/index.html
 ban-do-xe-thuong-mai/artifact.html
 ban-do-xe-thuong-mai/*.png
-!ban-do-xe-thuong-mai/height.png
 !ban-do-xe-thuong-mai/logo-dothanh.png
 ban-do-xe-thuong-mai/*.md
 !ban-do-xe-thuong-mai/README.md
+
+# công cụ build (esbuild) cài cục bộ
+ban-do-xe-thuong-mai/node_modules
+ban-do-xe-thuong-mai/package-lock.json

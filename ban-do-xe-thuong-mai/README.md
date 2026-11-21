@@ -1,34 +1,52 @@
-# Bản đồ thị trường xe thương mại Việt Nam (3D)
+# Bản đồ thị trường xe thương mại DAC (3D)
 
-Bản đồ 3D 34 tỉnh/thành (NQ 202/2025/QH15) để phân tích thị trường xe thương mại: rê chuột vào tỉnh để xem hồ sơ (dân số, GRDP, thị trường xe TM ước tính, cơ cấu phân khúc, hạ tầng, văn hóa kinh doanh, gợi ý hành động).
+Một file HTML duy nhất, chạy offline trên Google Chrome: bản đồ 3D 34 tỉnh/thành, hồ sơ tỉnh, Phòng chiến lược HĐQT, Radar kinh tế – tài chính, chính sách bán hàng, tồn kho, dự báo và trợ lý Ben.
 
-- `index.html` – mở trực tiếp bằng trình duyệt (cần Internet để tải thư viện ECharts).
-- `provinces.json` – dữ liệu 34 tỉnh (sửa ở đây để cập nhật cho cả nhóm).
-- `vn34.geojson` – ranh giới 34 tỉnh (gộp từ 63 tỉnh cũ).
-- `template.html` – giao diện; `build.py` ghép dữ liệu vào trang.
+## Dùng trên Chrome
+- **Online:** https://duy123456p.github.io/dashboard-dothanh/ban-do/ → nhập mật khẩu.
+- **Offline:** tải `ban-do/index.html` (hoặc gói `BanDo-DAC-3D.zip`), bấm đúp để mở bằng Chrome → nhập mật khẩu. Không cần Internet: thư viện 3D, phông chữ, ảnh địa hình, dữ liệu đều nằm trong file.
+- Yêu cầu: Chrome/Edge 80 trở lên, máy có WebGL (hầu hết máy tính hiện nay). Ben phân tích AI chỉ chạy khi mở trong Claude; các báo cáo tức thì, tra cứu, công cụ khác chạy ở mọi nơi.
+- Bảo mật: toàn bộ trang mã hóa AES-256-GCM (khóa PBKDF2-SHA256, 600.000 vòng), nén gzip trước khi mã hóa; giải mã tại máy, mật khẩu không gửi đi đâu. Bản chưa mã hóa (`index.html`, `artifact.html` trong thư mục này) không đưa lên repo.
 
-## Cập nhật dữ liệu
-1. Nhanh: sửa ngay trong bảng trên trang (lưu trên trình duyệt), hoặc nhập file CSV/JSON (cột `name` là tên tỉnh mới).
-2. Cho cả nhóm: sửa `provinces.json`, chạy `python3 build.py`, rồi commit `index.html`.
+## Kiến trúc
+```
+template.html          khung trang + bản đồ 3D (three.js) + hồ sơ tỉnh + Ben
+ops.html, ops.css      khung các khối báo cáo
+*.js (17 module)       mỗi module là một IIFE, giao tiếp qua window.__CV (công cụ Ben, hook, dữ liệu dùng chung)
+  ops, lens, lyhoc, legal, comp, hud, sales, fc, model, inv, tx, audit, board, warplan, radar, policy, layout
+*.json                 dữ liệu (build.py ánh xạ placeholder → file trong DATA)
+vendor/                three.js r147 + OrbitControls/Lines; phông Be Vietnam Pro, Chakra Petch (woff2, OFL)
+relief.webp            ảnh nền địa hình 4096², height.webp: độ cao (R*256+G−12000 m, nén không mất dữ liệu; biển làm tròn 25 m)
+build.py               ghép tất cả thành index.html tự chứa; thu gọn JS/CSS bằng esbuild
+tools_lock.py, lock.html   nén + mã hóa → ../ban-do/index.html
+tools_*.py             đồng bộ dữ liệu từ file Excel/ERP (xem bên dưới)
+```
+Thứ tự module quan trọng (MODULES trong build.py): `layout.js` chạy cuối để gom các khối vào 6 nhóm dưới bản đồ.
 
-Các trường Đô Thành tự nhập: `dealers` (điểm bán), `sales` (doanh số), `target` (mục tiêu), `note`.
-
-## Nguồn dữ liệu (`sources.json`)
-VAMA, Cục CSGT, Cục Đăng kiểm, Thuế (lệ phí trước bạ), Cục Thống kê. Mỗi nguồn ghi kỳ số liệu và thời điểm lấy dữ liệu (`retrieved`, giờ Việt Nam); `updated` là lần cập nhật gần nhất. Sửa file này khi có số mới rồi chạy `python3 build.py`.
-
-## Xem bản đồ có mật khẩu (Chrome)
-- Đường dẫn: https://duy123456p.github.io/dashboard-dothanh/ban-do/ (chỉ cần mật khẩu, không cần tên đăng nhập).
-- Toàn bộ trang được mã hóa AES-256-GCM (khóa PBKDF2-SHA256, 600.000 vòng); trình duyệt giải mã tại chỗ.
-- `index.html`, `artifact.html` chưa mã hóa không còn đưa lên repo (xem `.gitignore`).
+## Dựng và đóng gói
+```bash
+npm install                      # một lần: cài esbuild (thu gọn JS/CSS)
+python3 build.py                 # → index.html (≈ 3,8 MB, tự chứa)
+MAP_PASSWORD='…' python3 tools_lock.py   # → ../ban-do/index.html (≈ 2,6 MB, đã khóa)
+```
+Nhập đúng mật khẩu đang dùng = chỉ khóa lại nội dung; mật khẩu mới không được trùng mật khẩu cũ (lịch sử lưu dạng băm trong `ban-do/.mat-khau-da-dung.json`).
 
 ### Đổi mật khẩu (khuyến nghị 9:00 sáng mỗi ngày)
-1. GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWORD` thành mật khẩu mới.
-2. Tab Actions → "Đổi mật khẩu bản đồ 3D" → Run workflow. Khoảng 1–2 phút sau trang dùng mật khẩu mới.
-- Mật khẩu trùng bất kỳ mật khẩu đã dùng sẽ bị từ chối (lịch sử chỉ lưu dạng băm trong `ban-do/.mat-khau-da-dung.json`).
-- Tại máy: `MAP_PASSWORD='...' python3 tools_lock.py` sau khi chạy `python3 build.py`.
+GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWORD` → tab Actions → "Đổi mật khẩu bản đồ 3D" → Run workflow. Mỗi lần cập nhật code trên `main`, workflow tự dựng và khóa lại.
 
-## Đồng bộ dữ liệu bán hàng chi tiết và tồn thành phẩm
-- `python3 tools_sync_sales_xlsx.py <file giao dịch.xlsx> [YYYY-MM-DD]` → `tx.json`: số xe theo tháng × đại lý × model × loại thùng × dự án (bán lẻ = TT 100%, bán sỉ = TT 10%, xuất kho = ngày XK; −1 = hủy cọc); xe đã cọc 10% chưa TT 100% theo tuổi. Không lưu số khung, hợp đồng.
-- `factory.json`: tồn thành phẩm kho DAC theo model × thùng × màu (thành phẩm, chờ xuất, chassis).
-- Sau khi cập nhật: `python3 build.py` rồi `MAP_PASSWORD='…' python3 tools_lock.py` (đúng mật khẩu đang dùng thì chỉ khóa lại nội dung).
-- `SRC_NAME='tên file gốc.xlsx' python3 tools_sync_inventory.py <file tồn SR.xlsx> [YYYY-MM-DD]` → `inventory.json`: tồn đại lý từng xe (sheet PV + Tồn SR) gộp theo đại lý × model × thùng × màu × đời × loại hợp đồng × tuổi; tự kiểm tra khớp tồn. Không lưu số khung, hợp đồng.
+## Đồng bộ dữ liệu
+| Lệnh | Nguồn | Kết quả |
+|---|---|---|
+| `python3 tools_sync_erp.py` | ERP Netlify (TDBH, CSI, KH 2027) | `sales.json` |
+| `python3 tools_sync_sales_xlsx.py <file.xlsx>` | giao dịch từng xe | `tx.json` (không số khung, hợp đồng) |
+| `SRC_NAME='…' python3 tools_sync_inventory.py <file.xlsx>` | tồn đại lý (MoM Tồn SR) | `inventory.json` |
+| `python3 tools_sync_bonus.py <file.xlsx>` | báo cáo thưởng 2026 | `bonus2026.json`, cập nhật `network.json`, `provinces.json`; rà số khung trùng (chỉ tính cho đại lý bán sau cùng); không tên TVBH, số khung |
+| `python3 tools_sync_places.py <dt_places.json>` | bản đồ nhúng trên dothanhauto.com | địa chỉ, tọa độ đại lý, trạm |
+| `python3 tools_nien_giam_34.py ng.txt out.json` | Niên giám Thống kê 2025 | GRDP, bán lẻ, dân số theo 34 tỉnh |
+| `python3 tools_thu_nhap_34.py ng.txt out.json` | Niên giám (bảng 348) | thu nhập 2025 theo 34 tỉnh |
+| `python3 tools_relief.py` | DEM AWS Terrain Tiles | `relief.webp`, `height.webp` |
+
+Sau mỗi lần đồng bộ: `python3 build.py` rồi `tools_lock.py`.
+
+## Nguồn dữ liệu
+Mỗi chỉ số trên bản đồ có link nguồn (Cục Thống kê, Niên giám 2025, biểu KT-XH tháng, NHNN, Bộ Tài chính, VPA, Cục CSGT, VAMA, báo địa phương) hoặc ghi rõ "ước tính" / "file nội bộ DAC". `sources.json`, `provstats.json`, `radar.json` lưu nguồn và kỳ số liệu.
