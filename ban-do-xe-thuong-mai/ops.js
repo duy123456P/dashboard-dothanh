@@ -111,12 +111,13 @@ function undoLast(){
 
 /* ---------- in-page ask (browser prompt/confirm can be blocked inside the frame) ---------- */
 function ask(label, opts){ opts = opts || {}; return new Promise(res => {
-  const d = $("askDlg"); $("askL").textContent = label; const inp = $("askIn"); inp.value = ""; inp.hidden = !!opts.confirm; inp.placeholder = opts.ph || "";
+  const d = $("askDlg"); $("askL").textContent = label; const inp = $("askIn"); inp.value = opts.def || ""; inp.hidden = !!opts.confirm; inp.placeholder = opts.ph || "";
   const done = v => { d.close(); $("askOk").onclick = $("askNo").onclick = null; res(v); };
   $("askOk").onclick = () => { if(opts.confirm) return done(true); const v = inp.value.trim(); if(opts.required && !v){ inp.focus(); return; } done(v); };
   $("askNo").onclick = () => done(opts.confirm ? false : null); d.oncancel = e => { e.preventDefault(); done(opts.confirm ? false : null); };
   inp.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); $("askOk").click(); } };
   d.showModal(); if(!opts.confirm) inp.focus(); }); }
+CV.ask = ask;
 
 /* ---------- natural-language command parsing (no AI needed) ---------- */
 const N = s => CV.norm(String(s||""));

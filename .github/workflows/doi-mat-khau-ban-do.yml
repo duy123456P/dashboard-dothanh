@@ -1,8 +1,12 @@
 name: Đổi mật khẩu bản đồ 3D
 # Cách dùng: Settings → Secrets and variables → Actions → sửa secret MAP_PASSWORD thành mật khẩu mới,
+# (mỗi lần cập nhật code bản đồ trên main, workflow tự khóa lại bằng mật khẩu đang dùng)
 # rồi vào tab Actions → "Đổi mật khẩu bản đồ 3D" → Run workflow. Mật khẩu trùng mật khẩu cũ sẽ bị từ chối.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['ban-do-xe-thuong-mai/**']
 permissions:
   contents: write
 concurrency: doi-mat-khau
@@ -19,11 +23,12 @@ jobs:
         env:
           MAP_PASSWORD: ${{ secrets.MAP_PASSWORD }}
         run: |
-          test -n "$MAP_PASSWORD" || { echo "Chưa có secret MAP_PASSWORD"; exit 1; }
+          test -n "$MAP_PASSWORD" || { echo "Chưa có secret MAP_PASSWORD: bỏ qua"; exit 0; }
           cd ban-do-xe-thuong-mai && python3 build.py && python3 tools_lock.py
       - name: Lưu bản đồ đã khóa
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ban-do/index.html ban-do/.mat-khau-da-dung.json
-          git commit -m "Đổi mật khẩu bản đồ 3D" && git push
+          git diff --cached --quiet && exit 0
+          git commit -m "Khóa lại bản đồ 3D (cập nhật nội dung hoặc đổi mật khẩu)" && git push
