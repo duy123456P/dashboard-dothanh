@@ -839,9 +839,9 @@
    "region": "Miền Nam",
    "c1": "Vũ Hùng",
    "c2id": null,
-   "xe": 135,
+   "xe": 133,
    "iz": 48,
-   "missu": 87,
+   "missu": 85,
    "jp": 0,
    "daewoo": 0,
    "xtl": 0,
@@ -854,8 +854,8 @@
     17,
     14,
     21,
-    20,
-    11,
+    19,
+    10,
     17,
     18
    ],
@@ -865,15 +865,15 @@
    "province": "TP. Hồ Chí Minh",
    "bonus": {
     "tvbhN": 6,
-    "xe": 135,
+    "xe": 133,
     "izLe": 47,
-    "misLe": 86,
-    "dlMonth": 272300000,
-    "dlQuarter": 75900000,
-    "tvbhMonth": 173700000,
-    "total": 521900000,
-    "status": "Đã rà trùng: −4 xe trùng chuyển cho đại lý bán sau cùng · 2 xe KG/TB chờ hồ sơ",
-    "dedupe": 4
+    "misLe": 84,
+    "dlMonth": 268700000.0,
+    "dlQuarter": 74900000.0,
+    "tvbhMonth": 171300000.0,
+    "total": 514900000.0,
+    "status": "Đã rà trùng: −6 xe trùng chuyển cho đại lý bán sau cùng · 2 xe KG/TB chờ hồ sơ",
+    "dedupe": 6
    },
    "q": [
     69200000,
@@ -1847,7 +1847,7 @@
    }
   },
   "Vũ Hùng": {
-   "maxTr": 353.7,
+   "maxTr": 349.1,
    "estTr": 63.0,
    "monthsHit75": 3,
    "monthPct": {
@@ -1857,8 +1857,8 @@
     "4": 100,
     "5": 88,
     "6": 48,
-    "7": 43,
-    "8": 26,
+    "7": 41,
+    "8": 24,
     "9": 40,
     "10": 42
    }
@@ -1909,10 +1909,10 @@
   {
    "c1": "Vũ Hùng",
    "region": "Miền Nam",
-   "file": 135,
+   "file": 133,
    "tdbh": 138,
    "tx": 138,
-   "diff": -3
+   "diff": -5
   },
   {
    "c1": "Tân Vạn",
@@ -2005,12 +2005,32 @@
  ],
  "dup": [
   {
+   "vin": "…000094",
+   "model": "V65 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-07-15",
+   "dropped": [
+    "Vũ Hùng 2026-07-15"
+   ],
+   "rule": "cùng ngày: theo chiều bán của các xe trùng còn lại"
+  },
+  {
    "vin": "…000071",
    "model": "V65 2S",
    "kept": "Đô Thành Phú Mỹ",
    "keptDate": "2026-07-18",
    "dropped": [
     "Vũ Hùng 2026-07-17"
+   ],
+   "rule": "hóa đơn sau cùng"
+  },
+  {
+   "vin": "…000108",
+   "model": "V65 2S",
+   "kept": "Đô Thành Phú Mỹ",
+   "keptDate": "2026-08-19",
+   "dropped": [
+    "Vũ Hùng 2026-08-18"
    ],
    "rule": "hóa đơn sau cùng"
   },
@@ -2055,6 +2075,99 @@
    "rule": "số khung rút gọn, cùng model, ngày, TVBH"
   }
  ],
+ "vinfix": [
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-06-27",
+   "from": "…D0000072",
+   "to": "…TD000072"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-06-30",
+   "from": "…D0000101",
+   "to": "…TD000101"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-07-15",
+   "from": "…D0000094",
+   "to": "…TD000094"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-07-17",
+   "from": "…D0000102",
+   "to": "…TD000102"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-07-22",
+   "from": "…D0000098",
+   "to": "…TD000098"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-07-27",
+   "from": "…D0000111",
+   "to": "…TD000111"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-08-18",
+   "from": "…D0000108",
+   "to": "…TD000108"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-08-20",
+   "from": "…D0000100",
+   "to": "…TD000100"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-09-16",
+   "from": "…D0000096",
+   "to": "…TD000096"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-09-23",
+   "from": "…D0000095",
+   "to": "…TD000095"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-09-30",
+   "from": "…D0000104",
+   "to": "…TD000104"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-09-30",
+   "from": "…D0000066",
+   "to": "…TD000066"
+  },
+  {
+   "dl": "Vũ Hùng",
+   "model": "MISSU V65/2S (VAN 2 CHỖ)",
+   "date": "2026-10-07",
+   "from": "…D0000070",
+   "to": "…TD000070"
+  }
+ ],
  "excluded": {
   "Bảng tổng hợp tháng (chưa có số khung)": 16,
   "Ngoài kỳ 2026 (31/12/2025)": 1,
@@ -2075,7 +2188,7 @@
   "Đắk Lắk": 98,
   "Gia Lai": 13,
   "Quảng Ngãi": 15,
-  "TP. Hồ Chí Minh": 333,
+  "TP. Hồ Chí Minh": 331,
   "Đồng Nai": 55,
   "Lâm Đồng": 54,
   "Vĩnh Long": 23,
