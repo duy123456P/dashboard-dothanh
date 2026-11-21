@@ -4,7 +4,7 @@
 const CV = window.__CV; if(!CV) return;
 const {esc, fmtInt, fmt1, toast} = CV;
 const SEGS = ["< 1 tấn","1–2,5 tấn","2,5–3,5 tấn","3,5–10 tấn","> 10 tấn"];
-const BODIES = ["Thùng kín","Mui bạt","Ben","Chuyên dùng","Khác (lửng, chassis, van)"];
+const BODIES = ["Thùng kín","Mui bạt","Ben","Chuyên dùng","Khác (lửng, chassis, van)","Chưa tách loại thùng"];
 const ADJ_T = {sales:"Thông tin thị trường (đội kinh doanh)", comp:"Khuyến mãi, chính sách đối thủ", launch:"Ra mắt sản phẩm mới", supply:"Cung ứng, tồn kho", other:"Khác"};
 const SIGN = ["Kinh doanh","Kế hoạch – Tài chính","Cung ứng – Logistics"];
 const C = {raw:"#5c7393", clean:"#16a0bd", base:"#e8f3ff", fin:"#4ee2a0", macro:"#d0731d", grid:"rgba(142,167,199,.16)", muted:"#8ea7c7", ink:"#e8f3ff"};
@@ -120,7 +120,7 @@ function parseCSV(t){ const L = t.replace(/\r/g,"").split("\n").filter(x => x.tr
   const H = L[0].split(sep).map(h => h.trim().toLowerCase()); return L.slice(1).map(l => { const c = l.split(sep), o = {}; H.forEach((h,i) => o[h] = (c[i]||"").trim()); return o; }); }
 const pick = (o, ks) => { for(const k of ks){ if(o[k] != null && o[k] !== "") return o[k]; } return ""; };
 function normSeg(s){ s = String(s).toLowerCase().replace(",", "."); const n = parseFloat(s); if(/</.test(s) || n < 1 && !isNaN(n)) return SEGS[0]; if(/>\s*10|đầu kéo|nặng/.test(s) || n > 10) return SEGS[4]; if(n > 3.5) return SEGS[3]; if(n > 2.5) return SEGS[2]; if(n >= 1) return SEGS[1]; return SEGS.find(x => x.toLowerCase() === s) || null; }
-function normBody(s){ s = String(s).toLowerCase(); return /kín|tk|đông lạnh|bảo ôn/.test(s) ? BODIES[0] : /bạt|tmb/.test(s) ? BODIES[1] : /ben|tự đổ/.test(s) ? BODIES[2] : /chuyên|cẩu|bồn|xitec|rác|cứu hộ|tập lái/.test(s) ? BODIES[3] : BODIES[4]; }
+function normBody(s){ s = String(s).toLowerCase(); if(/chưa tách/.test(s)) return BODIES[5]; return /kín|tk|đông lạnh|bảo ôn/.test(s) ? BODIES[0] : /bạt|tmb/.test(s) ? BODIES[1] : /ben|tự đổ/.test(s) ? BODIES[2] : /chuyên|cẩu|bồn|xitec|rác|cứu hộ|tập lái/.test(s) ? BODIES[3] : BODIES[4]; }
 function importSales(t, replace){ const rows = parseCSV(t).map(o => ({m: ym(pick(o, ["thang","tháng","month"])), seg: normSeg(pick(o, ["phan_khuc","phân khúc","tai_trong","tải trọng","tan"])), body: normBody(pick(o, ["loai_thung","loại thùng","thung"])),
     qty: +pick(o, ["so_luong","số lượng","sl","qty"]).replace(/\D/g,"") || 0, fleet: /^(1|x|có|co|yes|fleet)$/i.test(pick(o, ["la_fleet","fleet","lo_lon"])), cust: pick(o, ["khach_hang","khách hàng","customer"])})).filter(r => r.m && r.seg && r.qty);
   if(!rows.length) return 0; demo = false; D.sales = replace ? rows : D.sales.concat(rows); persist(); return rows.length; }
@@ -176,7 +176,7 @@ if(anchor){
     <details class="lgdoc" style="margin-top:12px"><summary><b>Nhập dữ liệu</b> · lịch sử bán theo tháng và biến vĩ mô (CSV)</summary>
       <p class="small muted">Bán hàng: cột <code>thang, phan_khuc, loai_thung, so_luong, la_fleet, khach_hang</code> (phan_khuc ghi tải trọng tấn, ví dụ 1,9 hoặc "&gt;10"; la_fleet = 1 nếu là đơn lô lớn). Vĩ mô: <code>thang, bien, gia_tri</code> (ví dụ "Giải ngân đầu tư công (nghìn tỷ đ)"). Tháng dạng 2026-10.</p>
       <div class="toolbar"><label class="field">File bán hàng<input type="file" id="fcFileS" accept=".csv,.txt"></label><label class="field">File vĩ mô<input type="file" id="fcFileM" accept=".csv,.txt"></label>
-        <label class="field"><span><input type="checkbox" id="fcReplace" checked> Thay toàn bộ dữ liệu cũ</span></label><button type="button" id="fcTpl">Tải file mẫu</button><button type="button" id="fcDemo">Chạy thử với dữ liệu minh họa</button><button type="button" id="fcClear">Xóa dữ liệu dự báo</button></div></details>`;
+        <label class="field"><span><input type="checkbox" id="fcReplace" checked> Thay toàn bộ dữ liệu cũ</span></label><button type="button" class="primary" id="fcReal">Dùng số bán thật T1–T10/2026 (TDBH)</button><button type="button" id="fcTpl">Tải file mẫu</button><button type="button" id="fcDemo">Chạy thử với dữ liệu minh họa</button><button type="button" id="fcClear">Xóa dữ liệu dự báo</button></div></details>`;
   anchor.after(s);
 }
 let cur = null;
@@ -225,6 +225,8 @@ document.addEventListener("change", async e => { const id = e.target.id;
     toast(n ? `Đã nạp ${n} dòng ${id === "fcFileS" ? "bán hàng" : "vĩ mô"}` : "Không đọc được dòng hợp lệ: kiểm tra tên cột và định dạng tháng"); e.target.value = ""; render(); }
 });
 document.addEventListener("click", async e => { const t = e.target, k = cur ? key(cur.seg, cur.body) : null;
+  if(t.id === "fcReal"){ const rows = CV.salesForecastRows ? CV.salesForecastRows() : []; if(!rows.length) return toast("Chưa có dữ liệu doanh số chi tiết");
+    demo = false; D.sales = rows; D.adj = []; D.lock = {}; D.keep = {}; persist(); ["fcSeg","fcBody","fcVar"].forEach(id => document.getElementById(id).value = ""); render(); toast(`Đã nạp ${rows.length} dòng bán lẻ thật (24 đại lý × T1–T10/2026)`); }
   if(t.id === "fcDemo"){ const x = demoData(); demo = true; D = Object.assign({}, D, {sales: x.sales, macro: x.macro, adj: [], lock: {}, keep: {}}); document.getElementById("fcBody").value = "Ben"; document.getElementById("fcSeg").value = ""; document.getElementById("fcVar").value = ""; render(); toast("Đang chạy với dữ liệu minh họa (không phải số thật)"); }
   if(t.id === "fcClear"){ if(!(await confirmA("Xóa toàn bộ lịch sử, biến vĩ mô và điều chỉnh dự báo?"))) return; demo = false; D = Object.assign(D, {sales: [], macro: [], adj: [], lock: {}}); persist(); render(); }
   if(t.id === "fcTpl"){ const csv = "thang,phan_khuc,loai_thung,so_luong,la_fleet,khach_hang\n2026-09,1.9,Thùng kín,42,0,\n2026-09,3.49,Mui bạt,35,0,\n2026-10,1.9,Thùng kín,60,1,Công ty logistics X\n\nthang,bien,gia_tri\n2026-09,Giải ngân đầu tư công (nghìn tỷ đ),85.4\n";
