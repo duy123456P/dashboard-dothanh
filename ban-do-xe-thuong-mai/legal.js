@@ -25,9 +25,10 @@ function upcoming(days){ const out = [], t0 = new Date(); t0.setHours(0,0,0,0); 
       if(d && d >= t0 && d <= end) out.push({d: ymd(d), ...c}); }); }
   LG.calendar.filter(c => c.t === "once").forEach(c => { const d = new Date(c.date); if(d >= t0 && d <= end) out.push({d: c.date, ...c}); });
   return out.sort((a,b) => a.d.localeCompare(b.d)).filter((x,i,a) => i === 0 || x.d !== a[i-1].d || x.viec !== a[i-1].viec); }
+function docMdBase(){}
 const dleft = s => Math.round((new Date(s) - new Date(today())) / 864e5);
 
-function docMd(d){ const [st] = status(d); return `### ${d.so}\n**${d.ten}** · ${d.cq} · ban hành ${vn(d.bh)} · hiệu lực ${vn(d.hl)}${d.het ? " đến " + vn(d.het) : ""} · _${st}_ · độ tin cậy: ${d.tin}\n${d.diem.map(x => "- " + x).join("\n")}\n- **Tác động tới Đô Thành:** ${d.tacdong}\n- **Việc cần làm:** ${d.viec.join("; ")}\n- Nguồn: ${d.nguon.map(n => n[0] + " (" + n[1] + ")").join("; ")}\n`; }
+function docMd(d){ const [st] = status(d); return `### ${d.so}\n**${d.ten}** · ${d.cq} · ban hành ${vn(d.bh)} · hiệu lực ${vn(d.hl)}${d.het ? " đến " + vn(d.het) : ""} · _${st}_ · độ tin cậy: ${d.tin}\n${d.diem.map(x => "- " + x).join("\n")}\n- **Tác động tới Đô Thành:** ${d.tacdong}\n- **Việc cần làm:** ${d.viec.join("; ")}\n- ${d.trich ? "**Trích nguyên văn:** " + d.trich : "_Tóm tắt từ nguồn, chưa trích nguyên văn_"}\n- Nguồn: ${d.nguon.map(n => n[0] + " (" + n[1] + ")").join("; ")}\n`; }
 function briefMd(){ const t = today(), soon = LG.docs.filter(d => (d.hl > t) || (d.het && d.het >= t && dleft(d.het) <= 120)), recent = [...LG.docs].sort((a,b) => String(b.bh).localeCompare(String(a.bh))).slice(0, 8), cal = upcoming(45);
   return `# Pháp lý cập nhật cho Tổng Giám đốc\n_Kho văn bản cập nhật đến ${vn(LG.updated)} · ${LG.docs.length} nhóm văn bản_\n\n## Mốc hiệu lực, hết hiệu lực sắp tới\n${soon.map(d => `- **${d.so}**: ${status(d)[0]} · ${d.ten}`).join("\n") || "- Không có"}\n\n## Văn bản mới ban hành gần đây\n${recent.map(d => `- ${vn(d.bh)} · **${d.so}**: ${d.ten}`).join("\n")}\n\n## Lịch tuân thủ 45 ngày tới\n${cal.map(c => `- ${vn(c.d)} (còn ${dleft(c.d)} ngày): ${c.viec} · _${c.cs}_`).join("\n") || "- Không có"}\n\n## Ưu tiên xử lý\n- Chốt chính sách giá và hợp đồng giao xe 2027 trước khi hết giảm 2% thuế GTGT (31/12/2026).\n- Tuân thủ Luật Bảo vệ dữ liệu cá nhân: đồng ý của khách, hợp đồng đại lý, ghi âm cuộc họp (đã có chế tài NĐ 330/2026).\n- Hóa đơn điện tử theo NĐ 254/2026 và quản lý thuế theo Luật 108/2025 (hiệu lực 01/7/2026).\n\n> ${LG.note}\n`; }
 
@@ -39,6 +40,7 @@ if(anchor){
     <div class="toolbar" style="margin:0"><button type="button" class="primary" id="lgBrief">Ben tóm tắt pháp lý</button><button type="button" id="lgAsk">Hỏi Ben như luật sư</button></div></div>
     <div class="opsgrid" style="margin-top:12px"><div><h3>Lịch tuân thủ 60 ngày tới</h3><ul class="todo" id="lgCal"></ul></div>
       <div><h3>Mốc hiệu lực cần chuẩn bị</h3><ul class="todo" id="lgSoon"></ul></div></div>
+    ${(LG.trend||[]).length ? `<h3 style="margin-top:12px">Lộ trình xe điện, năng lượng mới, khí thải</h3><div class="evtl">${LG.trend.map(([y,t]) => `<div class="evy${+y <= new Date().getFullYear() ? " past" : ""}"><b>${esc(y)}</b><span>${esc(t)}</span></div>`).join("")}</div><div class="toolbar"><button type="button" id="lgEv">Xem văn bản xe điện &amp; trạm sạc</button><button type="button" id="lgEvAi">Ben: chiến lược xe tải điện cho Đô Thành</button></div>` : ""}
     <div class="toolbar"><label class="field">Lĩnh vực<select id="lgLv"><option value="">Tất cả</option>${LV.map(l => `<option>${esc(l)}</option>`).join("")}</select></label><label class="field" style="flex:1;min-width:220px">Tìm văn bản<input type="text" id="lgQ" placeholder="VD: lệ phí trước bạ, BHXH, dữ liệu cá nhân, khuyến mại"></label></div>
     <div id="lgList" class="lglist"></div>
     <p class="muted small" style="margin:10px 0 0">${esc(LG.note)}</p>`;
@@ -61,6 +63,8 @@ document.addEventListener("change", e => { if(e.target.id === "lgLv") render(); 
 document.addEventListener("click", e => {
   const id = e.target.id;
   if(id === "lgBrief"){ CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Tóm tắt pháp lý cập nhật"); const b = CV.addMsg("a", ""); CV.finishBubble(b, briefMd(), false, "Pháp lý cập nhật " + vn(today()), true); }
+  if(id === "lgEv"){ const s = document.getElementById("lgLv"); s.value = "Xe điện – năng lượng mới"; render(); document.getElementById("lgList").scrollIntoView({behavior:"smooth"}); }
+  if(id === "lgEvAi"){ CV.askAi("Dùng tra_cuu_phap_luat với lĩnh vực 'Xe điện – năng lượng mới' và lich_tuan_thu 2000 ngày: phân tích xu hướng pháp luật và thị trường xe điện, năng lượng mới, trạm sạc, khí thải đến 2035; cơ hội và rủi ro cho Đô Thành Auto (xe tải nhẹ–trung, van, mạng lưới đại lý); đề xuất lộ trình sản phẩm, hạ tầng sạc tại đại lý, chương trình thu cũ đổi mới theo mốc khí thải Hà Nội, TP.HCM; nêu rõ điểm nào cần đối chiếu văn bản gốc."); }
   if(id === "lgAsk"){ CV.openAi(true); CV.benTab("Chat"); const ta = document.getElementById("aiText"); ta.value = "Luật sư Ben ơi, "; ta.focus(); }
   const a = e.target.dataset && e.target.dataset.lgask; if(a){ const d = LG.docs.find(x => x.id === a); if(d) CV.askAi(`Với vai trò luật sư doanh nghiệp, phân tích ${d.so} (${d.ten}) áp dụng cho Đô Thành Auto (sản xuất lắp ráp, phân phối qua đại lý, dịch vụ xe tải): nghĩa vụ cụ thể, rủi ro và chế tài, việc phòng ban nào phải làm trước hạn nào. Dùng tra_cuu_phap_luat; nêu rõ phần nào cần đối chiếu văn bản gốc.`); }
   const tk = e.target.dataset && e.target.dataset.lgtask; if(tk){ const d = LG.docs.find(x => x.id === tk); if(d) CV.askAi(`Giao việc tuân thủ ${d.so}: dùng create_task cho phòng Pháp chế (người chịu trách nhiệm: hỏi lại tôi nếu chưa rõ), chỉ số "Hoàn thành rà soát tuân thủ ${d.so}", bằng chứng "Báo cáo rà soát có ký xác nhận + quy trình/mẫu biểu đã cập nhật", phòng xác nhận phù hợp, hạn hợp lý theo mốc hiệu lực. Việc cụ thể: ${d.viec.join("; ")}.`); }
@@ -78,6 +82,7 @@ CV.localHooks.unshift(raw => {
   const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim(), low = t.toLowerCase();
   if(/^(lịch thuế|lịch tuân thủ|hạn nộp|hạn thuế)/.test(low)){ const c = upcoming(60); return `## Lịch tuân thủ 60 ngày tới\n${c.map(x => `- ${vn(x.d)} (còn ${dleft(x.d)} ngày): ${x.viec} · _${x.cs}_`).join("\n")}\n\n_Kho cập nhật đến ${vn(LG.updated)}; hạn cụ thể đối chiếu Luật Quản lý thuế 2025 và NĐ 252/2026._`; }
   if(/^(pháp lý mới|văn bản mới|luật mới|tóm tắt pháp lý)/.test(low)) return briefMd();
+  if(/^(xe điện|trạm sạc|năng lượng mới|lộ trình xe điện)/.test(low)){ const r = search("", "Xe điện – năng lượng mới"); return `## Xe điện, năng lượng mới, trạm sạc\n_Kho cập nhật đến ${vn(LG.updated)}_\n\n### Lộ trình\n${(LG.trend||[]).map(([y,x]) => `- **${y}:** ${x}`).join("\n")}\n\n` + r.map(docMd).join("\n"); }
   const m = t.match(/^(?:tra cứu|tra luật|văn bản)\s+(.+)$/i); if(m){ const r = search(m[1], ""); return r.length ? `_Kho cập nhật đến ${vn(LG.updated)}_\n\n` + r.slice(0, 3).map(docMd).join("\n") : null; }
   return null;
 });
@@ -89,5 +94,7 @@ BEN LUẬT SƯ DOANH NGHIỆP: Ben tư vấn như luật sư doanh nghiệp nhi�
 (1) Với câu hỏi pháp lý, LUÔN gọi tra_cuu_phap_luat trước. Trả lời theo cấu trúc: Kết luận ngắn → Căn cứ pháp lý (số hiệu, cơ quan, ngày hiệu lực, tình trạng) → Áp dụng cho Đô Thành → Rủi ro, chế tài → Việc cần làm (phòng ban, hạn) → Lưu ý cập nhật.
 (2) Không bao giờ bịa số hiệu văn bản, điều khoản hay mức phạt. Văn bản không có trong kho hoặc ghi "cần đối chiếu" thì nói rõ, nêu nguyên tắc chung và khuyên đối chiếu vbpl.vn, congbao.chinhphu.vn, thuvienphapluat.vn.
 (3) Kho văn bản cập nhật đến ${vn(LG.updated)}; mọi văn bản ban hành sau ngày đó Ben chưa biết. Giao dịch lớn, tranh chấp, thanh tra: khuyến nghị xin ý kiến luật sư hoặc tư vấn thuế có chứng chỉ.
-(4) Dùng lich_tuan_thu cho câu hỏi về hạn nộp, mốc hiệu lực. Có thể dùng create_task để giao việc tuân thủ khi người dùng yêu cầu.`;
+(4) Dùng lich_tuan_thu cho câu hỏi về hạn nộp, mốc hiệu lực.
+(5) Trích dẫn: chỉ được trích NGUYÊN VĂN khi văn bản có trường "trich"; nếu không, ghi rõ "nội dung tóm tắt từ nguồn, chưa trích nguyên văn", nêu số hiệu, điều khoản đã biết và đường dẫn để đối chiếu. Không tự dựng câu chữ điều luật.
+(6) Xe điện, năng lượng mới, trạm sạc, khí thải: dùng lĩnh vực "Xe điện – năng lượng mới"; lộ trình: ${(LG.trend||[]).map(x => x[0] + ": " + x[1]).join(" | ")}. Có thể dùng create_task để giao việc tuân thủ khi người dùng yêu cầu.`;
 })();

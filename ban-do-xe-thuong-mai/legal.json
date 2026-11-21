@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-20",
- "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế.",
+ "updated": "2026-11-21",
+ "note": "Kho văn bản do Ben tra cứu ngày 20/11/2026 từ Cổng thông tin Chính phủ, Bộ Xây dựng, Thư viện Pháp luật, LuatVietnam, VCCI, KPMG, EY, PwC. Mức tin cậy: 'cao' = nhiều nguồn thống nhất; 'cần đối chiếu' = một nguồn hoặc nguồn lệch nhau. Trước khi áp dụng cho giao dịch lớn, đối chiếu văn bản gốc tại vbpl.vn / congbao.chinhphu.vn và xin ý kiến pháp chế, tư vấn thuế. Lưu ý: đợt cập nhật 21/11/2026 chưa trích được nguyên văn điều khoản vì môi trường chặn truy cập vbpl.vn, thuvienphapluat.vn; nội dung là tóm tắt từ nguồn dẫn kèm.",
  "docs": [
   {
    "id": "hp2025",
@@ -29,7 +29,8 @@
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Nghi-quyet-sua-doi-Hien-phap-2013-655275.aspx"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "gtgt2",
@@ -64,7 +65,8 @@
      "KPMG – NĐ 174",
      "https://assets.kpmg.com/content/dam/kpmg/vn/pdf/2025/07/decree-174-extending-vat-reduction-to-2026-vi.pdf"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "gtgtlaw",
@@ -91,7 +93,8 @@
      "EY Tax Alert 5/2026",
      "https://www.ey.com/content/dam/ey-unified-site/ey-com/vi-vn/technical/tax/documents/ey-vietnam-tax-alert_may-2026_decree-144-on-value-added-tax_vn.pdf"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "qlt2025",
@@ -126,7 +129,8 @@
      "Crowe – NĐ 252",
      "https://www.crowe.com/vn/vi-vn/news/decree-252-guiding-the-law-on-tax-administration-2025"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "hoadon",
@@ -158,7 +162,8 @@
      "Crowe",
      "https://www.crowe.com/vn/vi-vn/news/key-invoice-changes-under-decree-no-254-2026"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "tndn",
@@ -192,7 +197,8 @@
      "MISA",
      "https://amis.misa.vn/232301/luat-thue-thu-nhap-doanh-nghiep-2025/"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "tncn",
@@ -225,7 +231,8 @@
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/tong-hop-diem-moi-luat-thue-thu-nhap-ca-nhan-so-1092025qh15-217745.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "ttdb",
@@ -254,7 +261,8 @@
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Luat-thue-tieu-thu-dac-biet-2025-so-66-2025-QH15-621225.aspx"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "lptb",
@@ -290,7 +298,8 @@
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/mua-o-to-xang-phai-nop-bao-nhieu-le-phi-truoc-ba-490124-226082.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "monbai",
@@ -317,7 +326,8 @@
      "Cổng Chính phủ (tra cứu)",
      "https://vbpl.vn"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "luongtt",
@@ -349,7 +359,8 @@
      "Báo Đầu tư",
      "https://baodautu.vn/dieu-chinh-luong-toi-thieu-vung-tai-34-tinh-thanh-tu-ngay-112026-d432501.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "bhxh",
@@ -382,7 +393,8 @@
      "PLO",
      "https://plo.vn/tu-1-7-tang-muc-dong-bhxh-toi-da-len-506-trieu-dongthang-post909003.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "dlcn",
@@ -422,7 +434,8 @@
      "PwC",
      "https://www.pwc.com/vn/vn/publications/legal-news-brief/20260128-new-rules-personal-data-protection.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "ketoan",
@@ -456,7 +469,8 @@
      "LuatVietnam",
      "https://luatvietnam.vn/thue-phi-le-phi/diem-moi-cua-thong-tu-99-ve-che-do-ke-toan-doanh-nghiep-565-105064-article.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "dn2025",
@@ -489,7 +503,8 @@
      "LuatVietnam",
      "https://luatvietnam.vn/doanh-nghiep/luat-doanh-nghiep-sua-doi-2025-so-76-2025-qh15-403856-d1.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "khuyenmai",
@@ -522,7 +537,8 @@
      "PwC",
      "https://www.pwc.com/vn/vn/publications/news-brief/260716-decree-239-promotion-schemes.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "gt",
@@ -560,7 +576,8 @@
      "Tiền Phong",
      "https://tienphong.vn/nhieu-quy-dinh-moi-lien-quan-den-o-to-co-hieu-luc-tu-17-post1855812.tpo"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "dangkiem",
@@ -588,7 +605,8 @@
      "Bộ Xây dựng",
      "https://moc.gov.vn/vn/tin-tuc/1337/95651/thong-tu-sua-doi-bo-sung-mot-so-dieu-cua-cac-thong-tu-trong-linh-vuc-dang-kiem-phuong-tien-giao-thong-duong-bo.aspx"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "gsht",
@@ -615,7 +633,8 @@
      "Thư viện Pháp luật",
      "https://thuvienphapluat.vn/hoi-dap-phap-luat/xe-tai-co-bat-buoc-lap-camera-hanh-trinh-khong-138101937.html"
     ]
-   ]
+   ],
+   "trich": ""
   },
   {
    "id": "ckd",
@@ -648,7 +667,377 @@
      "VCCI",
      "https://www.vcci.com.vn/tin-tuc/san-pham-cong-nghiep-ho-tro-oto-duoc-uu-dai-thue-den-het-nam-2027"
     ]
-   ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_ttdb",
+   "so": "Luật 09/2026/QH16 (sửa Luật Thuế TTĐB 66/2025/QH15)",
+   "ten": "Thuế TTĐB ưu đãi ô tô điện chạy pin đến hết 2030",
+   "cq": "Quốc hội",
+   "bh": "2026-04-24",
+   "hl": "2026-04-24",
+   "het": "2030-12-31",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Thuế TTĐB – ô tô"
+   ],
+   "tt": "hiệu lực đến 31/12/2030",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Ô tô điện chạy pin dưới 9 chỗ: 3% đến hết 31/12/2030, từ 01/01/2031 là 11% (trước đây dự kiến tăng 11% từ 01/3/2027)",
+    "Xe điện 16 đến dưới 24 chỗ: 1% đến hết 2030, từ 2031 là 4%",
+    "Pick-up điện có vách ngăn cố định: 2% đến hết 2030, từ 2031 là 7%",
+    "Xe tải điện không thuộc đối tượng chịu TTĐB"
+   ],
+   "tacdong": "Xe điện chở người và van/pickup điện giữ lợi thế giá đến 2030; đối thủ xe điện (VinFast, BYD, Wuling…) cạnh tranh mạnh ở phân khúc van, pickup chở hàng đô thị.",
+   "viec": [
+    "Nghiên cứu dòng van/xe tải nhẹ điện cho đô thị lớn trước 2030",
+    "Theo dõi văn bản hợp nhất 111/VBHN-VPQH để lấy nguyên văn thuế suất"
+   ],
+   "nguon": [
+    [
+     "Người Quan Sát",
+     "https://nguoiquansat.vn/vi-sao-quoc-hoi-chot-giu-thue-tieu-thu-dac-biet-voi-xe-dien-3-den-het-2030-288739.html"
+    ],
+    [
+     "Thời báo Tài chính",
+     "https://thoibaotaichinhvietnam.vn/tiep-tuc-gia-han-thue-tieu-thu-dac-biet-khuyen-khich-phat-trien-xe-o-to-dien-195577.html"
+    ],
+    [
+     "Diễn đàn Doanh nghiệp",
+     "https://diendandoanhnghiep.vn/keo-dai-uu-dai-thue-doi-voi-xe-o-to-dien-chay-pin-den-het-nam-2030-10177820.html"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_lptb",
+   "so": "Nghị định 202/2026/NĐ-CP",
+   "ten": "Lệ phí trước bạ 0% cho ô tô điện chạy pin đến hết 2030",
+   "cq": "Chính phủ",
+   "bh": "2026-06-08",
+   "hl": "2027-03-01",
+   "het": "2030-12-31",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Lệ phí trước bạ"
+   ],
+   "tt": "sắp hiệu lực 01/3/2027",
+   "tin": "cao",
+   "diem": [
+    "Ô tô điện chạy pin đăng ký lần đầu: lệ phí trước bạ 0% từ 01/3/2027 đến hết 31/12/2030 (nối tiếp mức miễn hiện hành)",
+    "NĐ 202/2026 thay NĐ 51/2025 từ 01/3/2027"
+   ],
+   "tacdong": "Tổng chi phí lăn bánh xe điện thấp hơn xe xăng dầu, kể cả xe tải điện (xe tải xăng dầu chịu 2%).",
+   "viec": [
+    "Đưa lợi ích lệ phí trước bạ vào bảng TCO xe tải điện khi có sản phẩm"
+   ],
+   "nguon": [
+    [
+     "Tạp chí Thuế – Hải quan",
+     "https://thuehaiquan.tapchikinhtetaichinh.vn/o-to-dien-tiep-tuc-duoc-mien-100-le-phi-truoc-ba-lan-dau-den-het-nam-2030-158352.html"
+    ],
+    [
+     "VOV",
+     "https://vov.vn/o-to-xe-may/chinh-thuc-gia-han-mien-le-phi-truoc-ba-cho-o-to-dien-chay-pin-den-het-nam-2030-post1304724.vov"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_qcvn",
+   "so": "QCVN 32:2026/BCT, ban hành kèm Thông tư 61/2026/TT-BCT",
+   "ten": "Quy chuẩn kỹ thuật quốc gia về trụ sạc, trạm sạc xe điện",
+   "cq": "Bộ Công Thương",
+   "bh": "2026-09-29",
+   "hl": "2027-07-01",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Trạm sạc"
+   ],
+   "tt": "sắp hiệu lực 01/7/2027",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Áp dụng cho trạm sạc khu vực công cộng, nơi trông giữ xe tập trung, trạm dừng nghỉ; đối tượng gồm nhà sản xuất, nhập khẩu, chủ đầu tư, đơn vị vận hành",
+    "Không áp dụng cho trạm sạc nội bộ và thiết bị sạc không dây",
+    "Yêu cầu an toàn điện, phòng cháy chữa cháy, khả năng dùng chung (tương thích), đo lường và minh bạch; trạm thu tiền phải công khai thông tin giao dịch",
+    "Có lộ trình áp dụng cho trạm hiện hữu và trạm đang đầu tư"
+   ],
+   "tacdong": "Trạm sạc tại đại lý chỉ phục vụ xe của mình (nội bộ) không thuộc phạm vi; nếu mở sạc thu tiền cho khách bên ngoài thì phải đạt QCVN 32 từ 01/7/2027.",
+   "viec": [
+    "Khi đầu tư trạm sạc tại showroom/xưởng, chọn thiết bị đạt QCVN 32 ngay từ đầu",
+    "Phân định rõ trạm nội bộ và trạm kinh doanh"
+   ],
+   "nguon": [
+    [
+     "LuatVietnam",
+     "https://luatvietnam.vn/van-ban/xem-truoc-file-3e679a56-1615-a900-4f2e-cea53e111a48"
+    ],
+    [
+     "Báo Pháp luật",
+     "https://doanhnhan.baophapluat.vn/tu-1-7-2027-bo-cong-thuong-ban-hanh-quy-chuan-ve-tram-sac-xe-dien.md"
+    ],
+    [
+     "Tạp chí Luật sư",
+     "https://lsvn.vn/ban-hanh-quy-chuan-ky-thuat-quoc-gia-ve-tru-sac-tram-sac-xe-dien-a180236.html"
+    ],
+    [
+     "Tiền Phong",
+     "https://tienphong.vn/quy-dinh-moi-ve-tram-sac-xe-dien-post1882519.tpo"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_giadien",
+   "so": "Thông tư 60/2025/TT-BCT; Quyết định 14/2025/QĐ-TTg",
+   "ten": "Giá bán điện cho trạm sạc xe điện",
+   "cq": "Bộ Công Thương; Thủ tướng Chính phủ",
+   "bh": "2025-05-29",
+   "hl": "2025-05-29",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Trạm sạc"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Có nhóm giá riêng cho sạc xe điện; trạm, trụ sạc, tủ đổi pin phục vụ kinh doanh phải lắp công tơ riêng",
+    "Giá khoảng 1.534–4.212 đồng/kWh tùy cấp điện áp và khung giờ; thấp nhất ở trung áp giờ thấp điểm",
+    "Giờ thấp điểm 0h–6h các ngày; sạc tại nhà bằng công tơ sinh hoạt vẫn theo giá bậc thang"
+   ],
+   "tacdong": "Chi phí năng lượng xe tải điện thấp khi sạc đêm tại bãi doanh nghiệp: luận điểm TCO mạnh cho khách đội xe.",
+   "viec": [
+    "Đưa giá điện giờ thấp điểm vào bảng TCO xe tải điện",
+    "Tư vấn khách đội xe lắp công tơ riêng, sạc 0h–6h"
+   ],
+   "nguon": [
+    [
+     "Người Quan Sát",
+     "https://nguoiquansat.vn/ap-dung-muc-gia-dien-rieng-cho-tram-sac-xe-dien-326449.html"
+    ],
+    [
+     "VnEconomy",
+     "https://vneconomy.vn/automotive/quy-dinh-moi-ve-gia-ban-dien-cho-tram-sac-xe-dien.htm"
+    ],
+    [
+     "Tạp chí Luật sư",
+     "https://lsvn.vn/chinh-thuc-co-quy-dinh-rieng-ve-gia-dien-cho-xe-sac-dien-a166968.html"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_tramdung",
+   "so": "Luật Đường bộ 35/2024/QH15 (Điều 52); Thông tư 58/2024/TT-BGTVT; QCVN 43:2024/BGTVT",
+   "ten": "Sạc điện tại trạm dừng nghỉ cao tốc",
+   "cq": "Quốc hội; Bộ GTVT (nay Bộ Xây dựng)",
+   "bh": "2024-06-27",
+   "hl": "2025-01-01",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Trạm sạc",
+    "Giao thông – vận tải"
+   ],
+   "tt": "hiệu lực; hạn hoàn thiện sạc 01/01/2027",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Điều 52 Luật Đường bộ quy định trạm dừng nghỉ, điểm dừng, đỗ xe; TT 58/2024 hướng dẫn",
+    "QCVN 43:2024/BGTVT: tối thiểu 10% tổng số chỗ đỗ tại trạm dừng nghỉ dành cho sạc xe điện",
+    "Năm 2026 mới 4/21 trạm dừng nghỉ vận hành một phần hệ thống sạc; yêu cầu hoàn thiện trước 01/01/2027"
+   ],
+   "tacdong": "Hạ tầng sạc trên cao tốc là điều kiện để xe tải điện chạy liên tỉnh; hiện còn mỏng nên xe tải điện trước mắt phù hợp vận tải nội đô, cự ly ngắn.",
+   "viec": [
+    "Theo dõi tiến độ sạc tại trạm dừng nghỉ trên các tuyến khách hàng chạy"
+   ],
+   "nguon": [
+    [
+     "Bộ Xây dựng",
+     "https://moc.gov.vn/vn/tin-tuc/1176/96159/khan-truong-hoan-thien-ha-tang-sac-dien-tai-cac-tram-dung-nghi-duong-bo.aspx"
+    ],
+    [
+     "Tạp chí Luật sư",
+     "https://lsvn.vn/hoan-thien-he-thong-sac-dien-tai-cac-tram-dung-nghi-truoc-01-01-2027-a177742.html"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_876",
+   "so": "Quyết định 876/QĐ-TTg; QĐ 1679/QĐ-BGTVT; QĐ 766/QĐ-BXD",
+   "ten": "Chương trình chuyển đổi năng lượng xanh, giảm phát thải ngành giao thông vận tải",
+   "cq": "Thủ tướng Chính phủ; Bộ GTVT; Bộ Xây dựng",
+   "bh": "2022-07-22",
+   "hl": "2022-07-22",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Chiến lược – định hướng"
+   ],
+   "tt": "hiệu lực; Bộ Xây dựng đang dự thảo văn bản thay thế",
+   "tin": "cao",
+   "diem": [
+    "Mục tiêu phát thải ròng bằng 0 vào 2050; đến 2050 100% phương tiện cơ giới đường bộ dùng điện, năng lượng xanh",
+    "Giai đoạn đến 2030: thúc đẩy sản xuất, lắp ráp, nhập khẩu, chuyển đổi phương tiện; hoàn thiện hạ tầng sạc",
+    "Kế hoạch triển khai: QĐ 1679/QĐ-BGTVT (22/12/2023), QĐ 766/QĐ-BXD (24/7/2023); 9/2026 Bộ Xây dựng dự thảo quyết định thay thế"
+   ],
+   "tacdong": "Định hướng dài hạn: dòng xe tải động cơ đốt trong sẽ thu hẹp dần; cần lộ trình sản phẩm điện/năng lượng xanh trước 2030.",
+   "viec": [
+    "Lập lộ trình sản phẩm xe tải điện/hybrid 2027–2035 cùng nhà máy và đối tác JMC",
+    "Theo dõi dự thảo quyết định thay thế QĐ 876"
+   ],
+   "nguon": [
+    [
+     "Thư viện Pháp luật",
+     "https://thuvienphapluat.vn/van-ban/giao-thong-van-tai/decision-876-qd-ttg-2022-program-for-mitigation-of-carbon-dioxide-from-transportation-523955.aspx"
+    ],
+    [
+     "Đại biểu Nhân dân",
+     "https://daibieunhandan.vn/chuyen-doi-nang-luong-xanh-giam-phat-thai-trong-linh-vuc-giao-thong-van-tai-10430884.html"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_khithai",
+   "so": "Quyết định 43/2025/QĐ-TTg",
+   "ten": "Lộ trình áp dụng quy chuẩn khí thải ô tô tham gia giao thông",
+   "cq": "Thủ tướng Chính phủ",
+   "bh": "2025-11-28",
+   "hl": "2026-03-01",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Đăng kiểm – kỹ thuật"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Toàn quốc: xe sản xuất từ 2022 áp dụng Mức 4 từ 01/3/2026, Mức 5 từ 01/01/2032",
+    "Hà Nội, TP.HCM chặt hơn: xe 2017–2021 đạt Mức 4 từ 2027; xe từ 2022 đạt Mức 5 từ 2028 (một nguồn ghi 2030); từ 2029 mọi ô tô lưu thông phải từ Mức 2 trở lên"
+   ],
+   "tacdong": "Xe tải cũ ở Hà Nội, TP.HCM sẽ khó qua đăng kiểm từ 2027: cơ hội lớn cho chương trình thu cũ đổi mới xe tải đạt chuẩn khí thải.",
+   "viec": [
+    "Thiết kế chương trình thu cũ đổi mới cho chủ xe tải ở Hà Nội, TP.HCM trước 2027",
+    "Lọc khách UIO xe đời cũ để tiếp cận"
+   ],
+   "nguon": [
+    [
+     "Bộ Xây dựng",
+     "https://moc.gov.vn/vn/tin-tuc/1268/89953/quy-dinh-lo-trinh-ap-dung-quy-chuan-ky-thuat-quoc-gia-ve-khi-thai-xe-o-to-tham-gia-giao-thong-duong-bo.aspx"
+    ],
+    [
+     "VnEconomy",
+     "https://vneconomy.vn/automotive/chinh-thuc-siet-khi-thai-o-to-ha-noi-va-tphcm-se-ap-muc-cao-tu-2027.htm"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_ct20",
+   "so": "Chỉ thị 20/CT-TTg",
+   "ten": "Hạn chế phương tiện dùng nhiên liệu hóa thạch tại Hà Nội (vùng phát thải thấp)",
+   "cq": "Thủ tướng Chính phủ; UBND Hà Nội",
+   "bh": "2025-07-12",
+   "hl": "2025-07-12",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Chiến lược – định hướng"
+   ],
+   "tt": "đang triển khai thí điểm",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Mục tiêu: từ 01/7/2026 không còn xe máy xăng dầu trong Vành đai 1; hạn chế ô tô cá nhân nhiên liệu hóa thạch trong Vành đai 1, 2; từ 2030 mở rộng Vành đai 3",
+    "Thực tế: Hà Nội thí điểm vùng phát thải thấp tại 9 phường trong Vành đai 1 theo khung giờ; một nguồn nêu lùi một số mốc sang 01/01/2028",
+    "Chưa thấy quy định riêng hạn chế xe tải; hỗ trợ đổi xe máy điện 20% giá trị, tối đa 5 triệu đồng"
+   ],
+   "tacdong": "Xu hướng vùng phát thải thấp ở đô thị lớn sẽ lan sang xe tải giao hàng nội đô: cần chuẩn bị xe tải nhẹ điện, van điện cho logistics chặng cuối.",
+   "viec": [
+    "Theo dõi quyết định của UBND Hà Nội, TP.HCM về vùng phát thải thấp với xe tải"
+   ],
+   "nguon": [
+    [
+     "VCCI",
+     "https://www.vcci.com.vn/tin-tuc/ha-noi-cam-xe-may-chay-xang-dau-trong-vanh-dai-1-tu-thang-7-2026"
+    ],
+    [
+     "Đại Đoàn Kết",
+     "https://daidoanket.vn/ha-noi-chot-thoi-diem-cam-xe-moto-xang-trong-vanh-dai-1-theo-khung-gio.html"
+    ],
+    [
+     "Bộ Xây dựng",
+     "https://moc.gov.vn/vn/tin-tuc/1184/93216/ha-noi-se-thi-diem-cam-xe-xang--dau-theo-tung-khu-vuc.aspx"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_epr",
+   "so": "Nghị định 110/2026/NĐ-CP",
+   "ten": "Trách nhiệm tái chế sản phẩm, bao bì của nhà sản xuất, nhập khẩu (EPR), gồm pin, ắc quy",
+   "cq": "Chính phủ",
+   "bh": "2026-04-01",
+   "hl": "2026-05-25",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Môi trường"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "Thay thế, kế thừa NĐ 08/2022 (đã sửa bởi NĐ 05/2025, NĐ 48/2026), hiệu lực 25/5/2026",
+    "Tỷ lệ tái chế bắt buộc theo nguồn tổng hợp: ắc quy chì 12%, ắc quy loại khác 8%, pin sạc 8%; pin lithium, NiMH dùng cho phương tiện giao thông 0% (cần đối chiếu NĐ 110)",
+    "Doanh nghiệp ô tô công bố thông tin EPR trên website (ví dụ Toyota từ 25/5/2026)"
+   ],
+   "tacdong": "Đô Thành là nhà sản xuất, lắp ráp: có trách nhiệm tái chế với ắc quy, dầu nhớt, lốp, bao bì; xe tải điện về sau thêm pin lithium.",
+   "viec": [
+    "Pháp chế xác nhận nghĩa vụ EPR của công ty theo NĐ 110/2026 và hạn công bố thông tin"
+   ],
+   "nguon": [
+    [
+     "Bộ Công Thương",
+     "https://moit.gov.vn/phat-trien-ben-vung/epr-viet-nam-hoan-thien-khung-phap-ly-voi-nghi-dinh-110-2026-nd-cp.html"
+    ],
+    [
+     "VnEconomy",
+     "https://vneconomy.vn/cu-the-ty-le-tai-che-san-pham-bao-bi-cua-cac-nha-san-xuat-nhap-khau.htm"
+    ]
+   ],
+   "trich": ""
+  },
+  {
+   "id": "ev_chienluoc",
+   "so": "Quyết định 1168/QĐ-TTg (2014); Nghị quyết của Quốc hội về phát triển năng lượng quốc gia 2026–2030",
+   "ten": "Chiến lược công nghiệp ô tô và chính sách năng lượng",
+   "cq": "Thủ tướng Chính phủ; Quốc hội",
+   "bh": "2014-07-16",
+   "hl": "2014-07-16",
+   "lv": [
+    "Xe điện – năng lượng mới",
+    "Chiến lược – định hướng"
+   ],
+   "tt": "hiệu lực",
+   "tin": "cần đối chiếu",
+   "diem": [
+    "QĐ 1168/QĐ-TTg (16/7/2014) chiến lược công nghiệp ô tô đến 2025, tầm nhìn 2035: chưa tìm thấy văn bản chiến lược mới thay thế",
+    "Quốc hội thông qua Nghị quyết cơ chế, chính sách phát triển năng lượng quốc gia 2026–2030 (11/12/2025)",
+    "Chưa có nghị quyết riêng về ưu đãi sản xuất pin, xe tải điện, xe buýt điện (tra cứu 21/11/2026)"
+   ],
+   "tacdong": "Khoảng trống chính sách cho xe tải điện: doanh nghiệp đi trước có thể kiến nghị cơ chế và đón đầu.",
+   "viec": [
+    "Theo dõi chiến lược công nghiệp ô tô mới của Bộ Công Thương",
+    "Cùng hiệp hội (VAMA) kiến nghị ưu đãi cho xe tải điện, hạ tầng sạc cho xe tải"
+   ],
+   "nguon": [
+    [
+     "VnEconomy – NQ năng lượng",
+     "https://vneconomy.vn/chinh-thuc-thong-qua-nghi-quyet-phat-trien-nang-luong-quoc-gia-2026-2030.htm"
+    ],
+    [
+     "JETRO – QĐ 1168",
+     "https://www.jetro.go.jp/ext_images/world/asia/vn/business/pdf/1168QD-TTg.pdf"
+    ]
+   ],
+   "trich": ""
   }
  ],
  "calendar": [
@@ -722,6 +1111,68 @@
    "date": "2027-07-01",
    "viec": "Nghị định 319/2026 về thiết bị giám sát hành trình có hiệu lực (cần xác minh)",
    "cs": "NĐ 319/2026/NĐ-CP"
+  },
+  {
+   "t": "once",
+   "date": "2027-01-01",
+   "viec": "Hạn hoàn thiện hệ thống sạc tại trạm dừng nghỉ cao tốc",
+   "cs": "Luật Đường bộ 35/2024, QCVN 43:2024",
+   "ev": 1
+  },
+  {
+   "t": "once",
+   "date": "2027-01-01",
+   "viec": "Hà Nội, TP.HCM bắt đầu siết khí thải: xe 2017–2021 phải đạt Mức 4",
+   "cs": "QĐ 43/2025/QĐ-TTg",
+   "ev": 1
+  },
+  {
+   "t": "once",
+   "date": "2027-07-01",
+   "viec": "QCVN 32:2026/BCT về trụ sạc, trạm sạc có hiệu lực",
+   "cs": "TT 61/2026/TT-BCT",
+   "ev": 1
+  },
+  {
+   "t": "once",
+   "date": "2030-12-31",
+   "viec": "Hết ưu đãi TTĐB 3%/1%/2% và lệ phí trước bạ 0% cho ô tô điện",
+   "cs": "Luật 09/2026/QH16; NĐ 202/2026",
+   "ev": 1
   }
+ ],
+ "trend": [
+  [
+   "2026",
+   "Mức 4 khí thải toàn quốc (01/3); vùng phát thải thấp Hà Nội thí điểm; giá điện riêng cho sạc; EPR theo NĐ 110 (25/5)"
+  ],
+  [
+   "2027",
+   "Sạc tại trạm dừng nghỉ hoàn thiện (01/01); Hà Nội, TP.HCM siết khí thải xe 2017–2021; LPTB 0% xe điện theo NĐ 202 (01/3); QCVN 32 trạm sạc (01/7)"
+  ],
+  [
+   "2028",
+   "Hà Nội, TP.HCM: xe từ 2022 đạt Mức 5 (nguồn lệch 2030)"
+  ],
+  [
+   "2029",
+   "Hà Nội, TP.HCM: mọi ô tô lưu thông từ Mức 2 trở lên"
+  ],
+  [
+   "2030",
+   "Hết ưu đãi TTĐB, LPTB xe điện (31/12); mục tiêu chuyển đổi giai đoạn 1 theo QĐ 876; vùng phát thải thấp mở rộng Vành đai 3 Hà Nội"
+  ],
+  [
+   "2031",
+   "TTĐB ô tô điện: dưới 9 chỗ 11%, 16–24 chỗ 4%, pickup 7%"
+  ],
+  [
+   "2032",
+   "Toàn quốc: xe từ 2022 áp dụng khí thải Mức 5"
+  ],
+  [
+   "2050",
+   "100% phương tiện cơ giới đường bộ dùng điện, năng lượng xanh; phát thải ròng bằng 0"
+  ]
  ]
 }
