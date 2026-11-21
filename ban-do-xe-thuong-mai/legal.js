@@ -49,8 +49,9 @@ if(anchor){
 function render(){
   const el = document.getElementById("lgList"); if(!el) return;
   const list = search(document.getElementById("lgQ").value, document.getElementById("lgLv").value);
-  el.innerHTML = list.map(d => { const [st, c] = status(d); return `<details class="lgdoc"><summary><span class="pill ${c}">${esc(st)}</span> <b>${esc(d.so)}</b> · ${esc(d.ten)} <span class="muted small">· ${esc(d.lv.join(", "))}${d.tin !== "cao" ? " · cần đối chiếu" : ""}</span></summary>
+  el.innerHTML = list.map(d => { const [st, c] = status(d); return `<details class="lgdoc"><summary><span class="pill ${c}">${esc(st)}</span> <b>${esc(d.so)}</b> · ${esc(d.ten)} <span class="muted small">· ${esc(d.lv.join(", "))}${d.tin !== "cao" ? " · cần đối chiếu" : ""}${d.trich ? " · có nguyên văn" : ""}</span></summary>
     <div class="small"><div class="muted">${esc(d.cq)} · ban hành ${vn(d.bh)} · hiệu lực ${vn(d.hl)}${d.het ? " đến " + vn(d.het) : ""}</div><ul>${d.diem.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+    ${d.trich ? `<blockquote class="lgq"><b>Trích nguyên văn:</b> ${esc(d.trich)}</blockquote>` : `<p class="muted tiny">Tóm tắt từ nguồn, chưa trích nguyên văn.</p>`}
     <p><b>Tác động tới Đô Thành:</b> ${esc(d.tacdong)}</p><p><b>Việc cần làm:</b></p><ul>${d.viec.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
     <p class="muted">Nguồn: ${d.nguon.map(n => `<a href="${esc(n[1])}" target="_blank" rel="noopener noreferrer">${esc(n[0])}</a>`).join(" · ")}</p>
     <div class="toolbar"><button type="button" data-lgask="${esc(d.id)}">Ben phân tích áp dụng</button><button type="button" data-lgtask="${esc(d.id)}">Giao việc tuân thủ</button></div></div></details>`; }).join("") || '<p class="muted">Không có văn bản phù hợp trong kho. Hỏi Ben để được tư vấn theo nguyên tắc chung.</p>';
