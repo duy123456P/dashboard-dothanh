@@ -1,0 +1,39 @@
+{
+ "asOf": "2026-11-21",
+ "source": "Báo cáo tồn kho hệ thống đại lý DAC đến 21/11/2026 (bảng PV), Anh Duy cung cấp",
+ "total": 957,
+ "recon": {"tonT10": 970, "muaT11": 108, "banLeT11": 121, "thuHoi": 2, "chuyenMBTBsangMB": 11, "mbtbKhongTinh": 13,
+   "note": "970 + 108 − 121 = 957 đúng bằng tồn chốt; nếu trừ thêm 2 xe thu hồi và cộng 11 xe chuyển MBTB→MB thì ra 966 (chênh 9 xe). Cần kế toán kho xác nhận cách hạch toán 2 khoản này."},
+ "mbtb": {"xe": 400, "note": "Hợp đồng MBTB: bán sỉ cho đại lý theo cơ chế giá riêng (Anh xác nhận). 13 xe MBTB không tính trong tồn."},
+ "daysT11": 21, "retailT11": 121, "regT10": 226,
+ "models": [
+  {"m": "IZ50S", "ton": 419, "leT11": 35, "cover": 8.4},
+  {"m": "IZ50M", "ton": 99, "cover": 10},
+  {"m": "JP120SL/EXL", "ton": 48, "leT11": 2, "cover": 16.8},
+  {"m": "IZ50M-PLUS", "coverRange": [5.6, 8.4]},
+  {"m": "IZ62M", "coverRange": [5.6, 8.4]},
+  {"m": "IZ45S", "coverRange": [5.6, 8.4]},
+  {"m": "IZ65M-PLUS", "cover": 3.6},
+  {"m": "V65", "cover": 2.8},
+  {"m": "IZ71SL-PLUS", "cover": 2.5},
+  {"m": "T33L", "cover": 1.7}
+ ],
+ "age": {"withPayDate": 553, "over180": 107, "over365": 15, "model2025": 80},
+ "dealers": [
+  {"name": "Trường Vũ", "ton": 215},
+  {"name": "ĐT Đông Nam", "ton": 150},
+  {"name": "Quang Dương", "ton": 94, "cover": 7},
+  {"name": "Phú Mỹ", "ton": 55},
+  {"name": "Phi Hưng", "ton": 49, "leT11": 3, "cover": 11.4},
+  {"name": "Vũ Hùng", "ton": 48, "cover": 2.4},
+  {"name": "ĐT Hậu Giang", "ton": 31, "manual": true},
+  {"name": "ĐT Kiên Giang", "ton": 16, "manual": true},
+  {"name": "Cương Nguyễn", "ton": 5, "manual": true, "note": "Không có showroom trưng bày riêng: đang dùng showroom Đô Thành Kon Tum (đại lý VinFast)"},
+  {"name": "Hùng Tuyến", "ton": 3, "manual": true, "note": "Chuyển từ đại lý cấp 1 xuống cấp 2; còn 3 xe chưa thu hồi"},
+  {"name": "Ô Tô Tây Nguyên", "leT11": 1},
+  {"name": "Dũng Lạc", "leT11": 0}
+ ],
+ "regions": [["Tây", 388], ["Bắc", 272], ["Nam", 179], ["Trung", 118]],
+ "regionNote": "Nhãn miền theo file (ĐT Đông Nam ghi miền Bắc).",
+ "manualNote": "Hậu Giang 31, Kiên Giang 16, Cương Nguyễn 5, Hùng Tuyến 3 (55 xe) là số thực tế Anh xác nhận do đại lý chưa cập nhật hệ thống."
+}
