@@ -31,3 +31,4 @@ VAMA, Cục CSGT, Cục Đăng kiểm, Thuế (lệ phí trước bạ), Cục T
 - `python3 tools_sync_sales_xlsx.py <file giao dịch.xlsx> [YYYY-MM-DD]` → `tx.json`: số xe theo tháng × đại lý × model × loại thùng × dự án (bán lẻ = TT 100%, bán sỉ = TT 10%, xuất kho = ngày XK; −1 = hủy cọc); xe đã cọc 10% chưa TT 100% theo tuổi. Không lưu số khung, hợp đồng.
 - `factory.json`: tồn thành phẩm kho DAC theo model × thùng × màu (thành phẩm, chờ xuất, chassis).
 - Sau khi cập nhật: `python3 build.py` rồi `MAP_PASSWORD='…' python3 tools_lock.py` (đúng mật khẩu đang dùng thì chỉ khóa lại nội dung).
+- `SRC_NAME='tên file gốc.xlsx' python3 tools_sync_inventory.py <file tồn SR.xlsx> [YYYY-MM-DD]` → `inventory.json`: tồn đại lý từng xe (sheet PV + Tồn SR) gộp theo đại lý × model × thùng × màu × đời × loại hợp đồng × tuổi; tự kiểm tra khớp tồn. Không lưu số khung, hợp đồng.
