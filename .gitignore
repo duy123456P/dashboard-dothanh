@@ -1,0 +1,6 @@
+# Bản đồ chưa mã hóa: chỉ dựng tại chỗ, không đưa lên repo công khai (xem ban-do/ cho bản đã khóa)
+ban-do-xe-thuong-mai/index.html
+ban-do-xe-thuong-mai/artifact.html
+ban-do-xe-thuong-mai/*.png
+!ban-do-xe-thuong-mai/height.png
+!ban-do-xe-thuong-mai/logo-dothanh.png
