@@ -1,0 +1,397 @@
+{
+ "updated": "2026-11-21",
+ "brands": [
+  {
+   "k": "teraco",
+   "name": "TERACO",
+   "maker": "Công ty TNHH Daehan Motors (DMC), KCN Cơ khí ô tô TP.HCM, xã Bình Mỹ",
+   "origin": "Lắp ráp tại TP.HCM",
+   "priceDoc": "Bảng giá số 383/2025/CV-DMC (24/12/2025), áp dụng từ 24/12/2025, gửi Đại lý 3S ủy quyền",
+   "promoDoc": "Thông báo 745/2026/TB-DMC (31/10/2026): CTKM tháng 11/2026",
+   "promoRules": [
+    "Tặng chi phí nhiên liệu (và bảo hiểm vật chất thân xe với V6, V8, STAR, STAR PLUS), quy đổi tiền mặt 5–10 triệu đồng/xe",
+    "Áp dụng khách hàng cuối ký hợp đồng tại đại lý ủy quyền DMC toàn quốc; đại lý xuất hóa đơn 01/11–30/11/2026",
+    "DMC xuất hóa đơn GTGT 0 đồng (hàng khuyến mại không thu tiền) mang tên người tiêu dùng cuối",
+    "TERA100S không có trong danh sách khuyến mại tháng 11/2026; TERA-V3/V3S được 5 triệu (không có trong bảng giá 24/12/2025)"
+   ],
+   "notes": [
+    "Giá đã bao gồm VAT theo thông lệ bảng giá (cần xác nhận)",
+    "Tải trọng ước theo tên model, cần xác nhận thông số kỹ thuật chính thức của Teraco",
+    "Giá bán tối đa (*) là trần giá đại lý được bán",
+    "Bảng giá áp dụng từ 24/12/2025: kiểm tra có bảng giá mới hơn không"
+   ],
+   "items": [
+    {
+     "model": "TERA-V6/2S",
+     "body": "Van 02 chỗ",
+     "dealer": 301000000,
+     "minRetail": 321500000,
+     "maxRetail": 324500000,
+     "promo": 10000000,
+     "seg": "Van 2 chỗ",
+     "dt": "V56"
+    },
+    {
+     "model": "TERA-V6/5S",
+     "body": "Van 05 chỗ",
+     "dealer": 353500000,
+     "minRetail": 374000000,
+     "maxRetail": 377000000,
+     "promo": 10000000,
+     "seg": "Van 5 chỗ",
+     "dt": null
+    },
+    {
+     "model": "TERA-V8/2S",
+     "body": "Van 02 chỗ",
+     "dealer": 323500000,
+     "minRetail": 344000000,
+     "maxRetail": 347000000,
+     "promo": 10000000,
+     "seg": "Van 2 chỗ",
+     "dt": "V65"
+    },
+    {
+     "model": "TERA-V8/5S",
+     "body": "Van 05 chỗ",
+     "dealer": 375500000,
+     "minRetail": 396000000,
+     "maxRetail": 399000000,
+     "promo": 10000000,
+     "seg": "Van 5 chỗ",
+     "dt": null
+    },
+    {
+     "model": "TERA100S",
+     "body": "Xe-chassis",
+     "dealer": 209000000,
+     "minRetail": 225000000,
+     "maxRetail": 228000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng lửng (bửng cong)",
+     "dealer": 222000000,
+     "minRetail": 238000000,
+     "maxRetail": 241000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng bạt tiêu chuẩn",
+     "dealer": 226500000,
+     "minRetail": 242500000,
+     "maxRetail": 245500000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng bạt lửng mở bửng",
+     "dealer": 232000000,
+     "minRetail": 248000000,
+     "maxRetail": 251000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 229000000,
+     "minRetail": 245000000,
+     "maxRetail": 248000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng kín composite",
+     "dealer": 241000000,
+     "minRetail": 257000000,
+     "maxRetail": 260000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng cánh chim",
+     "dealer": 241000000,
+     "minRetail": 257000000,
+     "maxRetail": 260000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA100S",
+     "body": "Thùng tự đổ",
+     "dealer": 266000000,
+     "minRetail": 282000000,
+     "maxRetail": 285000000,
+     "promo": 0,
+     "seg": "Tải nhẹ ~1 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Xe-chassis",
+     "dealer": 224000000,
+     "minRetail": 240000000,
+     "maxRetail": 243000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Thùng lửng",
+     "dealer": 237000000,
+     "minRetail": 253000000,
+     "maxRetail": 256000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Thùng bạt lửng mở bửng",
+     "dealer": 249000000,
+     "minRetail": 265000000,
+     "maxRetail": 268000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 249000000,
+     "minRetail": 265000000,
+     "maxRetail": 268000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Thùng kín composite",
+     "dealer": 258000000,
+     "minRetail": 274000000,
+     "maxRetail": 277000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR",
+     "body": "Thùng cánh chim",
+     "dealer": 260500000,
+     "minRetail": 276500000,
+     "maxRetail": 279500000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1 tấn (cabin rộng)",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR PLUS",
+     "body": "Xe-chassis",
+     "dealer": 229000000,
+     "minRetail": 245000000,
+     "maxRetail": 248000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR PLUS",
+     "body": "Thùng bạt lửng mở bửng",
+     "dealer": 254000000,
+     "minRetail": 270000000,
+     "maxRetail": 273000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA-STAR PLUS",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 254000000,
+     "minRetail": 270000000,
+     "maxRetail": 273000000,
+     "promo": 10000000,
+     "seg": "Tải nhẹ ~1–1,25 tấn",
+     "dt": "T26"
+    },
+    {
+     "model": "TERA150S",
+     "body": "Xe-chassis",
+     "dealer": 274000000,
+     "minRetail": 291000000,
+     "maxRetail": 296000000,
+     "promo": 5000000,
+     "seg": "Tải 1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "TERA150S",
+     "body": "Thùng lửng",
+     "dealer": 292000000,
+     "minRetail": 309000000,
+     "maxRetail": 314000000,
+     "promo": 5000000,
+     "seg": "Tải 1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "TERA150S",
+     "body": "Thùng bạt tiêu chuẩn",
+     "dealer": 302000000,
+     "minRetail": 319000000,
+     "maxRetail": 324000000,
+     "promo": 5000000,
+     "seg": "Tải 1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "TERA150S",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 308000000,
+     "minRetail": 325000000,
+     "maxRetail": 330000000,
+     "promo": 5000000,
+     "seg": "Tải 1,5 tấn",
+     "dt": "T33L"
+    },
+    {
+     "model": "TERA350 Plus",
+     "body": "Xe-chassis",
+     "dealer": 425000000,
+     "minRetail": 450000000,
+     "maxRetail": 460000000,
+     "promo": 5000000,
+     "seg": "Tải 3,5 tấn thùng ngắn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "TERA350 Plus",
+     "body": "Thùng lửng",
+     "dealer": 462000000,
+     "minRetail": 487000000,
+     "maxRetail": 497000000,
+     "promo": 5000000,
+     "seg": "Tải 3,5 tấn thùng ngắn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "TERA350 Plus",
+     "body": "Thùng bạt tiêu chuẩn",
+     "dealer": 474000000,
+     "minRetail": 499000000,
+     "maxRetail": 509000000,
+     "promo": 5000000,
+     "seg": "Tải 3,5 tấn thùng ngắn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "TERA350 Plus",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 477000000,
+     "minRetail": 502000000,
+     "maxRetail": 512000000,
+     "promo": 5000000,
+     "seg": "Tải 3,5 tấn thùng ngắn",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "TERA190SL Plus / TERA245SL Plus",
+     "body": "Xe-chassis",
+     "dealer": 461000000,
+     "minRetail": 486000000,
+     "maxRetail": 496000000,
+     "promo": 10000000,
+     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "dt": "IZ60SL Plus"
+    },
+    {
+     "model": "TERA190SL Plus / TERA245SL Plus",
+     "body": "Thùng lửng",
+     "dealer": 504000000,
+     "minRetail": 529000000,
+     "maxRetail": 539000000,
+     "promo": 10000000,
+     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "dt": "IZ60SL Plus"
+    },
+    {
+     "model": "TERA190SL Plus / TERA245SL Plus",
+     "body": "Thùng bạt tiêu chuẩn",
+     "dealer": 518000000,
+     "minRetail": 543000000,
+     "maxRetail": 553000000,
+     "promo": 10000000,
+     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "dt": "IZ60SL Plus"
+    },
+    {
+     "model": "TERA190SL Plus / TERA245SL Plus",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 522000000,
+     "minRetail": 547000000,
+     "maxRetail": 557000000,
+     "promo": 10000000,
+     "seg": "Tải 1,9–2,45 tấn thùng dài",
+     "dt": "IZ60SL Plus"
+    },
+    {
+     "model": "TERA345SL Plus",
+     "body": "Xe-chassis",
+     "dealer": 466000000,
+     "minRetail": 491000000,
+     "maxRetail": 501000000,
+     "promo": 10000000,
+     "seg": "Tải 3,45 tấn thùng dài",
+     "dt": "IZ71SL Plus"
+    },
+    {
+     "model": "TERA345SL Plus",
+     "body": "Thùng lửng",
+     "dealer": 509000000,
+     "minRetail": 534000000,
+     "maxRetail": 544000000,
+     "promo": 10000000,
+     "seg": "Tải 3,45 tấn thùng dài",
+     "dt": "IZ71SL Plus"
+    },
+    {
+     "model": "TERA345SL Plus",
+     "body": "Thùng bạt tiêu chuẩn",
+     "dealer": 523000000,
+     "minRetail": 548000000,
+     "maxRetail": 558000000,
+     "promo": 10000000,
+     "seg": "Tải 3,45 tấn thùng dài",
+     "dt": "IZ71SL Plus"
+    },
+    {
+     "model": "TERA345SL Plus",
+     "body": "Thùng kín tiêu chuẩn",
+     "dealer": 527000000,
+     "minRetail": 552000000,
+     "maxRetail": 562000000,
+     "promo": 10000000,
+     "seg": "Tải 3,45 tấn thùng dài",
+     "dt": "IZ71SL Plus"
+    }
+   ]
+  }
+ ]
+}
