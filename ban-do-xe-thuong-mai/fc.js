@@ -72,9 +72,9 @@ function hw(y, h){
   const m3 = mean(y.slice(-3)); return {name: "Trung bình 3 tháng (dữ liệu quá ngắn)", fit: y.map(() => m3), fc: Array(h).fill(m3)};
 }
 function baseline(S1, S2){
-  const h = D.cfg.horizon, y = S1.clean, SE = CV.salesSeason, useS = SE && y.length < 24 && y.length >= 6, mIdx = k => +k.slice(5) - 1;
+  const h = D.cfg.horizon, y = S1.clean, FF = (() => { try{ return CV.salesForecast ? CV.salesForecast() : null; }catch(e){ return null; } })(), SE = (FF && FF.SE) || CV.salesSeason, useS = SE && y.length < 36 && y.length >= 6, mIdx = k => +k.slice(5) - 1;
   let M; if(useS){ const ds = y.map((v,i) => v / SE[mIdx(S1.months[i])]), m0 = hw(ds, h), lastK = S1.months[S1.months.length-1];
-    M = {name: "Holt trên chuỗi khử mùa vụ (chỉ số mùa vụ 2025 từ ERP)" + m0.name.replace(/^Holt[^(]*/, " "), fit: m0.fit.map((v,i) => v * SE[mIdx(S1.months[i])]), fc: m0.fc.map((v,k) => v * SE[mIdx(addM(lastK, k+1))])}; }
+    M = {name: "Holt trên chuỗi khử mùa vụ (chỉ số mùa vụ " + (FF && FF.own ? "tự tính từ dữ liệu Đô Thành" : "2025 từ ERP") + ")" + m0.name.replace(/^Holt[^(]*/, " "), fit: m0.fit.map((v,i) => v * SE[mIdx(S1.months[i])]), fc: m0.fc.map((v,k) => v * SE[mIdx(addM(lastK, k+1))])}; }
   else M = hw(y, h);
   const fut = Array.from({length: h}, (_,k) => addM(S1.months[S1.months.length-1], k+1));
   // MAPE kiểm định: bỏ 3 tháng cuối, dự báo lại
@@ -180,7 +180,7 @@ if(anchor){
     <details class="lgdoc" style="margin-top:12px"><summary><b>Nhập dữ liệu</b> · lịch sử bán theo tháng và biến vĩ mô (CSV)</summary>
       <p class="small muted">Bán hàng: cột <code>thang, phan_khuc, loai_thung, so_luong, la_fleet, khach_hang</code> (phan_khuc ghi tải trọng tấn, ví dụ 1,9 hoặc "&gt;10"; la_fleet = 1 nếu là đơn lô lớn). Vĩ mô: <code>thang, bien, gia_tri</code> (ví dụ "Giải ngân đầu tư công (nghìn tỷ đ)"). Tháng dạng 2026-10.</p>
       <div class="toolbar"><label class="field">File bán hàng<input type="file" id="fcFileS" accept=".csv,.txt"></label><label class="field">File vĩ mô<input type="file" id="fcFileM" accept=".csv,.txt"></label>
-        <label class="field"><span><input type="checkbox" id="fcReplace" checked> Thay toàn bộ dữ liệu cũ</span></label><button type="button" class="primary" id="fcReal">Dùng số bán thật T1–T10/2026 (TDBH)</button><button type="button" id="fcTpl">Tải file mẫu</button><button type="button" id="fcDemo">Chạy thử với dữ liệu minh họa</button><button type="button" id="fcClear">Xóa dữ liệu dự báo</button></div></details>`;
+        <label class="field"><span><input type="checkbox" id="fcReplace" checked> Thay toàn bộ dữ liệu cũ</span></label><button type="button" class="primary" id="fcReal">Dùng số bán thật (file giao dịch 24 tháng)</button><button type="button" id="fcTpl">Tải file mẫu</button><button type="button" id="fcDemo">Chạy thử với dữ liệu minh họa</button><button type="button" id="fcClear">Xóa dữ liệu dự báo</button></div></details>`;
   anchor.after(s);
 }
 let cur = null;
@@ -230,7 +230,7 @@ document.addEventListener("change", async e => { const id = e.target.id;
 });
 document.addEventListener("click", async e => { const t = e.target, k = cur ? key(cur.seg, cur.body) : null;
   if(t.id === "fcReal"){ const rows = CV.salesForecastRows ? CV.salesForecastRows() : []; if(!rows.length) return toast("Chưa có dữ liệu doanh số chi tiết");
-    demo = false; D.sales = rows; D.adj = []; D.lock = {}; D.keep = {}; persist(); ["fcSeg","fcBody","fcVar"].forEach(id => document.getElementById(id).value = ""); render(); toast(`Đã nạp ${rows.length} dòng bán lẻ thật (24 đại lý × T1–T10/2026)`); }
+    demo = false; D.sales = rows; D.adj = []; D.lock = {}; D.keep = {}; persist(); ["fcSeg","fcBody","fcVar"].forEach(id => document.getElementById(id).value = ""); render(); toast(`Đã nạp ${rows.length} dòng bán lẻ thật theo tháng × tải trọng × loại thùng`); }
   if(t.id === "fcDemo"){ const x = demoData(); demo = true; D = Object.assign({}, D, {sales: x.sales, macro: x.macro, adj: [], lock: {}, keep: {}}); document.getElementById("fcBody").value = "Ben"; document.getElementById("fcSeg").value = ""; document.getElementById("fcVar").value = ""; render(); toast("Đang chạy với dữ liệu minh họa (không phải số thật)"); }
   if(t.id === "fcClear"){ if(!(await confirmA("Xóa toàn bộ lịch sử, biến vĩ mô và điều chỉnh dự báo?"))) return; demo = false; D = Object.assign(D, {sales: [], macro: [], adj: [], lock: {}}); persist(); render(); }
   if(t.id === "fcTpl"){ const csv = "thang,phan_khuc,loai_thung,so_luong,la_fleet,khach_hang\n2026-09,1.9,Thùng kín,42,0,\n2026-09,3.49,Mui bạt,35,0,\n2026-10,1.9,Thùng kín,60,1,Công ty logistics X\n\nthang,bien,gia_tri\n2026-09,Giải ngân đầu tư công (nghìn tỷ đ),85.4\n";

@@ -1,0 +1,1002 @@
+{
+"asOf": "2026-11-21",
+"source": "DAC_ton_kho_thanh_pham_model_thung_mau.xlsx (kho thành phẩm DAC), Anh Duy cung cấp",
+"def": {
+"chassis": "Chassis thành phẩm (chưa đóng thùng)",
+"fg": "Thành phẩm xe + thùng, sẵn bán",
+"wait": "Chờ xuất bán (đã có đơn, chờ giao)"
+},
+"note": "Nhóm KHÁCH (xe khách hàng gửi, ví dụ Scania) không tính vào tồn DAC.",
+"items": [
+{
+"group": "DAEWOO",
+"model": "BEN TỰ ĐỔ",
+"body": "CL4DF",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 6,
+"wait": 0
+},
+{
+"group": "DAEWOO",
+"model": "HC6",
+"body": "SATXI",
+"color": "TRẮNG",
+"chassis": 2,
+"fg": 0,
+"wait": 0
+},
+{
+"group": "DAEWOO",
+"model": "ĐẦU KÉO",
+"body": "CL4TF",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 23,
+"wait": 4
+},
+{
+"group": "IZ",
+"model": "IZ350SL",
+"body": "SATXI",
+"color": "TRẮNG",
+"chassis": 1,
+"fg": 0,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ45S",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 7,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ45S",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ45S",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ45S",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 4,
+"wait": 3
+},
+{
+"group": "IZ",
+"model": "IZ45S",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 6,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 3,
+"wait": 6
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 7,
+"wait": 14
+},
+{
+"group": "IZ",
+"model": "IZ50M",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 27,
+"wait": 5
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 17,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 20,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TK3",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 11,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 23,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TMB1",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 6,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50M-PLUS",
+"body": "TMB1",
+"color": "XANH",
+"chassis": 0,
+"fg": 8,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 13
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 13
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 0,
+"wait": 4
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 0,
+"wait": 3
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 0,
+"wait": 38
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 8,
+"wait": 26
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TMB",
+"color": "XÁM",
+"chassis": 0,
+"fg": 0,
+"wait": 1
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TMB1",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 3,
+"wait": 6
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "TMB1",
+"color": "XANH",
+"chassis": 0,
+"fg": 4,
+"wait": 2
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "XTL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 6,
+"wait": 1
+},
+{
+"group": "IZ",
+"model": "IZ50S",
+"body": "XTL",
+"color": "XANH",
+"chassis": 0,
+"fg": 5,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 4,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 7,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ60SL-PLUS",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 11,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ62M",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 4,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ62M",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 6,
+"wait": 1
+},
+{
+"group": "IZ",
+"model": "IZ62M",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 4,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 12,
+"wait": 1
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 26,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 1
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 98,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 90,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TMB",
+"color": "XÁM",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TMB1",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "TMB1",
+"color": "XANH",
+"chassis": 0,
+"fg": 16,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "XTL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ65M-PLUS",
+"body": "XTL",
+"color": "XANH",
+"chassis": 0,
+"fg": 10,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 16,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 16,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 12,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 16,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 39,
+"wait": 0
+},
+{
+"group": "IZ",
+"model": "IZ71SL-PLUS",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 32,
+"wait": 1
+},
+{
+"group": "KHÁCH",
+"model": "SCANIA-A50",
+"body": "47 GHẾ",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "KHÁCH",
+"model": "SCANIA-NK",
+"body": "47 GHẾ",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 1
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TK",
+"color": "TRẮNG -XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 5,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 7,
+"wait": 8
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 13,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T26",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 6,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 22,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 7,
+"wait": 1
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TK",
+"color": "XANH OLIU",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 1
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 7,
+"wait": 1
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 34,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 10,
+"wait": 1
+},
+{
+"group": "MISSU",
+"model": "T33L",
+"body": "TMB",
+"color": "XÁM",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "V56",
+"body": "VAN",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 32,
+"wait": 2
+},
+{
+"group": "MISSU",
+"model": "V56",
+"body": "VAN",
+"color": "TRẮNG -HỒNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "V56",
+"body": "VAN",
+"color": "XANH",
+"chassis": 0,
+"fg": 4,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "V65",
+"body": "VAN",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 68,
+"wait": 7
+},
+{
+"group": "MISSU",
+"model": "V65",
+"body": "VAN",
+"color": "XANH",
+"chassis": 0,
+"fg": 10,
+"wait": 3
+},
+{
+"group": "MISSU",
+"model": "V65",
+"body": "VAN",
+"color": "XANH OLIU",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "MISSU",
+"model": "V65",
+"body": "VAN",
+"color": "XÁM",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 13,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TK",
+"color": "XANH",
+"chassis": 0,
+"fg": 1,
+"wait": 1
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TK",
+"color": "XÁM",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TL",
+"color": "XANH",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 17,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB",
+"color": "XANH",
+"chassis": 0,
+"fg": 7,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB",
+"color": "XANH OLIU",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB",
+"color": "XÁM",
+"chassis": 0,
+"fg": 3,
+"wait": 1
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB1",
+"color": "BẠC",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB1",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120EXL",
+"body": "TMB1",
+"color": "XÁM",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 5,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TK",
+"color": "XANH OLIU",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TK",
+"color": "XÁM",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TL",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 3,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TMB",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 10,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TMB",
+"color": "XÁM",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TMB1",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP120SL",
+"body": "TMB1",
+"color": "XÁM",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP55M",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+},
+{
+"group": "T822",
+"model": "JP65M",
+"body": "TK",
+"color": "TRẮNG",
+"chassis": 0,
+"fg": 1,
+"wait": 0
+}
+],
+"groups": {
+"DAEWOO": {
+"chassis": 2,
+"fg": 29,
+"wait": 4
+},
+"IZ": {
+"chassis": 1,
+"fg": 620,
+"wait": 139
+},
+"KHÁCH": {
+"chassis": 0,
+"fg": 2,
+"wait": 0
+},
+"MISSU": {
+"chassis": 0,
+"fg": 236,
+"wait": 25
+},
+"T822": {
+"chassis": 0,
+"fg": 83,
+"wait": 2
+}
+}
+}

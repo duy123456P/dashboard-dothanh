@@ -30,7 +30,7 @@ const tr = v => fmt1(v/1e6).replace(",0","");
 
 /* ---------- tooltip dùng chung ---------- */
 const tip = document.createElement("div"); tip.className = "hudtip"; tip.hidden = true; document.body.appendChild(tip);
-document.addEventListener("pointermove", e => { const t = e.target.closest && e.target.closest("#hudSec [data-tip], #fcSec [data-tip], #salesSec [data-tip], #invSec [data-tip]"); if(!t){ tip.hidden = true; return; }
+document.addEventListener("pointermove", e => { const t = e.target.closest && e.target.closest("#hudSec [data-tip], #fcSec [data-tip], #salesSec [data-tip], #invSec [data-tip], #txSec [data-tip]"); if(!t){ tip.hidden = true; return; }
   tip.innerHTML = t.getAttribute("data-tip"); tip.hidden = false; const w = tip.offsetWidth, h = tip.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14;
   if(x + w > innerWidth - 8) x = e.clientX - w - 14; if(y + h > innerHeight - 8) y = e.clientY - h - 14; tip.style.left = x + "px"; tip.style.top = y + "px"; });
 
