@@ -38,6 +38,7 @@ const MET = [
   ["ind", "Kinh tế – xã hội", "Tỷ trọng công nghiệp – xây dựng", "% GRDP", r => r.econ ? r.econ[1] : null, 0, "cơ cấu GRDP"],
   ["serv", "Kinh tế – xã hội", "Tỷ trọng dịch vụ", "% GRDP", r => r.econ ? r.econ[2] : null, 0, "cơ cấu GRDP"],
   ["agri", "Kinh tế – xã hội", "Tỷ trọng nông – lâm – thủy sản", "% GRDP", r => r.econ ? r.econ[0] : null, 0, "cơ cấu GRDP"],
+  ["g9m26", "Kinh tế – xã hội", "Tăng trưởng GRDP 9 tháng 2026", "%", r => ((PS.growth9m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, báo địa phương (một phần)"],
   ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục ĐTNN qua báo chí (một phần)"],
   ["market", "Thị trường xe", "ĐK mới xe tải/năm", "xe", r => r._market, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
@@ -61,7 +62,7 @@ let RK = null; const R = () => RK || (RK = Object.fromEntries(MET.map(m => [m[0]
 const rankOf = (id, r) => { const x = R()[id]; return x && x.o[r.name] ? [x.o[r.name], x.n] : null; };
 const pct = (id, r) => { const k = rankOf(id, r); return k ? 1 - (k[0] - 1) / Math.max(1, k[1] - 1) : null; };
 // xếp hạng chính thức đã công bố (ưu tiên hiển thị)
-const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || {}).rank : id === "income" ? ((PS.income2025 || {})[r.name] || {}).rank : id === "fdi" ? ((PS.fdi10m26 || {})[r.name] || {}).rank : null;
+const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || {}).rank : id === "income" ? ((PS.income2025 || {})[r.name] || {}).rank : id === "fdi" ? ((PS.fdi10m26 || {})[r.name] || {}).rank : id === "g9m26" ? ((PS.growth9m26 || {})[r.name] || {}).rank : null;
 
 /* ---------- thế trận ---------- */
 function posture(r){
@@ -142,6 +143,7 @@ function render(name){
       <div class="hp w6"><h3>Văn hóa, con người, mùa vụ</h3><div class="small"><p><b>Văn hóa kinh doanh:</b> ${esc(r.culture)}</p><p><b>Tâm lý khách:</b> ${esc(r.psyche)}</p><p><b>Dân tộc:</b> ${esc(r.ethnic)} · <b>Đặc sản:</b> ${esc(r.specialties)}</p><p><b>Lễ hội:</b> ${esc(r.festivals)}</p><p><b>Mùa vụ:</b> ${esc((r.seasonNotes || []).join("; "))}</p></div></div>
       <div class="hp w6"><h3>Chính trị, pháp lý, hạ tầng</h3><div class="small"><p><b>Hành chính:</b> ${esc(ext.units || (r.communes ? r.communes + " xã/phường" : ""))}; trung tâm ${esc(r.capital)}; biển số ${esc(r.plates)}.</p><p><b>Hạ tầng, logistics:</b> ${esc(r.logistics)}</p>${ext.localRules ? ext.localRules.map(q => `<p><b>${esc(q.t)}:</b> ${esc(q.d)}<br><span class="muted">→ ${esc(q.impact)}</span></p>`).join("") : '<p class="muted">Chưa có quy định địa phương riêng trong dữ liệu (quy định quốc gia: mục Pháp lý).</p>'}${ext.publicInv ? `<p><b>Đầu tư công:</b> ${esc(ext.publicInv.targets)}</p>` : ""}</div></div>
     </div>
+    ${CV.warplan ? CV.warplan(r).html : ""}
     <p class="note">Hạng: #1 là cao nhất. Màu xanh = tốt cho kinh doanh, đỏ = bất lợi, xám = trung tính. Xếp hạng “công bố” lấy theo Cục Thống kê / Cục ĐTNN khi có; còn lại xếp trên số đang có trên bản đồ (n = số tỉnh có dữ liệu). ${esc(Object.values(PS.notes || {}).join(" · "))}</p>`;
   try{ CV.select(r.name, true); }catch(e){}
 }
@@ -153,7 +155,7 @@ dlg.addEventListener("click", e => { const names = [...sel.options].map(o => o.v
   if(e.target.id === "bdBen"){ const md = boardMd(sel.value); dlg.close(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phòng chiến lược " + sel.value); const b = CV.addMsg("a", ""); CV.finishBubble(b, md, false, "Phòng chiến lược " + sel.value, true); } });
 // nút trên thanh công cụ bản đồ + trên trang
 const tools = document.querySelector(".maptools"); if(tools){ const b = document.createElement("button"); b.type = "button"; b.id = "btnBoard"; b.className = "primary"; b.textContent = "Phòng chiến lược HĐQT"; b.addEventListener("click", () => open()); tools.prepend(b); }
-CV.openBoard = open;
+CV.openBoard = open; CV.boardPosture = posture;
 
 function boardMd(name){
   const r = CV.findRow(name); if(!r) return "Không tìm thấy tỉnh.";
