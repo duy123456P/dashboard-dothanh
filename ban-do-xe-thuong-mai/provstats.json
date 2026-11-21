@@ -160,7 +160,10 @@
   "Đà Nẵng": 316.1,
   "Nghệ An": 236.5,
   "Đắk Lắk": 229.6,
-  "Khánh Hòa": 209.3
+  "Khánh Hòa": 209.3,
+  "Thanh Hóa": 349.3,
+  "Cần Thơ": 306.2,
+  "Gia Lai": 270.7
  },
  "income2025": {
   "Hà Nội": {
@@ -301,7 +304,8 @@
   "fdi10m26": "vốn FDI 10 tháng 2026, triệu USD (Cục Đầu tư nước ngoài qua báo chí); mới có nhóm dẫn đầu",
   "publicInv10m26": "chấm điểm giải ngân đầu tư công 10 tháng 2026 (Bộ Tài chính, BC 908/BC-BTC 3/11/2026); mới có một phần bảng",
   "growth9m26": "tăng trưởng GRDP 9 tháng 2026 (Cục Thống kê qua báo chí, 20/34 tỉnh; cả nước 9,01%)",
-  "income": "Thu nhập 2025 (KSMS): mới có 10/34 tỉnh công bố qua báo (top 5, nhóm thấp nhất, Ninh Bình, Hưng Yên, Bắc Ninh); Ninh Bình, Hưng Yên, Bắc Ninh chưa có hạng toàn quốc chính thức."
+  "income": "Thu nhập 2025 (KSMS): mới có 10/34 tỉnh công bố qua báo (top 5, nhóm thấp nhất, Ninh Bình, Hưng Yên, Bắc Ninh); Ninh Bình, Hưng Yên, Bắc Ninh chưa có hạng toàn quốc chính thức.",
+  "g9": "Tăng trưởng 9 tháng 2026: đủ 34/34 tỉnh; Khánh Hòa, Huế là số UBND tỉnh ước, các tỉnh khác theo Cục Thống kê hoặc thống kê tỉnh."
  },
  "sources": [
   [
@@ -343,6 +347,14 @@
   [
    "Cục Thống kê: KT-XH quý III, 9 tháng 2026",
    "https://www.nso.gov.vn/bai-top/2026/10/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  ],
+  [
+   "Vietnambiz: GRDP 9 tháng 2026 của 34 tỉnh (Cục Thống kê)",
+   "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+  ],
+  [
+   "Nhân Dân: GRDP nhiều tỉnh 9 tháng 2026",
+   "https://nhandan.vn/tang-truong-grdp-nhieu-tinh-thanh-pho-9-thang-nam-2026-vuot-muc-dat-ra-post993624.html"
   ]
  ],
  "growth9m26": {
@@ -424,6 +436,62 @@
   },
   "Sơn La": {
    "v": 5.59,
+   "rank": null
+  },
+  "TP. Hồ Chí Minh": {
+   "v": 9.06,
+   "rank": null
+  },
+  "Tây Ninh": {
+   "v": 10.3,
+   "rank": null
+  },
+  "Đồng Nai": {
+   "v": 10.01,
+   "rank": 12
+  },
+  "Phú Thọ": {
+   "v": 10.01,
+   "rank": null
+  },
+  "Khánh Hòa": {
+   "v": 11.21,
+   "rank": null
+  },
+  "Lào Cai": {
+   "v": 9.09,
+   "rank": null
+  },
+  "Lai Châu": {
+   "v": 9.62,
+   "rank": 15
+  },
+  "Tuyên Quang": {
+   "v": 8.04,
+   "rank": null
+  },
+  "Lạng Sơn": {
+   "v": 7.52,
+   "rank": null
+  },
+  "Điện Biên": {
+   "v": 9.81,
+   "rank": null
+  },
+  "Quảng Trị": {
+   "v": 8.42,
+   "rank": 24
+  },
+  "An Giang": {
+   "v": 9.23,
+   "rank": null
+  },
+  "Huế": {
+   "v": 9.25,
+   "rank": null
+  },
+  "Cao Bằng": {
+   "v": 7.96,
    "rank": null
   }
  }
