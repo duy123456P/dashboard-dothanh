@@ -1,0 +1,174 @@
+/* ===== Phòng chiến lược HĐQT: mọi thông tin của một tỉnh + xếp hạng /34 + thế trận (đánh nhanh / đánh chắc) ===== */
+(function(){
+"use strict";
+const CV = window.__CV; if(!CV) return;
+const {esc, fmtInt, fmt1} = CV;
+let PS = {}; try{ PS = JSON.parse(document.getElementById("ps-data").textContent); }catch(e){}
+const sum = a => a.reduce((x,y) => x + (y || 0), 0);
+const n0 = v => v == null || !isFinite(v) ? "—" : fmtInt(v), f1 = v => v == null || !isFinite(v) ? "—" : fmt1(v);
+const C = {good: "#4ee2a0", warn: "#ffc35a", bad: "#ff6b6b", muted: "#8ea7c7"};
+
+/* ---------- gom số theo tỉnh từ mọi module ---------- */
+let cache = null;
+function agg(){
+  if(cache) return cache; const o = {}; const get = p => o[p] = o[p] || {dealers: [], tx12: 0, inv: 0, invLe: 0, invOld: 0, f27: 0, kh27: 0, erp27: 0, comp: 0, compBrands: new Set()};
+  const prov = name => { const d = CV.NET.dealers.find(x => x.salesKey === name); return d ? d.province : null; };
+  CV.NET.dealers.forEach(d => get(d.province).dealers.push(d));
+  const TX = CV.TX; if(TX){ const ms = TX.months.filter(m => m < TX.asOf.slice(0,7)).slice(-12), set = new Set(ms); TX.tx.forEach(t => { if(!set.has(t[0])) return; const p = prov(TX.dealers[t[1]]); if(p) get(p).tx12 += t[5]; }); }
+  if(CV.inv) CV.inv.dealers.forEach(l => { const p = prov(l.link); if(!p) return; const x = get(p); x.inv += l.ton; x.invLe += l.leT11; x.invOld += ((l.age || {})["181-365"] || 0) + ((l.age || {})[">365"] || 0); });
+  const F = CV.salesForecast ? CV.salesForecast() : null; if(F) F.D.forEach(d => { const p = prov(d.name); if(!p) return; const x = get(p); x.f27 += d.f27 || 0; x.kh27 += d.kh27 || 0; x.erp27 += d.erp || 0; });
+  (CV.CNET ? CV.CNET.points : []).forEach(p => { const x = get(p.province); x.comp++; x.compBrands.add(p.b); });
+  return cache = o;
+}
+const A = r => agg()[r.name] || {dealers: [], tx12: 0, inv: 0, invLe: 0, invOld: 0, f27: 0, kh27: 0, erp27: 0, comp: 0, compBrands: new Set()};
+const invRate = () => CV.inv ? CV.inv.daysT11 / 30 : 0.7;
+
+/* ---------- danh mục chỉ số (có xếp hạng /34) ---------- */
+const MET = [
+  // [id, nhóm, nhãn, đơn vị, getter, hướng (+1 cao là tốt / −1 thấp là tốt / 0 trung tính), nguồn]
+  ["pop", "Kinh tế – xã hội", "Dân số", "nghìn người", r => r.pop, 0, "Cục Thống kê, bình quân 2024"],
+  ["area", "Kinh tế – xã hội", "Diện tích", "km²", r => r.area, 0, "NQ 202/2025/QH15"],
+  ["density", "Kinh tế – xã hội", "Mật độ dân số", "người/km²", r => r._density, 0, "tính từ dân số, diện tích"],
+  ["urban", "Kinh tế – xã hội", "Đô thị hóa (ước)", "%", r => r.urban, 1, "ước tính gộp tỉnh cũ"],
+  ["grdp", "Kinh tế – xã hội", "GRDP 2024", "nghìn tỷ", r => r.grdp, 1, "Cục Thống kê / tỉnh"],
+  ["grdp25", "Kinh tế – xã hội", "GRDP 2025", "nghìn tỷ", r => (PS.grdp2025 || {})[r.name] ?? null, 1, "bảng tổng hợp 2025 (một phần)"],
+  ["growth", "Kinh tế – xã hội", "Tăng trưởng GRDP 2025", "%", r => r.growth, 1, "Cục Thống kê (đủ 34 tỉnh)"],
+  ["gpc", "Kinh tế – xã hội", "GRDP bình quân đầu người", "triệu đ", r => r._gpc, 1, "tính từ GRDP 2024 / dân số"],
+  ["income", "Kinh tế – xã hội", "Thu nhập bình quân/tháng 2025", "triệu đ", r => ((PS.income2025 || {})[r.name] || {}).v ?? null, 1, "Khảo sát mức sống 2025 (một phần)"],
+  ["ind", "Kinh tế – xã hội", "Tỷ trọng công nghiệp – xây dựng", "% GRDP", r => r.econ ? r.econ[1] : null, 0, "cơ cấu GRDP"],
+  ["serv", "Kinh tế – xã hội", "Tỷ trọng dịch vụ", "% GRDP", r => r.econ ? r.econ[2] : null, 0, "cơ cấu GRDP"],
+  ["agri", "Kinh tế – xã hội", "Tỷ trọng nông – lâm – thủy sản", "% GRDP", r => r.econ ? r.econ[0] : null, 0, "cơ cấu GRDP"],
+  ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục ĐTNN qua báo chí (một phần)"],
+  ["market", "Thị trường xe", "ĐK mới xe tải/năm", "xe", r => r._market, 1, "mô hình phân bổ (hoặc số thực khi có)"],
+  ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
+  ["carreg", "Thị trường xe", "Ô tô mọi loại ĐK 2025", "xe", r => r.carReg2025, 1, "Cục CSGT theo tỉnh cũ"],
+  ["heavy", "Thị trường xe", "Tỷ trọng tải nặng + đầu kéo", "% thị trường", r => r.mix ? r.mix[2] + r.mix[3] : null, 0, "ước theo cơ cấu ngành"],
+  ["comp", "Thị trường xe", "Điểm bán, dịch vụ đối thủ đã xác minh", "điểm", r => A(r).comp, -1, "mạng lưới đối thủ"],
+  ["sales", "Đô Thành", "Bán lẻ T1–T10/2026 (TDBH)", "xe", r => r.sales, 1, "Tổng hợp TDBH"],
+  ["share", "Đô Thành", "Thị phần ước (bán lẻ / ĐK mới)", "%", r => r._market ? (r.sales || 0) / r._market * 100 : null, 1, "TDBH / thị trường ước"],
+  ["kpct", "Đô Thành", "Đạt KH lũy kế T10", "%", r => r.target ? r._kpct : null, 1, "TDBH"],
+  ["tx12", "Đô Thành", "Bán lẻ 12 tháng (TT 100%)", "xe", r => A(r).tx12 || null, 1, "file giao dịch từng xe"],
+  ["dealers", "Đô Thành", "Đại lý Đô Thành", "điểm", r => (r._c4 || 0) + (r._c3 || 0), 1, "mạng lưới"],
+  ["inv", "Đô Thành", "Tồn đại lý 21/11", "xe", r => A(r).inv || null, -1, "file tồn SR"],
+  ["cover", "Đô Thành", "Tháng bán của tồn", "tháng", r => { const x = A(r); return x.inv ? (x.invLe ? x.inv / (x.invLe / invRate()) : 99) : null; }, -1, "tồn SR / bán lẻ T11"],
+  ["f27", "Đô Thành", "Dự báo 2027", "xe", r => A(r).f27 || null, 1, "mô hình dự báo"],
+  ["kh27", "Đô Thành", "KH 2027", "xe", r => A(r).kh27 || null, 0, "Đánh giá KH 2027 (ERP)"],
+  ["gap27", "Đô Thành", "Dự báo / KH 2027", "%", r => { const x = A(r); return x.kh27 ? x.f27 / x.kh27 * 100 : null; }, 1, "dự báo / KH"],
+];
+const MID = Object.fromEntries(MET.map(m => [m[0], m]));
+function ranks(id){ const m = MID[id]; const vals = CV.rows.map(r => [r.name, m[4](r)]).filter(([, v]) => v != null && isFinite(v)); const s = vals.slice().sort((a,b) => b[1] - a[1]); const o = {}; s.forEach(([n, v], i) => { o[n] = i && v === s[i-1][1] ? o[s[i-1][0]] : i + 1; }); return {o, n: vals.length}; } // bằng nhau cùng hạng
+let RK = null; const R = () => RK || (RK = Object.fromEntries(MET.map(m => [m[0], ranks(m[0])])));
+const rankOf = (id, r) => { const x = R()[id]; return x && x.o[r.name] ? [x.o[r.name], x.n] : null; };
+const pct = (id, r) => { const k = rankOf(id, r); return k ? 1 - (k[0] - 1) / Math.max(1, k[1] - 1) : null; };
+// xếp hạng chính thức đã công bố (ưu tiên hiển thị)
+const official = (id, r) => id === "growth" ? ((PS.growth2025 || {})[r.name] || {}).rank : id === "income" ? ((PS.income2025 || {})[r.name] || {}).rank : id === "fdi" ? ((PS.fdi10m26 || {})[r.name] || {}).rank : null;
+
+/* ---------- thế trận ---------- */
+function posture(r){
+  const avg = a => { const v = a.filter(x => x != null); return v.length ? sum(v) / v.length : 0.5; };
+  const attr = avg([pct("market", r), pct("growth", r), pct("gpc", r), pct("uio", r), pct("carreg", r), pct("grdp", r)]);
+  const x = A(r), cov = MID.cover[4](r);
+  const nd = (r._c4 || 0) + (r._c3 || 0), z = v => v == null ? 0.2 : v; // thiếu số liệu nội lực = yếu, không coi là trung bình
+  let str = avg([z(pct("share", r)), z(pct("kpct", r)), z(pct("dealers", r)), z(pct("tx12", r)), cov == null ? 0.3 : cov <= 3 ? 0.8 : cov <= 6 ? 0.4 : 0.1, x.comp ? Math.max(0, 1 - x.comp / 12) : 0.6]);
+  if(!nd && !(r.sales > 0)) str = Math.min(str, 0.15);
+  const hiA = attr >= 0.5, hiS = str >= 0.5;
+  const P = hiA && hiS ? {k: "fast", t: "Đánh nhanh, thắng nhanh", c: C.good, why: "Thị trường hấp dẫn và Đô Thành đã có chỗ đứng: dồn lực 30–90 ngày để chiếm thêm thị phần ngay."}
+    : hiA ? {k: "slow", t: "Đánh chậm, thắng chắc", c: C.warn, why: "Thị trường lớn, tăng trưởng tốt nhưng nội lực Đô Thành còn mỏng: xây mạng lưới, dịch vụ, niềm tin 12–24 tháng trước khi đẩy sản lượng."}
+    : hiS ? {k: "hold", t: "Giữ chắc, khai thác hiệu quả", c: "#5ab0ff", why: "Thị trường vừa/nhỏ nhưng Đô Thành mạnh: giữ thị phần, tối ưu chi phí, biên lợi nhuận và tồn kho."}
+    : {k: "guer", t: "Du kích, chọn lọc", c: C.bad, why: "Thị trường nhỏ và Đô Thành yếu: không đầu tư cố định lớn; bán qua cấp 2, dự án, đội bán lưu động; theo dõi tín hiệu đầu tư công, KCN mới."};
+  return {...P, attr, str};
+}
+function tactics(r){
+  const P = posture(r), x = A(r), mo = new Date().getMonth(), ext = r.ext || {}, cov = MID.cover[4](r), lines = [], longs = [];
+  const invL = CV.inv ? CV.inv.dealers.filter(l => { const d = CV.NET.dealers.find(z => z.salesKey === l.link); return d && d.province === r.name; }) : [];
+  const models = {}; invL.forEach(l => Object.entries(l.models).forEach(([m,n]) => models[m] = (models[m] || 0) + n));
+  const topM = Object.entries(models).sort((a,b) => b[1] - a[1]).slice(0, 3);
+  // ngắn hạn
+  if(x.inv) lines.push(`Tồn ${x.inv} xe tại tỉnh ≈ ${cov >= 99 ? "chưa bán xe nào T11" : f1(cov) + " tháng bán"}${x.invOld ? `, ${x.invOld} xe quá 180 ngày` : ""}: ${cov > 3 ? `xả tồn trước, ưu tiên ${topM.map(([m,n]) => m + " " + n).join(", ")}; dừng nhận sỉ đến khi ≤ 2 tháng` : "đủ hàng để chạy chương trình bán ngay"}.`);
+  const sv = (r.season || [])[mo]; lines.push(`Mùa vụ tháng ${mo+1}: ${sv >= 3 ? "cao điểm" : sv >= 2 ? "trung bình" : "thấp"}; ${(r.seasonNotes || []).slice(0, 2).join("; ")}. Chiến dịch: ${((r.campaigns || [])[0] || "").replace(/^“|”.*$/g, "")}.`);
+  if(ext.localRules) lines.push(`Quy định địa phương: ${ext.localRules[0].impact}`);
+  if(r.target && r._kpct < 70) lines.push(`Đạt KH lũy kế ${n0(r._kpct)}%: kèm cặp đại lý theo tuần, thưởng nóng theo xe bán lẻ, lái thử cuối tuần tại chợ đầu mối, KCN.`);
+  if(x.comp) lines.push(`Đối thủ có ${x.comp} điểm đã xác minh tại tỉnh (${[...x.compBrands].map(b => (CV.CNET.brands[b] || {}).name).join(", ")}): chào trực tiếp bằng giá ròng sau ưu đãi và TCO ở phân khúc Đô Thành rẻ hơn (1,9–2,5 tấn, thùng dài).`);
+  if(P.k === "fast") lines.push("Dồn ngân sách khuyến mãi, xe sẵn giao, quảng cáo địa phương vào 60 ngày tới; mục tiêu tăng thị phần 1–2 điểm %.");
+  if(P.k === "guer") lines.push("Không tăng tồn; bán theo đơn, dự án; đội bán lưu động 2 tuần/lần; hợp tác đại lý đa thương hiệu.");
+  // dài hạn
+  const nd = (r._c4 || 0) + (r._c3 || 0);
+  if(!nd) longs.push("Chưa có đại lý: lập đề án đại lý 3S hoặc trạm dịch vụ ủy quyền tại trung tâm tỉnh; trước mắt dịch vụ lưu động.");
+  else if(r._perCenter > 2500) longs.push(`${nd} đại lý cho ~${n0(r._market)} xe/năm (${n0(r._perCenter)} xe/đại lý): mở thêm đại lý cấp 2, trạm dịch vụ ở cụm KCN, huyện xa.`);
+  if(r.mix && r.mix[2] + r.mix[3] >= 28) longs.push(`Tải nặng + đầu kéo chiếm ${r.mix[2] + r.mix[3]}% thị trường: chuẩn bị danh mục Daewoo, JP120, xe ben; kho phụ tùng, cứu hộ công trường.`);
+  if(r.growth >= 9) longs.push(`Tăng trưởng GRDP 2025 ${f1(r.growth)}% (hạng ${((PS.growth2025 || {})[r.name] || {}).rank}/34): ưu tiên đầu tư dài hạn, đón dự án hạ tầng, KCN.`);
+  if(ext.publicInv) longs.push(`Đầu tư công: ${ext.publicInv.targets}; theo dõi độ trễ giải ngân → nhu cầu xe ben, tải nặng 3–6 tháng sau.`);
+  longs.push(`Ngành mũi nhọn: ${r.industries} → nhu cầu xe: ${r.cvDemand}`);
+  if(P.k === "slow") longs.push("Lộ trình 12–24 tháng: (1) mạng lưới, dịch vụ; (2) đội xe chứng minh (khách tiêu biểu, xe chạy thử dài ngày); (3) tài chính trả góp riêng; (4) rồi mới đẩy sản lượng.");
+  if(P.k === "hold") longs.push("Giữ thị phần, nâng biên: bán gói dịch vụ, phụ tùng, xe chuyên dùng; khách quay lại, giới thiệu.");
+  return {P, lines, longs};
+}
+
+/* ---------- giao diện ---------- */
+const dlg = document.createElement("dialog"); dlg.className = "odlg"; dlg.id = "boardDlg"; dlg.style.width = "min(1380px,98vw)"; dlg.setAttribute("aria-labelledby", "boardT");
+dlg.innerHTML = `<header><h3 id="boardT">Phòng chiến lược HĐQT</h3><label class="field" style="flex-direction:row;align-items:center;gap:6px;margin:0">Tỉnh<select id="bdProv"></select></label><button type="button" id="bdPrev" aria-label="Tỉnh trước">◀</button><button type="button" id="bdNext" aria-label="Tỉnh sau">▶</button>
+  <label class="field" style="flex-direction:row;align-items:center;gap:6px;margin:0">Tô màu bản đồ<select id="bdColor"><option value="">(giữ nguyên)</option><option value="posture">Thế trận</option>${MET.map(m => `<option value="bd_${m[0]}">${esc(m[2])}</option>`).join("")}</select></label>
+  <button type="button" id="bdBen">Ben trình bày</button><button type="button" class="x" data-close>Đóng</button></header><div class="body" id="bdBody"></div>`;
+document.body.appendChild(dlg);
+dlg.addEventListener("click", e => { if(e.target.closest("[data-close]")) dlg.close(); });
+const btip = document.createElement("div"); btip.className = "hudtip"; btip.hidden = true; dlg.appendChild(btip);
+dlg.addEventListener("pointermove", e => { const t = e.target.closest && e.target.closest("[data-tip]"); if(!t){ btip.hidden = true; return; } btip.innerHTML = t.getAttribute("data-tip"); btip.hidden = false;
+  const w = btip.offsetWidth, h = btip.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14; if(x + w > innerWidth - 8) x = e.clientX - w - 14; if(y + h > innerHeight - 8) y = e.clientY - h - 14; btip.style.left = x + "px"; btip.style.top = y + "px"; });
+const sel = dlg.querySelector("#bdProv"); sel.innerHTML = CV.rows.map(r => r.name).sort((a,b) => a.localeCompare(b, "vi")).map(n => `<option>${esc(n)}</option>`).join("");
+// chỉ số tô màu bản đồ
+MET.forEach(m => { CV.METRICS["bd_" + m[0]] = {label: m[2], unit: m[3], get: r => { try{ return m[4](r); }catch(e){ return null; } }, fmt: v => m[3] === "%" || m[3] === "tháng" ? fmt1(v) : fmtInt(v)}; });
+CV.METRICS.posture = {label: "Thế trận (1 du kích · 2 giữ chắc · 3 đánh chắc · 4 đánh nhanh)", unit: "", get: r => ({guer: 1, hold: 2, slow: 3, fast: 4})[posture(r).k], fmt: v => ["", "Du kích", "Giữ chắc", "Đánh chắc", "Đánh nhanh"][v] || v};
+
+function tile(id, r){
+  const m = MID[id], v = m[4](r), rk = rankOf(id, r), off = official(id, r), q = rk ? (rk[0] - 1) / Math.max(1, rk[1] - 1) : null;
+  const col = m[5] === 0 || q == null ? C.muted : (m[5] > 0 ? q : 1 - q) <= 0.25 ? C.good : (m[5] > 0 ? q : 1 - q) >= 0.75 ? C.bad : C.warn;
+  const val = v == null || !isFinite(v) ? "—" : id === "cover" && v >= 99 ? "không bán" : (m[3] === "%" || m[3] === "tháng" || id === "income" || id === "growth") ? f1(v) : n0(v);
+  return `<div class="stat bdt" data-gl-text="${esc(m[2])}" data-tip="<b>${esc(m[2])}</b><br>${esc(val)} ${esc(m[3])}<br>Hạng ${rk ? rk[0] + "/" + rk[1] : "—"}${off ? " (công bố: " + off + "/34)" : ""}<br>Nguồn: ${esc(m[6])}"><div class="v">${esc(val)}<span class="bdu"> ${esc(m[3])}</span></div><div class="l">${esc(m[2])}</div><div class="bdr" style="color:${col}">${rk ? `#${off || rk[0]}/${off ? 34 : rk[1]}` : "chưa có số"}</div></div>`;
+}
+function render(name){
+  const r = CV.findRow(name); if(!r) return; sel.value = r.name; RK = null; cache = null;
+  const T = tactics(r), P = T.P, x = A(r), ext = r.ext || {};
+  const groups = [...new Set(MET.map(m => m[1]))];
+  const dl = x.dealers.filter(d => d.salesKey).map(d => { const iv = CV.invOf ? CV.invOf(d.salesKey) : null, fd = (CV.salesForecast() || {D: []}).D.find(z => z.name === d.salesKey);
+    return `<tr><td><b>${esc(d.salesKey)}</b> <span class="muted tiny">${d.tier}</span> <button type="button" class="tiny" data-d360="${esc(d.salesKey)}">360°</button></td><td class="num">${n0(d.leCum)}/${n0(d.khCum)}</td><td class="num">${d.thT10 ?? "—"}/${d.khT10 ?? "—"}</td><td class="num">${iv ? iv.ton : "—"}</td><td class="num">${iv && iv.cover != null ? f1(iv.cover) : iv ? "không bán" : "—"}</td><td class="num">${fd ? n0(fd.f27) : "—"}</td><td class="num">${fd && fd.kh27 ? n0(fd.kh27) : "—"}</td><td>${d.grade ? d.grade + " · " + f1(d.score) : ""}</td></tr>`; }).join("");
+  document.getElementById("bdBody").innerHTML = `
+    <div class="bdhead"><div><div class="eyebrow">${esc(r.region)} · ${esc(r.zone)} · gộp từ ${esc((r.merged || []).join(", "))}</div><h2 style="margin:4px 0">${esc(r.name)}</h2><div class="muted small">${esc(r.industries)}</div></div>
+      <div class="bdpost" style="border-color:${P.c};box-shadow:0 0 24px ${P.c}55"><div class="tiny muted">THẾ TRẬN ĐỀ XUẤT</div><div class="bdpt" style="color:${P.c}">${esc(P.t)}</div><div class="tiny">Hấp dẫn thị trường ${fmtInt(P.attr*100)}/100 · Nội lực Đô Thành ${fmtInt(P.str*100)}/100</div><div class="small" style="margin-top:4px">${esc(P.why)}</div></div></div>
+    ${groups.map(g => `<h4>${esc(g)}</h4><div class="bdgrid">${MET.filter(m => m[1] === g).map(m => tile(m[0], r)).join("")}</div>`).join("")}
+    <div class="hudgrid" style="margin-top:12px">
+      <div class="hp w6"><h3>Đối sách ngắn hạn 30–90 ngày <span>${P.k === "fast" ? "đánh nhanh" : P.k === "slow" ? "chuẩn bị, chưa dồn lực" : P.k === "hold" ? "giữ, tối ưu" : "chọn lọc"}</span></h3><ol class="actions small">${T.lines.map(l => `<li>${esc(l)}</li>`).join("")}</ol></div>
+      <div class="hp w6"><h3>Chiến lược dài hạn 1–3 năm</h3><ol class="actions small">${T.longs.map(l => `<li>${esc(l)}</li>`).join("")}</ol></div>
+      <div class="hp w12"><h3>Đại lý Đô Thành tại tỉnh <span>bán lẻ lũy kế/KH · T10 · tồn 21/11 · tháng bán · dự báo/KH 2027</span></h3><div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Đại lý</th><th class="num">Lũy kế T10</th><th class="num">T10</th><th class="num">Tồn</th><th class="num">Tháng bán</th><th class="num">Dự báo 27</th><th class="num">KH 27</th><th>Hạng</th></tr></thead><tbody>${dl || '<tr><td colspan="8" class="muted">Chưa có đại lý Đô Thành tại tỉnh</td></tr>'}</tbody></table></div></div>
+      <div class="hp w6"><h3>Văn hóa, con người, mùa vụ</h3><div class="small"><p><b>Văn hóa kinh doanh:</b> ${esc(r.culture)}</p><p><b>Tâm lý khách:</b> ${esc(r.psyche)}</p><p><b>Dân tộc:</b> ${esc(r.ethnic)} · <b>Đặc sản:</b> ${esc(r.specialties)}</p><p><b>Lễ hội:</b> ${esc(r.festivals)}</p><p><b>Mùa vụ:</b> ${esc((r.seasonNotes || []).join("; "))}</p></div></div>
+      <div class="hp w6"><h3>Chính trị, pháp lý, hạ tầng</h3><div class="small"><p><b>Hành chính:</b> ${esc(ext.units || (r.communes ? r.communes + " xã/phường" : ""))}; trung tâm ${esc(r.capital)}; biển số ${esc(r.plates)}.</p><p><b>Hạ tầng, logistics:</b> ${esc(r.logistics)}</p>${ext.localRules ? ext.localRules.map(q => `<p><b>${esc(q.t)}:</b> ${esc(q.d)}<br><span class="muted">→ ${esc(q.impact)}</span></p>`).join("") : '<p class="muted">Chưa có quy định địa phương riêng trong dữ liệu (quy định quốc gia: mục Pháp lý).</p>'}${ext.publicInv ? `<p><b>Đầu tư công:</b> ${esc(ext.publicInv.targets)}</p>` : ""}</div></div>
+    </div>
+    <p class="note">Hạng: #1 là cao nhất. Màu xanh = tốt cho kinh doanh, đỏ = bất lợi, xám = trung tính. Xếp hạng “công bố” lấy theo Cục Thống kê / Cục ĐTNN khi có; còn lại xếp trên số đang có trên bản đồ (n = số tỉnh có dữ liệu). ${esc(Object.values(PS.notes || {}).join(" · "))}</p>`;
+  try{ CV.select(r.name, true); }catch(e){}
+}
+function open(name){ RK = null; cache = null; render(name || CV.selected || "Hà Nội"); if(!dlg.open) dlg.showModal(); }
+dlg.addEventListener("change", e => { if(e.target.id === "bdProv") render(e.target.value);
+  if(e.target.id === "bdColor"){ const v = e.target.value; if(v) CV.setMap({metric: v, color: "metric"}); } });
+dlg.addEventListener("click", e => { const names = [...sel.options].map(o => o.value), i = names.indexOf(sel.value);
+  if(e.target.id === "bdPrev") render(names[(i - 1 + names.length) % names.length]); if(e.target.id === "bdNext") render(names[(i + 1) % names.length]);
+  if(e.target.id === "bdBen"){ const md = boardMd(sel.value); dlg.close(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Phòng chiến lược " + sel.value); const b = CV.addMsg("a", ""); CV.finishBubble(b, md, false, "Phòng chiến lược " + sel.value, true); } });
+// nút trên thanh công cụ bản đồ + trên trang
+const tools = document.querySelector(".maptools"); if(tools){ const b = document.createElement("button"); b.type = "button"; b.id = "btnBoard"; b.className = "primary"; b.textContent = "Phòng chiến lược HĐQT"; b.addEventListener("click", () => open()); tools.prepend(b); }
+CV.openBoard = open;
+
+function boardMd(name){
+  const r = CV.findRow(name); if(!r) return "Không tìm thấy tỉnh.";
+  const T = tactics(r), P = T.P;
+  return `# Phòng chiến lược: ${r.name}\n_Thế trận đề xuất: **${P.t}** (hấp dẫn ${fmtInt(P.attr*100)}/100, nội lực ${fmtInt(P.str*100)}/100). ${P.why}_\n\n${[...new Set(MET.map(m => m[1]))].map(g => `## ${g}\n| Chỉ số | Giá trị | Hạng |\n|---|---|---|\n${MET.filter(m => m[1] === g).map(m => { const v = m[4](r), rk = rankOf(m[0], r), off = official(m[0], r); return `| ${m[2]} | ${v == null || !isFinite(v) ? "—" : (m[0] === "cover" && v >= 99 ? "không bán" : fmt1(v)) + " " + m[3]} | ${rk ? (off || rk[0]) + "/" + (off ? 34 : rk[1]) : "—"} |`; }).join("\n")}`).join("\n\n")}\n\n## Đối sách ngắn hạn 30–90 ngày\n${T.lines.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Chiến lược dài hạn 1–3 năm\n${T.longs.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Văn hóa, mùa vụ\n- ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Lễ hội: ${r.festivals}; đặc sản: ${r.specialties}\n- Mùa vụ: ${(r.seasonNotes || []).join("; ")}\n`;
+}
+function overviewMd(){
+  const rows = CV.rows.map(r => ({r, P: posture(r)})).sort((a,b) => b.P.attr + b.P.str - a.P.attr - a.P.str);
+  const grp = k => rows.filter(x => x.P.k === k).map(x => x.r.name).join(", ") || "—";
+  return `# Bản đồ thế trận 34 tỉnh\n- **Đánh nhanh, thắng nhanh:** ${grp("fast")}\n- **Đánh chậm, thắng chắc:** ${grp("slow")}\n- **Giữ chắc, khai thác:** ${grp("hold")}\n- **Du kích, chọn lọc:** ${grp("guer")}\n\n| Tỉnh | Thế trận | Hấp dẫn | Nội lực | Tăng trưởng 2025 | Bán lẻ T1–T10 | Tồn 21/11 |\n|---|---|---|---|---|---|---|\n${rows.map(({r,P}) => `| ${r.name} | ${P.t} | ${fmtInt(P.attr*100)} | ${fmtInt(P.str*100)} | ${f1(r.growth)}% | ${n0(r.sales)} | ${n0(A(r).inv)} |`).join("\n")}\n`;
+}
+CV.tools.push({name: "phong_chien_luoc", label: "Đang mở phòng chiến lược…", description: "Phòng chiến lược HĐQT cho một tỉnh: mọi chỉ số kinh tế – xã hội, thị trường xe (ĐK mới, UIO, đăng ký ô tô), đối thủ, Đô Thành (bán, tồn, dự báo, KH 2027) kèm xếp hạng /34; thế trận đề xuất (đánh nhanh thắng nhanh / đánh chậm thắng chắc / giữ chắc / du kích); đối sách 30–90 ngày và chiến lược 1–3 năm. tinh: tên tỉnh; bỏ trống = bản đồ thế trận 34 tỉnh.", inputSchema: {type: "object", properties: {tinh: {type: "string"}}},
+  execute: ({tinh}) => { if(!tinh) return overviewMd(); const r = CV.findRow(tinh); if(!r) throw new Error("Không tìm thấy tỉnh " + tinh); open(r.name); return boardMd(r.name); }});
+CV.localHooks.unshift(raw => { const t = raw.replace(/^ben\s*(ơi)?[,:\s]+/i, "").trim();
+  if(/thế trận 34 tỉnh|bản đồ thế trận/i.test(t)){ CV.setMap({metric: "posture", color: "metric"}); return overviewMd(); }
+  const m = t.match(/(?:phòng chiến lược|trình hđqt|chiến lược tỉnh)\s*(.*)/i); if(!m) return null; const r = CV.findRow(m[1].trim()) || CV.findRow(CV.selected || ""); open(r ? r.name : null); return r ? boardMd(r.name) : overviewMd(); });
+const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nPHÒNG CHIẾN LƯỢC HĐQT: hỏi chiến lược một tỉnh, thế trận, xếp hạng tỉnh dùng phong_chien_luoc (bỏ trống tinh = 34 tỉnh).`;
+})();

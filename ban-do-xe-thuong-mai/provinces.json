@@ -101,7 +101,7 @@
   "pop": 1160,
   "area": 4947,
   "grdp": 85,
-  "growth": null,
+  "growth": 8.5,
   "mix": [
    30,
    22,
@@ -194,7 +194,7 @@
   "pop": 482,
   "area": 9069,
   "grdp": 25,
-  "growth": null,
+  "growth": 7.52,
   "mix": [
    30,
    25,
@@ -285,7 +285,7 @@
   "pop": 652,
   "area": 9540,
   "grdp": 30,
-  "growth": null,
+  "growth": 7.34,
   "mix": [
    30,
    25,
@@ -376,7 +376,7 @@
   "pop": 1300,
   "area": 14110,
   "grdp": 75,
-  "growth": null,
+  "growth": 8.03,
   "mix": [
    30,
    25,
@@ -467,7 +467,7 @@
   "pop": 806,
   "area": 8310,
   "grdp": 50,
-  "growth": null,
+  "growth": 8.06,
   "mix": [
    22,
    18,
@@ -655,7 +655,7 @@
   "pop": 3760,
   "area": 11115,
   "grdp": 330,
-  "growth": null,
+  "growth": 8.27,
   "mix": [
    30,
    22,
@@ -748,7 +748,7 @@
   "pop": 3470,
   "area": 16487,
   "grdp": 225,
-  "growth": null,
+  "growth": 8.44,
   "mix": [
    30,
    22,
@@ -843,7 +843,7 @@
   "pop": 1330,
   "area": 5994,
   "grdp": 125,
-  "growth": null,
+  "growth": 8.78,
   "mix": [
    30,
    22,
@@ -934,7 +934,7 @@
   "pop": 547,
   "area": 6700,
   "grdp": 25,
-  "growth": null,
+  "growth": 7.22,
   "mix": [
    22,
    18,
@@ -1026,7 +1026,7 @@
   "pop": 1722,
   "area": 13796,
   "grdp": 84,
-  "growth": null,
+  "growth": 6.4,
   "mix": [
    30,
    25,
@@ -1126,7 +1126,7 @@
   "pop": 1629,
   "area": 13257,
   "grdp": 120,
-  "growth": null,
+  "growth": 8.14,
   "mix": [
    22,
    18,
@@ -1226,7 +1226,7 @@
   "pop": 1687,
   "area": 8382,
   "grdp": 183,
-  "growth": null,
+  "growth": 6.33,
   "mix": [
    30,
    20,
@@ -1529,7 +1529,7 @@
   "pop": 3182,
   "area": 2515,
   "grdp": 280,
-  "growth": null,
+  "growth": 8.78,
   "mix": [
    30,
    20,
@@ -1836,7 +1836,7 @@
   "pop": 1566,
   "area": 12700,
   "grdp": 105,
-  "growth": null,
+  "growth": 8.0,
   "mix": [
    30,
    22,
@@ -2041,8 +2041,8 @@
    "incomePc2025": {
     "v": 110,
     "usd": 4287,
-    "rank": "10/34",
-    "note": "thu nhập bình quân đầu người ước 2025, triệu đồng/năm (≈ 9,2 triệu/tháng)"
+    "rank": "TP tự báo cáo 10/34",
+    "note": "theo báo cáo UBND TP (GRDP-based), khác phương pháp Khảo sát mức sống của Cục Thống kê; không dùng để xếp hạng"
    },
    "grdpPcUsd2025": 4392,
    "servicesShare": {
@@ -2130,7 +2130,7 @@
   "pop": 1830,
   "area": 14832,
   "grdp": 185,
-  "growth": null,
+  "growth": 10.02,
   "mix": [
    30,
    22,
@@ -2230,7 +2230,7 @@
   "pop": 3100,
   "area": 21576,
   "grdp": 265,
-  "growth": null,
+  "growth": 7.2,
   "mix": [
    30,
    22,
@@ -2332,7 +2332,7 @@
   "pop": 1857,
   "area": 8555,
   "grdp": 170,
-  "growth": null,
+  "growth": 7.11,
   "mix": [
    30,
    22,
@@ -2433,7 +2433,7 @@
   "pop": 3270,
   "area": 24233,
   "grdp": 275,
-  "growth": null,
+  "growth": 6.42,
   "mix": [
    35,
    28,
@@ -2539,7 +2539,7 @@
   "pop": 2808,
   "area": 18096,
   "grdp": 195,
-  "growth": null,
+  "growth": 6.68,
   "mix": [
    35,
    28,
@@ -2840,7 +2840,7 @@
   "pop": 2930,
   "area": 8537,
   "grdp": 285,
-  "growth": null,
+  "growth": 9.52,
   "mix": [
    30,
    20,
@@ -2941,7 +2941,7 @@
   "pop": 3190,
   "area": 6374,
   "grdp": 255,
-  "growth": null,
+  "growth": 7.23,
   "mix": [
    45,
    25,
@@ -3154,7 +3154,7 @@
   "pop": 3400,
   "area": 5938,
   "grdp": 240,
-  "growth": null,
+  "growth": 7.38,
   "mix": [
    45,
    25,
@@ -3254,7 +3254,7 @@
   "pop": 2130,
   "area": 7944,
   "grdp": 155,
-  "growth": null,
+  "growth": 7.23,
   "mix": [
    45,
    25,
@@ -3352,7 +3352,7 @@
   "pop": 3670,
   "area": 9890,
   "grdp": 245,
-  "growth": null,
+  "growth": 8.39,
   "mix": [
    45,
    25,
