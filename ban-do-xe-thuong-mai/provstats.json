@@ -147,64 +147,211 @@
   }
  },
  "grdp2025": {
-  "TP. Hồ Chí Minh": 2972.9,
-  "Hà Nội": 1587.4,
-  "Hải Phòng": 734.4,
-  "Đồng Nai": 677.9,
-  "Bắc Ninh": 522.6,
-  "Phú Thọ": 412.4,
-  "Quảng Ninh": 368.4,
-  "Lâm Đồng": 353.2,
-  "Tây Ninh": 352.0,
-  "Ninh Bình": 342.8,
-  "Đà Nẵng": 316.1,
+  "Hà Nội": 1588.1,
+  "Huế": 89.6,
+  "Lai Châu": 39.8,
+  "Điện Biên": 35.6,
+  "Sơn La": 95.8,
+  "Lạng Sơn": 58.2,
+  "Quảng Ninh": 368.7,
+  "Thanh Hóa": 333.8,
   "Nghệ An": 236.5,
-  "Đắk Lắk": 229.6,
-  "Khánh Hòa": 209.3,
-  "Thanh Hóa": 349.3,
-  "Cần Thơ": 306.2,
-  "Gia Lai": 270.7
+  "Hà Tĩnh": 120.8,
+  "Cao Bằng": 27.9,
+  "Tuyên Quang": 95.5,
+  "Lào Cai": 141.9,
+  "Thái Nguyên": 192.4,
+  "Phú Thọ": 412.2,
+  "Bắc Ninh": 521.9,
+  "Hưng Yên": 319.8,
+  "Hải Phòng": 734.6,
+  "Ninh Bình": 342.8,
+  "Quảng Trị": 123.4,
+  "Đà Nẵng": 316.1,
+  "Quảng Ngãi": 191.7,
+  "Gia Lai": 270.6,
+  "Khánh Hòa": 209.4,
+  "Lâm Đồng": 353.3,
+  "Đắk Lắk": 229.5,
+  "TP. Hồ Chí Minh": 2972.6,
+  "Đồng Nai": 677.5,
+  "Tây Ninh": 344.6,
+  "Cần Thơ": 306.0,
+  "Vĩnh Long": 278.5,
+  "Đồng Tháp": 285.9,
+  "Cà Mau": 169.0,
+  "An Giang": 296.2
  },
  "income2025": {
   "Hà Nội": {
    "v": 8.374,
-   "rank": 1
+   "rank": 1,
+   "src": "công bố"
   },
   "TP. Hồ Chí Minh": {
    "v": 8.064,
-   "rank": 2
+   "rank": 2,
+   "src": "công bố"
   },
   "Đồng Nai": {
    "v": 7.174,
-   "rank": 3
+   "rank": 3,
+   "src": "công bố"
   },
   "Hải Phòng": {
    "v": 7.139,
-   "rank": 4
+   "rank": 4,
+   "src": "công bố"
   },
   "Quảng Ninh": {
    "v": 6.917,
-   "rank": 5
-  },
-  "Cao Bằng": {
-   "v": 2.69,
-   "rank": 33
-  },
-  "Điện Biên": {
-   "v": 2.583,
-   "rank": 34
+   "rank": 5,
+   "src": "công bố"
   },
   "Ninh Bình": {
    "v": 6.572,
-   "rank": null
+   "rank": 6,
+   "src": "công bố"
   },
   "Hưng Yên": {
    "v": 6.551,
-   "rank": null
+   "rank": 7,
+   "src": "công bố"
   },
   "Bắc Ninh": {
    "v": 6.02,
-   "rank": null
+   "rank": 8,
+   "src": "công bố"
+  },
+  "Huế": {
+   "v": 5.696,
+   "rank": 9,
+   "src": "quy đổi Niên giám"
+  },
+  "Đà Nẵng": {
+   "v": 5.599,
+   "rank": 10,
+   "src": "quy đổi Niên giám"
+  },
+  "Đồng Tháp": {
+   "v": 5.585,
+   "rank": 11,
+   "src": "quy đổi Niên giám"
+  },
+  "Phú Thọ": {
+   "v": 5.523,
+   "rank": 12,
+   "src": "quy đổi Niên giám"
+  },
+  "Lâm Đồng": {
+   "v": 5.477,
+   "rank": 13,
+   "src": "quy đổi Niên giám"
+  },
+  "Cần Thơ": {
+   "v": 5.47,
+   "rank": 14,
+   "src": "quy đổi Niên giám"
+  },
+  "Thanh Hóa": {
+   "v": 5.429,
+   "rank": 15,
+   "src": "quy đổi Niên giám"
+  },
+  "Tây Ninh": {
+   "v": 5.413,
+   "rank": 16,
+   "src": "quy đổi Niên giám"
+  },
+  "Cà Mau": {
+   "v": 5.383,
+   "rank": 17,
+   "src": "quy đổi Niên giám"
+  },
+  "Khánh Hòa": {
+   "v": 5.284,
+   "rank": 18,
+   "src": "quy đổi Niên giám"
+  },
+  "An Giang": {
+   "v": 5.096,
+   "rank": 19,
+   "src": "quy đổi Niên giám"
+  },
+  "Thái Nguyên": {
+   "v": 4.939,
+   "rank": 20,
+   "src": "quy đổi Niên giám"
+  },
+  "Vĩnh Long": {
+   "v": 4.904,
+   "rank": 21,
+   "src": "quy đổi Niên giám"
+  },
+  "Nghệ An": {
+   "v": 4.79,
+   "rank": 22,
+   "src": "quy đổi Niên giám"
+  },
+  "Gia Lai": {
+   "v": 4.537,
+   "rank": 23,
+   "src": "quy đổi Niên giám"
+  },
+  "Quảng Trị": {
+   "v": 4.503,
+   "rank": 24,
+   "src": "quy đổi Niên giám"
+  },
+  "Hà Tĩnh": {
+   "v": 4.457,
+   "rank": 25,
+   "src": "quy đổi Niên giám"
+  },
+  "Quảng Ngãi": {
+   "v": 4.428,
+   "rank": 26,
+   "src": "quy đổi Niên giám"
+  },
+  "Đắk Lắk": {
+   "v": 4.421,
+   "rank": 27,
+   "src": "quy đổi Niên giám"
+  },
+  "Lào Cai": {
+   "v": 3.843,
+   "rank": 28,
+   "src": "quy đổi Niên giám"
+  },
+  "Lạng Sơn": {
+   "v": 3.582,
+   "rank": 29,
+   "src": "quy đổi Niên giám"
+  },
+  "Tuyên Quang": {
+   "v": 3.306,
+   "rank": 30,
+   "src": "quy đổi Niên giám"
+  },
+  "Sơn La": {
+   "v": 3.052,
+   "rank": 31,
+   "src": "quy đổi Niên giám"
+  },
+  "Lai Châu": {
+   "v": 2.92,
+   "rank": 32,
+   "src": "quy đổi Niên giám"
+  },
+  "Cao Bằng": {
+   "v": 2.69,
+   "rank": 33,
+   "src": "công bố"
+  },
+  "Điện Biên": {
+   "v": 2.583,
+   "rank": 34,
+   "src": "công bố"
   }
  },
  "incomeBottom5": [
@@ -299,15 +446,19 @@
  },
  "notes": {
   "growth2025": "Cục Thống kê, thông cáo GRDP 34 tỉnh năm 2025 (đủ 34, có hạng)",
-  "grdp2025": "quy mô GRDP 2025, nghìn tỷ đồng (bảng tổng hợp, 14/34 tỉnh); xếp hạng quy mô trên bản đồ dùng GRDP 2024 đủ 34 tỉnh",
+  "grdp2025": "GRDP 2025, bán lẻ 2025, GRDP/người 2025: cộng gộp từ Niên giám Thống kê 2025 (63 tỉnh cũ) theo địa giới 34 tỉnh; khớp số công bố của 15/17 tỉnh (lệch < 0,2%).",
   "income2025": "thu nhập bình quân đầu người/tháng, Khảo sát mức sống dân cư 2025 (Cục Thống kê); mới có 7/34 tỉnh công bố rộng rãi; cả nước 6,0 triệu",
   "fdi10m26": "vốn FDI 10 tháng 2026, triệu USD (Cục Đầu tư nước ngoài qua báo chí); mới có nhóm dẫn đầu",
   "publicInv10m26": "chấm điểm giải ngân đầu tư công 10 tháng 2026 (Bộ Tài chính, BC 908/BC-BTC 3/11/2026); mới có một phần bảng",
   "growth9m26": "tăng trưởng GRDP 9 tháng 2026 (Cục Thống kê qua báo chí, 20/34 tỉnh; cả nước 9,01%)",
-  "income": "Thu nhập 2025 (KSMS): mới có 10/34 tỉnh công bố qua báo (top 5, nhóm thấp nhất, Ninh Bình, Hưng Yên, Bắc Ninh); Ninh Bình, Hưng Yên, Bắc Ninh chưa có hạng toàn quốc chính thức.",
+  "income": "Thu nhập bình quân tháng 2025 (KSMS): 10 tỉnh theo số công bố; 24 tỉnh quy đổi từ Niên giám Thống kê 2025 (63 tỉnh cũ, bình quân gia quyền theo dân số 2025), kiểm chứng lệch ≤ 3 nghìn đồng so với 10 tỉnh đã công bố.",
   "g9": "Tăng trưởng 9 tháng 2026: đủ 34/34 tỉnh; Khánh Hòa, Huế là số UBND tỉnh ước, các tỉnh khác theo Cục Thống kê hoặc thống kê tỉnh."
  },
  "sources": [
+  [
+   "Cục Thống kê: Niên giám Thống kê 2025 (bảng 17, 86, 254, 348)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/07/NG-TOAN-QUOC-2025_WM.pdf"
+  ],
   [
    "CafeF: bảng xếp hạng thu nhập bình quân tháng 34 tỉnh sau sáp nhập (KSMS 2025)",
    "https://cafef.vn/lan-dau-tien-cong-bo-bang-xep-hang-thu-nhap-binh-quan-thang-cua-34-tinh-thanh-sau-sap-nhap-dia-phuong-nao-dang-dan-dau-188260711090453958.chn"
@@ -494,5 +645,113 @@
    "v": 7.96,
    "rank": null
   }
+ },
+ "retail2025": {
+  "Hà Nội": 780610,
+  "Huế": 60382,
+  "Lai Châu": 8939,
+  "Điện Biên": 24314,
+  "Sơn La": 37602,
+  "Lạng Sơn": 41209,
+  "Quảng Ninh": 190866,
+  "Thanh Hóa": 185913,
+  "Nghệ An": 130659,
+  "Hà Tĩnh": 50663,
+  "Cao Bằng": 11095,
+  "Tuyên Quang": 53647,
+  "Lào Cai": 59588,
+  "Thái Nguyên": 79025,
+  "Phú Thọ": 163346,
+  "Bắc Ninh": 138346,
+  "Hưng Yên": 133172,
+  "Hải Phòng": 311048,
+  "Ninh Bình": 197507,
+  "Quảng Trị": 86262,
+  "Đà Nẵng": 167488,
+  "Quảng Ngãi": 111410,
+  "Gia Lai": 190554,
+  "Khánh Hòa": 147866,
+  "Lâm Đồng": 210981,
+  "Đắk Lắk": 164415,
+  "TP. Hồ Chí Minh": 1585693,
+  "Đồng Nai": 359675,
+  "Tây Ninh": 211775,
+  "Cần Thơ": 296542,
+  "Vĩnh Long": 187670,
+  "Đồng Tháp": 238737,
+  "Cà Mau": 188145,
+  "An Giang": 297837
+ },
+ "gpc2025": {
+  "Hà Nội": 179.3,
+  "Huế": 75.3,
+  "Lai Châu": 79.4,
+  "Điện Biên": 53.4,
+  "Sơn La": 71.4,
+  "Lạng Sơn": 70.9,
+  "Quảng Ninh": 261.2,
+  "Thanh Hóa": 88.5,
+  "Nghệ An": 67.6,
+  "Hà Tĩnh": 90.5,
+  "Cao Bằng": 49.6,
+  "Tuyên Quang": 54.6,
+  "Lào Cai": 84.7,
+  "Thái Nguyên": 112.4,
+  "Phú Thọ": 111.3,
+  "Bắc Ninh": 146.1,
+  "Hưng Yên": 98.9,
+  "Hải Phòng": 177.0,
+  "Ninh Bình": 89.2,
+  "Quảng Trị": 77.4,
+  "Đà Nẵng": 110.7,
+  "Quảng Ngãi": 101.9,
+  "Gia Lai": 85.0,
+  "Khánh Hòa": 110.3,
+  "Lâm Đồng": 105.3,
+  "Đắk Lắk": 80.5,
+  "TP. Hồ Chí Minh": 215.3,
+  "Đồng Nai": 150.8,
+  "Tây Ninh": 115.6,
+  "Cần Thơ": 94.9,
+  "Vĩnh Long": 82.4,
+  "Đồng Tháp": 84.0,
+  "Cà Mau": 78.6,
+  "An Giang": 80.2
+ },
+ "pop2025": {
+  "Hà Nội": 8857.5,
+  "Huế": 1190.3,
+  "Lai Châu": 501.2,
+  "Điện Biên": 667.4,
+  "Sơn La": 1341.2,
+  "Lạng Sơn": 820.6,
+  "Quảng Ninh": 1411.6,
+  "Thanh Hóa": 3771.8,
+  "Nghệ An": 3497.8,
+  "Hà Tĩnh": 1335.1,
+  "Cao Bằng": 562.9,
+  "Tuyên Quang": 1748.3,
+  "Lào Cai": 1675.7,
+  "Thái Nguyên": 1711.6,
+  "Phú Thọ": 3701.5,
+  "Bắc Ninh": 3572.3,
+  "Hưng Yên": 3235.1,
+  "Hải Phòng": 4149.9,
+  "Ninh Bình": 3843.8,
+  "Quảng Trị": 1594.1,
+  "Đà Nẵng": 2856.4,
+  "Quảng Ngãi": 1881.2,
+  "Gia Lai": 3182.7,
+  "Khánh Hòa": 1898.5,
+  "Lâm Đồng": 3356.4,
+  "Đắk Lắk": 2849.2,
+  "TP. Hồ Chí Minh": 13803.7,
+  "Đồng Nai": 4493.7,
+  "Tây Ninh": 2980.3,
+  "Cần Thơ": 3224.9,
+  "Vĩnh Long": 3379.7,
+  "Đồng Tháp": 3403.8,
+  "Cà Mau": 2150.4,
+  "An Giang": 3694.6
  }
 }
