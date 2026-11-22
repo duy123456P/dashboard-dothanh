@@ -12,8 +12,8 @@ const store = { get(k){ try{ return JSON.parse(localStorage.getItem("dac.layout.
 const GROUPS = [
   {id: "radar", icon: "◉", title: "Radar kinh tế – tài chính", hint: "20 chỉ số quốc gia (GDP, CPI, lãi suất, tín dụng, ngân sách, nợ công, tỷ giá, FDI, xuất nhập khẩu…) có nguồn; cảnh báo sớm; điểm Radar 34 tỉnh.",
     ask: "Tóm tắt Radar kinh tế – tài chính, các cảnh báo sớm và 5 tỉnh có điểm Radar cao nhất", secs: ["#radarSec"]},
-  {id: "thitruong", icon: "◎", title: "Thị trường & đối thủ", hint: "Thế trận 34 tỉnh, cơ cấu tải trọng, thùng, thương hiệu; giá và mạng lưới đối thủ; đề xuất mở đại lý mới.",
-    ask: "Tóm tắt toàn cảnh thị trường xe tải và đối thủ, nêu 3 cơ hội lớn nhất cho Đô Thành", secs: ["#hudSec", () => byH2("Thế trận 34"), "#structSec", "#compSec", "#siteSec"]},
+  {id: "thitruong", icon: "◎", title: "Thị trường & đối thủ", hint: "Thị trường xe tải 2026 (10 tháng, ĐK thực T10), đối đầu đúng mã mẫu xe; thế trận 34 tỉnh, cơ cấu tải trọng, thùng, thương hiệu; giá và mạng lưới đối thủ; đề xuất mở đại lý mới.",
+    ask: "Tóm tắt toàn cảnh thị trường xe tải và đối thủ, nêu 3 cơ hội lớn nhất cho Đô Thành", secs: ["#marketSec", "#hudSec", () => byH2("Thế trận 34"), "#structSec", "#compSec", "#siteSec"]},
   {id: "banhang", icon: "▤", title: "Bán hàng · tồn kho · dự báo", hint: "Chính sách hỗ trợ bán hàng 2026 (thưởng, đối soát); doanh số chi tiết từng đại lý, model, tháng; tồn đại lý và tồn nhà máy; dự báo 2027 và mô hình DAC Hybrid.",
     ask: "Tóm tắt bán hàng, tồn kho đại lý và dự báo 2027, chỉ ra 3 việc cần làm ngay", secs: ["#policySec", "#salesSec", "#txSec", "#invSec", "#fcSec", "#modelSec"]},
   {id: "gia", icon: "₫", title: "Giá, chính sách & pháp lý", hint: "Bảng giá công bố, giá tối thiểu, ưu đãi T11; quy định pháp luật, cấm giờ xe tải, chính sách mới.",

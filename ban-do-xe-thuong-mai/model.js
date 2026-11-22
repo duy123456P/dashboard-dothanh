@@ -83,13 +83,14 @@ const G = [
   {re: /VAMA/i, t: "Sản lượng VAMA", d: "Số xe bán do các hãng thành viên Hiệp hội các nhà sản xuất ô tô Việt Nam báo cáo, lũy kế từ đầu năm (YTM).", v: "Thước đo thị phần chuẩn so với Thaco, Isuzu, Hino; JAC, Foton, TMT, Teraco không báo cáo nên phải dùng dữ liệu đăng ký.", c: () => { const v = CV.NET.vama || {}; return v.dothanh ? `DOTHANH ${fmtInt(v.dothanh)} xe (${v.period}).` : ""; }, a: "Theo dõi thị phần theo nhóm xe hằng tháng; đặt mục tiêu thị phần thay vì chỉ số xe tuyệt đối."},
   {re: /^Đang mở$|Đúng tiến độ|Cảnh báo sớm|Nguy cơ trễ|Quá hạn|Cần hỗ trợ|Chưa cập nhật hôm nay|Điểm nghẽn|Chờ nghiệm thu|Hoàn thành đạt chuẩn/i, t: "Sức khỏe đầu việc điều hành", d: "Phân loại đầu việc chốt trong họp: đúng tiến độ, cảnh báo sớm (tiến độ thực tụt sau kỳ vọng), nguy cơ trễ, quá hạn, chưa cập nhật trong ngày, điểm nghẽn tồn quá 2 ngày.", v: "Lãnh đạo phụng sự: hỗ trợ trước khi trễ, đánh giá bằng kết quả và bằng chứng, không cảm tính.", c: () => "", a: "Mỗi sáng xử lý cột Nguy cơ trễ và Cần hỗ trợ trước; việc quá hạn phải có kế hoạch khắc phục trong 24 giờ."},
 ];
+CV.gloss = G; (CV.glossQ || []).forEach(x => G.push(...x));
 const tip = document.createElement("div"); tip.className = "hudtip gltip"; tip.hidden = true; tip.setAttribute("role", "tooltip"); document.body.appendChild(tip);
 function entryFor(el){ const txt = (el.getAttribute("data-gl-text") || (el.querySelector(".l, .lbl") || el).textContent || "").trim(); return G.find(g => g.re.test(txt)); }
 function show(e, g){ const c = g.c ? g.c() : "";
   tip.innerHTML = `<b style="font-size:13.5px">${esc(g.t)}</b><div class="glr"><span>Định nghĩa</span>${esc(g.d)}</div><div class="glr"><span>Góc nhìn quản trị</span>${esc(g.v)}</div>${c ? `<div class="glr"><span>Nhận xét hiện tại</span>${esc(c)}</div>` : ""}<div class="glr"><span>Hành động đề xuất</span>${esc(g.a)}</div>`;
   tip.hidden = false; const w = tip.offsetWidth, h = tip.offsetHeight; let x = e.clientX + 16, y = e.clientY + 16; if(x + w > innerWidth - 8) x = e.clientX - w - 16; if(y + h > innerHeight - 8) y = Math.max(8, e.clientY - h - 16); tip.style.left = x + "px"; tip.style.top = y + "px"; }
-const SEL = ".stat, .ring, .hp > h3, #fcSec h3, #salesSec h3, #compSec h3";
-document.addEventListener("pointermove", e => { const el = e.target.closest && e.target.closest(SEL); if(!el || e.target.closest("[data-tip]")){ tip.hidden = true; return; } const g = entryFor(el); if(!g){ tip.hidden = true; return; } show(e, g); });
+const SEL = ".stat, .ring, section h2, section h3, section h4, section th, section summary > b, .stats .l";
+document.addEventListener("pointermove", e => { const el = e.target.closest && e.target.closest(SEL); if(!el || e.target.closest("[data-tip], #ai, .dockcard")){ tip.hidden = true; return; } const g = entryFor(el); if(!g){ tip.hidden = true; return; } show(e, g); });
 document.addEventListener("pointerleave", () => { tip.hidden = true; }, true);
 // gắn dấu nhận biết có chú giải
 const mark = () => document.querySelectorAll(SEL).forEach(el => { if(!el.dataset.glm && entryFor(el)){ el.dataset.glm = "1"; el.classList.add("hasgl"); } });

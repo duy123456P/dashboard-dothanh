@@ -20,14 +20,14 @@ import base64, json, os, shutil, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 rd = lambda f: open(os.path.join(HERE, f), encoding="utf-8").read()
 
-MODULES = ["ops.js", "lens.js", "lyhoc.js", "legal.js", "comp.js", "hud.js", "sales.js", "fc.js", "model.js", "inv.js", "tx.js",
-           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "layout.js"]
+MODULES = ["ops.js", "lens.js", "lyhoc.js", "legal.js", "comp.js", "hud.js", "sales.js", "fc.js", "glossary.js", "model.js", "inv.js", "tx.js",
+           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "market.js", "layout.js"]
 DATA = {  # placeholder → file JSON (nhúng dạng thẻ <script type="application/json"> hoặc hằng trong module)
     "GEO": "vn34.geojson", "DATA": "provinces.json", "NETWORK": "network.json", "PRICELIST": "pricelist.json", "PRODUCTS": "products.json",
     "INFRA": "infra.json", "SOURCES": "sources.json", "COMPNET": "compnet.json", "TX": "tx.json", "PS": "provstats.json", "FG": "factory.json",
     "INV": "inventory.json", "SALES": "sales.json", "COMP": "competitors.json", "LEGAL": "legal.json"}
-INLINE = {"radar.js": ("/*__RADAR__*/null", "radar.json"), "policy.js": ("/*__BONUS__*/null", "bonus2026.json")}
-IMAGES = {"LOGO": ("logo-dothanh.png", "image/png"), "RELIEF": ("relief.webp", "image/webp"), "HEIGHT": ("height.webp", "image/webp")}
+INLINE = {"radar.js": ("/*__RADAR__*/null", "radar.json"), "policy.js": ("/*__BONUS__*/null", "bonus2026.json"), "market.js": ("/*__MARKET__*/null", "market2026.json")}
+IMAGES = {"LOGO": ("logo-dothanh.png", "image/png"), "BBHLOGO": ("logo-bbh.png", "image/png"), "RELIEF": ("relief.webp", "image/webp"), "HEIGHT": ("height.webp", "image/webp")}
 
 FONTS = [("Be Vietnam Pro", "be-vietnam-pro", (400, 500, 600, 700)), ("Chakra Petch", "chakra-petch", (500, 600, 700))]
 RANGES = {"vietnamese": "U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB",

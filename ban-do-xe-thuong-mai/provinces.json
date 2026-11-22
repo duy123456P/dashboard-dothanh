@@ -7,9 +7,9 @@
   ],
   "capital": "Hà Nội",
   "archetype": "metro",
-  "pop": 8588,
+  "pop": 8857.5,
   "area": 3359,
-  "grdp": 1426,
+  "grdp": 1588.1,
   "growth": 8.16,
   "mix": [
    40,
@@ -47,7 +47,7 @@
   "specialties": "Phở, cốm làng Vòng, bưởi Diễn, gốm Bát Tràng, lụa Vạn Phúc",
   "gpc2025": 164,
   "carReg2025": 88165,
-  "reg": 0,
+  "reg": 27742,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -110,7 +110,58 @@
    ]
   },
   "salesTDBH": 514,
-  "targetTDBH": 597
+  "targetTDBH": 597,
+  "regT10": 2397,
+  "regT10dt": 24,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 1426,
+  "pop2024": 8588,
+  "grdpYear": 2025,
+  "grdp2026e": 1728.6,
+  "brandsT10": [
+   [
+    "CNHTC",
+    24.6
+   ],
+   [
+    "ISUZU",
+    17.1
+   ],
+   [
+    "SANY",
+    9.1
+   ],
+   [
+    "VINFAST",
+    6.3
+   ],
+   [
+    "HYUNDAI",
+    6.1
+   ],
+   [
+    "KIA",
+    5.9
+   ],
+   [
+    "CHENGLONG",
+    5.5
+   ],
+   [
+    "HINO",
+    5.3
+   ],
+   [
+    "THACO",
+    4.3
+   ],
+   [
+    "Khác",
+    15.7
+   ]
+  ],
+  "cv2025": 13272,
+  "cv6m26": 10380
  },
  {
   "name": "Huế",
@@ -120,9 +171,9 @@
   ],
   "capital": "Huế",
   "archetype": "coast",
-  "pop": 1160,
+  "pop": 1190.3,
   "area": 4947,
-  "grdp": 85,
+  "grdp": 89.6,
   "growth": 8.5,
   "mix": [
    30,
@@ -160,7 +211,7 @@
   "specialties": "Bún bò, mè xửng, nón lá, tôm chua",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 637,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -217,7 +268,58 @@
      "https://nhandan.vn/tang-truong-grdp-nhieu-tinh-thanh-pho-9-thang-nam-2026-vuot-muc-dat-ra-post993624.html"
     ]
    ]
-  }
+  },
+  "regT10": 55,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 85,
+  "pop2024": 1160,
+  "grdpYear": 2025,
+  "grdp2026e": 97.9,
+  "brandsT10": [
+   [
+    "THACO",
+    27.3
+   ],
+   [
+    "KIA",
+    12.7
+   ],
+   [
+    "ISUZU",
+    10.9
+   ],
+   [
+    "CNHTC",
+    9.1
+   ],
+   [
+    "HYUNDAI",
+    5.5
+   ],
+   [
+    "SUZUKI",
+    5.5
+   ],
+   [
+    "TERACO",
+    3.6
+   ],
+   [
+    "VINFAST",
+    3.6
+   ],
+   [
+    "DONGFENG",
+    3.6
+   ],
+   [
+    "Khác",
+    18.2
+   ]
+  ],
+  "cv2025": 726,
+  "cv6m26": 551
  },
  {
   "name": "Lai Châu",
@@ -227,9 +329,9 @@
   ],
   "capital": "Lai Châu",
   "archetype": "mountain",
-  "pop": 482,
+  "pop": 501.2,
   "area": 9069,
-  "grdp": 25,
+  "grdp": 39.8,
   "growth": 7.52,
   "mix": [
    30,
@@ -267,7 +369,7 @@
   "specialties": "Sâm Lai Châu, chè, cá suối, mắc khén",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 324,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -322,7 +424,58 @@
      "https://nhandan.vn/lai-chau-but-toc-quyet-tam-tang-truong-hai-con-so-post996183.html"
     ]
    ]
-  }
+  },
+  "regT10": 28,
+  "regT10dt": 1,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 25,
+  "pop2024": 482,
+  "grdpYear": 2025,
+  "grdp2026e": 43.6,
+  "brandsT10": [
+   [
+    "HYUNDAI",
+    28.6
+   ],
+   [
+    "CNHTC",
+    25.0
+   ],
+   [
+    "ISUZU",
+    10.7
+   ],
+   [
+    "KIA",
+    7.1
+   ],
+   [
+    "THACO",
+    7.1
+   ],
+   [
+    "TERACO",
+    3.6
+   ],
+   [
+    "DOTHANH",
+    3.6
+   ],
+   [
+    "HINO",
+    3.6
+   ],
+   [
+    "TMT",
+    3.6
+   ],
+   [
+    "Khác",
+    7.1
+   ]
+  ],
+  "cv2025": 237,
+  "cv6m26": 164
  },
  {
   "name": "Điện Biên",
@@ -332,9 +485,9 @@
   ],
   "capital": "Điện Biên Phủ",
   "archetype": "mountain",
-  "pop": 652,
+  "pop": 667.4,
   "area": 9540,
-  "grdp": 30,
+  "grdp": 35.6,
   "growth": 7.34,
   "mix": [
    30,
@@ -372,7 +525,7 @@
   "specialties": "Gạo Điện Biên, cà phê, thịt trâu gác bếp",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 451,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -427,7 +580,58 @@
      "https://thongkedienbien.nso.gov.vn/thong-tin-kinh-te-xa-hoi/tinh-hinh-kinh-te-xa-hoi-tinh-dien-bien-thang-9-va-9-thang-nam-2026-645.html"
     ]
    ]
-  }
+  },
+  "regT10": 39,
+  "regT10dt": 0,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 30,
+  "pop2024": 652,
+  "grdpYear": 2025,
+  "grdp2026e": 39.1,
+  "brandsT10": [
+   [
+    "HYUNDAI",
+    20.5
+   ],
+   [
+    "CNHTC",
+    17.9
+   ],
+   [
+    "KIA",
+    17.9
+   ],
+   [
+    "JAC",
+    10.3
+   ],
+   [
+    "ISUZU",
+    5.1
+   ],
+   [
+    "CHENGLONG",
+    5.1
+   ],
+   [
+    "FORLAND",
+    5.1
+   ],
+   [
+    "FAW",
+    2.6
+   ],
+   [
+    "CHIENTHANG",
+    2.6
+   ],
+   [
+    "Khác",
+    12.8
+   ]
+  ],
+  "cv2025": 304,
+  "cv6m26": 180
  },
  {
   "name": "Sơn La",
@@ -437,9 +641,9 @@
   ],
   "capital": "Sơn La",
   "archetype": "mountain",
-  "pop": 1300,
+  "pop": 1341.2,
   "area": 14110,
-  "grdp": 75,
+  "grdp": 95.8,
   "growth": 8.03,
   "mix": [
    30,
@@ -477,7 +681,7 @@
   "specialties": "Xoài, nhãn, mận Mộc Châu, bò sữa, cà phê Arabica",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1018,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -529,7 +733,58 @@
    }
   },
   "salesTDBH": 0,
-  "targetTDBH": 0
+  "targetTDBH": 0,
+  "regT10": 88,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 75,
+  "pop2024": 1300,
+  "grdpYear": 2025,
+  "grdp2026e": 101.2,
+  "brandsT10": [
+   [
+    "HYUNDAI",
+    21.6
+   ],
+   [
+    "CNHTC",
+    21.6
+   ],
+   [
+    "KIA",
+    18.2
+   ],
+   [
+    "JAC",
+    6.8
+   ],
+   [
+    "THACO",
+    4.5
+   ],
+   [
+    "FAW",
+    3.4
+   ],
+   [
+    "VINFAST",
+    3.4
+   ],
+   [
+    "FOTON",
+    3.4
+   ],
+   [
+    "CHENGLONG",
+    3.4
+   ],
+   [
+    "Khác",
+    13.6
+   ]
+  ],
+  "cv2025": 871,
+  "cv6m26": 575
  },
  {
   "name": "Lạng Sơn",
@@ -539,9 +794,9 @@
   ],
   "capital": "Lạng Sơn",
   "archetype": "border",
-  "pop": 806,
+  "pop": 820.6,
   "area": 8310,
-  "grdp": 50,
+  "grdp": 58.2,
   "growth": 8.06,
   "mix": [
    22,
@@ -579,7 +834,7 @@
   "specialties": "Vịt quay mắc mật, na Chi Lăng, hồi, khau nhục",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1146,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -636,7 +891,58 @@
      "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
     ]
    ]
-  }
+  },
+  "regT10": 99,
+  "regT10dt": 0,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 50,
+  "pop2024": 806,
+  "grdpYear": 2025,
+  "grdp2026e": 62.6,
+  "brandsT10": [
+   [
+    "CNHTC",
+    35.4
+   ],
+   [
+    "HYUNDAI",
+    8.1
+   ],
+   [
+    "KIA",
+    8.1
+   ],
+   [
+    "THACO",
+    6.1
+   ],
+   [
+    "TMT",
+    6.1
+   ],
+   [
+    "VINFAST",
+    5.1
+   ],
+   [
+    "CHIENTHANG",
+    4.0
+   ],
+   [
+    "JAC",
+    4.0
+   ],
+   [
+    "CHENGLONG",
+    4.0
+   ],
+   [
+    "Khác",
+    19.2
+   ]
+  ],
+  "cv2025": 1275,
+  "cv6m26": 691
  },
  {
   "name": "Quảng Ninh",
@@ -646,9 +952,9 @@
   ],
   "capital": "Hạ Long",
   "archetype": "port",
-  "pop": 1382,
+  "pop": 1411.6,
   "area": 6208,
-  "grdp": 330,
+  "grdp": 368.7,
   "growth": 11.89,
   "mix": [
    25,
@@ -686,7 +992,7 @@
   "specialties": "Chả mực Hạ Long, sá sùng, ngán, hàu Vân Đồn",
   "gpc2025": 249.3,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2905,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -740,7 +1046,58 @@
     "rank": 1,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "regT10": 251,
+  "regT10dt": 1,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 330,
+  "pop2024": 1382,
+  "grdpYear": 2025,
+  "grdp2026e": 414.9,
+  "brandsT10": [
+   [
+    "CNHTC",
+    51.8
+   ],
+   [
+    "HYUNDAI",
+    7.2
+   ],
+   [
+    "SANY",
+    5.2
+   ],
+   [
+    "KIA",
+    4.8
+   ],
+   [
+    "CHENGLONG",
+    4.4
+   ],
+   [
+    "ISUZU",
+    4.0
+   ],
+   [
+    "THACO",
+    3.6
+   ],
+   [
+    "DONGFENG",
+    3.2
+   ],
+   [
+    "VINFAST",
+    2.0
+   ],
+   [
+    "Khác",
+    13.9
+   ]
+  ],
+  "cv2025": 1516,
+  "cv6m26": 1042
  },
  {
   "name": "Thanh Hóa",
@@ -750,9 +1107,9 @@
   ],
   "capital": "Thanh Hóa",
   "archetype": "coast",
-  "pop": 3760,
+  "pop": 3771.8,
   "area": 11115,
-  "grdp": 330,
+  "grdp": 333.8,
   "growth": 8.27,
   "mix": [
    30,
@@ -790,7 +1147,7 @@
   "specialties": "Nem chua, bánh gai Tứ Trụ, mía Lam Sơn, hải sản Sầm Sơn",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 3356,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -855,7 +1212,58 @@
    "note9m": "Quý IV được giao tăng 17,1%"
   },
   "salesTDBH": 54,
-  "targetTDBH": 112
+  "targetTDBH": 112,
+  "regT10": 290,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 330,
+  "pop2024": 3760,
+  "grdpYear": 2025,
+  "grdp2026e": 368.8,
+  "brandsT10": [
+   [
+    "CNHTC",
+    30.7
+   ],
+   [
+    "HYUNDAI",
+    11.4
+   ],
+   [
+    "THACO",
+    11.0
+   ],
+   [
+    "KIA",
+    10.7
+   ],
+   [
+    "VINFAST",
+    5.9
+   ],
+   [
+    "CHENGLONG",
+    4.5
+   ],
+   [
+    "ISUZU",
+    3.4
+   ],
+   [
+    "JAC",
+    3.1
+   ],
+   [
+    "FAW",
+    3.1
+   ],
+   [
+    "Khác",
+    16.2
+   ]
+  ],
+  "cv2025": 2463,
+  "cv6m26": 1812
  },
  {
   "name": "Nghệ An",
@@ -865,9 +1273,9 @@
   ],
   "capital": "Vinh",
   "archetype": "coast",
-  "pop": 3470,
+  "pop": 3497.8,
   "area": 16487,
-  "grdp": 225,
+  "grdp": 236.5,
   "growth": 8.44,
   "mix": [
    30,
@@ -905,7 +1313,7 @@
   "specialties": "Cam Vinh, súp lươn, chè Thanh Chương, nhút Thanh Chương",
   "gpc2025": null,
   "carReg2025": 17032,
-  "reg": 0,
+  "reg": 2986,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -966,7 +1374,58 @@
    }
   },
   "salesTDBH": 11,
-  "targetTDBH": 75
+  "targetTDBH": 75,
+  "regT10": 258,
+  "regT10dt": 3,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 225,
+  "pop2024": 3470,
+  "grdpYear": 2025,
+  "grdp2026e": 260.4,
+  "brandsT10": [
+   [
+    "CNHTC",
+    27.9
+   ],
+   [
+    "KIA",
+    15.1
+   ],
+   [
+    "HYUNDAI",
+    12.4
+   ],
+   [
+    "THACO",
+    8.1
+   ],
+   [
+    "JAC",
+    4.7
+   ],
+   [
+    "VINFAST",
+    4.7
+   ],
+   [
+    "DONGFENG",
+    3.9
+   ],
+   [
+    "TERACO",
+    3.5
+   ],
+   [
+    "ISUZU",
+    3.1
+   ],
+   [
+    "Khác",
+    16.7
+   ]
+  ],
+  "cv2025": 2505,
+  "cv6m26": 1870
  },
  {
   "name": "Hà Tĩnh",
@@ -976,9 +1435,9 @@
   ],
   "capital": "Hà Tĩnh",
   "archetype": "coast",
-  "pop": 1330,
+  "pop": 1335.1,
   "area": 5994,
-  "grdp": 125,
+  "grdp": 120.8,
   "growth": 8.78,
   "mix": [
    30,
@@ -1016,7 +1475,7 @@
   "specialties": "Bưởi Phúc Trạch, kẹo cu đơ, mực nhảy",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1134,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1066,7 +1525,58 @@
     "rank": 2,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "regT10": 98,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 125,
+  "pop2024": 1330,
+  "grdpYear": 2025,
+  "grdp2026e": 135.7,
+  "brandsT10": [
+   [
+    "CNHTC",
+    26.5
+   ],
+   [
+    "VINFAST",
+    14.3
+   ],
+   [
+    "KIA",
+    12.2
+   ],
+   [
+    "THACO",
+    9.2
+   ],
+   [
+    "HYUNDAI",
+    9.2
+   ],
+   [
+    "SRM",
+    7.1
+   ],
+   [
+    "CHENGLONG",
+    4.1
+   ],
+   [
+    "ISUZU",
+    3.1
+   ],
+   [
+    "TERACO",
+    3.1
+   ],
+   [
+    "Khác",
+    11.2
+   ]
+  ],
+  "cv2025": 836,
+  "cv6m26": 763
  },
  {
   "name": "Cao Bằng",
@@ -1076,9 +1586,9 @@
   ],
   "capital": "Cao Bằng",
   "archetype": "border",
-  "pop": 547,
+  "pop": 562.9,
   "area": 6700,
-  "grdp": 25,
+  "grdp": 27.9,
   "growth": 7.22,
   "mix": [
    22,
@@ -1116,7 +1626,7 @@
   "specialties": "Hạt dẻ Trùng Khánh, bánh cuốn canh, lạp sườn hun khói",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 382,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1171,7 +1681,58 @@
      "https://www.vietnamplus.vn/cao-bang-tap-trung-thao-go-diem-nghen-tao-du-dia-tang-truong-trong-quy-4-post1140632.vnp"
     ]
    ]
-  }
+  },
+  "regT10": 33,
+  "regT10dt": 0,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 25,
+  "pop2024": 547,
+  "grdpYear": 2025,
+  "grdp2026e": 30.1,
+  "brandsT10": [
+   [
+    "CNHTC",
+    21.2
+   ],
+   [
+    "HYUNDAI",
+    18.2
+   ],
+   [
+    "ISUZU",
+    18.2
+   ],
+   [
+    "KIA",
+    12.1
+   ],
+   [
+    "VINFAST",
+    6.1
+   ],
+   [
+    "FAW",
+    3.0
+   ],
+   [
+    "CHENGLONG",
+    3.0
+   ],
+   [
+    "THACO",
+    3.0
+   ],
+   [
+    "SHACMAN",
+    3.0
+   ],
+   [
+    "Khác",
+    12.1
+   ]
+  ],
+  "cv2025": 301,
+  "cv6m26": 175
  },
  {
   "name": "Tuyên Quang",
@@ -1182,9 +1743,9 @@
   ],
   "capital": "Tuyên Quang",
   "archetype": "mountain",
-  "pop": 1722,
+  "pop": 1748.3,
   "area": 13796,
-  "grdp": 84,
+  "grdp": 95.5,
   "growth": 6.4,
   "mix": [
    30,
@@ -1222,7 +1783,7 @@
   "specialties": "Cam sành Hàm Yên, chè Shan tuyết, thắng cố, mật ong bạc hà",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1088,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1285,7 +1846,58 @@
      "https://www.vietnamplus.vn/tuyen-quang-chi-so-san-xuat-cong-nghiep-9-thang-uoc-tang-9-so-voi-cung-ky-post1141570.vnp"
     ]
    ]
-  }
+  },
+  "regT10": 94,
+  "regT10dt": 3,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 84,
+  "pop2024": 1722,
+  "grdpYear": 2025,
+  "grdp2026e": 103.2,
+  "brandsT10": [
+   [
+    "HYUNDAI",
+    21.3
+   ],
+   [
+    "CNHTC",
+    18.1
+   ],
+   [
+    "KIA",
+    17.0
+   ],
+   [
+    "ISUZU",
+    7.4
+   ],
+   [
+    "DOTHANH",
+    3.2
+   ],
+   [
+    "JAC",
+    3.2
+   ],
+   [
+    "THACO",
+    3.2
+   ],
+   [
+    "FAW",
+    3.2
+   ],
+   [
+    "CHENGLONG",
+    2.1
+   ],
+   [
+    "Khác",
+    21.3
+   ]
+  ],
+  "cv2025": 963,
+  "cv6m26": 620
  },
  {
   "name": "Lào Cai",
@@ -1296,9 +1908,9 @@
   ],
   "capital": "Yên Bái",
   "archetype": "border",
-  "pop": 1629,
+  "pop": 1675.7,
   "area": 13257,
-  "grdp": 120,
+  "grdp": 141.9,
   "growth": 8.14,
   "mix": [
    22,
@@ -1336,7 +1948,7 @@
   "specialties": "Táo mèo, thắng cố, gà đen, cá hồi Sa Pa, quế Văn Yên",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1354,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1401,7 +2013,58 @@
    ]
   },
   "salesTDBH": 0,
-  "targetTDBH": 0
+  "targetTDBH": 0,
+  "regT10": 117,
+  "regT10dt": 3,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 120,
+  "pop2024": 1629,
+  "grdpYear": 2025,
+  "grdp2026e": 154.8,
+  "brandsT10": [
+   [
+    "CNHTC",
+    37.6
+   ],
+   [
+    "HYUNDAI",
+    16.2
+   ],
+   [
+    "KIA",
+    8.5
+   ],
+   [
+    "ISUZU",
+    6.8
+   ],
+   [
+    "THACO",
+    5.1
+   ],
+   [
+    "TMT",
+    4.3
+   ],
+   [
+    "JAC",
+    2.6
+   ],
+   [
+    "SRM",
+    2.6
+   ],
+   [
+    "DOTHANH",
+    2.6
+   ],
+   [
+    "Khác",
+    13.7
+   ]
+  ],
+  "cv2025": 1163,
+  "cv6m26": 595
  },
  {
   "name": "Thái Nguyên",
@@ -1412,9 +2075,9 @@
   ],
   "capital": "Thái Nguyên",
   "archetype": "industrial",
-  "pop": 1687,
+  "pop": 1711.6,
   "area": 8382,
-  "grdp": 183,
+  "grdp": 192.4,
   "growth": 6.33,
   "mix": [
    30,
@@ -1452,7 +2115,7 @@
   "specialties": "Chè Tân Cương, miến dong, hồng không hạt Bắc Kạn",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2072,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1508,7 +2171,58 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "regT10": 179,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 183,
+  "pop2024": 1687,
+  "grdpYear": 2025,
+  "grdp2026e": 214.0,
+  "brandsT10": [
+   [
+    "CNHTC",
+    35.2
+   ],
+   [
+    "HYUNDAI",
+    15.6
+   ],
+   [
+    "VINFAST",
+    7.8
+   ],
+   [
+    "CHENGLONG",
+    6.7
+   ],
+   [
+    "THACO",
+    6.1
+   ],
+   [
+    "DONGFENG",
+    6.1
+   ],
+   [
+    "SUZUKI",
+    5.0
+   ],
+   [
+    "KIA",
+    4.5
+   ],
+   [
+    "ISUZU",
+    2.2
+   ],
+   [
+    "Khác",
+    10.6
+   ]
+  ],
+  "cv2025": 1632,
+  "cv6m26": 1142
  },
  {
   "name": "Phú Thọ",
@@ -1520,9 +2234,9 @@
   ],
   "capital": "Việt Trì",
   "archetype": "industrial",
-  "pop": 3617,
+  "pop": 3701.5,
   "area": 9362,
-  "grdp": 320,
+  "grdp": 412.2,
   "growth": 10.52,
   "mix": [
    30,
@@ -1560,7 +2274,7 @@
   "specialties": "Bưởi Đoan Hùng, chè, cam Cao Phong, cá thính, rượu Mường",
   "gpc2025": null,
   "carReg2025": 26930,
-  "reg": 0,
+  "reg": 3785,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1629,7 +2343,58 @@
    ]
   },
   "salesTDBH": 0,
-  "targetTDBH": 0
+  "targetTDBH": 0,
+  "regT10": 327,
+  "regT10dt": 10,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 320,
+  "pop2024": 3617,
+  "grdpYear": 2025,
+  "grdp2026e": 453.5,
+  "brandsT10": [
+   [
+    "CNHTC",
+    20.5
+   ],
+   [
+    "HYUNDAI",
+    15.0
+   ],
+   [
+    "KIA",
+    12.5
+   ],
+   [
+    "ISUZU",
+    9.5
+   ],
+   [
+    "THACO",
+    8.6
+   ],
+   [
+    "VINFAST",
+    8.0
+   ],
+   [
+    "CHENGLONG",
+    4.9
+   ],
+   [
+    "DONGFENG",
+    3.4
+   ],
+   [
+    "FOTON",
+    3.1
+   ],
+   [
+    "Khác",
+    14.7
+   ]
+  ],
+  "cv2025": 3294,
+  "cv6m26": 2305
  },
  {
   "name": "Bắc Ninh",
@@ -1640,9 +2405,9 @@
   ],
   "capital": "Bắc Giang",
   "archetype": "industrial",
-  "pop": 3439,
+  "pop": 3572.3,
   "area": 4719,
-  "grdp": 445,
+  "grdp": 521.9,
   "growth": 10.27,
   "mix": [
    30,
@@ -1680,7 +2445,7 @@
   "specialties": "Vải thiều Lục Ngạn, bánh phu thê Đình Bảng, mì Chũ, gà Hồ",
   "gpc2025": null,
   "carReg2025": 30721,
-  "reg": 0,
+  "reg": 4757,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1740,7 +2505,58 @@
    }
   },
   "salesTDBH": 0,
-  "targetTDBH": 0
+  "targetTDBH": 0,
+  "regT10": 411,
+  "regT10dt": 7,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 445,
+  "pop2024": 3439,
+  "grdpYear": 2025,
+  "grdp2026e": 583.5,
+  "brandsT10": [
+   [
+    "CNHTC",
+    33.6
+   ],
+   [
+    "HYUNDAI",
+    12.2
+   ],
+   [
+    "CHENGLONG",
+    9.5
+   ],
+   [
+    "KIA",
+    7.5
+   ],
+   [
+    "THACO",
+    7.1
+   ],
+   [
+    "VINFAST",
+    5.8
+   ],
+   [
+    "ISUZU",
+    3.4
+   ],
+   [
+    "JAC",
+    3.4
+   ],
+   [
+    "SUZUKI",
+    2.9
+   ],
+   [
+    "Khác",
+    14.6
+   ]
+  ],
+  "cv2025": 4763,
+  "cv6m26": 3021
  },
  {
   "name": "Hưng Yên",
@@ -1751,9 +2567,9 @@
   ],
   "capital": "Hưng Yên",
   "archetype": "industrial",
-  "pop": 3182,
+  "pop": 3235.1,
   "area": 2515,
-  "grdp": 280,
+  "grdp": 319.8,
   "growth": 8.78,
   "mix": [
    30,
@@ -1791,7 +2607,7 @@
   "specialties": "Nhãn lồng, tương Bần, bánh cáy Thái Bình, gạo Tám",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 3970,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1851,7 +2667,58 @@
    }
   },
   "salesTDBH": 0,
-  "targetTDBH": 0
+  "targetTDBH": 0,
+  "regT10": 343,
+  "regT10dt": 7,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 280,
+  "pop2024": 3182,
+  "grdpYear": 2025,
+  "grdp2026e": 355.7,
+  "brandsT10": [
+   [
+    "CNHTC",
+    26.5
+   ],
+   [
+    "HYUNDAI",
+    14.0
+   ],
+   [
+    "KIA",
+    10.8
+   ],
+   [
+    "VINFAST",
+    7.9
+   ],
+   [
+    "CHENGLONG",
+    6.4
+   ],
+   [
+    "ISUZU",
+    6.4
+   ],
+   [
+    "THACO",
+    5.8
+   ],
+   [
+    "SUZUKI",
+    4.7
+   ],
+   [
+    "HINO",
+    2.0
+   ],
+   [
+    "Khác",
+    15.5
+   ]
+  ],
+  "cv2025": 3260,
+  "cv6m26": 2084
  },
  {
   "name": "Hải Phòng",
@@ -1862,9 +2729,9 @@
   ],
   "capital": "Hải Phòng",
   "archetype": "port",
-  "pop": 4063,
+  "pop": 4149.9,
   "area": 3194,
-  "grdp": 600,
+  "grdp": 734.6,
   "growth": 11.81,
   "mix": [
    25,
@@ -1902,7 +2769,7 @@
   "specialties": "Bánh đa cua, nem cua bể, vải thiều Thanh Hà, bánh đậu xanh Hải Dương",
   "gpc2025": 160,
   "carReg2025": 31436,
-  "reg": 0,
+  "reg": 6504,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -1981,7 +2848,58 @@
    ]
   },
   "salesTDBH": 173,
-  "targetTDBH": 277
+  "targetTDBH": 277,
+  "regT10": 562,
+  "regT10dt": 9,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 600,
+  "pop2024": 4063,
+  "grdpYear": 2025,
+  "grdp2026e": 823.3,
+  "brandsT10": [
+   [
+    "CNHTC",
+    32.4
+   ],
+   [
+    "HYUNDAI",
+    8.9
+   ],
+   [
+    "CHENGLONG",
+    7.5
+   ],
+   [
+    "THACO",
+    7.5
+   ],
+   [
+    "KIA",
+    6.6
+   ],
+   [
+    "ISUZU",
+    5.5
+   ],
+   [
+    "DONGFENG",
+    5.5
+   ],
+   [
+    "VINFAST",
+    5.2
+   ],
+   [
+    "SHACMAN",
+    4.1
+   ],
+   [
+    "Khác",
+    16.9
+   ]
+  ],
+  "cv2025": 4731,
+  "cv6m26": 3393
  },
  {
   "name": "Ninh Bình",
@@ -1993,9 +2911,9 @@
   ],
   "capital": "Ninh Bình",
   "archetype": "industrial",
-  "pop": 3783,
+  "pop": 3843.8,
   "area": 3943,
-  "grdp": 255,
+  "grdp": 342.8,
   "growth": 10.65,
   "mix": [
    30,
@@ -2033,7 +2951,7 @@
   "specialties": "Cơm cháy, dê núi, nem chua, chè Bạch Mai Nam Định, phở bò Nam Định",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 4224,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2097,7 +3015,58 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "regT10": 365,
+  "regT10dt": 3,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 255,
+  "pop2024": 3783,
+  "grdpYear": 2025,
+  "grdp2026e": 381.6,
+  "brandsT10": [
+   [
+    "CNHTC",
+    32.9
+   ],
+   [
+    "SANY",
+    12.6
+   ],
+   [
+    "HYUNDAI",
+    10.4
+   ],
+   [
+    "ISUZU",
+    6.3
+   ],
+   [
+    "VINFAST",
+    5.8
+   ],
+   [
+    "KIA",
+    5.2
+   ],
+   [
+    "THACO",
+    4.9
+   ],
+   [
+    "SUZUKI",
+    3.3
+   ],
+   [
+    "SRM",
+    2.2
+   ],
+   [
+    "Khác",
+    16.4
+   ]
+  ],
+  "cv2025": 3230,
+  "cv6m26": 2424
  },
  {
   "name": "Quảng Trị",
@@ -2108,9 +3077,9 @@
   ],
   "capital": "Đồng Hới",
   "archetype": "coast",
-  "pop": 1566,
+  "pop": 1594.1,
   "area": 12700,
-  "grdp": 105,
+  "grdp": 123.4,
   "growth": 8.0,
   "mix": [
    30,
@@ -2148,7 +3117,7 @@
   "specialties": "Hồ tiêu Cùa, cà phê Khe Sanh, khoai deo, cháo canh Quảng Bình",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1412,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2209,7 +3178,58 @@
      "https://baomoi.com/quang-tri-tang-truong-grdp-8-42-sau-9-thang-c56244550.epi"
     ]
    ]
-  }
+  },
+  "regT10": 122,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 105,
+  "pop2024": 1566,
+  "grdpYear": 2025,
+  "grdp2026e": 133.8,
+  "brandsT10": [
+   [
+    "THACO",
+    24.6
+   ],
+   [
+    "CNHTC",
+    19.7
+   ],
+   [
+    "KIA",
+    14.8
+   ],
+   [
+    "HYUNDAI",
+    9.8
+   ],
+   [
+    "CHIENTHANG",
+    6.6
+   ],
+   [
+    "VINFAST",
+    5.7
+   ],
+   [
+    "CHENGLONG",
+    3.3
+   ],
+   [
+    "ISUZU",
+    3.3
+   ],
+   [
+    "TERACO",
+    1.6
+   ],
+   [
+    "Khác",
+    10.7
+   ]
+  ],
+  "cv2025": 1347,
+  "cv6m26": 1086
  },
  {
   "name": "Đà Nẵng",
@@ -2220,9 +3240,9 @@
   ],
   "capital": "Đà Nẵng",
   "archetype": "coast",
-  "pop": 2765,
+  "pop": 2856.4,
   "area": 11860,
-  "grdp": 280.3,
+  "grdp": 316.1,
   "growth": 9.18,
   "mix": [
    30,
@@ -2260,7 +3280,7 @@
   "specialties": "Mì Quảng, bê thui Cầu Mống, sâm Ngọc Linh, hải sản",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2940,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2407,7 +3427,58 @@
    ]
   },
   "salesTDBH": 144,
-  "targetTDBH": 199
+  "targetTDBH": 199,
+  "regT10": 254,
+  "regT10dt": 6,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 280.3,
+  "pop2024": 2765,
+  "grdpYear": 2025,
+  "grdp2026e": 348.7,
+  "brandsT10": [
+   [
+    "CNHTC",
+    25.2
+   ],
+   [
+    "THACO",
+    12.6
+   ],
+   [
+    "CHENGLONG",
+    8.7
+   ],
+   [
+    "HYUNDAI",
+    8.3
+   ],
+   [
+    "SHACMAN",
+    8.3
+   ],
+   [
+    "ISUZU",
+    7.9
+   ],
+   [
+    "KIA",
+    7.1
+   ],
+   [
+    "VINFAST",
+    4.3
+   ],
+   [
+    "DOTHANH",
+    2.4
+   ],
+   [
+    "Khác",
+    15.4
+   ]
+  ],
+  "cv2025": 2534,
+  "cv6m26": 1821
  },
  {
   "name": "Quảng Ngãi",
@@ -2418,9 +3489,9 @@
   ],
   "capital": "Quảng Ngãi",
   "archetype": "coast",
-  "pop": 1830,
+  "pop": 1881.2,
   "area": 14832,
-  "grdp": 185,
+  "grdp": 191.7,
   "growth": 10.02,
   "mix": [
    30,
@@ -2458,7 +3529,7 @@
   "specialties": "Đường phổi, quế Trà Bồng, tỏi Lý Sơn, sâm Ngọc Linh (Kon Tum)",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 961,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2532,7 +3603,58 @@
    "note9m": "Quý III +9,34%; gỡ vướng hơn 100 dự án; xuất khẩu, vận tải > 4.000 tỷ (+46%)"
   },
   "salesTDBH": 15,
-  "targetTDBH": 36
+  "targetTDBH": 36,
+  "regT10": 83,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 185,
+  "pop2024": 1830,
+  "grdpYear": 2025,
+  "grdp2026e": 209.3,
+  "brandsT10": [
+   [
+    "THACO",
+    22.9
+   ],
+   [
+    "CHENGLONG",
+    14.5
+   ],
+   [
+    "KIA",
+    12.0
+   ],
+   [
+    "JAC",
+    10.8
+   ],
+   [
+    "CNHTC",
+    9.6
+   ],
+   [
+    "VINFAST",
+    4.8
+   ],
+   [
+    "DONGFENG",
+    4.8
+   ],
+   [
+    "HYUNDAI",
+    4.8
+   ],
+   [
+    "TERACO",
+    3.6
+   ],
+   [
+    "Khác",
+    12.0
+   ]
+  ],
+  "cv2025": 849,
+  "cv6m26": 673
  },
  {
   "name": "Gia Lai",
@@ -2543,9 +3665,9 @@
   ],
   "capital": "Quy Nhơn",
   "archetype": "coast",
-  "pop": 3100,
+  "pop": 3182.7,
   "area": 21576,
-  "grdp": 265,
+  "grdp": 270.6,
   "growth": 7.2,
   "mix": [
    30,
@@ -2583,7 +3705,7 @@
   "specialties": "Cà phê, hồ tiêu, bánh hỏi Bình Định, rượu Bàu Đá, dừa",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2569,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2662,7 +3784,58 @@
    "note9m": "21 dự án công nghiệp 7.850 tỷ đi vào hoạt động quý III; 13,51 triệu lượt khách (+25%)"
   },
   "salesTDBH": 13,
-  "targetTDBH": 58
+  "targetTDBH": 58,
+  "regT10": 222,
+  "regT10dt": 4,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 265,
+  "pop2024": 3100,
+  "grdpYear": 2025,
+  "grdp2026e": 292.3,
+  "brandsT10": [
+   [
+    "CNHTC",
+    27.9
+   ],
+   [
+    "JAC",
+    13.1
+   ],
+   [
+    "KIA",
+    11.3
+   ],
+   [
+    "THACO",
+    9.9
+   ],
+   [
+    "SRM",
+    5.9
+   ],
+   [
+    "VINFAST",
+    5.0
+   ],
+   [
+    "HYUNDAI",
+    5.0
+   ],
+   [
+    "CHENGLONG",
+    4.1
+   ],
+   [
+    "ISUZU",
+    3.6
+   ],
+   [
+    "Khác",
+    14.4
+   ]
+  ],
+  "cv2025": 2123,
+  "cv6m26": 1418
  },
  {
   "name": "Khánh Hòa",
@@ -2673,9 +3846,9 @@
   ],
   "capital": "Nha Trang",
   "archetype": "coast",
-  "pop": 1857,
+  "pop": 1898.5,
   "area": 8555,
-  "grdp": 170,
+  "grdp": 209.4,
   "growth": 7.11,
   "mix": [
    30,
@@ -2713,7 +3886,7 @@
   "specialties": "Yến sào, nho, táo, muối Ninh Thuận, hải sản",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2060,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2776,7 +3949,58 @@
      "https://khanhhoa.gov.vn/vi/hoat-dong-cua-lanh-dao-tinh/9-thang-nam-2026-khanh-hoa-tang-truong-grdp-uoc-dat-11-21"
     ]
    ]
-  }
+  },
+  "regT10": 178,
+  "regT10dt": 2,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 170,
+  "pop2024": 1857,
+  "grdpYear": 2025,
+  "grdp2026e": 232.9,
+  "brandsT10": [
+   [
+    "DONGFENG",
+    24.7
+   ],
+   [
+    "THACO",
+    19.7
+   ],
+   [
+    "CNHTC",
+    12.4
+   ],
+   [
+    "CHENGLONG",
+    7.9
+   ],
+   [
+    "ISUZU",
+    6.7
+   ],
+   [
+    "KIA",
+    6.2
+   ],
+   [
+    "JAC",
+    5.1
+   ],
+   [
+    "HYUNDAI",
+    4.5
+   ],
+   [
+    "HINO",
+    1.7
+   ],
+   [
+    "Khác",
+    11.2
+   ]
+  ],
+  "cv2025": 1258,
+  "cv6m26": 917
  },
  {
   "name": "Lâm Đồng",
@@ -2788,9 +4012,9 @@
   ],
   "capital": "Đà Lạt",
   "archetype": "highland",
-  "pop": 3270,
+  "pop": 3356.4,
   "area": 24233,
-  "grdp": 275,
+  "grdp": 353.3,
   "growth": 6.42,
   "mix": [
    35,
@@ -2828,7 +4052,7 @@
   "specialties": "Rau, hoa Đà Lạt, atiso, cà phê, thanh long Bình Thuận, nước mắm Phan Thiết",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 3356,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -2905,7 +4129,58 @@
    "note9m": "Vốn đầu tư toàn xã hội 84.104,8 tỷ (+12,09%); công nghiệp – xây dựng +10,64%; thu ngân sách 80,4% dự toán"
   },
   "salesTDBH": 54,
-  "targetTDBH": 103
+  "targetTDBH": 103,
+  "regT10": 290,
+  "regT10dt": 8,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 275,
+  "pop2024": 3270,
+  "grdpYear": 2025,
+  "grdp2026e": 383.4,
+  "brandsT10": [
+   [
+    "KIA",
+    16.6
+   ],
+   [
+    "CNHTC",
+    13.4
+   ],
+   [
+    "ISUZU",
+    11.7
+   ],
+   [
+    "JAC",
+    10.3
+   ],
+   [
+    "THACO",
+    9.7
+   ],
+   [
+    "HYUNDAI",
+    8.3
+   ],
+   [
+    "HINO",
+    3.8
+   ],
+   [
+    "CHENGLONG",
+    3.4
+   ],
+   [
+    "TERACO",
+    3.1
+   ],
+   [
+    "Khác",
+    19.7
+   ]
+  ],
+  "cv2025": 3279,
+  "cv6m26": 1868
  },
  {
   "name": "Đắk Lắk",
@@ -2916,9 +4191,9 @@
   ],
   "capital": "Buôn Ma Thuột",
   "archetype": "highland",
-  "pop": 2808,
+  "pop": 2849.2,
   "area": 18096,
-  "grdp": 195,
+  "grdp": 229.5,
   "growth": 6.68,
   "mix": [
    35,
@@ -2956,7 +4231,7 @@
   "specialties": "Cà phê Buôn Ma Thuột, sầu riêng, bò một nắng, cá ngừ đại dương Phú Yên",
   "gpc2025": null,
   "carReg2025": 12029,
-  "reg": 0,
+  "reg": 1979,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3035,7 +4310,58 @@
    }
   },
   "salesTDBH": 98,
-  "targetTDBH": 133
+  "targetTDBH": 133,
+  "regT10": 171,
+  "regT10dt": 4,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 195,
+  "pop2024": 2808,
+  "grdpYear": 2025,
+  "grdp2026e": 248.4,
+  "brandsT10": [
+   [
+    "KIA",
+    19.3
+   ],
+   [
+    "CNHTC",
+    15.8
+   ],
+   [
+    "JAC",
+    15.2
+   ],
+   [
+    "VINFAST",
+    7.6
+   ],
+   [
+    "HYUNDAI",
+    7.6
+   ],
+   [
+    "THACO",
+    7.6
+   ],
+   [
+    "TERACO",
+    5.3
+   ],
+   [
+    "HINO",
+    4.7
+   ],
+   [
+    "CHENGLONG",
+    4.1
+   ],
+   [
+    "Khác",
+    12.9
+   ]
+  ],
+  "cv2025": 2161,
+  "cv6m26": 1312
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -3047,9 +4373,9 @@
   ],
   "capital": "TP.HCM",
   "archetype": "metro",
-  "pop": 13480,
+  "pop": 13803.7,
   "area": 6773,
-  "grdp": 2700,
+  "grdp": 2972.6,
   "growth": 7.53,
   "mix": [
    40,
@@ -3087,7 +4413,7 @@
   "specialties": "Cơm tấm, sầu riêng Lái Thiêu, gốm Lái Thiêu, hải sản Vũng Tàu",
   "gpc2025": 199,
   "carReg2025": 102354,
-  "reg": 0,
+  "reg": 21816,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3186,7 +4512,58 @@
    }
   },
   "salesTDBH": 370,
-  "targetTDBH": 724
+  "targetTDBH": 724,
+  "regT10": 1885,
+  "regT10dt": 27,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 2700,
+  "pop2024": 13480,
+  "grdpYear": 2025,
+  "grdp2026e": 3241.9,
+  "brandsT10": [
+   [
+    "ISUZU",
+    22.8
+   ],
+   [
+    "CNHTC",
+    12.9
+   ],
+   [
+    "JAC",
+    7.3
+   ],
+   [
+    "CHENGLONG",
+    7.0
+   ],
+   [
+    "THACO",
+    6.6
+   ],
+   [
+    "VINFAST",
+    5.9
+   ],
+   [
+    "KIA",
+    5.7
+   ],
+   [
+    "FOTON",
+    4.1
+   ],
+   [
+    "TERACO",
+    4.1
+   ],
+   [
+    "Khác",
+    23.6
+   ]
+  ],
+  "cv2025": 20631,
+  "cv6m26": 11884
  },
  {
   "name": "Đồng Nai",
@@ -3197,9 +4574,9 @@
   ],
   "capital": "Biên Hòa",
   "archetype": "industrial",
-  "pop": 4350,
+  "pop": 4493.7,
   "area": 12738,
-  "grdp": 610,
+  "grdp": 677.5,
   "growth": 9.63,
   "mix": [
    30,
@@ -3237,7 +4614,7 @@
   "specialties": "Bưởi Tân Triều, hạt điều Bình Phước, cao su",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 4572,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3300,7 +4677,58 @@
    ]
   },
   "salesTDBH": 55,
-  "targetTDBH": 131
+  "targetTDBH": 131,
+  "regT10": 395,
+  "regT10dt": 4,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 610,
+  "pop2024": 4350,
+  "grdpYear": 2025,
+  "grdp2026e": 745.3,
+  "brandsT10": [
+   [
+    "CNHTC",
+    17.0
+   ],
+   [
+    "ISUZU",
+    13.9
+   ],
+   [
+    "JAC",
+    13.2
+   ],
+   [
+    "KIA",
+    8.4
+   ],
+   [
+    "HYUNDAI",
+    7.8
+   ],
+   [
+    "CHENGLONG",
+    6.8
+   ],
+   [
+    "THACO",
+    4.8
+   ],
+   [
+    "SHACMAN",
+    4.6
+   ],
+   [
+    "VINFAST",
+    3.8
+   ],
+   [
+    "Khác",
+    19.7
+   ]
+  ],
+  "cv2025": 4817,
+  "cv6m26": 2725
  },
  {
   "name": "Tây Ninh",
@@ -3311,9 +4739,9 @@
   ],
   "capital": "Tân An",
   "archetype": "industrial",
-  "pop": 2930,
+  "pop": 2980.3,
   "area": 8537,
-  "grdp": 285,
+  "grdp": 344.6,
   "growth": 9.52,
   "mix": [
    30,
@@ -3351,7 +4779,7 @@
   "specialties": "Bánh tráng phơi sương, muối tôm, mãng cầu, lúa – thanh long Long An",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2627,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3416,7 +4844,58 @@
    ]
   },
   "salesTDBH": 59,
-  "targetTDBH": 101
+  "targetTDBH": 101,
+  "regT10": 227,
+  "regT10dt": 8,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 285,
+  "pop2024": 2930,
+  "grdpYear": 2025,
+  "grdp2026e": 380.1,
+  "brandsT10": [
+   [
+    "VINFAST",
+    15.9
+   ],
+   [
+    "ISUZU",
+    15.0
+   ],
+   [
+    "THACO",
+    12.8
+   ],
+   [
+    "KIA",
+    10.1
+   ],
+   [
+    "JAC",
+    9.7
+   ],
+   [
+    "HYUNDAI",
+    6.2
+   ],
+   [
+    "CNHTC",
+    5.7
+   ],
+   [
+    "CHENGLONG",
+    5.7
+   ],
+   [
+    "TERACO",
+    4.4
+   ],
+   [
+    "Khác",
+    14.5
+   ]
+  ],
+  "cv2025": 2366,
+  "cv6m26": 1371
  },
  {
   "name": "Cần Thơ",
@@ -3428,9 +4907,9 @@
   ],
   "capital": "Cần Thơ",
   "archetype": "delta",
-  "pop": 3190,
+  "pop": 3224.9,
   "area": 6374,
-  "grdp": 255,
+  "grdp": 306.0,
   "growth": 7.23,
   "mix": [
    45,
@@ -3468,7 +4947,7 @@
   "specialties": "Gạo ST25 (Sóc Trăng), bánh pía, khóm Cầu Đúc",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 3021,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3555,7 +5034,58 @@
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
   },
   "salesTDBH": 466,
-  "targetTDBH": 709
+  "targetTDBH": 709,
+  "regT10": 261,
+  "regT10dt": 21,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 255,
+  "pop2024": 3190,
+  "grdpYear": 2025,
+  "grdp2026e": 330.1,
+  "brandsT10": [
+   [
+    "THACO",
+    16.9
+   ],
+   [
+    "KIA",
+    10.7
+   ],
+   [
+    "SRM",
+    10.3
+   ],
+   [
+    "ISUZU",
+    9.2
+   ],
+   [
+    "DOTHANH",
+    8.0
+   ],
+   [
+    "HYUNDAI",
+    7.7
+   ],
+   [
+    "SUZUKI",
+    6.1
+   ],
+   [
+    "TQ",
+    5.4
+   ],
+   [
+    "VINFAST",
+    5.0
+   ],
+   [
+    "Khác",
+    20.7
+   ]
+  ],
+  "cv2025": 2877,
+  "cv6m26": 1746
  },
  {
   "name": "Vĩnh Long",
@@ -3567,9 +5097,9 @@
   ],
   "capital": "Vĩnh Long",
   "archetype": "delta",
-  "pop": 3350,
+  "pop": 3379.7,
   "area": 6296,
-  "grdp": 235,
+  "grdp": 278.5,
   "growth": 5.84,
   "mix": [
    45,
@@ -3607,7 +5137,7 @@
   "specialties": "Dừa Bến Tre, kẹo dừa, cam sành Tam Bình, bánh tráng",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2361,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3690,7 +5220,58 @@
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
   },
   "salesTDBH": 23,
-  "targetTDBH": 50
+  "targetTDBH": 50,
+  "regT10": 204,
+  "regT10dt": 15,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 235,
+  "pop2024": 3350,
+  "grdpYear": 2025,
+  "grdp2026e": 298.9,
+  "brandsT10": [
+   [
+    "THACO",
+    17.6
+   ],
+   [
+    "ISUZU",
+    16.7
+   ],
+   [
+    "JAC",
+    14.2
+   ],
+   [
+    "HYUNDAI",
+    8.3
+   ],
+   [
+    "DOTHANH",
+    7.4
+   ],
+   [
+    "KIA",
+    6.9
+   ],
+   [
+    "SRM",
+    4.9
+   ],
+   [
+    "CNHTC",
+    4.9
+   ],
+   [
+    "VINFAST",
+    3.9
+   ],
+   [
+    "Khác",
+    15.2
+   ]
+  ],
+  "cv2025": 2196,
+  "cv6m26": 1321
  },
  {
   "name": "Đồng Tháp",
@@ -3701,9 +5282,9 @@
   ],
   "capital": "Mỹ Tho",
   "archetype": "delta",
-  "pop": 3400,
+  "pop": 3403.8,
   "area": 5938,
-  "grdp": 240,
+  "grdp": 285.9,
   "growth": 7.38,
   "mix": [
    45,
@@ -3741,7 +5322,7 @@
   "specialties": "Xoài Cao Lãnh, sen, hủ tiếu Mỹ Tho, cá tra, sầu riêng Cai Lậy",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2546,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3818,7 +5399,58 @@
    "note9m": "Tăng trưởng quý sau cao hơn quý trước; vướng hạ tầng giao thông, logistics, GPMB, vật liệu xây dựng"
   },
   "salesTDBH": 134,
-  "targetTDBH": 192
+  "targetTDBH": 192,
+  "regT10": 220,
+  "regT10dt": 15,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 240,
+  "pop2024": 3400,
+  "grdpYear": 2025,
+  "grdp2026e": 307.2,
+  "brandsT10": [
+   [
+    "JAC",
+    15.5
+   ],
+   [
+    "ISUZU",
+    14.1
+   ],
+   [
+    "THACO",
+    10.5
+   ],
+   [
+    "KIA",
+    8.2
+   ],
+   [
+    "HYUNDAI",
+    7.3
+   ],
+   [
+    "DOTHANH",
+    6.8
+   ],
+   [
+    "VINFAST",
+    6.4
+   ],
+   [
+    "CNHTC",
+    5.9
+   ],
+   [
+    "SUZUKI",
+    5.9
+   ],
+   [
+    "Khác",
+    19.5
+   ]
+  ],
+  "cv2025": 2544,
+  "cv6m26": 1540
  },
  {
   "name": "Cà Mau",
@@ -3829,9 +5461,9 @@
   ],
   "capital": "Cà Mau",
   "archetype": "delta",
-  "pop": 2130,
+  "pop": 2150.4,
   "area": 7944,
-  "grdp": 155,
+  "grdp": 169.0,
   "growth": 7.23,
   "mix": [
    45,
@@ -3869,7 +5501,7 @@
   "specialties": "Tôm, cua Năm Căn, khô bổi, muối Bạc Liêu",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 1481,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -3925,7 +5557,58 @@
     "rank": null,
     "note": "9 tháng 2026"
    }
-  }
+  },
+  "regT10": 128,
+  "regT10dt": 11,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 155,
+  "pop2024": 2130,
+  "grdpYear": 2025,
+  "grdp2026e": 181.5,
+  "brandsT10": [
+   [
+    "ISUZU",
+    18.0
+   ],
+   [
+    "SUZUKI",
+    17.2
+   ],
+   [
+    "KIA",
+    11.7
+   ],
+   [
+    "THACO",
+    11.7
+   ],
+   [
+    "DOTHANH",
+    8.6
+   ],
+   [
+    "HYUNDAI",
+    7.8
+   ],
+   [
+    "SRM",
+    5.5
+   ],
+   [
+    "TERACO",
+    4.7
+   ],
+   [
+    "FOTON",
+    3.1
+   ],
+   [
+    "Khác",
+    11.7
+   ]
+  ],
+  "cv2025": 1302,
+  "cv6m26": 864
  },
  {
   "name": "An Giang",
@@ -3936,9 +5619,9 @@
   ],
   "capital": "Rạch Giá",
   "archetype": "delta",
-  "pop": 3670,
+  "pop": 3694.6,
   "area": 9890,
-  "grdp": 245,
+  "grdp": 296.2,
   "growth": 8.39,
   "mix": [
    45,
@@ -3976,7 +5659,7 @@
   "specialties": "Nước mắm Phú Quốc, tiêu Phú Quốc, mắm Châu Đốc, thốt nốt, gạo",
   "gpc2025": null,
   "carReg2025": null,
-  "reg": 0,
+  "reg": 2870,
   "uio": 0,
   "c_thaco": 0,
   "c_hyundai": 0,
@@ -4041,6 +5724,57 @@
    ]
   },
   "salesTDBH": 87,
-  "targetTDBH": 104
+  "targetTDBH": 104,
+  "regT10": 248,
+  "regT10dt": 16,
+  "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
+  "grdp2024": 245,
+  "pop2024": 3670,
+  "grdpYear": 2025,
+  "grdp2026e": 323.5,
+  "brandsT10": [
+   [
+    "THACO",
+    12.9
+   ],
+   [
+    "HYUNDAI",
+    10.9
+   ],
+   [
+    "SUZUKI",
+    10.5
+   ],
+   [
+    "JAC",
+    8.9
+   ],
+   [
+    "ISUZU",
+    8.5
+   ],
+   [
+    "KIA",
+    8.1
+   ],
+   [
+    "SRM",
+    6.9
+   ],
+   [
+    "DOTHANH",
+    6.5
+   ],
+   [
+    "CNHTC",
+    5.6
+   ],
+   [
+    "Khác",
+    21.4
+   ]
+  ],
+  "cv2025": 2479,
+  "cv6m26": 1658
  }
 ]

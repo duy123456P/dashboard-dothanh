@@ -286,7 +286,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="brand"><img src="/*__LOGO__*/" alt="Đô Thành Auto" class="brand-logo"><span class="brand-sep"></span>
+      <div class="brand"><img src="/*__LOGO__*/" alt="Đô Thành Auto" class="brand-logo"><img id="bbhLogo" src="/*__BBHLOGO__*/" alt="" hidden><span class="brand-sep"></span>
         <div><div class="eyebrow">Đô Thành Auto · 34 tỉnh, thành · 11 khu vực · 50 đại lý · 25 trạm dịch vụ</div>
       <h1>Bản đồ thị trường xe thương mại</h1></div></div>
       <div class="upd" id="updBadge"></div>
@@ -296,8 +296,8 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <label class="field" for="zoneSel">Khu vực kinh doanh
         <select id="zoneSel"><option value="">Toàn quốc</option></select>
       </label>
-      <label class="field" for="tam">ĐK mới xe tải toàn quốc 2025
-        <input id="tam" type="number" min="1000" step="1000" value="122235" style="width:150px">
+      <label class="field" for="tam">ĐK mới xe tải toàn quốc 2026 (quy năm)
+        <input id="tam" type="number" min="1000" step="1000" value="126408" style="width:150px">
       </label>
       <label class="field" for="uioNat">UIO xe TM (Cục ĐK 8/2026)
         <input id="uioNat" type="number" min="10000" step="10000" value="1951883" style="width:150px">
@@ -423,8 +423,9 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
     <h2 style="color:#fff">Phương pháp &amp; nguồn số liệu</h2>
     <p><b>Địa hình:</b> mô hình độ cao AWS Terrain Tiles (Mapzen/Tilezen; nguồn SRTM, GMTED, ETOPO1), xử lý thành ảnh đổ bóng và tô màu theo độ cao; độ nổi được phóng đại để dễ nhìn. Đáy biển thể hiện theo độ sâu.</p>
     <p><b>Ranh giới:</b> 34 đơn vị hành chính cấp tỉnh gộp từ 63 tỉnh cũ theo NQ 202/2025/QH15; quần đảo Hoàng Sa (TP. Đà Nẵng) và Trường Sa (tỉnh Khánh Hòa). Ranh giới giản lược để hiển thị, không dùng cho mục đích pháp lý.</p>
-    <p><b>Dân số, diện tích, GRDP:</b> cộng gộp số liệu các tỉnh cũ (Cục Thống kê, niên giám 2023–2024, giá hiện hành, làm tròn). Tăng trưởng GRDP 2025 theo Cục Thống kê (01/2026) cho các tỉnh đã đối chiếu; ô trống là chưa cập nhật.</p>
-    <p><b>Đăng ký mới &amp; UIO:</b> Cục CSGT: năm 2025 (15/12/2024–14/12/2025) cả nước đăng ký mới 624.300 ô tô (+27%), trong đó xe tải và container 122.235 xe (+35%); ô tô mọi loại ĐK mới tại TP.HCM 102.354, Hà Nội 88.165, Hải Phòng 31.436, Bắc Ninh 30.721, Phú Thọ 26.930. Tổng ô tô đã đăng ký lưu hành 7.134.939 xe (nửa đầu 2026). UIO xe thương mại toàn quốc mặc định 1.951.883 xe = xe tải 1.741.635 + xe khách 164.842 + ô tô chuyên dùng 45.406 đang lưu hành (Cục Đăng kiểm, 8/2026). Số theo tỉnh là phân bổ mô hình, ghi "(ước)"; nhập số thực vào cột "ĐK mới thực tế", "UIO thực tế" để thay thế.</p>
+    <p><b>Dân số, GRDP:</b> GRDP 2025, dân số 2025 theo Niên giám Thống kê 2025 (34 tỉnh, giá hiện hành). <b>GRDP 2026 (ước)</b> = GRDP 2025 × (1 + tăng trưởng thực 9 tháng 2026 của tỉnh); chưa có số chính thức cả năm 2026.</p>
+    <p><b>Đăng ký mới xe tải 2026:</b> 10 tháng 2026 cả nước 98.955 xe (+24% so với 10T/2025), riêng tháng 10/2026 là 10.163 xe (báo cáo thị trường DAC tháng 10/2026). Quy năm 2026 ≈ 126.408 xe (98.955 × tỷ lệ cả năm/10 tháng của 2025). Theo tỉnh: phân bổ theo đăng ký thực từng xe tháng 10/2026 (file DKM, 10.922 xe tải). Số tháng 10 là số thực; số cả năm là quy đổi.</p>
+    <p><b>Đăng ký mới &amp; UIO (năm 2025):</b> Cục CSGT: năm 2025 (15/12/2024–14/12/2025) cả nước đăng ký mới 624.300 ô tô (+27%), trong đó xe tải và container 122.235 xe (+35%); ô tô mọi loại ĐK mới tại TP.HCM 102.354, Hà Nội 88.165, Hải Phòng 31.436, Bắc Ninh 30.721, Phú Thọ 26.930. Tổng ô tô đã đăng ký lưu hành 7.134.939 xe (nửa đầu 2026). UIO xe thương mại toàn quốc mặc định 1.951.883 xe = xe tải 1.741.635 + xe khách 164.842 + ô tô chuyên dùng 45.406 đang lưu hành (Cục Đăng kiểm, 8/2026). Số theo tỉnh là phân bổ mô hình, ghi "(ước)"; nhập số thực vào cột "ĐK mới thực tế", "UIO thực tế" để thay thế.</p>
     <p><b>Hành chính, xã hội:</b> số xã/phường theo các nghị quyết sắp xếp (tổng 3.321 đơn vị); GRDP/người 2025 của Quảng Ninh, TP.HCM, Hà Nội, Hải Phòng theo Cục Thống kê; cơ cấu kinh tế, đô thị hóa, tỷ lệ dân tộc là ước tính tổng hợp từ các tỉnh cũ, cần đối chiếu niên giám.</p>
     <p><b>Thế trận:</b> sức hấp dẫn = 60% quy mô ĐK mới + 25% tăng trưởng GRDP + 15% GRDP/người; sức mạnh = độ phủ trung tâm (và thị phần khi có doanh số). Mục tiêu 2026 đề xuất = ĐK mới × 1,08 × thị phần mục tiêu theo thế trận (12% / 8% / 15% / 5%).</p>
     <p><b>Phân bổ ĐK mới theo tỉnh (ước tính):</b> tổng thị trường (mặc định 100.000 xe/năm; VAMA ghi nhận khoảng 70.700 xe tải năm 2025, chưa gồm hãng ngoài VAMA và xe nhập) phân bổ theo GRDP<sup>0,65</sup> × Dân số<sup>0,35</sup> × hệ số đặc thù vùng; cơ cấu phân khúc theo loại hình kinh tế. Mô hình định hướng; thay bằng số đăng ký thực tế khi có.</p>
@@ -580,7 +581,7 @@ const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",
   ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
-let rows = clone(BASE), tam = 122235, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
+let rows = clone(BASE), tam = 126408, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
 let showComp = false, compGroup = null;
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
 
@@ -614,11 +615,12 @@ function compute(){
   const w2 = rows.map(r => Math.sqrt(Math.max(r.grdp,0) * Math.max(r.pop,0) * (r.factor || 1)));
   const sw2 = w2.reduce((a,b)=>a+b,0) || 1;
   // provinces with real figures keep them; the rest share what is left of the national total
+  const t10 = rows.reduce((a,r)=>a+(r.regT10||0),0);
   const realReg = rows.reduce((a,r)=>a+(r.reg>0?r.reg:0),0), estW = rows.reduce((a,r,i)=>a+(r.reg>0?0:w[i]),0) || 1;
   const realUio = rows.reduce((a,r)=>a+(r.uio>0?r.uio:0),0), estW2 = rows.reduce((a,r,i)=>a+(r.uio>0?0:w2[i]),0) || 1;
   rows.forEach((r,i) => {
     r._regReal = r.reg > 0; r._uioReal = r.uio > 0;
-    r._market = r._regReal ? r.reg : Math.round(Math.max(tam - realReg, 0) * w[i] / estW);
+    r._market = r.regT10 && t10 ? Math.round(r.regT10 / t10 * tam) : r._regReal ? r.reg : Math.round(Math.max(tam - realReg, 0) * w[i] / estW);
     r._uio = r._uioReal ? r.uio : Math.round(Math.max(uioNat - realUio, 0) * w2[i] / estW2);
     r._turn = r._uio ? r._market / r._uio * 100 : 0;
     r._density = r.area ? r.pop*1000 / r.area : 0; r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;
@@ -641,7 +643,7 @@ function compute(){
     r._post = r._attr >= 50 ? (r._str >= 50 ? "attack" : "open") : (r._str >= 50 ? "hold" : "guerrilla");
     r._tgtShare = {attack:12, open:8, hold:15, guerrilla:5}[r._post];
     r._tgt26 = Math.round(r._market * 1.08 * r._tgtShare / 100);
-    r._comp = COMP.map(([k,l]) => [l, +r[k]||0]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+    r._comp = r.brandsT10 ? r.brandsT10.map(([l,v]) => [l === "DOTHANH" ? "Đô Thành" : l, v]) : COMP.map(([k,l]) => [l, +r[k]||0]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
   });
   // một thế trận duy nhất cho toàn hệ thống: dùng chấm điểm của Phòng chiến lược HĐQT (xếp hạng 34 tỉnh, số bán, tồn, đối thủ)
   const CVx = window.__CV; if(CVx && CVx.boardPosture){ try{ CVx.postureReset && CVx.postureReset(); rows.forEach(r => { const P = CVx.boardPosture(r);
@@ -650,7 +652,7 @@ function compute(){
   ["_market","grdp","pop","_gpc","_uio"].forEach(key => [...rows].sort((a,b)=>(b[key]||0)-(a[key]||0)).forEach((r,i)=>{ r["_rk"+key] = i+1; }));
 }
 const METRICS = {
-  market:{label:"ĐK mới xe tải 2025", unit:"xe/năm", get:r=>r._market, fmt:v=>fmtInt(v)},
+  market:{label:"ĐK mới xe tải 2026 (quy năm)", unit:"xe/năm", get:r=>r._market, fmt:v=>fmtInt(v)},
   uio:{label:"UIO xe thương mại", unit:"xe đang lưu hành", get:r=>r._uio, fmt:v=>fmtInt(v)},
   turn:{label:"Tỷ lệ ĐK mới / UIO", unit:"%", get:r=>r._turn, fmt:v=>fmt1(v)},
   attr:{label:"Sức hấp dẫn mặt trận", unit:"điểm /100", get:r=>r._attr, fmt:v=>fmtInt(v)},
@@ -729,7 +731,7 @@ function renderKpis(){
     [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
     [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
-    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2025 (ước)" : "ĐK mới xe tải 2025 · Cục CSGT"],
+    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2026 (quy năm, ĐK thực T10)" : "ĐK mới xe tải 2026 quy năm · 10T/2026: 98.955 xe (+24%)"],
     [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm 8/2026"],
     [`${cs.filter(c=>c.type==="C1").length} · ${cs.filter(c=>c.type==="C2").length}`, "Đại lý cấp 1 · cấp 2"],
     [fmtInt(sales), `Bán lẻ lũy kế T10 · ${sum("target") ? fmtInt(sales/sum("target")*100)+"% KH" : "—"}`],
@@ -1100,7 +1102,7 @@ function regionTip(name){
     <div class="muted">${esc(r.zone)} · gộp: ${esc(r.merged.join(", "))}</div>
     <div class="g num">
       <span>${esc(M.label)}</span><b>${M.fmt(M.get(r))} ${M.unit}</b>
-      <span>ĐK mới xe tải 2025</span><b>${fmtInt(r._market)} xe · #${r._rk_market}</b>
+      <span>ĐK mới xe tải 2026 (quy năm)</span><b>${fmtInt(r._market)} xe · #${r._rk_market}</b>${r.regT10 ? `<span>ĐK thực T10/2026</span><b>${fmtInt(r.regT10)} xe · Đô Thành ${fmtInt(r.regT10dt)}</b>` : ""}
       <span>UIO xe TM</span><b>${fmtInt(r._uio)} xe</b>
       <span>Thế trận</span><b style="color:${POST[r._post].col}">${POST[r._post].label}</b>
       <span>Dân số</span><b>${fmt1(r.pop/1000)} tr</b>
@@ -1178,7 +1180,7 @@ function frontCard(r){
     <p style="margin:6px 0 8px">${P.desc}</p>
     <div class="stats num"><div class="stat"><div class="v">${r._attr}</div><div class="l">Sức hấp dẫn /100</div></div><div class="stat"><div class="v">${r._str}</div><div class="l">Sức mạnh của ta /100</div></div>
       <div class="stat"><div class="v">${fmtInt(r._tgt26)}</div><div class="l">Mục tiêu 2026 đề xuất (xe) · ${r._tgtShare}% ĐK mới</div></div></div>
-    <ul class="actions">${P.acts.map(a=>`<li>${a}</li>`).join("")}</ul></div>`;
+    <ul class="actions">${P.acts.map(a=>`<li>${a}</li>`).join("")}</ul>${window.__CV && window.__CV.compFront ? window.__CV.compFront(r) : ""}</div>`;
 }
 function renderMatrix(){
   const el = document.getElementById("matrix"); if(!el) return;
@@ -1240,7 +1242,7 @@ function renderDossier(){
     </div>
     <div class="kv"><span>Trung tâm hành chính</span><b>${esc(r.capital)}</b><span>Gộp từ (NQ 202/2025)</span><b>${esc(r.merged.join(", "))}</b><span>Biển số xe</span><b>${esc(r.plates)}</b><span>Vùng kinh tế</span><b>${esc(r.region)}</b></div></div>
     <div><h3>Kinh tế vĩ mô</h3><div class="stats num" style="margin-top:8px">
-      <div class="stat"><div class="v">${fmtInt(r.grdp)}</div><div class="l">GRDP 2024, nghìn tỷ · #${r._rkgrdp}</div></div>
+      <div class="stat"><div class="v">${fmtInt(r.grdp2026e ?? r.grdp)}</div><div class="l">GRDP 2026 (ước), nghìn tỷ · 2025: ${fmtInt(r.grdp)} · #${r._rkgrdp}</div></div>
       <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người ${r.gpc2025 ? "2025 (NSO)" : "2024 (ước)"} · #${r._rk_gpc}</div></div>
       <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
       <div class="stat"><div class="v">${r.cpi==null||r.cpi===""?"4,57%":fmt1(+r.cpi)+"%"}</div><div class="l">${r.cpi==null||r.cpi===""?"CPI bình quân 10T/2026, cả nước (chưa có số tỉnh)":"CPI bình quân 10T/2026 của tỉnh"}</div></div>
@@ -1251,7 +1253,7 @@ function renderDossier(){
     <div><h3>Xe thương mại · UIO &amp; đăng ký mới</h3>
       <div class="stats num" style="margin-top:8px">
         <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_uio}</div></div>
-        <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2025 ${r._regReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_market}</div></div>
+        <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2026 quy năm ${r._regReal?'<span class="pill good">từ ĐK thực T10</span>':'(ước)'}${r.regT10 ? " · T10: " + fmtInt(r.regT10) + " xe" : ""} · #${r._rk_market}</div></div>
         <div class="stat"><div class="v">${fmt1(r._turn)}%</div><div class="l">ĐK mới / UIO</div></div>
         <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>
         <div class="stat"><div class="v">${r.carReg2025 ? fmtInt(r.carReg2025) : (window.__CV && __CV.carEst ? "~" + fmtInt(__CV.carEst(r).v) : "—")}</div><div class="l">Ô tô mọi loại 2025${r.carReg2025?" ĐK mới (Cục CSGT)":" (ước từ VAMA)"}</div></div>
@@ -1397,7 +1399,7 @@ document.getElementById("btnReset").addEventListener("click", () => {
   const box = document.getElementById("resetBox");
   box.innerHTML = `<div class="toolbar" style="background:rgba(5,11,22,.5);padding:8px;border-radius:10px;border:1px solid var(--glass-line)"><span>Xóa mọi chỉnh sửa trên trình duyệt này và quay về dữ liệu gốc?</span><button type="button" class="primary" id="rsYes">Khôi phục</button><button type="button" id="rsNo">Giữ lại</button></div>`;
   document.getElementById("rsNo").onclick = () => box.innerHTML = "";
-  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 122235; uioNat = 1951883; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
+  document.getElementById("rsYes").onclick = () => { rows = clone(BASE); tam = 126408; uioNat = 1951883; try{localStorage.removeItem(STORE_KEY);}catch(e){} box.innerHTML=""; renderAll(); toast("Đã khôi phục dữ liệu gốc"); };
 });
 let toastT; function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2800); }
 
@@ -1466,7 +1468,7 @@ function provTable(list, k){
 function buildReport(kind){
   const d = new Date(), date = d.toLocaleDateString("vi-VN"), all = [...rows].sort((a,b)=>b._market-a._market);
   const totReg = rows.reduce((a,r)=>a+r._market,0), totUio = rows.reduce((a,r)=>a+r._uio,0), nC = CENTERS.length, n4 = CENTERS.filter(c=>c.type==="C1").length, nD = n4 + CENTERS.filter(c=>c.type==="C2").length;
-  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải & container toàn quốc 2025: ${n0(tam)} xe (Cục CSGT). Số theo tỉnh ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe: xe tải + xe khách + ô tô chuyên dùng đang lưu hành (Cục Đăng kiểm, 8/2026); số theo tỉnh là phân bổ ước tính.\n- VAMA 10 tháng 2026: 310.986 xe (+7%); xe thương mại tháng 10/2026: 5.735 xe. Cục CSGT: 513.679 ô tô ĐK mới 9 tháng 2026. Cục Thống kê: GDP 9 tháng 2026 +9,01%.\n- Dữ liệu cập nhật: ${fmtTime(SRC.updated)}.\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
+  const note = `\n## Ghi chú số liệu\n- ĐK mới xe tải toàn quốc 2026 quy năm: ${n0(tam)} xe (10T/2026: 98.955 xe, +24%; báo cáo thị trường DAC T10/2026). Theo tỉnh: phân bổ theo ĐK thực tháng 10/2026 (file DKM); số ghi "ước" là phân bổ mô hình; nhập số thực ở bảng dữ liệu để thay.\n- UIO xe thương mại toàn quốc ${n0(uioNat)} xe: xe tải + xe khách + ô tô chuyên dùng đang lưu hành (Cục Đăng kiểm, 8/2026); số theo tỉnh là phân bổ ước tính.\n- VAMA 10 tháng 2026: 310.986 xe (+7%); xe thương mại tháng 10/2026: 5.735 xe. Cục CSGT: 513.679 ô tô ĐK mới 9 tháng 2026. Cục Thống kê: GDP 9 tháng 2026 +9,01%.\n- Dữ liệu cập nhật: ${fmtTime(SRC.updated)}.\n- Dân số, GRDP 2024 cộng gộp các tỉnh cũ; cơ cấu ngành, đô thị hóa là ước tính.`;
   if(kind === "province"){
     const r = rows.find(x=>x.name===selected);
     if(!r) return {title:"Chưa chọn tỉnh", md:"Hãy rê chuột hoặc bấm vào một tỉnh trên bản đồ, rồi bấm lại **Tỉnh đang chọn**.\n\nGợi ý 5 mặt trận lớn nhất: " + all.slice(0,5).map(x=>x.name).join(", ") + "."};
@@ -1495,7 +1497,8 @@ _${r.zone} · ${r.region} · ngày ${date}_
 ## 3. Kinh tế vĩ mô
 | Chỉ tiêu | Giá trị |
 |---|---|
-| GRDP 2024 | ${n0(r.grdp)} nghìn tỷ đồng (#${r._rkgrdp}) |
+| GRDP 2026 (ước) | ${r.grdp2026e ? n0(r.grdp2026e) + " nghìn tỷ đồng (GRDP 2025 × tăng trưởng 9T/2026)" : "—"} |
+| GRDP 2025 | ${n0(r.grdp)} nghìn tỷ đồng (#${r._rkgrdp}, Niên giám Thống kê 2025) |
 | GRDP/người | ${r.gpc2025 ? fmt1(r.gpc2025)+" triệu đồng (2025, NSO)" : n0(r._gpc)+" triệu đồng (2024, ước)"} |
 | Tăng trưởng GRDP 2025 | ${r.growth==null ? "chưa cập nhật" : fmt1(r.growth)+"%"} |
 | Cơ cấu (NLTS / CN-XD / DV / thuế) | ${r.econ.map(v=>fmt1(v)+"%").join(" / ")} |
@@ -1507,7 +1510,7 @@ _${r.zone} · ${r.region} · ngày ${date}_
 | Chỉ tiêu | Giá trị |
 |---|---|
 | UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":"ước"}) |
-| ĐK mới xe tải 2025 | ${n0(r._market)} xe (${r._regReal?"số thực":"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
+| ĐK mới xe tải 2026 (quy năm) | ${n0(r._market)} xe (${r._regReal?"từ ĐK thực T10/2026: " + n0(r.regT10) + " xe, Đô Thành " + n0(r.regT10dt):"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
 | ĐK mới / UIO | ${p1(r._turn)} |
 | Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : (window.__CV && __CV.carEst ? "~" + n0(__CV.carEst(r).v) + " xe (ước từ tổng VAMA + VinFast + Hyundai ≈ 604.000 xe, phân bổ theo GRDP, dân số)" : "chưa có số công bố")} |
 | Độ cao trung bình | ${n0(r.elev)} m |
@@ -1610,7 +1613,7 @@ _Ngày ${date}${kind==="zone" && !zone ? " · chưa chọn khu vực nên báo c
 
 ## 1. Tóm tắt
 - **${list.length} tỉnh/thành**, dân số ${fmt1(pop/1000)} triệu, GRDP ${n0(g)} nghìn tỷ đồng.
-- **ĐK mới xe tải 2025: ${n0(reg)} xe** (${p1(reg/totReg*100)} cả nước); **UIO xe thương mại: ${n0(u)} xe**; tỷ lệ ĐK mới/UIO ${p1(reg/u*100)}.
+- **ĐK mới xe tải 2026 (quy năm): ${n0(reg)} xe** (${p1(reg/totReg*100)} cả nước); **UIO xe thương mại: ${n0(u)} xe**; tỷ lệ ĐK mới/UIO ${p1(reg/u*100)}.
 - Mạng lưới: **${c4+c3} đại lý** (${c4} cấp 1, ${c3} cấp 2) và ${cs.length-c4-c3} trạm dịch vụ riêng, bình quân ${c4+c3 ? n0(reg/(c4+c3)) : "—"} xe ĐK mới mỗi đại lý.
 - **Bán lẻ lũy kế T1–T10/2026: ${n0(le)} xe**${kh ? `, đạt ${p1(le/kh*100)} KH lũy kế ${n0(kh)} xe` : ""}.
 - Thế trận: ${Object.entries(POST).map(([k,P])=>`${P.label} ${cnt(k).length}`).join(" · ")}.
@@ -1671,11 +1674,11 @@ function mdToHtml(md){
   closeList(); flushTable(); return html;
 }
 function dataSnapshot(){
-  const head = "Tỉnh|Khu vực|Dân số(nghìn)|Xã/phường|Đô thị hóa%|GRDP2024(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Cơ cấu NLTS/CNXD/DV/Thuế(%)|Độ cao TB(m)|UIO xe TM|ĐK mới xe tải 2025|ĐK/UIO%|Nguồn ĐK|Hạng|ĐL cấp 1|ĐL cấp 2|Xe/ĐL|Bán lẻ lũy kế T10|KH lũy kế T10|Thế trận|Hấp dẫn|Sức mạnh|Mục tiêu 2026 đề xuất|Thị phần đối thủ|Cơ cấu phân khúc %(nhẹ/trung/nặng/đầu kéo/khách/van)|Mùa vụ T1..T12 (0-3)|Ghi chú mùa vụ";
+  const head = "Tỉnh|Khu vực|Dân số 2025(nghìn)|Xã/phường|Đô thị hóa%|GRDP2025(nghìn tỷ)|GRDP/người(tr)|Tăng GRDP25(%)|Cơ cấu NLTS/CNXD/DV/Thuế(%)|Độ cao TB(m)|UIO xe TM|ĐK mới xe tải 2025|ĐK/UIO%|Nguồn ĐK|Hạng|ĐL cấp 1|ĐL cấp 2|Xe/ĐL|Bán lẻ lũy kế T10|KH lũy kế T10|Thế trận|Hấp dẫn|Sức mạnh|Mục tiêu 2026 đề xuất|Thị phần đối thủ|Cơ cấu phân khúc %(nhẹ/trung/nặng/đầu kéo/khách/van)|Mùa vụ T1..T12 (0-3)|Ghi chú mùa vụ";
   const body = rows.map(r => [r.name, r.zone, r.pop, r.communes, r.urban, r.grdp, r.gpc2025 || Math.round(r._gpc), r.growth ?? "", r.econ.join("/"), r.elev, r._uio, r._market, r._turn.toFixed(1),
     r._regReal?"thực":"ước", r._tier, r._c4, r._c3, r._perCenter==null?"":Math.round(r._perCenter), r.sales||0, r.target||0, POST[r._post].label, r._attr, r._str, r._tgt26,
     r._comp.map(([l,v])=>l+" "+v+"%").join(", ") || "chưa có", r.mix.join("/"), r.season.join(""), r.seasonNotes.join("; ")].join("|")).join("\n");
-  return `${head}\n${body}\n\nĐK mới xe tải & container toàn quốc 2025 (Cục CSGT): ${tam} xe. UIO xe thương mại toàn quốc (Cục Đăng kiểm 8/2026: xe tải + khách + chuyên dùng): ${uioNat} xe.\n\nNGUỒN MỚI NHẤT (cập nhật ${fmtTime(SRC.updated)}):\n${SRC.sources.map(x => `${x.org} (${x.period}): ` + x.items.map(i => i[0] + ": " + i[1]).join("; ")).join("\n")} Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\nMẠNG LƯỚI ĐÔ THÀNH (${NET.sourceDealers}; ${NET.sourceStations}). Tổng: bán lẻ lũy kế T9 ${NET.totals.leT9}, bán sỉ lũy kế T9 ${NET.totals.siT9}, KH lũy kế T9 ${NET.totals.khT9}; tháng 10 TH ${NET.totals.thT10}/KH ${NET.totals.khT10} (IZ ${NET.totals.izT10}/${NET.totals.izKhT10}, MISSU ${NET.totals.msT10}/${NET.totals.msKhT10}); KH năm ${NET.totals.khYear}. VAMA ${NET.vama.period}: DOTHANH ${NET.vama.dothanh} xe.\nĐại lý|Cấp|Miền|Tỉnh|Bán lẻ lũy kế T10|KH lũy kế T10|TH/KH T10|Bán sỉ lũy kế T9|Tồn T9|Xếp hạng\n${CENTERS.map(c => `${c.id}. ${c.name}|${c.type}|${c.region||""}|${c.province}|${c.leCum??""}|${c.khCum??""}|${c.thT10!=null?c.thT10+"/"+c.khT10:""}|${c.siT9??""}|${c.tonT9??""}|${c.grade?c.grade+" "+c.score:""}`).join("\n")}`;
+  return `${head}\n${body}\n\nĐK mới xe tải toàn quốc 2026 quy năm: ${tam} xe (10T/2026 98.955 xe; ĐK thực T10/2026 theo tỉnh: file DKM). UIO xe thương mại toàn quốc (Cục Đăng kiểm 8/2026: xe tải + khách + chuyên dùng): ${uioNat} xe.\n\nNGUỒN MỚI NHẤT (cập nhật ${fmtTime(SRC.updated)}):\n${SRC.sources.map(x => `${x.org} (${x.period}): ` + x.items.map(i => i[0] + ": " + i[1]).join("; ")).join("\n")} Số "ước" là phân bổ theo mô hình, chưa phải số đăng ký thực tế của tỉnh.\n\nMẠNG LƯỚI ĐÔ THÀNH (${NET.sourceDealers}; ${NET.sourceStations}). Tổng: bán lẻ lũy kế T9 ${NET.totals.leT9}, bán sỉ lũy kế T9 ${NET.totals.siT9}, KH lũy kế T9 ${NET.totals.khT9}; tháng 10 TH ${NET.totals.thT10}/KH ${NET.totals.khT10} (IZ ${NET.totals.izT10}/${NET.totals.izKhT10}, MISSU ${NET.totals.msT10}/${NET.totals.msKhT10}); KH năm ${NET.totals.khYear}. VAMA ${NET.vama.period}: DOTHANH ${NET.vama.dothanh} xe.\nĐại lý|Cấp|Miền|Tỉnh|Bán lẻ lũy kế T10|KH lũy kế T10|TH/KH T10|Bán sỉ lũy kế T9|Tồn T9|Xếp hạng\n${CENTERS.map(c => `${c.id}. ${c.name}|${c.type}|${c.region||""}|${c.province}|${c.leCum??""}|${c.khCum??""}|${c.thT10!=null?c.thT10+"/"+c.khT10:""}|${c.siT9??""}|${c.tonT9??""}|${c.grade?c.grade+" "+c.score:""}`).join("\n")}`;
 }
 function rules(){
   return `Bạn là Ben, trợ lý báo cáo và phân tích kinh doanh cho Đô Thành Auto và mạng lưới đại lý, trạm dịch vụ xe thương mại (xe tải, đầu kéo, xe khách) tại Việt Nam. Người dùng là ban lãnh đạo, giám đốc vùng.
@@ -1819,7 +1822,7 @@ function fillScopes(){
 function renderShare(){
   const rs = scopeRows(shScope.value), mk = rs.reduce((a,r)=>a+r._market,0), sales = +shSales.value || 0, tgt = +shTarget.value || 0;
   const need = Math.round(mk * tgt / 100), share = mk ? sales / mk * 100 : 0, label = shScope.value ? shScope.value.slice(2) : "Toàn quốc";
-  document.getElementById("shOut").innerHTML = mdToHtml(`| ${label} | Giá trị |\n|---|---|\n| ĐK mới xe tải 2025 | ${n0(mk)} xe |\n| Thị phần hiện tại | **${fmt1(share)}%** |\n| Mục tiêu ${fmt1(tgt)}% | **${n0(need)} xe** |\n| Còn thiếu | ${n0(Math.max(need - sales, 0))} xe (${n0(Math.max(need - sales, 0)/12)} xe/tháng) |\n| 1 điểm thị phần | ${n0(mk/100)} xe |`);
+  document.getElementById("shOut").innerHTML = mdToHtml(`| ${label} | Giá trị |\n|---|---|\n| ĐK mới xe tải 2026 (quy năm) | ${n0(mk)} xe |\n| Thị phần hiện tại | **${fmt1(share)}%** |\n| Mục tiêu ${fmt1(tgt)}% | **${n0(need)} xe** |\n| Còn thiếu | ${n0(Math.max(need - sales, 0))} xe (${n0(Math.max(need - sales, 0)/12)} xe/tháng) |\n| 1 điểm thị phần | ${n0(mk/100)} xe |`);
 }
 [shScope, shSales, shTarget].forEach(el => el.addEventListener("input", renderShare));
 
@@ -1844,7 +1847,7 @@ document.getElementById("mgZones").addEventListener("click", e => { const b = e.
 function splitTable(r){
   const w = r.parts.map(p => Math.pow(p.grdp,0.65)*Math.pow(p.pop,0.35)), sw = w.reduce((a,b)=>a+b,0);
   const w2 = r.parts.map(p => Math.sqrt(p.grdp*p.pop)), sw2 = w2.reduce((a,b)=>a+b,0);
-  return `**${r.name}** = ${r.parts.map(p=>p.name).join(" + ")}\n\n| Tỉnh cũ | Dân số (nghìn) | GRDP 2024 | ĐK mới (ước) | Tỷ lệ | UIO (ước) |\n|---|---|---|---|---|---|\n` +
+  return `**${r.name}** = ${r.parts.map(p=>p.name).join(" + ")}\n\n| Tỉnh cũ | Dân số 2024 (nghìn) | GRDP 2024 | ĐK mới (ước) | Tỷ lệ | UIO (ước) |\n|---|---|---|---|---|---|\n` +
     r.parts.map((p,i)=>`| ${p.name} | ${n0(p.pop)} | ${n0(p.grdp)} | ${n0(r._market*w[i]/sw)} | ${fmt1(w[i]/sw*100)}% | ${n0(r._uio*w2[i]/sw2)} |`).join("\n") +
     `\n| **Tổng** | **${n0(r.pop)}** | **${n0(r.grdp)}** | **${n0(r._market)}** | 100% | **${n0(r._uio)}** |\n\nTách theo trọng số GRDP và dân số của tỉnh cũ (ước tính).`;
 }

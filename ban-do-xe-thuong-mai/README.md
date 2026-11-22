@@ -12,10 +12,11 @@ Một file HTML duy nhất, chạy offline trên Google Chrome: bản đồ 3D 3
 ```
 template.html          khung trang + bản đồ 3D (three.js) + hồ sơ tỉnh + Ben
 ops.html, ops.css      khung các khối báo cáo
-*.js (17 module)       mỗi module là một IIFE, giao tiếp qua window.__CV (công cụ Ben, hook, dữ liệu dùng chung)
-  ops, lens, lyhoc, legal, comp, hud, sales, fc, model, inv, tx, audit, board, warplan, radar, policy, layout
+*.js (19 module)       mỗi module là một IIFE, giao tiếp qua window.__CV (công cụ Ben, hook, dữ liệu dùng chung)
+  ops, lens, lyhoc, legal, comp, hud, sales, fc, glossary, model, inv, tx, audit, board, warplan, radar, policy, market, layout
 *.json                 dữ liệu (build.py ánh xạ placeholder → file trong DATA)
 vendor/                three.js r147 + OrbitControls/Lines; phông Be Vietnam Pro, Chakra Petch (woff2, OFL)
+logo-bbh.png           logo DAC dùng trong biên bản họp (Word/HTML)
 relief.webp            ảnh nền địa hình 4096², height.webp: độ cao (R*256+G−12000 m, nén không mất dữ liệu; biển làm tròn 25 m)
 build.py               ghép tất cả thành index.html tự chứa; thu gọn JS/CSS bằng esbuild
 tools_lock.py, lock.html   nén + mã hóa → ../ban-do/index.html
@@ -44,6 +45,8 @@ GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWOR
 | `python3 tools_sync_places.py <dt_places.json>` | bản đồ nhúng trên dothanhauto.com | địa chỉ, tọa độ đại lý, trạm |
 | `python3 tools_nien_giam_34.py ng.txt out.json` | Niên giám Thống kê 2025 | GRDP, bán lẻ, dân số theo 34 tỉnh |
 | `python3 tools_thu_nhap_34.py ng.txt out.json` | Niên giám (bảng 348) | thu nhập 2025 theo 34 tỉnh |
+| `python3 tools_sync_market.py <DKM.xlsx> <IZ.pptx> <KAMA.pptx>` | file đăng ký mới từng xe + báo cáo thị trường DAC tháng | `market2026.json`, ĐK thực theo tỉnh trong `provinces.json` |
+| `python3 tools_sync_compnet.py <thư mục html>` | daehan.vn (Teraco), danh bạ đại lý Oto360 | `compnet.json` mục `dealers`: đại lý đối thủ theo 34 tỉnh, link Google Maps |
 | `python3 tools_relief.py` | DEM AWS Terrain Tiles | `relief.webp`, `height.webp` |
 
 Sau mỗi lần đồng bộ: `python3 build.py` rồi `tools_lock.py`.
