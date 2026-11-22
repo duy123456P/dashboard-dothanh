@@ -330,6 +330,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
           <button id="btnLabels" type="button" aria-pressed="true">Tên tỉnh</button>
           <button id="btnPins" type="button" aria-pressed="true">Đại lý</button>
           <button id="btnComp" type="button" aria-pressed="false" title="Showroom, đại lý 3S, xưởng dịch vụ của Thaco, Teraco, JAC, Foton, TMT">Đối thủ</button>
+          <button id="btnCust" type="button" aria-pressed="false" title="Khách tiềm năng cần chăm sóc (định vị Google Maps) và mật độ khách đã mua 2023–2026 theo huyện">Khách hàng</button>
           <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
           <button id="btnView" type="button">Đổi góc nhìn</button>
         </div>
@@ -508,6 +509,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="prov-data" type="application/json">/*__DATA__*/</script>
 <script id="center-data" type="application/json">/*__NETWORK__*/</script>
 <script id="compnet-data" type="application/json">/*__COMPNET__*/</script>
+<script id="cust-data" type="application/json">/*__CUST__*/</script>
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script id="infra-data" type="application/json">/*__INFRA__*/</script>
 <script id="prod-data" type="application/json">/*__PRODUCTS__*/</script>
@@ -582,7 +584,9 @@ const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
 let rows = clone(BASE), tam = 126408, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
-let showComp = false, compGroup = null;
+let showComp = false, compGroup = null, showCust = false, custGroup = null;
+const CUST = (() => { try{ return JSON.parse(document.getElementById("cust-data").textContent); }catch(e){ return {prospects: [], buyers: {districts: [], byProv: {}}}; } })();
+const CUST_COL = s => /chốt/i.test(s) ? "#46e3ff" : /quan tâm|hẹn gặp|báo giá/i.test(s) ? "#3ddc84" : /không|sai số/i.test(s) ? "#8a96a8" : "#ffb020";
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
 
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
@@ -832,7 +836,7 @@ async function initScene(){
   water.rotation.x = -Math.PI/2; water.position.y = 0.01; water.renderOrder = 2; scene.add(water);
   buildBorders();
   hlGroup = new THREE.Group(); relief.add(hlGroup);
-  pinGroup = new THREE.Group(); barGroup = new THREE.Group(); compGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup); scene.add(compGroup);
+  pinGroup = new THREE.Group(); barGroup = new THREE.Group(); compGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup); scene.add(compGroup); custGroup = new THREE.Group(); scene.add(custGroup);
   raycaster = new THREE.Raycaster();
 
   const ro = new ResizeObserver(resize); ro.observe(stage); resize();
@@ -936,6 +940,24 @@ function buildCompPins(){
   CNET.points.forEach(p => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: tex[p.b], depthTest: true, transparent: true, sizeAttenuation: false}));
     const sz = 0.022; s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {comp: p, sz, sq: true}; s.renderOrder = 4; compGroup.add(s); });
 }
+function dotTexture(col, ring){
+  const cv = document.createElement("canvas"); cv.width = 96; cv.height = 96; const c = cv.getContext("2d");
+  c.shadowColor = col; c.shadowBlur = 12; c.beginPath(); c.arc(48, 48, ring ? 34 : 26, 0, Math.PI*2); c.fillStyle = ring ? col + "55" : col; c.fill(); c.shadowBlur = 0; c.lineWidth = ring ? 5 : 6; c.strokeStyle = ring ? col : "#0b1426"; c.stroke();
+  const t = new THREE.CanvasTexture(cv); t.encoding = THREE.sRGBEncoding; return t;
+}
+function buildCustPins(){
+  if(!custGroup || custGroup.children.length) return;
+  const tx = {}, tex = col => tx[col] || (tx[col] = dotTexture(col, false)), ringT = dotTexture("#b07cff", true);
+  const ds = (CUST.buyers || {}).districts || [], mx = Math.max(...ds.map(d => d.n), 1);
+  ds.filter(d => d.lat != null).forEach(d => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: ringT, depthTest: true, transparent: true, sizeAttenuation: false}));
+    const sz = 0.018 + 0.05 * Math.sqrt(d.n / mx); s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {buy: d, sz, sq: true}; s.renderOrder = 3; custGroup.add(s); });
+  (CUST.prospects || []).forEach(p => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: tex(CUST_COL(p.status)), depthTest: true, transparent: true, sizeAttenuation: false}));
+    const sz = 0.016; s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {lead: p, sz, sq: true}; s.renderOrder = 6; custGroup.add(s); });
+}
+function custTip(o){
+  if(o.lead){ const p = o.lead; return `<div class="t"><span class="dot" style="background:${CUST_COL(p.status)}"></span>Khách tiềm năng · ${esc(p.name)}</div><div class="muted">${esc(p.ind)} · ${esc(p.area)}, ${esc(p.province || "")}</div><div class="muted">${p.phone ? "ĐT: " + esc(p.phone) + " · " : ""}Trạng thái: <b>${esc(p.status)}</b></div><div class="tiny" style="color:var(--cyan)">Nhấn để mở Google Maps</div>`; }
+  const d = o.buy; return `<div class="t"><span class="dot" style="background:#b07cff"></span>Khách đã mua · ${esc(d.dist)}, ${esc(d.province)}</div><div class="muted"><b>${fmtInt(d.n)} xe</b> 2023–2026 (${Object.entries(d.years).map(([y,n]) => y + ": " + n).join(", ")}) · doanh nghiệp ${fmtInt(d.org)}</div><div class="muted">${Object.entries(d.models).map(([m,n]) => esc(m) + " " + n).join(", ")}</div><div class="muted tiny">Tâm vòng = trung tâm huyện; không hiển thị tên, số điện thoại khách</div>`;
+}
 function buildPins(){
   CENTERS.forEach(c => {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({map: pinTexture(c.id, c.type), depthTest: true, transparent: true, sizeAttenuation: false}));
@@ -949,6 +971,8 @@ function placePins(){
   pinGroup.children.forEach(s => { const c = s.userData.center; s.position.set(wx(c.lng), yOf(Math.max(heightAt(c.lng, c.lat),0)) + 0.15, wz(c.lat)); });
   pinGroup.visible = showPins;
   pinGroup.children.forEach(s => { const r = findRow(s.userData.center.province); s.visible = !zone || (r && r.zone === zone); });
+  if(custGroup){ if(showCust) buildCustPins(); custGroup.visible = showCust;
+    custGroup.children.forEach(s => { const o = s.userData.lead || s.userData.buy, r = findRow(o.province); s.position.set(wx(o.lng), yOf(Math.max(heightAt(o.lng, o.lat),0)) + (s.userData.lead ? 0.7 : 0.35), wz(o.lat)); s.visible = !zone || (r && r.zone === zone); }); }
   if(compGroup){ if(showComp) buildCompPins(); compGroup.visible = showComp;
     compGroup.children.forEach(s => { const p = s.userData.comp, r = findRow(p.province); s.position.set(wx(p.lng), yOf(Math.max(heightAt(p.lng, p.lat),0)) + 0.6, wz(p.lat)); s.visible = !zone || (r && r.zone === zone); }); }
 }
@@ -1025,6 +1049,7 @@ function pick(){
   if(!raycaster || !mouse.inside) return;
   const now = performance.now(); if(now - lastPick < 40) return; lastPick = now;
   raycaster.setFromCamera({x:mouse.nx, y:mouse.ny}, camera); hoverPlace = null;
+  if(showCust && custGroup){ const hc = raycaster.intersectObjects(custGroup.children.filter(s=>s.visible), false)[0]; if(hc){ const u = hc.object.userData, o = u.lead || u.buy; hoverPlace = u.lead ? {name: o.name, gm: [o.lat, o.lng]} : null; setHover(o.province); showTipHtml(custTip(u)); return; } }
   if(showComp && compGroup){ const hc = raycaster.intersectObjects(compGroup.children.filter(s=>s.visible), false)[0]; if(hc){ const p = hc.object.userData.comp; hoverPlace = p; setHover(p.province); showTipHtml(compTip(p)); return; } }
   if(showPins){ const hp = raycaster.intersectObjects(pinGroup.children.filter(s=>s.visible), false)[0]; if(hp){ hoverPlace = hp.object.userData.center; setHover(hp.object.userData.center.province); showTip(null, hp.object.userData.center); return; } }
   if(showSites && siteGroup){ const hs = raycaster.intersectObjects(siteGroup.children, true).find(h => h.object.userData.site); if(hs){ setHover(hs.object.userData.site.prov.name); showTipHtml(infraTip({site: hs.object.userData.site})); return; } }
@@ -1120,6 +1145,7 @@ function renderLegend(){
   const el = document.getElementById("legend");
   const c4 = CENTERS.filter(c=>c.type==="C1").length, c3 = CENTERS.filter(c=>c.type==="C2").length, ct = CENTERS.filter(c=>c.type==="TDV").length;
   const pinsL = `<div class="pinl"><span><i class="dot" style="background:var(--pin-4s);box-shadow:0 0 8px var(--pin-4s)"></i>Đại lý cấp 1 (${c4})</span><span><i class="dot" style="background:var(--pin-3s);box-shadow:0 0 8px var(--pin-3s)"></i>Đại lý cấp 2 (${c3})</span><span><i class="dot" style="background:var(--pin-tdv);box-shadow:0 0 8px var(--pin-tdv)"></i>Trạm DV riêng (${ct})</span></div>`
+  const custL = showCust ? `<div class="pinl" style="margin-top:4px">${[["#ffb020","Chưa gọi"],["#3ddc84","Quan tâm, hẹn gặp, báo giá"],["#46e3ff","Chốt đơn"],["#8a96a8","Không nhu cầu"]].map(([c,l]) => `<span><i class="dot" style="background:${c}"></i>${l}</span>`).join("")}<span><i class="dot" style="background:#b07cff55;border:2px solid #b07cff"></i>Khách đã mua (${fmtInt((CUST.buyers||{}).total||0)} xe, theo huyện)</span><span class="muted tiny">${(CUST.prospects||[]).length} khách tiềm năng</span></div>` : "";
   const compL = showComp ? `<div class="pinl" style="margin-top:4px">${Object.entries(CNET.brands).map(([k,b]) => `<span><i class="dot" style="background:${b.color};border-radius:2px;transform:rotate(45deg)"></i>${esc(b.name)} (${CNET.points.filter(p=>p.b===k).length})</span>`).join("")}<span class="muted tiny">điểm đã xác minh</span></div>` : "";
     + (showBars && metric === "sales" ? `<div class="pinl"><span><i class="dot" style="background:var(--good)"></i>≥ 70% KH</span><span><i class="dot" style="background:var(--warn)"></i>50–70%</span><span><i class="dot" style="background:var(--bad)"></i>&lt; 50%</span></div>` : "");
   const relief = `<div class="gr"><div class="lh"><b>Độ cao địa hình</b></div><div class="bar" style="background:linear-gradient(90deg,#d6f0c4,#a0d696,#6eb478,#aabe78,#d6c480,#c49664,#a06e50,#ece2d6)"></div><div class="ends num"><span>0 m</span><span>1.000</span><span>2.000</span><span>3.000 m</span></div></div>`;
@@ -1127,7 +1153,7 @@ function renderLegend(){
   if(colorMode === "zone") main = `<div class="lh"><b>Khu vực kinh doanh</b></div><div class="zl">${ZONES.map(z=>`<span><i class="sw" style="background:${zoneColor(z)};color:${zoneColor(z)}"></i>${esc(z.replace("Khu vực ","KV "))}</span>`).join("")}</div>`;
   else if(colorMode === "metric"){ const M = METRICS[metric], {min,max} = metricRange();
     main = `<div class="gr"><div class="lh"><b>${esc(M.label)}</b><span class="muted">${esc(M.unit)}</span></div><div class="bar" style="background:linear-gradient(90deg,${colorScale().join(",")})"></div><div class="ends num"><span>${M.fmt(min)}</span><span>${M.fmt(max)}</span></div></div>${max<=0?'<span style="color:var(--warn)">Chưa có dữ liệu: nhập ở bảng bên dưới</span>':""}`; }
-  el.innerHTML = main + relief + pinsL + compL + (showBars ? `<span class="muted">Cột 3D: ${esc(METRICS[metric].label)}${metric==="sales"?" theo từng đại lý":""}</span>` : "");
+  el.innerHTML = main + relief + pinsL + compL + custL + (showBars ? `<span class="muted">Cột 3D: ${esc(METRICS[metric].label)}${metric==="sales"?" theo từng đại lý":""}</span>` : "");
 }
 
 /* ---------- dossier ---------- */
@@ -1180,7 +1206,7 @@ function frontCard(r){
     <p style="margin:6px 0 8px">${P.desc}</p>
     <div class="stats num"><div class="stat"><div class="v">${r._attr}</div><div class="l">Sức hấp dẫn /100</div></div><div class="stat"><div class="v">${r._str}</div><div class="l">Sức mạnh của ta /100</div></div>
       <div class="stat"><div class="v">${fmtInt(r._tgt26)}</div><div class="l">Mục tiêu 2026 đề xuất (xe) · ${r._tgtShare}% ĐK mới</div></div></div>
-    <ul class="actions">${P.acts.map(a=>`<li>${a}</li>`).join("")}</ul>${window.__CV && window.__CV.compFront ? window.__CV.compFront(r) : ""}</div>`;
+    <ul class="actions">${P.acts.map(a=>`<li>${a}</li>`).join("")}</ul>${window.__CV && window.__CV.compFront ? window.__CV.compFront(r) : ""}${window.__CV && window.__CV.custFront ? window.__CV.custFront(r) : ""}</div>`;
 }
 function renderMatrix(){
   const el = document.getElementById("matrix"); if(!el) return;
@@ -1411,10 +1437,11 @@ toggleBtn("btnInfra", ()=>showInfra, v=>showInfra=v, () => { placeInfra(); syncB
 toggleBtn("btnSites", ()=>showSites, v=>showSites=v, () => { placeInfra(); syncButtons(); });
 toggleBtn("btnPins", ()=>showPins, v=>showPins=v, () => { placePins(); syncButtons(); });
 toggleBtn("btnComp", ()=>showComp, v=>showComp=v, () => { placePins(); syncButtons(); renderLegend(); });
+toggleBtn("btnCust", ()=>showCust, v=>showCust=v, () => { placePins(); syncButtons(); renderLegend(); });
 toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v, syncButtons);
 document.getElementById("btnView").addEventListener("click", () => { if(!camera) return; viewIdx=(viewIdx+1)%VIEWS.length; setView(viewIdx); });
 document.getElementById("exag").addEventListener("input", e => { exag = +e.target.value; introT0 = -1e9; });
-function syncButtons(){ [["btnInfra",showInfra],["btnComp",showComp],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
+function syncButtons(){ [["btnInfra",showInfra],["btnComp",showComp],["btnCust",showCust],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
 function refreshMap(){ if(!scene) return; needOverlay = true; buildBars(); placePins(); buildSites(); }
 
 /* ---------- AI analyst ---------- */
@@ -2270,11 +2297,11 @@ function renderAll(){
   uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 window.__CV = {
-  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, gmapUrl, gmapA, gmapMd, placeOf, get showComp(){ return showComp; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
+  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, CUST, gmapUrl, gmapA, gmapMd, placeOf, get showComp(){ return showComp; }, get showCust(){ return showCust; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
   get tam(){ return tam; }, set tam(v){ tam = v; }, get uioNat(){ return uioNat; }, set uioNat(v){ uioNat = v; },
   get zone(){ return zone; }, get selected(){ return selected; }, get metric(){ return metric; },
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
-    if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.comp === "boolean") showComp = o.comp; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
+    if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.comp === "boolean") showComp = o.comp; if(typeof o.cust === "boolean") showCust = o.cust; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
     if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
