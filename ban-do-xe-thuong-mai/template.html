@@ -622,11 +622,13 @@ function compute(){
   // provinces with real figures keep them; the rest share what is left of the national total
   const t10 = rows.reduce((a,r)=>a+(r.regT10||0),0);
   const realReg = rows.reduce((a,r)=>a+(r.reg>0?r.reg:0),0), estW = rows.reduce((a,r,i)=>a+(r.reg>0?0:w[i]),0) || 1;
-  const realUio = rows.reduce((a,r)=>a+(r.uio>0?r.uio:0),0), estW2 = rows.reduce((a,r,i)=>a+(r.uio>0?0:w2[i]),0) || 1;
+  // UIO: số thực (nếu nhập) > neo theo tổng ô tô công bố của tỉnh × tỷ lệ xe TM cả nước (UIO TM / 7.134.939 ô tô lưu hành 6/2026) > phân bổ mô hình
+  const anc = r => r.uio > 0 ? r.uio : r.carStock > 0 ? Math.round(r.carStock * uioNat / 7134939) : 0;
+  const realUio = rows.reduce((a,r)=>a+anc(r),0), estW2 = rows.reduce((a,r,i)=>a+(anc(r)?0:w2[i]),0) || 1;
   rows.forEach((r,i) => {
     r._regReal = r.reg > 0; r._uioReal = r.uio > 0;
     r._market = r.regT10 && t10 ? Math.round(r.regT10 / t10 * tam) : r._regReal ? r.reg : Math.round(Math.max(tam - realReg, 0) * w[i] / estW);
-    r._uio = r._uioReal ? r.uio : Math.round(Math.max(uioNat - realUio, 0) * w2[i] / estW2);
+    r._uioAnchor = !r._uioReal && r.carStock > 0; r._uio = anc(r) || Math.round(Math.max(uioNat - realUio, 0) * w2[i] / estW2);
     r._turn = r._uio ? r._market / r._uio * 100 : 0;
     r._density = r.area ? r.pop*1000 / r.area : 0; r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;
     r._share = r._market ? (r.sales||0) / r._market * 100 : 0; r._gap = Math.max((r.target||0) - (r.sales||0), 0);
@@ -1279,7 +1281,7 @@ function renderDossier(){
     <p class="muted" style="font-size:11.5px;margin:4px 0 0">Cơ cấu GRDP ước tính, tổng hợp từ các tỉnh cũ.</p></div>
     <div><h3>Xe thương mại · UIO &amp; đăng ký mới</h3>
       <div class="stats num" style="margin-top:8px">
-        <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':'(ước)'} · #${r._rk_uio}</div></div>
+        <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':r._uioAnchor?'(ước từ ' + fmtInt(r.carStock) + ' ô tô của tỉnh, <a href="' + esc(r.carStockSrc[1]) + '" target="_blank" rel="noopener">nguồn</a>)':'(ước)'} · #${r._rk_uio}</div></div>
         <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2026 quy năm ${r._regReal?'<span class="pill good">từ ĐK thực T10</span>':'(ước)'}${r.regT10 ? " · T10: " + fmtInt(r.regT10) + " xe" : ""} · #${r._rk_market}</div></div>
         <div class="stat"><div class="v">${fmt1(r._turn)}%</div><div class="l">ĐK mới / UIO</div></div>
         <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>
@@ -1537,7 +1539,7 @@ _${r.zone} · ${r.region} · ngày ${date}_
 ## 4. Thị trường xe thương mại
 | Chỉ tiêu | Giá trị |
 |---|---|
-| UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":"ước"}) |
+| UIO xe thương mại | ${n0(r._uio)} xe (${r._uioReal?"số thực":r._uioAnchor?"ước = " + n0(r.carStock) + " ô tô của tỉnh × tỷ lệ xe TM cả nước 27,4%; [" + r.carStockSrc[0] + "](" + r.carStockSrc[1] + ")":"ước theo dân số, GRDP"}) |
 | ĐK mới xe tải 2026 (quy năm) | ${n0(r._market)} xe (${r._regReal?"từ ĐK thực T10/2026: " + n0(r.regT10) + " xe, Đô Thành " + n0(r.regT10dt):"ước"}) · ${p1(r._mshare)} cả nước · #${r._rk_market} |
 | ĐK mới / UIO | ${p1(r._turn)} |
 | Ô tô mọi loại ĐK mới 2025 | ${r.carReg2025 ? n0(r.carReg2025)+" xe (Cục CSGT)" : (window.__CV && __CV.carEst ? "~" + n0(__CV.carEst(r).v) + " xe (ước từ tổng VAMA + VinFast + Hyundai ≈ 604.000 xe, phân bổ theo GRDP, dân số)" : "chưa có số công bố")} |

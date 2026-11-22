@@ -161,7 +161,12 @@
    ]
   ],
   "cv2025": 13272,
-  "cv6m26": 10380
+  "cv6m26": 10380,
+  "carStock": 1100000,
+  "carStockSrc": [
+   "Báo Đại biểu Nhân dân (20/05/2026): Hà Nội khoảng 1,1 triệu ô tô",
+   "https://daibieunhandan.vn/xe-dien-dan-thay-doi-thoi-quen-di-lai-cua-nguoi-dan-ha-noi-10417586.html"
+  ]
  },
  {
   "name": "Huế",
@@ -2899,7 +2904,12 @@
    ]
   ],
   "cv2025": 4731,
-  "cv6m26": 3393
+  "cv6m26": 3393,
+  "carStock": 452000,
+  "carStockSrc": [
+   "Báo Thanh tra: Hải Phòng quản lý hơn 452 nghìn ô tô",
+   "https://thanhtra.com.vn/an-ninh-trat-tu-D718A18CA/canh-sat-giao-thong-hai-phong-giai-ma-bai-toan-giao-thong-do-thi-3bb818457.html"
+  ]
  },
  {
   "name": "Ninh Bình",
@@ -4563,7 +4573,12 @@
    ]
   ],
   "cv2025": 20631,
-  "cv6m26": 11884
+  "cv6m26": 11884,
+  "carStock": 1480000,
+  "carStockSrc": [
+   "Sở Xây dựng TP.HCM (3/2026): gần 12,98 triệu phương tiện, hơn 1,48 triệu ô tô",
+   "https://znews.vn/cong-an-tphcm-den-tung-nha-ra-tung-xe-post1597485.html"
+  ]
  },
  {
   "name": "Đồng Nai",
