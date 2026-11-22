@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21",
+ "updated": "2026-11-22",
  "brands": [
   {
    "k": "teraco",
@@ -728,85 +728,425 @@
    "name": "JAC",
    "maker": "JAC Motors (Anhui Jianghuai, Trung Quốc); lắp ráp và phân phối tại Việt Nam qua mạng lưới đại lý JAC",
    "origin": "Trung Quốc",
-   "priceDoc": "Giá bán lẻ tham khảo đại lý 10–11/2026",
-   "promoDoc": "KM đại lý: giảm 15 tr dòng N200S/N250S/N350S Pro E5 (chưa xác nhận còn hiệu lực T11)",
+   "priceDoc": "Bảng giá JAC đời 2026 kèm thùng, TB 493/TB-JAC (01/10–30/11/2026); N750 Plus E5A hạ 10 tr giá niêm yết",
+   "promoDoc": "CTKM “JAC – Xe Tốt Giá Hời, Chạy Lời Cuối Năm”: giảm trực tiếp 5–20 tr/xe trên hóa đơn (01/10–30/11/2026)",
    "promoRules": [
-    "Đại lý công bố giảm 15 triệu cho N200S Pro, N250S Pro, N350S Pro E5; tặng bảo dưỡng lần đầu",
-    "Trả góp 70–80% giá trị xe qua ngân hàng liên kết"
+    "H-Series H200/H250/H360: giảm 5 tr/xe; N180S PRO không khuyến mãi",
+    "N-Series PRO/PLUS, N250SL/N350SL, N750/N800/N900 Plus, DAWOS 7.1: giảm 10 tr/xe; DAWOS-SX cabin cao giảm 20 tr/xe",
+    "N750 Plus E5A hạ thêm 10 tr giá niêm yết (bạt 643 → 633 tr): giảm kép 20 tr, áp sát JP120SL",
+    "Hoa hồng TVBH cố định 4 tr/xe toàn dải; 100% N-Series Pro/Plus lắp sẵn mui lướt gió; niêm yết sẵn gói bạt bửng nhôm, sàn/cản inox 430 (+35–40 tr)"
    ],
    "notes": [
-    "Giá là giá bán lẻ tham khảo tổng hợp từ website đại lý và trang tổng hợp (cập nhật 08–11/2026, lệch nhau tới vài chục triệu); chưa có bảng giá giao đại lý chính thức nên không tính được biên lợi nhuận đại lý.",
-    "Mức giảm 15 tr có thể là chương trình cũ; cần xác minh tại đại lý JAC khu vực."
+    "Nguồn: Báo cáo chiến lược cạnh tranh Đô Thành vs JAC T11/2026 (nội bộ DAC), đối chiếu TB 493/TB-JAC. Giá thực bán = giá xe + thùng − KM nhà máy; lăn bánh là ước của báo cáo.",
+    "Chưa có giá giao đại lý JAC nên chưa tính được biên đại lý."
    ],
    "items": [
     {
-     "model": "N200S 1,9 tấn",
-     "body": "Thùng mui bạt",
+     "model": "H200 E5",
+     "body": "Thùng bạt",
      "dealer": null,
-     "minRetail": 405000000,
-     "maxRetail": 446000000,
-     "promo": 0,
-     "seg": "Tải 1,9–2,5 tấn",
+     "minRetail": 390000000,
+     "maxRetail": 390000000,
+     "promo": 5000000,
+     "net": 385000000,
+     "onRoad": 400000000,
+     "seg": "Tải 1,9–2,5 tấn thùng ngắn ~3,8 m",
      "dt": "IZ45S"
     },
     {
-     "model": "N200S 1,9 tấn",
+     "model": "H200 E5",
      "body": "Thùng kín",
      "dealer": null,
-     "minRetail": 410000000,
-     "maxRetail": 450000000,
-     "promo": 0,
-     "seg": "Tải 1,9–2,5 tấn",
+     "minRetail": 395000000,
+     "maxRetail": 395000000,
+     "promo": 5000000,
+     "net": 390000000,
+     "onRoad": 405000000,
+     "seg": "Tải 1,9–2,5 tấn thùng ngắn ~3,8 m",
      "dt": "IZ45S"
     },
     {
-     "model": "N350S Pro E5 3,5 tấn",
-     "body": "Thùng mui bạt",
+     "model": "H250 E5",
+     "body": "Thùng bạt",
      "dealer": null,
-     "minRetail": null,
-     "maxRetail": 425000000,
-     "promo": 15000000,
-     "seg": "Tải 3,5 tấn",
-     "dt": "IZ65M Plus"
+     "minRetail": 390000000,
+     "maxRetail": 390000000,
+     "promo": 5000000,
+     "net": 385000000,
+     "onRoad": 400000000,
+     "seg": "Tải 1,9–2,5 tấn thùng ngắn ~3,8 m",
+     "dt": "IZ50S"
     },
     {
-     "model": "N350S Pro E5 3,5 tấn",
+     "model": "H250 E5",
      "body": "Thùng kín",
      "dealer": null,
-     "minRetail": null,
-     "maxRetail": 467000000,
-     "promo": 15000000,
-     "seg": "Tải 3,5 tấn",
-     "dt": "IZ65M Plus"
+     "minRetail": 395000000,
+     "maxRetail": 395000000,
+     "promo": 5000000,
+     "net": 390000000,
+     "onRoad": 405000000,
+     "seg": "Tải 1,9–2,5 tấn thùng ngắn ~3,8 m",
+     "dt": "IZ50S"
     },
     {
-     "model": "N500 5 tấn",
-     "body": "Thùng mui bạt",
+     "model": "H360 E5",
+     "body": "Thùng trường lái",
      "dealer": null,
-     "minRetail": 527000000,
-     "maxRetail": 540000000,
-     "promo": 0,
-     "seg": "Tải 5 tấn",
+     "minRetail": 400000000,
+     "maxRetail": 400000000,
+     "promo": 5000000,
+     "net": 395000000,
+     "onRoad": 410000000,
+     "seg": "Xe tập lái",
      "dt": null
     },
     {
-     "model": "N500 5 tấn",
-     "body": "Thùng kín",
+     "model": "N180S PRO E5A",
+     "body": "Thùng xe tập lái",
      "dealer": null,
-     "minRetail": 533000000,
-     "maxRetail": 548000000,
+     "minRetail": 493000000,
+     "maxRetail": 493000000,
      "promo": 0,
-     "seg": "Tải 5 tấn",
+     "net": 493000000,
+     "onRoad": 510000000,
+     "seg": "Xe tập lái",
      "dt": null
     },
     {
-     "model": "X150 1,49 tấn",
-     "body": "Ben tự đổ",
+     "model": "N200S PRO E5",
+     "body": "Thùng bạt",
      "dealer": null,
-     "minRetail": null,
-     "maxRetail": 370000000,
-     "promo": 0,
-     "seg": "Ben",
+     "minRetail": 474000000,
+     "maxRetail": 474000000,
+     "promo": 10000000,
+     "net": 464000000,
+     "onRoad": 480000000,
+     "seg": "Tải 1,9–2,5 tấn thùng 4,4 m",
+     "dt": "IZ50M"
+    },
+    {
+     "model": "N200S PRO E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 479000000,
+     "maxRetail": 479000000,
+     "promo": 10000000,
+     "net": 469000000,
+     "onRoad": 485000000,
+     "seg": "Tải 1,9–2,5 tấn thùng 4,4 m",
+     "dt": "IZ50M"
+    },
+    {
+     "model": "N250S PRO E5",
+     "body": "Thùng bạt",
+     "dealer": null,
+     "minRetail": 479000000,
+     "maxRetail": 479000000,
+     "promo": 10000000,
+     "net": 469000000,
+     "onRoad": 485000000,
+     "seg": "Tải 1,9–2,5 tấn thùng 4,4 m",
+     "dt": "IZ50M Plus"
+    },
+    {
+     "model": "N250S PRO E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 484000000,
+     "maxRetail": 484000000,
+     "promo": 10000000,
+     "net": 474000000,
+     "onRoad": 490000000,
+     "seg": "Tải 1,9–2,5 tấn thùng 4,4 m",
+     "dt": "IZ50M Plus"
+    },
+    {
+     "model": "N350S PRO E5",
+     "body": "Thùng bạt",
+     "dealer": null,
+     "minRetail": 484000000,
+     "maxRetail": 484000000,
+     "promo": 10000000,
+     "net": 474000000,
+     "onRoad": 490000000,
+     "seg": "Tải 3,5 tấn thùng 4,4 m",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "N350S PRO E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 488000000,
+     "maxRetail": 488000000,
+     "promo": 10000000,
+     "net": 478000000,
+     "onRoad": 495000000,
+     "seg": "Tải 3,5 tấn thùng 4,4 m",
+     "dt": "IZ65M Plus"
+    },
+    {
+     "model": "N350 PLUS E5",
+     "body": "Thùng bạt",
+     "dealer": null,
+     "minRetail": 551000000,
+     "maxRetail": 551000000,
+     "promo": 10000000,
+     "net": 541000000,
+     "onRoad": 560000000,
+     "seg": "Tải 3,5–5 tấn thùng ~5,2 m",
+     "dt": null
+    },
+    {
+     "model": "N350 PLUS E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 556000000,
+     "maxRetail": 556000000,
+     "promo": 10000000,
+     "net": 546000000,
+     "onRoad": 565000000,
+     "seg": "Tải 3,5–5 tấn thùng ~5,2 m",
+     "dt": null
+    },
+    {
+     "model": "N500 E5",
+     "body": "Thùng bạt",
+     "dealer": null,
+     "minRetail": 555000000,
+     "maxRetail": 555000000,
+     "promo": 10000000,
+     "net": 545000000,
+     "onRoad": 565000000,
+     "seg": "Tải 3,5–5 tấn thùng ~5,2 m",
+     "dt": null
+    },
+    {
+     "model": "N500 E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 565000000,
+     "maxRetail": 565000000,
+     "promo": 10000000,
+     "net": 555000000,
+     "onRoad": 575000000,
+     "seg": "Tải 3,5–5 tấn thùng ~5,2 m",
+     "dt": null
+    },
+    {
+     "model": "N650 E5",
+     "body": "Thùng bạt",
+     "dealer": null,
+     "minRetail": 565000000,
+     "maxRetail": 565000000,
+     "promo": 10000000,
+     "net": 555000000,
+     "onRoad": 575000000,
+     "seg": "Tải 5–6,5 tấn",
+     "dt": null
+    },
+    {
+     "model": "N650 E5",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 570000000,
+     "maxRetail": 570000000,
+     "promo": 10000000,
+     "net": 560000000,
+     "onRoad": 580000000,
+     "seg": "Tải 5–6,5 tấn",
+     "dt": null
+    },
+    {
+     "model": "N250SL",
+     "body": "Thùng bạt 6,2 m",
+     "dealer": null,
+     "minRetail": 575000000,
+     "maxRetail": 575000000,
+     "promo": 10000000,
+     "net": 565000000,
+     "onRoad": 585000000,
+     "seg": "Tải 2,5–3,5 tấn thùng siêu dài 6,2–6,3 m",
+     "dt": "IZ60SL Plus"
+    },
+    {
+     "model": "N350SL",
+     "body": "Thùng bạt 6,2 m",
+     "dealer": null,
+     "minRetail": 580000000,
+     "maxRetail": 580000000,
+     "promo": 10000000,
+     "net": 570000000,
+     "onRoad": 590000000,
+     "seg": "Tải 2,5–3,5 tấn thùng siêu dài 6,2–6,3 m",
+     "dt": "IZ71SL Plus"
+    },
+    {
+     "model": "N350SL",
+     "body": "Thùng kín 6,2 m",
+     "dealer": null,
+     "minRetail": 585000000,
+     "maxRetail": 585000000,
+     "promo": 10000000,
+     "net": 575000000,
+     "onRoad": 595000000,
+     "seg": "Tải 2,5–3,5 tấn thùng siêu dài 6,2–6,3 m",
+     "dt": "IZ71SL Plus"
+    },
+    {
+     "model": "N750 PLUS E5A",
+     "body": "Thùng bạt TB1 (đã hạ 10 tr giá gốc)",
+     "dealer": null,
+     "minRetail": 633000000,
+     "maxRetail": 633000000,
+     "promo": 10000000,
+     "net": 623000000,
+     "onRoad": 645000000,
+     "seg": "Tải 7,2–7,5 tấn thùng 6,3 m",
+     "dt": "JP120SL"
+    },
+    {
+     "model": "N750 PLUS E5A",
+     "body": "Bạt bửng nhôm inox",
+     "dealer": null,
+     "minRetail": 673000000,
+     "maxRetail": 673000000,
+     "promo": 10000000,
+     "net": 663000000,
+     "onRoad": 685000000,
+     "seg": "Tải 7,2–7,5 tấn thùng 6,3 m",
+     "dt": "JP120SL"
+    },
+    {
+     "model": "N750 PLUS E5A",
+     "body": "Thùng kín TK1",
+     "dealer": null,
+     "minRetail": 643000000,
+     "maxRetail": 643000000,
+     "promo": 10000000,
+     "net": 633000000,
+     "onRoad": 655000000,
+     "seg": "Tải 7,2–7,5 tấn thùng 6,3 m",
+     "dt": "JP120SL"
+    },
+    {
+     "model": "N800 PLUS E5",
+     "body": "Thùng bạt TB1 (mui lướt gió)",
+     "dealer": null,
+     "minRetail": 771000000,
+     "maxRetail": 771000000,
+     "promo": 10000000,
+     "net": 761000000,
+     "onRoad": 790000000,
+     "seg": "Tải 8–9 tấn thùng 6,8–7,6 m",
+     "dt": null
+    },
+    {
+     "model": "N900 PLUS E5",
+     "body": "Thùng bạt TB1",
+     "dealer": null,
+     "minRetail": 766000000,
+     "maxRetail": 766000000,
+     "promo": 10000000,
+     "net": 756000000,
+     "onRoad": 785000000,
+     "seg": "Tải 8–9 tấn thùng 6,8–7,6 m",
+     "dt": null
+    },
+    {
+     "model": "N900 PLUS E5",
+     "body": "Bạt bửng nhôm",
+     "dealer": null,
+     "minRetail": 805000000,
+     "maxRetail": 805000000,
+     "promo": 10000000,
+     "net": 795000000,
+     "onRoad": 825000000,
+     "seg": "Tải 8–9 tấn thùng 6,8–7,6 m",
+     "dt": null
+    },
+    {
+     "model": "N900 PLUS (thùng 7,6 m)",
+     "body": "Bạt bửng nhôm",
+     "dealer": null,
+     "minRetail": 815000000,
+     "maxRetail": 815000000,
+     "promo": 10000000,
+     "net": 805000000,
+     "onRoad": 835000000,
+     "seg": "Tải 8–9 tấn thùng 6,8–7,6 m",
+     "dt": null
+    },
+    {
+     "model": "N900 PLUS (thùng 7,6 m)",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 785000000,
+     "maxRetail": 785000000,
+     "promo": 10000000,
+     "net": 775000000,
+     "onRoad": 805000000,
+     "seg": "Tải 8–9 tấn thùng 6,8–7,6 m",
+     "dt": null
+    },
+    {
+     "model": "DAWOS 7.1-CT4 (cabin thấp)",
+     "body": "Bạt sắt",
+     "dealer": null,
+     "minRetail": 893000000,
+     "maxRetail": 893000000,
+     "promo": 10000000,
+     "net": 883000000,
+     "onRoad": 915000000,
+     "seg": "Tải trung DAWOS",
+     "dt": null
+    },
+    {
+     "model": "DAWOS 7.1-CT4 (cabin thấp)",
+     "body": "Bạt bửng nhôm",
+     "dealer": null,
+     "minRetail": 933000000,
+     "maxRetail": 933000000,
+     "promo": 10000000,
+     "net": 923000000,
+     "onRoad": 955000000,
+     "seg": "Tải trung DAWOS",
+     "dt": null
+    },
+    {
+     "model": "DAWOS-SX (cabin cao)",
+     "body": "Bạt sắt",
+     "dealer": null,
+     "minRetail": 918000000,
+     "maxRetail": 918000000,
+     "promo": 20000000,
+     "net": 898000000,
+     "onRoad": 930000000,
+     "seg": "Tải trung DAWOS",
+     "dt": null
+    },
+    {
+     "model": "DAWOS-SX (cabin cao)",
+     "body": "Bạt bửng nhôm",
+     "dealer": null,
+     "minRetail": 958000000,
+     "maxRetail": 958000000,
+     "promo": 20000000,
+     "net": 938000000,
+     "onRoad": 970000000,
+     "seg": "Tải trung DAWOS",
+     "dt": null
+    },
+    {
+     "model": "DAWOS-SX (cabin cao)",
+     "body": "Thùng kín",
+     "dealer": null,
+     "minRetail": 953000000,
+     "maxRetail": 953000000,
+     "promo": 20000000,
+     "net": 933000000,
+     "onRoad": 965000000,
+     "seg": "Tải trung DAWOS",
      "dt": null
     }
    ],
@@ -817,39 +1157,68 @@
    ],
    "specs": [
     [
-     "N200S",
-     "1,9 tấn, thùng 4,3–4,4 m",
-     "Diesel Cummins ISF 2.8, Euro 5",
-     "IZ45S (1,99 tấn)"
+     "H200 / H250 E5",
+     "1,9–2,4 tấn, thùng ~3,7 m",
+     "Diesel, Euro 5",
+     "IZ45S / IZ50S (thùng 3,8 m)"
     ],
     [
-     "N350S Pro",
-     "3,5 tấn, thùng 4,4–4,5 m",
+     "N200S / N250S PRO E5",
+     "1,9–2,4 tấn, thùng 4,4 m, mui lướt gió",
      "Diesel Cummins, Euro 5",
-     "IZ65M Plus (3,49 tấn)"
+     "IZ50M / IZ50M Plus"
     ],
     [
-     "N500",
-     "5 tấn, thùng 5,2 m",
+     "N350S PRO E5",
+     "3,5 tấn, thùng 4,4 m",
      "Diesel Cummins, Euro 5",
-     "Chưa có (khoảng trống 5 tấn)"
+     "IZ65M Plus / IZ62M"
     ],
     [
-     "X150",
-     "Ben 1,49 tấn",
-     "Xăng/diesel cỡ nhỏ",
-     "Chưa có"
+     "N250SL / N350SL",
+     "2,5–3,5 tấn, thùng 6,2 m",
+     "Diesel, Euro 5",
+     "IZ60SL Plus / IZ71SL Plus (thùng 6,3 m)"
+    ],
+    [
+     "N350 Plus / N500 E5",
+     "3,5–5 tấn, thùng ~5,2 m, cabin giường nằm",
+     "Diesel, Euro 5",
+     "IZ68S / IZ650SL"
+    ],
+    [
+     "N750 PLUS E5A",
+     "7,2–7,5 tấn, thùng 6,3 m",
+     "Diesel, Euro 5",
+     "JP120SL"
+    ],
+    [
+     "N800 / N900 PLUS",
+     "8–9 tấn, thùng 6,8–7,6 m, phanh hơi lốc-kê",
+     "Diesel, Euro 5",
+     "Chưa có (khoảng trống 8–9 tấn)"
+    ],
+    [
+     "H360 E5 / N180S PRO",
+     "Xe tập lái B2 / C",
+     "Diesel",
+     "IZ350 Tập lái (bằng C); chưa có bản B2"
     ]
    ],
    "promoHistory": [
-    "2026: đại lý chạy giảm 15 tr dòng Pro E5 kèm bảo dưỡng lần đầu",
-    "Trả góp 80%, lăn bánh N200S khoảng 450–465 tr"
+    "01/10–30/11/2026: TB 493/TB-JAC giảm 5–20 tr/xe trên hóa đơn; N750 Plus E5A hạ thêm 10 tr giá niêm yết",
+    "Trước đó: đại lý chạy giảm 15 tr dòng Pro E5 kèm bảo dưỡng lần đầu; trả góp 70–80%"
    ],
    "insight": [
-    "JAC đánh vào phân khúc 1,9 tấn và 3,5 tấn bằng động cơ Cummins và thùng dài; giá công bố N200S cao hơn IZ45S nhưng N350S Pro thấp hơn IZ65M Plus.",
-    "Phân khúc 5 tấn (N500) là khoảng trống của Đô Thành: khách cần 5 tấn sẽ đi thẳng sang JAC, Foton, Isuzu."
+    "Theo giá thực bán T11/2026, Đô Thành rẻ hơn JAC ở mọi phân khúc 1,9–3,5 tấn: 35 tr (thùng ngắn), 36–80 tr (thùng 4,4 m), 41–82 tr (3,5 tấn), 49–54 tr (thùng 6,3 m).",
+    "Áp lực lớn nhất: N750 PLUS E5A giảm kép 20 tr còn 623 tr, chỉ hơn JP120SL ~22 tr; JAC H360 E5 (395 tr) hút khách trường lái bằng B2.",
+    "Điểm mạnh JAC cần hóa giải: mui lướt gió tiêu chuẩn, gói thùng bửng nhôm inox niêm yết sẵn, giá niêm yết sát giá bán thực tế; khoảng trống của Đô Thành: tải 8–9 tấn thùng 7,6 m."
    ],
    "sources": [
+    [
+     "Báo cáo chiến lược cạnh tranh Đô Thành vs JAC T11/2026 (nội bộ DAC, theo TB 493/TB-JAC)",
+     null
+    ],
     [
      "Ô tô Sài Gòn: bảng giá JAC 11/2026",
      "https://otosaigonvn.com/xe-jac"
@@ -865,6 +1234,108 @@
     [
      "Britfoot: giá JAC 11/2026",
      "https://www.britfoot.com/gia-xe-tai-jac/"
+    ]
+   ],
+   "vsDT": [
+    [
+     "1,9–2,4 tấn thùng ngắn ~3,8 m",
+     "H200/H250 E5 385 tr",
+     "IZ45S/IZ50S ~350 tr",
+     "ĐT rẻ hơn ~35 tr",
+     "Lợi thế lớn: thùng 3,8 m rộng hơn (3,7 m), động cơ công nghệ Isuzu"
+    ],
+    [
+     "1,9–2,4 tấn thùng 4,4 m",
+     "N200S/N250S PRO 464–469 tr",
+     "IZ50M ~384 tr",
+     "ĐT rẻ hơn ~80 tr",
+     "Vô địch tầm giá cho khách chạy hàng nhẹ cần thu hồi vốn nhanh"
+    ],
+    [
+     "1,9–2,4 tấn thùng 4,4 m (cabin mới)",
+     "N200S/N250S PRO 464–469 tr",
+     "IZ50M Plus ~428 tr",
+     "ĐT rẻ hơn ~36–41 tr",
+     "Cabin mới tương đương JAC, giá thực bán thấp hơn gần 40 tr"
+    ],
+    [
+     "3,5 tấn thùng 4,4 m (chủ lực)",
+     "N350S PRO 474 tr",
+     "IZ65M Plus ~433 tr / IZ62M ~392 tr",
+     "ĐT rẻ hơn 41–82 tr",
+     "Phân khúc dễ thắng nhất, cả cá nhân và doanh nghiệp"
+    ],
+    [
+     "2,5–3,5 tấn thùng siêu dài 6,2–6,3 m",
+     "N250SL/N350SL 565–570 tr",
+     "IZ60SL+/IZ71SL+ ~516 tr",
+     "ĐT rẻ hơn ~49–54 tr",
+     "Lợi thế kép: rẻ hơn, thùng dài hơn (6,3 m vs 6,2 m), cabin đời mới"
+    ],
+    [
+     "3,5–5 tấn thùng ~5,2 m",
+     "N350 Plus/N500 541–545 tr",
+     "IZ68S/IZ650SL ~495–515 tr",
+     "ĐT rẻ hơn ~26–46 tr",
+     "Cạnh tranh sát: JAC cabin rộng kèm giường nằm"
+    ],
+    [
+     "7,2–7,5 tấn thùng 6,3 m",
+     "N750 PLUS E5A 623 tr",
+     "JP120SL ~601 tr",
+     "ĐT rẻ hơn ~22 tr",
+     "Báo động đỏ: JAC giảm kép 20 tr, thu hẹp khoảng cách"
+    ],
+    [
+     "8–9 tấn thùng 6,8–7,6 m",
+     "N800/N900 PLUS 756–805 tr",
+     "JP120EXL (7,2 tấn/7,2 m) ~635 tr",
+     "Khác phân khúc",
+     "Khoảng trống: ĐT thiếu cấu hình 8–9 tấn, thùng 7,6 m, phanh hơi lốc-kê"
+    ],
+    [
+     "Xe tập lái",
+     "H360 E5 395 tr / N180S PRO 493 tr",
+     "IZ350 Tập lái ~435 tr",
+     "ĐT đắt hơn H360 ~40 tr",
+     "H360 phá giá nhóm sát hạch B2; IZ350 giữ tốt nhóm bằng C"
+    ]
+   ],
+   "recs": [
+    [
+     "Mui lướt gió tiêu chuẩn",
+     "Lắp sẵn mui lướt gió đồng màu cabin cho IZ50M+, IZ65M+, IZ71SL+ và JP120 (chi phí ~2,5–3 tr, giá trị cảm nhận >10 tr)",
+     "Làm ngay T11/2026"
+    ],
+    [
+     "Quy cách thùng nhà máy",
+     "Công bố song song giá thùng bạt tiêu chuẩn và bạt bửng nhôm inox 430 (chênh 35–38 tr) cho IZ71SL+ và JP120, đánh miền Tây, miền Trung",
+     "Làm ngay T11/2026"
+    ],
+    [
+     "Giá niêm yết vs giá net",
+     "Hạ giá niêm yết IZ/JP sát giá thực bán, gói KM công bố còn 15–20 tr thay vì giảm 40–55 tr, tăng khách hỏi từ kênh Digital",
+     "Làm ngay T11/2026"
+    ],
+    [
+     "Bảo vệ phân khúc 7,5 tấn",
+     "Giữ gói 50 tr JP120SL nhưng chuyển 30 tr thành giảm trực tiếp hóa đơn (net ~621 tr) + 20 tr gói bảo dưỡng/bảo hiểm vật chất",
+     "Làm ngay T11/2026"
+    ],
+    [
+     "Xe tập lái",
+     "Ra mắt IZ45S/IZ50S tập lái giá net ~400 tr đấu H360 E5 (bằng B2); giữ IZ350 tập lái (~435 tr) cho bằng C",
+     "Ngắn hạn Q1/2027"
+    ],
+    [
+     "Lỗ hổng 8–9 tấn thùng 7,6 m",
+     "Phát triển JP120 nâng tải 8,0–8,5 tấn, thùng 7,5–7,6 m, phanh hơi lốc-kê, tùy chọn cabin giường nằm",
+     "Trung hạn 2027"
+    ],
+    [
+     "TVBH săn khách JAC",
+     "Thưởng nóng 3–5 tr/xe khi TVBH chuyển khách đang báo giá/đặt cọc JAC sang IZ50M+, IZ65M+, IZ71SL+, JP120SL; truyền thông bảo hành 5 năm/200.000 km",
+     "Làm ngay"
     ]
    ]
   },
