@@ -735,6 +735,10 @@
   [
    "Cục Thống kê: CPI tháng 10 và 10 tháng 2026 (cả nước 4,57%; Cục Thống kê không công bố CPI theo tỉnh)",
    "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
+  ],
+  [
+   "Cục Đăng kiểm VN: văn bản 419/ĐKVN-PTGTĐB (06/02/2026), xe hết niên hạn sử dụng năm 2025 theo tỉnh",
+   "https://moc.gov.vn/Images/editor/files/QLVB/2026/BXD_419-%C4%90KVN-PTGT%C4%90B_06022026.pdf"
   ]
  ],
  "growth9m26": {
@@ -1137,6 +1141,178 @@
     "VietnamPlus: Bac Ninh's CPI up 4.07% in nine months",
     "https://en.vietnamplus.vn/bac-ninhs-cpi-up-407-in-nine-months-post353543.vnp"
    ]
+  }
+ },
+ "eol2025": {
+  "Tuyên Quang": {
+   "truck": 79,
+   "bus": 3,
+   "total": 82
+  },
+  "Lào Cai": {
+   "truck": 64,
+   "bus": 2,
+   "total": 66
+  },
+  "Thái Nguyên": {
+   "truck": 68,
+   "bus": 0,
+   "total": 68
+  },
+  "Phú Thọ": {
+   "truck": 188,
+   "bus": 0,
+   "total": 188
+  },
+  "Bắc Ninh": {
+   "truck": 47,
+   "bus": 1,
+   "total": 48
+  },
+  "Hưng Yên": {
+   "truck": 91,
+   "bus": 50,
+   "total": 141
+  },
+  "Hải Phòng": {
+   "truck": 478,
+   "bus": 5,
+   "total": 483
+  },
+  "Ninh Bình": {
+   "truck": 163,
+   "bus": 4,
+   "total": 167
+  },
+  "Quảng Trị": {
+   "truck": 126,
+   "bus": 0,
+   "total": 126
+  },
+  "Đà Nẵng": {
+   "truck": 171,
+   "bus": 1,
+   "total": 172
+  },
+  "Quảng Ngãi": {
+   "truck": 207,
+   "bus": 0,
+   "total": 207
+  },
+  "Gia Lai": {
+   "truck": 439,
+   "bus": 1,
+   "total": 439
+  },
+  "Khánh Hòa": {
+   "truck": 264,
+   "bus": 0,
+   "total": 264
+  },
+  "Lâm Đồng": {
+   "truck": 215,
+   "bus": 1,
+   "total": 216
+  },
+  "Đắk Lắk": {
+   "truck": 388,
+   "bus": 1,
+   "total": 389
+  },
+  "TP. Hồ Chí Minh": {
+   "truck": 2985,
+   "bus": 4,
+   "total": 2989
+  },
+  "Đồng Nai": {
+   "truck": 815,
+   "bus": 1,
+   "total": 815
+  },
+  "Tây Ninh": {
+   "truck": 264,
+   "bus": 0,
+   "total": 264
+  },
+  "Cần Thơ": {
+   "truck": 131,
+   "bus": 0,
+   "total": 131
+  },
+  "Vĩnh Long": {
+   "truck": 136,
+   "bus": 0,
+   "total": 136
+  },
+  "Đồng Tháp": {
+   "truck": 173,
+   "bus": 0,
+   "total": 173
+  },
+  "Cà Mau": {
+   "truck": 24,
+   "bus": 0,
+   "total": 24
+  },
+  "An Giang": {
+   "truck": 140,
+   "bus": 0,
+   "total": 140
+  },
+  "Hà Nội": {
+   "truck": 1556,
+   "bus": 2,
+   "total": 1558
+  },
+  "Thanh Hóa": {
+   "truck": 216,
+   "bus": 3,
+   "total": 219
+  },
+  "Lạng Sơn": {
+   "truck": 23,
+   "bus": 1,
+   "total": 24
+  },
+  "Huế": {
+   "truck": 83,
+   "bus": 0,
+   "total": 83
+  },
+  "Nghệ An": {
+   "truck": 218,
+   "bus": 1,
+   "total": 219
+  },
+  "Hà Tĩnh": {
+   "truck": 76,
+   "bus": 0,
+   "total": 76
+  },
+  "Lai Châu": {
+   "truck": 6,
+   "bus": 2,
+   "total": 8
+  },
+  "Điện Biên": {
+   "truck": 23,
+   "bus": 2,
+   "total": 25
+  },
+  "Cao Bằng": {
+   "truck": 5,
+   "bus": 0,
+   "total": 5
+  },
+  "Quảng Ninh": {
+   "truck": 76,
+   "bus": 2,
+   "total": 78
+  },
+  "Sơn La": {
+   "truck": 45,
+   "bus": 2,
+   "total": 47
   }
  }
 }

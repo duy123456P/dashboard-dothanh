@@ -55,6 +55,7 @@ const MET = [
   ["market", "Thị trường xe", "ĐK mới xe tải 2026 (quy năm)", "xe", r => r._market, 1, "ĐK thực T10/2026 × tổng 10T/2026"],
   ["regT10", "Thị trường xe", "ĐK mới xe tải T10/2026 (thực)", "xe", r => r.regT10 ?? null, 1, "File DKM tháng 10/2026"],
   ["dtT10", "Thị trường xe", "Thị phần Đô Thành T10/2026 (ĐK thực)", "%", r => r.regT10 ? r.regT10dt / r.regT10 * 100 : null, 1, "File DKM tháng 10/2026"],
+  ["eol", "Thị trường xe", "Xe tải hết niên hạn 2025 (phải thay thế)", "xe", r => ((PS.eol2025 || {})[r.name] || {}).truck ?? null, 1, "Cục Đăng kiểm, văn bản 419/ĐKVN-PTGTĐB 06/02/2026"],
   ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["carreg", "Thị trường xe", "Ô tô mọi loại 2025 (ĐK thật hoặc ước từ VAMA)", "xe", r => carEst(r).v, 1, "Cục CSGT (tỉnh có số) · ước từ tổng VAMA + VinFast + Hyundai"],
   ["heavy", "Thị trường xe", "Tỷ trọng tải nặng + đầu kéo", "% thị trường", r => r.mix ? r.mix[2] + r.mix[3] : null, 0, "ước theo cơ cấu ngành"],
@@ -77,6 +78,7 @@ const U = {
   vne: ["VnEconomy: vị thế kinh tế 34 tỉnh sau sáp nhập (dân số, GRDP)", "https://vneconomy.vn/vi-the-kinh-te-tinh-thanh-pho-sau-sap-nhap-dua-theo-mot-so-chi-tieu-chu-yeu.htm"],
   vnx: ["VnExpress: quy mô kinh tế các địa phương sau sáp nhập", "https://vnexpress.net/quy-mo-kinh-te-cac-dia-phuong-the-nao-sau-sap-nhap-4874073.html"],
   g25: ["Cục Thống kê: thông cáo GRDP 34 tỉnh năm 2025", "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"],
+  dk419: ["Cục Đăng kiểm: văn bản 419/ĐKVN-PTGTĐB (06/02/2026), xe hết niên hạn năm 2025 theo tỉnh", "https://moc.gov.vn/Images/editor/files/QLVB/2026/BXD_419-%C4%90KVN-PTGT%C4%90B_06022026.pdf"],
   dkm: ["File DKM_10.2026.xlsx: đăng ký mới xe tải từng xe tháng 10/2026 (nội bộ DAC)", null], dacm: ["Báo cáo thị trường DAC tháng 10/2026 (IZ, KAMA): 10T/2026 98.955 xe", null],
   g9: ["VOV: GRDP 34 tỉnh 9 tháng 2026", "https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"],
   ksms: ["Cục Thống kê: Khảo sát mức sống dân cư 2025 (PDF)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/Thong-cao-bao-chi-ksms2025.pdf"],
@@ -97,7 +99,7 @@ const U = {
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
 const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["ng", "g9"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["nsoX"], labor: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["dkm", "dacm"], regT10: ["dkm"], dtT10: ["dkm"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+  g9m26: ["g9"], fdi: ["nsoX"], labor: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["dkm", "dacm"], regT10: ["dkm"], eol: ["dk419"], dtT10: ["dkm"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
@@ -215,7 +217,7 @@ try{ CV.renderAll && CV.renderAll(); }catch(e){ console.warn(e); }
 function boardMd(name){
   const r = CV.findRow(name); if(!r) return "Không tìm thấy tỉnh.";
   const T = tactics(r), P = T.P;
-  return `# Phòng chiến lược: ${r.name}\n_Thế trận đề xuất: **${P.t}** (hấp dẫn ${fmtInt(P.attr*100)}/100, nội lực ${fmtInt(P.str*100)}/100). ${P.why}_\n\n${[...new Set(MET.map(m => m[1]))].map(g => `## ${g}\n| Chỉ số | Giá trị | Hạng | Nguồn |\n|---|---|---|---|\n${MET.filter(m => m[1] === g).map(m => { const v = m[4](r), rk = rankOf(m[0], r), off = official(m[0], r); return `| ${m[2]} | ${v == null || !isFinite(v) ? "—" : (m[0] === "cover" && v >= 99 ? "không bán" : fmt1(v)) + " " + m[3]} | ${rk ? (off || rk[0]) + "/" + (off ? 34 : rk[1]) : "—"} | ${srcMd(m[0], r)} |`; }).join("\n")}`).join("\n\n")}\n\n## Đối sách ngắn hạn 30–90 ngày\n${T.lines.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Chiến lược dài hạn 1–3 năm\n${T.longs.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Văn hóa, mùa vụ\n- ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Lễ hội: ${r.festivals}; đặc sản: ${r.specialties}\n- Mùa vụ: ${(r.seasonNotes || []).join("; ")}\n`;
+  return `# Phòng chiến lược: ${r.name}\n_Thế trận đề xuất: **${P.t}** (hấp dẫn ${fmtInt(P.attr*100)}/100, nội lực ${fmtInt(P.str*100)}/100). ${P.why}_\n\n${[...new Set(MET.map(m => m[1]))].map(g => `## ${g}\n| Chỉ số | Giá trị | Hạng | Nguồn |\n|---|---|---|---|\n${MET.filter(m => m[1] === g).map(m => { const v = m[4](r), rk = rankOf(m[0], r), off = official(m[0], r); return `| ${m[2]} | ${v == null || !isFinite(v) ? "—" : (m[0] === "cover" && v >= 99 ? "không bán" : Number.isInteger(v) || Math.abs(v) >= 1000 ? fmtInt(v) : fmt1(v)) + " " + m[3]} | ${rk ? (off || rk[0]) + "/" + (off ? 34 : rk[1]) : "—"} | ${srcMd(m[0], r)} |`; }).join("\n")}`).join("\n\n")}\n\n## Đối sách ngắn hạn 30–90 ngày\n${T.lines.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Chiến lược dài hạn 1–3 năm\n${T.longs.map((l,i) => `${i+1}. ${l}`).join("\n")}\n\n## Văn hóa, mùa vụ\n- ${r.culture}\n- Tâm lý khách: ${r.psyche}\n- Lễ hội: ${r.festivals}; đặc sản: ${r.specialties}\n- Mùa vụ: ${(r.seasonNotes || []).join("; ")}\n`;
 }
 function overviewMd(){
   const rows = CV.rows.map(r => ({r, P: posture(r)})).sort((a,b) => b.P.attr + b.P.str - a.P.attr - a.P.str);
