@@ -21,11 +21,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 rd = lambda f: open(os.path.join(HERE, f), encoding="utf-8").read()
 
 MODULES = ["ops.js", "lens.js", "lyhoc.js", "legal.js", "comp.js", "hud.js", "sales.js", "fc.js", "glossary.js", "model.js", "inv.js", "tx.js",
-           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "market.js", "layout.js"]
+           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "market.js", "customers.js", "layout.js"]
 DATA = {  # placeholder → file JSON (nhúng dạng thẻ <script type="application/json"> hoặc hằng trong module)
     "GEO": "vn34.geojson", "DATA": "provinces.json", "NETWORK": "network.json", "PRICELIST": "pricelist.json", "PRODUCTS": "products.json",
     "INFRA": "infra.json", "SOURCES": "sources.json", "COMPNET": "compnet.json", "TX": "tx.json", "PS": "provstats.json", "FG": "factory.json",
-    "INV": "inventory.json", "SALES": "sales.json", "COMP": "competitors.json", "LEGAL": "legal.json"}
+    "INV": "inventory.json", "SALES": "sales.json", "COMP": "competitors.json", "LEGAL": "legal.json", "CUST": "customers.json"}
 INLINE = {"radar.js": ("/*__RADAR__*/null", "radar.json"), "policy.js": ("/*__BONUS__*/null", "bonus2026.json"), "market.js": ("/*__MARKET__*/null", "market2026.json")}
 IMAGES = {"LOGO": ("logo-dothanh.png", "image/png"), "BBHLOGO": ("logo-bbh.png", "image/png"), "RELIEF": ("relief.webp", "image/webp"), "HEIGHT": ("height.webp", "image/webp")}
 
