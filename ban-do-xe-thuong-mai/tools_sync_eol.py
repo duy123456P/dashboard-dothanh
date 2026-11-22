@@ -54,7 +54,7 @@ for code in codes:
         got += r; page += 1; time.sleep(0.4)
     p = PLATE.get(int(code), "?"); a = res.setdefault(p, {"n": 0, "brands": {}, "years": {}})
     for b, y in got:
-        b = re.sub(r"\s+", " ", b)
+        b = re.sub(r"\s+", " ", b); b = {"HUYNDAI": "HYUNDAI", "HUYNHDAI": "HYUNDAI", "KIA MOTORS": "KIA"}.get(b, b)
         a["n"] += 1; a["brands"][b] = a["brands"].get(b, 0) + 1; a["years"][y] = a["years"].get(y, 0) + 1
     print(code, p, len(got), flush=True); time.sleep(0.5)
 for a in res.values(): a["brands"] = dict(sorted(a["brands"].items(), key=lambda z: -z[1]))
