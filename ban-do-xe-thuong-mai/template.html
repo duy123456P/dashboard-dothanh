@@ -578,13 +578,14 @@ const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",i
 const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
 const COMP = [["c_thaco","Thaco"],["c_hyundai","Hyundai"],["c_isuzu","Isuzu"],["c_hino","Hino"],["c_fuso","Fuso"],["c_china","Xe Trung Quốc"],["c_other","Khác"]];
 const NUM_KEYS = ["pop","area","grdp","growth","cpi","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
-const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],["cpi","CPI tỉnh 10T/2026 (%)",0.01],
+const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],["cpi","CPI tỉnh 2026 (%) · trống = cả nước 4,57",0.01],
   ["elev","Độ cao TB (m)",10],["factor","Hệ số vùng",0.05],["reg","ĐK mới thực tế",1],["uio","UIO thực tế",100],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1],
   ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
 const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]},{pos:[-20,250,12],tgt:[-14,0,2]},{pos:[10,120,175],tgt:[-18,0,0]}];
 
 let rows = clone(BASE), tam = 126408, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
 let showComp = false, compGroup = null, showCust = false, custGroup = null;
+const PSD = (() => { try{ return JSON.parse(document.getElementById("ps-data").textContent); }catch(e){ return {}; } })();
 const CUSTD = (() => { try{ return JSON.parse(document.getElementById("cust-data").textContent); }catch(e){ return {prospects: [], buyers: {districts: [], byProv: {}}}; } })();
 const CUST_COL = s => /chốt/i.test(s) ? "#46e3ff" : /quan tâm|hẹn gặp|báo giá/i.test(s) ? "#3ddc84" : /không|sai số/i.test(s) ? "#8a96a8" : "#ffb020";
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
@@ -1271,7 +1272,7 @@ function renderDossier(){
       <div class="stat"><div class="v">${fmtInt(r.grdp2026e ?? r.grdp)}</div><div class="l">GRDP 2026 (ước), nghìn tỷ · 2025: ${fmtInt(r.grdp)} · #${r._rkgrdp}</div></div>
       <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người ${r.gpc2025 ? "2025 (NSO)" : "2024 (ước)"} · #${r._rk_gpc}</div></div>
       <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
-      <div class="stat"><div class="v">${r.cpi==null||r.cpi===""?"4,57%":fmt1(+r.cpi)+"%"}</div><div class="l">${r.cpi==null||r.cpi===""?"CPI bình quân 10T/2026, cả nước (chưa có số tỉnh)":"CPI bình quân 10T/2026 của tỉnh"}</div></div>
+      <div class="stat"><div class="v">${r.cpi==null||r.cpi===""?"4,57%":fmt1(+r.cpi)+"%"}</div><div class="l">${r.cpi==null||r.cpi===""?"CPI bình quân 10T/2026 cả nước (Cục Thống kê không công bố CPI tỉnh)":"CPI " + ((PSD.cpi2026 || {})[r.name] || {period: "2026 của tỉnh"}).period}</div></div>
     </div>
     <div class="segbar" style="margin-top:10px">${r.econ.map((v,i)=>`<span style="width:${v}%;background:${ECON_COL[i]}" title="${ECON[i]} ${v}%"></span>`).join("")}</div>
     <div class="seglist num">${r.econ.map((v,i)=>`<div><i style="background:${ECON_COL[i]}"></i>${ECON[i]}<b>${fmt1(v)}%</b></div>`).join("")}</div>

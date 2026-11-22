@@ -6,7 +6,10 @@
   "fdi10m26": 54850,
   "publicInv10m26": 74.1,
   "gdp9m26": 9.01,
-  "publicInv9m26": 64.8
+  "publicInv9m26": 64.8,
+  "cpi10m26": 4.57,
+  "cpi10yoy": 5.09,
+  "core10m26": 4.24
  },
  "growth2025": {
   "Quảng Ninh": {
@@ -728,6 +731,10 @@
   [
    "Nhân Dân: GRDP nhiều tỉnh 9 tháng 2026",
    "https://nhandan.vn/tang-truong-grdp-nhieu-tinh-thanh-pho-9-thang-nam-2026-vuot-muc-dat-ra-post993624.html"
+  ],
+  [
+   "Cục Thống kê: CPI tháng 10 và 10 tháng 2026 (cả nước 4,57%; Cục Thống kê không công bố CPI theo tỉnh)",
+   "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
   ]
  ],
  "growth9m26": {
@@ -975,5 +982,161 @@
   "Đồng Tháp": 3403.8,
   "Cà Mau": 2150.4,
   "An Giang": 3694.6
+ },
+ "labor1026": {
+  "Hà Nội": {
+   "mom": 0.35,
+   "yoy": 1.36
+  },
+  "Bắc Ninh": {
+   "mom": 1.16,
+   "yoy": 9.14
+  },
+  "Quảng Ninh": {
+   "mom": -0.37,
+   "yoy": 1.72
+  },
+  "Hải Phòng": {
+   "mom": 0.18,
+   "yoy": 0.07
+  },
+  "Hưng Yên": {
+   "mom": 0.73,
+   "yoy": 2.22
+  },
+  "Ninh Bình": {
+   "mom": 1.59,
+   "yoy": 3.64
+  },
+  "Cao Bằng": {
+   "mom": 0.57,
+   "yoy": 4.2
+  },
+  "Tuyên Quang": {
+   "mom": 0.75,
+   "yoy": 1.28
+  },
+  "Lào Cai": {
+   "mom": 1.66,
+   "yoy": 10.9
+  },
+  "Thái Nguyên": {
+   "mom": 0.16,
+   "yoy": -0.59
+  },
+  "Lạng Sơn": {
+   "mom": 0.64,
+   "yoy": -0.09
+  },
+  "Phú Thọ": {
+   "mom": 1.56,
+   "yoy": 7.26
+  },
+  "Điện Biên": {
+   "mom": 0.0,
+   "yoy": 3.34
+  },
+  "Lai Châu": {
+   "mom": -0.33,
+   "yoy": 1.79
+  },
+  "Sơn La": {
+   "mom": 1.29,
+   "yoy": 20.3
+  },
+  "Thanh Hóa": {
+   "mom": 0.13,
+   "yoy": 0.18
+  },
+  "Nghệ An": {
+   "mom": 1.02,
+   "yoy": 26.86
+  },
+  "Hà Tĩnh": {
+   "mom": 4.48,
+   "yoy": 39.35
+  },
+  "Quảng Trị": {
+   "mom": 0.42,
+   "yoy": 1.38
+  },
+  "Huế": {
+   "mom": 0.66,
+   "yoy": 7.59
+  },
+  "Đà Nẵng": {
+   "mom": 0.66,
+   "yoy": 0.16
+  },
+  "Quảng Ngãi": {
+   "mom": 0.51,
+   "yoy": 4.3
+  },
+  "Gia Lai": {
+   "mom": 0.97,
+   "yoy": 6.53
+  },
+  "Khánh Hòa": {
+   "mom": 0.56,
+   "yoy": 3.6
+  },
+  "Đắk Lắk": {
+   "mom": 0.07,
+   "yoy": 4.2
+  },
+  "Lâm Đồng": {
+   "mom": 1.82,
+   "yoy": 10.02
+  },
+  "Tây Ninh": {
+   "mom": 1.46,
+   "yoy": 0.61
+  },
+  "Đồng Nai": {
+   "mom": 0.42,
+   "yoy": -0.8
+  },
+  "TP. Hồ Chí Minh": {
+   "mom": 0.9,
+   "yoy": 2.89
+  },
+  "Vĩnh Long": {
+   "mom": 0.77,
+   "yoy": -1.3
+  },
+  "Đồng Tháp": {
+   "mom": 1.32,
+   "yoy": -1.0
+  },
+  "An Giang": {
+   "mom": 1.28,
+   "yoy": 5.07
+  },
+  "Cần Thơ": {
+   "mom": 0.95,
+   "yoy": 8.99
+  },
+  "Cà Mau": {
+   "mom": 1.6,
+   "yoy": 18.23
+  }
+ },
+ "cpi2026": {
+  "Hà Nội": {
+   "v": 4.92,
+   "period": "bình quân 10 tháng 2026",
+   "src": [
+    "Báo Đầu tư: CPI bình quân 10 tháng của Hà Nội tăng 4,92%",
+    "https://baodautu.vn/cpi-binh-quan-10-thang-cua-ha-noi-tang-492-d736983.html"
+   ]
+  },
+  "Bắc Ninh": {
+   "v": 4.07,
+   "period": "bình quân 9 tháng 2026 (khu vực TP Bắc Ninh)",
+   "src": [
+    "VietnamPlus: Bac Ninh's CPI up 4.07% in nine months",
+    "https://en.vietnamplus.vn/bac-ninhs-cpi-up-407-in-nine-months-post353543.vnp"
+   ]
+  }
  }
 }
