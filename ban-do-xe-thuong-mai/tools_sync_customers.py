@@ -132,7 +132,7 @@ for f in FILES:
             if not dist and g("addr"):
                 parts = [p.strip() for p in re.split(r"[,\-–]", nfc(g("addr"))) if p.strip()]
                 dist = parts[-2] if len(parts) >= 2 else ""
-            dist = re.sub(r"^(quận|huyện|thị xã|thành phố|tp\.?|tx\.?|q\.?|h\.?)\s*", "", dist, flags=re.I).strip().title()
+            dist = re.sub(r"^(?:(?:quận|huyện|thị xã|thành phố)\s+|(?:tp|tx|q|h)\.\s*|(?:tp|tx)\s+)", "", dist, flags=re.I).strip().title()
             rec = {"y": y, "d": d.isoformat() if d else "", "prov": pv, "provOld": nfc(g("prov")).title(), "dist": dist, "model": model_of(g("model")), "org": is_org(g("name"), g("type")), "ind": nfc(g("ind")), "src": yfile}
             k = vin[-8:] if len(vin) >= 10 else "%d:%s:%s:%s" % (yfile, rec["model"], fold(g("dl")), vin)   # file 2023 chỉ ghi số khung rút gọn
             if k not in recs or rec["d"] >= recs[k]["d"]: recs[k] = rec
@@ -163,7 +163,8 @@ for (pv, _), a in sorted(D.items(), key=lambda z: -z[1]["n"]):
     c = geo(dist, po, pv) if dist and a["n"] >= 2 else None   # huyện chỉ 1 xe: tính vào tỉnh, không tra tọa độ
     if c and prov_at(c[0], c[1]) not in (pv, None): c = None   # tọa độ lệch tỉnh: bỏ
     if c: a["lat"], a["lng"] = c
-    a["models"] = dict(sorted(a["models"].items(), key=lambda z: -z[1])[:6]); dists.append(a)
+    a["models"] = dict(sorted(a["models"].items(), key=lambda z: -z[1])[:6])
+    if a["n"] >= 2: dists.append(a)   # huyện 1 xe chỉ tính trong tổng tỉnh (gọn dữ liệu)
 json.dump(cache, open(GEO, "w", encoding="utf-8"), ensure_ascii=False)
 byProv = {}
 for x in R:
