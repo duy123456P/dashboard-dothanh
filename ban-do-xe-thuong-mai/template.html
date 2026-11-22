@@ -585,7 +585,7 @@ const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]
 
 let rows = clone(BASE), tam = 126408, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
 let showComp = false, compGroup = null, showCust = false, custGroup = null;
-const CUST = (() => { try{ return JSON.parse(document.getElementById("cust-data").textContent); }catch(e){ return {prospects: [], buyers: {districts: [], byProv: {}}}; } })();
+const CUSTD = (() => { try{ return JSON.parse(document.getElementById("cust-data").textContent); }catch(e){ return {prospects: [], buyers: {districts: [], byProv: {}}}; } })();
 const CUST_COL = s => /chốt/i.test(s) ? "#46e3ff" : /quan tâm|hẹn gặp|báo giá/i.test(s) ? "#3ddc84" : /không|sai số/i.test(s) ? "#8a96a8" : "#ffb020";
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
 
@@ -734,12 +734,12 @@ function renderKpis(){
   const items = [
     [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
-    [fmtInt(sum("grdp")), "GRDP (nghìn tỷ đ)"],
+    [fmtInt(sum("grdp2026e") || sum("grdp")), "GRDP 2026 (ước), nghìn tỷ đ · 2025: " + fmtInt(sum("grdp"))],
     [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2026 (quy năm, ĐK thực T10)" : "ĐK mới xe tải 2026 quy năm · 10T/2026: 98.955 xe (+24%)"],
     [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm 8/2026"],
     [`${cs.filter(c=>c.type==="C1").length} · ${cs.filter(c=>c.type==="C2").length}`, "Đại lý cấp 1 · cấp 2"],
     [fmtInt(sales), `Bán lẻ lũy kế T10 · ${sum("target") ? fmtInt(sales/sum("target")*100)+"% KH" : "—"}`],
-    [sales ? fmt1(sales/market*100)+"%" : "—", "Bán lẻ T1–T10 / ĐK mới 2025"],
+    [sum("regT10") ? fmt1(sum("regT10dt")/sum("regT10")*100)+"%" : "—", `Thị phần Đô Thành theo ĐK thực T10/2026 (${fmtInt(sum("regT10dt"))}/${fmtInt(sum("regT10"))} xe)`],
   ];
   document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="glass kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
 }
@@ -948,11 +948,11 @@ function dotTexture(col, ring){
 function buildCustPins(){
   if(!custGroup || custGroup.children.length) return;
   const tx = {}, tex = col => tx[col] || (tx[col] = dotTexture(col, false)), ringT = dotTexture("#b07cff", true);
-  const ds = (CUST.buyers || {}).districts || [], mx = Math.max(...ds.map(d => d.n), 1);
+  const ds = (CUSTD.buyers || {}).districts || [], mx = Math.max(...ds.map(d => d.n), 1);
   ds.filter(d => d.lat != null).forEach(d => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: ringT, depthTest: true, transparent: true, sizeAttenuation: false}));
     const sz = 0.018 + 0.05 * Math.sqrt(d.n / mx); s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {buy: d, sz, sq: true}; s.renderOrder = 3; custGroup.add(s); });
-  (CUST.prospects || []).forEach(p => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: tex(CUST_COL(p.status)), depthTest: true, transparent: true, sizeAttenuation: false}));
-    const sz = 0.016; s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {lead: p, sz, sq: true}; s.renderOrder = 6; custGroup.add(s); });
+  (CUSTD.prospects || []).forEach(p => { const s = new THREE.Sprite(new THREE.SpriteMaterial({map: tex(CUST_COL(p.status)), depthTest: true, transparent: true, sizeAttenuation: false}));
+    const sz = 0.021; s.scale.set(sz, sz, 1); s.center.set(0.5, 0.5); s.userData = {lead: p, sz, sq: true}; s.renderOrder = 6; custGroup.add(s); });
 }
 function custTip(o){
   if(o.lead){ const p = o.lead; return `<div class="t"><span class="dot" style="background:${CUST_COL(p.status)}"></span>Khách tiềm năng · ${esc(p.name)}</div><div class="muted">${esc(p.ind)} · ${esc(p.area)}, ${esc(p.province || "")}</div><div class="muted">${p.phone ? "ĐT: " + esc(p.phone) + " · " : ""}Trạng thái: <b>${esc(p.status)}</b></div><div class="tiny" style="color:var(--cyan)">Nhấn để mở Google Maps</div>`; }
@@ -1145,7 +1145,7 @@ function renderLegend(){
   const el = document.getElementById("legend");
   const c4 = CENTERS.filter(c=>c.type==="C1").length, c3 = CENTERS.filter(c=>c.type==="C2").length, ct = CENTERS.filter(c=>c.type==="TDV").length;
   const pinsL = `<div class="pinl"><span><i class="dot" style="background:var(--pin-4s);box-shadow:0 0 8px var(--pin-4s)"></i>Đại lý cấp 1 (${c4})</span><span><i class="dot" style="background:var(--pin-3s);box-shadow:0 0 8px var(--pin-3s)"></i>Đại lý cấp 2 (${c3})</span><span><i class="dot" style="background:var(--pin-tdv);box-shadow:0 0 8px var(--pin-tdv)"></i>Trạm DV riêng (${ct})</span></div>`
-  const custL = showCust ? `<div class="pinl" style="margin-top:4px">${[["#ffb020","Chưa gọi"],["#3ddc84","Quan tâm, hẹn gặp, báo giá"],["#46e3ff","Chốt đơn"],["#8a96a8","Không nhu cầu"]].map(([c,l]) => `<span><i class="dot" style="background:${c}"></i>${l}</span>`).join("")}<span><i class="dot" style="background:#b07cff55;border:2px solid #b07cff"></i>Khách đã mua (${fmtInt((CUST.buyers||{}).total||0)} xe, theo huyện)</span><span class="muted tiny">${(CUST.prospects||[]).length} khách tiềm năng</span></div>` : "";
+  const custL = showCust ? `<div class="pinl" style="margin-top:4px">${[["#ffb020","Chưa gọi"],["#3ddc84","Quan tâm, hẹn gặp, báo giá"],["#46e3ff","Chốt đơn"],["#8a96a8","Không nhu cầu"]].map(([c,l]) => `<span><i class="dot" style="background:${c}"></i>${l}</span>`).join("")}<span><i class="dot" style="background:#b07cff55;border:2px solid #b07cff"></i>Khách đã mua (${fmtInt((CUSTD.buyers||{}).total||0)} xe, theo huyện)</span><span class="muted tiny">${(CUSTD.prospects||[]).length} khách tiềm năng</span></div>` : "";
   const compL = showComp ? `<div class="pinl" style="margin-top:4px">${Object.entries(CNET.brands).map(([k,b]) => `<span><i class="dot" style="background:${b.color};border-radius:2px;transform:rotate(45deg)"></i>${esc(b.name)} (${CNET.points.filter(p=>p.b===k).length})</span>`).join("")}<span class="muted tiny">điểm đã xác minh</span></div>` : "";
     + (showBars && metric === "sales" ? `<div class="pinl"><span><i class="dot" style="background:var(--good)"></i>≥ 70% KH</span><span><i class="dot" style="background:var(--warn)"></i>50–70%</span><span><i class="dot" style="background:var(--bad)"></i>&lt; 50%</span></div>` : "");
   const relief = `<div class="gr"><div class="lh"><b>Độ cao địa hình</b></div><div class="bar" style="background:linear-gradient(90deg,#d6f0c4,#a0d696,#6eb478,#aabe78,#d6c480,#c49664,#a06e50,#ece2d6)"></div><div class="ends num"><span>0 m</span><span>1.000</span><span>2.000</span><span>3.000 m</span></div></div>`;
@@ -2297,7 +2297,7 @@ function renderAll(){
   uioIn.value = uioNat; renderPriceSec(); scoreSites(); renderSiteSection(); benToolsRefresh(); renderStruct(); syncButtons(); renderKpis(); refreshMap(); renderLegend(); renderRank(); renderTable(); renderDossier(); renderCenters(); renderMatrix();
 }
 window.__CV = {
-  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, CUST, gmapUrl, gmapA, gmapMd, placeOf, get showComp(){ return showComp; }, get showCust(){ return showCust; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
+  get rows(){ return rows; }, set rows(v){ rows = v; }, BASE, NET, CNET, CUST: CUSTD, gmapUrl, gmapA, gmapMd, placeOf, get showComp(){ return showComp; }, get showCust(){ return showCust; }, BASE_DEALERS, CENTERS, DEALER_SALES, ZONES, METRICS, NUM_KEYS, EDIT_COLS, COMP, SEGS, POST,
   get tam(){ return tam; }, set tam(v){ tam = v; }, get uioNat(){ return uioNat; }, set uioNat(v){ uioNat = v; },
   get zone(){ return zone; }, get selected(){ return selected; }, get metric(){ return metric; },
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
