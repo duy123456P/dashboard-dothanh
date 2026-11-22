@@ -4,6 +4,7 @@
 const CV = window.__CV; if(!CV || !CV.CUST) return;
 const {esc, fmtInt, fmt1} = CV, C = CV.CUST, PR = C.prospects || [], B = C.buyers || {byProv: {}, districts: [], years: {}};
 const YRS = Object.keys(B.years || {}).sort();
+let EOL = {}; try{ EOL = JSON.parse(document.getElementById("ps-data").textContent).eol2025 || {}; }catch(e){}
 const gm = p => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
 const COL = s => /chốt/i.test(s) ? "#46e3ff" : /quan tâm|hẹn gặp|báo giá/i.test(s) ? "#3ddc84" : /không|sai số/i.test(s) ? "#8a96a8" : "#ffb020";
 const norm = s => String(s || "").toLowerCase().replace(/^(tp\.?|tỉnh|thành phố)\s*/i, "").trim();
@@ -13,7 +14,8 @@ const cnt = (a, f) => a.reduce((m, x) => (m[f(x)] = (m[f(x)] || 0) + 1, m), {});
 
 function campaign(p){
   const b = B.byProv[p] || {n: 0, years: {}}, pr = prosOf(p), old = (b.years["2023"] || 0) + (b.years["2024"] || 0), ind = Object.entries(cnt(pr, x => x.ind)).sort((a, c) => c[1] - a[1]).slice(0, 2).map(x => x[0]);
-  const out = [];
+  const out = [], eol = (EOL[p] || {}).truck;
+  if(eol) out.push(`${fmtInt(eol)} xe tải hết niên hạn năm 2025 tại tỉnh (Cục Đăng kiểm, văn bản 419/ĐKVN): chủ xe buộc phải thay xe mới, chạy chương trình thu cũ đổi mới, hỗ trợ trả góp, ưu tiên nhà xe, hợp tác xã vận tải.`);
   if(pr.length) out.push(`Gọi ${pr.length} doanh nghiệp tiềm năng (${pr.filter(x => x.phone).length} có số điện thoại${ind.length ? "; ngành chính: " + ind.join(", ") : ""}): kịch bản hỏi hàng chở, tải trọng, mời bản tư vấn chọn xe miễn phí; ghi kết quả vào cột Kết quả.`);
   if(old) out.push(`${fmtInt(old)} khách mua 2023–2024 đến kỳ bảo dưỡng lớn, thay lốp, gia hạn bảo hiểm: chiến dịch kiểm tra xe miễn phí, ưu đãi phụ tùng, giới thiệu khách mới; khách mua nhiều xe là ứng viên đổi, mua thêm.`);
   if((b.years["2025"] || 0) + (b.years["2026"] || 0)) out.push(`${fmtInt((b.years["2025"] || 0) + (b.years["2026"] || 0))} khách 2025–2026: chăm sóc sau bán (1 tháng/1.000 km, bảo dưỡng định kỳ), xin giới thiệu, mời làm khách tham chiếu.`);
