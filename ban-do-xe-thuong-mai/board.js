@@ -33,12 +33,12 @@ CV.carEst = carEst;
 /* ---------- danh mục chỉ số (có xếp hạng /34) ---------- */
 const MET = [
   // [id, nhóm, nhãn, đơn vị, getter, hướng (+1 cao là tốt / −1 thấp là tốt / 0 trung tính), nguồn]
-  ["pop", "Kinh tế – xã hội", "Dân số", "nghìn người", r => r.pop, 0, "Cục Thống kê, bình quân 2024"],
+  ["pop", "Kinh tế – xã hội", "Dân số 2025", "nghìn người", r => r.pop, 0, "Niên giám Thống kê 2025"],
   ["area", "Kinh tế – xã hội", "Diện tích", "km²", r => r.area, 0, "NQ 202/2025/QH15"],
   ["density", "Kinh tế – xã hội", "Mật độ dân số", "người/km²", r => r._density, 0, "tính từ dân số, diện tích"],
   ["urban", "Kinh tế – xã hội", "Đô thị hóa (ước)", "%", r => r.urban, 1, "ước tính gộp tỉnh cũ"],
-  ["grdp", "Kinh tế – xã hội", "GRDP 2024", "nghìn tỷ", r => r.grdp, 1, "Cục Thống kê / tỉnh"],
-  ["grdp25", "Kinh tế – xã hội", "GRDP 2025", "nghìn tỷ", r => (PS.grdp2025 || {})[r.name] ?? null, 1, "bảng tổng hợp 2025 (một phần)"],
+  ["grdp", "Kinh tế – xã hội", "GRDP 2026 (ước)", "nghìn tỷ", r => r.grdp2026e ?? null, 1, "GRDP 2025 × tăng trưởng thực 9T/2026"],
+  ["grdp25", "Kinh tế – xã hội", "GRDP 2025", "nghìn tỷ", r => r.grdp ?? null, 1, "Niên giám Thống kê 2025 (đủ 34 tỉnh)"],
   ["growth", "Kinh tế – xã hội", "Tăng trưởng GRDP 2025", "%", r => r.growth, 1, "Cục Thống kê (đủ 34 tỉnh)"],
   ["gpc", "Kinh tế – xã hội", "GRDP bình quân đầu người 2025", "triệu đ", r => (PS.gpc2025 || {})[r.name] ?? r._gpc, 1, "Niên giám Thống kê 2025"],
   ["retail", "Kinh tế – xã hội", "Bán lẻ hàng hóa, dịch vụ 2025", "nghìn tỷ", r => (PS.retail2025 || {})[r.name] != null ? PS.retail2025[r.name] / 1000 : null, 1, "Niên giám Thống kê 2025"],
@@ -50,7 +50,9 @@ const MET = [
   ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (top 20)"],
   ["pinv", "Kinh tế – xã hội", "Vốn đầu tư NSNN 10 tháng 2026", "tỷ đ", r => ((PS.publicInv10m26 || {})[r.name] || {}).vnd ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (21 tỉnh)"],
   ["radar", "Radar DAC", "Điểm Radar DAC (20/20/20/15/15/10)", "/100", r => CV.radarScore ? CV.radarScore(r) : null, 1, "Radar kinh tế – tài chính DAC"],
-  ["market", "Thị trường xe", "ĐK mới xe tải/năm", "xe", r => r._market, 1, "mô hình phân bổ (hoặc số thực khi có)"],
+  ["market", "Thị trường xe", "ĐK mới xe tải 2026 (quy năm)", "xe", r => r._market, 1, "ĐK thực T10/2026 × tổng 10T/2026"],
+  ["regT10", "Thị trường xe", "ĐK mới xe tải T10/2026 (thực)", "xe", r => r.regT10 ?? null, 1, "File DKM tháng 10/2026"],
+  ["dtT10", "Thị trường xe", "Thị phần Đô Thành T10/2026 (ĐK thực)", "%", r => r.regT10 ? r.regT10dt / r.regT10 * 100 : null, 1, "File DKM tháng 10/2026"],
   ["uio", "Thị trường xe", "UIO xe thương mại", "xe", r => r._uio, 1, "mô hình phân bổ (hoặc số thực khi có)"],
   ["carreg", "Thị trường xe", "Ô tô mọi loại 2025 (ĐK thật hoặc ước từ VAMA)", "xe", r => carEst(r).v, 1, "Cục CSGT (tỉnh có số) · ước từ tổng VAMA + VinFast + Hyundai"],
   ["heavy", "Thị trường xe", "Tỷ trọng tải nặng + đầu kéo", "% thị trường", r => r.mix ? r.mix[2] + r.mix[3] : null, 0, "ước theo cơ cấu ngành"],
@@ -73,6 +75,7 @@ const U = {
   vne: ["VnEconomy: vị thế kinh tế 34 tỉnh sau sáp nhập (dân số, GRDP)", "https://vneconomy.vn/vi-the-kinh-te-tinh-thanh-pho-sau-sap-nhap-dua-theo-mot-so-chi-tieu-chu-yeu.htm"],
   vnx: ["VnExpress: quy mô kinh tế các địa phương sau sáp nhập", "https://vnexpress.net/quy-mo-kinh-te-cac-dia-phuong-the-nao-sau-sap-nhap-4874073.html"],
   g25: ["Cục Thống kê: thông cáo GRDP 34 tỉnh năm 2025", "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"],
+  dkm: ["File DKM_10.2026.xlsx: đăng ký mới xe tải từng xe tháng 10/2026 (nội bộ DAC)", null], dacm: ["Báo cáo thị trường DAC tháng 10/2026 (IZ, KAMA): 10T/2026 98.955 xe", null],
   g9: ["VOV: GRDP 34 tỉnh 9 tháng 2026", "https://vov.vn/kinh-te/grdp-34-tinh-thanh-sau-9-thang-dia-phuong-nao-dang-dan-dau-cuoc-dua-tang-truong-post1338269.vov"],
   ksms: ["Cục Thống kê: Khảo sát mức sống dân cư 2025 (PDF)", "https://www.nso.gov.vn/wp-content/uploads/2026/07/Thong-cao-bao-chi-ksms2025.pdf"],
   cfinc: ["CafeF: thu nhập bình quân tháng 34 tỉnh (KSMS 2025)", "https://cafef.vn/lan-dau-tien-cong-bo-bang-xep-hang-thu-nhap-binh-quan-thang-cua-34-tinh-thanh-sau-sap-nhap-dia-phuong-nao-dang-dan-dau-188260711090453958.chn"], cfcar: ["CafeF: tỉnh thành mua ô tô nhiều nhất 2025 (Cục CSGT)", "https://cafef.vn/lo-dien-nhung-tinh-thanh-mua-o-to-xe-may-nhieu-nhat-nam-2025-188251229100610196.chn"],
@@ -91,8 +94,8 @@ const U = {
   model: ["Mô hình phân bổ của bản đồ (không phải số thống kê): tổng toàn quốc Cục CSGT, Cục Đăng kiểm chia theo GRDP, cơ cấu ngành", null],
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
-const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["vne", "vnx"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["model", "csgt"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["ng", "g9"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
+  g9m26: ["g9"], fdi: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["dkm", "dacm"], regT10: ["dkm"], dtT10: ["dkm"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];

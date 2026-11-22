@@ -623,7 +623,7 @@ async function importTranscript(file){
 $("mImport").addEventListener("change", e => { const f = e.target.files[0]; e.target.value = ""; if(f) importTranscript(f).catch(() => toast("Không đọc được file")); });
 
 /* drafts */
-const EMPTY = () => ({reason:"", summary:[], agendaItems:[], decisions:[], tasks:[], blockers:[], risks:[], openQuestions:[], nextMeeting:""});
+const EMPTY = () => ({partner:"", partnerCode:"", headline:"", vv:"", purpose:"", peopleDac:[], peoplePartner:[], reason:"", summary:[], agendaItems:[], decisions:[], tasks:[], blockers:[], risks:[], openQuestions:[], nextMeeting:""});
 function quickDraft(m, lines){
   const tg = k => lines.filter(l => l.tag === k).map(l => (l.sp ? l.sp + ": " : "") + l.text);
   return {...EMPTY(), reason: (m && m.reason) || "", summary: tg("Ý chính"), decisions: tg("Quyết định"), risks: tg("Rủi ro"),
@@ -641,9 +641,14 @@ Chương trình: ${(m.agenda || []).join(" | ") || "chưa có, hãy tự chia 2�
 Thành phần: ${(m.people || []).join("; ") || "chưa ghi"}.
 Phòng ban hợp lệ: ${DEPTS.join(", ")}.
 Chuẩn của Ban Lãnh đạo cho MỖI đầu việc: một người chịu trách nhiệm chính; chỉ số đo bằng số (kpiName, kpiUnit, kpiTarget, kpiBase nếu biết); bằng chứng bắt buộc khi xong (evidenceReq: tài liệu/báo cáo/ảnh cụ thể, kiểm chứng được); phòng ban xác nhận kết quả (coDepts) nếu liên quan phòng khác; bắt đầu và hạn dạng YYYY-MM-DD (quy đổi "thứ sáu", "cuối tháng" theo hôm nay); việc làm ngay trong 24 giờ (firstStep). Thông tin cuộc họp chưa nói rõ thì ghi "CẦN CHỐT: ..." trong trường đó. Điểm nghẽn phải có người xử lý và hạn xử lý dứt điểm.
+Mẫu biên bản chuẩn DAC (Nhà máy Ô tô Đô Thành): đầu biên bản ghi đơn vị đối tác (ví dụ "ĐẠI LÝ TNHH Ô TÔ DŨNG LẠC"; để rỗng nếu họp nội bộ); tiêu đề viết hoa nêu loại cuộc họp và kỳ (ví dụ "HỢP TÁC & TRIỂN KHAI CHÍNH SÁCH KINH DOANH THÁNG 11/2026"); dòng V/v nêu các nội dung chính.
+THÀNH PHẦN, CHỦ TRÌ, ĐỊA ĐIỂM, HÌNH THỨC: lấy từ phần Host giới thiệu đầu cuộc họp (ai, chức danh, thuộc bên nào; họp tại đâu, trực tiếp hay trực tuyến qua Google Meet/Zoom). Ghi "Ông/Bà + tên – chức danh"; chỉ ghi người được giới thiệu hoặc có phát biểu, không bịa.
+NỘI DUNG: chủ động tóm tắt ý chính theo từng chủ đề; mỗi chủ đề nêu hiện trạng/vướng mắc thực tế có số liệu, ý kiến các bên, rồi giải pháp và phân công cụ thể (việc – người – hạn) để theo đuổi kết quả cuối cùng.
 Chỉ trả về JSON:
-{"reason":"lý do triệu tập (1–2 câu)","summary":["3–6 ý chính toàn cuộc họp, có số liệu"],
-"agendaItems":[{"item":"tên mục chương trình","summary":["diễn biến, số liệu được trình bày"],"points":[{"speaker":"tên hoặc rỗng","text":"ý kiến/đề xuất"}],"conclusion":"kết luận của chủ trì cho mục này"}],
+{"partner":"ĐƠN VỊ ĐỐI TÁC viết hoa hoặc rỗng","partnerCode":"mã 2–3 chữ viết tắt đối tác, ví dụ DL","headline":"TIÊU ĐỀ VIẾT HOA","vv":"nội dung V/v","purpose":"mục đích cuộc họp (1–2 câu)","host":"Ông/Bà … – chức danh","place":"địa điểm hoặc đầu cầu","form":"Trực tiếp|Trực tuyến qua …|Kết hợp",
+"peopleDac":["Ông … – chức danh (bên Nhà máy Đô Thành / DAC)"],"peoplePartner":["Bà … – chức danh (bên đối tác/đại lý)"],
+"reason":"lý do triệu tập (1–2 câu)","summary":["3–6 ý chính toàn cuộc họp, có số liệu"],
+"agendaItems":[{"item":"tên mục chương trình","summary":["diễn biến, số liệu được trình bày"],"points":[{"speaker":"tên hoặc rỗng","text":"ý kiến/đề xuất"}],"conclusion":"kết luận của chủ trì cho mục này","solutions":["giải pháp/nghị quyết – người phụ trách – hạn"]}],
 "decisions":["quyết định/kết luận đã chốt, viết thành câu mệnh lệnh rõ ràng"],
 "tasks":[{"title","owner","dept","coDepts":[],"kpiName","kpiUnit","kpiBase","kpiTarget","kpiDir":"up|down","evidenceReq","start","due","priority":"P1|P2|P3","firstStep"}],
 "blockers":[{"text","owner","due","solution"}],"risks":[],"openQuestions":[],"nextMeeting":"thời gian, nội dung cuộc họp tiếp theo nếu có"}
@@ -657,14 +662,17 @@ async function benDraft(){
   const m = {...(meet(rec.id) || {}), ...meetForm(), id: rec.id}; putMeeting(meetForm() && {id: rec.id, ...meetForm()});
   const sample = CV.sample; if(!sample){ toast("Ben AI chỉ chạy khi mở trong Claude: em lập nhanh từ đánh dấu"); return openMinutes(m.id, quickDraft(m, lines)); }
   $("mState").textContent = "Ben đang tổng hợp biên bản…"; $("mSum").disabled = true;
-  try{ const j = await sample.json(minutesPrompt(m, lines), {modelTier: "default"}); openMinutes(m.id, normDraft(j)); $("mState").textContent = "Đã lập biên bản nháp, Host rà soát và chốt"; }
+  try{ const j = await sample.json(minutesPrompt(m, lines), {modelTier: "default"}), nd = normDraft(j);
+    const fill = {}; if(!m.host && nd.host) fill.host = nd.host; if(!m.place && nd.place) fill.place = nd.place; if((!m.form || m.form === "Trực tiếp") && nd.form) fill.form = nd.form; if(!(m.people || []).length && (nd.peopleDac.length || nd.peoplePartner.length)) fill.people = nd.peopleDac.concat(nd.peoplePartner);
+    if(Object.keys(fill).length) putMeeting({id: m.id, ...fill}); openMinutes(m.id, nd); $("mState").textContent = "Đã lập biên bản nháp, Host rà soát và chốt"; }
   catch(e){ toast(e && e.code === "rate_limited" ? "Đang vượt giới hạn, thử lại sau ít phút" : "Ben chưa tổng hợp được, em lập nhanh từ đánh dấu"); openMinutes(m.id, quickDraft(m, lines)); $("mState").textContent = ""; }
   finally{ $("mSum").disabled = false; }
 }
 function normDraft(j){ j = j || {}; const A = x => Array.isArray(x) ? x.map(v => typeof v === "string" ? v : JSON.stringify(v)) : [];
   const D = v => /^\d{4}-\d\d-\d\d$/.test(v || "") ? v : "", N0 = v => v === "" || v == null || isNaN(+v) ? "" : +v;
-  return {reason: String(j.reason || ""), summary: A(j.summary), decisions: A(j.decisions), risks: A(j.risks), openQuestions: A(j.openQuestions), nextMeeting: String(j.nextMeeting || ""),
-    agendaItems: (Array.isArray(j.agendaItems) ? j.agendaItems : []).map(a => ({item: String(a.item || ""), summary: A(a.summary), points: (Array.isArray(a.points) ? a.points : []).map(p => ({speaker: String(p.speaker || ""), text: String(p.text || "")})).filter(p => p.text), conclusion: String(a.conclusion || "")})),
+  const S0 = v => String(v || "").trim();
+  return {partner: S0(j.partner), partnerCode: S0(j.partnerCode).replace(/[^A-Za-z]/g, "").toUpperCase().slice(0, 4), headline: S0(j.headline), vv: S0(j.vv), purpose: S0(j.purpose), host: S0(j.host), place: S0(j.place), form: S0(j.form), peopleDac: A(j.peopleDac), peoplePartner: A(j.peoplePartner), reason: String(j.reason || ""), summary: A(j.summary), decisions: A(j.decisions), risks: A(j.risks), openQuestions: A(j.openQuestions), nextMeeting: String(j.nextMeeting || ""),
+    agendaItems: (Array.isArray(j.agendaItems) ? j.agendaItems : []).map(a => ({item: String(a.item || ""), summary: A(a.summary), points: (Array.isArray(a.points) ? a.points : []).map(p => ({speaker: String(p.speaker || ""), text: String(p.text || "")})).filter(p => p.text), conclusion: [String(a.conclusion || "")].concat(A(a.solutions)).filter(Boolean).join(" • ")})),
     blockers: (Array.isArray(j.blockers) ? j.blockers : []).map(b => ({text: String(b.text||""), owner: String(b.owner||""), due: D(b.due) || addDays(ymd(), 3), solution: String(b.solution||"")})),
     tasks: (Array.isArray(j.tasks) ? j.tasks : []).map(t => ({title: String(t.title||""), owner: String(t.owner||""), dept: DEPTS.includes(t.dept) ? t.dept : "Kinh doanh", coDepts: (Array.isArray(t.coDepts) ? t.coDepts : []).filter(x => DEPTS.includes(x)),
       kpiName: String(t.kpiName||""), kpiUnit: String(t.kpiUnit||""), kpiBase: N0(t.kpiBase), kpiTarget: N0(t.kpiTarget), kpiDir: t.kpiDir === "down" ? "down" : "up",
@@ -681,7 +689,8 @@ function openMinutes(id, newDraft){
 
 /* minutes model shared by the on-screen paper, .html, .md and .docx */
 let paperLogo = null;
-const LOGO = () => { const im = document.querySelector(".brand-logo"); if(!im) return null; const w = im.naturalWidth || 400, h = im.naturalHeight || 100;
+const LOGO = () => { const bb = document.getElementById("bbhLogo"); if(bb && bb.naturalWidth) return {src: bb.src, w: bb.naturalWidth, h: bb.naturalHeight};
+  const im = document.querySelector(".brand-logo"); if(!im) return null; const w = im.naturalWidth || 400, h = im.naturalHeight || 100;
   if(!paperLogo){ try{ const cv = document.createElement("canvas"); cv.width = w; cv.height = h; const c = cv.getContext("2d"); c.drawImage(im, 0, 0, w, h);
     const d = c.getImageData(0, 0, w, h), p = d.data; for(let i = 0; i < p.length; i += 4){ p[i] = 11; p[i+1] = 58; p[i+2] = 110; } c.putImageData(d, 0, 0); paperLogo = cv.toDataURL("image/png"); }catch(e){ paperLogo = im.src; } }
   return {src: paperLogo, w, h}; };
@@ -693,8 +702,13 @@ function model(m, dr, withStatus){
   const tasks = ts.length ? ts.map(t => ({title:t.title, owner:t.owner, dept:t.dept, coDepts:t.coDepts||[], kpi: (t.kpi||{}).name ? (t.kpi.name + ((t.kpi.target !== "" && t.kpi.target != null) ? ": " + fmtInt(+t.kpi.target) + " " + (t.kpi.unit||"") : "")) : "", evidenceReq:t.evidenceReq, start:t.start, due:t.due, priority:t.priority, st: STATUS[t.status] + " · " + (+t.progress||0) + "%"}))
     : (dr.tasks || []).map(t => ({...t, kpi: t.kpiName ? t.kpiName + (t.kpiTarget !== "" && t.kpiTarget != null ? ": " + t.kpiTarget + " " + (t.kpiUnit||"") : "") : "", st: "Chưa thực hiện"}));
   const sg = Object.entries(S.signoffs).filter(([,s]) => s && (s.meetings||{})[m.id]).map(([uid,s]) => ({who: who(uid), at: vnTime(s.meetings[m.id].at), note: s.meetings[m.id].note || ""}));
-  const num = "BB-" + String(m.startedAt || nowIso()).slice(0,10).replace(/-/g,"") + "-" + String(m.id || "").slice(-4).toUpperCase();
-  return {unit: m.unit || "ĐÔ THÀNH AUTO", num, city: city(m.place), date: dayLong(m.startedAt), title: m.title || "Cuộc họp", start: m.startedAt ? hhmm(m.startedAt) + ", " + dayLong(m.startedAt) : "…", end: m.endedAt ? hhmm(m.endedAt) : "…",
+  const t0 = m.startedAt || nowIso(), yr = String(t0).slice(0,4), seq = Object.values(S.meetings).filter(x => x && String(x.startedAt || "").slice(0,4) === yr && String(x.startedAt || "") <= String(t0)).length || 1;
+  const partner = (dr.partner || m.partner || "").trim(), code = dr.partnerCode || (partner ? partner.replace(/^(ĐẠI LÝ|CÔNG TY|CTY)\s+(TNHH|CỔ PHẦN|CP)?\s*(Ô TÔ)?\s*/i, "").split(/\s+/).map(w => w[0] || "").join("").toUpperCase().slice(0, 3) : "");
+  const num = `${pad(seq)}/${yr}/BBH-DAC${code ? "-" + code : ""}`;
+  const WD = ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"], hm = iso => { const d = new Date(iso); return isNaN(d) ? "…" : pad(d.getHours()) + "h" + pad(d.getMinutes()); };
+  const when = m.startedAt ? `${hm(m.startedAt)} – ${m.endedAt ? hm(m.endedAt) : "…"}, ${WD[new Date(m.startedAt).getDay()]}, ${dayLong(m.startedAt)}` : "…";
+  const pD = (dr.peopleDac || []).length ? dr.peopleDac : (dr.peoplePartner || []).length ? [] : (m.people || []), pP = dr.peoplePartner || [];
+  return {unit: !m.unit || m.unit === "ĐÔ THÀNH AUTO" ? "NHÀ MÁY Ô TÔ ĐÔ THÀNH (DAC)" : m.unit, partner, when, headline: dr.headline || String(m.title || "").toUpperCase(), vv: dr.vv || "", purpose: dr.purpose || m.goal || dr.reason || m.reason || "", peopleDac: pD, peoplePartner: pP, num, city: city(m.place), date: dayLong(m.startedAt), title: m.title || "Cuộc họp", start: m.startedAt ? hhmm(m.startedAt) + ", " + dayLong(m.startedAt) : "…", end: m.endedAt ? hhmm(m.endedAt) : "…",
     place: m.place || "…", form: m.form || "Trực tiếp", host: m.host || "…", secretary: m.secretary || "Ben (trợ lý AI), ghi lời thoại tự động", people: m.people || [], absent: m.absent || [],
     reason: dr.reason || m.reason || "", goal: m.goal || "", agenda: (m.agenda && m.agenda.length ? m.agenda : (dr.agendaItems || []).map(a => a.item)).filter(Boolean),
     summary: dr.summary || [], items: dr.agendaItems || [], decisions: dr.decisions || [], tasks, blockers: (dr.blockers || []).filter(b => b.text), risks: dr.risks || [], open: dr.openQuestions || [], next: dr.nextMeeting || "",
@@ -702,35 +716,45 @@ function model(m, dr, withStatus){
 }
 const SEC = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
 function minutesHtml(M){
-  const L = LOGO(), e = esc, li = a => a.map(x => `<li>${e(x)}</li>`).join("");
+  const L = LOGO(), e = esc, li = a => a.map(x => `<li>${e(x)}</li>`).join(""), two = !!M.partner;
+  const sol = a => String(a.conclusion || "").split(" • ").map(s => s.trim()).filter(Boolean);
   return `<div class="bb">
-<table class="bbhd"><tr><td class="l">${L ? `<img src="${L.src}" alt="Logo">` : ""}<div class="unit">${e(M.unit)}</div></td><td class="r"><div>Số: ${e(M.num)}</div><div><i>${e(M.city)}, ${e(M.date)}</i></div></td></tr></table>
-<h1>BIÊN BẢN CUỘC HỌP</h1><p class="vv">V/v: ${e(M.title)}</p>
-<h2>I. THÔNG TIN CHUNG</h2>
-<table class="bbinfo"><tr><th>Thời gian</th><td>Bắt đầu ${e(M.start)}; kết thúc ${e(M.end)}</td></tr><tr><th>Địa điểm</th><td>${e(M.place)}</td></tr><tr><th>Hình thức</th><td>${e(M.form)}</td></tr>
-<tr><th>Chủ trì</th><td>${e(M.host)}</td></tr><tr><th>Thư ký</th><td>${e(M.secretary)}</td></tr><tr><th>Thành phần (${M.people.length})</th><td>${M.people.map(e).join("<br>") || "…"}</td></tr>${M.absent.length ? `<tr><th>Vắng mặt</th><td>${M.absent.map(e).join("<br>")}</td></tr>` : ""}</table>
-<h2>II. LÝ DO VÀ MỤC TIÊU CUỘC HỌP</h2><p><b>Lý do:</b> ${e(M.reason || "…")}</p>${M.goal ? `<p><b>Mục tiêu:</b> ${e(M.goal)}</p>` : ""}
-<h2>III. CHƯƠNG TRÌNH</h2>${M.agenda.length ? `<ol>${li(M.agenda)}</ol>` : "<p>…</p>"}
-<h2>IV. NỘI DUNG CHÍNH</h2>${M.summary.length ? `<p><b>Tóm tắt:</b></p><ul>${li(M.summary)}</ul>` : ""}
-${M.items.map((a,i) => `<h3>${i+1}. ${e(a.item)}</h3>${a.summary.length ? `<ul>${li(a.summary)}</ul>` : ""}${a.points.length ? `<p><b>Ý kiến:</b></p><ul>${a.points.map(p => `<li>${p.speaker ? `<b>${e(p.speaker)}:</b> ` : ""}${e(p.text)}</li>`).join("")}</ul>` : ""}${a.conclusion ? `<p><b>Kết luận:</b> ${e(a.conclusion)}</p>` : ""}`).join("")}
-<h2>V. KẾT LUẬN CỦA CHỦ TRÌ</h2>${M.decisions.length ? `<ol>${li(M.decisions)}</ol>` : "<p>…</p>"}
-<h2>VI. PHÂN CÔNG THỰC HIỆN</h2>
-<table class="bbt"><thead><tr><th>STT</th><th>Nội dung công việc</th><th>Người chịu trách nhiệm</th><th>Phối hợp / xác nhận</th><th>Chỉ số – mục tiêu</th><th>Bằng chứng hoàn thành</th><th>Hạn</th><th>Trạng thái</th></tr></thead><tbody>
-${M.tasks.map((t,i) => `<tr><td>${i+1}</td><td>${e(t.title)}${t.priority ? ` <small>(${e(t.priority)})</small>` : ""}</td><td>${e(t.owner)}<br><small>${e(t.dept)}</small></td><td>${e((t.coDepts||[]).join(", ") || "—")}</td><td>${e(t.kpi || "—")}</td><td>${e(t.evidenceReq || "—")}</td><td>${vnDate(t.due)}<br><small>${t.start && t.due ? dd(t.start, t.due) + " ngày" : ""}</small></td><td>${e(t.st)}</td></tr>`).join("") || `<tr><td colspan="8">Không có</td></tr>`}</tbody></table>
-<h2>VII. ĐIỂM NGHẼN PHẢI XỬ LÝ DỨT ĐIỂM</h2>${M.blockers.length ? `<ul>${M.blockers.map(b => `<li><b>${e(b.text)}</b> · xử lý: ${e(b.owner || "…")} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + e(b.solution) : ""}</li>`).join("")}</ul>` : "<p>Không có.</p>"}
-<h2>VIII. RỦI RO VÀ VẤN ĐỀ CHƯA CHỐT</h2>${M.risks.length || M.open.length ? `<ul>${M.risks.map(x => `<li>Rủi ro: ${e(x)}</li>`).join("")}${M.open.map(x => `<li>Chưa chốt: ${e(x)}</li>`).join("")}</ul>` : "<p>Không có.</p>"}
-<h2>IX. THEO DÕI THỰC HIỆN</h2><ul><li>Người chịu trách nhiệm cập nhật tiến độ, số liệu thực tế mỗi ngày làm việc trên Trung tâm điều hành.</li><li>Cảnh báo sớm khi chậm từ 10 điểm % so với kỳ vọng, 2 ngày không cập nhật hoặc điểm nghẽn tồn từ 2 ngày; lãnh đạo hỗ trợ trong 24 giờ.</li><li>Chỉ nghiệm thu khi chỉ số đạt mục tiêu, có bằng chứng kiểm chứng được, các phòng liên quan xác nhận và không còn điểm nghẽn.</li>${M.next ? `<li>Cuộc họp tiếp theo: ${e(M.next)}</li>` : ""}</ul>
-<p>Cuộc họp kết thúc lúc ${e(M.end)}. Biên bản đã được thông qua trước các thành phần tham dự${M.confirmedAt ? ", Host chốt lúc " + e(M.confirmedAt) : ""}.</p>
-<table class="bbsig"><tr><td><b>THƯ KÝ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.secretary.split(",")[0])}</td><td><b>CHỦ TRÌ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.host)}</td></tr></table>
+<table class="bbhd"><tr><td class="l">${L ? `<img src="${L.src}" alt="Logo Đô Thành">` : ""}<div class="unit">${e(M.unit)}</div>${two ? `<div class="unit">${e(M.partner)}</div>` : ""}<div class="so">Số: ${e(M.num)}</div></td>
+<td class="r"><div class="qh">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div><div class="tn">Độc lập - Tự do - Hạnh phúc</div><div class="dash">-------------------------------</div><div><i>${e(M.city)}, ${e(M.date)}</i></div></td></tr></table>
+<h1>BIÊN BẢN CUỘC HỌP${M.headline ? `<br><span class="hl">${e(M.headline)}</span>` : ""}</h1>${M.vv ? `<p class="vv">(V/v: ${e(M.vv)})</p>` : ""}
+<h2>I. THÔNG TIN CHUNG CUỘC HỌP</h2>
+<ul class="bbul"><li><b>Thời gian:</b> ${e(M.when)}.</li><li><b>Hình thức / Địa điểm:</b> ${e(M.form)}${M.place && M.place !== "…" ? " – " + e(M.place) : ""}.</li><li><b>Chủ trì cuộc họp:</b> ${e(M.host)}</li><li><b>Thư ký:</b> ${e(M.secretary)}</li><li><b>Mục đích cuộc họp:</b> ${e(M.purpose || "…")}</li></ul>
+<h2>II. THÀNH PHẦN THAM DỰ</h2>
+${two ? `<table class="bbt bbp"><thead><tr><th>ĐẠI DIỆN ${e(M.unit)}</th><th>ĐẠI DIỆN ${e(M.partner)}</th></tr></thead><tbody><tr><td><ul>${li(M.peopleDac)}</ul></td><td><ul>${li(M.peoplePartner)}</ul></td></tr></tbody></table>` : `<ul>${li(M.peopleDac.concat(M.peoplePartner)) || "<li>…</li>"}</ul>`}
+${M.absent.length ? `<p><b>Vắng mặt:</b> ${M.absent.map(e).join("; ")}</p>` : ""}
+<h2>III. NỘI DUNG THẢO LUẬN VÀ NGHỊ QUYẾT CHÍNH</h2>${M.summary.length ? `<p><b>Ý chính:</b></p><ul>${li(M.summary)}</ul>` : ""}
+${M.items.map((a,i) => `<h3>${i+1}. ${e(a.item)}:</h3>${a.summary.length ? `<p><b>a) Hiện trạng, vướng mắc thực tế:</b></p><ul>${li(a.summary)}</ul>` : ""}${a.points.length ? `<p><b>${a.summary.length ? "b" : "a"}) Ý kiến các bên:</b></p><ul>${a.points.map(p => `<li>${p.speaker ? `<b>${e(p.speaker)}:</b> ` : ""}${e(p.text)}</li>`).join("")}</ul>` : ""}${sol(a).length ? `<p><b>${String.fromCharCode(97 + (a.summary.length ? 1 : 0) + (a.points.length ? 1 : 0))}) Giải pháp, nghị quyết &amp; phân công:</b></p><ul>${li(sol(a))}</ul>` : ""}`).join("")}
+${M.decisions.length ? `<h3>${M.items.length + 1}. Kết luận chung của chủ trì:</h3><ol>${li(M.decisions)}</ol>` : ""}
+${M.blockers.length || M.risks.length || M.open.length ? `<h3>${M.items.length + (M.decisions.length ? 2 : 1)}. Điểm nghẽn, rủi ro và vấn đề chưa chốt:</h3><ul>${M.blockers.map(b => `<li><b>${e(b.text)}</b> · xử lý: ${e(b.owner || "…")} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + e(b.solution) : ""}</li>`).join("")}${M.risks.map(x => `<li>Rủi ro: ${e(x)}</li>`).join("")}${M.open.map(x => `<li>Chưa chốt: ${e(x)}</li>`).join("")}</ul>` : ""}
+<h2>IV. BẢNG PHÂN CÔNG HÀNH ĐỘNG &amp; THỜI HẠN HOÀN THÀNH</h2>
+<table class="bbt"><thead><tr><th>STT</th><th>Hạng mục công việc / Nghị quyết</th><th>Đơn vị / Người thực hiện</th><th>Thời hạn</th><th>Kết quả cần đạt · Trạng thái</th></tr></thead><tbody>
+${M.tasks.map((t,i) => `<tr><td>${i+1}</td><td>${e(t.title)}${t.priority ? ` <small>(${e(t.priority)})</small>` : ""}</td><td>${e(t.owner)}${t.dept ? `<br><small>${e(t.dept)}${(t.coDepts||[]).length ? "; phối hợp: " + e(t.coDepts.join(", ")) : ""}</small>` : ""}</td><td>${vnDate(t.due)}</td><td>${e(t.kpi || "—")}${t.evidenceReq ? `<br><small>Bằng chứng: ${e(t.evidenceReq)}</small>` : ""}<br><small>${e(t.st)}</small></td></tr>`).join("") || `<tr><td colspan="5">Không có</td></tr>`}</tbody></table>
+<p class="xn">Theo dõi thực hiện: người phụ trách cập nhật tiến độ, số liệu thực tế trên Trung tâm điều hành; cảnh báo sớm khi chậm từ 10 điểm % hoặc 2 ngày không cập nhật; chỉ nghiệm thu khi đạt kết quả, có bằng chứng và các bên xác nhận.${M.next ? " Cuộc họp tiếp theo: " + e(M.next) + "." : ""}</p>
+<h2>V. XÁC NHẬN CỦA CÁC BÊN THAM DỰ</h2>
+<p>Cuộc họp kết thúc lúc ${e(M.end)}. Biên bản cuộc họp được lập thành ${two ? "04 bản có giá trị pháp lý như nhau, mỗi bên giữ 02 bản" : "02 bản có giá trị như nhau"} để làm cơ sở triển khai thực hiện${M.confirmedAt ? "; Host chốt lúc " + e(M.confirmedAt) : ""}.</p>
+<table class="bbsig"><tr>${two ? `<td><b>ĐẠI DIỆN ${e(M.unit)}</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.host)}</td><td><b>ĐẠI DIỆN ${e(M.partner)}</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.peoplePartner[0] || "")}</td>`
+  : `<td><b>THƯ KÝ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.secretary.split(",")[0])}</td><td><b>CHỦ TRÌ</b><br><i>(Ký, ghi rõ họ tên)</i><br><br><br><br>${e(M.host)}</td>`}</tr></table>
 ${M.sg.length ? `<p class="xn"><b>Xác nhận điện tử của thành phần tham dự:</b> ${M.sg.map(s => `${e(s.who)} (${e(s.at)}${s.note ? ": " + e(s.note) : ""})`).join("; ")}</p>` : ""}
 </div>`;
 }
-const PAPER_CSS = `.bb{font-family:"Times New Roman",Times,serif;font-size:13pt;line-height:1.45;color:#111;background:#fff}.bb h1{text-align:center;font-size:17pt;margin:14pt 0 2pt;letter-spacing:.02em}.bb .vv{text-align:center;font-weight:bold;margin:0 0 10pt}
+const PAPER_CSS = `.bb{font-family:"Times New Roman",Times,serif;font-size:13pt;line-height:1.45;color:#111;background:#fff}.bb *{font-family:"Times New Roman",Times,serif!important;text-shadow:none!important}.bb td{background:transparent!important;color:#111!important}.bb .bbt th,.bb .bbinfo th{background:#e8eef6!important;color:#111!important}.bb h1,.bb h1 .hl{color:#111!important;-webkit-text-fill-color:#111!important;background:none!important;letter-spacing:0!important;text-transform:none}.bb h2{color:#0b3a6e!important}.bb h3{color:#111!important}.bb h1{text-align:center;font-size:17pt;margin:14pt 0 2pt;letter-spacing:.02em}.bb .vv{text-align:center;font-weight:bold;margin:0 0 10pt}
 .bb h2{font-size:13pt;margin:13pt 0 5pt;color:#0b3a6e}.bb h3{font-size:13pt;margin:9pt 0 3pt}.bb table{border-collapse:collapse;width:100%}.bb .bbhd td{vertical-align:top;border:0}.bb .bbhd .l img{height:46px}.bb .bbhd .unit{font-weight:bold;font-size:11pt;margin-top:3pt}
-.bb .bbhd .r{text-align:right;font-size:11.5pt}.bb .bbinfo th{width:24%;text-align:left;background:#f2f5f9}.bb .bbinfo th,.bb .bbinfo td,.bb .bbt th,.bb .bbt td{border:1px solid #9aa7b5;padding:4pt 6pt;vertical-align:top;text-align:left;font-size:11.5pt;position:static;color:#111;text-transform:none;letter-spacing:0}
+.bb .bbhd .r{text-align:center;font-size:12pt;width:55%}.bb .bbhd .l{text-align:center;width:45%;font-size:11.5pt}.bb .bbhd .qh{font-weight:bold}.bb .bbhd .tn{font-weight:bold;text-decoration:underline}.bb .bbhd .dash{line-height:.8;color:#555}.bb .bbhd .so{margin-top:3pt}.bb h1 .hl{font-size:14pt}.bb .bbul{list-style:"• "}.bb .bbp td{width:50%}.bb .bbp th{text-align:center!important}.bb .bbinfo th{width:24%;text-align:left;background:#f2f5f9}.bb .bbinfo th,.bb .bbinfo td,.bb .bbt th,.bb .bbt td{border:1px solid #9aa7b5;padding:4pt 6pt;vertical-align:top;text-align:left;font-size:11.5pt;position:static;color:#111;text-transform:none;letter-spacing:0}
 .bb .bbt th{background:#e8eef6;font-weight:bold}.bb .bbsig{margin-top:18pt}.bb .bbsig td{width:50%;text-align:center;vertical-align:top;border:0}.bb small{color:#444}.bb .xn{font-size:10.5pt;color:#333;margin-top:12pt}.bb ul,.bb ol{margin:3pt 0 6pt 18pt;padding:0}`;
-function minutesMd(m, dr, withStatus){ const M = model(m, dr, withStatus);
-  return `# BIÊN BẢN CUỘC HỌP\n**${M.unit}** · Số: ${M.num} · ${M.city}, ${M.date}\n\nV/v: **${M.title}**\n\n## I. Thông tin chung\n- Thời gian: bắt đầu ${M.start}; kết thúc ${M.end}\n- Địa điểm: ${M.place} · Hình thức: ${M.form}\n- Chủ trì: ${M.host} · Thư ký: ${M.secretary}\n- Thành phần: ${M.people.join("; ") || "…"}${M.absent.length ? "\n- Vắng mặt: " + M.absent.join("; ") : ""}\n\n## II. Lý do và mục tiêu\n- Lý do: ${M.reason || "…"}${M.goal ? "\n- Mục tiêu: " + M.goal : ""}\n\n## III. Chương trình\n${M.agenda.map((a,i) => `${i+1}. ${a}`).join("\n") || "…"}\n\n## IV. Nội dung chính\n${M.summary.map(x => "- " + x).join("\n")}\n${M.items.map((a,i) => `\n### ${i+1}. ${a.item}\n${a.summary.map(x => "- " + x).join("\n")}${a.points.length ? "\n" + a.points.map(p => `- ${p.speaker ? "**" + p.speaker + ":** " : ""}${p.text}`).join("\n") : ""}${a.conclusion ? "\n- **Kết luận:** " + a.conclusion : ""}`).join("\n")}\n\n## V. Kết luận của chủ trì\n${M.decisions.map((x,i) => `${i+1}. ${x}`).join("\n") || "…"}\n\n## VI. Phân công thực hiện\n| STT | Công việc | Người chịu trách nhiệm | Phối hợp / xác nhận | Chỉ số – mục tiêu | Bằng chứng | Hạn | Trạng thái |\n|---|---|---|---|---|---|---|---|\n${M.tasks.map((t,i) => `| ${i+1} | ${t.title} | ${t.owner} (${t.dept}) | ${(t.coDepts||[]).join(", ") || "—"} | ${t.kpi || "—"} | ${t.evidenceReq || "—"} | ${vnDate(t.due)} | ${t.st} |`).join("\n")}\n\n## VII. Điểm nghẽn phải xử lý dứt điểm\n${M.blockers.map(b => `- **${b.text}** · ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · " + b.solution : ""}`).join("\n") || "- Không có"}\n\n## VIII. Rủi ro và vấn đề chưa chốt\n${M.risks.map(x => "- Rủi ro: " + x).concat(M.open.map(x => "- Chưa chốt: " + x)).join("\n") || "- Không có"}\n${M.next ? "\n## IX. Cuộc họp tiếp theo\n- " + M.next + "\n" : ""}\n## Xác nhận\n- Host chốt: ${M.confirmedAt ? M.confirmedBy + " · " + M.confirmedAt : "chưa chốt"}\n${M.sg.map(s => `- ${s.who} · ${s.at}${s.note ? " · " + s.note : ""}`).join("\n")}\n`; }
+function minutesMd(m, dr, withStatus){ const M = model(m, dr, withStatus), sol = a => String(a.conclusion || "").split(" • ").map(s => s.trim()).filter(Boolean), two = !!M.partner;
+  return `**${M.unit}**${two ? " · **" + M.partner + "**" : ""} · Số: ${M.num}\n_${M.city}, ${M.date}_\n\n# BIÊN BẢN CUỘC HỌP${M.headline ? "\n## " + M.headline : ""}${M.vv ? "\n_(V/v: " + M.vv + ")_" : ""}\n\n## I. Thông tin chung cuộc họp\n- **Thời gian:** ${M.when}\n- **Hình thức / Địa điểm:** ${M.form}${M.place && M.place !== "…" ? " – " + M.place : ""}\n- **Chủ trì:** ${M.host} · **Thư ký:** ${M.secretary}\n- **Mục đích:** ${M.purpose || "…"}\n\n## II. Thành phần tham dự\n` +
+    (two ? `**Đại diện ${M.unit}:**\n${M.peopleDac.map(x => "- " + x).join("\n") || "- …"}\n\n**Đại diện ${M.partner}:**\n${M.peoplePartner.map(x => "- " + x).join("\n") || "- …"}` : (M.peopleDac.concat(M.peoplePartner).map(x => "- " + x).join("\n") || "- …")) + (M.absent.length ? `\n- Vắng mặt: ${M.absent.join("; ")}` : "") +
+    `\n\n## III. Nội dung thảo luận và nghị quyết chính\n${M.summary.length ? "**Ý chính:**\n" + M.summary.map(x => "- " + x).join("\n") + "\n" : ""}` +
+    M.items.map((a,i) => { let c = 0; const sub = t => `**${String.fromCharCode(97 + c++)}) ${t}**`; return `\n### ${i+1}. ${a.item}\n` + (a.summary.length ? sub("Hiện trạng, vướng mắc thực tế:") + "\n" + a.summary.map(x => "- " + x).join("\n") + "\n" : "") + (a.points.length ? sub("Ý kiến các bên:") + "\n" + a.points.map(p => "- " + (p.speaker ? "**" + p.speaker + ":** " : "") + p.text).join("\n") + "\n" : "") + (sol(a).length ? sub("Giải pháp, nghị quyết & phân công:") + "\n" + sol(a).map(x => "- " + x).join("\n") + "\n" : ""); }).join("") +
+    (M.decisions.length ? `\n**Kết luận chung của chủ trì:**\n${M.decisions.map((x,i) => `${i+1}. ${x}`).join("\n")}\n` : "") +
+    `\n## IV. Bảng phân công hành động & thời hạn hoàn thành\n| STT | Hạng mục / Nghị quyết | Đơn vị / Người thực hiện | Thời hạn | Kết quả cần đạt · Trạng thái |\n|---|---|---|---|---|\n${M.tasks.map((t,i) => `| ${i+1} | ${t.title} | ${t.owner || ""}${t.dept ? " (" + t.dept + ")" : ""} | ${vnDate(t.due)} | ${t.kpi || "—"}${t.evidenceReq ? "; bằng chứng: " + t.evidenceReq : ""}; ${t.st} |`).join("\n") || "| | Không có | | | |"}\n` +
+    `\n## V. Xác nhận của các bên tham dự\nBiên bản lập thành ${two ? "04 bản, mỗi bên giữ 02 bản" : "02 bản"}.${M.confirmedAt ? " Host chốt lúc " + M.confirmedAt + "." : ""}${M.next ? "\n\nCuộc họp tiếp theo: " + M.next : ""}`;
+}
 function htmlDoc(m, dr, withStatus){ const M = model(m, dr, withStatus); return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Biên bản ${esc(M.title)}</title><style>@page{size:A4;margin:2cm 2cm 2cm 3cm}body{margin:0;padding:24px;background:#fff}${PAPER_CSS}</style></head><body>${minutesHtml(M)}</body></html>`; }
 let docxLib = null;
 function loadDocx(){ if(docxLib) return docxLib; docxLib = new Promise((res, rej) => { const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/docx@9.5.1/dist/index.iife.js"; s.onload = () => window.docx ? res(window.docx) : rej(new Error("docx")); s.onerror = () => { docxLib = null; rej(new Error("docx")); }; document.head.appendChild(s); }); return docxLib; }
@@ -746,33 +770,39 @@ async function docxBlob(m, dr, withStatus){
   const line = {style: BorderStyle.SINGLE, size: 4, color: "9AA7B5"}, LB = {top: line, bottom: line, left: line, right: line};
   const cell = (kids, o = {}) => new TableCell({children: (Array.isArray(kids) ? kids : [kids]).map(k => typeof k === "string" ? P(k, {size: o.size || 22, bold: o.bold, after: 20}) : k), borders: o.nb ? NB : LB, width: o.w ? {size: o.w, type: WidthType.PERCENTAGE} : undefined, shading: o.fill ? {type: ShadingType.CLEAR, fill: o.fill, color: "auto"} : undefined});
   let logoRun = null;
-  if(L){ try{ const b64 = L.src.split(",")[1], bin = atob(b64), u8 = new Uint8Array(bin.length); for(let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); const h = 46, w = Math.round(L.w / L.h * h); logoRun = new ImageRun({type: "png", data: u8, transformation: {width: w, height: h}}); }catch(e){} }
-  const kids = [];
-  kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: [
-    cell([...(logoRun ? [new Paragraph({children: [logoRun]})] : []), P(M.unit, {bold: true, size: 22, before: 60})], {nb: true, w: 50}),
-    cell([P("Số: " + M.num, {align: AlignmentType.RIGHT, size: 22}), P(M.city + ", " + M.date, {align: AlignmentType.RIGHT, italics: true, size: 22})], {nb: true, w: 50})]})]}));
-  kids.push(P("BIÊN BẢN CUỘC HỌP", {align: AlignmentType.CENTER, bold: true, size: 34, before: 240, after: 40}), P("V/v: " + M.title, {align: AlignmentType.CENTER, bold: true, after: 200}));
-  kids.push(H("I. THÔNG TIN CHUNG"));
-  const info = [["Thời gian", `Bắt đầu ${M.start}; kết thúc ${M.end}`], ["Địa điểm", M.place], ["Hình thức", M.form], ["Chủ trì", M.host], ["Thư ký", M.secretary], [`Thành phần (${M.people.length})`, M.people.join("\n") || "…"]].concat(M.absent.length ? [["Vắng mặt", M.absent.join("\n")]] : []);
-  kids.push(Table({cols: [26,74], width: {size: 100, type: WidthType.PERCENTAGE}, rows: info.map(([k,v]) => new TableRow({children: [cell(k, {w: 26, bold: true, fill: "F2F5F9"}), cell(String(v).split("\n").map(x => P(x, {size: 22, after: 20})), {w: 74})]}))}));
-  kids.push(H("II. LÝ DO VÀ MỤC TIÊU CUỘC HỌP"), P([R("Lý do: ", {bold: true}), R(M.reason || "…")]));
-  if(M.goal) kids.push(P([R("Mục tiêu: ", {bold: true}), R(M.goal)]));
-  kids.push(H("III. CHƯƠNG TRÌNH")); (M.agenda.length ? M.agenda : ["…"]).forEach((a,i) => kids.push(P(`${i+1}. ${a}`)));
-  kids.push(H("IV. NỘI DUNG CHÍNH")); if(M.summary.length){ kids.push(P("Tóm tắt:", {bold: true})); M.summary.forEach(x => kids.push(P("– " + x))); }
-  M.items.forEach((a,i) => { kids.push(P(`${i+1}. ${a.item}`, {bold: true, before: 120})); a.summary.forEach(x => kids.push(P("– " + x)));
-    if(a.points.length){ kids.push(P("Ý kiến:", {italics: true})); a.points.forEach(p => kids.push(P([R("– "), ...(p.speaker ? [R(p.speaker + ": ", {bold: true})] : []), R(p.text)]))); }
-    if(a.conclusion) kids.push(P([R("Kết luận: ", {bold: true}), R(a.conclusion)])); });
-  kids.push(H("V. KẾT LUẬN CỦA CHỦ TRÌ")); (M.decisions.length ? M.decisions : ["…"]).forEach((x,i) => kids.push(P(`${i+1}. ${x}`)));
-  kids.push(H("VI. PHÂN CÔNG THỰC HIỆN"));
-  const hd = ["STT","Nội dung công việc","Người chịu trách nhiệm","Phối hợp / xác nhận","Chỉ số – mục tiêu","Bằng chứng hoàn thành","Hạn","Trạng thái"], wd8 = [6,21,14,11,13,14,11,10];
-  kids.push(Table({cols: wd8, width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({tableHeader: true, children: hd.map((h,i) => cell(h, {bold: true, fill: "E8EEF6", w: wd8[i], size: 20}))})].concat(
-    (M.tasks.length ? M.tasks : [{title: "Không có"}]).map((t,i) => new TableRow({children: [String(M.tasks.length ? i+1 : ""), t.title + (t.priority ? ` (${t.priority})` : ""), (t.owner||"") + (t.dept ? "\n" + t.dept : ""), (t.coDepts||[]).join(", ") || "—", t.kpi || "—", t.evidenceReq || "—", t.due ? vnDate(t.due) : "", t.st || ""].map((v,k) => cell(String(v).split("\n").map(x => P(x, {size: 20, after: 10})), {w: wd8[k]}))})))}));
-  kids.push(H("VII. ĐIỂM NGHẼN PHẢI XỬ LÝ DỨT ĐIỂM")); (M.blockers.length ? M.blockers : [null]).forEach(b => kids.push(b ? P([R("– "), R(b.text, {bold: true}), R(` · xử lý: ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + b.solution : ""}`)]) : P("Không có.")));
-  kids.push(H("VIII. RỦI RO VÀ VẤN ĐỀ CHƯA CHỐT")); const ro = M.risks.map(x => "– Rủi ro: " + x).concat(M.open.map(x => "– Chưa chốt: " + x)); (ro.length ? ro : ["Không có."]).forEach(x => kids.push(P(x)));
-  kids.push(H("IX. THEO DÕI THỰC HIỆN")); ["– Người chịu trách nhiệm cập nhật tiến độ, số liệu thực tế mỗi ngày làm việc trên Trung tâm điều hành.", "– Cảnh báo sớm khi chậm từ 10 điểm % so với kỳ vọng, 2 ngày không cập nhật hoặc điểm nghẽn tồn từ 2 ngày; lãnh đạo hỗ trợ trong 24 giờ.", "– Chỉ nghiệm thu khi chỉ số đạt mục tiêu, có bằng chứng kiểm chứng được, các phòng liên quan xác nhận và không còn điểm nghẽn."].concat(M.next ? ["– Cuộc họp tiếp theo: " + M.next] : []).forEach(x => kids.push(P(x)));
-  kids.push(P(`Cuộc họp kết thúc lúc ${M.end}. Biên bản đã được thông qua trước các thành phần tham dự${M.confirmedAt ? ", Host chốt lúc " + M.confirmedAt : ""}.`, {before: 160}));
-  const sig = (t, n) => cell([P(t, {bold: true, align: AlignmentType.CENTER, after: 0}), P("(Ký, ghi rõ họ tên)", {italics: true, align: AlignmentType.CENTER, size: 22, after: 900}), P(n, {bold: true, align: AlignmentType.CENTER})], {nb: true, w: 50});
-  kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: [sig("THƯ KÝ", M.secretary.split(",")[0]), sig("CHỦ TRÌ", M.host)]})]}));
+  if(L){ try{ const b64 = L.src.split(",")[1], bin = atob(b64), u8 = new Uint8Array(bin.length); for(let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); const h = 40, w = Math.round(L.w / L.h * h); logoRun = new ImageRun({type: "png", data: u8, transformation: {width: w, height: h}}); }catch(e){} }
+  const kids = [], two = !!M.partner, C = AlignmentType.CENTER, sol = a => String(a.conclusion || "").split(" • ").map(s => s.trim()).filter(Boolean);
+  const B = (x, o = {}) => P("• " + x, {size: o.size || 26, after: 40}), lbl = (k, v) => P([R("• "), R(k + ": ", {bold: true}), R(v)], {after: 40});
+  kids.push(Table({cols: [45,55], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: [
+    cell([...(logoRun ? [new Paragraph({alignment: C, children: [logoRun]})] : []), P(M.unit, {bold: true, size: 22, align: C, after: 0}), ...(two ? [P(M.partner, {bold: true, size: 22, align: C, after: 0})] : []), P("Số: " + M.num, {size: 22, align: C})], {nb: true, w: 45}),
+    cell([P("CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM", {bold: true, align: C, size: 24, after: 0}), P([new TextRun({text: "Độc lập - Tự do - Hạnh phúc", font: F, size: 26, bold: true, underline: {}})], {align: C, after: 0}), P("-------------------------------", {align: C, size: 20, after: 0}), P(M.city + ", " + M.date, {align: C, italics: true, size: 24})], {nb: true, w: 55})]})]}));
+  kids.push(P("BIÊN BẢN CUỘC HỌP", {align: C, bold: true, size: 32, before: 240, after: 20}));
+  if(M.headline) kids.push(P(M.headline, {align: C, bold: true, size: 28, after: 20}));
+  if(M.vv) kids.push(P("(V/v: " + M.vv + ")", {align: C, italics: true, after: 160}));
+  kids.push(H("I. THÔNG TIN CHUNG CUỘC HỌP"), lbl("Thời gian", M.when + "."), lbl("Hình thức / Địa điểm", M.form + (M.place && M.place !== "…" ? " – " + M.place : "") + "."), lbl("Chủ trì cuộc họp", M.host), lbl("Thư ký", M.secretary), lbl("Mục đích cuộc họp", M.purpose || "…"));
+  kids.push(H("II. THÀNH PHẦN THAM DỰ"));
+  if(two) kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({tableHeader: true, children: ["ĐẠI DIỆN " + M.unit, "ĐẠI DIỆN " + M.partner].map(h => cell([P(h, {bold: true, align: C, size: 22, after: 20})], {fill: "E8EEF6", w: 50}))}),
+    new TableRow({children: [M.peopleDac, M.peoplePartner].map(a => cell((a.length ? a : ["…"]).map(x => P("• " + x, {size: 22, after: 20})), {w: 50}))})]}));
+  else (M.peopleDac.concat(M.peoplePartner).length ? M.peopleDac.concat(M.peoplePartner) : ["…"]).forEach(x => kids.push(B(x)));
+  if(M.absent.length) kids.push(P([R("Vắng mặt: ", {bold: true}), R(M.absent.join("; "))], {before: 60}));
+  kids.push(H("III. NỘI DUNG THẢO LUẬN VÀ NGHỊ QUYẾT CHÍNH"));
+  if(M.summary.length){ kids.push(P("Ý chính:", {bold: true})); M.summary.forEach(x => kids.push(B(x))); }
+  M.items.forEach((a,i) => { kids.push(P(`${i+1}. ${a.item}:`, {bold: true, before: 120})); let c = 0; const sub = t => P(String.fromCharCode(97 + c++) + ") " + t, {bold: true, after: 40});
+    if(a.summary.length){ kids.push(sub("Hiện trạng, vướng mắc thực tế:")); a.summary.forEach(x => kids.push(B(x))); }
+    if(a.points.length){ kids.push(sub("Ý kiến các bên:")); a.points.forEach(p => kids.push(P([R("• "), ...(p.speaker ? [R(p.speaker + ": ", {bold: true})] : []), R(p.text)], {after: 40}))); }
+    if(sol(a).length){ kids.push(sub("Giải pháp, nghị quyết & phân công:")); sol(a).forEach(x => kids.push(B(x))); } });
+  let n = M.items.length;
+  if(M.decisions.length){ kids.push(P(`${++n}. Kết luận chung của chủ trì:`, {bold: true, before: 120})); M.decisions.forEach((x,i) => kids.push(P(`${i+1}) ${x}`, {after: 40}))); }
+  const ro = M.blockers.map(b => `${b.text} · xử lý: ${b.owner || "…"} · hạn ${vnDate(b.due)}${b.solution ? " · phương án: " + b.solution : ""}`).concat(M.risks.map(x => "Rủi ro: " + x), M.open.map(x => "Chưa chốt: " + x));
+  if(ro.length){ kids.push(P(`${++n}. Điểm nghẽn, rủi ro và vấn đề chưa chốt:`, {bold: true, before: 120})); ro.forEach(x => kids.push(B(x))); }
+  kids.push(H("IV. BẢNG PHÂN CÔNG HÀNH ĐỘNG & THỜI HẠN HOÀN THÀNH"));
+  const hd = ["STT", "Hạng mục công việc / Nghị quyết", "Đơn vị / Người thực hiện", "Thời hạn", "Kết quả cần đạt · Trạng thái"], wd = [7, 38, 22, 13, 20];
+  kids.push(Table({cols: wd, width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({tableHeader: true, children: hd.map((h,i) => cell([P(h, {bold: true, align: C, size: 21, after: 20})], {fill: "E8EEF6", w: wd[i]}))})].concat(
+    (M.tasks.length ? M.tasks : [{title: "Không có"}]).map((t,i) => new TableRow({children: [String(M.tasks.length ? i+1 : ""), t.title + (t.priority ? ` (${t.priority})` : ""), (t.owner || "") + (t.dept ? "\n" + t.dept : "") + ((t.coDepts||[]).length ? "\nPhối hợp: " + t.coDepts.join(", ") : ""), t.due ? vnDate(t.due) : "", (t.kpi || "—") + (t.evidenceReq ? "\nBằng chứng: " + t.evidenceReq : "") + (t.st ? "\n" + t.st : "")].map((v,k) => cell(String(v).split("\n").map(x => P(x, {size: 21, after: 10, align: k === 0 || k === 3 ? C : undefined})), {w: wd[k]}))})))}));
+  kids.push(P("Theo dõi thực hiện: người phụ trách cập nhật tiến độ, số liệu thực tế trên Trung tâm điều hành; cảnh báo sớm khi chậm từ 10 điểm % hoặc 2 ngày không cập nhật; chỉ nghiệm thu khi đạt kết quả, có bằng chứng và các bên xác nhận." + (M.next ? " Cuộc họp tiếp theo: " + M.next + "." : ""), {size: 21, italics: true, before: 80}));
+  kids.push(H("V. XÁC NHẬN CỦA CÁC BÊN THAM DỰ"), P(`Cuộc họp kết thúc lúc ${M.end}. Biên bản cuộc họp được lập thành ${two ? "04 bản có giá trị pháp lý như nhau, mỗi bên giữ 02 bản" : "02 bản có giá trị như nhau"} để làm cơ sở triển khai thực hiện${M.confirmedAt ? "; Host chốt lúc " + M.confirmedAt : ""}.`));
+  const sig = (t, nm) => cell([P(t, {bold: true, align: C, after: 0}), P("(Ký, ghi rõ họ tên)", {italics: true, align: C, size: 22, after: 900}), P(nm, {bold: true, align: C})], {nb: true, w: 50});
+  kids.push(Table({cols: [50,50], width: {size: 100, type: WidthType.PERCENTAGE}, rows: [new TableRow({children: two ? [sig("ĐẠI DIỆN " + M.unit, M.host), sig("ĐẠI DIỆN " + M.partner, M.peoplePartner[0] || "")] : [sig("THƯ KÝ", M.secretary.split(",")[0]), sig("CHỦ TRÌ", M.host)]})]}));
   if(M.sg.length) kids.push(P("Xác nhận điện tử: " + M.sg.map(s => `${s.who} (${s.at}${s.note ? ": " + s.note : ""})`).join("; "), {size: 20, italics: true, before: 200}));
   const doc = new Document({creator: "Ben – Đô Thành Auto", title: "Biên bản " + M.title, styles: {default: {document: {run: {font: F, size: 26}}}},
     sections: [{properties: {page: {size: {width: 11906, height: 16838}, margin: {top: 1134, bottom: 1134, left: 1701, right: 1134}}}, children: kids}]});
@@ -793,6 +823,10 @@ function drawMinutes(){
     <label class="field">Bắt đầu<input type="datetime-local" data-m="startedAt" value="${dtl(m.startedAt)}" style="color-scheme:dark"></label><label class="field">Kết thúc<input type="datetime-local" data-m="endedAt" value="${dtl(m.endedAt)}" style="color-scheme:dark"></label><label class="field w2">Địa điểm<input type="text" data-m="place" value="${esc(m.place||"")}"></label>
     <label class="field w2">Chủ trì<input type="text" data-m="host" value="${esc(m.host||"")}"></label><label class="field w2">Thư ký<input type="text" data-m="secretary" value="${esc(m.secretary||"Ben (trợ lý AI), ghi lời thoại tự động")}"></label>
     <label class="field w2">Thành phần (mỗi dòng một người)<textarea rows="3" data-m="people">${esc(areaVal(m.people))}</textarea></label><label class="field w2">Vắng mặt<textarea rows="3" data-m="absent">${esc(areaVal(m.absent))}</textarea></label>
+    <label class="field w2">Đơn vị đối tác (để trống nếu họp nội bộ)<input type="text" data-d="partner" value="${esc(dr.partner || "")}" placeholder="VD: ĐẠI LÝ TNHH Ô TÔ …"></label><label class="field">Mã đối tác (số BB)<input type="text" data-d="partnerCode" value="${esc(dr.partnerCode || "")}" placeholder="DL"></label>
+    <label class="field w2">Tiêu đề biên bản (viết hoa)<input type="text" data-d="headline" value="${esc(dr.headline || "")}"></label><label class="field w2">V/v<input type="text" data-d="vv" value="${esc(dr.vv || "")}"></label>
+    <label class="field w2">Mục đích cuộc họp<input type="text" data-d="purpose" value="${esc(dr.purpose || "")}"></label>
+    <label class="field w2">Thành phần Nhà máy DAC (mỗi dòng: Ông/Bà – chức danh)<textarea rows="3" data-d="peopleDac">${esc(areaVal(dr.peopleDac))}</textarea></label><label class="field w2">Thành phần đối tác<textarea rows="3" data-d="peoplePartner">${esc(areaVal(dr.peoplePartner))}</textarea></label>
     <label class="field w2">Lý do triệu tập<textarea rows="2" data-d="reason">${esc(dr.reason || m.reason || "")}</textarea></label><label class="field w2">Mục tiêu<textarea rows="2" data-m="goal">${esc(m.goal||"")}</textarea></label>
   </div>
   <h3 style="margin-top:12px">Nội dung</h3>
