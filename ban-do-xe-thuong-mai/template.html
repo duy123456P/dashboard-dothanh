@@ -1763,6 +1763,18 @@ const AI_TOOLS = [
      if(typeof i.bars === "boolean") showBars = i.bars; if(i.zone !== undefined) { zone = ZONES.includes(String(i.zone)) ? String(i.zone) : ""; zoneSel.value = zone; }
      renderAll(); return {metric, zone: zone||"Toàn quốc", colorMode, bars: showBars}; }},
 ];
+/* Mỗi lần hỏi chỉ gửi các công cụ liên quan: thiết bị (nhất là app điện thoại) giới hạn số công cụ mỗi lần gọi; ít công cụ cũng trả lời nhanh hơn */
+let toolCapP = null;
+function toolCap(){ return toolCapP || (toolCapP = (sample && sample.limits ? sample.limits().then(l => (l && l.tools && l.tools.maxCount) || 20).catch(() => 20) : Promise.resolve(20)).then(n => Math.max(8, Math.min(n, 22)))); }
+const fold = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/gi, "d").toLowerCase();
+const CORE_TOOLS = ["get_province", "calc", "set_map", "focus_province", "get_indicators", "phong_chien_luoc"];
+function pickTools(all, q, cap){
+  if(all.length <= cap) return all;
+  const words = new Set(fold(q).split(/[^a-z0-9]+/).filter(w => w.length > 2)), core = all.filter(t => CORE_TOOLS.includes(t.name));
+  const score = t => { const d = fold(t.name.replace(/_/g, " ") + " " + (t.description || "")).split(/[^a-z0-9]+/); let s = 0; for(const w of d) if(words.has(w)) s++; return s / Math.sqrt(d.length + 5); };
+  const rest = all.filter(t => !CORE_TOOLS.includes(t.name)).map(t => [t, score(t)]).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+  return core.concat(rest).slice(0, cap);
+}
 function setBusy(b, label){ aiBusy = b; aiSend.disabled = b; aiStop.hidden = !b; aiState.textContent = label || ""; document.querySelectorAll("#aiQuick button").forEach(x=>x.disabled=b); }
 async function askAi(text){
   text = String(text||"").trim(); if(!text || aiBusy) return;
@@ -1775,7 +1787,8 @@ async function askAi(text){
   while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
   const bubble = addMsg("a", '<span class="act">Ben đang phân tích…</span>');
   aiCtl = new AbortController(); setBusy(true, aiSpeed === "quick" ? "Ben đang phân tích (nhanh)…" : "Ben đang phân tích chuyên sâu…");
-  const tools = AI_TOOLS.concat(window.__CV && window.__CV.tools || []).map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : t.label || "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
+  const lim = await toolCap(), all = AI_TOOLS.concat(window.__CV && window.__CV.tools || []);
+  const tools = pickTools(all, text + " " + aiTurns.slice(-3).map(x => x.content).join(" "), lim).map(t => ({...t, execute: (inp, ctx) => { aiState.textContent = t.name==="get_province" ? `Đang đọc hồ sơ ${inp && inp.name || ""}…` : t.label || "Đang cập nhật bản đồ…"; return t.execute(inp||{}, ctx); }}));
   try{
     const res = await sample([{role:"user", content: rules()}, ...aiTurns], { signal: aiCtl.signal, tools, modelTier: aiSpeed === "quick" ? "quick" : "default", onText: ({text}) => { bubble.innerHTML = mdToHtml(text); log.scrollTop = log.scrollHeight; } });
     aiTurns.push({role:"assistant", content: res.text}); finishBubble(bubble, res.text, res.truncated);
@@ -1785,7 +1798,8 @@ async function askAi(text){
     else if(e && ["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed","tools_unavailable"].includes(e.code)){ aiDisabled = true; bubble.innerHTML = "<p>Ben phân tích chưa được phép chạy trên trang này. Các nút <b>Báo cáo tức thì</b> vẫn dùng bình thường.</p>"; aiTurns.pop(); }
     else if(e && e.code === "rate_limited"){ bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Đang vượt giới hạn sử dụng. Vui lòng thử lại sau ít phút.</p>"; aiTurns.pop(); }
     else if(e && e.code === "prompt_too_large"){ aiTurns = aiTurns.slice(-1); bubble.innerHTML = "<p>Cuộc trò chuyện quá dài, đã rút gọn lịch sử. Hãy gửi lại câu hỏi.</p>"; }
-    else { bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Bị gián đoạn khi phân tích. Bấm Gửi để thử lại.</p>"; aiTurns.pop(); aiText.value = text; }
+    else if(e && e.code === "invalid_request"){ toolCapP = Promise.resolve(10); bubble.innerHTML = (kept?mdToHtml(kept):"") + "<p>Thiết bị này giới hạn số công cụ phân tích; Ben đã thu gọn. Bấm Gửi để thử lại.</p>"; aiTurns.pop(); aiText.value = text; }
+    else { bubble.innerHTML = (kept?mdToHtml(kept):"") + `<p>Bị gián đoạn khi phân tích (mã: ${esc((e && e.code) || "không rõ")}). Bấm Gửi để thử lại; nếu lặp lại, chọn chế độ nhanh hoặc hỏi ngắn gọn hơn.</p>`; aiTurns.pop(); aiText.value = text; }
   }finally{ setBusy(false); aiCtl = null; }
 }
 function slug(t){ return String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
