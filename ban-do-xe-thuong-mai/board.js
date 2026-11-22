@@ -47,6 +47,8 @@ const MET = [
   ["serv", "Kinh tế – xã hội", "Tỷ trọng dịch vụ", "% GRDP", r => r.econ ? r.econ[2] : null, 0, "cơ cấu GRDP"],
   ["agri", "Kinh tế – xã hội", "Tỷ trọng nông – lâm – thủy sản", "% GRDP", r => r.econ ? r.econ[0] : null, 0, "cơ cấu GRDP"],
   ["g9m26", "Kinh tế – xã hội", "Tăng trưởng GRDP 9 tháng 2026", "%", r => ((PS.growth9m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, báo địa phương (một phần)"],
+  ["cpi", "Kinh tế – xã hội", "CPI 2026 (tỉnh có công bố)", "%", r => ((PS.cpi2026 || {})[r.name] || {}).v ?? null, -1, "Cục Thống kê tỉnh, báo chí (Cục Thống kê không công bố CPI 34 tỉnh)"],
+  ["labor", "Kinh tế – xã hội", "Sử dụng lao động công nghiệp 01/10/2026 so cùng kỳ", "%", r => ((PS.labor1026 || {})[r.name] || {}).yoy ?? null, 1, "Cục Thống kê, biểu tháng 10/2026"],
   ["fdi", "Kinh tế – xã hội", "FDI 10 tháng 2026", "triệu USD", r => ((PS.fdi10m26 || {})[r.name] || {}).v ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (top 20)"],
   ["pinv", "Kinh tế – xã hội", "Vốn đầu tư NSNN 10 tháng 2026", "tỷ đ", r => ((PS.publicInv10m26 || {})[r.name] || {}).vnd ?? null, 1, "Cục Thống kê, biểu tháng 10/2026 (21 tỉnh)"],
   ["radar", "Radar DAC", "Điểm Radar DAC (20/20/20/15/15/10)", "/100", r => CV.radarScore ? CV.radarScore(r) : null, 1, "Radar kinh tế – tài chính DAC"],
@@ -95,12 +97,13 @@ const U = {
   est: ["Ước tính gộp tỉnh cũ, chưa có số công bố sau sáp nhập", null], fc: ["Mô hình dự báo DAC Hybrid trên bản đồ (từ file giao dịch từng xe)", null],
   comp: ["Mạng lưới đối thủ đã xác minh (nguồn từng điểm trong compnet)", null]};
 const SRCOF = {pop: ["vne"], area: ["nqs"], density: ["vne", "nqs"], urban: ["est"], grdp: ["ng", "g9"], grdp25: ["ng", "g25"], growth: ["g25"], gpc: ["ng"], retail: ["ng"], income: ["cfinc", "ng", "ksms"], ind: ["est"], serv: ["est"], agri: ["est"],
-  g9m26: ["g9"], fdi: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["dkm", "dacm"], regT10: ["dkm"], dtT10: ["dkm"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
+  g9m26: ["g9"], fdi: ["nsoX"], labor: ["nsoX"], pinv: ["nsoX"], radar: ["radar", "ng", "nsoX"], market: ["dkm", "dacm"], regT10: ["dkm"], dtT10: ["dkm"], uio: ["model", "dk"], carreg: ["csgt", "cfcar", "vama", "vamaest"], heavy: ["est"], comp: ["comp"], sales: ["tdbh"], share: ["tdbh", "model"], kpct: ["tdbh"], tx12: ["tx"],
   dealers: ["dtweb", "tdbh"], inv: ["inv"], cover: ["inv"], f27: ["fc"], kh27: ["kh27"], gap27: ["fc", "kh27"]};
 // nguồn riêng của tỉnh (báo địa phương) ưu tiên cho số 9 tháng
 const provSrc = (id, r) => { const x = (r.ext || {}).src || [];
   if(id === "carreg") return r.carReg2025 ? (x.filter(z => /ô tô/i.test(z[0])).length ? x.filter(z => /ô tô/i.test(z[0])) : [U.csgt, U.cfcar]) : [U.vama, U.vamaest];
   if(id === "income") return ((PS.income2025 || {})[r.name] || {}).src === "công bố" ? [U.cfinc, U.ksms] : [U.ng, U.ksms];
+  if(id === "cpi"){ const c = (PS.cpi2026 || {})[r.name]; return c ? [c.src] : [["Cục Thống kê: CPI 10 tháng 2026 cả nước 4,57% (không có số tỉnh)", "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"]]; }
   if(id === "comp" && CV.CNET){ const S = CV.CNET.sources || {}, k = [...new Set(CV.CNET.points.filter(p => p.province === r.name).map(p => p.src))].filter(z => S[z]); if(k.length) return k.map(z => S[z]); } if(id === "g9m26" && x.length) return x.filter(z => /9 tháng|GRDP|KT-XH|tăng trưởng|kinh tế/i.test(z[0]) && !/2025/.test(z[0])).concat([U.g9]); return null; };
 const kindOf = t => /^(File|ERP)/.test(t) ? "dữ liệu nội bộ DAC" : "ước tính của bản đồ, chưa có số công bố";
 const srcList = (id, r) => provSrc(id, r) || (SRCOF[id] || []).map(k => U[k]);
