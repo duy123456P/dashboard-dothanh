@@ -1314,5 +1314,779 @@
    "bus": 2,
    "total": 47
   }
+ },
+ "eolBrands2025": {
+  "An Giang": {
+   "n": 141,
+   "brands": {
+    "KIA": 38,
+    "HYUNDAI": 33,
+    "DAIHATSU": 22,
+    "SAMSUNG": 14,
+    "KAMAZ": 11,
+    "ISUZU": 8,
+    "SUZUKI": 5,
+    "TOYOTA": 3,
+    "MITSUBISHI": 2,
+    "FORD": 2,
+    "SSANGYONG": 1,
+    "FORDTRADER": 1,
+    "ISUZUNKR55ESAMCO": 1
+   },
+   "years": {
+    "2000": 141
+   }
+  },
+  "TP. Hồ Chí Minh": {
+   "n": 901,
+   "brands": {
+    "HYUNDAI": 350,
+    "KIA": 266,
+    "SAMSUNG": 64,
+    "SUZUKI": 49,
+    "ISUZU": 46,
+    "MITSUBISHI": 29,
+    "DAEWOO": 26,
+    "KAMAZ": 23,
+    "TOYOTA": 12,
+    "DAIHATSU": 11,
+    "HINO": 7,
+    "TIANYE": 4,
+    "FORD": 4,
+    "SSANGYONG": 3,
+    "IVECO": 2,
+    "?": 1,
+    "ASIA": 1,
+    "PHUONGTRINH": 1,
+    "CHENGLONG": 1,
+    "MERCEDESBENZ": 1
+   },
+   "years": {
+    "2000": 899,
+    "2025": 1,
+    "2005": 1
+   }
+  },
+  "Bắc Ninh": {
+   "n": 252,
+   "brands": {
+    "HYUNDAI": 167,
+    "KIA": 53,
+    "SUZUKI": 10,
+    "SAMSUNG": 9,
+    "ISUZU": 3,
+    "DAEWOO": 2,
+    "DAIHATSU": 2,
+    "FORD": 2,
+    "TOYOTA": 2,
+    "HOAMAI": 1,
+    "SSANGYONG": 1
+   },
+   "years": {
+    "2000": 252
+   }
+  },
+  "Thái Nguyên": {
+   "n": 90,
+   "brands": {
+    "HYUNDAI": 63,
+    "KIA": 8,
+    "SAMSUNG": 5,
+    "ISUZU": 4,
+    "DAEWOO": 3,
+    "MITSUBISHI": 2,
+    "IFA": 1,
+    "KAMAZ": 1,
+    "SUZUKI": 1,
+    "?": 1,
+    "TOYOTA": 1
+   },
+   "years": {
+    "2000": 89,
+    "1990": 1
+   }
+  },
+  "Cà Mau": {
+   "n": 43,
+   "brands": {
+    "HYUNDAI": 10,
+    "DAIHATSU": 7,
+    "SAMSUNG": 6,
+    "KIA": 6,
+    "KAMAZ": 5,
+    "ISUZU": 4,
+    "FORD": 1,
+    "MITSUBISHI": 1,
+    "HINO": 1,
+    "MERCEDES": 1,
+    "MERCEDESBENZ": 1
+   },
+   "years": {
+    "2000": 43
+   }
+  },
+  "Vĩnh Long": {
+   "n": 139,
+   "brands": {
+    "KIA": 39,
+    "HYUNDAI": 30,
+    "SAMSUNG": 19,
+    "ISUZU": 17,
+    "SUZUKI": 14,
+    "DAIHATSU": 11,
+    "KAMAZ": 5,
+    "MERCEDESBENZ": 2,
+    "MITSHUBISHI": 1,
+    "HINOFC112SASAMCO": 1
+   },
+   "years": {
+    "2000": 139
+   }
+  },
+  "Gia Lai": {
+   "n": 453,
+   "brands": {
+    "KIA": 137,
+    "HYUNDAI": 125,
+    "KAMAZ": 82,
+    "SAMSUNG": 47,
+    "ISUZU": 20,
+    "SUZUKI": 13,
+    "DAIHATSU": 10,
+    "HINO": 4,
+    "SSANGYONG": 3,
+    "FAW": 2,
+    "LAMSON16TSAMSUNG": 2,
+    "MITSUBISHI": 2,
+    "FORD": 1,
+    "DAEWOO": 1,
+    "MAZ": 1,
+    "MERCEDESBENZ": 1,
+    "TIANYE": 1,
+    "LAMSON": 1
+   },
+   "years": {
+    "2000": 452,
+    "2001": 1
+   }
+  },
+  "Đồng Nai": {
+   "n": 936,
+   "brands": {
+    "HYUNDAI": 341,
+    "KIA": 333,
+    "SAMSUNG": 65,
+    "SUZUKI": 59,
+    "ISUZU": 44,
+    "DAEWOO": 27,
+    "MITSUBISHI": 22,
+    "KAMAZ": 8,
+    "VIETHUNG": 8,
+    "DAIHATSU": 8,
+    "IVECO": 4,
+    "HINO": 4,
+    "TOYOTA": 3,
+    "SSANGYONG": 3,
+    "FORD": 2,
+    "MERCEDESBENZ": 1,
+    "CNHTC": 1,
+    "MEKONG": 1,
+    "ASIA": 1,
+    "HYD": 1
+   },
+   "years": {
+    "2000": 927,
+    "1990": 8,
+    "2025": 1
+   }
+  },
+  "Lâm Đồng": {
+   "n": 310,
+   "brands": {
+    "KIA": 134,
+    "HYUNDAI": 86,
+    "SAMSUNG": 27,
+    "SUZUKI": 15,
+    "ISUZU": 14,
+    "DAIHATSU": 8,
+    "KAMAZ": 6,
+    "DAEWOO": 4,
+    "SSANGYONG": 4,
+    "MITSUBISHI": 3,
+    "TOYOTA": 2,
+    "MERCEDESBENZ": 2,
+    "ISUZUNQR71RSAMCO": 1,
+    "HINO": 1,
+    "ASIA": 1,
+    "MITSUBUSHI": 1,
+    "MERCEDES": 1
+   },
+   "years": {
+    "2001": 1,
+    "2000": 309
+   }
+  },
+  "Cần Thơ": {
+   "n": 143,
+   "brands": {
+    "KAMAZ": 33,
+    "KIA": 24,
+    "HYUNDAI": 23,
+    "SAMSUNG": 16,
+    "DAIHATSU": 16,
+    "SUZUKI": 7,
+    "ISUZU": 6,
+    "MITSUBISHI": 3,
+    "HINO": 3,
+    "TOYOTA": 3,
+    "FORD": 2,
+    "DAEWOO": 2,
+    "MERCEDESBENZ": 1,
+    "FAW": 1,
+    "PHUONGTRINH": 1,
+    "IVECO": 1,
+    "KCT": 1
+   },
+   "years": {
+    "2000": 143
+   }
+  },
+  "Cao Bằng": {
+   "n": 5,
+   "brands": {
+    "KIA": 3,
+    "HYUNDAI": 2
+   },
+   "years": {
+    "2000": 5
+   }
+  },
+  "Đà Nẵng": {
+   "n": 212,
+   "brands": {
+    "HYUNDAI": 54,
+    "KIA": 45,
+    "SAMSUNG": 32,
+    "KAMAZ": 21,
+    "ISUZU": 15,
+    "SUZUKI": 13,
+    "DAIHATSU": 7,
+    "IFA": 5,
+    "FORD": 5,
+    "MITSUBISHI": 3,
+    "DAEWOO": 2,
+    "HINO": 2,
+    "SSANGYONG": 2,
+    "TOYOTA": 2,
+    "MAZ": 1,
+    "HAFORD": 1,
+    "BAHAIKMTT2001": 1,
+    "TIANYE": 1
+   },
+   "years": {
+    "2000": 207,
+    "1990": 5
+   }
+  },
+  "Đắk Lắk": {
+   "n": 393,
+   "brands": {
+    "HYUNDAI": 172,
+    "KIA": 114,
+    "SAMSUNG": 45,
+    "KAMAZ": 25,
+    "ISUZU": 14,
+    "DAIHATSU": 5,
+    "MITSUBISHI": 3,
+    "SUZUKI": 3,
+    "HINO": 3,
+    "MERCEDESBENZ": 2,
+    "FORD": 2,
+    "IFA": 2,
+    "MERCEDES": 1,
+    "VIETHUNG": 1,
+    "DAEWOO": 1
+   },
+   "years": {
+    "2000": 389,
+    "1990": 3,
+    "2005": 1
+   }
+  },
+  "Điện Biên": {
+   "n": 23,
+   "brands": {
+    "VIETHUNG": 7,
+    "IFA": 6,
+    "HYUNDAI": 6,
+    "SUZUKI": 2,
+    "ISUZU": 2
+   },
+   "years": {
+    "2000": 10,
+    "1990": 13
+   }
+  },
+  "Đồng Tháp": {
+   "n": 173,
+   "brands": {
+    "KIA": 57,
+    "HYUNDAI": 45,
+    "SAMSUNG": 20,
+    "DAIHATSU": 12,
+    "ISUZU": 11,
+    "SUZUKI": 10,
+    "MITSUBISHI": 9,
+    "FORD": 3,
+    "DAEWOO": 2,
+    "HINO": 1,
+    "FAW": 1,
+    "TOYOTA": 1,
+    "KAMAZ": 1
+   },
+   "years": {
+    "2000": 173
+   }
+  },
+  "Tuyên Quang": {
+   "n": 84,
+   "brands": {
+    "HYUNDAI": 49,
+    "KIA": 12,
+    "IFA": 6,
+    "ISUZU": 6,
+    "KAMAZ": 3,
+    "HOAMAI": 2,
+    "SUZUKI": 1,
+    "MITSUBISHI": 1,
+    "QUANGKHOA": 1,
+    "CHIENTHANG": 1,
+    "DAIHATSU": 1,
+    "TOYOTA": 1
+   },
+   "years": {
+    "2000": 78,
+    "1990": 6
+   }
+  },
+  "Ninh Bình": {
+   "n": 194,
+   "brands": {
+    "HYUNDAI": 117,
+    "KIA": 30,
+    "ISUZU": 11,
+    "SAMSUNG": 7,
+    "HOAMAI": 7,
+    "SUZUKI": 5,
+    "CHIENTHANG": 4,
+    "KAMAZ": 2,
+    "FAW": 2,
+    "FORD": 2,
+    "DAEWOO": 1,
+    "DAIHATSU": 1,
+    "IFA": 1,
+    "FORDTRANSIT": 1,
+    "TOYOTA": 1,
+    "MITSUBISHI": 1,
+    "SSANGYONG": 1
+   },
+   "years": {
+    "2000": 193,
+    "1990": 1
+   }
+  },
+  "Hà Nội": {
+   "n": 1430,
+   "brands": {
+    "HYUNDAI": 913,
+    "KIA": 144,
+    "SUZUKI": 82,
+    "SAMSUNG": 64,
+    "KAMAZ": 47,
+    "TOYOTA": 45,
+    "DAEWOO": 27,
+    "ISUZU": 24,
+    "FORD": 15,
+    "SSANGYONG": 13,
+    "IFA": 9,
+    "MITSUBISHI": 9,
+    "DAIHATSU": 9,
+    "FAW": 7,
+    "HINO": 5,
+    "DONGFENG": 4,
+    "MERCEDES": 3,
+    "VIETHUNG": 2,
+    "MERCEDESBENZ": 2,
+    "CA5160GJY": 2,
+    "SSANGY0NG": 1,
+    "HANOFO": 1,
+    "ASIA": 1,
+    "CHIENTHANG": 1
+   },
+   "years": {
+    "2000": 1415,
+    "2005": 2,
+    "1990": 11,
+    "2010": 1,
+    "2001": 1
+   }
+  },
+  "Hà Tĩnh": {
+   "n": 78,
+   "brands": {
+    "HYUNDAI": 37,
+    "KIA": 13,
+    "KAMAZ": 7,
+    "SSANGYONG": 5,
+    "SAMSUNG": 4,
+    "FAW": 4,
+    "MITSUBISHI": 2,
+    "SUZUKI": 2,
+    "ISUZU": 2,
+    "FORD": 1,
+    "TOYOTA": 1
+   },
+   "years": {
+    "2000": 78
+   }
+  },
+  "Hải Phòng": {
+   "n": 367,
+   "brands": {
+    "HYUNDAI": 230,
+    "KIA": 57,
+    "SUZUKI": 12,
+    "KAMAZ": 12,
+    "SAMSUNG": 9,
+    "IFA": 9,
+    "HINO": 7,
+    "DAEWOO": 6,
+    "ISUZU": 5,
+    "VIETHUNG": 4,
+    "TOYOTA": 4,
+    "MITSUBISHI": 2,
+    "MAZ": 2,
+    "KPAZ": 1,
+    "ISUZUNQR71RSAMCO": 1,
+    "FORD": 1,
+    "MERCEDES": 1,
+    "FAW": 1,
+    "SSANG YONG": 1,
+    "HYD": 1,
+    "CHENGLONG": 1
+   },
+   "years": {
+    "2000": 353,
+    "1990": 13,
+    "2025": 1
+   }
+  },
+  "Phú Thọ": {
+   "n": 316,
+   "brands": {
+    "HYUNDAI": 197,
+    "KIA": 50,
+    "IFA": 14,
+    "DAEWOO": 9,
+    "ISUZU": 7,
+    "SAMSUNG": 7,
+    "MITSUBISHI": 6,
+    "VIETHUNG": 5,
+    "FORD": 5,
+    "HINO": 3,
+    "SUZUKI": 3,
+    "SSANGYONG": 2,
+    "KAMAZ": 2,
+    "VIETHA": 1,
+    "DAIHATSU": 1,
+    "TOYOTA": 1,
+    "HOAMAI": 1,
+    "THACO": 1,
+    "FAW": 1
+   },
+   "years": {
+    "2000": 296,
+    "1990": 19,
+    "2025": 1
+   }
+  },
+  "Hưng Yên": {
+   "n": 179,
+   "brands": {
+    "HYUNDAI": 121,
+    "KIA": 33,
+    "SAMSUNG": 6,
+    "DAIHATSU": 4,
+    "IFA": 3,
+    "SUZUKI": 2,
+    "ISUZU": 2,
+    "HOAMAI": 2,
+    "CHENGLONG": 2,
+    "DAEWOO": 1,
+    "TOYOTA": 1,
+    "FORD": 1,
+    "VIETHUNG": 1
+   },
+   "years": {
+    "2000": 173,
+    "2025": 2,
+    "1990": 4
+   }
+  },
+  "Khánh Hòa": {
+   "n": 274,
+   "brands": {
+    "KIA": 125,
+    "HYUNDAI": 67,
+    "SAMSUNG": 56,
+    "DAIHATSU": 10,
+    "ISUZU": 5,
+    "KAMAZ": 3,
+    "MITSUBISHI": 3,
+    "DAEWOO": 2,
+    "SUZUKI": 1,
+    "HINO": 1,
+    "SSANGYONG": 1
+   },
+   "years": {
+    "2000": 274
+   }
+  },
+  "Quảng Ngãi": {
+   "n": 213,
+   "brands": {
+    "KIA": 68,
+    "HYUNDAI": 41,
+    "KAMAZ": 35,
+    "SAMSUNG": 26,
+    "ISUZU": 15,
+    "DAIHATSU": 10,
+    "SUZUKI": 6,
+    "MAZ": 3,
+    "FORD": 2,
+    "IFA": 2,
+    "HANOFO": 1,
+    "VIETHUNG": 1,
+    "DAEWOO": 1,
+    "TOYOTA": 1,
+    "FAW": 1
+   },
+   "years": {
+    "2000": 210,
+    "1990": 3
+   }
+  },
+  "Lai Châu": {
+   "n": 6,
+   "brands": {
+    "HYUNDAI": 5,
+    "KIA": 1
+   },
+   "years": {
+    "2000": 6
+   }
+  },
+  "Lạng Sơn": {
+   "n": 25,
+   "brands": {
+    "HYUNDAI": 10,
+    "KAMAZ": 5,
+    "SUZUKI": 4,
+    "SAMSUNG": 3,
+    "MERCEDES": 1,
+    "ISUZU": 1,
+    "MAZ": 1
+   },
+   "years": {
+    "2000": 24,
+    "2005": 1
+   }
+  },
+  "Lào Cai": {
+   "n": 66,
+   "brands": {
+    "HYUNDAI": 37,
+    "HOAMAI": 9,
+    "KIA": 6,
+    "DAEWOO": 2,
+    "TIANYE": 2,
+    "KAMAZ": 2,
+    "ISUZU": 1,
+    "DAIHATSU": 1,
+    "CHANGAN": 1,
+    "FORD": 1,
+    "SSANGYONG": 1,
+    "SAMSUNG": 1,
+    "RENAULT": 1,
+    "QUANGKHOA": 1
+   },
+   "years": {
+    "2000": 66
+   }
+  },
+  "Tây Ninh": {
+   "n": 264,
+   "brands": {
+    "KIA": 84,
+    "KAMAZ": 62,
+    "HYUNDAI": 58,
+    "SAMSUNG": 23,
+    "DAIHATSU": 10,
+    "MITSUBISHI": 7,
+    "ISUZU": 5,
+    "SUZUKI": 4,
+    "TIANYE": 3,
+    "HINO": 2,
+    "FORD": 2,
+    "MERCEDESBENZ": 1,
+    "TOYOTA": 1,
+    "XT14KAMAZ53229": 1,
+    "MEKONG": 1
+   },
+   "years": {
+    "2000": 264
+   }
+  },
+  "Nghệ An": {
+   "n": 221,
+   "brands": {
+    "HYUNDAI": 106,
+    "KIA": 49,
+    "SAMSUNG": 20,
+    "KAMAZ": 12,
+    "IFA": 6,
+    "ISUZU": 5,
+    "HOAMAI": 4,
+    "MITSUBISHI": 3,
+    "SUZUKI": 3,
+    "DAIHATSU": 2,
+    "VIETHUNG": 2,
+    "DAEWOO": 2,
+    "CHIENTHANG": 1,
+    "SSANGYONG": 1,
+    "FAW": 1,
+    "TOYOTA": 1,
+    "BAHAI": 1,
+    "RENAULT": 1,
+    "FORD": 1
+   },
+   "years": {
+    "2000": 213,
+    "1990": 8
+   }
+  },
+  "Quảng Trị": {
+   "n": 125,
+   "brands": {
+    "HYUNDAI": 34,
+    "KAMAZ": 24,
+    "KIA": 20,
+    "IFA": 12,
+    "ISUZU": 9,
+    "VIETHUNG": 8,
+    "SAMSUNG": 5,
+    "FORD": 4,
+    "DAIHATSU": 3,
+    "MITSUBISHI": 2,
+    "TIANYE": 1,
+    "DAEWOO": 1,
+    "NZ5100ZLJ": 1,
+    "HINO": 1
+   },
+   "years": {
+    "2000": 105,
+    "1990": 20
+   }
+  },
+  "Quảng Ninh": {
+   "n": 77,
+   "brands": {
+    "HYUNDAI": 37,
+    "KIA": 9,
+    "SAMSUNG": 8,
+    "KAMAZ": 5,
+    "KRAZ": 4,
+    "FORD": 3,
+    "HOAMAI": 2,
+    "ISUZU": 1,
+    "IVECO": 1,
+    "IFA": 1,
+    "DAEWOO": 1,
+    "SSANGYONG": 1,
+    "SUZUKI": 1,
+    "CHIENTHANG": 1,
+    "HINO": 1,
+    "VIETHUNG": 1
+   },
+   "years": {
+    "2000": 75,
+    "1990": 2
+   }
+  },
+  "Sơn La": {
+   "n": 43,
+   "brands": {
+    "HYUNDAI": 19,
+    "KAMAZ": 6,
+    "HOAMAI": 6,
+    "CHIENTHANG": 3,
+    "KIA": 2,
+    "ISUZU": 2,
+    "SAMSUNG": 2,
+    "VIETHA": 2,
+    "TOYOTA": 1
+   },
+   "years": {
+    "2000": 43
+   }
+  },
+  "Thanh Hóa": {
+   "n": 224,
+   "brands": {
+    "HYUNDAI": 128,
+    "KIA": 42,
+    "HOAMAI": 11,
+    "SAMSUNG": 10,
+    "FAW": 8,
+    "SUZUKI": 6,
+    "KAMAZ": 5,
+    "FORD": 4,
+    "HINO": 2,
+    "ISUZU": 2,
+    "SSANGYONG": 2,
+    "EUCLID": 2,
+    "DAIHATSU": 1,
+    "DAEWOO": 1
+   },
+   "years": {
+    "2000": 224
+   }
+  },
+  "Huế": {
+   "n": 84,
+   "brands": {
+    "KIA": 28,
+    "HYUNDAI": 21,
+    "SAMSUNG": 8,
+    "SUZUKI": 7,
+    "MAZ": 4,
+    "DAIHATSU": 3,
+    "FORD": 3,
+    "ISUZU": 1,
+    "QUANGKHOA": 1,
+    "IFA": 1,
+    "HINO": 1,
+    "DAEWOO": 1,
+    "KAMAZ": 1,
+    "CHIENTHANG": 1,
+    "VIETHUNG": 1,
+    "GOLDENMONKEY": 1,
+    "GOLDEN": 1
+   },
+   "years": {
+    "2000": 82,
+    "1990": 2
+   }
+  }
  }
 }
