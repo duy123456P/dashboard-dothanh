@@ -118,7 +118,7 @@ try:
     rows, other = [], []
     for d in SL["dealers"]:
         k = key(d["name"]); ms = ["%s-%02d" % (year, i) for i in range(1, last + 1)]
-        fs = sum(si[k][m] for m in ms); ts = sum(((d["m"].get(m) or {}).get("si") or 0) for m in ms); tl = sum(((d["m"].get(m) or {}).get("le") or 0) for m in ms)
+        fs = sum(si[k][m] for m in ms); ts = sum(((lambda x: x.get("siTDBH", x.get("si")))(d["m"].get(m) or {}) or 0) for m in ms); tl = sum(((d["m"].get(m) or {}).get("le") or 0) for m in ms)
         mom = next((x for x in INV["dealers"] if key(x["name"]) == k), None)
         if fs or ts or tl: rows.append({"dealer": d["name"], "region": d.get("region"), "fgSellIn": fs, "tdbhSellIn": round(ts), "tdbhRetail": round(tl), "diffSellIn": fs - round(ts),
                                         "stockMoM": mom["ton"] if mom else None, "sellInT11": si[k]["%s-%02d" % (year, last + 1)]})
@@ -130,3 +130,23 @@ try:
     print("đối chiếu", F["recon"]["months"], F["recon"]["total"], "| ngoài TDBH:", other[:8])
 except Exception as e:
     print("bỏ qua đối chiếu:", e)
+
+# ---------- chuẩn hóa bán sỉ (sell-in) trong sales.json theo kho nhà máy ----------
+# TDBH ghi bán sỉ dồn, lệch tháng và để trống tháng gần nhất; kho nhà máy ghi theo ngày HĐ mua bán từng xe nên dùng làm chuẩn.
+# Giữ số TDBH gốc ở trường siTDBH để đối chiếu.
+try:
+    year = F["asOf"][:4]; last = int(F["asOf"][5:7]) - 1 or 1
+    for d in SL["dealers"]:
+        k = key(d["name"]); cum = 0
+        for i in range(1, 13):
+            m = "%s-%02d" % (year, i); x = d["m"].get(m)
+            if x is None: continue
+            if i <= last:
+                if "siTDBH" not in x: x["siTDBH"] = x.get("si")
+                x["si"] = float(si[k][m]); x["siSrc"] = "kho NM"
+            cum += x.get("si") or 0; x["siCum"] = cum
+    SL["siNote"] = "Bán sỉ T1–T%d/%s theo kho thành phẩm DAC (ngày HĐ mua bán từng xe, %s); siTDBH = số TDBH gốc" % (last, year, F["asOf"])
+    json.dump(SL, open(os.path.join(HERE, "sales.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("sales.json: bán sỉ T1–T%d chuẩn theo kho NM" % last)
+except Exception as e:
+    print("bỏ qua chuẩn hóa bán sỉ:", e)

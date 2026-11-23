@@ -20,7 +20,7 @@ const sum = a => a.reduce((x,y) => x + (y || 0), 0);
 function series(names){
   const ds = S.dealers.filter(d => !names || names.includes(d.name));
   return MONTHS.map(m => { const xs = ds.map(d => d.m[m] || {});
-    return {m, le: sum(xs.map(x => x.le)), kh: sum(xs.map(x => x.kh)), si: m === "2026-10" ? null : sum(xs.map(x => x.si)), ton: m === "2026-10" ? null : sum(xs.map(x => x.ton)), thuong: sum(xs.map(x => x.thuong)), izLe: sum(xs.map(x => x.izLe)), msLe: sum(xs.map(x => x.msLe))}; });
+    return {m, le: sum(xs.map(x => x.le)), kh: sum(xs.map(x => x.kh)), si: sum(xs.map(x => x.si)), ton: m === "2026-10" ? null : sum(xs.map(x => x.ton)), thuong: sum(xs.map(x => x.thuong)), izLe: sum(xs.map(x => x.izLe)), msLe: sum(xs.map(x => x.msLe))}; });
 }
 function models(names, year){
   const o = {}; S.csiDealerModel.forEach(([y, d, m, n]) => { if(year && y !== year) return; const dn = csiName(d); if(names && !names.includes(dn)) return; (o[m] = o[m] || {})[y] = ((o[m] || {})[y] || 0) + n; });
@@ -173,13 +173,23 @@ function render(){
   const el = document.getElementById("slCombo"); if(!el) return; const names = scope(), ser = series(names);
   const le = sum(ser.map(x => x.le)), kh = sum(ser.map(x => x.kh)), si = sum(ser.map(x => x.si)), t10 = ser[ser.length-1], ton = ser[ser.length-2].ton, avg3 = sum(ser.slice(-4, -1).map(x => x.le))/3, M = models(names, "2026");
   document.getElementById("slScope").textContent = names ? (names.length === 1 ? names[0] : (document.getElementById("slReg").value + " · " + names.length + " đại lý")) : "toàn hệ thống";
-  document.getElementById("slTiles").innerHTML = [[fmtInt(le), "xe bán lẻ T1–T10"], [kh ? fmtInt(le/kh*100) + "%" : "—", `đạt KH lũy kế (${fmtInt(kh)})`], [fmtInt(si), "xe bán sỉ T1–T9"], [`${fmtInt(t10.izLe)} · ${fmtInt(t10.msLe)}`, "IZ · MISSU tháng 10"], [fmtInt(ton), `tồn cuối T9 ≈ ${avg3 ? fmt1(ton/avg3) : "—"} tháng bán`], [M[0] ? M[0].m : "—", `model bán nhiều nhất 2026 (${M[0] ? fmtInt(M[0].y26) : 0} xe)`], [fmt1(sum(ser.map(x => x.thuong))), "thưởng tạm tính (tr đ)"]]
+  document.getElementById("slTiles").innerHTML = [[fmtInt(le), "xe bán lẻ T1–T10"], [kh ? fmtInt(le/kh*100) + "%" : "—", `đạt KH lũy kế (${fmtInt(kh)})`], [fmtInt(si), "xe bán sỉ T1–T10 (kho NM)"], [`${fmtInt(t10.izLe)} · ${fmtInt(t10.msLe)}`, "IZ · MISSU tháng 10"], [fmtInt(ton), `tồn cuối T9 ≈ ${avg3 ? fmt1(ton/avg3) : "—"} tháng bán`], [M[0] ? M[0].m : "—", `model bán nhiều nhất 2026 (${M[0] ? fmtInt(M[0].y26) : 0} xe)`], [fmt1(sum(ser.map(x => x.thuong))), "thưởng tạm tính (tr đ)"]]
     .map(([v,l]) => `<div class="stat"><div class="v">${esc(String(v))}</div><div class="l">${esc(l)}</div></div>`).join("");
   el.innerHTML = combo(ser);
   document.getElementById("slHeat").innerHTML = heat(names);
   document.getElementById("slModel").innerHTML = modelTable(names);
   if(!render.fcDone){ document.getElementById("slFc").innerHTML = fcHtml(); render.fcDone = true; }
   document.getElementById("slIns").innerHTML = insights(names).map(x => `<li>${esc(x)}</li>`).join("") || "<li>Không có cảnh báo.</li>";
+  let t = document.getElementById("slT11"); if(!t && S.t11){ t = document.createElement("div"); t.id = "slT11"; el.parentElement.parentElement.appendChild(t); }
+  if(t) t.innerHTML = t11Html(names);
+}
+function t11Html(names){
+  const T = S.t11; if(!T) return ""; const ds = Object.entries(T.byDealer).filter(([d]) => !names || names.some(n => n === d || n.replace(/Ô tô|Ô Tô/i, "").trim() === d.replace(/Ô tô|Ô Tô/i, "").trim()));
+  const tot = names ? sum(ds.map(([, x]) => x.n)) : T.total;
+  return `<div class="hp w12" style="margin-top:12px"><h3>Bán lẻ tháng 11/2026 đến ${esc(T.asOf.split("-").reverse().slice(0, 2).join("/"))} <span>${esc(T.source)}</span></h3>
+    <p class="small"><b>${fmtInt(tot)} xe</b>${names ? "" : ` (IZ ${T.byGroup.IZ || 0}, MISSU ${T.byGroup.MISSU || 0}, JP ${T.byGroup.JP || 0}); theo tuần: ${Object.entries(T.byWeek).map(([w, n]) => w + " " + n).join(", ")}`}.</p>
+    <div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Đại lý</th><th class="num">Xe</th><th>Model</th></tr></thead><tbody>${ds.map(([d, x]) => `<tr><td>${esc(d)}</td><td class="num"><b>${x.n}</b></td><td class="tiny">${esc(Object.entries(x.models).map(([m, n]) => m + " " + n).join(", "))}</td></tr>`).join("")}</tbody></table></div>
+    <h4>Kiểm tra dữ liệu từng số khung</h4><ul class="small">${T.checks.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>`;
 }
 document.addEventListener("change", e => { if(e.target.id === "slReg"){ document.getElementById("slDl").value = ""; render(); } if(e.target.id === "slDl") render(); });
 document.addEventListener("click", e => {
@@ -209,6 +219,9 @@ CV.salesForecastRows = () => { // lịch sử thật cho mô hình S&OP: bán l�
   TX.tx.forEach(r => { if(!set.has(r[0]) || !r[5]) return; const seg = TX.segs[r[2]] || "2,5–3,5 tấn", body = BODY[TX.bodies[r[3]]] || "Khác (lửng, chassis, van)", k = [r[0], seg, body, r[4]].join("|"); o[k] = (o[k] || 0) + r[5]; });
   return Object.entries(o).map(([k, q]) => { const [m, seg, body, fl] = k.split("|"); return {m, seg, body, qty: q, fleet: fl === "1", cust: fl === "1" ? "Dự án" : ""}; }).filter(r => r.qty > 0); };
 
+CV.tools.push({name: "ban_le_t11", label: "Đang đọc bán lẻ tháng 11…", description: "Bán lẻ tháng 11/2026 đến ngày mới nhất theo đại lý, model, tuần; kết quả kiểm tra từng số khung (khớp kho nhà máy, lệch model, xe điều chuyển giữa đại lý).", inputSchema: {type: "object", properties: {dai_ly: {type: "string"}}},
+  execute: ({dai_ly}) => { const T = S.t11; if(!T) return "Chưa có số bán lẻ tháng 11."; const ds = Object.entries(T.byDealer).filter(([d]) => !dai_ly || d.toLowerCase().includes(String(dai_ly).toLowerCase()));
+    return `# Bán lẻ T11/2026 đến ${T.asOf.split("-").reverse().join("/")}\n- Tổng ${T.total} xe: IZ ${T.byGroup.IZ || 0}, MISSU ${T.byGroup.MISSU || 0}, JP ${T.byGroup.JP || 0}; theo tuần ${Object.entries(T.byWeek).map(([w, n]) => w + " " + n).join(", ")}.\n\n| Đại lý | Xe | Model |\n|---|---|---|\n${ds.map(([d, x]) => `| ${d} | ${x.n} | ${Object.entries(x.models).map(([m, n]) => m + " " + n).join(", ")} |`).join("\n")}\n\n## Kiểm tra dữ liệu\n${T.checks.map(c => "- " + c).join("\n")}\n\n_Nguồn: ${T.source}._`; }});
 CV.tools.push({name: "doanh_so_chi_tiet", label: "Đang tra doanh số…", description: "Doanh số IZ – MISSU chi tiết: theo tháng 2026 (KH, bán lẻ, bán sỉ, tồn, thưởng, IZ/MISSU tháng 10), theo đại lý, theo model từng năm 2023–2026 (CSI). Lọc theo dai_ly (tên đại lý, ví dụ 'Trường Vũ'), mien ('Miền Bắc' | 'Miền Trung' | 'Miền Nam' | 'Miền Tây'), model (ví dụ 'IZ65M').",
   inputSchema: {type: "object", properties: {dai_ly: {type: "string"}, mien: {type: "string"}, model: {type: "string"}}},
   execute: ({dai_ly, mien, model}) => { let names = null; if(dai_ly){ const d = S.dealers.find(x => up(x.name).includes(up(dai_ly)) || up(dai_ly).includes(up(x.name))); if(!d) throw new Error("Không có đại lý " + dai_ly); names = [d.name]; }
