@@ -71,6 +71,8 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .kpi{padding:12px 16px;overflow:hidden}
 .kpi .v{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1;color:#fff;text-shadow:0 0 18px rgba(70,227,255,.35)}
 .kpi .l{font-size:12px;color:var(--muted)}
+.kpi[data-ktip]{cursor:help}.kpi .kinfo{color:var(--accent,#46e3ff);font-size:11px}
+#ktip{position:fixed;z-index:9999;max-width:360px;padding:10px 12px;border-radius:10px;background:rgba(8,20,38,.96);border:1px solid rgba(70,227,255,.35);color:#e8f3ff;font-size:12.5px;line-height:1.5;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.45)}
 .kpi::before{content:"";position:absolute;left:16px;top:0;width:36px;height:2px;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
 
 .main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}
@@ -741,20 +743,27 @@ function renderKpis(){
   const sum = k => v.reduce((a,r)=>a+(+r[k]||0),0);
   const cs = CENTERS.filter(c => names.has(c.province));
   const market = sum("_market"), sales = sum("sales");
+  const rk = (window.__CV && __CV.market && (__CV.market.rank10T || []).findIndex(x => x[0] === "DOTHANH") + 1) || "—";
+  const dtAll = sum("regT10dt") + sum("regT10dtHeavy");
   const items = [
     [fmtInt(v.length), zone ? "Tỉnh/thành · " + zone : "Tỉnh/thành"],
     [fmt1(sum("pop")/1000)+" tr", "Dân số"],
-    [fmtInt(sum("grdp2026e") || sum("grdp")), "GRDP 2026 (ước), nghìn tỷ đ · 2025: " + fmtInt(sum("grdp"))],
-    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2026 (quy năm, ĐK thực T10)" : "ĐK mới xe tải 2026 quy năm · 10T/2026: 98.955 xe (+24%)"],
-    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm 8/2026"],
+    [fmtInt(sum("grdp2026e") || sum("grdp")), "GRDP 2026 (ước), nghìn tỷ đ", `<b>GRDP 2026 (ước)</b><br>Năm 2025: ${fmtInt(sum("grdp"))} nghìn tỷ đồng (Niên giám Thống kê 2025, gộp theo 34 tỉnh).<br>2026 ước theo tăng trưởng 9 tháng 2026 của từng tỉnh.`],
+    [fmtInt(!zone && !rows.some(r=>r._regReal) ? tam : market), zone ? "ĐK mới xe tải 2026 (quy năm)" : "ĐK mới xe tải 2026 (quy năm)", `<b>Đăng ký mới xe tải 2026, quy năm</b><br>${zone ? "Phân bổ theo đăng ký thực tháng 10/2026 (file DKM) của các tỉnh trong vùng." : "10 tháng 2026: 98.955 xe (+24% cùng kỳ), báo cáo IZ 8 phân khúc; quy năm theo tỷ lệ cả năm 2025 / 10 tháng 2025."}`],
+    [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm", `<b>UIO xe thương mại đang lưu hành</b><br>Tổng cả nước 1.951.883 xe (Cục Đăng kiểm, 8/2026).<br>Theo tỉnh: Hà Nội, TP.HCM, Hải Phòng neo theo tổng ô tô công bố; tỉnh khác phân bổ 85% theo đăng ký xe TM 2025 + 6T/2026, 15% theo xe tải hết niên hạn 2025 (Cục Đăng kiểm).`],
     [`${cs.filter(c=>c.type==="C1").length} · ${cs.filter(c=>c.type==="C2").length}`, "Đại lý cấp 1 · cấp 2"],
     [fmtInt(sales), `Bán lẻ lũy kế T10 · ${sum("target") ? fmtInt(sales/sum("target")*100)+"% KH" : "—"}`],
-    zone ? [sum("regT10addr") ? fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)+"%" : "—", `Thị phần Đô Thành T10/2026 trong phân khúc có sản phẩm (ĐK thực ${fmtInt(sum("regT10dtAddr"))}/${fmtInt(sum("regT10addr"))} xe)`]
-      : [fmt1(DT10.dac/DT10.mkt*100)+"% · hạng " + ((window.__CV && __CV.market && (__CV.market.rank10T || []).findIndex(x => x[0] === "DOTHANH") + 1) || "—"), `Thị phần Đô Thành 10T/2026, phân khúc có sản phẩm, không gồm xe điện (${fmtInt(DT10.dac)}/${fmtInt(DT10.mkt)} xe, báo cáo DAC) · ĐK thực T10: ${fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)}% · toàn bộ xe tải T10: ${fmt1((sum("regT10dt")+sum("regT10dtHeavy"))/sum("regT10")*100)}% (${fmtInt(sum("regT10dt")+sum("regT10dtHeavy"))}/${fmtInt(sum("regT10"))}, gồm ${fmtInt(sum("regT10dtHeavy"))} đầu kéo Daewoo)`],
+    zone ? [sum("regT10addr") ? fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)+"%" : "—", "Thị phần Đô Thành T10/2026", `<b>Thị phần Đô Thành T10/2026 tại vùng</b><br>Đăng ký thực ${fmtInt(sum("regT10dtAddr"))}/${fmtInt(sum("regT10addr"))} xe trong 5 phân khúc Đô Thành có sản phẩm (Van, tải nhỏ I–II, tải nhẹ I–II), không gồm xe điện.`]
+      : [fmt1(DT10.dac/DT10.mkt*100)+"% · hạng " + rk, "Thị phần Đô Thành 10T/2026", `<b>Thị phần Đô Thành 10T/2026: ${fmt1(DT10.dac/DT10.mkt*100)}%, hạng ${rk}</b><br>${fmtInt(DT10.dac)}/${fmtInt(DT10.mkt)} xe, báo cáo thị trường DAC; chỉ tính 5 phân khúc Đô Thành có sản phẩm (Van, tải nhỏ I–II, tải nhẹ I–II), không gồm xe điện.<br>Đăng ký thực T10/2026 (cùng phân khúc): <b>${fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)}%</b> (${fmtInt(sum("regT10dtAddr"))}/${fmtInt(sum("regT10addr"))} xe).<br>Toàn bộ xe tải T10/2026: <b>${fmt1(dtAll/sum("regT10")*100)}%</b> (${fmtInt(dtAll)}/${fmtInt(sum("regT10"))} xe, gồm ${fmtInt(sum("regT10dtHeavy"))} đầu kéo Daewoo).<br><i>Thị phần phân khúc có sản phẩm phản ánh đúng sức cạnh tranh; toàn bộ xe tải gồm cả tải nặng, đầu kéo mà Đô Thành gần như chưa tham gia.</i>`]
   ];
-  document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="glass kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
+  document.getElementById("kpis").innerHTML = items.map(([a,b,t])=>`<div class="glass kpi"${t ? ` data-ktip="${esc(t)}"` : ""}><div class="v num">${a}</div><div class="l">${esc(b)}${t ? ' <span class="kinfo" aria-hidden="true">ⓘ</span>' : ""}</div></div>`).join("");
 }
 
+/* chú giải chi tiết ô KPI (trỏ chuột / chạm) */
+(function(){ const k = document.createElement("div"); k.id = "ktip"; k.hidden = true; k.setAttribute("role", "tooltip"); document.body.appendChild(k);
+  const pos = (x, y) => { const w = k.offsetWidth, h = k.offsetHeight; let a = x + 14, b = y + 14; if(a + w > innerWidth - 8) a = Math.max(8, x - w - 14); if(b + h > innerHeight - 8) b = Math.max(8, y - h - 14); k.style.left = a + "px"; k.style.top = b + "px"; };
+  const on = e => { const el = e.target.closest && e.target.closest(".kpi[data-ktip]"); if(!el){ k.hidden = true; return; } k.innerHTML = el.getAttribute("data-ktip"); k.hidden = false; pos(e.clientX, e.clientY); };
+  document.addEventListener("pointermove", on); document.addEventListener("pointerdown", on); document.addEventListener("scroll", () => { k.hidden = true; }, true); })();
 /* ---------- geometry helpers ---------- */
 const POLYS = GEO.features.map(f => {
   const g = f.geometry, ps = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
