@@ -21,6 +21,8 @@ INV, FG, TX, PL, MK, PV, NET = J("inventory.json"), J("factory.json"), J("tx.jso
 MKT = J("mkt2027.json") if os.path.exists(os.path.join(HERE, "mkt2027.json")) else {}
 CU = J("customers.json") if os.path.exists(os.path.join(HERE, "customers.json")) else {}
 RATE_YEAR = 0.08
+DBT = J("debt2026.json") if os.path.exists(os.path.join(HERE, "debt2026.json")) else None
+DBD = {d["name"]: d for d in (DBT or {}).get("dealers", [])}
 r0 = lambda x, n=0: round(x, n) if n else int(round(x))
 
 # ---------------- bảng giá ----------------
@@ -75,22 +77,26 @@ for n, d in DL.items():
     val = sum(avg_price(m, BODYMIX.get(m)) * c for m, c in d["models"].items() if avg_price(m, BODYMIX.get(m)))
     unit = val / d["ton"] if d["ton"] else 0
     expo = unit * (d["mb"] * 0.90 + d["mbtb"] * 0.95 + d["kg"] * 1.0)
+    dz = DBD.get(n)
+    if DBT: expo = (dz["total"] * 1e6 if dz else 0) + unit * d["kg"]
+    over = dz["over"] if dz else 0; over90 = (dz["MB"]["bAmt"].get("> 90", 0) + dz["MBTB"]["bAmt"].get("> 90", 0)) if dz else 0; maxd = max(dz["MB"]["max"], dz["MBTB"]["max"]) if dz else 0
     rate = rateD.get(n, 0)
     cover = d["ton"] / rate if rate else None
     old = d["age"].get("181-365", 0) + d["age"].get(">365", 0)
     excess = max(0, d["ton"] - 2 * rate)
     dealers.append({"name": n, "region": d["region"], "ton": d["ton"], "mb": d["mb"], "mbtb": d["mbtb"], "kg": d["kg"], "manual": d["manual"], "value": r0(val / 1e6), "expo": r0(expo / 1e6),
                     "rate": r0(rate, 1), "cover": r0(cover, 1) if cover else None, "old": old, "o365": d["age"].get(">365", 0), "age": dict(d["age"]), "excess": r0(excess),
-                    "excessExpo": r0(excess * unit * (expo / val if val else .92) / 1e6), "carry": r0(expo * RATE_YEAR / 12 / 1e6, 1), "models": dict(d["models"].most_common())})
+                    "excessExpo": r0(excess * unit * (expo / val if val else .92) / 1e6), "carry": r0(expo * RATE_YEAR / 12 / 1e6, 1), "over": over, "over90": over90, "maxDays": maxd, "debtN": (dz["MB"]["n"] + dz["MBTB"]["n"]) if dz else 0, "models": dict(d["models"].most_common())})
 TOTV, TOTE = sum(d["value"] for d in dealers), sum(d["expo"] for d in dealers)
 # phân loại Eisenhower: KHẨN = tồn > 3 tháng bán hoặc ≥ 10% xe quá 180 ngày hoặc có xe > 365 ngày; QUAN TRỌNG = dư nợ ≥ 3% tổng hoặc ≥ 40 xe
 for d in dealers:
-    urgent = (d["cover"] is None or d["cover"] > 3) or (d["ton"] and d["old"] / d["ton"] >= .10) or d["o365"] > 0
+    urgent = (d["cover"] is None or d["cover"] > 3) or (d["ton"] and d["old"] / d["ton"] >= .10) or d["o365"] > 0 or d["over90"] > 0
     imp = d["expo"] >= .03 * TOTE or d["ton"] >= 40
     d["q"] = 1 if urgent and imp else 2 if imp else 3 if urgent else 4
     d["why"] = "; ".join(filter(None, [
         ("tồn " + (f"{d['cover']:.1f}".replace(".", ",") + " tháng bán" if d["cover"] else "không có bán lẻ T5–T10")) if (d["cover"] is None or d["cover"] > 3) else "",
         f"{d['old']} xe > 180 ngày" if d["old"] else "", f"{d['o365']} xe > 365 ngày" if d["o365"] else "",
+        f"nợ quá hạn {d['over']/1000:.1f} tỷ (lâu nhất {d['maxDays']} ngày)".replace(".", ",") if d["over"] else "",
         f"dư nợ {d['expo']/1000:.1f} tỷ".replace(".", ",") if imp else "", "số tồn nhập tay, chưa có từng xe" if d["manual"] else ""]))
 dealers.sort(key=lambda d: (d["q"], -d["expo"]))
 
@@ -188,14 +194,14 @@ S = J("sales.json")["plan"].get("kh27m") or [1] * 12
 mon = [r0(5000 * v / sum(S)) for v in S]; mon[-1] += 5000 - sum(mon)
 
 out = {"asOf": INV["asOf"], "rateYear": RATE_YEAR, "W": [W[0], W[-1]], "rateAll": r0(rateAll, 1),
-       "note": "Giá trị theo giá bán cho đại lý (bảng giá 19/11/2026), không phải giá vốn. Dư nợ = phần DAC chưa thu: HĐMB 90%, MBTB 95%, ký gửi 100%.",
+       "note": "Giá trị theo giá bán cho đại lý (bảng giá 19/11/2026), không phải giá vốn. Vốn DAC tại đại lý = số tiền còn nợ theo báo cáo công nợ kế toán (HĐMB); xe MBTB ước = giá bán cho đại lý × 95%; xe ký gửi 100%.",
        "noPrice": dict(NOPRICE),
        "stock": {"ton": INV["total"], "mb": INV["contracts"].get("Mua bán", 0), "mbtb": INV["contracts"].get("MBTB", 0), "kg": INV["contracts"].get("Ký gửi", 0), "value": TOTV, "expo": TOTE,
                  "carryMonth": r0(TOTE * RATE_YEAR / 12, 0), "cover": r0(INV["total"] / rateAll, 1), "excess": sum(d["excess"] for d in dealers), "excessExpo": sum(d["excessExpo"] for d in dealers),
                  "age": INV["age"]["buckets"], "withAge": INV["age"]["withPayDate"], "y2025": INV["age"]["model2025"]},
        "factory": {"fg": sum(x["fg"] for x in models), "wait": sum(x["wait"] for x in models), "chassis": sum(x["chassis"] for x in models), "value": FGV, "pipeline": PIPE, "asOf": FG["asOf"],
                    "sysCover": r0((INV["total"] + sum(x["fg"] + x["chassis"] for x in models)) / rateAll, 1), "sysCoverCkd": r0((INV["total"] + sum(x["fg"] + x["chassis"] for x in models) + PIPE["ckd"] + PIPE["wipBody"] + PIPE["wipQC"]) / rateAll, 1)},
-       "dealers": dealers, "debt": DEBT, "models": models,
+       "dealers": dealers, "debt": DEBT, "acct": DBT, "models": models,
        "market": {"m26": M26, "dt26": DT26, "share26": r0(DT26 / M26 * 100, 2), "scen": SCEN, "seg": seg, "t27": T27, "tShare": r0(T27 / M26 * 100, 2)},
        "prov": prov[:15], "bridge": BRIDGE, "bridgeTotal": BR_T, "monthly27": mon, "est26": r0(est26), "le26": le26}
 json.dump(out, open(os.path.join(HERE, "plan2027.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
