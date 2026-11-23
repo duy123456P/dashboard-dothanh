@@ -6456,5 +6456,18 @@
     "HOA MAI": 30
    }
   }
+ },
+ "dtHeavy": {
+  "period": "T10/2026",
+  "n": 2,
+  "model": "Daewoo CL4TS (dòng NOVUS) đầu kéo",
+  "dealer": "Đô Thành Phú Mỹ (Đô Thành Thủ Đức)",
+  "province": "TP. Hồ Chí Minh",
+  "src": "Phòng kinh doanh Đô Thành (anh Duy, 23/11/2026); file DKM T10 ghi nhãn hiệu DAEWOO (5 đầu kéo NOVUS tại TP.HCM) nên không nằm trong số DOTHANH",
+  "tractorT10": 1424,
+  "tractorT10hcm": 289,
+  "heavyT10": 4483,
+  "heavyT10hcm": 639,
+  "daewooTractorT10hcm": 5
  }
 }

@@ -166,7 +166,9 @@
   "carStockSrc": [
    "Báo Đại biểu Nhân dân (20/05/2026): Hà Nội khoảng 1,1 triệu ô tô",
    "https://daibieunhandan.vn/xe-dien-dan-thay-doi-thoi-quen-di-lai-cua-nguoi-dan-ha-noi-10417586.html"
-  ]
+  ],
+  "regT10addr": 1074,
+  "regT10dtAddr": 24
  },
  {
   "name": "Huế",
@@ -324,7 +326,9 @@
    ]
   ],
   "cv2025": 726,
-  "cv6m26": 551
+  "cv6m26": 551,
+  "regT10addr": 42,
+  "regT10dtAddr": 2
  },
  {
   "name": "Lai Châu",
@@ -480,7 +484,9 @@
    ]
   ],
   "cv2025": 237,
-  "cv6m26": 164
+  "cv6m26": 164,
+  "regT10addr": 17,
+  "regT10dtAddr": 1
  },
  {
   "name": "Điện Biên",
@@ -636,7 +642,9 @@
    ]
   ],
   "cv2025": 304,
-  "cv6m26": 180
+  "cv6m26": 180,
+  "regT10addr": 24,
+  "regT10dtAddr": 0
  },
  {
   "name": "Sơn La",
@@ -789,7 +797,9 @@
    ]
   ],
   "cv2025": 871,
-  "cv6m26": 575
+  "cv6m26": 575,
+  "regT10addr": 56,
+  "regT10dtAddr": 2
  },
  {
   "name": "Lạng Sơn",
@@ -947,7 +957,9 @@
    ]
   ],
   "cv2025": 1275,
-  "cv6m26": 691
+  "cv6m26": 691,
+  "regT10addr": 41,
+  "regT10dtAddr": 0
  },
  {
   "name": "Quảng Ninh",
@@ -1102,7 +1114,9 @@
    ]
   ],
   "cv2025": 1516,
-  "cv6m26": 1042
+  "cv6m26": 1042,
+  "regT10addr": 64,
+  "regT10dtAddr": 1
  },
  {
   "name": "Thanh Hóa",
@@ -1268,7 +1282,9 @@
    ]
   ],
   "cv2025": 2463,
-  "cv6m26": 1812
+  "cv6m26": 1812,
+  "regT10addr": 137,
+  "regT10dtAddr": 2
  },
  {
   "name": "Nghệ An",
@@ -1430,7 +1446,9 @@
    ]
   ],
   "cv2025": 2505,
-  "cv6m26": 1870
+  "cv6m26": 1870,
+  "regT10addr": 136,
+  "regT10dtAddr": 3
  },
  {
   "name": "Hà Tĩnh",
@@ -1581,7 +1599,9 @@
    ]
   ],
   "cv2025": 836,
-  "cv6m26": 763
+  "cv6m26": 763,
+  "regT10addr": 50,
+  "regT10dtAddr": 2
  },
  {
   "name": "Cao Bằng",
@@ -1737,7 +1757,9 @@
    ]
   ],
   "cv2025": 301,
-  "cv6m26": 175
+  "cv6m26": 175,
+  "regT10addr": 15,
+  "regT10dtAddr": 0
  },
  {
   "name": "Tuyên Quang",
@@ -1902,7 +1924,9 @@
    ]
   ],
   "cv2025": 963,
-  "cv6m26": 620
+  "cv6m26": 620,
+  "regT10addr": 55,
+  "regT10dtAddr": 3
  },
  {
   "name": "Lào Cai",
@@ -2069,7 +2093,9 @@
    ]
   ],
   "cv2025": 1163,
-  "cv6m26": 595
+  "cv6m26": 595,
+  "regT10addr": 52,
+  "regT10dtAddr": 3
  },
  {
   "name": "Thái Nguyên",
@@ -2227,7 +2253,9 @@
    ]
   ],
   "cv2025": 1632,
-  "cv6m26": 1142
+  "cv6m26": 1142,
+  "regT10addr": 77,
+  "regT10dtAddr": 2
  },
  {
   "name": "Phú Thọ",
@@ -2399,7 +2427,9 @@
    ]
   ],
   "cv2025": 3294,
-  "cv6m26": 2305
+  "cv6m26": 2305,
+  "regT10addr": 181,
+  "regT10dtAddr": 10
  },
  {
   "name": "Bắc Ninh",
@@ -2561,7 +2591,9 @@
    ]
   ],
   "cv2025": 4763,
-  "cv6m26": 3021
+  "cv6m26": 3021,
+  "regT10addr": 186,
+  "regT10dtAddr": 7
  },
  {
   "name": "Hưng Yên",
@@ -2723,7 +2755,9 @@
    ]
   ],
   "cv2025": 3260,
-  "cv6m26": 2084
+  "cv6m26": 2084,
+  "regT10addr": 172,
+  "regT10dtAddr": 7
  },
  {
   "name": "Hải Phòng",
@@ -2909,7 +2943,9 @@
   "carStockSrc": [
    "Báo Thanh tra: Hải Phòng quản lý hơn 452 nghìn ô tô",
    "https://thanhtra.com.vn/an-ninh-trat-tu-D718A18CA/canh-sat-giao-thong-hai-phong-giai-ma-bai-toan-giao-thong-do-thi-3bb818457.html"
-  ]
+  ],
+  "regT10addr": 216,
+  "regT10dtAddr": 9
  },
  {
   "name": "Ninh Bình",
@@ -3076,7 +3112,9 @@
    ]
   ],
   "cv2025": 3230,
-  "cv6m26": 2424
+  "cv6m26": 2424,
+  "regT10addr": 141,
+  "regT10dtAddr": 3
  },
  {
   "name": "Quảng Trị",
@@ -3239,7 +3277,9 @@
    ]
   ],
   "cv2025": 1347,
-  "cv6m26": 1086
+  "cv6m26": 1086,
+  "regT10addr": 82,
+  "regT10dtAddr": 2
  },
  {
   "name": "Đà Nẵng",
@@ -3488,7 +3528,9 @@
    ]
   ],
   "cv2025": 2534,
-  "cv6m26": 1821
+  "cv6m26": 1821,
+  "regT10addr": 113,
+  "regT10dtAddr": 6
  },
  {
   "name": "Quảng Ngãi",
@@ -3664,7 +3706,9 @@
    ]
   ],
   "cv2025": 849,
-  "cv6m26": 673
+  "cv6m26": 673,
+  "regT10addr": 50,
+  "regT10dtAddr": 2
  },
  {
   "name": "Gia Lai",
@@ -3845,7 +3889,9 @@
    ]
   ],
   "cv2025": 2123,
-  "cv6m26": 1418
+  "cv6m26": 1418,
+  "regT10addr": 124,
+  "regT10dtAddr": 4
  },
  {
   "name": "Khánh Hòa",
@@ -4010,7 +4056,9 @@
    ]
   ],
   "cv2025": 1258,
-  "cv6m26": 917
+  "cv6m26": 917,
+  "regT10addr": 82,
+  "regT10dtAddr": 2
  },
  {
   "name": "Lâm Đồng",
@@ -4190,7 +4238,9 @@
    ]
   ],
   "cv2025": 3279,
-  "cv6m26": 1868
+  "cv6m26": 1868,
+  "regT10addr": 203,
+  "regT10dtAddr": 8
  },
  {
   "name": "Đắk Lắk",
@@ -4371,7 +4421,9 @@
    ]
   ],
   "cv2025": 2161,
-  "cv6m26": 1312
+  "cv6m26": 1312,
+  "regT10addr": 113,
+  "regT10dtAddr": 4
  },
  {
   "name": "TP. Hồ Chí Minh",
@@ -4578,7 +4630,10 @@
   "carStockSrc": [
    "Sở Xây dựng TP.HCM (3/2026): gần 12,98 triệu phương tiện, hơn 1,48 triệu ô tô",
    "https://znews.vn/cong-an-tphcm-den-tung-nha-ra-tung-xe-post1597485.html"
-  ]
+  ],
+  "regT10addr": 1134,
+  "regT10dtAddr": 27,
+  "regT10dtHeavy": 2
  },
  {
   "name": "Đồng Nai",
@@ -4743,7 +4798,9 @@
    ]
   ],
   "cv2025": 4817,
-  "cv6m26": 2725
+  "cv6m26": 2725,
+  "regT10addr": 212,
+  "regT10dtAddr": 4
  },
  {
   "name": "Tây Ninh",
@@ -4910,7 +4967,9 @@
    ]
   ],
   "cv2025": 2366,
-  "cv6m26": 1371
+  "cv6m26": 1371,
+  "regT10addr": 136,
+  "regT10dtAddr": 8
  },
  {
   "name": "Cần Thơ",
@@ -5100,7 +5159,9 @@
    ]
   ],
   "cv2025": 2877,
-  "cv6m26": 1746
+  "cv6m26": 1746,
+  "regT10addr": 202,
+  "regT10dtAddr": 21
  },
  {
   "name": "Vĩnh Long",
@@ -5286,7 +5347,9 @@
    ]
   ],
   "cv2025": 2196,
-  "cv6m26": 1321
+  "cv6m26": 1321,
+  "regT10addr": 156,
+  "regT10dtAddr": 15
  },
  {
   "name": "Đồng Tháp",
@@ -5465,7 +5528,9 @@
    ]
   ],
   "cv2025": 2544,
-  "cv6m26": 1540
+  "cv6m26": 1540,
+  "regT10addr": 162,
+  "regT10dtAddr": 15
  },
  {
   "name": "Cà Mau",
@@ -5623,7 +5688,9 @@
    ]
   ],
   "cv2025": 1302,
-  "cv6m26": 864
+  "cv6m26": 864,
+  "regT10addr": 106,
+  "regT10dtAddr": 11
  },
  {
   "name": "An Giang",
@@ -5790,6 +5857,8 @@
    ]
   ],
   "cv2025": 2479,
-  "cv6m26": 1658
+  "cv6m26": 1658,
+  "regT10addr": 177,
+  "regT10dtAddr": 16
  }
 ]
