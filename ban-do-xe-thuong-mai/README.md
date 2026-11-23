@@ -48,6 +48,8 @@ GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWOR
 | `python3 tools_sync_market.py <DKM.xlsx> <IZ.pptx> <KAMA.pptx>` | file đăng ký mới từng xe + báo cáo thị trường DAC tháng | `market2026.json`, ĐK thực theo tỉnh trong `provinces.json` |
 | `python3 tools_sync_compnet.py <thư mục html>` | daehan.vn (Teraco), danh bạ đại lý Oto360 | `compnet.json` mục `dealers`: đại lý đối thủ theo 34 tỉnh, link Google Maps |
 | `python3 tools_sync_customers.py <KU_SALES.xlsx> <osm_coords.json> <geo_cache.json> <DATA_TVBH_*.xlsx…>` | danh sách khách tiềm năng (OpenStreetMap), file thưởng TVBH 2023–2026 | `customers.json`: khách tiềm năng có tọa độ; khách đã mua đếm theo năm, tỉnh, huyện (không tên, SĐT cá nhân, số khung, biển số) |
+| `python3 tools_sync_factory.py <FILE XE TỔNG HỢP.xlsx> <BC NHẬP-XUẤT-TỒN.xlsx>` | kho thành phẩm DAC (Y:\TỒN KHO THÀNH PHẨM\2026) | `factory.json`: tồn theo model, thùng, màu, tuổi tồn; sản xuất dở dang; nhập – xuất kỳ; sell-in theo đại lý × tháng; đối chiếu TDBH. Tự chạy 8h30: `auto/CAI_DAT_8H30.md` |
+| `python3 tools_sync_eol.py <năm>` | tra cứu xe hết niên hạn (app.vr.org.vn) | cơ cấu hãng, năm SX xe tải hết niên hạn theo tỉnh (chỉ số đếm) |
 | `python3 tools_relief.py` | DEM AWS Terrain Tiles | `relief.webp`, `height.webp` |
 
 Sau mỗi lần đồng bộ: `python3 build.py` rồi `tools_lock.py`.
