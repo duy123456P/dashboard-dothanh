@@ -4464,6 +4464,18 @@
    "An Giang": {
     "total": 248,
     "dt": 16,
+    "rankAddr": {
+     "THACO": 32,
+     "HYUNDAI": 27,
+     "SUZUKI": 26,
+     "KIA": 20,
+     "DOTHANH": 16,
+     "SRM": 15,
+     "JAC": 12,
+     "ISUZU": 12,
+     "TERACO": 6,
+     "FOTON": 4
+    },
     "brands": {
      "THACO": 32,
      "HYUNDAI": 27,
@@ -4493,8 +4505,8 @@
      "Trung & nặng": 57,
      "Small Trucks II": 66,
      "Small Trucks I": 69,
-     "Van": 11,
-     "Van điện": 12,
+     "Van": 9,
+     "Xe điện": 14,
      "Light Trucks II": 9,
      "Khác": 2
     },
@@ -4522,6 +4534,18 @@
    "Bắc Ninh": {
     "total": 411,
     "dt": 7,
+    "rankAddr": {
+     "HYUNDAI": 50,
+     "KIA": 31,
+     "THACO": 29,
+     "SUZUKI": 12,
+     "JAC": 11,
+     "ISUZU": 9,
+     "DOTHANH": 7,
+     "CHENGLONG": 7,
+     "FOTON": 6,
+     "TERACO": 6
+    },
     "brands": {
      "CNHTC": 138,
      "HYUNDAI": 50,
@@ -4554,8 +4578,8 @@
      "Light Trucks I": 24,
      "Small Trucks II": 92,
      "Small Trucks I": 30,
-     "Van điện": 24,
-     "Van": 13
+     "Xe điện": 27,
+     "Van": 10
     },
     "segDt": {
      "Light Trucks I": 2,
@@ -4581,6 +4605,14 @@
    "Cao Bằng": {
     "total": 33,
     "dt": 0,
+    "rankAddr": {
+     "HYUNDAI": 6,
+     "KIA": 4,
+     "ISUZU": 2,
+     "THACO": 1,
+     "TMT": 1,
+     "SRM": 1
+    },
     "brands": {
      "CNHTC": 7,
      "HYUNDAI": 6,
@@ -4601,7 +4633,7 @@
      "Trung & nặng": 16,
      "Light Trucks II": 2,
      "Small Trucks I": 2,
-     "Van điện": 2
+     "Xe điện": 2
     },
     "segDt": {},
     "body": {
@@ -4622,7 +4654,19 @@
    },
    "Cà Mau": {
     "total": 128,
-    "dt": 11,
+    "dt": 10,
+    "rankAddr": {
+     "SUZUKI": 22,
+     "KIA": 15,
+     "THACO": 15,
+     "ISUZU": 14,
+     "HYUNDAI": 10,
+     "DOTHANH": 10,
+     "SRM": 7,
+     "TERACO": 6,
+     "FOTON": 3,
+     "HINO": 1
+    },
     "brands": {
      "ISUZU": 23,
      "SUZUKI": 22,
@@ -4642,16 +4686,16 @@
      "VEAM": 1
     },
     "seg": {
-     "Small Trucks I": 54,
+     "Small Trucks I": 53,
      "Small Trucks II": 37,
      "Van": 2,
+     "Xe điện": 4,
      "Trung & nặng": 19,
      "Light Trucks II": 4,
-     "Light Trucks I": 9,
-     "Van điện": 3
+     "Light Trucks I": 9
     },
     "segDt": {
-     "Small Trucks I": 5,
+     "Small Trucks I": 4,
      "Light Trucks I": 3,
      "Small Trucks II": 3
     },
@@ -4672,7 +4716,19 @@
    },
    "Cần Thơ": {
     "total": 261,
-    "dt": 21,
+    "dt": 20,
+    "rankAddr": {
+     "THACO": 44,
+     "KIA": 28,
+     "SRM": 26,
+     "DOTHANH": 20,
+     "HYUNDAI": 20,
+     "ISUZU": 16,
+     "SUZUKI": 16,
+     "TERACO": 11,
+     "FOTON": 9,
+     "JAC": 5
+    },
     "brands": {
      "THACO": 44,
      "KIA": 28,
@@ -4695,19 +4751,18 @@
     },
     "seg": {
      "Trung & nặng": 46,
-     "Small Trucks II": 60,
+     "Small Trucks II": 59,
      "Light Trucks I": 21,
      "Small Trucks I": 96,
-     "Van điện": 13,
-     "Van": 10,
+     "Xe điện": 16,
+     "Van": 8,
      "Light Trucks II": 15
     },
     "segDt": {
      "Light Trucks I": 5,
      "Small Trucks I": 7,
      "Small Trucks II": 6,
-     "Light Trucks II": 2,
-     "Van": 1
+     "Light Trucks II": 2
     },
     "body": {
      "Ô tô tải": 92,
@@ -4727,6 +4782,18 @@
    "Gia Lai": {
     "total": 222,
     "dt": 4,
+    "rankAddr": {
+     "JAC": 26,
+     "KIA": 25,
+     "THACO": 22,
+     "SRM": 13,
+     "HYUNDAI": 11,
+     "TERACO": 7,
+     "ISUZU": 7,
+     "DOTHANH": 4,
+     "TMT": 3,
+     "SUZUKI": 2
+    },
     "brands": {
      "CNHTC": 62,
      "JAC": 29,
@@ -4749,7 +4816,7 @@
      "VEAM": 1
     },
     "seg": {
-     "Van điện": 11,
+     "Xe điện": 11,
      "Small Trucks II": 54,
      "Small Trucks I": 35,
      "Light Trucks I": 19,
@@ -4781,6 +4848,18 @@
    "Huế": {
     "total": 55,
     "dt": 2,
+    "rankAddr": {
+     "THACO": 15,
+     "KIA": 7,
+     "ISUZU": 5,
+     "HYUNDAI": 3,
+     "SUZUKI": 3,
+     "TERACO": 2,
+     "VEAM": 2,
+     "DOTHANH": 2,
+     "HINO": 2,
+     "SRM": 1
+    },
     "brands": {
      "THACO": 15,
      "KIA": 7,
@@ -4802,7 +4881,7 @@
      "Small Trucks I": 21,
      "Trung & nặng": 9,
      "Small Trucks II": 17,
-     "Van điện": 2,
+     "Xe điện": 2,
      "Khác": 2,
      "Light Trucks I": 4
     },
@@ -4828,6 +4907,18 @@
    "Hà Nội": {
     "total": 2397,
     "dt": 24,
+    "rankAddr": {
+     "ISUZU": 388,
+     "HYUNDAI": 147,
+     "KIA": 142,
+     "THACO": 103,
+     "TERACO": 67,
+     "FOTON": 42,
+     "SUZUKI": 37,
+     "SRM": 27,
+     "JAC": 26,
+     "DOTHANH": 24
+    },
     "brands": {
      "CNHTC": 589,
      "ISUZU": 410,
@@ -4863,13 +4954,13 @@
      "TQ": 1
     },
     "seg": {
-     "Van điện": 150,
-     "Light Trucks II": 120,
+     "Xe điện": 188,
+     "Light Trucks II": 119,
      "Small Trucks I": 66,
-     "Trung & nặng": 1167,
+     "Trung & nặng": 1166,
      "Light Trucks I": 117,
-     "Small Trucks II": 609,
-     "Van": 162,
+     "Small Trucks II": 607,
+     "Van": 128,
      "Khác": 6
     },
     "segDt": {
@@ -4898,6 +4989,18 @@
    "Hà Tĩnh": {
     "total": 98,
     "dt": 2,
+    "rankAddr": {
+     "KIA": 12,
+     "THACO": 9,
+     "HYUNDAI": 9,
+     "SRM": 6,
+     "ISUZU": 3,
+     "TERACO": 3,
+     "TMT": 2,
+     "DOTHANH": 2,
+     "SUZUKI": 1,
+     "JAC": 1
+    },
     "brands": {
      "CNHTC": 26,
      "VINFAST": 14,
@@ -4921,10 +5024,10 @@
      "Trung & nặng": 34,
      "Small Trucks I": 16,
      "Light Trucks I": 7,
-     "Van": 2,
+     "Xe điện": 15,
      "Small Trucks II": 21,
-     "Van điện": 14,
-     "Light Trucks II": 4
+     "Light Trucks II": 4,
+     "Van": 1
     },
     "segDt": {
      "Light Trucks I": 1,
@@ -4949,6 +5052,18 @@
    "Hưng Yên": {
     "total": 343,
     "dt": 7,
+    "rankAddr": {
+     "HYUNDAI": 47,
+     "KIA": 37,
+     "THACO": 19,
+     "ISUZU": 17,
+     "SUZUKI": 16,
+     "DOTHANH": 7,
+     "TERACO": 6,
+     "SRM": 6,
+     "JAC": 4,
+     "FOTON": 4
+    },
     "brands": {
      "CNHTC": 91,
      "HYUNDAI": 48,
@@ -4973,11 +5088,11 @@
      "SANY": 1
     },
     "seg": {
-     "Van": 12,
-     "Light Trucks I": 22,
+     "Van": 11,
+     "Light Trucks I": 21,
      "Trung & nặng": 144,
      "Small Trucks II": 81,
-     "Van điện": 27,
+     "Xe điện": 29,
      "Small Trucks I": 31,
      "Light Trucks II": 26
     },
@@ -5005,6 +5120,18 @@
    "Hải Phòng": {
     "total": 562,
     "dt": 9,
+    "rankAddr": {
+     "HYUNDAI": 49,
+     "THACO": 41,
+     "KIA": 37,
+     "ISUZU": 23,
+     "TERACO": 12,
+     "JAC": 10,
+     "SUZUKI": 10,
+     "DOTHANH": 9,
+     "SRM": 8,
+     "TMT": 5
+    },
     "brands": {
      "CNHTC": 182,
      "HYUNDAI": 50,
@@ -5037,8 +5164,8 @@
      "Light Trucks II": 32,
      "Light Trucks I": 31,
      "Small Trucks II": 83,
-     "Van điện": 29,
-     "Van": 24,
+     "Xe điện": 32,
+     "Van": 21,
      "Khác": 1
     },
     "segDt": {
@@ -5064,6 +5191,18 @@
    "Khánh Hòa": {
     "total": 178,
     "dt": 2,
+    "rankAddr": {
+     "THACO": 35,
+     "KIA": 11,
+     "ISUZU": 8,
+     "HYUNDAI": 8,
+     "JAC": 5,
+     "FOTON": 3,
+     "SRM": 3,
+     "DOTHANH": 2,
+     "SUZUKI": 2,
+     "TERACO": 2
+    },
     "brands": {
      "DONGFENG": 44,
      "THACO": 35,
@@ -5094,7 +5233,7 @@
      "Van": 7,
      "Khác": 2,
      "Light Trucks I": 2,
-     "Van điện": 2
+     "Xe điện": 2
     },
     "segDt": {
      "Small Trucks II": 2
@@ -5117,6 +5256,15 @@
    "Lai Châu": {
     "total": 28,
     "dt": 1,
+    "rankAddr": {
+     "HYUNDAI": 8,
+     "KIA": 2,
+     "ISUZU": 2,
+     "THACO": 2,
+     "TERACO": 1,
+     "DOTHANH": 1,
+     "TMT": 1
+    },
     "brands": {
      "HYUNDAI": 8,
      "CNHTC": 7,
@@ -5136,7 +5284,7 @@
      "Trung & nặng": 10,
      "Light Trucks II": 5,
      "Light Trucks I": 1,
-     "Van điện": 1
+     "Xe điện": 1
     },
     "segDt": {
      "Small Trucks II": 1
@@ -5159,6 +5307,18 @@
    "Lào Cai": {
     "total": 117,
     "dt": 3,
+    "rankAddr": {
+     "HYUNDAI": 19,
+     "KIA": 10,
+     "THACO": 5,
+     "TMT": 3,
+     "DOTHANH": 3,
+     "FOTON": 3,
+     "SRM": 2,
+     "JAC": 2,
+     "CHIENTHANG": 1,
+     "DONGVANG": 1
+    },
     "brands": {
      "CNHTC": 44,
      "HYUNDAI": 19,
@@ -5182,12 +5342,12 @@
     },
     "seg": {
      "Small Trucks II": 17,
-     "Van điện": 2,
+     "Xe điện": 3,
      "Trung & nặng": 62,
      "Light Trucks II": 12,
      "Light Trucks I": 13,
      "Small Trucks I": 7,
-     "Van": 3,
+     "Van": 2,
      "Khác": 1
     },
     "segDt": {
@@ -5212,6 +5372,18 @@
    "Lâm Đồng": {
     "total": 290,
     "dt": 8,
+    "rankAddr": {
+     "KIA": 48,
+     "ISUZU": 31,
+     "THACO": 28,
+     "HYUNDAI": 24,
+     "JAC": 24,
+     "TERACO": 9,
+     "DOTHANH": 8,
+     "FOTON": 8,
+     "SUZUKI": 6,
+     "HINO": 5
+    },
     "brands": {
      "KIA": 48,
      "CNHTC": 39,
@@ -5238,12 +5410,12 @@
     },
     "seg": {
      "Trung & nặng": 78,
-     "Light Trucks II": 35,
+     "Light Trucks II": 33,
      "Small Trucks II": 99,
      "Small Trucks I": 25,
      "Light Trucks I": 36,
      "Van": 8,
-     "Van điện": 9
+     "Xe điện": 11
     },
     "segDt": {
      "Small Trucks II": 3,
@@ -5270,6 +5442,18 @@
    "Lạng Sơn": {
     "total": 99,
     "dt": 0,
+    "rankAddr": {
+     "HYUNDAI": 8,
+     "KIA": 8,
+     "THACO": 6,
+     "CHIENTHANG": 4,
+     "ISUZU": 3,
+     "JAC": 3,
+     "SUZUKI": 2,
+     "TMT": 2,
+     "SRM": 1,
+     "TERACO": 1
+    },
     "brands": {
      "CNHTC": 35,
      "HYUNDAI": 8,
@@ -5299,9 +5483,9 @@
      "Trung & nặng": 52,
      "Light Trucks II": 11,
      "Khác": 1,
-     "Van điện": 5,
+     "Xe điện": 6,
      "Light Trucks I": 1,
-     "Van": 2
+     "Van": 1
     },
     "segDt": {},
     "body": {
@@ -5322,6 +5506,18 @@
    "Nghệ An": {
     "total": 258,
     "dt": 3,
+    "rankAddr": {
+     "KIA": 39,
+     "HYUNDAI": 32,
+     "THACO": 21,
+     "TERACO": 9,
+     "JAC": 8,
+     "ISUZU": 6,
+     "SUZUKI": 5,
+     "TMT": 3,
+     "HINO": 3,
+     "SRM": 3
+    },
     "brands": {
      "CNHTC": 72,
      "KIA": 39,
@@ -5349,7 +5545,7 @@
      "Trung & nặng": 110,
      "Small Trucks II": 67,
      "Light Trucks I": 20,
-     "Van điện": 12,
+     "Xe điện": 12,
      "Small Trucks I": 23,
      "Van": 7,
      "Light Trucks II": 19
@@ -5377,6 +5573,18 @@
    "Ninh Bình": {
     "total": 365,
     "dt": 3,
+    "rankAddr": {
+     "HYUNDAI": 38,
+     "KIA": 19,
+     "ISUZU": 18,
+     "THACO": 17,
+     "SUZUKI": 12,
+     "SRM": 7,
+     "TERACO": 7,
+     "FOTON": 5,
+     "JAC": 4,
+     "DOTHANH": 3
+    },
     "brands": {
      "CNHTC": 120,
      "SANY": 46,
@@ -5403,11 +5611,11 @@
     },
     "seg": {
      "Small Trucks I": 31,
-     "Trung & nặng": 202,
-     "Van điện": 21,
+     "Trung & nặng": 160,
+     "Xe điện": 65,
      "Small Trucks II": 55,
      "Light Trucks I": 22,
-     "Van": 11,
+     "Van": 9,
      "Light Trucks II": 22,
      "Khác": 1
     },
@@ -5435,6 +5643,18 @@
    "Phú Thọ": {
     "total": 327,
     "dt": 10,
+    "rankAddr": {
+     "HYUNDAI": 49,
+     "KIA": 41,
+     "THACO": 28,
+     "ISUZU": 20,
+     "DOTHANH": 10,
+     "FOTON": 8,
+     "SUZUKI": 6,
+     "TERACO": 6,
+     "JAC": 4,
+     "DONGVANG": 3
+    },
     "brands": {
      "CNHTC": 67,
      "HYUNDAI": 49,
@@ -5468,7 +5688,7 @@
      "Khác": 2,
      "Small Trucks I": 24,
      "Light Trucks II": 28,
-     "Van điện": 26,
+     "Xe điện": 26,
      "Light Trucks I": 28
     },
     "segDt": {
@@ -5496,6 +5716,18 @@
    "Quảng Ngãi": {
     "total": 83,
     "dt": 2,
+    "rankAddr": {
+     "THACO": 19,
+     "KIA": 10,
+     "JAC": 8,
+     "HYUNDAI": 4,
+     "TERACO": 3,
+     "DOTHANH": 2,
+     "VEAM": 1,
+     "CHIENTHANG": 1,
+     "SRM": 1,
+     "HINO": 1
+    },
     "brands": {
      "THACO": 19,
      "CHENGLONG": 12,
@@ -5519,7 +5751,7 @@
      "Small Trucks I": 16,
      "Light Trucks II": 2,
      "Light Trucks I": 9,
-     "Van điện": 4,
+     "Xe điện": 4,
      "Van": 1
     },
     "segDt": {
@@ -5543,6 +5775,18 @@
    "Quảng Ninh": {
     "total": 251,
     "dt": 1,
+    "rankAddr": {
+     "HYUNDAI": 18,
+     "KIA": 12,
+     "THACO": 9,
+     "ISUZU": 7,
+     "SUZUKI": 5,
+     "FOTON": 4,
+     "CHIENTHANG": 2,
+     "TERACO": 2,
+     "VEAM": 1,
+     "HINO": 1
+    },
     "brands": {
      "CNHTC": 130,
      "HYUNDAI": 18,
@@ -5569,8 +5813,8 @@
      "FORLAND": 1
     },
     "seg": {
-     "Van điện": 5,
-     "Trung & nặng": 182,
+     "Xe điện": 13,
+     "Trung & nặng": 174,
      "Light Trucks II": 12,
      "Small Trucks II": 32,
      "Small Trucks I": 14,
@@ -5598,6 +5842,18 @@
    "Quảng Trị": {
     "total": 122,
     "dt": 2,
+    "rankAddr": {
+     "THACO": 30,
+     "KIA": 18,
+     "HYUNDAI": 12,
+     "CHIENTHANG": 8,
+     "ISUZU": 4,
+     "TERACO": 2,
+     "SRM": 2,
+     "SUZUKI": 2,
+     "DOTHANH": 2,
+     "JAC": 1
+    },
     "brands": {
      "THACO": 30,
      "CNHTC": 24,
@@ -5624,7 +5880,7 @@
      "Light Trucks I": 6,
      "Van": 5,
      "Light Trucks II": 12,
-     "Van điện": 7
+     "Xe điện": 7
     },
     "segDt": {
      "Small Trucks II": 1,
@@ -5648,6 +5904,18 @@
    "Sơn La": {
     "total": 88,
     "dt": 2,
+    "rankAddr": {
+     "HYUNDAI": 19,
+     "KIA": 16,
+     "THACO": 4,
+     "FOTON": 3,
+     "ISUZU": 3,
+     "JAC": 3,
+     "DOTHANH": 2,
+     "TMT": 1,
+     "DONGVANG": 1,
+     "CHENGLONG": 1
+    },
     "brands": {
      "HYUNDAI": 19,
      "CNHTC": 19,
@@ -5670,11 +5938,11 @@
     "seg": {
      "Light Trucks I": 11,
      "Trung & nặng": 28,
-     "Van điện": 3,
+     "Xe điện": 4,
      "Small Trucks II": 30,
      "Small Trucks I": 3,
      "Light Trucks II": 10,
-     "Van": 2,
+     "Van": 1,
      "Khác": 1
     },
     "segDt": {
@@ -5699,6 +5967,18 @@
    "TP. Hồ Chí Minh": {
     "total": 1885,
     "dt": 27,
+    "rankAddr": {
+     "ISUZU": 375,
+     "THACO": 124,
+     "KIA": 108,
+     "JAC": 106,
+     "TERACO": 77,
+     "FOTON": 75,
+     "HYUNDAI": 66,
+     "SUZUKI": 49,
+     "SRM": 35,
+     "DOTHANH": 27
+    },
     "brands": {
      "ISUZU": 429,
      "CNHTC": 244,
@@ -5735,12 +6015,12 @@
      "FORLAND": 1
     },
     "seg": {
-     "Trung & nặng": 639,
+     "Trung & nặng": 625,
      "Small Trucks II": 514,
      "Light Trucks I": 138,
-     "Van điện": 111,
+     "Xe điện": 194,
      "Small Trucks I": 118,
-     "Van": 245,
+     "Van": 176,
      "Light Trucks II": 119,
      "Khác": 1
     },
@@ -5769,6 +6049,18 @@
    "Thanh Hóa": {
     "total": 290,
     "dt": 2,
+    "rankAddr": {
+     "HYUNDAI": 33,
+     "THACO": 32,
+     "KIA": 31,
+     "JAC": 7,
+     "ISUZU": 6,
+     "TERACO": 5,
+     "FOTON": 5,
+     "SRM": 4,
+     "TMT": 3,
+     "SUZUKI": 3
+    },
     "brands": {
      "CNHTC": 89,
      "HYUNDAI": 33,
@@ -5798,7 +6090,7 @@
     },
     "seg": {
      "Trung & nặng": 135,
-     "Van điện": 17,
+     "Xe điện": 17,
      "Small Trucks II": 69,
      "Small Trucks I": 34,
      "Light Trucks II": 17,
@@ -5827,6 +6119,18 @@
    "Thái Nguyên": {
     "total": 179,
     "dt": 2,
+    "rankAddr": {
+     "HYUNDAI": 28,
+     "THACO": 11,
+     "SUZUKI": 9,
+     "KIA": 8,
+     "CHENGLONG": 6,
+     "ISUZU": 4,
+     "SRM": 3,
+     "CHIENTHANG": 2,
+     "DOTHANH": 2,
+     "JAC": 2
+    },
     "brands": {
      "CNHTC": 63,
      "HYUNDAI": 28,
@@ -5851,7 +6155,7 @@
      "Small Trucks II": 30,
      "Trung & nặng": 88,
      "Light Trucks II": 21,
-     "Van điện": 14,
+     "Xe điện": 14,
      "Van": 4,
      "Small Trucks I": 16,
      "Light Trucks I": 6
@@ -5877,6 +6181,18 @@
    "Tuyên Quang": {
     "total": 94,
     "dt": 3,
+    "rankAddr": {
+     "HYUNDAI": 20,
+     "KIA": 16,
+     "DOTHANH": 3,
+     "THACO": 3,
+     "JAC": 2,
+     "DONGVANG": 2,
+     "CHIENTHANG": 2,
+     "SUZUKI": 1,
+     "SRM": 1,
+     "ISUZU": 1
+    },
     "brands": {
      "HYUNDAI": 20,
      "CNHTC": 17,
@@ -5909,9 +6225,9 @@
      "Light Trucks I": 5,
      "Small Trucks II": 34,
      "Trung & nặng": 38,
-     "Light Trucks II": 13,
+     "Light Trucks II": 12,
      "Small Trucks I": 3,
-     "Van điện": 1
+     "Xe điện": 2
     },
     "segDt": {
      "Light Trucks I": 1,
@@ -5935,6 +6251,18 @@
    "Tây Ninh": {
     "total": 227,
     "dt": 8,
+    "rankAddr": {
+     "THACO": 29,
+     "ISUZU": 25,
+     "KIA": 22,
+     "JAC": 15,
+     "HYUNDAI": 14,
+     "TERACO": 10,
+     "DOTHANH": 8,
+     "HINO": 4,
+     "FOTON": 3,
+     "SRM": 2
+    },
     "brands": {
      "VINFAST": 36,
      "ISUZU": 34,
@@ -5961,9 +6289,9 @@
     },
     "seg": {
      "Small Trucks II": 56,
-     "Van điện": 36,
+     "Xe điện": 37,
      "Light Trucks I": 18,
-     "Van": 15,
+     "Van": 14,
      "Trung & nặng": 53,
      "Light Trucks II": 25,
      "Small Trucks I": 22,
@@ -5995,6 +6323,18 @@
    "Vĩnh Long": {
     "total": 204,
     "dt": 15,
+    "rankAddr": {
+     "THACO": 36,
+     "ISUZU": 27,
+     "JAC": 20,
+     "HYUNDAI": 17,
+     "DOTHANH": 15,
+     "KIA": 14,
+     "SRM": 10,
+     "TERACO": 6,
+     "SUZUKI": 5,
+     "HINO": 3
+    },
     "brands": {
      "THACO": 36,
      "ISUZU": 34,
@@ -6019,7 +6359,7 @@
      "Small Trucks II": 58,
      "Small Trucks I": 49,
      "Trung & nặng": 40,
-     "Van điện": 8,
+     "Xe điện": 8,
      "Van": 6,
      "Light Trucks I": 25,
      "Light Trucks II": 18
@@ -6047,6 +6387,17 @@
    "Điện Biên": {
     "total": 39,
     "dt": 0,
+    "rankAddr": {
+     "HYUNDAI": 8,
+     "KIA": 7,
+     "ISUZU": 2,
+     "JAC": 2,
+     "CHIENTHANG": 1,
+     "TERACO": 1,
+     "TMT": 1,
+     "THACO": 1,
+     "VEAM": 1
+    },
     "brands": {
      "HYUNDAI": 8,
      "CNHTC": 7,
@@ -6088,6 +6439,18 @@
    "Đà Nẵng": {
     "total": 254,
     "dt": 6,
+    "rankAddr": {
+     "THACO": 32,
+     "HYUNDAI": 21,
+     "KIA": 18,
+     "ISUZU": 15,
+     "DOTHANH": 6,
+     "TERACO": 6,
+     "SUZUKI": 3,
+     "SRM": 3,
+     "JAC": 3,
+     "CHIENTHANG": 2
+    },
     "brands": {
      "CNHTC": 64,
      "THACO": 32,
@@ -6117,10 +6480,10 @@
      "Small Trucks I": 27,
      "Trung & nặng": 129,
      "Small Trucks II": 57,
-     "Van": 10,
+     "Van": 9,
+     "Xe điện": 12,
      "Light Trucks I": 11,
      "Light Trucks II": 8,
-     "Van điện": 11,
      "Khác": 1
     },
     "segDt": {
@@ -6146,6 +6509,18 @@
    "Đắk Lắk": {
     "total": 171,
     "dt": 4,
+    "rankAddr": {
+     "KIA": 33,
+     "JAC": 21,
+     "HYUNDAI": 13,
+     "THACO": 13,
+     "TERACO": 9,
+     "HINO": 5,
+     "DOTHANH": 4,
+     "SRM": 4,
+     "ISUZU": 2,
+     "FOTON": 2
+    },
     "brands": {
      "KIA": 33,
      "CNHTC": 27,
@@ -6169,12 +6544,12 @@
     },
     "seg": {
      "Small Trucks II": 56,
-     "Van điện": 13,
+     "Xe điện": 15,
      "Light Trucks I": 23,
-     "Light Trucks II": 13,
+     "Light Trucks II": 12,
      "Trung & nặng": 44,
      "Small Trucks I": 15,
-     "Van": 6,
+     "Van": 5,
      "Khác": 1
     },
     "segDt": {
@@ -6199,6 +6574,18 @@
    "Đồng Nai": {
     "total": 395,
     "dt": 4,
+    "rankAddr": {
+     "ISUZU": 51,
+     "JAC": 34,
+     "KIA": 33,
+     "HYUNDAI": 30,
+     "THACO": 19,
+     "SUZUKI": 12,
+     "TERACO": 9,
+     "FOTON": 5,
+     "SRM": 5,
+     "DOTHANH": 4
+    },
     "brands": {
      "CNHTC": 67,
      "ISUZU": 55,
@@ -6226,13 +6613,13 @@
      "FAW": 1
     },
     "seg": {
-     "Van điện": 15,
-     "Trung & nặng": 168,
+     "Xe điện": 21,
+     "Trung & nặng": 167,
      "Small Trucks II": 105,
-     "Van": 14,
      "Light Trucks I": 31,
      "Light Trucks II": 32,
-     "Small Trucks I": 30
+     "Small Trucks I": 30,
+     "Van": 9
     },
     "segDt": {
      "Small Trucks I": 1,
@@ -6258,6 +6645,18 @@
    "Đồng Tháp": {
     "total": 220,
     "dt": 15,
+    "rankAddr": {
+     "ISUZU": 26,
+     "JAC": 24,
+     "THACO": 23,
+     "KIA": 18,
+     "HYUNDAI": 16,
+     "DOTHANH": 15,
+     "SUZUKI": 13,
+     "SRM": 11,
+     "TERACO": 8,
+     "TMT": 3
+    },
     "brands": {
      "JAC": 34,
      "ISUZU": 31,
@@ -6285,10 +6684,9 @@
      "Small Trucks I": 44,
      "Small Trucks II": 68,
      "Trung & nặng": 43,
-     "Van điện": 14,
+     "Xe điện": 18,
      "Light Trucks II": 17,
-     "Van": 13,
-     "Khác": 1
+     "Van": 10
     },
     "segDt": {
      "Small Trucks I": 4,
@@ -6359,14 +6757,14 @@
    "TOWNER": 1
   },
   "seg": {
-   "Trung & nặng": 4483,
-   "Small Trucks I": 1027,
-   "Van": 613,
-   "Light Trucks I": 722,
-   "Small Trucks II": 2708,
-   "Light Trucks II": 718,
-   "Van điện": 624,
-   "Khác": 27
+   "Trung & nặng": 4417,
+   "Small Trucks I": 1026,
+   "Van": 482,
+   "Light Trucks I": 721,
+   "Small Trucks II": 2705,
+   "Light Trucks II": 713,
+   "Xe điện": 832,
+   "Khác": 26
   },
   "dtModels": {
    "IZ50S": 56,
@@ -6384,18 +6782,49 @@
    "IZ45S": 5,
    "JP120EXL": 5
   },
+  "evDt": 2,
+  "rankAddr": {
+   "ISUZU": 1133,
+   "KIA": 900,
+   "HYUNDAI": 884,
+   "THACO": 857,
+   "JAC": 395,
+   "TERACO": 301,
+   "SUZUKI": 285,
+   "DOTHANH": 224,
+   "SRM": 218,
+   "FOTON": 209,
+   "TMT": 60,
+   "HINO": 59,
+   "CHENGLONG": 38,
+   "CHIENTHANG": 33,
+   "VEAM": 25,
+   "DONGVANG": 23,
+   "KIM LONG": 3
+  },
   "segBrands": {
    "Van": {
-    "THACO": 222,
-    "TERACO": 132,
-    "SRM": 129,
-    "KIM LONG": 63,
-    "SUZUKI": 31,
-    "DOTHANH": 23,
-    "VEAM": 13
+    "THACO": 221,
+    "TERACO": 130,
+    "SRM": 64,
+    "SUZUKI": 30,
+    "DOTHANH": 22,
+    "VEAM": 13,
+    "KIM LONG": 2
    },
-   "Van điện": {
-    "VINFAST": 624
+   "Xe điện": {
+    "VINFAST": 624,
+    "SRM": 65,
+    "KIM LONG": 61,
+    "SANY": 55,
+    "QINGLING": 9,
+    "JAC": 4,
+    "TERACO": 3,
+    "ISUZU": 3,
+    "DOTHANH": 2,
+    "TMT": 1,
+    "KARRY": 1,
+    "FOTON": 1
    },
    "Small Trucks I": {
     "THACO": 401,
@@ -6403,12 +6832,12 @@
     "SRM": 154,
     "TERACO": 104,
     "FOTON": 74,
-    "DOTHANH": 38,
+    "DOTHANH": 37,
     "KIM LONG": 1
    },
    "Small Trucks II": {
     "KIA": 900,
-    "ISUZU": 825,
+    "ISUZU": 822,
     "HYUNDAI": 482,
     "THACO": 213,
     "DOTHANH": 84,
@@ -6424,7 +6853,7 @@
     "HYUNDAI": 189,
     "ISUZU": 97,
     "DOTHANH": 69,
-    "TERACO": 51,
+    "TERACO": 50,
     "HINO": 45,
     "TMT": 33,
     "FOTON": 18,
@@ -6433,8 +6862,8 @@
    "Light Trucks II": {
     "ISUZU": 214,
     "HYUNDAI": 213,
-    "JAC": 113,
-    "FOTON": 55,
+    "JAC": 109,
+    "FOTON": 54,
     "CHENGLONG": 38,
     "CHIENTHANG": 33,
     "THACO": 22,
@@ -6444,18 +6873,376 @@
    "Trung & nặng": {
     "CNHTC": 2325,
     "CHENGLONG": 560,
-    "SANY": 307,
-    "DONGFENG": 252,
+    "SANY": 252,
+    "DONGFENG": 251,
     "HINO": 218,
     "ISUZU": 197,
     "SHACMAN": 135,
     "JAC": 131,
     "FAW": 106,
-    "TMT": 50,
+    "TMT": 49,
     "TQ": 35,
     "HOA MAI": 30
    }
   }
+ },
+ "rank10T": [
+  [
+   "THACO",
+   9257
+  ],
+  [
+   "KIA",
+   9065
+  ],
+  [
+   "HYUNDAI",
+   8666
+  ],
+  [
+   "ISUZU",
+   8043
+  ],
+  [
+   "TERACO",
+   3892
+  ],
+  [
+   "JAC",
+   3325
+  ],
+  [
+   "SRM",
+   3023
+  ],
+  [
+   "SUZUKI",
+   2771
+  ],
+  [
+   "DOTHANH",
+   2320
+  ],
+  [
+   "TMT",
+   1265
+  ],
+  [
+   "HINO",
+   765
+  ],
+  [
+   "VEAM",
+   708
+  ],
+  [
+   "FOTON",
+   607
+  ],
+  [
+   "CHENGLONG",
+   401
+  ],
+  [
+   "CHIENTHANG",
+   329
+  ],
+  [
+   "WULING",
+   297
+  ],
+  [
+   "HOAMAI",
+   193
+  ],
+  [
+   "DONGVANG",
+   150
+  ],
+  [
+   "FUSO",
+   121
+  ],
+  [
+   "DONGFENG",
+   49
+  ],
+  [
+   "VINHPHAT",
+   34
+  ],
+  [
+   "FORLAND",
+   26
+  ],
+  [
+   "KIM LONG",
+   19
+  ],
+  [
+   "KENBO",
+   2
+  ],
+  [
+   "GAZ",
+   2
+  ]
+ ],
+ "rankSeg10T": {
+  "Van": [
+   [
+    "THACO",
+    2890
+   ],
+   [
+    "TERACO",
+    1636
+   ],
+   [
+    "SRM",
+    873
+   ],
+   [
+    "SUZUKI",
+    467
+   ],
+   [
+    "DOTHANH",
+    127
+   ],
+   [
+    "VEAM",
+    123
+   ],
+   [
+    "TMT",
+    83
+   ],
+   [
+    "KENBO",
+    2
+   ],
+   [
+    "KIM LONG",
+    0
+   ]
+  ],
+  "Small Trucks I": [
+   [
+    "THACO",
+    4155
+   ],
+   [
+    "SUZUKI",
+    2304
+   ],
+   [
+    "SRM",
+    2150
+   ],
+   [
+    "TERACO",
+    1272
+   ],
+   [
+    "VEAM",
+    485
+   ],
+   [
+    "DOTHANH",
+    309
+   ],
+   [
+    "WULING",
+    297
+   ],
+   [
+    "TMT",
+    107
+   ],
+   [
+    "FOTON",
+    72
+   ],
+   [
+    "KENBO",
+    0
+   ]
+  ],
+  "Small Trucks II": [
+   [
+    "KIA",
+    9065
+   ],
+   [
+    "HYUNDAI",
+    5921
+   ],
+   [
+    "ISUZU",
+    5066
+   ],
+   [
+    "DOTHANH",
+    971
+   ],
+   [
+    "JAC",
+    945
+   ],
+   [
+    "THACO",
+    687
+   ],
+   [
+    "TERACO",
+    344
+   ],
+   [
+    "TMT",
+    294
+   ],
+   [
+    "VEAM",
+    100
+   ],
+   [
+    "FOTON",
+    76
+   ],
+   [
+    "VINHPHAT",
+    34
+   ],
+   [
+    "HINO",
+    29
+   ],
+   [
+    "KIM LONG",
+    19
+   ],
+   [
+    "FUSO",
+    13
+   ],
+   [
+    "GAZ",
+    2
+   ]
+  ],
+  "Light Trucks I": [
+   [
+    "JAC",
+    1194
+   ],
+   [
+    "HYUNDAI",
+    949
+   ],
+   [
+    "ISUZU",
+    913
+   ],
+   [
+    "DOTHANH",
+    853
+   ],
+   [
+    "THACO",
+    807
+   ],
+   [
+    "TERACO",
+    640
+   ],
+   [
+    "HINO",
+    425
+   ],
+   [
+    "TMT",
+    219
+   ],
+   [
+    "FOTON",
+    97
+   ],
+   [
+    "FUSO",
+    34
+   ],
+   [
+    "CHIENTHANG",
+    22
+   ],
+   [
+    "DONGVANG",
+    4
+   ]
+  ],
+  "Light Trucks II": [
+   [
+    "ISUZU",
+    2064
+   ],
+   [
+    "HYUNDAI",
+    1796
+   ],
+   [
+    "JAC",
+    1186
+   ],
+   [
+    "THACO",
+    718
+   ],
+   [
+    "TMT",
+    562
+   ],
+   [
+    "CHENGLONG",
+    401
+   ],
+   [
+    "FOTON",
+    362
+   ],
+   [
+    "HINO",
+    311
+   ],
+   [
+    "CHIENTHANG",
+    307
+   ],
+   [
+    "HOAMAI",
+    193
+   ],
+   [
+    "DONGVANG",
+    146
+   ],
+   [
+    "FUSO",
+    74
+   ],
+   [
+    "DOTHANH",
+    60
+   ],
+   [
+    "DONGFENG",
+    49
+   ],
+   [
+    "FORLAND",
+    26
+   ]
+  ]
  },
  "dtHeavy": {
   "period": "T10/2026",

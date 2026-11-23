@@ -19,7 +19,7 @@ PROV = {"TP.HCM": "TP. Hồ Chí Minh", "Thừa Thiên - Huế": "Huế"}
 # ---------------- phân khúc theo hãng + số loại + loại thùng (đối chiếu định nghĩa trong báo cáo IZ/KAMA) ----------------
 SEG = ["Van", "Small Trucks I", "Small Trucks II", "Light Trucks I", "Light Trucks II", "Medium Trucks I", "Medium Trucks II", "Heavy Trucks"]
 RULES = [  # (hãng regex, số loại regex, phân khúc)
-    ("VINFAST", r"EC VAN", "Van điện"),
+    ("VINFAST", r"EC VAN", "Xe điện"),
     ("DOTHANH", r"V56|V65", "Van"), ("DOTHANH", r"T26|T33", "Small Trucks I"), ("DOTHANH", r"IZ4[59]S|IZ50|IZ60SL", "Small Trucks II"),
     ("DOTHANH", r"IZ62M|IZ65|IZ71SL", "Light Trucks I"), ("DOTHANH", r"JP120", "Light Trucks II"),
     ("TERACO", r"TERA-?V|TERA V", "Van"), ("TERACO", r"STAR|100S|150S", "Small Trucks I"), ("TERACO", r"190SL|245SL", "Small Trucks II"), ("TERACO", r"345SL|350", "Light Trucks I"),
@@ -38,8 +38,9 @@ RULES = [  # (hãng regex, số loại regex, phân khúc)
     ("CHENGLONG", r"LZ112|LZ113", "Light Trucks II"), ("MITSUBISHI FUSO", r"CANTER", "Light Trucks I"),
 ]
 HEAVY_BRANDS = {"CNHTC", "SHACMAN", "SANY", "HOWO", "FAW", "CHENGLONG", "DONGFENG", "UD TRUCKS", "WAW", "FORLAND", "HOA MAI", "TQ", "CHIENTHANG", "MITSUBISHI FUSO", "DAEWOO", "SCANIA", "VOLVO", "MAN", "MERCEDES-BENZ"}
-def segment(brand, model, body):
+def segment(brand, model, body, fuel=""):
     b, m, t = U(brand), U(model), U(body)
+    if "ĐIỆN" in U(fuel): return "Xe điện"           # mọi xe tải, van chạy điện (VinFast EC Van, SRM, Kim Long, Sany điện…): Đô Thành không có sản phẩm
     if "ĐẦU KÉO" in t: return "Trung & nặng"
     if "VAN" in t and b not in ("VINFAST", "DOTHANH"): return "Van"
     for rb, rm, s in RULES:
@@ -49,26 +50,29 @@ def segment(brand, model, body):
     if b in HEAVY_BRANDS or re.search(r"TỰ ĐỔ|BÊ TÔNG|XI TÉC|XITÉC", t): return "Trung & nặng"
     return "Khác"
 
+ADDR_SEG = ["Van", "Small Trucks I", "Small Trucks II", "Light Trucks I", "Light Trucks II"]   # phân khúc Đô Thành có sản phẩm (không gồm xe điện)
 # ---------------- DKM: đăng ký mới T10/2026 ----------------
 wb = openpyxl.load_workbook(DKM, read_only=True, data_only=True)
 rows = [r for i, r in enumerate(wb["XETAI"].iter_rows(values_only=True)) if i > 0 and r[1]]
 recs = []
 for r in rows:
-    prov = PROV.get(N(r[1]), N(r[1])); brand = U(r[3]); model = U(r[4]); body = N(r[2])
-    recs.append({"p": prov, "b": brand, "m": model, "t": body, "s": segment(brand, model, body), "org": "tổ chức" if "Tổ chức" in N(r[5]) else "cá nhân" if "Cá nhân" in N(r[5]) else "nhà nước"})
+    prov = PROV.get(N(r[1]), N(r[1])); brand = U(r[3]); model = U(r[4]); body = N(r[2]); fuel = N(r[6]) if len(r) > 6 else ""
+    recs.append({"p": prov, "b": brand, "m": model, "t": body, "s": segment(brand, model, body, fuel), "ev": "ĐIỆN" in U(fuel), "org": "tổ chức" if "Tổ chức" in N(r[5]) else "cá nhân" if "Cá nhân" in N(r[5]) else "nhà nước"})
 C = collections.Counter
 by_prov = {}
 for p in sorted(set(x["p"] for x in recs)):
     xs = [x for x in recs if x["p"] == p]
-    by_prov[p] = {"total": len(xs), "dt": sum(1 for x in xs if x["b"] == "DOTHANH"), "brands": dict(C(x["b"] for x in xs).most_common()),
-                  "seg": dict(C(x["s"] for x in xs)), "segDt": dict(C(x["s"] for x in xs if x["b"] == "DOTHANH")),
+    by_prov[p] = {"total": len(xs), "dt": sum(1 for x in xs if x["b"] == "DOTHANH" and not x["ev"]), "rankAddr": dict(C(x["b"] for x in xs if x["s"] in ADDR_SEG).most_common(10)), "brands": dict(C(x["b"] for x in xs).most_common()),
+                  "seg": dict(C(x["s"] for x in xs)), "segDt": dict(C(x["s"] for x in xs if x["b"] == "DOTHANH" and not x["ev"])),
                   "body": dict(C(x["t"] for x in xs).most_common(8)), "org": dict(C(x["org"] for x in xs))}
 def dtmodel(m):
     m = m.replace(" - ", "-").split("/")[0].replace("MISSU ", "").replace("IZ JP", "JP").strip()
     return m
 dkm = {"month": "2026-10", "total": len(recs), "byProv": by_prov, "brands": dict(C(x["b"] for x in recs).most_common()),
        "seg": dict(C(x["s"] for x in recs)), "dtModels": dict(C(dtmodel(x["m"]) for x in recs if x["b"] == "DOTHANH").most_common()),
-       "segBrands": {s: dict(C(x["b"] for x in recs if x["s"] == s).most_common(12)) for s in ["Van", "Van điện", "Small Trucks I", "Small Trucks II", "Light Trucks I", "Light Trucks II", "Trung & nặng"]}}
+       "evDt": sum(1 for x in recs if x["b"] == "DOTHANH" and x["ev"]),
+       "rankAddr": dict(C(x["b"] for x in recs if x["s"] in ADDR_SEG).most_common()),
+       "segBrands": {s: dict(C(x["b"] for x in recs if x["s"] == s).most_common(12)) for s in ["Van", "Xe điện", "Small Trucks I", "Small Trucks II", "Light Trucks I", "Light Trucks II", "Trung & nặng"]}}
 
 # ---------------- pptx: bảng ----------------
 def tables(f):
@@ -177,9 +181,20 @@ for T, sn, seg in SLIDES:
                      "title": "Tải trọng 3T5 – thùng 5m2" if sn == 24 and T is TI else None, "rows": cols})
 
 ANNUAL = round(national["Grand Total"]["m10_2026"] * national["Grand Total"]["y2025"] / national["Grand Total"]["m10_2025"])
+# ---------------- thứ hạng thương hiệu trong phân khúc Đô Thành có sản phẩm (không gồm xe điện) ----------------
+def _nb(b):
+    b = re.sub(r"^XE LÔ\s+", "", b.strip().upper()); return {"DONGBEN/SRM": "SRM", "KIMLONG": "KIM LONG", "OTHER": "KHÁC"}.get(b, b)
+def _hdr(b): return bool(re.match(r"^\d|^TỰ ĐỔ$|^BEN$|M\d$", b.strip().upper()))      # dòng tiêu đề nhóm con trong bảng báo cáo
+rank10 = collections.Counter(); rankSeg = {}
+for sg in ADDR_SEG:
+    c = collections.Counter()
+    for x in brands_by_seg.get(sg, []):
+        if not _hdr(x["brand"]): c[_nb(x["brand"])] += x.get("m10_2026") or 0
+    rankSeg[sg] = [[b, int(n)] for b, n in c.most_common() if b != "KHÁC"]; rank10.update(c)
+rank10 = [[b, int(n)] for b, n in rank10.most_common() if b != "KHÁC"]
 out = {"asOf": "T10/2026", "sources": {"dkm": "DKM_10.2026.xlsx (đăng ký mới xe tải từng xe, tháng 10/2026)", "iz": "BCNB IZ Market in October 2026 (DAC)", "kama": "BCNB KAMA Market in October 2026 (DAC)"},
        "annual2026": ANNUAL, "annualNote": "Quy năm 2026 = 10T/2026 × (cả năm 2025 / 10T/2025) theo báo cáo IZ (8 phân khúc xe tải)",
-       "national": national, "monthly2026": monthly, "regionShare": regionShare, "brandsBySeg": brands_by_seg, "matchups": matchups, "dkm": dkm}
+       "national": national, "monthly2026": monthly, "regionShare": regionShare, "brandsBySeg": brands_by_seg, "matchups": matchups, "dkm": dkm, "rank10T": rank10, "rankSeg10T": rankSeg}
 try: out["dtHeavy"] = json.load(open("market2026.json", encoding="utf-8")).get("dtHeavy")   # số đầu kéo Daewoo do phòng KD báo (DKM ghi nhãn DAEWOO)
 except Exception: pass
 json.dump(out, open("market2026.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)

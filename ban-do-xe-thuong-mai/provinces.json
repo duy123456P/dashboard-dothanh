@@ -167,7 +167,7 @@
    "Báo Đại biểu Nhân dân (20/05/2026): Hà Nội khoảng 1,1 triệu ô tô",
    "https://daibieunhandan.vn/xe-dien-dan-thay-doi-thoi-quen-di-lai-cua-nguoi-dan-ha-noi-10417586.html"
   ],
-  "regT10addr": 1074,
+  "regT10addr": 1037,
   "regT10dtAddr": 24
  },
  {
@@ -798,7 +798,7 @@
   ],
   "cv2025": 871,
   "cv6m26": 575,
-  "regT10addr": 56,
+  "regT10addr": 55,
   "regT10dtAddr": 2
  },
  {
@@ -958,7 +958,7 @@
   ],
   "cv2025": 1275,
   "cv6m26": 691,
-  "regT10addr": 41,
+  "regT10addr": 40,
   "regT10dtAddr": 0
  },
  {
@@ -1600,7 +1600,7 @@
   ],
   "cv2025": 836,
   "cv6m26": 763,
-  "regT10addr": 50,
+  "regT10addr": 49,
   "regT10dtAddr": 2
  },
  {
@@ -1925,7 +1925,7 @@
   ],
   "cv2025": 963,
   "cv6m26": 620,
-  "regT10addr": 55,
+  "regT10addr": 54,
   "regT10dtAddr": 3
  },
  {
@@ -2094,7 +2094,7 @@
   ],
   "cv2025": 1163,
   "cv6m26": 595,
-  "regT10addr": 52,
+  "regT10addr": 51,
   "regT10dtAddr": 3
  },
  {
@@ -2592,7 +2592,7 @@
   ],
   "cv2025": 4763,
   "cv6m26": 3021,
-  "regT10addr": 186,
+  "regT10addr": 183,
   "regT10dtAddr": 7
  },
  {
@@ -2756,7 +2756,7 @@
   ],
   "cv2025": 3260,
   "cv6m26": 2084,
-  "regT10addr": 172,
+  "regT10addr": 170,
   "regT10dtAddr": 7
  },
  {
@@ -2944,7 +2944,7 @@
    "Báo Thanh tra: Hải Phòng quản lý hơn 452 nghìn ô tô",
    "https://thanhtra.com.vn/an-ninh-trat-tu-D718A18CA/canh-sat-giao-thong-hai-phong-giai-ma-bai-toan-giao-thong-do-thi-3bb818457.html"
   ],
-  "regT10addr": 216,
+  "regT10addr": 213,
   "regT10dtAddr": 9
  },
  {
@@ -3113,7 +3113,7 @@
   ],
   "cv2025": 3230,
   "cv6m26": 2424,
-  "regT10addr": 141,
+  "regT10addr": 139,
   "regT10dtAddr": 3
  },
  {
@@ -3529,7 +3529,7 @@
   ],
   "cv2025": 2534,
   "cv6m26": 1821,
-  "regT10addr": 113,
+  "regT10addr": 112,
   "regT10dtAddr": 6
  },
  {
@@ -4239,7 +4239,7 @@
   ],
   "cv2025": 3279,
   "cv6m26": 1868,
-  "regT10addr": 203,
+  "regT10addr": 201,
   "regT10dtAddr": 8
  },
  {
@@ -4422,7 +4422,7 @@
   ],
   "cv2025": 2161,
   "cv6m26": 1312,
-  "regT10addr": 113,
+  "regT10addr": 111,
   "regT10dtAddr": 4
  },
  {
@@ -4631,7 +4631,7 @@
    "Sở Xây dựng TP.HCM (3/2026): gần 12,98 triệu phương tiện, hơn 1,48 triệu ô tô",
    "https://znews.vn/cong-an-tphcm-den-tung-nha-ra-tung-xe-post1597485.html"
   ],
-  "regT10addr": 1134,
+  "regT10addr": 1065,
   "regT10dtAddr": 27,
   "regT10dtHeavy": 2
  },
@@ -4799,7 +4799,7 @@
   ],
   "cv2025": 4817,
   "cv6m26": 2725,
-  "regT10addr": 212,
+  "regT10addr": 207,
   "regT10dtAddr": 4
  },
  {
@@ -4968,7 +4968,7 @@
   ],
   "cv2025": 2366,
   "cv6m26": 1371,
-  "regT10addr": 136,
+  "regT10addr": 135,
   "regT10dtAddr": 8
  },
  {
@@ -5110,7 +5110,7 @@
   "salesTDBH": 466,
   "targetTDBH": 709,
   "regT10": 261,
-  "regT10dt": 21,
+  "regT10dt": 20,
   "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
   "grdp2024": 255,
   "pop2024": 3190,
@@ -5160,8 +5160,8 @@
   ],
   "cv2025": 2877,
   "cv6m26": 1746,
-  "regT10addr": 202,
-  "regT10dtAddr": 21
+  "regT10addr": 199,
+  "regT10dtAddr": 20
  },
  {
   "name": "Vĩnh Long",
@@ -5529,7 +5529,7 @@
   ],
   "cv2025": 2544,
   "cv6m26": 1540,
-  "regT10addr": 162,
+  "regT10addr": 159,
   "regT10dtAddr": 15
  },
  {
@@ -5639,7 +5639,7 @@
    }
   },
   "regT10": 128,
-  "regT10dt": 11,
+  "regT10dt": 10,
   "regNote": "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)",
   "grdp2024": 155,
   "pop2024": 2130,
@@ -5689,8 +5689,8 @@
   ],
   "cv2025": 1302,
   "cv6m26": 864,
-  "regT10addr": 106,
-  "regT10dtAddr": 11
+  "regT10addr": 105,
+  "regT10dtAddr": 10
  },
  {
   "name": "An Giang",
@@ -5858,7 +5858,7 @@
   ],
   "cv2025": 2479,
   "cv6m26": 1658,
-  "regT10addr": 177,
+  "regT10addr": 175,
   "regT10dtAddr": 16
  }
 ]

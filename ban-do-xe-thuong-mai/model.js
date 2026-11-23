@@ -94,7 +94,7 @@ document.addEventListener("pointermove", e => { const el = e.target.closest && e
 document.addEventListener("pointerleave", () => { tip.hidden = true; }, true);
 // gắn dấu nhận biết có chú giải
 const mark = () => document.querySelectorAll(SEL).forEach(el => { if(!el.dataset.glm && entryFor(el)){ el.dataset.glm = "1"; el.classList.add("hasgl"); } });
-new MutationObserver(() => { clearTimeout(mark.t); mark.t = setTimeout(mark, 120); }).observe(document.body, {childList: true, subtree: true}); mark();
+new MutationObserver(() => { if(!mark.t) mark.t = setTimeout(() => { mark.t = 0; mark(); }, 250); }).observe(document.body, {childList: true, subtree: true}); mark();   // giới hạn tần suất (không debounce: bản đồ 3D cập nhật DOM liên tục)
 
 /* ---------- 3. MỤC TRÊN TRANG ---------- */
 const anchor = document.getElementById("salesSec") || document.getElementById("fcSec");
