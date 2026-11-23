@@ -38,6 +38,11 @@ for codes, p in [((11,), "Cao Bằng"), ((12,), "Lạng Sơn"), ((14,), "Quảng
 def prov_plate(pl):
     m = re.match(r"\s*(\d{2})\s*[A-ZĐ]", nfc(pl).upper())
     return PLATE.get(int(m.group(1))) if m else None
+# biển số (51M-196.32, 36H15231, 30A1-234.56…): một số file TVBH lệch cột, cột TỈNH chứa biển số → không bao giờ lưu
+PLATE_RE = re.compile(r"\d{2}\s?[A-ZĐ]{1,2}\d?[- .]?\d{3}\.?\d{2}")
+def no_plate(s):
+    s = nfc(s)
+    return "" if PLATE_RE.search(s.upper()) else s
 def prov_abbr(text):
     parts = [fold(p) for p in re.split(r"[,.\-–]", str(text or "")) if p.strip()]
     if not parts: return None
@@ -126,14 +131,17 @@ for f in FILES:
             vin = re.sub(r"[^A-Z0-9]", "", nfc(g("vin")).upper())
             if len(vin) < 2 or not nfc(g("model")): continue
             d = as_date(g("date")); y = d.year if d and 2023 <= d.year <= 2026 else yfile
-            loc = " ".join(nfc(g(k)) for k in ("ward", "dist", "prov", "addr") if g(k))
-            pv = prov_of(nfc(g("prov")) or loc) or prov_of(loc) or prov_abbr(g("addr") or g("prov")) or prov_plate(g("plate"))
-            dist = nfc(g("dist")) or ""
+            loc = " ".join(no_plate(g(k)) for k in ("ward", "dist", "prov", "addr") if g(k))
+            pv = prov_of(no_plate(g("prov")) or loc) or prov_of(loc) or prov_abbr(g("addr") or g("prov")) or prov_plate(g("plate"))
+            prov_raw, dist = no_plate(g("prov")), no_plate(g("dist"))
+            if nfc(g("prov")) and not prov_raw:   # dòng lệch cột: TỈNH là biển số, QUẬN thật ra là tên tỉnh cũ
+                t = re.sub(r"^(?:tỉnh|thành phố|tp\.?)\s+", "", dist, flags=re.I).strip()
+                if fold(t) in OLD: prov_raw, dist = t, ""
             if not dist and g("addr"):
                 parts = [p.strip() for p in re.split(r"[,\-–]", nfc(g("addr"))) if p.strip()]
-                dist = parts[-2] if len(parts) >= 2 else ""
+                dist = no_plate(parts[-2]) if len(parts) >= 2 else ""
             dist = re.sub(r"^(?:(?:quận|huyện|thị xã|thành phố)\s+|(?:tp|tx|q|h)\.\s*|(?:tp|tx)\s+)", "", dist, flags=re.I).strip().title()
-            rec = {"y": y, "d": d.isoformat() if d else "", "prov": pv, "provOld": nfc(g("prov")).title(), "dist": dist, "model": model_of(g("model")), "org": is_org(g("name"), g("type")), "ind": nfc(g("ind")), "src": yfile}
+            rec = {"y": y, "d": d.isoformat() if d else "", "prov": pv, "provOld": prov_raw.title(), "dist": dist, "model": model_of(g("model")), "org": is_org(g("name"), g("type")), "ind": nfc(g("ind")), "src": yfile}
             k = vin[-8:] if len(vin) >= 10 else "%d:%s:%s:%s" % (yfile, rec["model"], fold(g("dl")), vin)   # file 2023 chỉ ghi số khung rút gọn
             if k not in recs or rec["d"] >= recs[k]["d"]: recs[k] = rec
 R = list(recs.values())
@@ -178,5 +186,7 @@ for x in R: years[str(x["y"])] = years.get(str(x["y"]), 0) + 1
 out = {"asOf": datetime.date.today().isoformat(), "note": "Không lưu tên khách cá nhân, số điện thoại cá nhân, số khung, biển số. Khách tiềm năng là doanh nghiệp có thông tin công khai trên OpenStreetMap.",
        "sources": {"ku": "DANH_SACH_KHACH_KU_SALES (OpenStreetMap qua Ku_Sales)", "tvbh": "DATA_TVBH 2023–2026 (file thưởng TVBH, mỗi số khung tính một lần)"},
        "prospects": pros, "buyers": {"total": len(R), "years": dict(sorted(years.items())), "noProv": sum(1 for x in R if not x["prov"]), "byProv": byProv, "districts": dists}}
+_leak = PLATE_RE.findall(json.dumps(out, ensure_ascii=False).upper())
+if _leak: raise SystemExit("customers.json còn chuỗi dạng biển số, không ghi file: %s" % _leak[:5])
 json.dump(out, open(os.path.join(HERE, "customers.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 print("tiềm năng", len(pros), "không rõ tỉnh", sum(1 for p in pros if not p["province"]), "| đã mua", len(R), years, "không rõ tỉnh", out["buyers"]["noProv"], "| huyện", len(dists), "có tọa độ", sum(1 for d in dists if "lat" in d))
