@@ -747,7 +747,7 @@ function renderKpis(){
     [`${cs.filter(c=>c.type==="C1").length} · ${cs.filter(c=>c.type==="C2").length}`, "Đại lý cấp 1 · cấp 2"],
     [fmtInt(sales), `Bán lẻ lũy kế T10 · ${sum("target") ? fmtInt(sales/sum("target")*100)+"% KH" : "—"}`],
     zone ? [sum("regT10addr") ? fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)+"%" : "—", `Thị phần Đô Thành T10/2026 trong phân khúc có sản phẩm (ĐK thực ${fmtInt(sum("regT10dtAddr"))}/${fmtInt(sum("regT10addr"))} xe)`]
-      : [fmt1(DT10.dac/DT10.mkt*100)+"%", `Thị phần Đô Thành 10T/2026 trong phân khúc có sản phẩm (${fmtInt(DT10.dac)}/${fmtInt(DT10.mkt)} xe, báo cáo DAC) · ĐK thực T10: ${fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)}% · toàn bộ xe tải T10: ${fmt1((sum("regT10dt")+sum("regT10dtHeavy"))/sum("regT10")*100)}% (${fmtInt(sum("regT10dt")+sum("regT10dtHeavy"))}/${fmtInt(sum("regT10"))}, gồm ${fmtInt(sum("regT10dtHeavy"))} đầu kéo Daewoo)`],
+      : [fmt1(DT10.dac/DT10.mkt*100)+"% · hạng " + ((window.__CV && __CV.market && (__CV.market.rank10T || []).findIndex(x => x[0] === "DOTHANH") + 1) || "—"), `Thị phần Đô Thành 10T/2026, phân khúc có sản phẩm, không gồm xe điện (${fmtInt(DT10.dac)}/${fmtInt(DT10.mkt)} xe, báo cáo DAC) · ĐK thực T10: ${fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)}% · toàn bộ xe tải T10: ${fmt1((sum("regT10dt")+sum("regT10dtHeavy"))/sum("regT10")*100)}% (${fmtInt(sum("regT10dt")+sum("regT10dtHeavy"))}/${fmtInt(sum("regT10"))}, gồm ${fmtInt(sum("regT10dtHeavy"))} đầu kéo Daewoo)`],
   ];
   document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="glass kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
 }
@@ -1277,7 +1277,7 @@ function renderDossier(){
     <div class="kv"><span>Trung tâm hành chính</span><b>${esc(r.capital)}</b><span>Gộp từ (NQ 202/2025)</span><b>${esc(r.merged.join(", "))}</b><span>Biển số xe</span><b>${esc(r.plates)}</b><span>Vùng kinh tế</span><b>${esc(r.region)}</b></div></div>
     <div><h3>Kinh tế vĩ mô</h3><div class="stats num" style="margin-top:8px">
       <div class="stat"><div class="v">${fmtInt(r.grdp2026e ?? r.grdp)}</div><div class="l">GRDP 2026 (ước), nghìn tỷ · 2025: ${fmtInt(r.grdp)} · #${r._rkgrdp}</div></div>
-      <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người ${r.gpc2025 ? "2025 (NSO)" : "2024 (ước)"} · #${r._rk_gpc}</div></div>
+      <div class="stat"><div class="v">${r.gpc2025 ? fmt1(r.gpc2025) : fmtInt(r._gpc)} tr</div><div class="l">GRDP/người 2025 ${r.gpc2025 ? "(Niên giám)" : "(tính = GRDP 2025 / dân số 2025)"} · #${r._rk_gpc}</div></div>
       <div class="stat"><div class="v">${r.growth==null?"—":fmt1(r.growth)+"%"}</div><div class="l">Tăng GRDP 2025</div></div>
       <div class="stat"><div class="v">${r.cpi==null||r.cpi===""?"4,57%":fmt1(+r.cpi)+"%"}</div><div class="l">${r.cpi==null||r.cpi===""?"CPI bình quân 10T/2026 cả nước (Cục Thống kê không công bố CPI tỉnh)":"CPI " + ((PSD.cpi2026 || {})[r.name] || {period: "2026 của tỉnh"}).period}</div></div>
     </div>
@@ -1534,7 +1534,7 @@ _${r.zone} · ${r.region} · ngày ${date}_
 |---|---|
 | GRDP 2026 (ước) | ${r.grdp2026e ? n0(r.grdp2026e) + " nghìn tỷ đồng (GRDP 2025 × tăng trưởng 9T/2026)" : "—"} |
 | GRDP 2025 | ${n0(r.grdp)} nghìn tỷ đồng (#${r._rkgrdp}, Niên giám Thống kê 2025) |
-| GRDP/người | ${r.gpc2025 ? fmt1(r.gpc2025)+" triệu đồng (2025, NSO)" : n0(r._gpc)+" triệu đồng (2024, ước)"} |
+| GRDP/người 2025 | ${r.gpc2025 ? fmt1(r.gpc2025)+" triệu đồng (Niên giám 2025)" : n0(r._gpc)+" triệu đồng (tính từ GRDP 2025 / dân số 2025)"} |
 | Tăng trưởng GRDP 2025 | ${r.growth==null ? "chưa cập nhật" : fmt1(r.growth)+"%"} |
 | Cơ cấu (NLTS / CN-XD / DV / thuế) | ${r.econ.map(v=>fmt1(v)+"%").join(" / ")} |
 | Kinh tế chủ lực | ${r.industries} |
