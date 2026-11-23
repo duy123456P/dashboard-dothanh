@@ -782,7 +782,7 @@ function wz(lat){ return -(lat - (LAT0+LAT1)/2) * K; }
 /* ---------- 3D scene ---------- */
 const stage = document.getElementById("stage"), labelsEl = document.getElementById("labels"), tipEl = document.getElementById("tip");
 let renderer, scene, camera, controls, relief, terrain, overlayMesh, water, skirtMesh, skirtEdge = [], rimLine, overlayCanvas, overlayCtx, overlayTex, H = null, HW = 0, HH = 0;
-let pinGroup, barGroup, hlGroup, lineMats = [], mouse = {x:0,y:0,nx:0,ny:0,inside:false}, raycaster, needOverlay = true, needHl = true, exagShown = 0, introT0 = 0;
+let apronMesh, pinGroup, barGroup, hlGroup, lineMats = [], mouse = {x:0,y:0,nx:0,ny:0,inside:false}, raycaster, needOverlay = true, needHl = true, exagShown = 0, introT0 = 0;
 const OW = 2048, OH = 2048, BASE_Y = -3.4, FAT = () => !!(THREE.LineSegments2 && THREE.LineSegmentsGeometry && THREE.LineMaterial);
 
 function loadImage(src){ return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; }); }
@@ -854,6 +854,26 @@ async function initScene(){
     new THREE.LineBasicMaterial({color:0x46e3ff, transparent:true, opacity:0.7})); scene.add(base);
   water = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshStandardMaterial({color:0x2fc6d8, transparent:true, opacity:0.16, roughness:0.08, metalness:0.55, depthWrite:false}));
   water.rotation.x = -Math.PI/2; water.position.y = 0.01; water.renderOrder = 2; scene.add(water);
+  // vùng nền nối tiếp ngoài khối địa hình: lấy ảnh nổi đối xứng qua mép + độ cao giảm dần, tối dần vào sương → phóng to sát rìa không còn lộ mép cắt
+  { const N = 240, AW = W*4, AD = D*4, LOWA = LOW ? 120 : N, step = N / LOWA;
+    const mir = (v, a, b) => { const r = b - a; let t = ((v - a) % (2*r) + 2*r) % (2*r); return a + (t > r ? 2*r - t : t); };
+    const pts = [], uvs = [], cols = [], ix = [], vid = {};
+    const g = LOWA + 1; let nv = 0;
+    for(let j=0;j<=LOWA;j++) for(let i=0;i<=LOWA;i++){
+      const x = -AW/2 + i*step*AW/N, z = -AD/2 + j*step*AD/N;
+      const ox = Math.max(0, Math.abs(x) - W/2) / (W*0.9), oz = Math.max(0, Math.abs(z) - D/2) / (D*0.9), f = Math.min(1, Math.hypot(ox, oz)), sm = f*f*(3 - 2*f);
+      const lng = LNG0 + (x + W/2) / W * (LNG1-LNG0), lat = LAT1 - (z + D/2) / D * (LAT1-LAT0);
+      const inside = Math.abs(x) < W/2 - 1e-6 && Math.abs(z) < D/2 - 1e-6, y = yUnit(heightAt(mir(lng, LNG0, LNG1), mir(lat, LAT0, LAT1))) * (1 - sm) - (inside ? 0.03 : 0);
+      pts.push(x, y, z); uvs.push((x + W/2)/W, (D/2 - z)/D); const c = 0.92 - 0.8*sm; cols.push(c, c, c*1.04); vid[j*g+i] = nv++; }
+    for(let j=0;j<LOWA;j++) for(let i=0;i<LOWA;i++){
+      const a1 = j*g+i, b1 = a1+1, c1 = a1+g, d1 = c1+1; ix.push(a1, c1, b1, b1, c1, d1); }
+    const ag = new THREE.BufferGeometry(); ag.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3)); ag.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2)); ag.setAttribute("color", new THREE.Float32BufferAttribute(cols, 3)); ag.setIndex(ix); ag.computeVertexNormals();
+    const at = new THREE.Texture(rel); at.encoding = THREE.sRGBEncoding; at.wrapS = at.wrapT = THREE.MirroredRepeatWrapping; at.anisotropy = aniso; at.needsUpdate = true;
+    apronMesh = new THREE.Mesh(ag, new THREE.MeshStandardMaterial({map: at, vertexColors: true, color: 0xb7c6d6, roughness: 1, metalness: 0, polygonOffset: true, polygonOffsetFactor: 2, polygonOffsetUnits: 4}));
+    relief.add(apronMesh);
+    const aw = new THREE.Mesh(new THREE.PlaneGeometry(AW, AD), new THREE.MeshStandardMaterial({color:0x2fc6d8, transparent:true, opacity:0.10, roughness:0.1, metalness:0.5, depthWrite:false}));
+    aw.rotation.x = -Math.PI/2; aw.position.y = 0.005; aw.renderOrder = 1; scene.add(aw);
+    skirtMesh.visible = false; rimLine.visible = false; base.visible = false; }   // khối liền mạch: bỏ vách và khung viền
   buildBorders();
   hlGroup = new THREE.Group(); relief.add(hlGroup);
   pinGroup = new THREE.Group(); barGroup = new THREE.Group(); compGroup = new THREE.Group(); scene.add(pinGroup); scene.add(barGroup); scene.add(compGroup); custGroup = new THREE.Group(); scene.add(custGroup);
@@ -2345,6 +2365,7 @@ window.__CV = {
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
     if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.comp === "boolean") showComp = o.comp; if(typeof o.cust === "boolean") showCust = o.cust; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
     if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
+  get view3d(){ return {camera, controls, wx, K, LAT0, LAT1, stopIntro(){ introT0 = -1e9; autoRotate = false; if(controls) controls.autoRotate = false; }}; },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
   INFRA, km, provinceOfPoint, structOf, centersOf, get SITES(){ return SITES; }, renderDossier, get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
