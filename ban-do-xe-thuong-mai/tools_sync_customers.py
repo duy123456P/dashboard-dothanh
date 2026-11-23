@@ -7,7 +7,7 @@
 2. Khách đã mua 2023–2026 (file thưởng TVBH): chỉ đếm số xe theo năm × tỉnh (34 tỉnh mới) × quận/huyện × mẫu xe × loại khách × ngành.
    Mỗi số khung chỉ tính một lần (lần ra cà vẹt/hóa đơn sau cùng). geo_cache.json: tọa độ trung tâm quận/huyện (Nominatim), tự bổ sung khi thiếu.
 """
-import datetime, json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
+import datetime, hashlib, json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
 import openpyxl
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -120,7 +120,7 @@ for f in FILES:
         h, u = find_hdr(ws)
         if h is None: continue
         c = {k: col(u, *n) for k, n in {"vin": ("SK (FULL)", "SỐ KHUNG", "SK"), "model": ("LOẠI XE",), "dl": ("ĐẠI LÝ",), "name": ("TÊN KHÁCH", "TÊN KH"), "ward": ("PHƯỜNG",), "dist": ("QUẬN",),
-              "prov": ("TỈNH",), "addr": ("D/C KH",), "plate": ("BIỂN SỐ",), "date": ("NGÀY CAVET", "NGÀY HÓA ĐƠN", "NGÀY HĐ", "NGÀY BÁN"), "type": ("LOẠI KHÁCH", "LOẠI KH"), "ind": ("NGÀNH NGHỀ",)}.items()}
+              "prov": ("TỈNH",), "addr": ("D/C KH",), "plate": ("BIỂN SỐ",), "date": ("NGÀY CAVET", "NGÀY HÓA ĐƠN", "NGÀY HĐ", "NGÀY BÁN"), "type": ("LOẠI KHÁCH", "LOẠI KH"), "phone": ("SỐ ĐIỆN THOẠI", "SĐT KH", "SĐT KHÁCH", "SĐT"), "ind": ("NGÀNH NGHỀ",)}.items()}
         for r in ws.iter_rows(min_row=h + 2, values_only=True):
             g = lambda k: r[c[k]] if c[k] is not None and c[k] < len(r) else None
             vin = re.sub(r"[^A-Z0-9]", "", nfc(g("vin")).upper())
@@ -133,7 +133,9 @@ for f in FILES:
                 parts = [p.strip() for p in re.split(r"[,\-–]", nfc(g("addr"))) if p.strip()]
                 dist = parts[-2] if len(parts) >= 2 else ""
             dist = re.sub(r"^(?:(?:quận|huyện|thị xã|thành phố)\s+|(?:tp|tx|q|h)\.\s*|(?:tp|tx)\s+)", "", dist, flags=re.I).strip().title()
-            rec = {"y": y, "d": d.isoformat() if d else "", "prov": pv, "provOld": nfc(g("prov")).title(), "dist": dist, "model": model_of(g("model")), "org": is_org(g("name"), g("type")), "ind": nfc(g("ind")), "src": yfile}
+            ph = re.sub(r"\D", "", nfc(g("phone")))[-9:]; nm = fold(g("name"))
+            ck = hashlib.sha1((ph if len(ph) >= 8 else "n:" + nm).encode()).hexdigest()[:12] if (len(ph) >= 8 or len(nm) > 3) else None   # mã khách ẩn danh, chỉ dùng trong bộ nhớ để đếm mua lại
+            rec = {"ck": ck, "y": y, "d": d.isoformat() if d else "", "prov": pv, "provOld": nfc(g("prov")).title(), "dist": dist, "model": model_of(g("model")), "org": is_org(g("name"), g("type")), "ind": nfc(g("ind")), "src": yfile}
             k = vin[-8:] if len(vin) >= 10 else "%d:%s:%s:%s" % (yfile, rec["model"], fold(g("dl")), vin)   # file 2023 chỉ ghi số khung rút gọn
             if k not in recs or rec["d"] >= recs[k]["d"]: recs[k] = rec
 R = list(recs.values())
@@ -175,8 +177,19 @@ for x in R:
 for b in byProv.values(): b["models"] = dict(sorted(b["models"].items(), key=lambda z: -z[1])[:10]); b["ind"] = dict(sorted(b["ind"].items(), key=lambda z: -z[1])[:6])
 years = {}
 for x in R: years[str(x["y"])] = years.get(str(x["y"]), 0) + 1
+# khách mua lại (≥ 2 xe 2023–2026), tính theo mã ẩn danh từ SĐT (hoặc tên); không lưu mã
+cust = {}
+for x in R:
+    if not x.get("ck"): continue
+    c = cust.setdefault(x["ck"], {"n": 0, "prov": x["prov"], "d": "", "org": x["org"]}); c["n"] += 1
+    if x["d"] >= c["d"]: c["d"] = x["d"]; c["prov"] = x["prov"] or c["prov"]
+loyal = {"customers": len(cust), "repeat": sum(1 for c in cust.values() if c["n"] >= 2), "repeatVeh": sum(c["n"] for c in cust.values() if c["n"] >= 2), "repeat3": sum(1 for c in cust.values() if c["n"] >= 3), "byProv": {}}
+for c in cust.values():
+    if not c["prov"]: continue
+    b = loyal["byProv"].setdefault(c["prov"], {"customers": 0, "repeat": 0, "repeatVeh": 0}); b["customers"] += 1
+    if c["n"] >= 2: b["repeat"] += 1; b["repeatVeh"] += c["n"]
 out = {"asOf": datetime.date.today().isoformat(), "note": "Không lưu tên khách cá nhân, số điện thoại cá nhân, số khung, biển số. Khách tiềm năng là doanh nghiệp có thông tin công khai trên OpenStreetMap.",
        "sources": {"ku": "DANH_SACH_KHACH_KU_SALES (OpenStreetMap qua Ku_Sales)", "tvbh": "DATA_TVBH 2023–2026 (file thưởng TVBH, mỗi số khung tính một lần)"},
-       "prospects": pros, "buyers": {"total": len(R), "years": dict(sorted(years.items())), "noProv": sum(1 for x in R if not x["prov"]), "byProv": byProv, "districts": dists}}
+       "prospects": pros, "loyalty": loyal, "buyers": {"total": len(R), "years": dict(sorted(years.items())), "noProv": sum(1 for x in R if not x["prov"]), "byProv": byProv, "districts": dists}}
 json.dump(out, open(os.path.join(HERE, "customers.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 print("tiềm năng", len(pros), "không rõ tỉnh", sum(1 for p in pros if not p["province"]), "| đã mua", len(R), years, "không rõ tỉnh", out["buyers"]["noProv"], "| huyện", len(dists), "có tọa độ", sum(1 for d in dists if "lat" in d))
