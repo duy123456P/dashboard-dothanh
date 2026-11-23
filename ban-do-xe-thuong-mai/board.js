@@ -145,6 +145,8 @@ function tactics(r){
   if(ext.localRules) lines.push(`Quy định địa phương: ${ext.localRules[0].impact}`);
   if(r.target && r._kpct < 70) lines.push(`Đạt KH lũy kế ${n0(r._kpct)}%: kèm cặp đại lý theo tuần, thưởng nóng theo xe bán lẻ, lái thử cuối tuần tại chợ đầu mối, KCN.`);
   if(x.comp) lines.push(`Đối thủ có ${x.comp} điểm đã xác minh tại tỉnh (${[...x.compBrands].map(b => (CV.CNET.brands[b] || {}).name).join(", ")}): chào trực tiếp bằng giá ròng sau ưu đãi và TCO ở phân khúc Đô Thành rẻ hơn (1,9–2,5 tấn, thùng dài).`);
+  const LYp = CV.loyalty && CV.loyalty.LY.byProv[r.name];
+  if(LYp && LYp.customers) lines.push(`Phòng thủ trước khi tấn công: ${LYp.customers} khách đã mua tại tỉnh, ${LYp.repeat} khách mua lại; giữ khách cũ rẻ hơn tìm khách mới 7 lần, mỗi khách trung thành mở ~250 người tiềm năng. Gọi chăm sóc toàn bộ khách 2023–2024, chốt lần mua thứ 2, thưởng giới thiệu.`);
   if(P.k === "fast") lines.push("Dồn ngân sách khuyến mãi, xe sẵn giao, quảng cáo địa phương vào 60 ngày tới; mục tiêu tăng thị phần 1–2 điểm %.");
   if(P.k === "guer") lines.push("Không tăng tồn; bán theo đơn, dự án; đội bán lưu động 2 tuần/lần; hợp tác đại lý đa thương hiệu.");
   // dài hạn

@@ -13,7 +13,7 @@ Một file HTML duy nhất, chạy offline trên Google Chrome: bản đồ 3D 3
 template.html          khung trang + bản đồ 3D (three.js) + hồ sơ tỉnh + Ben
 ops.html, ops.css      khung các khối báo cáo
 *.js (20 module)       mỗi module là một IIFE, giao tiếp qua window.__CV (công cụ Ben, hook, dữ liệu dùng chung)
-  ops, lens, lyhoc, legal, comp, hud, sales, fc, glossary, model, inv, tx, audit, board, warplan, radar, policy, market, customers, layout
+  ops, lens, lyhoc, legal, comp, hud, sales, fc, glossary, model, inv, tx, audit, board, warplan, radar, policy, market, customers (+ chiến dịch MKT, phòng thủ khách hàng), layout
 *.json                 dữ liệu (build.py ánh xạ placeholder → file trong DATA)
 vendor/                three.js r147 + OrbitControls/Lines; phông Be Vietnam Pro, Chakra Petch (woff2, OFL)
 logo-bbh.png           logo DAC dùng trong biên bản họp (Word/HTML)
@@ -50,6 +50,7 @@ GitHub → Settings → Secrets and variables → Actions → sửa `MAP_PASSWOR
 | `python3 tools_sync_customers.py <KU_SALES.xlsx> <osm_coords.json> <geo_cache.json> <DATA_TVBH_*.xlsx…>` | danh sách khách tiềm năng (OpenStreetMap), file thưởng TVBH 2023–2026 | `customers.json`: khách tiềm năng có tọa độ; khách đã mua đếm theo năm, tỉnh, huyện (không tên, SĐT cá nhân, số khung, biển số) |
 | `python3 tools_sync_factory.py <FILE XE TỔNG HỢP.xlsx> <BC NHẬP-XUẤT-TỒN.xlsx>` | kho thành phẩm DAC (Y:\TỒN KHO THÀNH PHẨM\2026) | `factory.json`: tồn theo model, thùng, màu, tuổi tồn; sản xuất dở dang; nhập – xuất kỳ; sell-in theo đại lý × tháng; đối chiếu TDBH. Tự chạy 8h30: `auto/CAI_DAT_8H30.md` |
 | `python3 tools_sync_eol.py <năm>` | tra cứu xe hết niên hạn (app.vr.org.vn) | cơ cấu hãng, năm SX xe tải hết niên hạn theo tỉnh (chỉ số đếm) |
+| `python3 tools_sync_mkt.py <ChienDich_MKT_CaNuoc_2027.xlsx> <geo_cache.json>` | file chiến dịch MKT offline 2027 | `mkt2027.json`: kế hoạch 34 tỉnh (tính lại theo Giả định), lịch sự kiện có định vị, DN tiềm năng có tọa độ |
 | `python3 tools_relief.py` | DEM AWS Terrain Tiles | `relief.webp`, `height.webp` |
 
 Sau mỗi lần đồng bộ: `python3 build.py` rồi `tools_lock.py`.
