@@ -180,6 +180,8 @@ ANNUAL = round(national["Grand Total"]["m10_2026"] * national["Grand Total"]["y2
 out = {"asOf": "T10/2026", "sources": {"dkm": "DKM_10.2026.xlsx (đăng ký mới xe tải từng xe, tháng 10/2026)", "iz": "BCNB IZ Market in October 2026 (DAC)", "kama": "BCNB KAMA Market in October 2026 (DAC)"},
        "annual2026": ANNUAL, "annualNote": "Quy năm 2026 = 10T/2026 × (cả năm 2025 / 10T/2025) theo báo cáo IZ (8 phân khúc xe tải)",
        "national": national, "monthly2026": monthly, "regionShare": regionShare, "brandsBySeg": brands_by_seg, "matchups": matchups, "dkm": dkm}
+try: out["dtHeavy"] = json.load(open("market2026.json", encoding="utf-8")).get("dtHeavy")   # số đầu kéo Daewoo do phòng KD báo (DKM ghi nhãn DAEWOO)
+except Exception: pass
 json.dump(out, open("market2026.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # ---------------- provinces.json: số thật thay ước tính ----------------
@@ -191,6 +193,8 @@ for r in R:
     r["regT10"] = v["total"]; r["regT10dt"] = v["dt"]
     r["reg"] = round(v["total"] / tot * ANNUAL)          # ĐK mới xe tải quy năm 2026 theo cơ cấu thật T10
     r["regNote"] = "quy năm 2026 từ ĐK thực T10/2026 (DKM) × tổng thị trường 10T/2026 (báo cáo IZ)"
+    SEGA = ["Van", "Small Trucks I", "Small Trucks II", "Light Trucks I", "Light Trucks II"]   # phân khúc Đô Thành có sản phẩm (mẫu số thị phần)
+    r["regT10addr"] = sum(v["seg"].get(s, 0) for s in SEGA); r["regT10dtAddr"] = sum(v.get("segDt", {}).get(s, 0) for s in SEGA)
     top = list(v["brands"].items())[:9]; rest = v["total"] - sum(c for _, c in top)
     r["brandsT10"] = [[b, round(c / v["total"] * 100, 1)] for b, c in top] + ([["Khác", round(rest / v["total"] * 100, 1)]] if rest > 0 else [])
 json.dump(R, open("provinces.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)

@@ -577,7 +577,7 @@ const SEGS = ["Tải nhẹ < 3,5T","Tải trung 3,5–10T","Tải nặng > 10T",
 const ARCH = {metro:"Đô thị lớn",port:"Cảng biển – công nghiệp",industrial:"Công nghiệp",coast:"Duyên hải – công nghiệp nặng",highland:"Cao nguyên – nông nghiệp",delta:"Đồng bằng – nông nghiệp",mountain:"Miền núi",border:"Cửa khẩu – logistics"};
 const ISLANDS = {"Quần đảo Hoàng Sa":"Đà Nẵng","Quần đảo Trường Sa":"Khánh Hòa"};
 const COMP = [["c_thaco","Thaco"],["c_hyundai","Hyundai"],["c_isuzu","Isuzu"],["c_hino","Hino"],["c_fuso","Fuso"],["c_china","Xe Trung Quốc"],["c_other","Khác"]];
-const NUM_KEYS = ["pop","area","grdp","growth","cpi","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
+const NUM_KEYS = ["regT10dtHeavy","pop","area","grdp","growth","cpi","factor","elev","dealers","sales","target","reg","uio",...COMP.map(c=>c[0])];
 const EDIT_COLS = [["pop","Dân số (nghìn)",1],["area","Diện tích (km²)",1],["grdp","GRDP (nghìn tỷ)",1],["growth","Tăng GRDP 2025 (%)",0.01],["cpi","CPI tỉnh 2026 (%) · trống = cả nước 4,57",0.01],
   ["elev","Độ cao TB (m)",10],["factor","Hệ số vùng",0.05],["reg","ĐK mới thực tế",1],["uio","UIO thực tế",100],["dealers","Điểm bán",1],["sales","Doanh số (xe)",1],["target","Mục tiêu (xe)",1],
   ...COMP.map(([k,l])=>[k,"TP "+l+" (%)",0.1])];
@@ -586,6 +586,8 @@ const VIEWS = [{pos:[-14,182,128],tgt:[-20,0,4]},{pos:[-90,95,140],tgt:[-20,0,0]
 let rows = clone(BASE), tam = 126408, uioNat = 1951883, metric = "market", zone = "", selected = null, pinned = false, hoverName = null;
 let showComp = false, compGroup = null, showCust = false, custGroup = null;
 const PSD = (() => { try{ return JSON.parse(document.getElementById("ps-data").textContent); }catch(e){ return {}; } })();
+const ADDR_NAT = 56364 / 98955;   // 10T/2026: phân khúc có sản phẩm Đô Thành / toàn thị trường xe tải (báo cáo DAC)
+const DT10 = {dac: 2318, mkt: 56364, iz: [1882, 38972], missu: [436, 17392]};   // Đô Thành 10T/2026 theo báo cáo DAC (IZ + MISSU)
 const CUSTD = (() => { try{ return JSON.parse(document.getElementById("cust-data").textContent); }catch(e){ return {prospects: [], buyers: {districts: [], byProv: {}}}; } })();
 const CUST_COL = s => /chốt/i.test(s) ? "#46e3ff" : /quan tâm|hẹn gặp|báo giá/i.test(s) ? "#3ddc84" : /không|sai số/i.test(s) ? "#8a96a8" : "#ffb020";
 let colorMode = "zone", showBars = false, showLabels = true, showPins = true, autoRotate = false, viewIdx = 0, exag = 22;
@@ -631,7 +633,9 @@ function compute(){
     r._uioAnchor = !r._uioReal && r.carStock > 0; r._uio = anc(r) || Math.round(Math.max(uioNat - realUio, 0) * w2[i] / estW2);
     r._turn = r._uio ? r._market / r._uio * 100 : 0;
     r._density = r.area ? r.pop*1000 / r.area : 0; r._gpc = r.pop ? r.grdp*1000 / r.pop : 0;
-    r._share = r._market ? (r.sales||0) / r._market * 100 : 0; r._gap = Math.max((r.target||0) - (r.sales||0), 0);
+    // thị trường phân khúc Đô Thành có sản phẩm (Van, tải nhỏ I–II, tải nhẹ I–II) = ĐK quy năm × tỷ trọng phân khúc của tỉnh (ĐK thực T10) × 10/12 (cùng kỳ bán lẻ T1–T10)
+    r._addrFrac = r.regT10 ? (r.regT10addr || 0) / r.regT10 : ADDR_NAT; r._addr10 = r._market * r._addrFrac * 10 / 12;
+    r._share = r._addr10 ? (r.sales||0) / r._addr10 * 100 : 0; r._gap = Math.max((r.target||0) - (r.sales||0), 0);
     r._tier = r._mshare >= 4 ? "A" : r._mshare >= 2 ? "B" : "C";
     const cs = centersOf(r.name); r._c4 = cs.filter(c=>c.type==="C1").length; r._c3 = cs.filter(c=>c.type==="C2").length; r._tdv = NET.stations.filter(s=>s.province===r.name).length;
     const nd = r._c4 + r._c3; r._perCenter = nd ? r._market / nd : null; r._kpct = r.target ? (r.sales||0) / r.target * 100 : null;
@@ -681,7 +685,7 @@ const METRICS = {
   communes:{label:"Số xã / phường", unit:"đơn vị", get:r=>r.communes, fmt:v=>fmtInt(v)},
   sales:{label:"Bán lẻ lũy kế T10/2026", unit:"xe", get:r=>r.sales, fmt:v=>fmtInt(v)},
   kpct:{label:"% KH lũy kế T10", unit:"%", get:r=>r._kpct, fmt:v=>fmtInt(v)},
-  share:{label:"Thị phần", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
+  share:{label:"Thị phần phân khúc ĐT", unit:"%", get:r=>r._share, fmt:v=>fmt1(v)},
 };
 const nf0 = new Intl.NumberFormat("vi-VN",{maximumFractionDigits:0});
 const nf1 = new Intl.NumberFormat("vi-VN",{minimumFractionDigits:1,maximumFractionDigits:1});
@@ -742,7 +746,8 @@ function renderKpis(){
     [fmtInt(!zone && !rows.some(r=>r._uioReal) ? uioNat : sum("_uio")), zone ? "UIO xe thương mại (ước)" : "UIO xe TM · Cục Đăng kiểm 8/2026"],
     [`${cs.filter(c=>c.type==="C1").length} · ${cs.filter(c=>c.type==="C2").length}`, "Đại lý cấp 1 · cấp 2"],
     [fmtInt(sales), `Bán lẻ lũy kế T10 · ${sum("target") ? fmtInt(sales/sum("target")*100)+"% KH" : "—"}`],
-    [sum("regT10") ? fmt1(sum("regT10dt")/sum("regT10")*100)+"%" : "—", `Thị phần Đô Thành theo ĐK thực T10/2026 (${fmtInt(sum("regT10dt"))}/${fmtInt(sum("regT10"))} xe)`],
+    zone ? [sum("regT10addr") ? fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)+"%" : "—", `Thị phần Đô Thành T10/2026 trong phân khúc có sản phẩm (ĐK thực ${fmtInt(sum("regT10dtAddr"))}/${fmtInt(sum("regT10addr"))} xe)`]
+      : [fmt1(DT10.dac/DT10.mkt*100)+"%", `Thị phần Đô Thành 10T/2026 trong phân khúc có sản phẩm (${fmtInt(DT10.dac)}/${fmtInt(DT10.mkt)} xe, báo cáo DAC) · ĐK thực T10: ${fmt1(sum("regT10dtAddr")/sum("regT10addr")*100)}% · toàn bộ xe tải T10: ${fmt1((sum("regT10dt")+sum("regT10dtHeavy"))/sum("regT10")*100)}% (${fmtInt(sum("regT10dt")+sum("regT10dtHeavy"))}/${fmtInt(sum("regT10"))}, gồm ${fmtInt(sum("regT10dtHeavy"))} đầu kéo Daewoo)`],
   ];
   document.getElementById("kpis").innerHTML = items.map(([a,b])=>`<div class="glass kpi"><div class="v num">${a}</div><div class="l">${esc(b)}</div></div>`).join("");
 }
@@ -1165,7 +1170,7 @@ function suggestions(r){
   if(!n) out.push(["bad", `Chưa có đại lý Đô Thành. Thị trường ước ~${fmtInt(r._market)} xe/năm: cân nhắc đại lý cấp 2 hoặc điểm dịch vụ tại ${esc(r.capital)}.`]);
   else if(r._perCenter > 2500) out.push(["warn", `Mỗi đại lý phủ ~${fmtInt(r._perCenter)} xe/năm thị trường: độ phủ mỏng, xem xét thêm đại lý cấp 2 hoặc xưởng lưu động.`]);
   else out.push(["good", `${r._c4 ? r._c4+" đại lý cấp 1" : ""}${r._c4&&r._c3?", ":""}${r._c3 ? r._c3+" đại lý cấp 2" : ""}; ~${fmtInt(r._perCenter)} xe thị trường mỗi đại lý.`]);
-  if(r.sales){ if(r._share < 5) out.push(["warn", `Bán lẻ T1–T10 ${fmtInt(r.sales)} xe ≈ ${fmt1(r._share)}% ĐK mới năm: thấp, ưu tiên chào hàng đội xe và gói tài chính.`]); else out.push(["good", `Bán lẻ T1–T10 ${fmtInt(r.sales)} xe ≈ ${fmt1(r._share)}% ĐK mới năm: giữ vị thế bằng hậu mãi, phụ tùng chính hãng.`]); }
+  if(r.sales){ if(r._share < 5) out.push(["warn", `Bán lẻ T1–T10 ${fmtInt(r.sales)} xe ≈ ${fmt1(r._share)}% thị trường phân khúc Đô Thành cùng kỳ: thấp, ưu tiên chào hàng đội xe và gói tài chính.`]); else out.push(["good", `Bán lẻ T1–T10 ${fmtInt(r.sales)} xe ≈ ${fmt1(r._share)}% ĐK mới năm: giữ vị thế bằng hậu mãi, phụ tùng chính hãng.`]); }
   if(r.target && r._gap) out.push([r._kpct >= 70 ? "warn" : "bad", `Đạt ${fmtInt(r._kpct)}% KH lũy kế T10: còn thiếu ${fmtInt(r._gap)} xe so với KH ${fmtInt(r.target)} xe.`]);
   const top = r.mix.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>SEGS[x[1]]);
   out.push(["", `Phân khúc trọng tâm: <b>${top.join("</b> và <b>")}</b>.`]);
@@ -1297,7 +1302,7 @@ function renderDossier(){
       <div class="stats num" style="margin-top:8px">
         <div class="stat"><div class="v">${fmtInt(r.sales)}</div><div class="l">Bán lẻ lũy kế T10/2026 (xe)</div></div>
         <div class="stat"><div class="v">${fmtInt(r.target)}${r.target?` <small>${fmtInt(r._kpct)}%</small>`:""}</div><div class="l">KH lũy kế T10 (xe) · % đạt</div></div>
-        <div class="stat"><div class="v">${r.sales?fmt1(r._share)+"%":"—"}</div><div class="l">Bán lẻ T1–T10 / ĐK mới năm</div></div>
+        <div class="stat"><div class="v">${r.sales?fmt1(r._share)+"%":"—"}</div><div class="l">Thị phần phân khúc Đô Thành (bán lẻ T1–T10 / ĐK cùng phân khúc 10 tháng)</div></div>
       </div>
       <ul class="actions">${suggestions(r).map(([c,t])=>`<li>${c?`<span class="pill ${c}">${c==="bad"?"Cần làm":c==="warn"?"Lưu ý":"Tốt"}</span> `:""}${t}</li>`).join("")}</ul>
       ${r.note ? `<p class="muted" style="margin:4px 0 0">Ghi chú: ${esc(r.note)}</p>` : ""}</div>
@@ -1556,7 +1561,7 @@ ${r._comp.length ? r._comp.map(([l,v])=>`- ${l}: ${fmt1(v)}%`).join("\n") : "- C
 ## 6. Lực lượng của ta
 - Đại lý / trạm: ${centersOf(r.name).map(c=>`${c.id}. ${c.name} (${c.type==="TDV"?"trạm DV":"cấp "+c.type[1]}${c.leCum!=null?`, bán lẻ lũy kế T10 ${n0(c.leCum)}/${n0(c.khCum)} KH`:""})`).join("; ") || "chưa có"}.
 - ĐK mới / đại lý: ${r._perCenter==null ? "chưa có đại lý" : n0(r._perCenter)+" xe"}.
-- Bán lẻ lũy kế T1–T10/2026: ${r.sales ? n0(r.sales)+" xe (≈ "+p1(r._share)+" ĐK mới năm)" : "chưa có số"}; KH lũy kế T10: ${r.target ? n0(r.target)+" xe, đạt "+p1(r._kpct) : "chưa giao"}.
+- Bán lẻ lũy kế T1–T10/2026: ${r.sales ? n0(r.sales)+" xe (≈ "+p1(r._share)+" thị trường phân khúc Đô Thành cùng kỳ, ~" + n0(r._addr10) + " xe)" : "chưa có số"}; KH lũy kế T10: ${r.target ? n0(r.target)+" xe, đạt "+p1(r._kpct) : "chưa giao"}.
 
 ## 7. Cách đánh
 ${P.acts.map(a=>"- "+a).join("\n")}
@@ -1865,9 +1870,9 @@ function fillScopes(){
   const keep = shScope.value; shScope.innerHTML = opts; shScope.value = keep;
 }
 function renderShare(){
-  const rs = scopeRows(shScope.value), mk = rs.reduce((a,r)=>a+r._market,0), sales = +shSales.value || 0, tgt = +shTarget.value || 0;
+  const rs = scopeRows(shScope.value), mk = Math.round(rs.reduce((a,r)=>a+r._market*r._addrFrac,0)), sales = +shSales.value || 0, tgt = +shTarget.value || 0;
   const need = Math.round(mk * tgt / 100), share = mk ? sales / mk * 100 : 0, label = shScope.value ? shScope.value.slice(2) : "Toàn quốc";
-  document.getElementById("shOut").innerHTML = mdToHtml(`| ${label} | Giá trị |\n|---|---|\n| ĐK mới xe tải 2026 (quy năm) | ${n0(mk)} xe |\n| Thị phần hiện tại | **${fmt1(share)}%** |\n| Mục tiêu ${fmt1(tgt)}% | **${n0(need)} xe** |\n| Còn thiếu | ${n0(Math.max(need - sales, 0))} xe (${n0(Math.max(need - sales, 0)/12)} xe/tháng) |\n| 1 điểm thị phần | ${n0(mk/100)} xe |`);
+  document.getElementById("shOut").innerHTML = mdToHtml(`| ${label} | Giá trị |\n|---|---|\n| ĐK mới 2026 phân khúc có sản phẩm Đô Thành (quy năm) | ${n0(mk)} xe |\n| Thị phần hiện tại | **${fmt1(share)}%** |\n| Mục tiêu ${fmt1(tgt)}% | **${n0(need)} xe** |\n| Còn thiếu | ${n0(Math.max(need - sales, 0))} xe (${n0(Math.max(need - sales, 0)/12)} xe/tháng) |\n| 1 điểm thị phần | ${n0(mk/100)} xe |`);
 }
 [shScope, shSales, shTarget].forEach(el => el.addEventListener("input", renderShare));
 
