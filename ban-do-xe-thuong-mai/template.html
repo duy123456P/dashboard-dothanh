@@ -621,7 +621,8 @@ function centersOf(name){ return CENTERS.filter(c => c.province === name); }
 function compute(){
   const w = rows.map(r => Math.pow(Math.max(r.grdp,0),0.65) * Math.pow(Math.max(r.pop,0),0.35) * (r.factor || 1));
   const sw = w.reduce((a,b)=>a+b,0) || 1;
-  const w2 = rows.map(r => Math.sqrt(Math.max(r.grdp,0) * Math.max(r.pop,0) * (r.factor || 1)));
+  // UIO tỉnh chưa có số neo: phân bổ theo uioW = 85% tỷ trọng ĐK xe TM 2025 + 6T/2026 (báo cáo DAC) + 15% tỷ trọng xe tải hết niên hạn 2025 (Cục ĐK) – tools_uio.py
+  const w2 = rows.map(r => r.uioW > 0 ? r.uioW : Math.sqrt(Math.max(r.grdp,0) * Math.max(r.pop,0) * (r.factor || 1)) * 1e-6);
   const sw2 = w2.reduce((a,b)=>a+b,0) || 1;
   // provinces with real figures keep them; the rest share what is left of the national total
   const t10 = rows.reduce((a,r)=>a+(r.regT10||0),0);
@@ -1295,7 +1296,7 @@ function renderDossier(){
     <p class="muted" style="font-size:11.5px;margin:4px 0 0">Cơ cấu GRDP ước tính, tổng hợp từ các tỉnh cũ.</p></div>
     <div><h3>Xe thương mại · UIO &amp; đăng ký mới</h3>
       <div class="stats num" style="margin-top:8px">
-        <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':r._uioAnchor?'(ước từ ' + fmtInt(r.carStock) + ' ô tô của tỉnh, <a href="' + esc(r.carStockSrc[1]) + '" target="_blank" rel="noopener">nguồn</a>)':'(ước)'} · #${r._rk_uio}</div></div>
+        <div class="stat"><div class="v">${fmtInt(r._uio)}</div><div class="l">UIO xe TM ${r._uioReal?'<span class="pill good">số thực</span>':r._uioAnchor?'(ước từ ' + fmtInt(r.carStock) + ' ô tô của tỉnh, <a href="' + esc(r.carStockSrc[1]) + '" target="_blank" rel="noopener">nguồn</a>)':r.uioW?'<span title="Cục Đăng kiểm chỉ công bố tổng cả nước. Phân bổ: 85% theo đăng ký xe thương mại 2025 + 6T/2026 (báo cáo DAC), 15% theo xe tải hết niên hạn 2025 (Cục Đăng kiểm, CV 419/ĐKVN). Kiểm chứng với Hà Nội, TP.HCM lệch 2–6%.">(ước: phân bổ tổng Cục ĐK theo đăng ký xe TM + xe hết niên hạn)</span>':'(ước)'} · #${r._rk_uio}</div></div>
         <div class="stat"><div class="v">${fmtInt(r._market)}</div><div class="l">ĐK mới xe tải 2026 quy năm ${r._regReal?'<span class="pill good">từ ĐK thực T10</span>':'(ước)'}${r.regT10 ? " · T10: " + fmtInt(r.regT10) + " xe" : ""} · #${r._rk_market}</div></div>
         <div class="stat"><div class="v">${fmt1(r._turn)}%</div><div class="l">ĐK mới / UIO</div></div>
         <div class="stat"><div class="v">${fmt1(r._mshare)}%</div><div class="l">Tỷ trọng cả nước</div></div>

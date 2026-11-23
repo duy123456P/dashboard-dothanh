@@ -2088,5 +2088,32 @@
     "1990": 2
    }
   }
+ },
+ "uioModel": {
+  "nat": 1951883,
+  "natSrc": "Cục Đăng kiểm Việt Nam, xe thương mại đang lưu hành 8/2026",
+  "a": 0.85,
+  "method": "Phân bổ tổng UIO cả nước: 85% theo tỷ trọng đăng ký xe thương mại 2025 + 6T/2026 (báo cáo thị trường DAC), 15% theo tỷ trọng xe tải hết niên hạn 2025 (Cục Đăng kiểm, CV 419/ĐKVN-PTGTĐB). Hà Nội, TP.HCM, Hải Phòng neo theo tổng ô tô công bố × tỷ lệ xe TM cả nước.",
+  "why": "Cục Đăng kiểm không công bố UIO theo tỉnh; trang tra cứu app.vr.org.vn chỉ có xe đã hết niên hạn.",
+  "check": [
+   [
+    "Hà Nội",
+    300924,
+    281889,
+    -6.3
+   ],
+   [
+    "Hải Phòng",
+    123652,
+    95168,
+    -23.0
+   ],
+   [
+    "TP. Hồ Chí Minh",
+    404879,
+    412329,
+    1.8
+   ]
+  ]
  }
 }
