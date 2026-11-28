@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 rd = lambda f: open(os.path.join(HERE, f), encoding="utf-8").read()
 
 MODULES = ["ops.js", "lens.js", "lyhoc.js", "legal.js", "comp.js", "hud.js", "sales.js", "fc.js", "glossary.js", "model.js", "inv.js", "tx.js",
-           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "market.js", "customers.js", "plan27.js", "cashflow.js", "inputs.js", "controls.js", "battle.js", "updater.js", "research.js", "layout.js"]
+           "audit.js", "board.js", "warplan.js", "radar.js", "policy.js", "market.js", "customers.js", "plan27.js", "cashflow.js", "inputs.js", "controls.js", "battle.js", "updater.js", "research.js", "competitiveness.js", "layout.js"]
 DATA = {  # placeholder → file JSON (nhúng dạng thẻ <script type="application/json"> hoặc hằng trong module)
     "GEO": "vn34.geojson", "DATA": "provinces.json", "NETWORK": "network.json", "PRICELIST": "pricelist.json", "PRODUCTS": "products.json",
     "INFRA": "infra.json", "SOURCES": "sources.json", "COMPNET": "compnet.json", "TX": "tx.json", "PS": "provstats.json", "FG": "factory.json",
