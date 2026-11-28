@@ -1,0 +1,108 @@
+/* ===== Trung tâm kiểm soát dữ liệu: chống sai lầm áp cho mọi luồng số liệu của bản đồ =====
+   Theo kỹ năng DAC/BEN Mistake-Proof ERP: mỗi quy tắc có mã, mức kiểm soát (1 tiêu chuẩn → 5 loại bỏ lỗi từ thiết kế), căn cứ (Quan sát / Giả định), chủ sở hữu, hành động.
+   Không bịa số: lỗi suất, tổn thất, điểm S/O/D chưa có thì ghi "chưa chấm". Kiểm soát doanh thu theo nguyên tắc: tiền về là dòng tiền, giao xe đủ điều kiện mới là doanh thu. */
+(function(){
+"use strict";
+const CV = window.__CV; if(!CV || !CV.store) return;
+const {esc, fmtInt, fmt1} = CV, sum = a => a.reduce((x, y) => x + (y || 0), 0);
+const fold = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/gi, "d").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const today = () => new Date().toISOString().slice(0, 10), age = d => d ? Math.round((Date.parse(today()) - Date.parse(d)) / 864e5) : null;
+const COL = {g: "#4ee2a0", a: "#ffc35a", r: "#ff6b6b", i: "#46e3ff", n: "#8ea7c7"}, LAB = {g: "Đạt", a: "Cảnh báo", r: "Lỗi", i: "Thông tin", n: "Chưa kiểm được"};
+const LV = ["Tiêu chuẩn, đào tạo", "Cảnh báo, báo cáo", "Phát hiện, đối soát tự động", "Khóa, chặn bước sau", "Loại bỏ lỗi từ thiết kế"];
+
+function rules(){
+  const R = [], add = (id, proc, name, lv, detail, level, owner, act, basis, src) => R.push({id, proc, name, lv, detail, level, owner, act, basis: basis || "Quan sát", src});
+  const I = CV.inv, P = CV.plan27, F = CV.factory, D = CV.debt(), rows = CV.rows || [];
+  // DC-01 tồn
+  if(I){ const s = sum(I.dealers.map(d => d.ton)); const ok = I.recon && I.recon.ok && s === I.total; add("DC-01", "Tồn kho", "Tồn đại lý khớp giữa tổng và chi tiết từng đại lý", ok ? "g" : "r", `Tổng ${I.total} xe; cộng chi tiết ${s} xe; ${I.recon ? I.recon.note : ""}`, 3, "Kế hoạch – Công nợ", "Đối chiếu từng số khung nếu lệch", "Quan sát", "Tồn SR từng xe " + I.asOf); }
+  // DC-02 UIO
+  const su = sum(rows.map(r => r._uio)); if(rows.length){ const diff = Math.abs(su - CV.uioNat); add("DC-02", "Thị trường", "Tổng UIO 34 tỉnh bằng tổng cả nước (Cục Đăng kiểm)", diff <= 1 ? "g" : "r", `Cộng 34 tỉnh ${fmtInt(su)}; cả nước ${fmtInt(CV.uioNat)}; chênh ${fmtInt(diff)}`, 3, "Marketing, dữ liệu thị trường", "Phân bổ lại theo mô hình", "Quan sát", "Cục Đăng kiểm 8/2026"); }
+  const sm = sum(rows.map(r => r._market)); if(rows.length){ const diff = sm - CV.tam; add("DC-03", "Thị trường", "Tổng ĐK mới 34 tỉnh khớp tổng thị trường quy năm", Math.abs(diff) <= 5 ? "g" : "a", `Cộng 34 tỉnh ${fmtInt(sm)}; thị trường quy năm ${fmtInt(CV.tam)}; chênh ${diff > 0 ? "+" : ""}${fmtInt(diff)} xe (làm tròn từng tỉnh)`, 3, "Marketing", "Chênh quá 5 xe thì rà làm tròn", "Quan sát", "File DKM, báo cáo IZ"); }
+  // DC-04, 05 công nợ so với tồn và giao dịch
+  if(D && I){ const mb = I.contracts && I.contracts["Mua bán"]; add("DC-04", "Công nợ", "Số xe HĐMB còn tồn so với số xe HĐMB còn nợ theo kế toán", mb != null && mb < D.MB.n ? "r" : "a", `Tồn đại lý có ${mb} xe HĐMB; kế toán ghi ${D.MB.n} xe HĐMB còn nợ. ${mb != null && mb < D.MB.n ? "Số xe nợ lớn hơn số xe còn tồn: có xe đã bán mà chưa thu đủ tiền" : "Chênh " + (mb - D.MB.n) + " xe: giả định đã thanh toán đủ, cần kế toán xác nhận"}`, 3, "Kế toán công nợ", "Đối soát theo số khung hằng tuần", "Quan sát", "Tồn SR, báo cáo công nợ"); }
+  if(P && P.debt && D){ const gp = P.debt.pend, pct = gp ? (gp - D.MB.n) / gp * 100 : 0; add("DC-05", "Công nợ", "File giao dịch ghi cọc 10% chưa thanh toán đủ so với kế toán", Math.abs(pct) > 20 ? "r" : Math.abs(pct) > 5 ? "a" : "g", `File giao dịch còn ${gp} xe treo cọc 10%; kế toán còn ${D.MB.n} xe HĐMB nợ (lệch ${fmt1(pct)}%): ngày thanh toán 100% chưa cập nhật`, 4, "Kế toán bán hàng", "Nhập ngày thanh toán 100% trong 48 giờ; khóa không cho tính doanh thu khi chưa đủ chứng từ", "Quan sát", "File giao dịch, báo cáo công nợ"); }
+  // DC-06 số tổng
+  if(I){ const man = I.dealers.filter(d => d.manual).map(d => d.name); add("DC-06", "Tồn kho", "Đại lý báo tồn bằng số tổng, không có từng số khung", man.length ? "a" : "g", man.length ? `${man.length} đại lý nhập số tổng: ${man.join(", ")}` : "Mọi đại lý báo từng xe", 2, "Admin bán hàng vùng", "Bắt buộc báo từng số khung hằng tuần", "Quan sát", "Tồn SR"); }
+  // DC-07 tên đại lý
+  if(F && F.sellIn){ const known = new Set([...(I ? I.dealers.map(d => fold(d.name)) : []), ...(I ? I.dealers.map(d => fold(d.link)) : []), ...(CV.CENTERS || []).map(c => fold(c.salesKey || c.name))]); const unk = Object.keys(F.sellIn).filter(n => !known.has(fold(n))); add("DC-07", "Danh mục", "Tên đại lý giữa các nguồn khớp danh mục", unk.length ? "a" : "g", unk.length ? `${unk.length} tên chưa có trong danh mục: ${unk.join(", ")}` : "Mọi tên khớp", 3, "Quản trị dữ liệu bán hàng", "Thêm vào danh mục hoặc ghi bí danh có duyệt", "Quan sát", "Kho thành phẩm vs danh mục"); }
+  // DC-08 độ tươi
+  [["Tồn đại lý", I && I.asOf, 7], ["Kho thành phẩm", F && F.asOf, 3], ["Công nợ kế toán", D && D.asOf, 3], ["Giao dịch bán hàng", CV.TX && CV.TX.asOf, 3]].forEach(([n, d, lim], i) => { const a = age(d); if(a != null) add("DC-08." + (i + 1), "Độ tươi dữ liệu", n + " cập nhật đủ mới", a > lim * 3 ? "r" : a > lim ? "a" : "g", `Số liệu ngày ${d.split("-").reverse().join("/")} (${a} ngày trước); ngưỡng ${lim} ngày`, 2, "Chủ số liệu", "Cập nhật tệp mới nhất hoặc bấm Cập nhật từ mạng", "Quan sát", "Ngày số liệu trong tệp"); });
+  // DC-09 chênh bán sỉ kho và TDBH
+  if(F && F.recon){ const bad = F.recon.rows.filter(r => r.tdbhSellIn && Math.abs(r.diffSellIn) / r.tdbhSellIn > .1).map(r => r.dealer); add("DC-09", "Bán sỉ", "Bán sỉ theo kho nhà máy so với tổng hợp bán hàng (TDBH)", bad.length > 3 ? "a" : "g", bad.length ? `${bad.length} đại lý lệch trên 10%: ${bad.slice(0, 6).join(", ")}. Đã dùng số kho nhà máy làm chuẩn` : "Khớp", 3, "Kế hoạch – Công nợ", "TDBH ghi sỉ dồn tháng, thiếu T10: chuyển sang lấy từ kho", "Quan sát", "Kho thành phẩm, TDBH"); }
+  // DC-10 nội bộ công nợ
+  if(D){ const s = sum(D.dealers.map(d => d.total)), t = D.MB.amt + D.MBTB.amt; add("DC-10", "Công nợ", "Tổng dư nợ bằng cộng từng đại lý", Math.abs(s - t) <= 5 ? "g" : "r", `Cộng đại lý ${fmtInt(s)} triệu; tổng ${fmtInt(t)} triệu`, 3, "Kế toán công nợ", "Rà báo cáo gốc", "Quan sát", D.source); }
+  // DC-11 giả định
+  add("DC-11", "Công nợ", "MBTB chưa có số tiền trong báo cáo, đang ước bằng giá bán × 95%", "a", "Báo cáo công nợ không có số tiền cho xe MBTB; số trên bản đồ là ước tính", 2, "Kế toán công nợ", "Kế toán bổ sung số tiền MBTB vào báo cáo", "Giả định", "Báo cáo công nợ");
+  const gaps = ["doanh thu dịch vụ, lượt xe xưởng", "doanh thu phụ tùng", "điểm hài lòng khách hàng", "lợi nhuận gộp khối", "tiền mặt, nợ vay, phải trả, thuế"].filter((x, i) => i < 4 || !(CV.store.get("fin") && CV.store.get("fin").cash != null)); add("DC-12", "Số liệu nền", "Chỉ số chưa có số nền", "a", "Chưa có số: " + gaps.join("; ") + ". Không được thay bằng 0 hoặc số ước khi đánh giá phát triển", 1, "Các phòng liên quan", "Cung cấp trước 15/12/2026 hoặc nhập tại Nhập dữ liệu", "Quan sát", "Kế hoạch 2027");
+  // DC-13 doanh thu: dữ liệu nhập
+  const rr = CV.store.get("rr"); add("DC-13", "Doanh thu", "Kiểm soát ghi nhận doanh thu trên dữ liệu nhập", rr ? (rr.rules.err ? "r" : rr.rules.warn ? "a" : "g") : "n", rr ? `Đã kiểm ${fmtInt(rr.n)} xe (${esc(rr.source || "")}): ${fmtInt(rr.rules.err)} lỗi, ${fmtInt(rr.rules.warn)} cảnh báo` : "Chưa nhập bán lẻ từng xe có ngày thu tiền, giao xe, hóa đơn, giá vốn: chưa kiểm được", 4, "Kế toán bán hàng", "Nhập tệp tại Nhập dữ liệu → Bán lẻ, doanh thu", "Quan sát", "Cổng nhập dữ liệu");
+  return R;
+}
+CV.dataRules = rules;
+const redCount = () => rules().filter(r => r.lv === "r").length;
+
+/* ---------- kiểm soát ghi nhận doanh thu ---------- */
+const RR_ERR = [
+  ["RR-01", "Nhận tiền là ghi doanh thu", "Doanh thu sai kỳ", "Khóa: tiền vào chỉ ghi Phải thu/Khách trả trước; doanh thu chỉ ghi khi đủ điều kiện bàn giao", 4],
+  ["RR-02", "Xuất hóa đơn nhưng không đối chiếu sự kiện giao xe", "Sai lệch hồ sơ, thời điểm kế toán và thuế", "Khóa: không phát hành hóa đơn khi chưa có biên bản giao xe", 4],
+  ["RR-03", "Giao xe nhưng chưa ghi doanh thu", "Thiếu doanh thu, sai báo cáo", "Cảnh báo tự động: đã giao xe quá 2 ngày chưa hóa đơn", 3],
+  ["RR-04", "Ghi doanh thu nhưng chưa xuất giá vốn", "Lợi nhuận bị tăng giả", "Khóa: không đóng giao dịch khi thiếu giá vốn theo số khung", 4],
+  ["RR-05", "Một số khung ghi nhận doanh thu hai lần", "Trùng doanh thu", "Ràng buộc duy nhất theo số khung ở cơ sở dữ liệu", 5],
+  ["RR-06", "Giao xe nhưng thiếu biên bản, chứng cứ", "Rủi ro kiểm toán, tranh chấp", "Khóa: không xác nhận bàn giao khi thiếu biên bản điện tử", 4],
+  ["RR-07", "Đơn hàng, tiền, hóa đơn, số khung, giao xe không khớp", "Mất khả năng truy vết", "Chỉ đóng giao dịch khi đối soát đủ: đơn ↔ thanh toán ↔ số khung ↔ bàn giao ↔ hóa đơn ↔ doanh thu ↔ giá vốn", 4]];
+function rrHtml(){
+  const rr = CV.store.get("rr"), ty = x => fmt1(x / 1000) + " tỷ";
+  return `<div class="hp w12"><h3>Nguyên tắc <span>nguồn: nội dung video anh gửi; chưa đối chiếu chuẩn mực kế toán Việt Nam, cần Kế toán trưởng xác nhận</span></h3>
+  <p style="margin:0 0 6px"><b>Tiền về là dòng tiền. Giao xe đủ điều kiện là sự kiện kinh tế. Doanh thu chỉ ghi khi đủ điều kiện bàn giao theo hợp đồng và quy định kế toán.</b> Khách chuyển tiền trước, xe chưa giao: chưa là doanh thu.</p>
+  <div class="hudgrid"><div class="hp w6"><h4>5 KHÔNG</h4><ul class="small"><li>Không nhận tiền = tự động ghi doanh thu.</li><li>Không có số khung = không hoàn tất hồ sơ bán xe.</li><li>Không đủ điều kiện bàn giao = không xác nhận doanh thu.</li><li>Không có căn cứ giá vốn = không hoàn tất sổ bán xe.</li><li>Không đối soát = không đóng giao dịch.</li></ul></div>
+  <div class="hp w6"><h4>5 CÓ</h4><ul class="small"><li>Có hợp đồng hoặc đơn hàng.</li><li>Có xác nhận thanh toán.</li><li>Có số khung chính xác.</li><li>Có hồ sơ giao nhận và căn cứ chuyển giao.</li><li>Có đối soát doanh thu – thuế – giá vốn – công nợ.</li></ul></div></div></div>
+  <div class="hp w12"><h3>5 bước kiểm soát một giao dịch bán xe</h3><table class="tasktbl small"><thead><tr><th>Bước</th><th>Sự kiện</th><th>Ghi nhận</th><th>Khóa chặn</th></tr></thead><tbody>
+   <tr><td>1</td><td>Nhận tiền khách</td><td>Tiền và khoản khách trả trước (không phải doanh thu)</td><td>Không tự động tạo doanh thu</td></tr>
+   <tr><td>2</td><td>Kiểm tra xe tồn kho</td><td>Xác định số khung, dòng xe, giá, đơn hàng</td><td>Không số khung thì không đi tiếp</td></tr>
+   <tr><td>3</td><td>Xác nhận điều kiện giao xe</td><td>PDI, hồ sơ xe, điều kiện hợp đồng, biên bản giao</td><td>Thiếu chứng từ bàn giao thì không xác nhận</td></tr>
+   <tr><td>4</td><td>Ghi nhận doanh thu</td><td>Doanh thu và thuế GTGT đầu ra; đối chiếu tiền đã thu và còn phải thu</td><td>Chỉ khi đủ điều kiện bàn giao</td></tr>
+   <tr><td>5</td><td>Ghi giá vốn và đối soát</td><td>Xuất kho, giá vốn, lợi nhuận từng xe, công nợ, hóa đơn</td><td>Không để có doanh thu mà thiếu giá vốn</td></tr></tbody></table></div>
+  <div class="hp w6"><h3>Bốn con số khác bản chất <span>không đánh đồng</span></h3><table class="tasktbl small"><thead><tr><th>Số</th><th>Nghĩa</th><th class="num">Dữ liệu nhập</th></tr></thead><tbody>
+   <tr><td><b>Tiền thu</b> (Cash)</td><td class="tiny">Tiền thực tế đã vào tài khoản</td><td class="num">${rr ? ty(rr.cash) : "chưa nhập"}</td></tr>
+   <tr><td><b>Doanh thu</b> (Revenue)</td><td class="tiny">Doanh thu đủ điều kiện ghi nhận</td><td class="num">${rr ? ty(rr.rev) : "chưa nhập"}</td></tr>
+   <tr><td><b>Giá vốn</b> (COGS)</td><td class="tiny">Giá trị hàng đã bán</td><td class="num">${rr ? ty(rr.cogs) : "chưa nhập"}</td></tr>
+   <tr><td><b>Lợi nhuận gộp</b></td><td class="tiny">Doanh thu thuần trừ giá vốn</td><td class="num">${rr ? ty(rr.gp) : "chưa nhập"}</td></tr>
+   <tr><td>Khách trả trước</td><td class="tiny">Đã thu, chưa giao xe</td><td class="num">${rr ? ty(rr.adv) : "chưa nhập"}</td></tr></tbody></table>
+   ${rr ? `<p class="tiny muted">Từ tệp "${esc(rr.source || "")}" ngày ${esc((rr.asOf || "").split("-").reverse().join("/"))}: ${fmtInt(rr.n)} xe, ${fmtInt(rr.nRec)} xe đủ điều kiện, ${fmtInt(rr.nAdv)} xe khách trả trước, ${fmtInt(rr.nOpen)} xe chưa đóng giao dịch; VAT tách ${fmt1(rr.vat * 100)}%.</p>` : `<p class="tiny muted">Nhập tệp bán lẻ có ngày thu tiền, giao xe, hóa đơn, giá bán, giá vốn để hệ thống tính và kiểm tra.</p>`}<button type="button" data-open-input="retail">Nhập bán lẻ, doanh thu</button></div>
+  <div class="hp w6"><h3>Hạch toán minh họa <span>giả định VAT 10%, giá vốn 450 triệu</span></h3><table class="tasktbl small"><thead><tr><th>Nghiệp vụ</th><th>Định khoản (triệu đồng)</th></tr></thead><tbody>
+   <tr><td>Khách đặt cọc 100</td><td class="tiny">Nợ 112 / Có 131: 100</td></tr><tr><td>Khách thanh toán thêm 450</td><td class="tiny">Nợ 112 / Có 131: 450</td></tr>
+   <tr><td>Đủ điều kiện ghi nhận doanh thu, giá bán gồm VAT 550</td><td class="tiny">Nợ 131: 550 / Có 511: 500 / Có 3331: 50</td></tr><tr><td>Ghi giá vốn</td><td class="tiny">Nợ 632: 450 / Có 156: 450</td></tr></tbody></table>
+   <p class="tiny muted">Ví dụ đơn giản, chưa tính phí, chiết khấu, hỗ trợ, tài trợ; thuế suất 10% chỉ để minh họa, không phải mức mặc định cho mọi dòng xe. Thực tế theo loại xe, chế độ kế toán và chính sách thuế do Kế toán trưởng quyết định.</p></div>
+  <div class="hp w12"><h3>7 lỗi doanh thu và cơ chế chặn <span>Mức kiểm soát: ${LV.map((l, i) => (i + 1) + "=" + l).join(" · ")}</span></h3><table class="tasktbl small"><thead><tr><th>Mã</th><th>Lỗi</th><th>Hệ quả</th><th>Cơ chế chặn đề xuất</th><th class="num">Mức</th><th>Kiểm tra trên cổng nhập</th></tr></thead><tbody>${RR_ERR.map(e => `<tr><td>${e[0]}</td><td><b>${esc(e[1])}</b></td><td class="tiny">${esc(e[2])}</td><td class="tiny">${esc(e[3])}</td><td class="num">${e[4]}</td><td class="tiny">${["RR-02", "RR-03", "RR-04", "RR-05", "RR-06"].includes(e[0]) ? "Có" : e[0] === "RR-01" ? "Có (phân loại khách trả trước)" : "Có (xe chưa đủ điều kiện đóng)"}</td></tr>`).join("")}</tbody></table></div>`;
+}
+
+/* ---------- giao diện trung tâm ---------- */
+const dlg = document.createElement("dialog"); dlg.className = "odlg"; dlg.id = "ctrlDlg"; dlg.style.width = "min(1280px,98vw)"; dlg.setAttribute("aria-labelledby", "ctT");
+dlg.innerHTML = `<header><h3 id="ctT">Trung tâm kiểm soát dữ liệu · chống sai lầm</h3><div id="ctTabs" style="display:flex;gap:6px;flex-wrap:wrap"></div><button type="button" id="ctBen">Ben tóm tắt</button><button type="button" class="x" data-close>Đóng</button></header><div class="body" id="ctBody"></div>`;
+document.body.appendChild(dlg);
+let tab = "sys"; const TABS = [["sys", "Đối soát hệ thống"], ["rev", "Kiểm soát doanh thu"], ["reg", "Sổ lỗi và kiểm soát"]];
+function render(){
+  dlg.querySelector("#ctTabs").innerHTML = TABS.map(([k, t]) => `<button type="button" data-tab="${k}" aria-pressed="${k === tab}" class="${k === tab ? "primary" : ""}">${t}</button>`).join("");
+  const body = dlg.querySelector("#ctBody"), R = rules(), c = k => R.filter(r => r.lv === k).length;
+  if(tab === "sys") body.innerHTML = `<p class="muted small">Mỗi luồng số liệu của bản đồ đều qua các quy tắc dưới đây: đối soát giữa các nguồn, kiểm tra độ tươi, ghi rõ giả định. Số lỗi đỏ ảnh hưởng quyết định quản trị cần xử lý trước khi dùng số đó.</p>
+    <div style="display:flex;gap:8px;margin:8px 0"><span class="pill" style="border-color:${COL.r};color:${COL.r}">Lỗi ${c("r")}</span><span class="pill" style="border-color:${COL.a};color:${COL.a}">Cảnh báo ${c("a")}</span><span class="pill" style="border-color:${COL.g};color:${COL.g}">Đạt ${c("g")}</span><span class="pill" style="border-color:${COL.n};color:${COL.n}">Chưa kiểm được ${c("n")}</span><button type="button" data-open-input="fin">Nhập dữ liệu nội bộ</button><button type="button" id="ctUpd">Cập nhật từ mạng</button></div>
+    <div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Mã</th><th>Quy trình</th><th>Quy tắc</th><th>Kết quả</th><th>Chi tiết</th><th>Hành động</th><th>Chủ sở hữu</th></tr></thead><tbody>${R.map(r => `<tr><td class="tiny">${r.id}</td><td class="tiny">${esc(r.proc)}</td><td><b>${esc(r.name)}</b></td><td><b style="color:${COL[r.lv]}">● ${LAB[r.lv]}</b></td><td class="tiny">${r.detail}</td><td class="tiny">${esc(r.act)}</td><td class="tiny">${esc(r.owner)}</td></tr>`).join("")}</tbody></table></div>`;
+  if(tab === "rev") body.innerHTML = `<div class="hudgrid">${rrHtml()}</div>`;
+  if(tab === "reg") body.innerHTML = `<p class="muted small">Sổ lỗi theo khung DAC/BEN: một dòng cho mỗi dạng lỗi. <b>Điểm S/O/D (mức nghiêm trọng, tần suất, khả năng phát hiện) chưa chấm</b>: cần chủ quy trình đánh giá bằng số thật; không dùng số giả định. Căn cứ: Quan sát = thấy trên dữ liệu thật; Giả định = chưa kiểm chứng.</p>
+    <div style="overflow-x:auto"><table class="tasktbl small"><thead><tr><th>Mã</th><th>Quy trình</th><th>Dạng lỗi</th><th>Kiểm soát hiện có</th><th class="num">Mức (1–5)</th><th>Căn cứ</th><th>Trạng thái</th><th>Chủ sở hữu</th></tr></thead><tbody>${R.map(r => `<tr><td class="tiny">${r.id}</td><td class="tiny">${esc(r.proc)}</td><td>${esc(r.name)}</td><td class="tiny">${esc(r.act)}</td><td class="num">${r.level}</td><td class="tiny">${r.basis}</td><td><b style="color:${COL[r.lv]}">${LAB[r.lv]}</b></td><td class="tiny">${esc(r.owner)}</td></tr>`).join("")}
+    ${RR_ERR.map(e => `<tr><td class="tiny">${e[0]}</td><td class="tiny">Doanh thu</td><td>${esc(e[1])}</td><td class="tiny">${esc(e[3])}</td><td class="num">${e[4]}</td><td class="tiny">Quan sát (thực tiễn ngành, nguồn video)</td><td><b style="color:${COL.n}">Cần ERP</b></td><td class="tiny">Kế toán bán hàng</td></tr>`).join("")}</tbody></table></div>`;
+}
+function open(t){ if(t) tab = t; render(); if(!dlg.open) dlg.showModal(); }
+dlg.addEventListener("click", e => { const t = e.target; if(t.closest("[data-close]")) return dlg.close(); if(t.dataset && t.dataset.tab){ tab = t.dataset.tab; return render(); } if(t.dataset && t.dataset.openInput){ dlg.close(); return CV.openInput(t.dataset.openInput); } if(t.id === "ctUpd" && CV.updatePacks) return CV.updatePacks();
+  if(t.id === "ctBen"){ const md = md_(); dlg.close(); CV.openAi(true); CV.benTab("Chat"); CV.addMsg("u", "Kiểm soát dữ liệu"); const b = CV.addMsg("a", ""); CV.finishBubble(b, md, false, "Kiểm soát dữ liệu", true); } });
+window.addEventListener("dac:store", () => { badge(); if(dlg.open) render(); });
+function badge(){ const b = document.getElementById("btnCtrl"); if(!b) return; const n = redCount(); b.textContent = n ? "Kiểm soát dữ liệu · " + n + " lỗi" : "Kiểm soát dữ liệu"; b.style.borderColor = n ? COL.r : ""; b.style.color = n ? COL.r : ""; }
+const tools = document.querySelector(".maptools"); if(tools){ const b = document.createElement("button"); b.type = "button"; b.id = "btnCtrl"; b.title = "Đối soát số liệu, kiểm soát ghi nhận doanh thu, sổ lỗi"; b.textContent = "Kiểm soát dữ liệu"; b.addEventListener("click", () => open()); const c = document.getElementById("btnInput") || document.getElementById("btnCash"); c ? c.after(b) : tools.prepend(b); setTimeout(badge, 800); }
+function md_(){ const R = rules(), ord = {r: 0, a: 1, n: 2, g: 3, i: 4};
+  return `# Kiểm soát dữ liệu bản đồ (${today().split("-").reverse().join("/")})\n- Lỗi **${R.filter(r => r.lv === "r").length}**, cảnh báo ${R.filter(r => r.lv === "a").length}, đạt ${R.filter(r => r.lv === "g").length}, chưa kiểm được ${R.filter(r => r.lv === "n").length}.\n\n| Mã | Quy tắc | Kết quả | Chi tiết | Hành động |\n|---|---|---|---|---|\n${R.slice().sort((a, b) => ord[a.lv] - ord[b.lv]).map(r => `| ${r.id} | ${r.name} | ${LAB[r.lv]} | ${String(r.detail).replace(/\|/g, "/")} | ${r.act} |`).join("\n")}\n\n**Nguyên tắc ghi nhận doanh thu:** tiền về là dòng tiền; doanh thu chỉ ghi khi giao xe đủ điều kiện; 5 KHÔNG – 5 CÓ; không đóng giao dịch khi chưa đối soát đơn ↔ tiền ↔ số khung ↔ bàn giao ↔ hóa đơn ↔ doanh thu ↔ giá vốn.`; }
+CV.tools.push({name: "kiem_soat_du_lieu", label: "Đang kiểm soát dữ liệu…", description: "Trung tâm kiểm soát dữ liệu chống sai lầm: đối soát giữa các nguồn (tồn, công nợ, UIO, đăng ký mới, bán sỉ), độ tươi dữ liệu, giả định chưa kiểm chứng, sổ lỗi; kiểm soát ghi nhận doanh thu (tiền thu khác doanh thu, 5 KHÔNG – 5 CÓ, 7 lỗi doanh thu). Dùng khi hỏi số liệu có đáng tin không, có sai lệch gì.", inputSchema: {type: "object", properties: {}}, execute: () => md_()});
+CV.localHooks.unshift(raw => /kiểm soát (dữ liệu|số liệu|doanh thu)|ghi nhận doanh thu|chống sai/i.test(raw) ? (/doanh thu/i.test(raw) ? (open("rev"), md_()) : md_()) : null);
+const prev = CV.ctx; CV.ctx = () => (prev ? prev() : "") + `\nKIỂM SOÁT DỮ LIỆU (chống sai lầm): ${redCount()} quy tắc đang lỗi. Mọi số phải kèm nguồn và ngày; số chưa có thì nói "chưa có số", không bịa, không thay bằng 0; phân biệt Tiền thu, Doanh thu, Giá vốn, Lợi nhuận gộp (tiền về chưa phải doanh thu). Hỏi độ tin cậy dùng kiem_soat_du_lieu.`;
+CV.dataControl = {open, redCount};
+if(CV.gloss) CV.gloss.push({re: /Kiểm soát dữ liệu|chống sai lầm|Poka-?Yoke/i, t: "Chống sai lầm trong số liệu", d: "Thiết kế để làm đúng thì dễ, làm sai thì bị chặn; lỗi còn lại thì lộ ra, khoanh vùng được và để lại dấu vết.", v: "Quyết định quản trị chỉ dùng số đã qua đối soát; số chưa đạt phải ghi rõ lý do.", a: "Xem Trung tâm kiểm soát dữ liệu, xử lý mã đỏ trước."});
+})();

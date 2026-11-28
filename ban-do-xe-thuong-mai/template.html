@@ -92,6 +92,7 @@ button.primary{background:linear-gradient(90deg,rgba(70,227,255,.9),rgba(63,224,
 .maptools{position:absolute;right:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:62%;z-index:2}
 .maptools button{font-size:12px;padding:6px 10px;background:rgba(5,11,22,.6)}
 .maptools button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+#stage.grab canvas{cursor:grab}#stage.grab.dragging canvas{cursor:grabbing}
 .maptools #btnBoard{background:linear-gradient(135deg,#16a0bd,#4b8fe0);color:#fff;border-color:#7fe3ff;font-weight:700}
 .exag{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);
   background:rgba(5,11,22,.6);border:1px solid var(--glass-line);border-radius:10px;padding:4px 10px;z-index:2}
@@ -298,6 +299,9 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <label class="field" for="zoneSel">Khu vực kinh doanh
         <select id="zoneSel"><option value="">Toàn quốc</option></select>
       </label>
+      <label class="field" for="provSel">Lọc tỉnh, thành (tự phóng to 3D)
+        <select id="provSel"><option value="">Toàn quốc (34 tỉnh, thành)</option></select>
+      </label>
       <label class="field" for="tam">ĐK mới xe tải toàn quốc 2026 (quy năm)
         <input id="tam" type="number" min="1000" step="1000" value="126408" style="width:150px">
       </label>
@@ -324,7 +328,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
       <div id="stage" role="img" aria-label="Bản đồ địa hình 3D Việt Nam, 34 tỉnh thành và mạng lưới 50 đại lý Đô Thành">
         <div id="labels"></div>
         <div class="loadmsg" id="loadmsg">Đang dựng địa hình 3D…</div>
-        <div class="maphud"><span>Relief 3D · 34 tỉnh / thành</span><span>Kéo: xoay · Cuộn: phóng to · Chuột phải: di chuyển</span></div>
+        <div class="maphud"><span>Relief 3D · 34 tỉnh / thành</span><span id="hudHint">Nắm kéo: di chuyển · Cuộn: phóng to · Chuột phải hoặc Shift + kéo: xoay · Bấm đúp tỉnh: phóng to tỉnh</span></div>
         <div class="maptools">
           <button id="btnInfra" type="button" aria-pressed="true">Giao thông &amp; đô thị</button>
           <button id="btnSites" type="button" aria-pressed="true">Đề xuất đại lý</button>
@@ -333,6 +337,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
           <button id="btnPins" type="button" aria-pressed="true">Đại lý</button>
           <button id="btnComp" type="button" aria-pressed="false" title="Showroom, đại lý 3S, xưởng dịch vụ của Thaco, Teraco, JAC, Foton, TMT">Đối thủ</button>
           <button id="btnCust" type="button" aria-pressed="false" title="Khách tiềm năng cần chăm sóc (định vị Google Maps) và mật độ khách đã mua 2023–2026 theo huyện">Khách hàng</button>
+          <button id="btnGrab" type="button" aria-pressed="true" title="Bật: kéo chuột trái để nắm bản đồ và di chuyển. Tắt: kéo chuột trái để xoay.">Nắm kéo</button>
           <button id="btnRotate" type="button" aria-pressed="false">Tự xoay</button>
           <button id="btnView" type="button">Đổi góc nhìn</button>
         </div>
@@ -513,6 +518,7 @@ td.name{cursor:pointer;font-weight:600;color:#fff}
 <script id="compnet-data" type="application/json">/*__COMPNET__*/</script>
 <script id="cust-data" type="application/json">/*__CUST__*/</script>
 <script id="mkt-data" type="application/json">/*__MKT__*/</script>
+<script id="debt-data" type="application/json">/*__DEBT__*/</script>
 <script id="src-data" type="application/json">/*__SOURCES__*/</script>
 <script id="infra-data" type="application/json">/*__INFRA__*/</script>
 <script id="prod-data" type="application/json">/*__PRODUCTS__*/</script>
@@ -813,7 +819,7 @@ async function initScene(){
   camera = new THREE.PerspectiveCamera(38, 1, 0.3, 3000);
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   Object.assign(controls, {enableDamping:true, dampingFactor:0.08, maxPolarAngle:Math.PI*0.48, minDistance:10, maxDistance:460, screenSpacePanning:true, zoomSpeed:1.1, rotateSpeed:0.7, autoRotateSpeed:0.6});
-  setView(0);
+  setView(0); applyGrab();
 
   scene.add(new THREE.HemisphereLight(0xcfe9ff, 0x0a1a30, 0.8));
   const sun = new THREE.DirectionalLight(0xffffff, 0.7); sun.position.set(-120, 160, -60); scene.add(sun);
@@ -1486,6 +1492,40 @@ toggleBtn("btnPins", ()=>showPins, v=>showPins=v, () => { placePins(); syncButto
 toggleBtn("btnComp", ()=>showComp, v=>showComp=v, () => { placePins(); syncButtons(); renderLegend(); });
 toggleBtn("btnCust", ()=>showCust, v=>showCust=v, () => { placePins(); syncButtons(); renderLegend(); });
 toggleBtn("btnRotate", ()=>autoRotate, v=>autoRotate=v, syncButtons);
+/* ---------- nắm kéo (pan bằng chuột trái / một ngón tay) và lọc tỉnh tự phóng to ---------- */
+let grabMode = true;
+try{ const g = localStorage.getItem("dac.grab"); if(g !== null) grabMode = g === "1"; }catch(e){}
+function applyGrab(){
+  if(controls){
+    controls.mouseButtons = grabMode ? {LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE} : {LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN};
+    controls.touches = grabMode ? {ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_ROTATE} : {ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN};
+  }
+  stage.classList.toggle("grab", grabMode);
+  const b = document.getElementById("btnGrab"); if(b) b.setAttribute("aria-pressed", String(grabMode));
+  const h = document.getElementById("hudHint"); if(h) h.textContent = grabMode ? "Nắm kéo: di chuyển · Cuộn: phóng to · Chuột phải hoặc Shift + kéo: xoay · Bấm đúp tỉnh: phóng to tỉnh" : "Kéo: xoay · Cuộn: phóng to · Chuột phải hoặc Shift + kéo: di chuyển · Bấm đúp tỉnh: phóng to tỉnh";
+}
+document.getElementById("btnGrab").addEventListener("click", () => { grabMode = !grabMode; try{ localStorage.setItem("dac.grab", grabMode ? "1" : "0"); }catch(e){} applyGrab(); });
+stage.addEventListener("pointerdown", () => { if(grabMode) stage.classList.add("dragging"); });
+window.addEventListener("pointerup", () => stage.classList.remove("dragging"));
+function zoomProvince(name){
+  if(!camera) return false;
+  if(!name){ pinned = false; selected = null; needOverlay = true; renderDossier(); highlightRow(); renderRank(); renderMatrix(); viewIdx = 0;
+    const v = VIEWS[0]; camAnim = {t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), tp: new THREE.Vector3(...v.pos), tt: new THREE.Vector3(...v.tgt)}; return true; }
+  const r = findRow(name); if(!r) return false;
+  select(r.name, true);
+  const pg = POLYS.filter(q => q.name === r.name); if(!pg.length) return false;
+  const b = pg.reduce((a, q) => [Math.min(a[0], q.bbox[0]), Math.min(a[1], q.bbox[1]), Math.max(a[2], q.bbox[2]), Math.max(a[3], q.bbox[3])], [180, 90, -180, -90]);
+  const cx = (b[0] + b[2]) / 2, cy = (b[1] + b[3]) / 2, w = (b[2] - b[0]) * K * COSL, d = (b[3] - b[1]) * K, span = Math.max(w, d * 0.9, 6);
+  const dist = Math.min(300, Math.max(26, span * 1.55)), tt = new THREE.Vector3(wx(cx), yOf(Math.max(heightAt(cx, cy), 0)), wz(cy));
+  camAnim = {t0: performance.now(), fp: camera.position.clone(), ft: controls.target.clone(), tp: tt.clone().add(new THREE.Vector3(0, dist * 0.72, dist * 0.62)), tt};
+  return true;
+}
+function fillProvSel(){ const el = document.getElementById("provSel"); if(!el || el.dataset.f) return; el.dataset.f = "1";
+  rows.map(r => r.name).sort((a, b) => a.localeCompare(b, "vi")).forEach(n => { const o = document.createElement("option"); o.value = n; o.textContent = n; el.appendChild(o); });
+  el.addEventListener("change", () => zoomProvince(el.value)); }
+fillProvSel();
+stage.addEventListener("dblclick", () => { if(hoverName && !ISLANDS[hoverName]){ const el = document.getElementById("provSel"); if(el) el.value = hoverName; zoomProvince(hoverName); } });
+
 document.getElementById("btnView").addEventListener("click", () => { if(!camera) return; viewIdx=(viewIdx+1)%VIEWS.length; setView(viewIdx); });
 document.getElementById("exag").addEventListener("input", e => { exag = +e.target.value; introT0 = -1e9; });
 function syncButtons(){ [["btnInfra",showInfra],["btnComp",showComp],["btnCust",showCust],["btnSites",showSites],["btnBars",showBars],["btnLabels",showLabels],["btnPins",showPins],["btnRotate",autoRotate]].forEach(([id,v]) => document.getElementById(id).setAttribute("aria-pressed", v)); }
@@ -2365,7 +2405,8 @@ window.__CV = {
   setMap(o){ if(o.metric && METRICS[o.metric]) metric = o.metric; if(["zone","metric","none"].includes(o.color)) colorMode = o.color; if(typeof o.bars === "boolean") showBars = o.bars;
     if(typeof o.pins === "boolean") showPins = o.pins; if(typeof o.comp === "boolean") showComp = o.comp; if(typeof o.cust === "boolean") showCust = o.cust; if(typeof o.labels === "boolean") showLabels = o.labels; if(typeof o.infra === "boolean") showInfra = o.infra; if(typeof o.sites === "boolean") showSites = o.sites;
     if(o.zone !== undefined){ zone = ZONES.includes(String(o.zone)) ? String(o.zone) : ""; zoneSel.value = zone; } renderAll(); },
-  get view3d(){ return {camera, controls, wx, K, LAT0, LAT1, stopIntro(){ introT0 = -1e9; autoRotate = false; if(controls) controls.autoRotate = false; }}; },
+  zoomProvince(n){ const el = document.getElementById("provSel"); if(el) el.value = n || ""; return zoomProvince(n); },
+  get view3d(){ return {get anim(){ return !!camAnim; }, camera, controls, wx, K, LAT0, LAT1, stopIntro(){ introT0 = -1e9; autoRotate = false; if(controls) controls.autoRotate = false; }}; },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
   INFRA, km, provinceOfPoint, structOf, centersOf, get SITES(){ return SITES; }, renderDossier, get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
