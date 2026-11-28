@@ -1,0 +1,2047 @@
+{
+ "stat": {
+  "Đại lý Đô Thành": 50,
+  "Trạm dịch vụ": 25,
+  "Điểm đối thủ (Daehan)": 296,
+  "Điểm đối thủ (khác)": 80,
+  "Khách tiềm năng OSM": 318,
+  "Khách tiềm năng MKT": 2118,
+  "Khách đã mua (huyện)": 334
+ },
+ "issues": [
+  [
+   "Đại lý Đô Thành",
+   "Ô Tô Hồng Vinh",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 14 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Đại lý Đô Thành",
+   "Ô Tô Khánh Chi",
+   "Sơn La",
+   "cách ranh giới tỉnh 35 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Trạm dịch vụ",
+   "CTY TNHH Ô tô Hồng Vinh",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 14 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bắc Giang",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bắc Kạn",
+   "Thái Nguyên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bắc Ninh",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Cao Bằng",
+   "Cao Bằng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Chí Linh",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đại Phát - Ninh Bình",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đông Bắc Hà Nội - Long Biên",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đông Bắc Hà Nội - Phúc Đồng",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đông Bắc Hà Nội - Sóc Sơn",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đông Đô - Hải Dương",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Hà Nam",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Hòa Bình",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Hưng Yên",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Lạng Sơn",
+   "Lạng Sơn",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Lào Cai",
+   "Lào Cai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Nam Định",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Nhật Tân - Tuyên Quang",
+   "Tuyên Quang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Phú Thọ",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Phương Thuận Phát - Hà Giang",
+   "Tuyên Quang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Quảng Ninh",
+   "Quảng Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Sơn La",
+   "Sơn La",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Nam Hà Nội - Giải Phóng",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Nam Hà Nội - Hà Đông",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thái Bình",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thái Nguyên",
+   "Thái Nguyên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thái Nguyên - CN Tân Long",
+   "Thái Nguyên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Trí Lực",
+   "Quảng Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Trọng Thiện",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Vina Hòa Bình - Yên Bái",
+   "Lào Cai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Vĩnh Phúc",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bảo Lộc",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bình Định",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bình Thuận",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đắk Nông",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đức Trọng",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Gia Lai",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Hàm Thuận Nam",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Hoàng Hà",
+   "Hà Tĩnh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Huế",
+   "Huế",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Huế - CN Nguyễn Văn Linh",
+   "Huế",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Kon Tum",
+   "Quảng Ngãi",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Nghệ An - Diễn Châu",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Nghệ An - Hưng Nguyên",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Nghệ An - Lê Lợi",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Ninh Thuận",
+   "Khánh Hòa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Phú Yên",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Quảng Bình",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Quảng Nam",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Quảng Ngãi",
+   "Quảng Ngãi",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Quảng Trị",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Sao Mai Anh - Khánh Hòa",
+   "Khánh Hòa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thanh Hóa",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thanh Hóa - CN Thọ Xuân",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco An Giang",
+   "An Giang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco An Giang - CN Thốt Nốt",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Ánh Sáng - Sóc Trăng",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bạc Liêu",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bến Tre",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Bình Phước",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Cần Thơ",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Dĩ An",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đông Bắc HCM - Thủ Đức",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Lái Thiêu",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Long An",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Phú Quốc",
+   "An Giang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "THACO Tải Bus Rạch Giá",
+   "An Giang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Nam HCM - An Lạc",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Nam HCM - An Sương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Ninh",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Ninh - CN Gò Dầu",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tây Ninh - CN Hòa Thành",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thập Nhất Phong - Đồng Tháp",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Thống Nhất",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tiền Giang",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tiền Giang - Cai Lậy",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Tiến Phát - Cà Mau",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Trà Vinh",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Vĩnh Long",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Thaco Vũng Tàu",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC - Ô tô Giải Phóng",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC - Ô tô Miền Bắc",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Bắc Hải Nam",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Ô Tô Miền Bắc - Ninh Bình",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Phát Đại Lâm",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Quang Phát",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Bắc Giang",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Đông Hà Nội",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Hà Nam",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Hà Nội",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Hải Phòng",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Phú Thọ",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Sơn La",
+   "Sơn La",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Tây Hà Nội",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Thái Nguyên",
+   "Thái Nguyên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Bạch Gia - Nghệ An",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC CKC - Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC CKC - Lâm Đồng",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Hải Thành",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC HHT Lâm Đồng",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Nam Phương",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Nam Phương - Kon Tum",
+   "Quảng Ngãi",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Ninh Hải",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Thịnh Phát Tín",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Thuận Phát - Thanh Hóa",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Việt Nam - Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Bình Định",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Gia Lai",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Khánh Hoà",
+   "Khánh Hòa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Nghệ An",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Quảng Bình",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Thanh Hóa",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC An Phước - Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC An Sương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC An Sương - Long An",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC An Sương - Tây Ninh",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC CKC",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC CKC - Cà Mau",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC CKC - Cần Thơ",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Giang Hoài",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Hằng Long",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Hòa Phát - Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Mekong Auto",
+   "An Giang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Mekong Auto - CN Cần Thơ",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Mekong Auto - CN Đồng Tháp",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Phú Cường",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Quốc Bảo - Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Quốc Bảo - Đồng Tháp",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Quốc Thịnh",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Tây Đô - Kiên Giang",
+   "An Giang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Việt Nam - Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Hồ Chí Minh",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC VTruck Tây Đô",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "JAC Vũ Hùng",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Điên Biên Phủ Truck & Bus",
+   "Điện Biên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Đông Phát Hòa Bình Truck & Bus",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT HBC Bình Minh Phú Thọ Truck & Bus",
+   "Phú Thọ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT HBM Hùng Vương - CN Hà Giang Truck & Bus",
+   "Tuyên Quang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT HBM Hùng Vương - CN Lai Châu Truck & Bus",
+   "Lai Châu",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT HBM Hùng Vương - CN Tuyên Quang Truck & Bus",
+   "Tuyên Quang",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hiền Tuyết Lạng Sơn Truck & Bus",
+   "Lạng Sơn",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hoàng Hà Thái Bình Truck & Bus",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hưng Yên Truck & Bus",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hưng Yên - CN Văn Lâm Truck & Bus",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hữu Nghị Yên Bái Truck & Bus",
+   "Lào Cai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT KMT Quảng Ninh Truck & Bus",
+   "Quảng Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Long Biên Truck & Bus",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Ninh Bình Truck & Bus",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Phú Nghĩa Truck & Bus",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Quang Minh Hải Phòng Truck & Bus",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Quang Tuấn Bắc Giang Truck & Bus",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Sơn Hưng Trung Truck & Bus",
+   "Sơn La",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Tây Đô Hải Dương Truck & Bus",
+   "Hải Phòng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Trường Hải Lào Cai Truck & Bus",
+   "Lào Cai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Tuấn Phương Bắc Ninh Truck & Bus",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Việt Trung Ninh Bình Truck & Bus",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Đà Nẵng Truck & Bus",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Lê Ngô Đồng Phát Truck & Bus",
+   "Huế",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Nam Phương Gia Lai Truck & Bus",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Năm Châu Duy Nhất - Đắk Lắk Truck & Bus",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Năm Châu Duy Nhất - Đắk Nông Truck & Bus",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Ngọc Dũng Truck & Bus",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Ngọc Điệp Bình Thuận Truck & Bus",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Ninh Hải Truck & Bus",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Phước Thắng Bình Định Truck & Bus",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Tâm Trí Mạnh - Hà Tĩnh Truck & Bus",
+   "Hà Tĩnh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Tâm Trí Mạnh Nghệ An - CN Diễn Châu Truck & Bus",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Tâm Trí Mạnh Nghệ An - CN Nghi Lộc Truck & Bus",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Thăng Bình Quảng Trị Truck & Bus",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Toàn Phát Lâm Đồng Truck & Bus",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Trà Khúc Truck & Bus",
+   "Quảng Ngãi",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT An Sương - Tây Ninh Truck & Bus",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Hòa Phát Bình Dương Truck & Bus",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Nam Bình - CN Cái Nước Truck & Bus",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Nam Bình Cà Mau Truck & Bus",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Sài Gòn Truck & Bus",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Trường Xuân - Cần Thơ Truck & Bus",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Trường Xuân - Trà Vinh Truck & Bus",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Trường Xuân - Vĩnh Long Truck & Bus",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "TMT Xuân Thủy Lộc Phát Truck & Bus",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Hưng Yên",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Kinh Bắc - Hà Nội",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Long Biên",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Miền Bắc",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Ninh Bình",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Phú Linh",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Thăng Long Quảng Ninh",
+   "Quảng Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Hà Tĩnh",
+   "Hà Tĩnh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Nghệ An",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Ngọc Phát Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Thanh Hóa",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Trung Việt Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Hòa Phúc Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Hợp Nhất",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Huy Tiến Dũng",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Phú Cường",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Phú Linh Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Quốc Việt",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Sài Gòn",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Việt Nhân",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "FOTON Vĩnh Thịnh Bình Phước",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu An Việt - CN Ninh Bình",
+   "Ninh Bình",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu An Việt - Thanh Trì",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Hùng Phượng - Bắc Giang",
+   "Bắc Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Nisu - Hưng Yên",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Nisu - Long Biên",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Thăng Long - Đông Anh",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Thăng Long - Quang Minh",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Đại Thịnh - Bình Định",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Đại Thịnh - Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Hồng An - Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Thăng Long - CN Nghệ An",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Thăng Long - Thanh Hóa",
+   "Thanh Hóa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Trung Sơn - Quảng Trị",
+   "Quảng Trị",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Việt Hải - Nha Trang",
+   "Khánh Hòa",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu An Khánh - Cần Thơ",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu An Khánh - CN Mỹ Tho",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu An Lạc - Bình Tân",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Bắc Quang - Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Cẩm Phong - Sóc Trăng",
+   "Cần Thơ",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Green Ka - An Phú Đông",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Lộc Phát - Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Minh Nhi - Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Parkson",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Tấn Phát - An Hòa",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Tấn Phát - Đồng Nai",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Tây Bắc Sài Gòn - CN Bình Phước",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Tây Bắc Sài Gòn - Hóc Môn",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Thanh Thảo - Cà Mau",
+   "Cà Mau",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Vân Nam - Bình Tân",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Isuzu Vân Nam - CN Bình Dương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Đông Hải",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Khánh Chi Sơn La",
+   "Sơn La",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Phát Đại Lâm",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Toàn Gia Phát",
+   "Hưng Yên",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô VAM",
+   "Hà Nội",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Hải Thành",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Hồng Sơn Star",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Kim Hoàng Hảo",
+   "Nghệ An",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Nam Phương Gia Lai",
+   "Gia Lai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Trà Khúc",
+   "Quảng Ngãi",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM Hồng Sơn Star - Đà Nẵng",
+   "Đà Nẵng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM Năm Châu Duy Nhất - Đắk Lắk",
+   "Đắk Lắk",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM Năm Châu Duy Nhất - Đắk Nông",
+   "Lâm Đồng",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô An Sương",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Hòa Phúc",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Hồng Vinh",
+   "Đồng Tháp",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Hưng Hưng Thịnh",
+   "Tây Ninh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Quốc Thịnh",
+   "Đồng Nai",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Tiến Phát",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Ô tô Trường Xuân",
+   "Vĩnh Long",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "VEAM - Siêu thị xe tải Sài Gòn",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Điểm đối thủ (Daehan)",
+   "Kim Long Motor",
+   "TP. Hồ Chí Minh",
+   "thiếu tọa độ"
+  ],
+  [
+   "Khách tiềm năng OSM",
+   "Đại Lý Vất Liệu Xây Dựng Chín Dữ",
+   "TP. Hồ Chí Minh",
+   "cách ranh giới tỉnh 24 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng OSM",
+   "LisadoFoods Viet Nam",
+   "Hà Nội",
+   "cách ranh giới tỉnh 20 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng OSM",
+   "Nhà Máy Thức Ăn Chăn Nuôi Cao Cấp Dabaco",
+   "Hà Nội",
+   "cách ranh giới tỉnh 13 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Đại Lý Vất Liệu Xây Dựng Chín Dữ",
+   "TP. Hồ Chí Minh",
+   "cách ranh giới tỉnh 24 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "LisadoFoods Viet Nam",
+   "Hà Nội",
+   "cách ranh giới tỉnh 20 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà Máy Thức Ăn Chăn Nuôi Cao Cấp Dabaco",
+   "Hà Nội",
+   "cách ranh giới tỉnh 13 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 1 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 2 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 3 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 4 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 5 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 6 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 7 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Trang trại điện 8 - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà phân phối đá viên 1 - stories 2",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà phân phối đá viên 2 - stories 2",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà phân phối đá viên 3 - stories 2",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Vật tư thủy sản - stories 1",
+   "Hải Phòng",
+   "cách ranh giới tỉnh 114 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "AIC Realer - Kiến trúc, xây dựng và nội thất",
+   "Thanh Hóa",
+   "cách ranh giới tỉnh 444 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "CTY TNHH THIẾT KẾ VÀ XÂY DỰNG SBS - thiết kế nội thất, kiến trúc, thi công",
+   "Thanh Hóa",
+   "cách ranh giới tỉnh 445 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Dự án Nhà máy nhiệt điện (Ngưng dự án)",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 25 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cảng An Hải",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 25 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cảng Bến Đình",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 22 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cảng Bến Đình",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 22 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cảng Lý Sơn",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 21 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Đèn báo cảng Lý Sơn",
+   "Quảng Ngãi",
+   "cách ranh giới tỉnh 21 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Công Ty TNHH Sao Mai Super Feed",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 16 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Công ty cổ phần may thêu Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 18 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cảng Bảo Mai",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 17 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà máy nước sạch Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 18 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà máy xử lý nước KCN Sông Hậu",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 20 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "越南启发有限公司 (Công ty TNHH Khải Phát Việt Nam)",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 19 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà máy chế biến thức ăn Sao Mai",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 16 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Nhà máy chế biến thức ăn Sao Mai",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 16 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Kho lương thực Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 18 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Kho lương thực miền Nam xã Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 19 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Tổng kho Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 18 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Công Ty TNHH May Mặc Lai Vung",
+   "Đồng Tháp",
+   "cách ranh giới tỉnh 19 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Công Ty Cổ Phần Taiyou",
+   "Lào Cai",
+   "cách ranh giới tỉnh 126 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Khách tiềm năng MKT",
+   "Cầu cảng Hòn khoai",
+   "Cà Mau",
+   "cách ranh giới tỉnh 14 km (kiểm tra lại tỉnh hoặc tọa độ)"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Sông Hồng Motors",
+   "Hưng Yên",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Mỹ An",
+   "Ninh Bình",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Mỹ An",
+   "Hưng Yên",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Hiền Nhung",
+   "Phú Thọ",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Việt Hàn",
+   "Bắc Ninh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Quang Minh",
+   "Hải Phòng",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Tây Thiên Phú",
+   "Hải Phòng",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Việt Thăng Long",
+   "Ninh Bình",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Thiên Hòa An",
+   "Hà Nội",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Thái Phong",
+   "Hà Nội",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Huy Khánh",
+   "Hà Nội",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Việt Thăng Long",
+   "Hà Nội",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Tây Đô",
+   "Hà Nội",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Huy Tân",
+   "Khánh Hòa",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Hải Thành",
+   "Gia Lai",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Ô Tô Miền Trung",
+   "Thanh Hóa",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hồng Sơn Star",
+   "Đà Nẵng",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hồng Sơn Star",
+   "Đà Nẵng",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Thăng Bình",
+   "Quảng Trị",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Dũng Lạc",
+   "Hà Tĩnh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Dũng Lạc",
+   "Nghệ An",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Nam Phương",
+   "Quảng Ngãi",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Gia Lai",
+   "Gia Lai",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Năm Châu Duy Nhất",
+   "Đắk Lắk",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hưng Vượng",
+   "Lâm Đồng",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hòa Phúc",
+   "Đồng Nai",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hòa Phúc",
+   "Đồng Nai",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Hợp Nhất",
+   "TP. Hồ Chí Minh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 1S Teraco Phú Cường",
+   "TP. Hồ Chí Minh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Tiến Phát",
+   "TP. Hồ Chí Minh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco An Sương",
+   "TP. Hồ Chí Minh",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Phúc Châu",
+   "Vĩnh Long",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Huy Tiến Dũng",
+   "Đồng Tháp",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Trường Xuân",
+   "Vĩnh Long",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Trường Xuân",
+   "Cần Thơ",
+   "trùng tên và tọa độ"
+  ],
+  [
+   "Trùng điểm",
+   "Đại Lý 3S Teraco Ngọc Anh",
+   "Cà Mau",
+   "trùng tên và tọa độ"
+  ]
+ ]
+}
