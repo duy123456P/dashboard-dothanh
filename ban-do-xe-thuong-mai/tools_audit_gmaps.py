@@ -33,7 +33,8 @@ def chk(kind, name, prov, lat, lng, url=None, gm=None):
     if lat is None or lng is None: issues.append((kind, name, prov, "thiếu tọa độ")); return
     if not (8.0 <= lat <= 23.5 and 102.0 <= lng <= 110.0): issues.append((kind, name, prov, "tọa độ ngoài Việt Nam %s,%s" % (lat, lng)))
     if gm and km(lng, lat, gm[1], gm[0]) > 0.5: issues.append((kind, name, prov, "gm lệch lat/lng %.1f km" % km(lng, lat, gm[1], gm[0])))
-    if prov in polys:
+    if prov == "Hải Phòng" and 19.9 < lat < 20.3 and lng > 107.5: pass   # đặc khu Bạch Long Vĩ (ngoài khơi)
+    elif prov in polys:
         d = dist_poly(gm[1] if gm else lng, gm[0] if gm else lat, alias(prov))
         if d > 12: issues.append((kind, name, prov, "cách ranh giới tỉnh %.0f km (kiểm tra lại tỉnh hoặc tọa độ)" % d))
     elif prov: issues.append((kind, name, prov, "tên tỉnh không có trong bản đồ"))

@@ -43,6 +43,9 @@ function rules(){
   // DC-15 liên kết Google Maps: tọa độ có và đúng tỉnh
   try{ const cn = CV.CNET.dealers, nc = cn.filter(d => d.lat == null).length, geoN = cn.filter(d => d.geo).length, mk = (CV.MKT.prospects || []), ap = mk.filter(p => p.lat != null && !p.exact).length;
     add("DC-15", "Liên kết bản đồ", "Mọi điểm có tọa độ nằm đúng tỉnh; điểm chưa định vị dùng liên kết tìm kiếm theo tên và địa chỉ", nc ? "a" : "g", `${fmtInt(cn.length - nc)}/${fmtInt(cn.length)} điểm bán đối thủ có tọa độ (trong đó ${fmtInt(geoN)} định vị theo địa chỉ hoặc phường, xã bằng OpenStreetMap, sai số vài trăm mét đến vài km); ${fmtInt(nc)} điểm chưa định vị. Khách tiềm năng MKT: ${fmtInt(ap)} điểm tọa độ gần đúng. Đã rà tĩnh bằng tools_audit_gmaps.py; chưa mở thử trực tiếp trên Google (máy chủ không truy cập được).`, 3, "Phòng Marketing", "Chạy lại tools_audit_gmaps.py sau mỗi lần cập nhật dữ liệu"); }catch(e){}
+  // DC-16 kỷ luật họp: biên bản phải chốt ngay sau họp
+  try{ const pm = CV.pendingMinutes ? CV.pendingMinutes() : [], late = pm.filter(x => x.lv !== "new"), red = pm.filter(x => x.lv === "red");
+    add("DC-16", "Kỷ luật họp", "Mỗi cuộc họp có biên bản chốt trong 24 giờ, việc giao có người chịu trách nhiệm và hạn", red.length ? "r" : late.length ? "a" : "g", pm.length ? `${pm.length} cuộc họp chưa chốt biên bản; quá 2 giờ: ${late.length}; quá 24 giờ: ${red.length}${late.length ? " (" + late.slice(0, 3).map(x => esc(x.title || "Cuộc họp") + " " + x.hours + " giờ").join("; ") + ")" : ""}` : "Không có cuộc họp nào đang chờ chốt biên bản", 3, "Chủ trì cuộc họp", "Mở Ben → Thư ký họp → Danh sách cuộc họp → Mở biên bản → Host chốt"); }catch(e){}
   return R;
 }
 CV.dataRules = rules;
