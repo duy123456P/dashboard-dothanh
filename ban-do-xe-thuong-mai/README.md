@@ -2,6 +2,8 @@
 
 Một file HTML duy nhất, chạy offline trên Google Chrome: bản đồ 3D 34 tỉnh/thành, hồ sơ tỉnh, Phòng chiến lược HĐQT, Radar kinh tế – tài chính, chính sách bán hàng, tồn kho, dự báo và trợ lý Ben.
 
+> Hồ sơ thiết kế đầy đủ (kiến trúc, dữ liệu, thuật toán, từng module) để dựng lại bằng ngôn ngữ khác: [`../3DMapDAC.md`](../3DMapDAC.md).
+
 ## Dùng trên Chrome
 - **Online:** https://duy123456p.github.io/dashboard-dothanh/ban-do/ → nhập mật khẩu.
 - **Offline:** tải `ban-do/index.html` (hoặc gói `BanDo-DAC-3D.zip`), bấm đúp để mở bằng Chrome → nhập mật khẩu. Không cần Internet: thư viện 3D, phông chữ, ảnh địa hình, dữ liệu đều nằm trong file.

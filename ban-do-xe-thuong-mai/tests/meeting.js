@@ -1,0 +1,25 @@
+const {chromium} = require('playwright');
+(async () => {
+  const b = await chromium.launch({args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']});
+  const ctx = await b.newContext({viewport: {width: 1400, height: 1000}, offline: true}); const p = await ctx.newPage(); const errs = [];
+  p.on('pageerror', e => errs.push('PE ' + e.message)); p.on('console', m => { if (m.type() === 'error') errs.push('CE ' + m.text().slice(0, 150)); });
+  await p.addInitScript(() => { window.__inst = null; const F = function(){ const o = this; window.__inst = o; o.start = () => { o.on = true; }; o.stop = () => { o.on = false; setTimeout(() => o.onend && o.onend(), 10); }; }; window.webkitSpeechRecognition = F; window.SpeechRecognition = F; });
+  await p.goto('file:///home/user/dashboard-dothanh/ban-do-xe-thuong-mai/index.html'); await p.waitForTimeout(6000);
+  await p.evaluate(() => { window.__CV.view3d.stopIntro(); window.__CV.openAi(true); window.__CV.benTab('Meet'); }); await p.waitForTimeout(500);
+  const T = async (s, v) => p.evaluate(([s, v]) => { const e = document.querySelector(s); e.value = v; e.dispatchEvent(new Event('input', {bubbles: true})); }, [s, v]);
+  const K = async s => p.evaluate(s => document.querySelector(s).click(), s);
+  const o = {};
+  o.state0 = await p.textContent('#mState'); o.where = await p.textContent('#mWhere');
+  await T('#mTitle', 'Giao ban tuần 48'); await T('#mHost', 'Phạm Văn Duy'); await p.evaluate(() => { document.querySelector('#mConsent').checked = true; });
+  await K('#mRec'); await p.waitForTimeout(500); o.rec = await p.textContent('#mState');
+  console.log(JSON.stringify(o)); const say = t => p.evaluate(t => { const i = window.__inst; i.onresult({resultIndex: 0, results: [Object.assign([{transcript: t}], {isFinal: true})]}); }, t);
+  await say('Chốt giảm tồn Hậu Giang xuống dưới 3 tháng bán trước ngày 05/12.'); await say('Giao anh Hùng phòng dịch vụ hoàn thành 20 xe sửa chữa hạn 30/11.'); await say('Chị Lan phụ trách kiểm kê phụ tùng Hậu Giang hạn 29/11 bằng chứng biên bản.'); await say('Đang vướng công nợ đại lý Quang Dương quá hạn chưa có lịch thanh toán.');
+  await K('#mRec'); await p.waitForTimeout(2500);
+  o.dialogs = await p.evaluate(() => [...document.querySelectorAll('dialog[open]')].map(d => d.id));
+  o.draft = await p.evaluate(() => { const d = document.querySelector('#minDlg'); return [...d.querySelectorAll('textarea,input[type=text]')].map(e => e.value).filter(Boolean).slice(0, 25); });
+  o.pending = await p.evaluate(() => JSON.stringify(window.__CV.pendingMinutes()));
+  o.hot = await p.evaluate(() => document.getElementById('mHot') && document.getElementById('mHot').innerText);
+  o.dc16 = await p.evaluate(() => window.__CV.dataRules().filter(x => x.id === 'DC-16').map(x => x.lv));
+  await p.screenshot({path: 'm2.png'});
+  console.log(JSON.stringify(o, null, 1)); console.log('errs', errs); await b.close();
+})();

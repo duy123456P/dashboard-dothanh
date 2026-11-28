@@ -1,0 +1,23 @@
+const {chromium} = require('playwright');
+(async () => {
+  const b = await chromium.launch({args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']});
+  const p = await b.newPage({viewport: {width: 1400, height: 1000}}); const errs = [];
+  p.on('pageerror', e => errs.push('PE ' + e.message)); p.on('console', m => { if (m.type() === 'error') errs.push('CE ' + m.text()); });
+  await p.goto('file:///home/user/dashboard-dothanh/ban-do-xe-thuong-mai/index.html'); await p.waitForTimeout(6000);
+  const r = await p.evaluate(() => { const CV = window.__CV, o = {};
+    const g = JSON.parse(document.getElementById('geo-data').textContent); o.geo = [g.type, g.features && g.features.length, JSON.stringify(g.features && g.features[0].properties)];
+    o.byProv = JSON.stringify(Object.entries(CV.CUST.buyers.byProv)[0]); o.loy = JSON.stringify(Object.keys(CV.CUST.loyalty)); o.loyp = JSON.stringify(CV.CUST.loyalty.byProv ? Object.entries(CV.CUST.loyalty.byProv)[0] : null);
+    o.selected = CV.selected; o.evt = JSON.stringify(CV.MKT.events[0]).slice(0,200);
+    o.dealerPlan0 = JSON.stringify(CV.plan27.dealerPlan.dealers[0]); o.inv = JSON.stringify(Object.keys(CV.invOf('Trường Vũ')||{}));
+    return o; });
+  console.log(JSON.stringify(r, null, 1));
+  await p.evaluate(() => window.__CV.view3d.stopIntro());
+  await p.evaluate(() => { window.__CV.openBattle(''); }); await p.waitForTimeout(800); await p.screenshot({path: 'w1.png'});
+  await p.evaluate(() => { window.__CV.openBattle('TP. Hồ Chí Minh'); }); await p.waitForTimeout(800); await p.screenshot({path: 'w2.png'});
+  const t = await p.evaluate(() => { const d = document.getElementById('warStrat'); return d ? d.innerText.slice(0, 2500) : 'NO'; });
+  console.log(t);
+  const n = await p.evaluate(() => { const o = document.getElementById('warDealer'); return [...o.options].map(x => x.textContent); }); console.log(n);
+  await p.evaluate(() => { window.__CV.openBattle('Đắk Lắk', 'Trường Vũ'); }); await p.waitForTimeout(500);
+  console.log(await p.evaluate(() => window.__CV.battleMd('Trường Vũ')));
+  console.log('errs', errs); await b.close();
+})();
