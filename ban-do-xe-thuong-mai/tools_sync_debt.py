@@ -22,6 +22,8 @@ def price(model):
     m = re.sub(r"-(20\d\d)$", "", model).replace("-2S", "").replace("-PLUS", " Plus").upper()
     c = [i["dealer"] for i in PL if i["cmodel"].upper() == m and re.search(r"TMB|mui|Van", i["body"], re.I)] or [i["dealer"] for i in PL if i["cmodel"].upper() == m]
     return c[0] if c else None
+def fwd(d):  # số ngày còn lại đến hạn (d ≤ 0): lịch tiền về dự kiến
+    r = -d; return "0–7" if r <= 7 else "8–30" if r <= 30 else "31–60" if r <= 60 else "61–90" if r <= 90 else "> 90"
 def bucket(d): return "trong hạn" if d <= 0 else "1–30" if d <= 30 else "31–60" if d <= 60 else "61–90" if d <= 90 else "> 90"
 wb = openpyxl.load_workbook(SRC, data_only=True)
 D = collections.OrderedDict(); terms = {"MB": [], "MBTB": []}; unmapped = collections.Counter(); noprice = collections.Counter()
@@ -45,15 +47,16 @@ for sheet, kind in (("XE MB", "MB"), ("XE MBTB", "MBTB")):
         if amt is None:
             p = price(md); amt = p * .95 if p else 0; est = True
             if not p: noprice[md] += 1
-        d = D.setdefault(name, {"name": name, "code": dl, "MB": {"n": 0, "amt": 0, "over": 0, "overAmt": 0, "b": collections.Counter(), "bAmt": collections.Counter(), "max": 0},
-                                "MBTB": {"n": 0, "amt": 0, "over": 0, "overAmt": 0, "b": collections.Counter(), "bAmt": collections.Counter(), "max": 0}, "models": collections.Counter()})
+        d = D.setdefault(name, {"name": name, "code": dl, "MB": {"n": 0, "amt": 0, "over": 0, "overAmt": 0, "b": collections.Counter(), "bAmt": collections.Counter(), "max": 0, "f": collections.Counter()},
+                                "MBTB": {"n": 0, "amt": 0, "over": 0, "overAmt": 0, "b": collections.Counter(), "bAmt": collections.Counter(), "max": 0, "f": collections.Counter()}, "models": collections.Counter()})
         z = d[kind]; z["n"] += 1; z["amt"] += amt; b = bucket(days); z["b"][b] += 1; z["bAmt"][b] += amt; z["max"] = max(z["max"], days)
+        if days <= 0: z["f"][fwd(days)] += amt
         if days > 0: z["over"] += 1; z["overAmt"] += amt
         d["models"][re.sub(r"-(20\d\d)$", "", md)] += 1
 rows = []
 for d in D.values():
     for k in ("MB", "MBTB"):
-        z = d[k]; z["amt"] = round(z["amt"] / 1e6); z["overAmt"] = round(z["overAmt"] / 1e6); z["b"] = dict(z["b"]); z["bAmt"] = {a: round(v / 1e6) for a, v in z["bAmt"].items()}
+        z = d[k]; z["amt"] = round(z["amt"] / 1e6); z["overAmt"] = round(z["overAmt"] / 1e6); z["b"] = dict(z["b"]); z["bAmt"] = {a: round(v / 1e6) for a, v in z["bAmt"].items()}; z["f"] = {a: round(v / 1e6) for a, v in z["f"].items()}
     d["models"] = dict(d["models"].most_common()); d["total"] = d["MB"]["amt"] + d["MBTB"]["amt"]; d["over"] = d["MB"]["overAmt"] + d["MBTB"]["overAmt"]; rows.append(d)
 rows.sort(key=lambda d: -d["over"])
 tot = lambda k, f: sum(d[k][f] for d in rows)
@@ -63,7 +66,8 @@ out = {"asOf": ASOF, "source": os.environ.get("SRC_NAME") or os.path.basename(SR
        "MB": {"n": tot("MB", "n"), "amt": tot("MB", "amt"), "over": tot("MB", "over"), "overAmt": tot("MB", "overAmt")},
        "MBTB": {"n": tot("MBTB", "n"), "amt": tot("MBTB", "amt"), "over": tot("MBTB", "over"), "overAmt": tot("MBTB", "overAmt")},
        "buckets": {k: dict(sum((collections.Counter(d[k]["b"]) for d in rows), collections.Counter())) for k in ("MB", "MBTB")},
-       "bucketsAmt": {k: dict(sum((collections.Counter(d[k]["bAmt"]) for d in rows), collections.Counter())) for k in ("MB", "MBTB")}, "dealers": rows}
+       "bucketsAmt": {k: dict(sum((collections.Counter(d[k]["bAmt"]) for d in rows), collections.Counter())) for k in ("MB", "MBTB")},
+       "dueAmt": {k: dict(sum((collections.Counter(d[k]["f"]) for d in rows), collections.Counter())) for k in ("MB", "MBTB")}, "dealers": rows}
 json.dump(out, open(os.path.join(HERE, "debt2026.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 print(json.dumps({k: out[k] for k in ("terms", "MB", "MBTB", "buckets", "bucketsAmt", "unmapped", "noPrice")}, ensure_ascii=False))
 for d in rows: print(d["name"], d["MB"]["n"], d["MB"]["amt"], d["MB"]["over"], d["MB"]["overAmt"], d["MB"]["max"], "|", d["MBTB"]["n"], d["MBTB"]["amt"], d["MBTB"]["over"], d["MBTB"]["max"])

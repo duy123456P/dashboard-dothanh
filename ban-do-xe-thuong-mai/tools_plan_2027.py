@@ -237,6 +237,22 @@ out["vs"] = vs; out["mk10"] = MK10
 json.dump(out, open(os.path.join(HERE, "plan2027.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 print("So sánh:", [(v["name"], v["share"], v["rank"]) for v in vs])
 
+# ---------------- chỉ tiêu 2027 từng đại lý và điểm cấp 1 mới (kế hoạch phát triển Khối Kinh doanh 2027) ----------------
+# [đại lý, bán lẻ 12 tháng 11/2025–10/2026, tư vấn hiện có, cam kết 2027, KPI 2027, tư vấn bổ sung]
+DEALER_TARGETS = [["ĐT Đông Nam", 602, 7, 868, 1010, 13], ["Trường Vũ", 466, 21, 672, 783, 10], ["Quang Dương", 214, 6, 308, 359, 5], ["ĐT Đà Nẵng", 172, 7, 248, 289, 4], ["Tân Vạn", 155, 9, 223, 260, 3], ["Vũ Hùng", 149, 5, 215, 250, 3],
+  ["ĐT Hậu Giang", 125, 6, 180, 210, 3], ["Phú Mỹ", 117, 9, 169, 196, 3], ["ĐT Long An", 98, 6, 141, 165, 2], ["ĐT Kiên Giang", 92, 5, 133, 154, 2], ["Phi Hưng", 84, 4, 121, 141, 2], ["Việt Nhật Anh", 71, 5, 102, 119, 2],
+  ["Mỹ Phú Hưng", 68, 5, 98, 114, 1], ["Ô Tô 19/5", 63, 5, 91, 106, 1], ["Hưng Vượng", 48, 2, 69, 81, 1], ["Ô Tô Tây Nguyên", 38, 9, 55, 64, 1], ["Hồng Vinh", 36, 1, 52, 60, 1], ["ĐT Tiền Giang", 35, 4, 50, 59, 1],
+  ["Phúc Châu", 34, 3, 49, 57, 1], ["Dũng Lạc", 22, 3, 32, 37, 0], ["Hùng Tuyến", 14, 2, 20, 24, 0], ["Cương Nguyễn", 14, 2, 20, 24, 0], ["ĐT Bình Thuận", 14, 5, 20, 24, 0]]
+# điểm cấp 1 bổ sung: [tên, tỉnh, cách làm, nâng cấp từ (tên đại lý cấp 2 trong danh mục) hoặc null, mỏ neo (cảng/KCN trong infra.json hoặc [lng, lat]), cấp 1 từ, thị phần tỉnh hiện tại %, mục tiêu +20% %]
+NEW_L1 = [["Auto Đông Nam – CN Chương Mỹ", "Hà Nội", "Nâng cấp", "Auto Đông Nam - CN Chương Mỹ", None, "01/03/2027", 2.3, 2.8], ["Auto Đông Nam – CN Nam Định", "Ninh Bình", "Nâng cấp", "Auto Đông Nam - CN Nam Định", None, "01/03/2027", 2.2, 2.6],
+  ["Bắc Ninh (chọn 1 trong 3: Quang Phát, Hùng Ngân Phát, Nhật Dương)", "Bắc Ninh", "Nâng cấp", "Ô Tô Nhật Dương", None, "01/03/2027", 3.8, 4.6], ["Ô Tô Tây Nguyên – CN Khánh Hòa", "Khánh Hòa", "Nâng cấp", "Ô Tô Tây Nguyên - CN Khánh Hòa", None, "01/05/2027", 2.4, 2.9],
+  ["Ô Tô Hiền Nhung", "Phú Thọ", "Nâng cấp", "Ô Tô Hiền Nhung", None, "01/05/2027", 5.5, 6.6], ["Phú Mỹ – Cái Mép", "TP. Hồ Chí Minh", "Mở mới", None, "Cảng Cái Mép – Thị Vải", "01/06/2027", 2.5, 3.0],
+  ["Khu kinh tế Nghi Sơn", "Thanh Hóa", "Mở mới", None, "Cảng Nghi Sơn", "01/06/2027", 1.5, 1.8], ["Khu vực Quy Nhơn", "Gia Lai", "Mở mới", None, "Cảng Quy Nhơn", "01/06/2027", 3.2, 3.8],
+  ["Khu vực Dung Quất – Chu Lai", "Quảng Ngãi", "Mở mới", None, "Cảng Dung Quất", "01/06/2027", 4.0, 4.8], ["Hạ Long – Cẩm Phả", "Quảng Ninh", "Mở mới", None, "Cảng Cái Lân", "01/08/2027", 1.6, 1.9],
+  ["Kỳ Anh", "Hà Tĩnh", "Mở mới", None, "Cảng Vũng Áng", "01/08/2027", 4.1, 4.9], ["Khu vực Chân Mây", "Huế", "Mở mới", None, "Cảng Chân Mây", "01/08/2027", 4.8, 5.8], ["Khu vực Đồng Hới", "Quảng Trị", "Mở mới", None, [106.62, 17.47], "01/08/2027", 2.4, 2.9]]
+out["dealerPlan"] = {"dealers": DEALER_TARGETS, "newL1": NEW_L1, "note": "Chỉ tiêu theo tỷ trọng bán lẻ 12 tháng; điểm mới: vị trí dự kiến tại cảng, khu công nghiệp, chưa phải địa chỉ thật."}
+json.dump(out, open(os.path.join(HERE, "plan2027.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+
 # ---------------- in kiểm tra ----------------
 ty = lambda v: f"{v/1000:,.1f} tỷ".replace(",", "X").replace(".", ",").replace("X", ".")
 s = out["stock"]
