@@ -367,6 +367,8 @@ function renderMeetings(){
     return `<tr><td><b>${esc(m.title || "Cuộc họp")}</b><span class="reason">${esc(m.goal||"")}</span></td><td class="small">${vnTime(m.startedAt)}</td><td>${esc(m.host||"")}</td><td>${{live:'<span style="color:var(--bad)">● Đang ghi</span>', draft:"Nháp biên bản", confirmed:'<span style="color:var(--good)">Đã chốt</span>'}[m.status] || esc(m.status)}</td>
       <td>${ts.length ? `${ts.length} · <i class="dot3 d-green"></i>${hs.filter(k=>k==="green").length} <i class="dot3 d-amber"></i>${hs.filter(k=>k==="amber").length} <i class="dot3 d-red"></i>${hs.filter(k=>k==="red").length} <i class="dot3 d-done"></i>${hs.filter(k=>k==="done").length}` : "—"}</td>
       <td>${m.status === "confirmed" ? sg + "/" + (m.people||[]).length : "—"}</td><td><button type="button" data-mtg="${esc(m.id)}">Mở biên bản</button></td></tr>`; }).join("")}</tbody></table>` : '<p class="muted">Chưa có cuộc họp. Mở Ben → tab “Thư ký họp” để bắt đầu.</p>';
+  const D = discipline(); $("opsMeetings").insertAdjacentHTML("afterbegin", `<div class="stats num" style="margin-bottom:10px">${[[D.total, "cuộc họp"], [D.confirmed + "/" + D.total, "đã chốt biên bản"], [D.confirmed ? D.within24 + "/" + D.confirmed : "—", "chốt trong 24 giờ"], [D.avgH == null ? "—" : fmt1(D.avgH) + " giờ", "từ họp xong đến chốt"], [D.pending.filter(x => x.lv !== "new").length, "biên bản quá 2 giờ chưa chốt"]].map(([v, l]) => `<div class="stat"><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div></div>`).join("")}</div>`
+    + (D.depts.length ? `<h4 style="margin:6px 0">Năng lực thực thi việc giao từ biên bản, theo bộ phận</h4><table class="tasktbl small"><thead><tr><th>Bộ phận</th><th class="num">Việc giao</th><th class="num">Xong</th><th class="num">Đúng hạn</th><th class="num">Trễ</th><th class="num">Nguy cơ đỏ</th><th class="num">Tỷ lệ đúng hạn</th></tr></thead><tbody>${D.depts.map(s => `<tr><td>${esc(s.dept)}</td><td class="num">${s.n}</td><td class="num">${s.done}</td><td class="num">${s.onTime}</td><td class="num">${s.late}</td><td class="num">${s.red}</td><td class="num">${s.done + s.late ? fmtInt(s.onTime / (s.done + s.late) * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table><p class="tiny muted">Đúng hạn = xong không quá hạn ÷ (xong + trễ). Việc chưa tới hạn chưa tính. Tính từ các đầu việc phát sinh khi chốt biên bản.</p>` : '<p class="tiny muted">Chưa có đầu việc nào từ biên bản đã chốt.</p>'));
 }
 function renderChanges(){
   const cs = [...S.changes].reverse().slice(0, 120);
@@ -551,15 +553,25 @@ function startDict(m){
     else if(c === "not_granted") toast("Micro chưa được cho phép cho trang này"); else if(c && c !== "stopped" && c !== "dismissed") toast("Không mở được micro (" + c + ")"); });
 }
 function stopMeeting(){ if(dict && dict.active() && dictMode === "meet") dict.stop().catch(() => {}); flush(true); clearInterval(recT); if(rec) putMeeting({id: rec.id, status: meet(rec.id) && meet(rec.id).status === "confirmed" ? "confirmed" : "draft", endedAt: nowIso(), lineCount: rec.lines.length}); }
-$("mRec").addEventListener("click", () => { if(dict && dict.active() && dictMode === "meet"){ stopMeeting(); return; }
+$("mRec").addEventListener("click", () => { if(dict && dict.active() && dictMode === "meet"){ stopMeeting(); setTimeout(() => { if(rec && rec.lines.length >= 3) { toast("Đã dừng ghi: Ben lập biên bản nháp ngay để chốt việc"); benDraft(); } }, 700); return; }
   if(!$("mConsent").checked){ toast("Thông báo cho thành phần dự họp trước khi ghi, rồi tích ô xác nhận"); $("mConsent").focus(); return; } startDict("meet"); });
 setInterval(() => { if(!rec || !(dict && dict.active() && dictMode === "meet")) return; const min = (Date.now() - rec.t0) / 6e4, box = +$("mBox").value || 30;
   $("mState").textContent = `● Đang ghi ${fmtInt(min)}/${box} phút${min > box ? " · QUÁ GIỜ: chốt kết luận và phân công" : min > box * 0.8 ? " · còn " + fmtInt(box - min) + " phút: chuyển sang chốt việc" : ""}`; $("mState").style.color = min > box ? "var(--bad)" : ""; }, 5000);
+/* biên bản phải chốt ngay sau họp: cuộc họp đã có lời thoại mà chưa chốt */
+function pendingMinutes(){ const now = Date.now(); return Object.values(S.meetings).filter(m => m && m.status !== "confirmed" && (m.lineCount || 0) > 0 && !(rec && rec.id === m.id && dict && dict.active() && dictMode === "meet"))
+  .map(m => { const t0 = new Date(m.endedAt || m.updatedAt || m.startedAt).getTime(), h = (now - t0) / 36e5; return {m, h, lv: h >= 24 ? "red" : h >= 2 ? "amber" : "new"}; }).sort((a, b) => b.h - a.h); }
+CV.pendingMinutes = () => pendingMinutes().map(x => ({id: x.m.id, title: x.m.title, hours: Math.round(x.h), lv: x.lv, lines: x.m.lineCount}));
+function discipline(){ const td = ymd(), ms = Object.values(S.meetings).filter(Boolean), cf = ms.filter(m => m.status === "confirmed"), by = {};
+  const hrs = cf.filter(m => m.confirmedAt && (m.endedAt || m.startedAt)).map(m => (new Date(m.confirmedAt) - new Date(m.endedAt || m.startedAt)) / 36e5).filter(h => h >= 0);
+  tasksArr().filter(t => t.meetingId && t.status !== "cancel").forEach(t => { const d = t.dept || "(chưa rõ)", s = by[d] || (by[d] = {dept: d, n: 0, done: 0, onTime: 0, late: 0, red: 0}); s.n++; const h = health(t, td);
+    if(t.status === "done"){ s.done++; const fin = String(t.acceptedAt || "").slice(0, 10) || td; if(!t.due || fin <= t.due) s.onTime++; else s.late++; } else if(t.due && td > t.due) s.late++; if(h.k === "red") s.red++; });
+  return {total: ms.length, confirmed: cf.length, within24: hrs.filter(h => h <= 24).length, avgH: hrs.length ? hrs.reduce((a, b) => a + b, 0) / hrs.length : null, pending: pendingMinutes(), depts: Object.values(by).sort((a, b) => b.n - a.n)}; }
+CV.meetingDiscipline = discipline;
 function hotList(){ const td = ymd(), ts = tasksArr().filter(t => t.status !== "done" && t.status !== "cancel"), red = ts.filter(t => health(t, td).k === "red");
   const b3 = []; ts.forEach(t => (t.blockers||[]).filter(b => !b.resolved).forEach(b => { const L = blkLevel(b, td, t.dept); if(L.lv >= 3) b3.push({t, b, L}); }));
   return {red, b3, sup: ts.filter(t => t.support && t.support.open && !t.support.takenBy)}; }
-function drawHot(){ const H = hotList(), el = $("mHot"); if(!el) return;
-  el.innerHTML = H.red.length || H.b3.length || H.sup.length ? `<b>Cần bàn trong họp:</b> ${H.red.length} việc đỏ · ${H.b3.length} điểm nghẽn cấp 3 · ${H.sup.length} yêu cầu hỗ trợ chưa ai nhận` : '<span class="muted">Không có việc đỏ hay điểm nghẽn cấp 3: họp chỉ chốt quyết định mới.</span>'; }
+function drawHot(){ const H = hotList(), el = $("mHot"); if(!el) return; const PM = pendingMinutes().filter(x => x.lv !== "new"), pmH = PM.length ? `<div style="color:var(--bad);margin-bottom:4px"><b>Biên bản chưa chốt:</b> ${PM.map(x => esc(x.m.title || "Cuộc họp") + " (" + fmtInt(x.h) + " giờ)").join("; ")}. Chốt ngay, đừng để việc đã thống nhất trôi qua.</div>` : "";
+  el.innerHTML = pmH + H.red.length || H.b3.length || H.sup.length ? `<b>Cần bàn trong họp:</b> ${H.red.length} việc đỏ · ${H.b3.length} điểm nghẽn cấp 3 · ${H.sup.length} yêu cầu hỗ trợ chưa ai nhận` : '<span class="muted">Không có việc đỏ hay điểm nghẽn cấp 3: họp chỉ chốt quyết định mới.</span>'; }
 $("mStd").addEventListener("click", () => { const H = hotList();
   const items = ["Bản tin điều hành: số bán, việc đỏ/vàng (5 phút)"].concat(H.b3.map(x => `Host quyết điểm nghẽn: ${x.b.text} (${x.t.owner})`), H.red.slice(0, 6).map(t => `Gỡ việc đỏ: ${t.title} (${t.owner})`), H.sup.map(t => `Hỗ trợ ${t.owner}: ${t.support.text || t.title}`), ["Quyết định mới", "Phân công: người chịu trách nhiệm, chỉ số, bằng chứng, hạn"]);
   $("mAgenda").value = items.join("\n"); const d = $("mAgenda").closest("details"); if(d) d.open = true; if(!$("mReason").value) $("mReason").value = "Giao ban điều hành định kỳ"; toast("Đã lập chương trình chuẩn: chỉ bàn việc đỏ, điểm nghẽn cấp 3 và quyết định mới"); });
@@ -624,13 +636,19 @@ $("mImport").addEventListener("change", e => { const f = e.target.files[0]; e.ta
 
 /* drafts */
 const EMPTY = () => ({partner:"", partnerCode:"", headline:"", vv:"", purpose:"", peopleDac:[], peoplePartner:[], reason:"", summary:[], agendaItems:[], decisions:[], tasks:[], blockers:[], risks:[], openQuestions:[], nextMeeting:""});
+const KW = [["Giao việc", /\b(giao|phụ trách|chịu trách nhiệm|đảm nhận|nhận việc)\b/i], ["Quyết định", /\b(chốt|quyết định|thống nhất|đồng ý|duyệt|kết luận)\b/i], ["Điểm nghẽn", /(vướng|nghẽn|chậm|thiếu|chưa có|khó khăn|tắc)/i], ["Rủi ro", /(rủi ro|nguy cơ|đứt gãy)/i]];
+function autoTag(t){ t = String(t || ""); if(t.length < 18) return ""; const k = KW.find(([, r]) => r.test(t)); return k ? k[0] : ""; }
+const DEPT_KW = [["Dịch vụ", /dịch vụ|xưởng|bảo hành|sửa chữa/i], ["Phụ tùng", /phụ tùng/i], ["Marketing", /marketing|truyền thông|quảng cáo|sự kiện/i], ["Tài chính – Kế toán", /kế toán|tài chính|công nợ|thu nợ/i], ["Logistics – Kho", /kho|vận chuyển|logistics/i], ["Phát triển đại lý", /phát triển đại lý|đại lý mới/i], ["Nhân sự – Đào tạo", /nhân sự|đào tạo|tuyển/i], ["CNTT – Dữ liệu", /cntt|dữ liệu|phần mềm/i]];
 function quickDraft(m, lines){
-  const tg = k => lines.filter(l => l.tag === k).map(l => (l.sp ? l.sp + ": " : "") + l.text);
-  return {...EMPTY(), reason: (m && m.reason) || "", summary: tg("Ý chính"), decisions: tg("Quyết định"), risks: tg("Rủi ro"),
+  const T = lines.map(l => l.tag || autoTag(l.text)), nAuto = lines.filter((l, i) => !l.tag && T[i]).length;
+  const tg = k => lines.filter((l, i) => T[i] === k).map(l => (l.sp ? l.sp + ": " : "") + l.text);
+  const d_ = {...EMPTY(), reason: (m && m.reason) || "", summary: tg("Ý chính"), decisions: tg("Quyết định"), risks: tg("Rủi ro"),
     agendaItems: ((m && m.agenda) || []).map(a => ({item: a, summary: [], points: [], conclusion: ""})),
     blockers: tg("Điểm nghẽn").map(x => ({text: x, owner: "", due: addDays(ymd(), 3), solution: ""})),
-    tasks: tg("Giao việc").map(x => { const o = (x.match(/(?:giao cho|cho|phụ trách|chịu trách nhiệm)[:\s]+([^,.;]+?)(?:\s+(?:hạn|trước|trong|làm|thực hiện)\b|[,.;]|$)/i) || [])[1] || "";
-      return {title: x.slice(0,160), owner: o.trim(), dept: "Kinh doanh", coDepts: [], kpiName: "", kpiUnit: "", kpiBase: "", kpiTarget: "", kpiDir: "up", evidenceReq: "", start: ymd(), due: parseDue(x) || addDays(ymd(), 7), priority: "P2", firstStep: ""}; })};
+    openQuestions: [], tasks: tg("Giao việc").map(x => { const o = (x.match(/(?:giao cho|cho|phụ trách|chịu trách nhiệm)[:\s]+([^,.;]+?)(?:\s+(?:hạn|trước|trong|làm|thực hiện)\b|[,.;]|$)/i) || [])[1] || "";
+      const dp = (DEPT_KW.find(([, r]) => r.test(x)) || [])[0] || "Kinh doanh"; return {title: x.slice(0,160), owner: o.trim(), dept: dp, coDepts: [], kpiName: "", kpiUnit: "", kpiBase: "", kpiTarget: "", kpiDir: "up", evidenceReq: "", start: ymd(), due: parseDue(x) || addDays(ymd(), 7), priority: "P2", firstStep: ""}; })};
+  d_.openQuestions = nAuto ? [`Ben tự nhận diện ${nAuto} câu theo từ khóa (chưa ai đánh dấu): Host rà soát kỹ quyết định, người phụ trách, hạn trước khi chốt`] : [];
+  return d_;
 }
 function minutesPrompt(m, lines){
   let tx = lines.map(l => `[${l.ts || ""}]${l.tag ? " (" + l.tag + ")" : ""} ${l.sp ? l.sp + ": " : ""}${l.text}`).join("\n"); if(tx.length > 90000) tx = tx.slice(0, 20000) + "\n…\n" + tx.slice(-68000);
@@ -660,6 +678,7 @@ async function benDraft(){
   if(!rec){ toast("Chưa có cuộc họp. Bấm Bắt đầu ghi, gõ ghi chú hoặc nhập lời thoại từ file"); return; }
   flush(true); const lines = rec.lines; if(!lines.length) return toast("Chưa có nội dung cuộc họp");
   const m = {...(meet(rec.id) || {}), ...meetForm(), id: rec.id}; putMeeting(meetForm() && {id: rec.id, ...meetForm()});
+  if(!(dict && dict.active() && dictMode === "meet") && (meet(rec.id) || {}).status === "live") putMeeting({id: rec.id, status: "draft", endedAt: nowIso(), lineCount: rec.lines.length});
   const sample = CV.sample; if(!sample){ toast("Ben AI chỉ chạy khi mở trong Claude: em lập nhanh từ đánh dấu"); return openMinutes(m.id, quickDraft(m, lines)); }
   $("mState").textContent = "Ben đang tổng hợp biên bản…"; $("mSum").disabled = true;
   try{ const j = await sample.json(minutesPrompt(m, lines), {modelTier: "default"}), nd = normDraft(j);
@@ -970,12 +989,29 @@ VAI TRÒ THƯ KÝ & ĐIỀU HÀNH: Ben còn là thư ký cuộc họp và trợ 
 - Khi người dùng RA LỆNH sửa số liệu ("cập nhật", "sửa", "đặt", "tăng/giảm"), dùng update_map_data rồi báo trước → sau; có thể hoàn tác bằng undo_last_change. Không tự sửa dữ liệu khi người dùng chỉ hỏi.
 - Hỏi về công việc/tiến độ/ai đang chậm: dùng ops_brief hoặc list_tasks. Giao việc: create_task (phải có người chịu trách nhiệm, chỉ số, bằng chứng, hạn; thiếu thì hỏi lại). Báo cáo tiến độ: update_task.
 - Trong cuộc họp, hỏi "ai đã nói gì / đã chốt gì": get_meeting_transcript.
-Hôm nay ${vnDate(td)}. Đầu việc đang mở: ${ts.length} (nguy cơ trễ ${H.filter(([,h]) => h.k === "red").length}, cảnh báo ${H.filter(([,h]) => h.k === "amber").length}). ${rec ? "Đang ghi cuộc họp: " + (meetForm().title) + "." : ""}`; };
+Hôm nay ${vnDate(td)}. Đầu việc đang mở: ${ts.length} (nguy cơ trễ ${H.filter(([,h]) => h.k === "red").length}, cảnh báo ${H.filter(([,h]) => h.k === "amber").length}). ${rec ? "Đang ghi cuộc họp: " + (meetForm().title) + "." : ""}${pendingMinutes().filter(x => x.lv !== "new").length ? " BIÊN BẢN CHƯA CHỐT: " + pendingMinutes().filter(x => x.lv !== "new").map(x => (x.m.title || "Cuộc họp") + " (" + Math.round(x.h) + " giờ)").join("; ") + ": nhắc Host chốt ngay." : ""}`; };
+
+CV.tools.push({name:"ky_luat_hop", label:"Đang rà biên bản họp…", description:"Kỷ luật họp và năng lực thực thi: cuộc họp nào chưa chốt biên bản (quá 2 giờ, 24 giờ), tỷ lệ chốt trong 24 giờ, thời gian từ họp xong đến chốt, việc giao từ biên bản theo bộ phận (đúng hạn, trễ, nguy cơ đỏ).", inputSchema:{type:"object",properties:{}},
+  execute: async () => { const D = discipline(); return `# Kỷ luật họp\n- Cuộc họp: ${D.total}; đã chốt biên bản ${D.confirmed}; chốt trong 24 giờ ${D.within24}; ${D.avgH == null ? "chưa có số giờ trung bình" : "trung bình " + fmt1(D.avgH) + " giờ từ họp xong đến chốt"}.\n- Chưa chốt: ${D.pending.length ? D.pending.map(x => (x.m.title || "Cuộc họp") + " (" + fmtInt(x.h) + " giờ)").join("; ") : "không có"}.\n\n## Việc giao từ biên bản theo bộ phận\n${D.depts.length ? "| Bộ phận | Việc | Xong | Đúng hạn | Trễ | Đỏ |\n|---|---|---|---|---|---|\n" + D.depts.map(s => `| ${s.dept} | ${s.n} | ${s.done} | ${s.onTime} | ${s.late} | ${s.red} |`).join("\n") : "Chưa có đầu việc từ biên bản đã chốt."}`; }});
+/* nơi lưu dữ liệu họp + sao lưu lời thoại */
+(function(){ const bar = document.querySelector("#bMeet .toolbar"); if(!bar) return; const bk = document.createElement("button"); bk.type = "button"; bk.id = "mBackup"; bk.textContent = "Sao lưu lời thoại"; bar.appendChild(bk);
+  const note = document.createElement("p"); note.id = "mWhere"; note.className = "tiny muted"; note.style.margin = "4px 0"; bar.after(note);
+  const upd = () => { note.innerHTML = `<b>Dữ liệu lưu ở đâu:</b> ${mode === "db" ? "dữ liệu chung của bản đồ trên Claude (người có quyền cùng xem)" : "trình duyệt này (localStorage, khóa cv-ops-v1), không đồng bộ giữa các máy"}. <b>Không lưu âm thanh</b>, chỉ lưu chữ lời thoại (${dict ? (dict.web ? "ghi giọng bằng Chrome/Edge, cần Internet" : "ghi giọng của Claude") : "chưa có ghi giọng ở thiết bị này, gõ ghi chú tay"}). ${mode === "db" ? "" : "Xóa dữ liệu duyệt web hoặc đổi máy sẽ mất: bấm Sao lưu lời thoại sau mỗi cuộc họp."}`; }; upd(); setInterval(upd, 4000);
+  bk.addEventListener("click", async () => { const m = rec ? meet(rec.id) : Object.values(S.meetings).filter(Boolean).sort((a, b) => String(b.startedAt).localeCompare(String(a.startedAt)))[0]; if(!m){ toast("Chưa có cuộc họp để sao lưu"); return; }
+    const ls = await meetingLines(m.id), txt = `${m.title || "Cuộc họp"}\nBắt đầu: ${m.startedAt || ""}\nChủ trì: ${m.host || ""}\nThành phần: ${(m.people || []).join("; ")}\n\n` + ls.map(l => `[${l.ts}]${l.tag ? " (" + l.tag + ")" : ""} ${l.sp ? l.sp + ": " : ""}${l.text}`).join("\n");
+    const a = document.createElement("a"), nm = (m.title || "cuoc-hop").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").slice(0, 40); a.href = URL.createObjectURL(new Blob(["\ufeff" + txt], {type: "text/plain"})); a.download = "loi-thoai-" + nm + "-" + ymd() + ".txt"; a.click(); toast("Đã tải lời thoại về máy"); }); })();
 
 /* ---------- boot ---------- */
 loadLocal(); renderOps(); setInterval(renderOps, 60000);
 const use = n => (window.claude && typeof window.claude.use === "function") ? window.claude.use(n).catch(() => null) : Promise.resolve(null);
-use("dictation").then(d => { dict = d; const mic = $("aiMic"); if(mic) mic.hidden = !d;
+/* Ghi giọng nói dự phòng khi mở ngoài Claude (tệp offline, GitHub Pages): dùng nhận dạng giọng nói của Chrome/Edge. Cần Internet (trình duyệt gửi âm thanh tới dịch vụ nhận dạng), âm thanh không được lưu, chỉ lưu chữ. */
+function webSpeech(){ const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if(!SR) return null; let r = null, act = false; const cb = {};
+  const mk = () => { r = new SR(); r.lang = "vi-VN"; r.continuous = true; r.interimResults = true;
+    r.onresult = e => { let part = ""; for(let i = e.resultIndex; i < e.results.length; i++){ const t = e.results[i][0].transcript; if(e.results[i].isFinal){ cb.f && cb.f({text: t.trim()}); } else part += t; } cb.p && cb.p({text: part}); };
+    r.onerror = e => { if(e.error === "no-speech" || e.error === "aborted") return; act = false; cb.s && cb.s({state: "idle", reason: e.error === "not-allowed" || e.error === "service-not-allowed" ? "not_granted" : "unavailable"}); };
+    r.onend = () => { if(act){ try{ r.start(); }catch(_){ act = false; cb.s && cb.s({state: "idle", reason: "stopped"}); } } else cb.s && cb.s({state: "idle", reason: "stopped"}); }; };
+  return {active: () => act, start: async () => { mk(); act = true; r.start(); cb.s && cb.s({state: "listening"}); }, stop: async () => { act = false; try{ r.stop(); }catch(_){} }, onPartial: f => { cb.p = f; }, onFinal: f => { cb.f = f; }, onState: f => { cb.s = f; }, web: true}; }
+use("dictation").then(d => { dict = d || webSpeech(); d = dict; const mic = $("aiMic"); if(mic) mic.hidden = !d;
   if(!d){ $("mState").textContent = "Thiết bị này chưa hỗ trợ ghi giọng nói: gõ ghi chú tay ở ô dưới"; return; }
   d.onPartial(({text}) => { if(dictMode === "meet"){ partialTxt = text; drawScript(); } else { const ta = $("aiText"); ta.dataset.base = ta.dataset.base ?? ta.value; ta.value = (ta.dataset.base + " " + text).trim(); } });
   d.onFinal(({text}) => { if(dictMode === "meet"){ partialTxt = ""; addLine(text); } else { const ta = $("aiText"); ta.value = ((ta.dataset.base ?? ta.value) + text).replace(/^\s+/, ""); ta.dataset.base = ta.value; } });
