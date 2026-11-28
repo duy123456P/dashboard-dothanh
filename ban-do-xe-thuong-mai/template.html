@@ -1765,7 +1765,7 @@ fab.addEventListener("click", () => openAi(true));
 document.getElementById("aiClose").addEventListener("click", () => openAi(false));
 function greet(){
   addMsg("a", mdToHtml(`Chào anh/chị, em là **Ben**. Trong họp anh/chị cứ gõ thẳng: \`122.235 × 8%\`, \`gộp Hà Nội, Bắc Ninh, Hưng Yên\`, \`tách TP. Hồ Chí Minh\`: em trả lời ngay. Các tab **Tính nhanh**, **Giá trị SP** (so sánh TCO) và **Sale talk** dùng được cả khi không có AI.\n\n Em đọc trực tiếp dữ liệu 34 tỉnh, 11 khu vực, 50 đại lý, 25 trạm dịch vụ và số bán lẻ lũy kế T10/2026 của từng đại lý.\n\n- **Báo cáo tức thì:** bấm là có ngay báo cáo đầy đủ số liệu (toàn quốc, khu vực, từng tỉnh, 34 mặt trận, khoảng trống độ phủ).\n- **Ben phân tích:** chọn mẫu hoặc gõ câu hỏi; chế độ *Nhanh* trả lời trong vài giây, *Chuyên sâu* kỹ hơn.\n- Em có thể **mở tỉnh, đổi khu vực, đổi chỉ số, dựng cột 3D** trên bản đồ khi trả lời. Mỗi báo cáo có nút **Tải** và **Sao chép**.`));
-  if(aiDisabled) aiState.textContent = "Báo cáo tức thì dùng được ở mọi nơi; Ben phân tích chỉ chạy khi mở trang trong Claude.";
+  if(aiDisabled) aiState.textContent = "Báo cáo tức thì và Ben (tra bằng kỹ năng có sẵn) chạy ở mọi nơi, kể cả offline; phân tích sâu bằng AI chỉ khi mở trang trong Claude.";
 }
 function addMsg(role, html){ if(role === "u"){ const bc = document.getElementById("bChat"); if(bc) bc.classList.add("chatting"); } const d = document.createElement("div"); d.className = "msg " + role; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
 function mdToHtml(md){
@@ -1870,7 +1870,10 @@ async function askAi(text){
   openAi(true); benTab("Chat");
   const local = localAnswer(text);
   if(local){ addMsg("u", esc(text)); aiText.value = ""; const b = addMsg("a", ""); finishBubble(b, local, false, "Ben tính nhanh"); return; }
-  if(aiDisabled || !sample){ addMsg("u", esc(text)); addMsg("a", "<p>Ben phân tích chỉ hoạt động khi mở trang này trong Claude (claude.ai hoặc ứng dụng Claude). Anh/chị vẫn dùng được các nút <b>Báo cáo tức thì</b>.</p>"); return; }
+  if(aiDisabled || !sample){ addMsg("u", esc(text)); aiText.value = ""; const ob = addMsg("a", '<span class="act">Ben đang tra dữ liệu trong máy…</span>'), CVo = window.__CV;
+    Promise.resolve(CVo && CVo.offlineBen ? CVo.offlineBen(text) : null).then(r => { if(!r){ ob.innerHTML = "<p>Ben phân tích sâu chỉ hoạt động khi mở trang này trong Claude. Anh/chị vẫn dùng được các nút <b>Báo cáo tức thì</b>.</p>"; return; }
+      if(r.html) ob.innerHTML = r.html; else { finishBubble(ob, r.md + "\n\n_" + r.foot + "_", false, r.title, false); if(r.extra) ob.insertAdjacentHTML("beforeend", r.extra); } log.scrollTop = log.scrollHeight; })
+      .catch(e => { ob.innerHTML = "<p>Ben offline gặp lỗi: " + esc((e && e.message) || e) + "</p>"; }); return; }
   addMsg("u", esc(text)); aiText.value = "";
   aiTurns.push({role:"user", content:text}); if(aiTurns.length > 12) aiTurns = aiTurns.slice(-12);
   while(aiTurns.length && aiTurns[0].role !== "user") aiTurns.shift();
@@ -2410,7 +2413,7 @@ window.__CV = {
   get view3d(){ return {get anim(){ return !!camAnim; }, camera, controls, wx, K, LAT0, LAT1, stopIntro(){ introT0 = -1e9; autoRotate = false; if(controls) controls.autoRotate = false; }}; },
   findRow, norm, clone, strip, mergeRows, compute, renderAll, save, saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({rows: rows.map(strip), tam, uioNat})); }catch(e){} },
   select, showTab, focusOn, openAi, benTab, addMsg, mdToHtml, finishBubble, askAi, offerFile, toast, esc, fmtInt, fmt1, calc, buildReport,
-  INFRA, km, provinceOfPoint, structOf, centersOf, get SITES(){ return SITES; }, renderDossier, get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
+  INFRA, km, provinceOfPoint, structOf, centersOf, get SITES(){ return SITES; }, get aiTools(){ return AI_TOOLS; }, renderDossier, get sample(){ return sample; }, get downloads(){ return downloads; }, localHooks: [], tools: [], ctx: null, onSave: null,
 };
 function init(){
   load(); renderAll();

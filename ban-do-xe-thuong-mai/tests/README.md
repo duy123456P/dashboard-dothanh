@@ -11,3 +11,5 @@ Sửa đường dẫn `file:///home/user/dashboard-dothanh/ban-do-xe-thuong-mai/
 | competitiveness.js | Tab Năng lực cạnh tranh: chuyển tab, đối chiếu hình và bản đồ |
 | growth.js | Mục DAC AI Growth: chấm điểm LEAD, báo cáo rà soát tuần |
 | finance.js | Dòng tiền, cổng nhập dữ liệu, kiểm soát dữ liệu (mẫu công nợ, bán lẻ) |
+| skills.js | Chạy cả 61 kỹ năng của Ben khi mất mạng: thời gian lần 1 và 2, lỗi, kết quả rỗng hoặc chứa NaN/undefined, yêu cầu mạng |
+| router.js | Bộ định tuyến Ben offline: 57 câu hỏi tiếng Việt → kỹ năng mong đợi, đo thời gian, kiểm tra không có yêu cầu mạng |
