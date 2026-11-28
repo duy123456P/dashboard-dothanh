@@ -387,9 +387,12 @@ Dữ liệu và tính toán (`load/save`, `mergeRows`, `compute`, `METRICS`), c�
 
 **Cơ chế.** `askAi(văn bản)`: (1) chạy các `CV.localHooks` theo thứ tự (lệnh cục bộ, không cần AI), (2) nếu môi trường có `sample` thì gửi lời nhắc hệ thống (`rules()` + `dataSnapshot()` + các `CV.ctx()` của module) cùng bộ công cụ chọn lọc theo từ khóa (`pickTools`, giới hạn theo hạn mức `toolCap`) và vòng lặp gọi công cụ; (3) nếu không có AI thì dùng báo cáo tức thì và công cụ cục bộ. Công cụ trả markdown, được hiển thị bằng `mdToHtml`. Công cụ thay đổi dữ liệu (`update_map_data`) phải báo trước và sau, có `undo_last_change` và ghi nhật ký.
 
+
+**Ben offline (`ben-offline.js`, 28/11/2026).** Khi không có `sample` (mở ngoài Claude, offline hoặc online) hoặc AI bị từ chối, `askAi` gọi `CV.offlineBen(văn bản)`: (1) lệnh trợ giúp (“ben làm được gì”) liệt kê câu mẫu theo nhóm; (2) nhận ý định bằng bảng mẫu không dấu `I` (kỹ năng, regex, điểm) cộng so khớp từ khóa với mô tả kỹ năng (điểm tối đa 3, không đủ thì không đoán); (3) tách tham số: tỉnh (`findRow` thử cụm 1–4 từ, tên tỉnh cũ), đại lý (`salesKey`, tên), hãng, mẫu xe, ngày, năm sinh, tên chỉ số; nhớ tỉnh và đại lý gần nhất cho câu tiếp theo; (4) thiếu tham số bắt buộc thì hỏi lại kèm nút gợi ý; (5) gọi kỹ năng, trả markdown kèm “Kỹ năng · số ms · offline”. Không có AI nên không trả lời câu hỏi tự do: câu không nhận ra được gợi ý kỹ năng gần nhất. Khi có mạng, dưới mỗi câu trả lời có nút mở ChatGPT, Grok, Perplexity, Claude để phân tích sâu; bấm thì hỏi xác nhận vì câu trả lời có thể chứa số liệu nội bộ, rồi chép lời nhắc và mở công cụ. Kiểm thử: `tests/skills.js` (chạy cả 61 kỹ năng khi mất mạng: thời gian, lỗi, kết quả rỗng; hiện mọi kỹ năng dưới 300 ms, không yêu cầu mạng) và `tests/router.js` (57 câu hỏi mẫu, 56 đúng; câu còn lại là kỳ vọng mơ hồ).
+
 **Quy ước công cụ:** `{name, label, description, inputSchema(JSON Schema), execute(input) → string | object}`; mô tả viết để mô hình chọn đúng; không công cụ nào được xuất dữ liệu ra ngoài.
 
-**Danh mục 50 công cụ hiện có:**
+**Danh mục 50 công cụ của các module** (cộng 11 công cụ lõi trong template.html: `get_province`, `calc`, `merge_share`, `split_province`, `get_customer_care`, `get_price`, `recommend_sites`, `focus_location`, `get_market_structure`, `focus_province`, `set_map`; tổng 61 kỹ năng):
 
 | Công cụ | Mô tả |
 |---|---|
